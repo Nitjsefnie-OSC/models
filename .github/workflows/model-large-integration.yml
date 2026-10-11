@@ -35,6 +35,42 @@ permissions:
   contents: read
 
 jobs:
+  bonsai-native-real-weights:
+    name: Bonsai native real weights (${{ matrix.runner }})
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 120
+    strategy:
+      fail-fast: false
+      matrix:
+        runner: [ubuntu-24.04, ubuntu-24.04-arm]
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: 25
+      - uses: gradle/actions/setup-gradle@v6
+      - name: Install pinned Rust toolchain
+        run: |
+          rustup toolchain install 1.96.0 --profile minimal --no-self-update
+          rustup component add --toolchain 1.96.0 clippy rustfmt
+      - name: Cache exact Bonsai fixture
+        uses: actions/cache@v5
+        with:
+          path: ~/.jvllm/models/Ternary-Bonsai-2-27B-PTQ1_0.gguf
+          key: bonsai2-27b-ptq1_0-fixture-v1
+      - name: Verify publisher continuation, sessions and complete batched logits
+        run: ./gradlew :backend-native:bonsai2NativeSlowTest --no-daemon --stacktrace
+      - name: Retain real-weight test results
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: bonsai-native-real-weights-${{ matrix.runner }}
+          path: |
+            backend-native/build/test-results/bonsai2NativeSlowTest/
+            backend-native/build/reports/tests/bonsai2NativeSlowTest/
+          retention-days: 30
+
   pure-java-large-model:
     name: ${{ matrix.name }} pure-Java slow test
     runs-on: ubuntu-latest
