@@ -19,6 +19,8 @@ All notable changes to models are documented here.
   0.80 relative decode floor, 1.5 latency ceiling and existing quality/contribution gates. Historical
   v6 qualifications are unchanged. Reject nonfinite decode ratios instead of letting an invalid
   comparator measurement pass the relative floor.
+- The publisher comparison client ignores SSE keepalive comments during long prefills while
+  retaining the first generated token as its time-to-first-token measurement.
 - Bonsai catalog admission and public QA are still pending in this release preparation; the
   measurements and unsuccessful kernel experiments are retained under
   `benchmark-results/2026-10-11-bonsai-production`.

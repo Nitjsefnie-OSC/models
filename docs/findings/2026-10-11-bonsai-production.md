@@ -157,6 +157,19 @@ The source Models RAG arm completed 27/27 attempts: twelve correct model answers
 extractive fallbacks and three correct abstentions, with no truncations. Model answer rate is
 0.444 and correctness among those answers is 1.0. The paired publisher arm is still required.
 
+The first publisher RAG attempt failed during warmup: its 30-second SSE keepalive (`:\n\n`)
+was parsed as JSON. A reproducing parser test failed, then passed after comments and SSE metadata
+were ignored without moving the first-token timestamp. All RAG benchmark tests pass. Only the
+publisher client harness was replaced; the candidate report, host, workload and generation controls
+remain unchanged. The replacement reference arm retains the failed attempt and new JAR digest.
+
+An additional ARM route check uses one m7g.4xlarge (16 cores, 64 GiB), a 90-minute termination
+deadline and USD 2 ceiling. It compares scalar Java, SIMD Java and native Q8 on the same host;
+real projection parity and the pinned continuation accompany whole-model timings. Both rates must
+improve by 5% with identical outputs to retain either replacement. This is route validation,
+not an ARM RAG qualification. The native artifact is from CI run 38175035675; its synthetic merge
+tree matches source `75ec53de`, and every payload byte is recorded in `arm-q8-payload-provenance.json`.
+
 Publication order remains released Vectors dependency verification, Models, downloaded-artifact
 Bonsai qualification/default smoke, ModelJars library/CLI, marker Central publication and site.
 Vectors has no code change in this phase. Preserve the exact source provenance of the public QA;
