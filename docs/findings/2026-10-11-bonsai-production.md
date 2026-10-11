@@ -19,7 +19,7 @@ model queue one at a time. A passing build is not completion of qualification.
    policy must be separately versioned, justify the reference's provenance, retain
    the 0.80 throughput / 1.5 latency thresholds and all correctness gates, and leave
    historical qualifications unchanged. Collect measurements before deciding it.
-5. Complete the default smoke and controlled paired RAG qualification, plus held-out
+5. Complete the default smoke and controlled paired RAG qualification, plus
    public task evidence from more than one dataset. Record model contribution,
    failures, truncation, memory and limitations separately from pipeline fallback.
 6. Release any runtime repair, repeat with downloaded Central runtime artifacts,
@@ -122,3 +122,26 @@ now use the same Q8 activation contract; randomized independent-oracle tests che
 both production Java and Rust outputs bit for bit across rows, batches and workers.
 The explicit float dot remains available for accuracy ablations, not backend fallback.
 Backend diagnostics record the PTQ contract and the native plan advances to v14.
+
+## Release preparation and further findings
+
+- Models draft PR 266 prepares the next release; the complete local build and compliance checks
+  passed. The public-QA workers run source `8b5c0b29`, not a claimed Central release.
+- Reject nonfinite decode ratios: a zero/invalid comparator throughput previously yielded infinity,
+  which passed a lower-bound-only check. A reproducing test failed before the repair and now passes;
+  the certified historical RAG evidence still passes.
+- ModelJars draft PR 217 preserves entry-specific policy identities, verifies a hashed publisher
+  verdict against both raw reports and retains the existing contribution and relative thresholds.
+- Direct loading can allocate Bonsai's entire advertised context, reproducing the earlier article's
+  heap exhaustion. New RAG records can carry their tested context; the loader uses that session
+  capacity, with explicit deployment settings retaining precedence. Legacy records retain their
+  previous behavior. The final Bonsai entry must carry context 2048 and the released ModelJars
+  smoke must assert that capacity through the public API.
+- The Java Q8 fallback has a bit-exact SIMD candidate. A separate one-hour, USD 1 maximum m6a host
+  measures scalar versus SIMD with the same arithmetic; no simultaneous inference shares that host.
+  Its provenance and termination deadline are in `java-q8-host.json`. No speed claim is made yet.
+
+Publication order remains released Vectors dependency verification, Models, downloaded-artifact
+Bonsai qualification/default smoke, ModelJars library/CLI, marker Central publication and site.
+Vectors has no code change in this phase. Preserve the exact source provenance of the public QA;
+changing artifact versions does not turn source results into released-runtime measurements.
