@@ -61,6 +61,9 @@ These are pure-Java fallback rates, separate from the faster native route above.
 - External quality: `public-qa-protocol.md` freezes 100 SQuAD 2.0 and 100 BoolQ cases before quality
   outputs. `public-qa-cases.json` records source and prompt hashes. Eight 25-case shards run both
   arms on the same host per shard; answer-quality scores aggregate all cases, timings do not.
+  Both arms now complete all 200 cases with identical scores (SQuAD EM 0.77/F1 0.800298;
+  BoolQ 0.90), no failures and no truncations. See `public-qa-v2/`. All eight hosts terminated.
+  These source results predate the BF16 repair; final-runtime admission remains outstanding.
 - `public-qa-fleet.json` records owned instances, fixed deadlines, exact payload and result paths.
   Each worker uploads checkpoints and terminates automatically. The earlier failed bootstrap is
   retained separately; its instance was terminated.

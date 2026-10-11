@@ -58,8 +58,8 @@ Sources: ModelJars `docs/MODALITY-ROADMAP.md`, `docs/model-candidates-20260803.m
 Models `docs/proposals/model-intake-formats-and-kv-research.md`, and the workspace's
 `tool-calling-small-model-candidates-2026-09-02.md`.
 
-Status: paired source RAG passes and the measured ARM NEON repair is retained. Public QA is
-finishing. New x86/ARM real-weight CI exposed BF16 cold/compiled drift in Vectors; the local
+Status: paired source RAG passes and the measured ARM NEON repair is retained. Public QA completes all 200 pairs with identical dataset scores and no execution failures or
+truncations. New x86/ARM real-weight CI exposed BF16 cold/compiled drift in Vectors; the local
 fix passes both real-weight tests. Vectors release, downstream CI and final-runtime task gates
 remain required. Nothing newly qualified or published by this plan.
 

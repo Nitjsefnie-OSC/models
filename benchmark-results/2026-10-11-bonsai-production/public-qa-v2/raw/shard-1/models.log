@@ -1,0 +1,53 @@
+WARNING: Using incubator modules: jdk.incubator.vector
+Oct 11, 2026 9:07:41 PM com.integrallis.vectors.core.PanamaVectorUtilSupportProvider create
+INFO: vectors-core: Using Panama Vector API SIMD provider (vector bits: 256)
+Oct 11, 2026 9:07:41 PM com.integrallis.vectors.core.VectorizationProvider logActiveToggles
+INFO: vectors-core: provider=PanamaVectorUtilSupport panama=true maxBits=256 preferredBits=256 fastVectorFMA=true fastScalarFMA=true sve=false ggufParallel=true ggufParallelThreshold=1048576 ggufExecutor=persistent ggufThreads=16 ggufChunksPerThread=2 mappedKQuantLongOffsets=auto(q4=true,q5=false,q6=false) q4ShortPairwiseSupported=true q4UnsignedPairwiseSupported=true toggles=[(defaults — no -Dvectors.* overrides)]
+case=25 dataset=squad2 error=null stop=EOS millis=73462.127818
+case=26 dataset=squad2 error=null stop=EOS millis=74801.800253
+case=27 dataset=boolq error=null stop=EOS millis=35220.145547
+case=28 dataset=boolq error=null stop=EOS millis=30935.484636
+case=29 dataset=boolq error=null stop=EOS millis=74905.345598
+case=30 dataset=squad2 error=null stop=EOS millis=116282.559628
+case=31 dataset=squad2 error=null stop=EOS millis=82169.694253
+case=32 dataset=squad2 error=null stop=EOS millis=70114.762262
+case=33 dataset=boolq error=null stop=EOS millis=57906.990592
+case=34 dataset=boolq error=null stop=EOS millis=28645.23072
+case=35 dataset=squad2 error=null stop=EOS millis=68550.438734
+case=36 dataset=squad2 error=null stop=EOS millis=106202.577783
+case=37 dataset=boolq error=null stop=EOS millis=36622.670741
+case=38 dataset=squad2 error=null stop=EOS millis=155954.917555
+case=39 dataset=squad2 error=null stop=EOS millis=130526.293691
+case=40 dataset=boolq error=null stop=EOS millis=62915.912535
+case=41 dataset=boolq error=null stop=EOS millis=71057.237177
+case=42 dataset=squad2 error=null stop=EOS millis=100679.864684
+case=43 dataset=squad2 error=null stop=EOS millis=94584.065713
+case=44 dataset=squad2 error=null stop=EOS millis=76765.058802
+case=45 dataset=boolq error=null stop=EOS millis=69927.55843
+case=46 dataset=squad2 error=null stop=EOS millis=79312.89883
+case=47 dataset=squad2 error=null stop=EOS millis=146495.450398
+case=48 dataset=boolq error=null stop=EOS millis=70344.66804
+case=49 dataset=squad2 error=null stop=EOS millis=101780.327817
+	Command being timed: "/opt/jdk/bin/java --add-modules jdk.incubator.vector --enable-native-access=ALL-UNNAMED -Xmx16g -Dmodels.native.kernels.library=/work/qa/libjmodels_kernels.so -cp /work/qa/lib/*:/work/qa/classes PublicQaProbe /work/bonsai2.gguf /work/qa/public-qa-cases.json /work/out/models.jsonl rust-ffm 2048 25 25 models-source@8b5c0b29d25bfce0e54659778e08ca65dcbd322b"
+	User time (seconds): 30286.93
+	System time (seconds): 15.32
+	Percent of CPU this job got: 1501%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 33:37.52
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 6883336
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 408338
+	Voluntary context switches: 808812
+	Involuntary context switches: 149370
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 1488
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

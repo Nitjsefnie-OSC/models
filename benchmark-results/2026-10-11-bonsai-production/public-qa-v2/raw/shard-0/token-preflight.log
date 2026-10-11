@@ -1,0 +1,53 @@
+WARNING: Using incubator modules: jdk.incubator.vector
+Oct 11, 2026 9:07:09 PM com.integrallis.vectors.core.PanamaVectorUtilSupportProvider create
+INFO: vectors-core: Using Panama Vector API SIMD provider (vector bits: 256)
+Oct 11, 2026 9:07:09 PM com.integrallis.vectors.core.VectorizationProvider logActiveToggles
+INFO: vectors-core: provider=PanamaVectorUtilSupport panama=true maxBits=256 preferredBits=256 fastVectorFMA=true fastScalarFMA=true sve=false ggufParallel=true ggufParallelThreshold=1048576 ggufExecutor=persistent ggufThreads=16 ggufChunksPerThread=2 mappedKQuantLongOffsets=auto(q4=true,q5=false,q6=false) q4ShortPairwiseSupported=true q4UnsignedPairwiseSupported=true toggles=[(defaults — no -Dvectors.* overrides)]
+case=0 dataset=squad2 error=null stop=null millis=10.45108
+case=1 dataset=boolq error=null stop=null millis=3.336148
+case=2 dataset=boolq error=null stop=null millis=1.484877
+case=3 dataset=squad2 error=null stop=null millis=1.880173
+case=4 dataset=squad2 error=null stop=null millis=1.647457
+case=5 dataset=squad2 error=null stop=null millis=4.665424
+case=6 dataset=boolq error=null stop=null millis=1.433343
+case=7 dataset=squad2 error=null stop=null millis=3.242701
+case=8 dataset=squad2 error=null stop=null millis=1.925505
+case=9 dataset=squad2 error=null stop=null millis=2.776971
+case=10 dataset=squad2 error=null stop=null millis=2.30123
+case=11 dataset=boolq error=null stop=null millis=0.942301
+case=12 dataset=squad2 error=null stop=null millis=1.84577
+case=13 dataset=squad2 error=null stop=null millis=1.445004
+case=14 dataset=squad2 error=null stop=null millis=2.367824
+case=15 dataset=squad2 error=null stop=null millis=1.962107
+case=16 dataset=squad2 error=null stop=null millis=1.551701
+case=17 dataset=squad2 error=null stop=null millis=1.641567
+case=18 dataset=boolq error=null stop=null millis=0.817923
+case=19 dataset=squad2 error=null stop=null millis=1.366519
+case=20 dataset=squad2 error=null stop=null millis=4.998075
+case=21 dataset=squad2 error=null stop=null millis=1.880873
+case=22 dataset=squad2 error=null stop=null millis=1.39374
+case=23 dataset=squad2 error=null stop=null millis=1.350458
+case=24 dataset=squad2 error=null stop=null millis=1.579323
+	Command being timed: "/opt/jdk/bin/java --add-modules jdk.incubator.vector --enable-native-access=ALL-UNNAMED -Xmx16g -Dmodels.native.kernels.library=/work/qa/libjmodels_kernels.so -cp /work/qa/lib/*:/work/qa/classes PublicQaProbe /work/bonsai2.gguf /work/qa/public-qa-cases.json /work/out/token-preflight.jsonl validate 2048 0 25 models-source@8b5c0b29d25bfce0e54659778e08ca65dcbd322b"
+	User time (seconds): 2.92
+	System time (seconds): 0.54
+	Percent of CPU this job got: 286%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:01.21
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 979568
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 231744
+	Voluntary context switches: 12890
+	Involuntary context switches: 80
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 152
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

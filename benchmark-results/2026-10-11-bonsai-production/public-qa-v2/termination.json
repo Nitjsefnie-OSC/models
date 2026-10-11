@@ -1,0 +1,37 @@
+{
+  "checkedAt": "2026-10-11T22:24:18.317260+00:00",
+  "instances": [
+    {
+      "instanceId": "i-006de0b9607c249de",
+      "state": "terminated"
+    },
+    {
+      "instanceId": "i-08ff44b875e425be2",
+      "state": "terminated"
+    },
+    {
+      "instanceId": "i-0ce2b4560a436c9ca",
+      "state": "terminated"
+    },
+    {
+      "instanceId": "i-0ad42bc6ee82ff717",
+      "state": "terminated"
+    },
+    {
+      "instanceId": "i-044e1d5b5ab7fe0b5",
+      "state": "terminated"
+    },
+    {
+      "instanceId": "i-00d49b5bc447c9e7a",
+      "state": "terminated"
+    },
+    {
+      "instanceId": "i-0ee7bd783a1abc6f6",
+      "state": "terminated"
+    },
+    {
+      "instanceId": "i-0dc4b31592d026e19",
+      "state": "terminated"
+    }
+  ]
+}

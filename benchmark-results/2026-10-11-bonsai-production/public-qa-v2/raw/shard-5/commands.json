@@ -1,0 +1,67 @@
+[
+  {
+    "name": "token-preflight",
+    "command": [
+      "/opt/jdk/bin/java",
+      "--add-modules",
+      "jdk.incubator.vector",
+      "--enable-native-access=ALL-UNNAMED",
+      "-Xmx16g",
+      "-Dmodels.native.kernels.library=/work/qa/libjmodels_kernels.so",
+      "-cp",
+      "/work/qa/lib/*:/work/qa/classes",
+      "PublicQaProbe",
+      "/work/bonsai2.gguf",
+      "/work/qa/public-qa-cases.json",
+      "/work/out/token-preflight.jsonl",
+      "validate",
+      "2048",
+      "125",
+      "25",
+      "models-source@8b5c0b29d25bfce0e54659778e08ca65dcbd322b"
+    ],
+    "startedAt": 1791752908.045266,
+    "exitCode": 0,
+    "completedAt": 1791752909.3779485
+  },
+  {
+    "name": "models",
+    "command": [
+      "/opt/jdk/bin/java",
+      "--add-modules",
+      "jdk.incubator.vector",
+      "--enable-native-access=ALL-UNNAMED",
+      "-Xmx16g",
+      "-Dmodels.native.kernels.library=/work/qa/libjmodels_kernels.so",
+      "-cp",
+      "/work/qa/lib/*:/work/qa/classes",
+      "PublicQaProbe",
+      "/work/bonsai2.gguf",
+      "/work/qa/public-qa-cases.json",
+      "/work/out/models.jsonl",
+      "rust-ffm",
+      "2048",
+      "125",
+      "25",
+      "models-source@8b5c0b29d25bfce0e54659778e08ca65dcbd322b"
+    ],
+    "startedAt": 1791752910.4592319,
+    "exitCode": 0,
+    "completedAt": 1791754572.1038108
+  },
+  {
+    "name": "publisher",
+    "command": [
+      "python3",
+      "/work/qa/run-public-reference.py",
+      "/work/qa/public-qa-cases.json",
+      "/work/out/publisher.jsonl",
+      "http://127.0.0.1:8080",
+      "125",
+      "25"
+    ],
+    "startedAt": 1791754575.1300828,
+    "exitCode": 0,
+    "completedAt": 1791756019.584718
+  }
+]
