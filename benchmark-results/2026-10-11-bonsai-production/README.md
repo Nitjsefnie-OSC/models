@@ -69,3 +69,14 @@ receipts. No quality claim uses those results. The corrected harness matches all
 token arrays before inference; `public-qa-protocol.md` records the correction and replacement run.
 
 See the [execution plan](../../docs/findings/2026-10-11-bonsai-production.md) for the ordered queue.
+
+## ARM regression and repair experiment
+
+`arm-q8-paired/` is complete on Graviton3: scalar Java, SIMD Java and the initial native
+route produce identical continuation hashes. Java SIMD improves decode 4.034x and prefill
+4.168x over scalar. The native route regresses against Java SIMD: decode ratio 0.414 and
+prefill ratio 0.400. It is rejected for release on ARM until corrected and remeasured.
+
+The separate `42185aa7` NEON experiment is bound in `arm-neon-host.json` and its payload
+receipt. Real projection outputs match Java and the independent oracle bit for bit; whole-model
+retention is still pending. The initial native result remains part of the evidence.
