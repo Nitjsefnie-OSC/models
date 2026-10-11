@@ -51,10 +51,9 @@ import jdk.incubator.vector.VectorOperators;
  *       TQ2_0} puts the scale last.
  * </ul>
  *
- * <p>Scalar on purpose for now. The base-3 recovery is a multiply and a shift per value and
- * vectorises cleanly over the Vector API, but a dequantizer that is bit-exact first and fast second
- * is the right order: the Panama version has to be proven identical to this one, and that
- * comparison needs this one to exist and be trusted.
+ * <p>The dequantizers retain scalar reference implementations. PTQ row products use the Vector API
+ * with a fixed reduction contract; independent unpacking and quantization oracles check their
+ * output against the native kernels.
  */
 public final class TernaryDequantizer {
 

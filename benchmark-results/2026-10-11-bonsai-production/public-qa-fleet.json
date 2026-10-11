@@ -48,7 +48,10 @@
         "ResourceType=instance,Tags=[{Key=Name,Value=bonsai-public-qa-8b5c0b29-0},{Key=project,Value=models-qualification},{Key=delete-after,Value=2026-10-11T22:48:31.014957+00:00}]",
         "--output",
         "json"
-      ]
+      ],
+      "privateDnsName": "ip-172-31-8-16.ec2.internal",
+      "publicIpAddress": "44.223.90.109",
+      "availabilityZone": "us-east-1a"
     },
     {
       "shard": 1,
@@ -89,7 +92,10 @@
         "ResourceType=instance,Tags=[{Key=Name,Value=bonsai-public-qa-8b5c0b29-1},{Key=project,Value=models-qualification},{Key=delete-after,Value=2026-10-11T22:50:18.302432+00:00}]",
         "--output",
         "json"
-      ]
+      ],
+      "privateDnsName": "ip-172-31-5-61.ec2.internal",
+      "publicIpAddress": "32.192.237.123",
+      "availabilityZone": "us-east-1a"
     },
     {
       "shard": 2,
@@ -130,7 +136,10 @@
         "ResourceType=instance,Tags=[{Key=Name,Value=bonsai-public-qa-8b5c0b29-2},{Key=project,Value=models-qualification},{Key=delete-after,Value=2026-10-11T22:50:21.498063+00:00}]",
         "--output",
         "json"
-      ]
+      ],
+      "privateDnsName": "ip-172-31-12-114.ec2.internal",
+      "publicIpAddress": "100.60.77.235",
+      "availabilityZone": "us-east-1a"
     },
     {
       "shard": 3,
@@ -171,7 +180,10 @@
         "ResourceType=instance,Tags=[{Key=Name,Value=bonsai-public-qa-8b5c0b29-3},{Key=project,Value=models-qualification},{Key=delete-after,Value=2026-10-11T22:50:24.795114+00:00}]",
         "--output",
         "json"
-      ]
+      ],
+      "privateDnsName": "ip-172-31-8-170.ec2.internal",
+      "publicIpAddress": "3.208.92.229",
+      "availabilityZone": "us-east-1a"
     },
     {
       "shard": 4,
@@ -212,7 +224,10 @@
         "ResourceType=instance,Tags=[{Key=Name,Value=bonsai-public-qa-8b5c0b29-4},{Key=project,Value=models-qualification},{Key=delete-after,Value=2026-10-11T22:50:27.841503+00:00}]",
         "--output",
         "json"
-      ]
+      ],
+      "privateDnsName": "ip-172-31-7-155.ec2.internal",
+      "publicIpAddress": "44.192.89.202",
+      "availabilityZone": "us-east-1a"
     },
     {
       "shard": 5,
@@ -253,7 +268,10 @@
         "ResourceType=instance,Tags=[{Key=Name,Value=bonsai-public-qa-8b5c0b29-5},{Key=project,Value=models-qualification},{Key=delete-after,Value=2026-10-11T22:50:31.149642+00:00}]",
         "--output",
         "json"
-      ]
+      ],
+      "privateDnsName": "ip-172-31-8-246.ec2.internal",
+      "publicIpAddress": "44.200.255.173",
+      "availabilityZone": "us-east-1a"
     },
     {
       "shard": 6,
@@ -294,7 +312,10 @@
         "ResourceType=instance,Tags=[{Key=Name,Value=bonsai-public-qa-8b5c0b29-6},{Key=project,Value=models-qualification},{Key=delete-after,Value=2026-10-11T22:50:34.560192+00:00}]",
         "--output",
         "json"
-      ]
+      ],
+      "privateDnsName": "ip-172-31-5-14.ec2.internal",
+      "publicIpAddress": "44.204.114.127",
+      "availabilityZone": "us-east-1a"
     },
     {
       "shard": 7,
@@ -335,7 +356,10 @@
         "ResourceType=instance,Tags=[{Key=Name,Value=bonsai-public-qa-8b5c0b29-7},{Key=project,Value=models-qualification},{Key=delete-after,Value=2026-10-11T22:50:37.942849+00:00}]",
         "--output",
         "json"
-      ]
+      ],
+      "privateDnsName": "ip-172-31-3-131.ec2.internal",
+      "publicIpAddress": "3.238.1.250",
+      "availabilityZone": "us-east-1a"
     }
   ]
 }

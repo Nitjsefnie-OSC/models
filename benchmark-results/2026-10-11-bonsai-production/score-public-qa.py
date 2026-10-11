@@ -65,7 +65,7 @@ def wilson(successes, total):
     return [center-radius, center+radius]
 
 arms = {'models': read(model_file), 'publisher': read(reference_file)}
-report = {'protocol': manifest['protocol'], 'caseSha256': case_hash, 'complete': all(len(rows) == len(cases) for rows in arms.values()), 'datasets': {}, 'disagreements': []}
+report = {'inputReports': {arm: {'file': file.name, 'sha256': hashlib.sha256(file.read_bytes()).hexdigest()} for arm, file in [('models', model_file), ('publisher', reference_file)]}, 'protocol': manifest['protocol'], 'caseSha256': case_hash, 'complete': all(len(rows) == len(cases) for rows in arms.values()), 'datasets': {}, 'disagreements': []}
 for dataset in manifest['sources']:
     selected = [(i, c) for i, c in enumerate(cases) if c['dataset'] == dataset]
     result = {}
