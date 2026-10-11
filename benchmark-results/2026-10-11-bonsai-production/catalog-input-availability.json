@@ -1,0 +1,500 @@
+{
+  "checkedAt": "2026-10-11T21:40:59.075707+00:00",
+  "authenticated": false,
+  "scope": "HTTP HEAD availability only; downloads still require exact file hashes",
+  "files": [
+    {
+      "modelId": "smollm2_360m_instruct_q8_0",
+      "path": "model.gguf",
+      "uri": "https://huggingface.co/HuggingFaceTB/SmolLM2-360M-Instruct-GGUF/resolve/593b5a2e04c8f3e4ee880263f93e0bd2901ad47f/smollm2-360m-instruct-q8_0.gguf",
+      "status": 200,
+      "contentLength": "386404992"
+    },
+    {
+      "modelId": "qwen2_5_coder_0_5b_instruct_q4_0",
+      "path": "model.gguf",
+      "uri": "https://huggingface.co/Qwen/Qwen2.5-Coder-0.5B-Instruct-GGUF/resolve/ebb2015119c907b064c512bf053e945850b5875f/qwen2.5-coder-0.5b-instruct-q4_0.gguf",
+      "status": 200,
+      "contentLength": "428730240"
+    },
+    {
+      "modelId": "qwen3_0_6b_q4_0",
+      "path": "model.gguf",
+      "uri": "https://huggingface.co/ggml-org/Qwen3-0.6B-GGUF/resolve/a41486f827d17edd055fe6b3b0ba3f8d427c0519/Qwen3-0.6B-Q4_0.gguf",
+      "status": 200,
+      "contentLength": "428970080"
+    },
+    {
+      "modelId": "qwen_qwen2_5_0_5b_instruct_gguf_q4_k_m",
+      "path": "model.gguf",
+      "uri": "https://huggingface.co/Qwen/Qwen2.5-0.5B-Instruct-GGUF/resolve/9217f5db79a29953eb74d5343926648285ec7e67/qwen2.5-0.5b-instruct-q4_k_m.gguf",
+      "status": 200,
+      "contentLength": "491400032"
+    },
+    {
+      "modelId": "unsloth_qwen3_5_0_8b_gguf_q4_k_m",
+      "path": "model.gguf",
+      "uri": "https://huggingface.co/unsloth/Qwen3.5-0.8B-GGUF/resolve/6ab461498e2023f6e3c1baea90a8f0fe38ab64d0/Qwen3.5-0.8B-Q4_K_M.gguf",
+      "status": 200,
+      "contentLength": "532517120"
+    },
+    {
+      "modelId": "unsloth_qwen3_5_0_8b_gguf_q5_k_m",
+      "path": "model.gguf",
+      "uri": "https://huggingface.co/unsloth/Qwen3.5-0.8B-GGUF/resolve/6ab461498e2023f6e3c1baea90a8f0fe38ab64d0/Qwen3.5-0.8B-Q5_K_M.gguf",
+      "status": 200,
+      "contentLength": "590057728"
+    },
+    {
+      "modelId": "tinyllama_1_1b_chat_v1_0_q4_0",
+      "path": "model.gguf",
+      "uri": "https://huggingface.co/TheBloke/TinyLlama-1.1B-Chat-v1.0-GGUF/resolve/52e7645ba7c309695bec7ac98f4f005b139cf465/tinyllama-1.1b-chat-v1.0.Q4_0.gguf",
+      "status": 200,
+      "contentLength": "637699456"
+    },
+    {
+      "modelId": "unsloth_qwen3_5_0_8b_gguf_q6_k",
+      "path": "model.gguf",
+      "uri": "https://huggingface.co/unsloth/Qwen3.5-0.8B-GGUF/resolve/6ab461498e2023f6e3c1baea90a8f0fe38ab64d0/Qwen3.5-0.8B-Q6_K.gguf",
+      "status": 200,
+      "contentLength": "639029504"
+    },
+    {
+      "modelId": "qwen_qwen2_5_0_5b_instruct_gguf_q6_k",
+      "path": "model.gguf",
+      "uri": "https://huggingface.co/Qwen/Qwen2.5-0.5B-Instruct-GGUF/resolve/9217f5db79a29953eb74d5343926648285ec7e67/qwen2.5-0.5b-instruct-q6_k.gguf",
+      "status": 200,
+      "contentLength": "650379104"
+    },
+    {
+      "modelId": "qwen2_5_coder_0_5b_instruct_q8_0",
+      "path": "model.gguf",
+      "uri": "https://huggingface.co/Qwen/Qwen2.5-Coder-0.5B-Instruct-GGUF/resolve/ebb2015119c907b064c512bf053e945850b5875f/qwen2.5-coder-0.5b-instruct-q8_0.gguf",
+      "status": 200,
+      "contentLength": "675710848"
+    },
+    {
+      "modelId": "minicpm5_1b_q4_k_m",
+      "path": "model.gguf",
+      "uri": "https://huggingface.co/openbmb/MiniCPM5-1B-GGUF/resolve/87007042419d30c1d8f38ef065424ee33870831e/MiniCPM5-1B-Q4_K_M.gguf",
+      "status": 200,
+      "contentLength": "688065920"
+    },
+    {
+      "modelId": "facebook_mobilemoe_s_qat_int4_g32",
+      "path": "config.json",
+      "uri": "https://huggingface.co/facebook/MobileMoE-S-QAT/resolve/afda132cad380ac47da5ef055f186884d1c12f65/config.json",
+      "status": 401
+    },
+    {
+      "modelId": "facebook_mobilemoe_s_qat_int4_g32",
+      "path": "model.safetensors",
+      "uri": "https://huggingface.co/facebook/MobileMoE-S-QAT/resolve/afda132cad380ac47da5ef055f186884d1c12f65/model.safetensors",
+      "status": 401
+    },
+    {
+      "modelId": "facebook_mobilemoe_s_qat_int4_g32",
+      "path": "tokenizer.json",
+      "uri": "https://huggingface.co/facebook/MobileMoE-S-QAT/resolve/afda132cad380ac47da5ef055f186884d1c12f65/tokenizer.json",
+      "status": 401
+    },
+    {
+      "modelId": "facebook_mobilemoe_s_qat_int4_g32",
+      "path": "tokenizer_config.json",
+      "uri": "https://huggingface.co/facebook/MobileMoE-S-QAT/resolve/afda132cad380ac47da5ef055f186884d1c12f65/tokenizer_config.json",
+      "status": 401
+    },
+    {
+      "modelId": "bartowski_llama_3_2_1b_instruct_gguf_q4_k_s",
+      "path": "model.gguf",
+      "uri": "https://huggingface.co/bartowski/Llama-3.2-1B-Instruct-GGUF/resolve/067b946cf014b7c697f3654f621d577a3e3afd1c/Llama-3.2-1B-Instruct-Q4_K_S.gguf",
+      "status": 200,
+      "contentLength": "775647360"
+    },
+    {
+      "modelId": "bartowski_google_gemma_3_1b_it_gguf_q4_k_m",
+      "path": "model.gguf",
+      "uri": "https://huggingface.co/bartowski/google_gemma-3-1b-it-GGUF/resolve/116f76234503685a98f572982177b11d44ec8ff1/google_gemma-3-1b-it-Q4_K_M.gguf",
+      "status": 200,
+      "contentLength": "806058496"
+    },
+    {
+      "modelId": "bartowski_llama_3_2_1b_instruct_gguf_q4_k_m",
+      "path": "model.gguf",
+      "uri": "https://huggingface.co/bartowski/Llama-3.2-1B-Instruct-GGUF/resolve/067b946cf014b7c697f3654f621d577a3e3afd1c/Llama-3.2-1B-Instruct-Q4_K_M.gguf",
+      "status": 200,
+      "contentLength": "807694464"
+    },
+    {
+      "modelId": "deepseek_coder_1_3b_instruct_q4_k_m",
+      "path": "model.gguf",
+      "uri": "https://huggingface.co/TheBloke/deepseek-coder-1.3b-instruct-GGUF/resolve/4595af8c3dff738094bd6c86054dfb5a90d5c41e/deepseek-coder-1.3b-instruct.Q4_K_M.gguf",
+      "status": 200,
+      "contentLength": "873582624"
+    },
+    {
+      "modelId": "bartowski_llama_3_2_1b_instruct_gguf_q5_k_s",
+      "path": "model.gguf",
+      "uri": "https://huggingface.co/bartowski/Llama-3.2-1B-Instruct-GGUF/resolve/067b946cf014b7c697f3654f621d577a3e3afd1c/Llama-3.2-1B-Instruct-Q5_K_S.gguf",
+      "status": 200,
+      "contentLength": "892563584"
+    },
+    {
+      "modelId": "bartowski_llama_3_2_1b_instruct_gguf_q5_k_m",
+      "path": "model.gguf",
+      "uri": "https://huggingface.co/bartowski/Llama-3.2-1B-Instruct-GGUF/resolve/067b946cf014b7c697f3654f621d577a3e3afd1c/Llama-3.2-1B-Instruct-Q5_K_M.gguf",
+      "status": 200,
+      "contentLength": "911503488"
+    },
+    {
+      "modelId": "bartowski_yi_coder_1_5b_chat_gguf_q4_k_m",
+      "path": "model.gguf",
+      "uri": "https://huggingface.co/bartowski/Yi-Coder-1.5B-Chat-GGUF/resolve/442545c4f577cfdab9a70b38fec719c47d393b8b/Yi-Coder-1.5B-Chat-Q4_K_M.gguf",
+      "status": 200,
+      "contentLength": "963674304"
+    },
+    {
+      "modelId": "king3djbl_nexus_legal_gguf_q4_k_m",
+      "path": "model.gguf",
+      "uri": "https://huggingface.co/King3Djbl/nexus-legal-GGUF/resolve/e55697a1bcbce71db82e7551c98cb6bd279620f6/nexus-legal-q4_k_m.gguf",
+      "status": 200,
+      "contentLength": "986045472"
+    },
+    {
+      "modelId": "king3djbl_nexus_finance_gguf_q4_k_m",
+      "path": "model.gguf",
+      "uri": "https://huggingface.co/King3Djbl/nexus-finance-GGUF/resolve/c3388d8f6126505a7f998ca1b5354f286c9ca891/nexus-finance-q4_k_m.gguf",
+      "status": 200,
+      "contentLength": "986045632"
+    },
+    {
+      "modelId": "king3djbl_nexus_medical_gguf_q4_k_m",
+      "path": "model.gguf",
+      "uri": "https://huggingface.co/King3Djbl/nexus-medical-GGUF/resolve/ee4785b0b4c5bf646801f5806248244b661da5e6/nexus-medical-q4_k_m.gguf",
+      "status": 200,
+      "contentLength": "986045632"
+    },
+    {
+      "modelId": "umarfarookm_umartransit_1b_q4_k_m",
+      "path": "model.gguf",
+      "uri": "https://huggingface.co/umarfarookm/UmarTransit-1B/resolve/086c12aadfee08963ed70ab73ae2cb3997dbde3a/UmarTransit-1B.Q4_K_M.gguf",
+      "status": 200,
+      "contentLength": "986048096"
+    },
+    {
+      "modelId": "qwen2_5_math_1_5b_instruct_q4_k_m",
+      "path": "model.gguf",
+      "uri": "https://huggingface.co/bartowski/Qwen2.5-Math-1.5B-Instruct-GGUF/resolve/951ed2aea09c43e331c612e74d83e4a23ca98e3b/Qwen2.5-Math-1.5B-Instruct-Q4_K_M.gguf",
+      "status": 200,
+      "contentLength": "986048832"
+    },
+    {
+      "modelId": "qwen_qwen2_5_0_5b_instruct_bf16",
+      "path": "config.json",
+      "uri": "https://huggingface.co/Qwen/Qwen2.5-0.5B-Instruct/resolve/7ae557604adf67be50417f59c2c2f167def9a775/config.json",
+      "status": 200,
+      "contentLength": "659"
+    },
+    {
+      "modelId": "qwen_qwen2_5_0_5b_instruct_bf16",
+      "path": "model.safetensors",
+      "uri": "https://huggingface.co/Qwen/Qwen2.5-0.5B-Instruct/resolve/7ae557604adf67be50417f59c2c2f167def9a775/model.safetensors",
+      "status": 200,
+      "contentLength": "988097824"
+    },
+    {
+      "modelId": "qwen_qwen2_5_0_5b_instruct_bf16",
+      "path": "tokenizer.json",
+      "uri": "https://huggingface.co/Qwen/Qwen2.5-0.5B-Instruct/resolve/7ae557604adf67be50417f59c2c2f167def9a775/tokenizer.json",
+      "status": 200,
+      "contentLength": "7031645"
+    },
+    {
+      "modelId": "qwen_qwen2_5_0_5b_instruct_bf16",
+      "path": "tokenizer_config.json",
+      "uri": "https://huggingface.co/Qwen/Qwen2.5-0.5B-Instruct/resolve/7ae557604adf67be50417f59c2c2f167def9a775/tokenizer_config.json",
+      "status": 200,
+      "contentLength": "7305"
+    },
+    {
+      "modelId": "eurollm_1_7b_instruct_q4_k_m",
+      "path": "model.gguf",
+      "uri": "https://huggingface.co/mradermacher/EuroLLM-1.7B-Instruct-GGUF/resolve/2951f08f66429c934c8b01a94347161362430808/EuroLLM-1.7B-Instruct.Q4_K_M.gguf",
+      "status": 200,
+      "contentLength": "1045157088"
+    },
+    {
+      "modelId": "huggingfacetb_smollm2_1_7b_instruct_gguf_q4_k_m",
+      "path": "model.gguf",
+      "uri": "https://huggingface.co/HuggingFaceTB/SmolLM2-1.7B-Instruct-GGUF/resolve/2d4a76a30b4af41ecd395c35725ac11688d4cfe4/smollm2-1.7b-instruct-q4_k_m.gguf",
+      "status": 200,
+      "contentLength": "1055609536"
+    },
+    {
+      "modelId": "qwen2_5_coder_1_5b_instruct_q4_0",
+      "path": "model.gguf",
+      "uri": "https://huggingface.co/Qwen/Qwen2.5-Coder-1.5B-Instruct-GGUF/resolve/f86cb2c1fa58255f8052cc32aeede1b7482d4361/qwen2.5-coder-1.5b-instruct-q4_0.gguf",
+      "status": 200,
+      "contentLength": "1066227264"
+    },
+    {
+      "modelId": "bartowski_google_gemma_3_1b_it_gguf_q8_0",
+      "path": "model.gguf",
+      "uri": "https://huggingface.co/bartowski/google_gemma-3-1b-it-GGUF/resolve/116f76234503685a98f572982177b11d44ec8ff1/google_gemma-3-1b-it-Q8_0.gguf",
+      "status": 200,
+      "contentLength": "1069306624"
+    },
+    {
+      "modelId": "bartowski_deepseek_r1_distill_qwen_1_5b_gguf_q4_k_s",
+      "path": "model.gguf",
+      "uri": "https://huggingface.co/bartowski/DeepSeek-R1-Distill-Qwen-1.5B-GGUF/resolve/9cc28b17e86fa2415fcb070f8ee5ec27c965aa61/DeepSeek-R1-Distill-Qwen-1.5B-Q4_K_S.gguf",
+      "status": 200,
+      "contentLength": "1071584864"
+    },
+    {
+      "modelId": "king3djbl_nexus_finance_gguf_q5_k_s",
+      "path": "model.gguf",
+      "uri": "https://huggingface.co/King3Djbl/nexus-finance-GGUF/resolve/c3388d8f6126505a7f998ca1b5354f286c9ca891/nexus-finance-q5_k_s.gguf",
+      "status": 200,
+      "contentLength": "1098726240"
+    },
+    {
+      "modelId": "h2oai_h2o_danube2_1_8b_chat_gguf_q4_k_m",
+      "path": "model.gguf",
+      "uri": "https://huggingface.co/h2oai/h2o-danube2-1.8b-chat-GGUF/resolve/8683c1aff099497d64785336532113f61ddf161d/h2o-danube2-1.8b-chat-Q4_K_M.gguf",
+      "status": 200,
+      "contentLength": "1112145056"
+    },
+    {
+      "modelId": "qwen_qwen2_5_1_5b_instruct_gguf_q4_k_m",
+      "path": "model.gguf",
+      "uri": "https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct-GGUF/resolve/91cad51170dc346986eccefdc2dd33a9da36ead9/qwen2.5-1.5b-instruct-q4_k_m.gguf",
+      "status": 200,
+      "contentLength": "1117320736"
+    },
+    {
+      "modelId": "qwen2_5_coder_1_5b_instruct_q4_k_m",
+      "path": "model.gguf",
+      "uri": "https://huggingface.co/Qwen/Qwen2.5-Coder-1.5B-Instruct-GGUF/resolve/f86cb2c1fa58255f8052cc32aeede1b7482d4361/qwen2.5-coder-1.5b-instruct-q4_k_m.gguf",
+      "status": 200,
+      "contentLength": "1117320768"
+    },
+    {
+      "modelId": "bartowski_deepseek_r1_distill_qwen_1_5b_gguf_q4_k_m",
+      "path": "model.gguf",
+      "uri": "https://huggingface.co/bartowski/DeepSeek-R1-Distill-Qwen-1.5B-GGUF/resolve/9cc28b17e86fa2415fcb070f8ee5ec27c965aa61/DeepSeek-R1-Distill-Qwen-1.5B-Q4_K_M.gguf",
+      "status": 200,
+      "contentLength": "1117320800"
+    },
+    {
+      "modelId": "king3djbl_nexus_legal_gguf_q5_k_m",
+      "path": "model.gguf",
+      "uri": "https://huggingface.co/King3Djbl/nexus-legal-GGUF/resolve/e55697a1bcbce71db82e7551c98cb6bd279620f6/nexus-legal-q5_k_m.gguf",
+      "status": 200,
+      "contentLength": "1125047328"
+    },
+    {
+      "modelId": "unsloth_qwen3_5_2b_gguf_q4_k_m",
+      "path": "model.gguf",
+      "uri": "https://huggingface.co/unsloth/Qwen3.5-2B-GGUF/resolve/f6d5376be1edb4d416d56da11e5397a961aca8ae/Qwen3.5-2B-Q4_K_M.gguf",
+      "status": 200,
+      "contentLength": "1280835840"
+    },
+    {
+      "modelId": "qwen3_1_7b_q8_0",
+      "path": "model.gguf",
+      "uri": "https://huggingface.co/Qwen/Qwen3-1.7B-GGUF/resolve/90862c4b9d2787eaed51d12237eafdfe7c5f6077/Qwen3-1.7B-Q8_0.gguf",
+      "status": 200,
+      "contentLength": "1834426016"
+    },
+    {
+      "modelId": "qwen2_5_coder_1_5b_instruct_q8_0",
+      "path": "model.gguf",
+      "uri": "https://huggingface.co/Qwen/Qwen2.5-Coder-1.5B-Instruct-GGUF/resolve/f86cb2c1fa58255f8052cc32aeede1b7482d4361/qwen2.5-coder-1.5b-instruct-q8_0.gguf",
+      "status": 200,
+      "contentLength": "1894532160"
+    },
+    {
+      "modelId": "smollm3_3b_q4_k_m",
+      "path": "model.gguf",
+      "uri": "https://huggingface.co/ggml-org/SmolLM3-3B-GGUF/resolve/4965cb60b150737b68a0408c36aeefb65078f894/SmolLM3-Q4_K_M.gguf",
+      "status": 200,
+      "contentLength": "1915305312"
+    },
+    {
+      "modelId": "gsms_b_indian_legal_qwen2_5_3b_gguf_q4_k_m",
+      "path": "model.gguf",
+      "uri": "https://huggingface.co/GSMS-B/Indian-Legal-Qwen2.5-3B-GGUF/resolve/b1be624893865ae28ac424d85b410b808315be76/qwen2.5-3b-instruct.Q4_K_M.gguf",
+      "status": 200,
+      "contentLength": "1929902560"
+    },
+    {
+      "modelId": "bartowski_llama_3_2_3b_instruct_gguf_q4_k_m",
+      "path": "model.gguf",
+      "uri": "https://huggingface.co/bartowski/Llama-3.2-3B-Instruct-GGUF/resolve/5ab33fa94d1d04e903623ae72c95d1696f09f9e8/Llama-3.2-3B-Instruct-Q4_K_M.gguf",
+      "status": 200,
+      "contentLength": "2019377696"
+    },
+    {
+      "modelId": "ibm_granite_granite_4_1_3b_gguf_q4_k_m",
+      "path": "model.gguf",
+      "uri": "https://huggingface.co/ibm-granite/granite-4.1-3b-GGUF/resolve/ab4701481089b58a082ef63cc1cee738887293ff/granite-4.1-3b-Q4_K_M.gguf",
+      "status": 200,
+      "contentLength": "2099501664"
+    },
+    {
+      "modelId": "qwen_qwen2_5_3b_instruct_gguf_q4_k_m",
+      "path": "model.gguf",
+      "uri": "https://huggingface.co/Qwen/Qwen2.5-3B-Instruct-GGUF/resolve/7dabda4d13d513e3e842b20f0d435c732f172cbe/qwen2.5-3b-instruct-q4_k_m.gguf",
+      "status": 200,
+      "contentLength": "2104932768"
+    },
+    {
+      "modelId": "ministral_3_3b_instruct_2512_q4_k_m",
+      "path": "model.gguf",
+      "uri": "https://huggingface.co/mistralai/Ministral-3-3B-Instruct-2512-GGUF/resolve/eb599d408350ea2bb60452cb86be7c7b2fc28227/Ministral-3-3B-Instruct-2512-Q4_K_M.gguf",
+      "status": 200,
+      "contentLength": "2147023008"
+    },
+    {
+      "modelId": "bartowski_phi_3_5_mini_instruct_gguf_q4_k_m",
+      "path": "model.gguf",
+      "uri": "https://huggingface.co/bartowski/Phi-3.5-mini-instruct-GGUF/resolve/6d70da17e749a471ccb62ade694486011a75cda3/Phi-3.5-mini-instruct-Q4_K_M.gguf",
+      "status": 200,
+      "contentLength": "2393232672"
+    },
+    {
+      "modelId": "bartowski_google_gemma_3_4b_it_gguf_q4_k_m",
+      "path": "model.gguf",
+      "uri": "https://huggingface.co/bartowski/google_gemma-3-4b-it-GGUF/resolve/71506238f970075ca85125cd749c28b1b0eee84e/google_gemma-3-4b-it-Q4_K_M.gguf",
+      "status": 200,
+      "contentLength": "2489758112"
+    },
+    {
+      "modelId": "mradermacher_popit_qwen3_4b_medical_sft_1128_gguf_q4_k_m",
+      "path": "model.gguf",
+      "uri": "https://huggingface.co/mradermacher/PopiT-Qwen3-4B-Medical-SFT-1128-GGUF/resolve/95e3a48a7356c0f5b2dd5d34c630e744b97a1957/PopiT-Qwen3-4B-Medical-SFT-1128.Q4_K_M.gguf",
+      "status": 200,
+      "contentLength": "2497282880"
+    },
+    {
+      "modelId": "janhq_jan_v3_5_4b_gguf_q4_k_m",
+      "path": "model.gguf",
+      "uri": "https://huggingface.co/janhq/Jan-v3.5-4B-gguf/resolve/2b0fcab0066198e78f7c004a0815179fbce13985/Jan-v3.5-4B-Q4_K_M.gguf",
+      "status": 200,
+      "contentLength": "2716066656"
+    },
+    {
+      "modelId": "unsloth_qwen3_5_4b_gguf_q4_k_m",
+      "path": "model.gguf",
+      "uri": "https://huggingface.co/unsloth/Qwen3.5-4B-GGUF/resolve/e87f176479d0855a907a41277aca2f8ee7a09523/Qwen3.5-4B-Q4_K_M.gguf",
+      "status": 200,
+      "contentLength": "2740937888"
+    },
+    {
+      "modelId": "lmstudio_community_gemma_4_e2b_it_gguf_q4_k_m",
+      "path": "model.gguf",
+      "uri": "https://huggingface.co/lmstudio-community/gemma-4-E2B-it-GGUF/resolve/3155b2dec005f7b0a6f721198c26ab11492a38e4/gemma-4-E2B-it-Q4_K_M.gguf",
+      "status": 200,
+      "contentLength": "3427877696"
+    },
+    {
+      "modelId": "bartowski_mathstral_7b_v0_1_gguf_q4_k_m",
+      "path": "model.gguf",
+      "uri": "https://huggingface.co/bartowski/mathstral-7B-v0.1-GGUF/resolve/37c8ee4527abbcc564fddddd6d21484f2852bf19/mathstral-7B-v0.1-Q4_K_M.gguf",
+      "status": 200,
+      "contentLength": "4372811584"
+    },
+    {
+      "modelId": "maziyarpanahi_mistral_7b_instruct_v0_3_gguf_q4_k_m",
+      "path": "model.gguf",
+      "uri": "https://huggingface.co/MaziyarPanahi/Mistral-7B-Instruct-v0.3-GGUF/resolve/ce89f595755a4bf2e2e05d155cc43cb847c78978/Mistral-7B-Instruct-v0.3.Q4_K_M.gguf",
+      "status": 200,
+      "contentLength": "4372811936"
+    },
+    {
+      "modelId": "huatuogpt_o1_7b_q4_k_m",
+      "path": "model.gguf",
+      "uri": "https://huggingface.co/bartowski/HuatuoGPT-o1-7B-GGUF/resolve/5b481e71fa41e2ccffdd863dc01f27be48075bd1/HuatuoGPT-o1-7B-Q4_K_M.gguf",
+      "status": 200,
+      "contentLength": "4683074720"
+    },
+    {
+      "modelId": "bartowski_ministral_8b_instruct_2410_gguf_q4_k_m",
+      "path": "model.gguf",
+      "uri": "https://huggingface.co/bartowski/Ministral-8B-Instruct-2410-GGUF/resolve/b4e2ea74eb4eecb178aa88d482c3126b34ad0157/Ministral-8B-Instruct-2410-Q4_K_M.gguf",
+      "status": 200,
+      "contentLength": "4911500096"
+    },
+    {
+      "modelId": "llama_3_1_8b_instruct_q4_k_m",
+      "path": "model.gguf",
+      "uri": "https://huggingface.co/bartowski/Meta-Llama-3.1-8B-Instruct-GGUF/resolve/bf5b95e96dac0462e2a09145ec66cae9a3f12067/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf",
+      "status": 200,
+      "contentLength": "4920739232"
+    },
+    {
+      "modelId": "maziyarpanahi_meta_llama_3_8b_instruct_gguf_q4_k_m",
+      "path": "model.gguf",
+      "uri": "https://huggingface.co/MaziyarPanahi/Meta-Llama-3-8B-Instruct-GGUF/resolve/4ece958b356f2ec00338e5898ba0a7254d976baf/Meta-Llama-3-8B-Instruct.Q4_K_M.gguf",
+      "status": 200,
+      "contentLength": "4921246944"
+    },
+    {
+      "modelId": "qwen3_8b_q4_k_m",
+      "path": "model.gguf",
+      "uri": "https://huggingface.co/Qwen/Qwen3-8B-GGUF/resolve/7c41481f57cb95916b40956ab2f0b139b296d974/Qwen3-8B-Q4_K_M.gguf",
+      "status": 200,
+      "contentLength": "5027783488"
+    },
+    {
+      "modelId": "granite_4_1_8b_q4_k_m",
+      "path": "model.gguf",
+      "uri": "https://huggingface.co/ibm-granite/granite-4.1-8b-GGUF/resolve/865b82c2e7970d82e3731278c88c57ae7138359c/granite-4.1-8b-Q4_K_M.gguf",
+      "status": 200,
+      "contentLength": "5347914400"
+    },
+    {
+      "modelId": "deepreinforce_ai_ornith_1_0_9b_gguf_q4_k_m",
+      "path": "model.gguf",
+      "uri": "https://huggingface.co/deepreinforce-ai/Ornith-1.0-9B-GGUF/resolve/3296bc7a404871a72ac3f1903f561459c09b5c17/ornith-1.0-9b-Q4_K_M.gguf",
+      "status": 200,
+      "contentLength": "5629108704"
+    },
+    {
+      "modelId": "bartowski_gemma_2_9b_it_gguf_q4_k_m",
+      "path": "model.gguf",
+      "uri": "https://huggingface.co/bartowski/gemma-2-9b-it-GGUF/resolve/d731033f3dc4018261fd39896e50984d398b4ac5/gemma-2-9b-it-Q4_K_M.gguf",
+      "status": 200,
+      "contentLength": "5761057728"
+    },
+    {
+      "modelId": "unsloth_gemma_4_12b_it_gguf_q4_k_m",
+      "path": "model.gguf",
+      "uri": "https://huggingface.co/unsloth/gemma-4-12b-it-GGUF/resolve/d997c805aafe035a8024f961c6e1afd6b30d79a5/gemma-4-12b-it-Q4_K_M.gguf",
+      "status": 200,
+      "contentLength": "7121860000"
+    },
+    {
+      "modelId": "bartowski_google_gemma_3_12b_it_gguf_q4_k_m",
+      "path": "model.gguf",
+      "uri": "https://huggingface.co/bartowski/google_gemma-3-12b-it-GGUF/resolve/648e3a36a77c8a9f12d86e741f9dcb9089c769c4/google_gemma-3-12b-it-Q4_K_M.gguf",
+      "status": 200,
+      "contentLength": "7300575264"
+    },
+    {
+      "modelId": "bartowski_mistral_nemo_instruct_2407_gguf_q4_k_m",
+      "path": "model.gguf",
+      "uri": "https://huggingface.co/bartowski/Mistral-Nemo-Instruct-2407-GGUF/resolve/a2dd64a0a76ea1bdb2bb6ab6fa5496b003c7c908/Mistral-Nemo-Instruct-2407-Q4_K_M.gguf",
+      "status": 200,
+      "contentLength": "7477208192"
+    },
+    {
+      "modelId": "ggml_org_gemma_4_26b_a4b_it_gguf_q4_k_m",
+      "path": "model.gguf",
+      "uri": "https://huggingface.co/ggml-org/gemma-4-26B-A4B-it-GGUF/resolve/ae4d537a6345467d1c86bb5cc0d4505ff3ebe0f3/gemma-4-26B-A4B-it-Q4_K_M.gguf",
+      "status": 200,
+      "contentLength": "16796015136"
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+WARNING: Using incubator modules: jdk.incubator.vector
+Oct 11, 2026 9:49:28 PM com.integrallis.vectors.core.PanamaVectorUtilSupportProvider create
+INFO: vectors-core: Using Panama Vector API SIMD provider (vector bits: 256)
+Oct 11, 2026 9:49:28 PM com.integrallis.vectors.core.VectorizationProvider logActiveToggles
+INFO: vectors-core: provider=PanamaVectorUtilSupport panama=true maxBits=256 preferredBits=256 fastVectorFMA=true fastScalarFMA=true sve=false ggufParallel=true ggufParallelThreshold=1048576 ggufExecutor=persistent ggufThreads=16 ggufChunksPerThread=2 mappedKQuantLongOffsets=auto(q4=true,q5=false,q6=false) q4ShortPairwiseSupported=true q4UnsignedPairwiseSupported=true toggles=[(defaults — no -Dvectors.* overrides)]
+Oct 11, 2026 9:49:28 PM org.apache.lucene.internal.vectorization.PanamaVectorizationProvider <init>
+INFO: Java vector incubator API enabled; uses preferredBitSize=256; FMA enabled
+iteration 1/1 case=amber-route-frequency correct=false retrieval=26.1ms ttft=1769.7ms decode=26.52 tok/s e2e=2642.1ms
+iteration 1/1 case=bravo-fare-transfer correct=true retrieval=3.1ms ttft=526.2ms decode=27.51 tok/s e2e=1259.2ms
+iteration 1/1 case=cobalt-platform-departure correct=true retrieval=2.4ms ttft=512.1ms decode=29.22 tok/s e2e=1269.9ms
+iteration 1/1 case=delta-battery-charging correct=true retrieval=3.0ms ttft=357.9ms decode=27.98 tok/s e2e=1114.9ms
+iteration 1/1 case=ember-wheelchair-boarding correct=true retrieval=2.7ms ttft=340.1ms decode=27.44 tok/s e2e=928.1ms
+iteration 1/1 case=fjord-inspection correct=true retrieval=1.8ms ttft=424.4ms decode=29.76 tok/s e2e=1234.6ms
+iteration 1/1 case=grove-delay-alert correct=true retrieval=2.0ms ttft=473.9ms decode=22.03 tok/s e2e=1430.9ms
+iteration 1/1 case=harbor-ferry-bicycles correct=true retrieval=2.2ms ttft=489.7ms decode=21.05 tok/s e2e=1491.7ms
+iteration 1/1 case=unsupported-orchid-airport correct=true retrieval=2.1ms ttft=352.8ms decode=26.63 tok/s e2e=732.2ms
+plain-java/rust-ffm/umarfarookm_umartransit_1b_q4_k_m: tier=FAILED_QUALITY success=9/9 p95-retrieval=16.9ms p95-ttft=1272.3ms p50-decode=27.44 tok/s p95-e2e=2181.9ms correct=88.9% model-answered=77.8% of-those-correct=85.7% extractive-fallback=11.1% truncated=0.0%
+report: /work/out/umarfarookm_umartransit_1b_q4_k_m.json

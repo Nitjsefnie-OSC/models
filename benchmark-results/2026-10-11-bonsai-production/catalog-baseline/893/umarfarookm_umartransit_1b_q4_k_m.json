@@ -1,0 +1,899 @@
+{
+  "schemaVersion" : 5,
+  "generatedAt" : "2026-10-11T21:49:40.885617457Z",
+  "framework" : "plain-java",
+  "backend" : "rust-ffm",
+  "backendVersion" : "models@0.3.58+b85cd653a3549b1f468be95409a46fc68bae3a8c",
+  "modelId" : "umarfarookm_umartransit_1b_q4_k_m",
+  "model" : "/work/models/umarfarookm_umartransit_1b_q4_k_m/model.gguf",
+  "artifactSha256" : "db1a4489626110145274f508b3fa30439516a47b4e721fe02d67df4679db5b9a",
+  "artifactSizeBytes" : 986048096,
+  "settings" : {
+    "corpusSha256" : "367a1e35ea2449ba2abeb29c1fbbf911bb5130f14a3955c649b1f23afe35ceb2",
+    "workload" : "transportation",
+    "caseIds" : [ "amber-route-frequency", "bravo-fare-transfer", "cobalt-platform-departure", "delta-battery-charging", "ember-wheelchair-boarding", "fjord-inspection", "grove-delay-alert", "harbor-ferry-bicycles", "unsupported-orchid-airport" ],
+    "promptTemplate" : "chatml",
+    "retrievalTopK" : 1,
+    "maxOutputTokens" : 64,
+    "warmups" : 0,
+    "iterations" : 1,
+    "contextLength" : 2048,
+    "threads" : 8,
+    "groundingPolicy" : "bounded-context-injection-screened-citation-safe-statement-grounding-v23",
+    "minimumRetrievalScore" : 2.0,
+    "generationControls" : {
+      "topP" : "1.0",
+      "repetitionPenalty" : "1.0",
+      "temperature" : "0.0",
+      "topK" : "1",
+      "seed" : "42",
+      "promptCache" : "longest-common-prefix"
+    }
+  },
+  "environment" : {
+    "hostname" : "ip-172-31-12-26",
+    "osName" : "Linux",
+    "osVersion" : "7.0.0-1013-aws",
+    "architecture" : "amd64",
+    "cpuModel" : "AMD EPYC 7R13 Processor",
+    "availableProcessors" : 16,
+    "totalMemoryBytes" : 65971654656,
+    "maxHeapBytes" : 16500391936,
+    "javaVersion" : "25.0.4.1",
+    "javaVendor" : "Eclipse Adoptium",
+    "vmName" : "OpenJDK 64-Bit Server VM"
+  },
+  "backendDiagnostics" : {
+    "backend" : "rust-ffm",
+    "planVersion" : "rust-ffm-v13",
+    "environment" : {
+      "native-gated-delta-net" : "false",
+      "native-kernel-threads" : "16",
+      "tokenizer.pre.implemented" : "true",
+      "transformer-runtime" : "java",
+      "projection-layers" : "28",
+      "java-executor-poll-millis" : "0",
+      "performance-cliffs" : "fused-grouped-attention-disabled",
+      "vector-api" : "true",
+      "fast-scalar-fma" : "true",
+      "preferred-vector-bits" : "256",
+      "kernel-runtime" : "rust-ffm",
+      "native-quantized-decode" : "true",
+      "end-of-generation.chat-template" : "resolved:151645",
+      "active-vector-bits" : "256",
+      "gguf-parallel" : "true",
+      "gguf-threads" : "16",
+      "native-kernel-poll-millis" : "5",
+      "vector-provider" : "PanamaVectorUtilSupport",
+      "vm-name" : "OpenJDK 64-Bit Server VM",
+      "java-version" : "25.0.4.1",
+      "gguf-executor" : "persistent",
+      "q4-unsigned-pairwise-supported" : "true",
+      "native-kernel-abi" : "6",
+      "architecture" : "amd64",
+      "tokenizer.pre" : "qwen2",
+      "performance-cliff.fused-grouped-attention-disabled" : "architecture=qwen2, group-size=6",
+      "vm-version" : "25.0.4.1+1-LTS",
+      "fast-vector-fma" : "true",
+      "model-architecture" : "qwen2",
+      "native-kernel-decode-threads" : "16",
+      "kernel-implementation" : "rust-ffm-quantized-v13",
+      "os" : "Linux",
+      "cpu-model" : "AMD EPYC 7R13 Processor",
+      "vm-vendor" : "Eclipse Adoptium",
+      "compiler" : "hotspot-c2",
+      "native-grouped-attention" : "true",
+      "gguf-chunks-per-thread" : "2",
+      "native-q5-0-grouped" : "false",
+      "java-feature" : "25",
+      "sve" : "false",
+      "processors" : "16",
+      "end-of-generation-token-ids" : "151643,151645",
+      "q4-short-pairwise-supported" : "true",
+      "end-of-generation.151643" : "vocabulary-text",
+      "end-of-generation.151645" : "tokenizer.ggml.eos_token_id,vocabulary-text,chat-template-end-of-turn"
+    },
+    "optimizations" : [ {
+      "id" : "grouped-projections",
+      "status" : "ENABLED",
+      "reason" : "loaded tensor topology has a retained grouped projection kernel",
+      "settings" : {
+        "implementation" : "rust-ffm-quantized-v13",
+        "qkv" : "grouped",
+        "gate-up" : "grouped"
+      }
+    }, {
+      "id" : "mixed-k-projections",
+      "status" : "ENABLED",
+      "reason" : "eligible projections share one Q8_K quantization and row dispatch",
+      "settings" : {
+        "eligible-layers" : "14",
+        "formats" : "Q4_K,Q4_K,Q6_K"
+      }
+    }, {
+      "id" : "q4-kernel",
+      "status" : "UNSUPPORTED",
+      "reason" : "the loaded model has no Q4_0 projection tensors",
+      "settings" : {
+        "requested" : "widened",
+        "compiler" : "hotspot-c2",
+        "architecture" : "amd64",
+        "os" : "Linux",
+        "unsigned-supported" : "true",
+        "active-vector-bits" : "256",
+        "java-feature" : "25",
+        "short-supported" : "true"
+      }
+    }, {
+      "id" : "batched-prefill",
+      "status" : "ENABLED",
+      "reason" : "all loaded projection tensors have retained batched kernels",
+      "settings" : {
+        "batch-size" : "32"
+      }
+    }, {
+      "id" : "q6-batched-kernel",
+      "status" : "DISABLED",
+      "reason" : "models.purejava.q6BatchedKernel selects one-query blocks",
+      "settings" : {
+        "active-vector-bits" : "256",
+        "batch-size" : "32",
+        "architecture" : "amd64",
+        "kernel" : "one-query-block",
+        "requested-kernel" : "one-query-block"
+      }
+    }, {
+      "id" : "final-layer-prefill-pruning",
+      "status" : "UNSUPPORTED",
+      "reason" : "the final-layer FFN layout has no controlled exactness and performance gate",
+      "settings" : {
+        "formats" : "Q4_K,Q4_K,Q6_K",
+        "output-rows" : "all"
+      }
+    }, {
+      "id" : "final-layer-kv-only-prefill",
+      "status" : "UNSUPPORTED",
+      "reason" : "the final-layer attention layout has no controlled exactness and performance gate",
+      "settings" : {
+        "unused-rows" : "full-attention",
+        "formats" : "Q4_K,Q4_K,Q6_K,Q4_K"
+      }
+    }, {
+      "id" : "batched-attention-scores",
+      "status" : "ENABLED",
+      "reason" : "the model profile selected exact two-row key scoring",
+      "settings" : {
+        "rows-per-group" : "2"
+      }
+    }, {
+      "id" : "batched-attention-values",
+      "status" : "ENABLED",
+      "reason" : "the model profile selected four-row value accumulation",
+      "settings" : {
+        "rows-per-group" : "4"
+      }
+    }, {
+      "id" : "fused-grouped-attention",
+      "status" : "DISABLED",
+      "reason" : "disabled by models.purejava.fusedGroupedAttention",
+      "settings" : {
+        "cache-passes-per-group" : "group-size"
+      }
+    }, {
+      "id" : "staged-quantized-ffn",
+      "status" : "UNSUPPORTED",
+      "reason" : "loaded tensor topology has no supported Q4_0/Q8_0 FFN layer",
+      "settings" : {
+        "parallel" : "true",
+        "eligible-layers" : "0",
+        "executor" : "persistent",
+        "stages" : "2"
+      }
+    }, {
+      "id" : "staged-quantized-layer",
+      "status" : "UNSUPPORTED",
+      "reason" : "loaded tensor topology has no supported Q4_0/Q8_0 output-and-FFN layer",
+      "settings" : {
+        "parallel" : "true",
+        "eligible-layers" : "0",
+        "executor" : "persistent",
+        "stages" : "7"
+      }
+    }, {
+      "id" : "block-major-q8-activations",
+      "status" : "UNSUPPORTED",
+      "reason" : "loaded staged projection topology has no Q8_0 consumer",
+      "settings" : {
+        "layout" : "block-major-bytes",
+        "prefill-batch-size" : "32"
+      }
+    }, {
+      "id" : "q8-block-major-kernel",
+      "status" : "UNSUPPORTED",
+      "reason" : "loaded staged projection topology has no Q8_0 consumer",
+      "settings" : {
+        "active-vector-bits" : "256",
+        "compiler" : "hotspot-c2",
+        "floating-point-order" : "scalar-block-order",
+        "kernel" : "scattered",
+        "requested-kernel" : "scattered"
+      }
+    }, {
+      "id" : "parallel-q8-ffn-preparation",
+      "status" : "UNSUPPORTED",
+      "reason" : "every staged layer requires Q8_0 gate and up projections",
+      "settings" : {
+        "eligible-layers" : "0",
+        "partitions" : "16",
+        "partition" : "batch-rows",
+        "staged-layers" : "0"
+      }
+    }, {
+      "id" : "mapped-model-weights",
+      "status" : "ENABLED",
+      "reason" : "model tensors remain mapped for model-scale streaming locality",
+      "settings" : {
+        "artifact-format" : "gguf",
+        "storage" : "memory-segment"
+      }
+    }, {
+      "id" : "vector-fma",
+      "status" : "ENABLED",
+      "reason" : "vectors-core selected deterministic vector FMA for this platform",
+      "settings" : {
+        "fast-scalar-fma" : "true"
+      }
+    }, {
+      "id" : "persistent-row-executor",
+      "status" : "ENABLED",
+      "reason" : "vectors-core selected reusable GGUF row workers",
+      "settings" : {
+        "executor" : "persistent",
+        "chunks-per-thread" : "2",
+        "threads" : "16"
+      }
+    }, {
+      "id" : "rust-q4-0-batched-matmul",
+      "status" : "ENABLED",
+      "reason" : "eligible Q4_0 batched and grouped projections execute in the Models Rust kernel",
+      "settings" : {
+        "abi" : "6",
+        "boundary" : "panama-ffm",
+        "transformer" : "java"
+      }
+    }, {
+      "id" : "rust-q5-0-batched-matmul",
+      "status" : "ENABLED",
+      "reason" : "eligible Q5_0 batched projections execute in the Models Rust kernel",
+      "settings" : {
+        "abi" : "6",
+        "boundary" : "panama-ffm",
+        "transformer" : "java"
+      }
+    }, {
+      "id" : "rust-q8-0-batched-matmul",
+      "status" : "ENABLED",
+      "reason" : "eligible Q8_0 batched and grouped projections execute in the Models Rust kernel",
+      "settings" : {
+        "abi" : "6",
+        "boundary" : "panama-ffm",
+        "transformer" : "java"
+      }
+    }, {
+      "id" : "rust-q4-k-batched-matmul",
+      "status" : "ENABLED",
+      "reason" : "eligible Q4_K batched and grouped projections execute in the Models Rust kernel",
+      "settings" : {
+        "abi" : "6",
+        "boundary" : "panama-ffm",
+        "transformer" : "java"
+      }
+    }, {
+      "id" : "rust-q5-k-batched-matmul",
+      "status" : "ENABLED",
+      "reason" : "eligible Q5_K batched and grouped projections execute in the Models Rust kernel",
+      "settings" : {
+        "abi" : "6",
+        "boundary" : "panama-ffm",
+        "transformer" : "java"
+      }
+    }, {
+      "id" : "rust-q6-k-batched-matmul",
+      "status" : "ENABLED",
+      "reason" : "eligible Q6_K batched and grouped projections execute in the Models Rust kernel",
+      "settings" : {
+        "abi" : "6",
+        "boundary" : "panama-ffm",
+        "transformer" : "java"
+      }
+    }, {
+      "id" : "rust-mixed-k-grouped-matmul",
+      "status" : "ENABLED",
+      "reason" : "mixed Q4_K, Q5_K, and Q6_K projections share one Q8_K activation quantization",
+      "settings" : {
+        "abi" : "6",
+        "boundary" : "panama-ffm",
+        "transformer" : "java"
+      }
+    }, {
+      "id" : "rust-gated-delta-net",
+      "status" : "DISABLED",
+      "reason" : "the Qwen 3.5 recurrence stays in Java: the shim's chunked recurrence agrees only to 2.0e-4 relative, every certified Qwen 3.5 record was produced with the Java one, and whether the shim is faster here is unmeasured. Adopting it is an epoch change, not a setting",
+      "settings" : {
+        "abi" : "6",
+        "boundary" : "panama-ffm-critical",
+        "state" : "caller-owned-java-array"
+      }
+    }, {
+      "id" : "rust-grouped-gated-delta-net",
+      "status" : "DISABLED",
+      "reason" : "unrouted for the same reason as rust-gated-delta-net: adopting it would change the bytes published Qwen 3.5 records claim",
+      "settings" : {
+        "abi" : "6",
+        "boundary" : "panama-ffm-critical",
+        "state" : "branch-major-caller-owned-java-array"
+      }
+    }, {
+      "id" : "rust-q5-0-grouped-matmul",
+      "status" : "DISABLED",
+      "reason" : "Q5_0 projections run independently: grouping them decoded slower on the controlled Qwen2.5-0.5B x86-64 profile, 37.33 against 38.94 tokens/s. Not a setting -- the slower route is simply not taken",
+      "settings" : {
+        "raw-artifact" : "none-committed",
+        "evidence" : "backend-native/README.md"
+      }
+    }, {
+      "id" : "rust-quantized-decode",
+      "status" : "ENABLED",
+      "reason" : "single-token projections execute in the Models Rust kernel for every tensor type it supports; the per-type decisions above report any type it does not",
+      "settings" : {
+        "transformer" : "java"
+      }
+    } ]
+  },
+  "hostedApiPricing" : null,
+  "summary" : {
+    "totalAttempts" : 9,
+    "successfulAttempts" : 9,
+    "loadMillis" : 498.653804,
+    "retrievalMillis" : {
+      "p50" : 2.381781,
+      "p95" : 16.917656199999993
+    },
+    "frameworkOverheadMillis" : {
+      "p50" : 2.2625050000001465,
+      "p95" : 11.3870742
+    },
+    "ttftMillis" : {
+      "p50" : 473.86742,
+      "p95" : 1272.2873147999994
+    },
+    "tpotMillis" : {
+      "p50" : 36.44382025,
+      "p95" : 46.65779117142857
+    },
+    "endToEndMillis" : {
+      "p50" : 1259.164274,
+      "p95" : 2181.9021952
+    },
+    "p50PrefillTokensPerSecond" : 122.88812607859677,
+    "p50DecodeTokensPerSecond" : 27.439494354327465,
+    "peakRssBytes" : 1416699904,
+    "totalCpuMillis" : 186180.0,
+    "totalInputTokens" : 1434,
+    "totalCacheReadInputTokens" : 824,
+    "totalCacheWriteInputTokens" : 610,
+    "totalOutputTokens" : 186,
+    "totalEstimatedApiCostUsd" : null,
+    "projectedApiCostPer1kRequestsUsd" : null,
+    "retrievalRecall" : 1.0,
+    "meanReciprocalRank" : 1.0,
+    "factCoverage" : 0.9375,
+    "citationRecall" : 1.0,
+    "citationPrecision" : 1.0,
+    "abstentionAccuracy" : 1.0,
+    "correctAnswerRate" : 0.8888888888888888,
+    "rawCorrectAnswerRate" : 0.0,
+    "modelAnswerRate" : 0.7777777777777778,
+    "modelAnswerCorrectRate" : 0.8571428571428571,
+    "extractiveFallbackRate" : 0.1111111111111111,
+    "truncatedAnswerRate" : 0.0
+  },
+  "performanceTier" : "FAILED_QUALITY",
+  "runs" : [ {
+    "framework" : "plain-java",
+    "backend" : "rust-ffm",
+    "model" : "Gguf Output",
+    "caseId" : "amber-route-frequency",
+    "retrieved" : [ {
+      "document" : {
+        "id" : "transit-amber-route",
+        "title" : "Amber bus route",
+        "text" : "Amber route A12 runs from Central Station to River Park. Peak service operates every 12 minutes."
+      },
+      "score" : 4.1694164,
+      "rank" : 1
+    } ],
+    "promptSha256" : "6fc721070a12d42e396052294556a8118a6515ef93bc8381aba0ab60d4d1ae59",
+    "retrievalMillis" : 26.101987,
+    "frameworkOverheadMillis" : 16.64047100000016,
+    "endToEndMillis" : 2642.067836,
+    "generation" : {
+      "text" : "Amber route A12 connects Central Station and River Park. It runs every 12 minutes at peak. [transit-amber-route]",
+      "inputTokens" : 163,
+      "cacheReadInputTokens" : 0,
+      "cacheWriteInputTokens" : 163,
+      "outputTokens" : 23,
+      "ttftMillis" : 1769.711312,
+      "totalMillis" : 2599.325378,
+      "prefillTokensPerSecond" : 92.686841115368,
+      "loadMillis" : 498.653804,
+      "peakRssBytes" : 1405100032,
+      "cpuMillis" : 38290.0,
+      "estimatedApiCostUsd" : null
+    },
+    "grounding" : {
+      "rawText" : "Amber route A12 connects Central Station and River Park. It runs every 12 minutes at peak.",
+      "text" : "Amber route A12 connects Central Station and River Park. It runs every 12 minutes at peak. [transit-amber-route]",
+      "decision" : "MODEL_ANSWER_WITH_DERIVED_CITATIONS"
+    },
+    "rawEvaluation" : {
+      "retrievalRecall" : 1.0,
+      "reciprocalRank" : 1.0,
+      "factCoverage" : 0.5,
+      "citationRecall" : 0.0,
+      "citationPrecision" : 0.0,
+      "abstained" : false,
+      "correct" : false
+    },
+    "evaluation" : {
+      "retrievalRecall" : 1.0,
+      "reciprocalRank" : 1.0,
+      "factCoverage" : 0.5,
+      "citationRecall" : 1.0,
+      "citationPrecision" : 1.0,
+      "abstained" : false,
+      "correct" : false
+    }
+  }, {
+    "framework" : "plain-java",
+    "backend" : "rust-ffm",
+    "model" : "Gguf Output",
+    "caseId" : "bravo-fare-transfer",
+    "retrieved" : [ {
+      "document" : {
+        "id" : "transit-bravo-fare",
+        "title" : "Bravo fare policy",
+        "text" : "Bravo local fare is 2.40 dollars. A transfer remains valid for 90 minutes."
+      },
+      "score" : 8.051776,
+      "rank" : 1
+    } ],
+    "promptSha256" : "cbb2cae29d8f9abe5cfb9abc99049d7e37d45b2eee9d19c33c91aca88d8d3482",
+    "retrievalMillis" : 3.14116,
+    "frameworkOverheadMillis" : 2.8550350000000435,
+    "endToEndMillis" : 1259.164274,
+    "generation" : {
+      "text" : "Bravo fare is 2.40 dollars and a transfer is valid for 90 minutes. [transit-bravo-fare]",
+      "inputTokens" : 159,
+      "cacheReadInputTokens" : 103,
+      "cacheWriteInputTokens" : 56,
+      "outputTokens" : 21,
+      "ttftMillis" : 526.151319,
+      "totalMillis" : 1253.168079,
+      "prefillTokensPerSecond" : 106.69772850939032,
+      "loadMillis" : 498.653804,
+      "peakRssBytes" : 1406107648,
+      "cpuMillis" : 19650.0,
+      "estimatedApiCostUsd" : null
+    },
+    "grounding" : {
+      "rawText" : "Bravo fare is 2.40 dollars and a transfer is valid for 90 minutes.",
+      "text" : "Bravo fare is 2.40 dollars and a transfer is valid for 90 minutes. [transit-bravo-fare]",
+      "decision" : "MODEL_ANSWER_WITH_DERIVED_CITATIONS"
+    },
+    "rawEvaluation" : {
+      "retrievalRecall" : 1.0,
+      "reciprocalRank" : 1.0,
+      "factCoverage" : 1.0,
+      "citationRecall" : 0.0,
+      "citationPrecision" : 0.0,
+      "abstained" : false,
+      "correct" : false
+    },
+    "evaluation" : {
+      "retrievalRecall" : 1.0,
+      "reciprocalRank" : 1.0,
+      "factCoverage" : 1.0,
+      "citationRecall" : 1.0,
+      "citationPrecision" : 1.0,
+      "abstained" : false,
+      "correct" : true
+    }
+  }, {
+    "framework" : "plain-java",
+    "backend" : "rust-ffm",
+    "model" : "Gguf Output",
+    "caseId" : "cobalt-platform-departure",
+    "retrieved" : [ {
+      "document" : {
+        "id" : "transit-cobalt-platform",
+        "title" : "Cobalt rail platform",
+        "text" : "Cobalt express C7 departs from platform 4. Its first weekday departure is 05:45."
+      },
+      "score" : 7.957191,
+      "rank" : 1
+    } ],
+    "promptSha256" : "4eea3e6428466338469c789c41ebc0ac8fa2d14a853f901be1a711778e3579cc",
+    "retrievalMillis" : 2.381781,
+    "frameworkOverheadMillis" : 2.5205570000000534,
+    "endToEndMillis" : 1269.937991,
+    "generation" : {
+      "text" : "Cobalt C7 uses platform 4 and its first weekday departure is at 05:45. [transit-cobalt-platform]",
+      "inputTokens" : 165,
+      "cacheReadInputTokens" : 103,
+      "cacheWriteInputTokens" : 62,
+      "outputTokens" : 23,
+      "ttftMillis" : 512.077734,
+      "totalMillis" : 1265.035653,
+      "prefillTokensPerSecond" : 121.3185990955491,
+      "loadMillis" : 498.653804,
+      "peakRssBytes" : 1406980096,
+      "cpuMillis" : 19840.0,
+      "estimatedApiCostUsd" : null
+    },
+    "grounding" : {
+      "rawText" : "Cobalt C7 uses platform 4 and its first weekday departure is at 05:45.",
+      "text" : "Cobalt C7 uses platform 4 and its first weekday departure is at 05:45. [transit-cobalt-platform]",
+      "decision" : "MODEL_ANSWER_WITH_DERIVED_CITATIONS"
+    },
+    "rawEvaluation" : {
+      "retrievalRecall" : 1.0,
+      "reciprocalRank" : 1.0,
+      "factCoverage" : 1.0,
+      "citationRecall" : 0.0,
+      "citationPrecision" : 0.0,
+      "abstained" : false,
+      "correct" : false
+    },
+    "evaluation" : {
+      "retrievalRecall" : 1.0,
+      "reciprocalRank" : 1.0,
+      "factCoverage" : 1.0,
+      "citationRecall" : 1.0,
+      "citationPrecision" : 1.0,
+      "abstained" : false,
+      "correct" : true
+    }
+  }, {
+    "framework" : "plain-java",
+    "backend" : "rust-ffm",
+    "model" : "Gguf Output",
+    "caseId" : "delta-battery-charging",
+    "retrieved" : [ {
+      "document" : {
+        "id" : "transit-delta-battery",
+        "title" : "Delta electric fleet",
+        "text" : "Delta buses return to depot below 18 percent battery. Fast charging uses bay E3."
+      },
+      "score" : 6.245858,
+      "rank" : 1
+    } ],
+    "promptSha256" : "946eb719fadffd4e1f7f8c333756b97dc9189f126357f975d9df74076523d144",
+    "retrievalMillis" : 2.977671,
+    "frameworkOverheadMillis" : 3.506978999999774,
+    "endToEndMillis" : 1114.89779,
+    "generation" : {
+      "text" : "Delta buses return to depot below 18 percent battery, and they use bay E3 for fast charging. [transit-delta-battery]",
+      "inputTokens" : 158,
+      "cacheReadInputTokens" : 103,
+      "cacheWriteInputTokens" : 55,
+      "outputTokens" : 22,
+      "ttftMillis" : 357.927697,
+      "totalMillis" : 1108.41314,
+      "prefillTokensPerSecond" : 154.26140570128166,
+      "loadMillis" : 498.653804,
+      "peakRssBytes" : 1407299584,
+      "cpuMillis" : 17530.0,
+      "estimatedApiCostUsd" : null
+    },
+    "grounding" : {
+      "rawText" : "Delta buses return to depot below 18 percent battery, and they use bay E3 for fast charging.",
+      "text" : "Delta buses return to depot below 18 percent battery, and they use bay E3 for fast charging. [transit-delta-battery]",
+      "decision" : "MODEL_ANSWER_WITH_DERIVED_CITATIONS"
+    },
+    "rawEvaluation" : {
+      "retrievalRecall" : 1.0,
+      "reciprocalRank" : 1.0,
+      "factCoverage" : 1.0,
+      "citationRecall" : 0.0,
+      "citationPrecision" : 0.0,
+      "abstained" : false,
+      "correct" : false
+    },
+    "evaluation" : {
+      "retrievalRecall" : 1.0,
+      "reciprocalRank" : 1.0,
+      "factCoverage" : 1.0,
+      "citationRecall" : 1.0,
+      "citationPrecision" : 1.0,
+      "abstained" : false,
+      "correct" : true
+    }
+  }, {
+    "framework" : "plain-java",
+    "backend" : "rust-ffm",
+    "model" : "Gguf Output",
+    "caseId" : "ember-wheelchair-boarding",
+    "retrieved" : [ {
+      "document" : {
+        "id" : "transit-ember-access",
+        "title" : "Ember accessibility",
+        "text" : "Ember route E5 uses low-floor vehicles. Wheelchair boarding occurs at the front door."
+      },
+      "score" : 5.38591,
+      "rank" : 1
+    } ],
+    "promptSha256" : "f576ac1a97878e2466b3a6d56f30650383622a377591b43a3a22e2021be6b306",
+    "retrievalMillis" : 2.715878,
+    "frameworkOverheadMillis" : 2.201652000000081,
+    "endToEndMillis" : 928.112884,
+    "generation" : {
+      "text" : "Ember E5 uses low-floor vehicles and wheelchair boarding occurs at the front door. [transit-ember-access]",
+      "inputTokens" : 154,
+      "cacheReadInputTokens" : 103,
+      "cacheWriteInputTokens" : 51,
+      "outputTokens" : 17,
+      "ttftMillis" : 340.09423,
+      "totalMillis" : 923.195354,
+      "prefillTokensPerSecond" : 150.60307851119205,
+      "loadMillis" : 498.653804,
+      "peakRssBytes" : 1407680512,
+      "cpuMillis" : 14610.0,
+      "estimatedApiCostUsd" : null
+    },
+    "grounding" : {
+      "rawText" : "Ember E5 uses low-floor vehicles and wheelchair boarding occurs at the front door.",
+      "text" : "Ember E5 uses low-floor vehicles and wheelchair boarding occurs at the front door. [transit-ember-access]",
+      "decision" : "MODEL_ANSWER_WITH_DERIVED_CITATIONS"
+    },
+    "rawEvaluation" : {
+      "retrievalRecall" : 1.0,
+      "reciprocalRank" : 1.0,
+      "factCoverage" : 1.0,
+      "citationRecall" : 0.0,
+      "citationPrecision" : 0.0,
+      "abstained" : false,
+      "correct" : false
+    },
+    "evaluation" : {
+      "retrievalRecall" : 1.0,
+      "reciprocalRank" : 1.0,
+      "factCoverage" : 1.0,
+      "citationRecall" : 1.0,
+      "citationPrecision" : 1.0,
+      "abstained" : false,
+      "correct" : true
+    }
+  }, {
+    "framework" : "plain-java",
+    "backend" : "rust-ffm",
+    "model" : "Gguf Output",
+    "caseId" : "fjord-inspection",
+    "retrieved" : [ {
+      "document" : {
+        "id" : "transit-fjord-maintenance",
+        "title" : "Fjord maintenance interval",
+        "text" : "Fjord trams receive inspection every 7500 kilometers. Brake measurements are recorded in system FMX."
+      },
+      "score" : 6.762015,
+      "rank" : 1
+    } ],
+    "promptSha256" : "336f43b0911c1996c27b03b447ff466ef1a0e1a73afb115cf8ea7bf2f8fb5e52",
+    "retrievalMillis" : 1.828333,
+    "frameworkOverheadMillis" : 1.7784210000002076,
+    "endToEndMillis" : 1234.598985,
+    "generation" : {
+      "text" : "Fjord trams are inspected every 7500 kilometers, and brake measurements are recorded in system FMX. [transit-fjord-maintenance]",
+      "inputTokens" : 166,
+      "cacheReadInputTokens" : 103,
+      "cacheWriteInputTokens" : 63,
+      "outputTokens" : 25,
+      "ttftMillis" : 424.425407,
+      "totalMillis" : 1230.992231,
+      "prefillTokensPerSecond" : 148.742438285635,
+      "loadMillis" : 498.653804,
+      "peakRssBytes" : 1408729088,
+      "cpuMillis" : 19500.0,
+      "estimatedApiCostUsd" : null
+    },
+    "grounding" : {
+      "rawText" : "Fjord trams are inspected every 7500 kilometers, and brake measurements are recorded in system FMX.",
+      "text" : "Fjord trams are inspected every 7500 kilometers, and brake measurements are recorded in system FMX. [transit-fjord-maintenance]",
+      "decision" : "MODEL_ANSWER_WITH_DERIVED_CITATIONS"
+    },
+    "rawEvaluation" : {
+      "retrievalRecall" : 1.0,
+      "reciprocalRank" : 1.0,
+      "factCoverage" : 1.0,
+      "citationRecall" : 0.0,
+      "citationPrecision" : 0.0,
+      "abstained" : false,
+      "correct" : false
+    },
+    "evaluation" : {
+      "retrievalRecall" : 1.0,
+      "reciprocalRank" : 1.0,
+      "factCoverage" : 1.0,
+      "citationRecall" : 1.0,
+      "citationPrecision" : 1.0,
+      "abstained" : false,
+      "correct" : true
+    }
+  }, {
+    "framework" : "plain-java",
+    "backend" : "rust-ffm",
+    "model" : "Gguf Output",
+    "caseId" : "grove-delay-alert",
+    "retrieved" : [ {
+      "document" : {
+        "id" : "transit-grove-alert",
+        "title" : "Grove disruption alerts",
+        "text" : "Grove alerts use channel TRANSIT-OPS. A delay above 15 minutes triggers a passenger notice."
+      },
+      "score" : 8.446402,
+      "rank" : 1
+    } ],
+    "promptSha256" : "1b97d2a3566a3c08dbadac35e4f0926c89ec9a0138b82ccf4064e816560b5645",
+    "retrievalMillis" : 1.991601,
+    "frameworkOverheadMillis" : 1.8809860000001208,
+    "endToEndMillis" : 1430.925846,
+    "generation" : {
+      "text" : "Grove alerts use channel TRANSIT-OPS. A delay above 15 minutes triggers a passenger notice. [transit-grove-alert]",
+      "inputTokens" : 157,
+      "cacheReadInputTokens" : 103,
+      "cacheWriteInputTokens" : 54,
+      "outputTokens" : 22,
+      "ttftMillis" : 473.86742,
+      "totalMillis" : 1427.053259,
+      "prefillTokensPerSecond" : 114.328686870118,
+      "loadMillis" : 498.653804,
+      "peakRssBytes" : 1409499136,
+      "cpuMillis" : 22140.0,
+      "estimatedApiCostUsd" : null
+    },
+    "grounding" : {
+      "rawText" : "Grove alerts use channel TRANSIT-OPS. A delay above 15 minutes triggers a passenger notice.",
+      "text" : "Grove alerts use channel TRANSIT-OPS. A delay above 15 minutes triggers a passenger notice. [transit-grove-alert]",
+      "decision" : "MODEL_ANSWER_WITH_DERIVED_CITATIONS"
+    },
+    "rawEvaluation" : {
+      "retrievalRecall" : 1.0,
+      "reciprocalRank" : 1.0,
+      "factCoverage" : 1.0,
+      "citationRecall" : 0.0,
+      "citationPrecision" : 0.0,
+      "abstained" : false,
+      "correct" : false
+    },
+    "evaluation" : {
+      "retrievalRecall" : 1.0,
+      "reciprocalRank" : 1.0,
+      "factCoverage" : 1.0,
+      "citationRecall" : 1.0,
+      "citationPrecision" : 1.0,
+      "abstained" : false,
+      "correct" : true
+    }
+  }, {
+    "framework" : "plain-java",
+    "backend" : "rust-ffm",
+    "model" : "Gguf Output",
+    "caseId" : "harbor-ferry-bicycles",
+    "retrieved" : [ {
+      "document" : {
+        "id" : "transit-harbor-ferry",
+        "title" : "Harbor ferry schedule",
+        "text" : "Harbor ferry H2 crosses in 28 minutes. Bicycles are allowed after 09:00."
+      },
+      "score" : 5.1484528,
+      "rank" : 1
+    } ],
+    "promptSha256" : "1695ddad30378a6ecf39b95661da12b11b644abcca20d7bce19ab627ae1cdb6a",
+    "retrievalMillis" : 2.16087,
+    "frameworkOverheadMillis" : 2.2625050000001465,
+    "endToEndMillis" : 1491.653734,
+    "generation" : {
+      "text" : "Harbor ferry H2 crosses in 28 minutes. Bicycles are allowed after 09:00. [transit-harbor-ferry]",
+      "inputTokens" : 163,
+      "cacheReadInputTokens" : 103,
+      "cacheWriteInputTokens" : 60,
+      "outputTokens" : 22,
+      "ttftMillis" : 489.664894,
+      "totalMillis" : 1487.230359,
+      "prefillTokensPerSecond" : 122.88812607859677,
+      "loadMillis" : 498.653804,
+      "peakRssBytes" : 1416536064,
+      "cpuMillis" : 23150.0,
+      "estimatedApiCostUsd" : null
+    },
+    "grounding" : {
+      "rawText" : "The Harbor H2 crossing takes 28 minutes and bicycles are allowed after 09:00.",
+      "text" : "Harbor ferry H2 crosses in 28 minutes. Bicycles are allowed after 09:00. [transit-harbor-ferry]",
+      "decision" : "EXTRACTIVE_FALLBACK"
+    },
+    "rawEvaluation" : {
+      "retrievalRecall" : 1.0,
+      "reciprocalRank" : 1.0,
+      "factCoverage" : 1.0,
+      "citationRecall" : 0.0,
+      "citationPrecision" : 0.0,
+      "abstained" : false,
+      "correct" : false
+    },
+    "evaluation" : {
+      "retrievalRecall" : 1.0,
+      "reciprocalRank" : 1.0,
+      "factCoverage" : 1.0,
+      "citationRecall" : 1.0,
+      "citationPrecision" : 1.0,
+      "abstained" : false,
+      "correct" : true
+    }
+  }, {
+    "framework" : "plain-java",
+    "backend" : "rust-ffm",
+    "model" : "Gguf Output",
+    "caseId" : "unsupported-orchid-airport",
+    "retrieved" : [ {
+      "document" : {
+        "id" : "transit-ember-access",
+        "title" : "Ember accessibility",
+        "text" : "Ember route E5 uses low-floor vehicles. Wheelchair boarding occurs at the front door."
+      },
+      "score" : 1.0038362,
+      "rank" : 1
+    } ],
+    "promptSha256" : "95e95b760625dd3e1f5553a324493fad8d4a68f631f05c716d22d99d61125d87",
+    "retrievalMillis" : 2.076446,
+    "frameworkOverheadMillis" : 1.7203369999999722,
+    "endToEndMillis" : 732.165072,
+    "generation" : {
+      "text" : "INSUFFICIENT_CONTEXT",
+      "inputTokens" : 149,
+      "cacheReadInputTokens" : 103,
+      "cacheWriteInputTokens" : 46,
+      "outputTokens" : 11,
+      "ttftMillis" : 352.843438,
+      "totalMillis" : 728.368289,
+      "prefillTokensPerSecond" : 130.60457744740145,
+      "loadMillis" : 498.653804,
+      "peakRssBytes" : 1416699904,
+      "cpuMillis" : 11470.0,
+      "estimatedApiCostUsd" : null
+    },
+    "grounding" : {
+      "rawText" : "Orchid airport shuttle serves the E5 route.",
+      "text" : "INSUFFICIENT_CONTEXT",
+      "decision" : "RETRIEVAL_ABSTENTION"
+    },
+    "rawEvaluation" : {
+      "retrievalRecall" : 1.0,
+      "reciprocalRank" : 1.0,
+      "factCoverage" : 1.0,
+      "citationRecall" : 1.0,
+      "citationPrecision" : 1.0,
+      "abstained" : false,
+      "correct" : false
+    },
+    "evaluation" : {
+      "retrievalRecall" : 1.0,
+      "reciprocalRank" : 1.0,
+      "factCoverage" : 1.0,
+      "citationRecall" : 1.0,
+      "citationPrecision" : 1.0,
+      "abstained" : true,
+      "correct" : true
+    }
+  } ],
+  "failures" : [ ]
+}

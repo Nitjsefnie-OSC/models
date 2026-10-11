@@ -1,0 +1,18 @@
+WARNING: Using incubator modules: jdk.incubator.vector
+Oct 11, 2026 9:47:08 PM com.integrallis.vectors.core.PanamaVectorUtilSupportProvider create
+INFO: vectors-core: Using Panama Vector API SIMD provider (vector bits: 256)
+Oct 11, 2026 9:47:08 PM com.integrallis.vectors.core.VectorizationProvider logActiveToggles
+INFO: vectors-core: provider=PanamaVectorUtilSupport panama=true maxBits=256 preferredBits=256 fastVectorFMA=true fastScalarFMA=true sve=false ggufParallel=true ggufParallelThreshold=1048576 ggufExecutor=persistent ggufThreads=16 ggufChunksPerThread=2 mappedKQuantLongOffsets=auto(q4=true,q5=false,q6=false) q4ShortPairwiseSupported=true q4UnsignedPairwiseSupported=true toggles=[(defaults — no -Dvectors.* overrides)]
+Oct 11, 2026 9:47:08 PM org.apache.lucene.internal.vectorization.PanamaVectorizationProvider <init>
+INFO: Java vector incubator API enabled; uses preferredBitSize=256; FMA enabled
+iteration 1/1 case=auto-glass-deadline correct=true retrieval=30.8ms ttft=1614.1ms decode=43.70 tok/s e2e=1934.1ms
+iteration 1/1 case=travel-limit correct=true retrieval=3.6ms ttft=411.6ms decode=47.43 tok/s e2e=1177.1ms
+iteration 1/1 case=telemedicine-benefit correct=false retrieval=2.2ms ttft=412.0ms decode=48.49 tok/s e2e=569.2ms
+iteration 1/1 case=claim-payment-times correct=true retrieval=2.2ms ttft=512.8ms decode=47.53 tok/s e2e=1127.7ms
+iteration 1/1 case=chargeback-evidence correct=true retrieval=2.7ms ttft=350.1ms decode=51.71 tok/s e2e=916.5ms
+iteration 1/1 case=break-glass correct=true retrieval=2.8ms ttft=434.8ms decode=51.67 tok/s e2e=691.2ms
+iteration 1/1 case=idempotency correct=true retrieval=2.0ms ttft=527.1ms decode=33.16 tok/s e2e=1888.9ms
+iteration 1/1 case=priority-one correct=true retrieval=3.3ms ttft=363.9ms decode=37.62 tok/s e2e=422.1ms
+iteration 1/1 case=unsupported-lunar-vehicle correct=true retrieval=2.0ms ttft=366.7ms decode=53.52 tok/s e2e=1304.7ms
+plain-java/rust-ffm/smollm2_360m_instruct_q8_0: tier=FAILED_QUALITY success=9/9 p95-retrieval=19.9ms p95-ttft=1179.3ms p50-decode=47.53 tok/s p95-e2e=1916.0ms correct=88.9% model-answered=55.6% of-those-correct=100.0% extractive-fallback=22.2% truncated=0.0%
+report: /work/out/smollm2_360m_instruct_q8_0.json

@@ -52,8 +52,12 @@ These are pure-Java fallback rates, separate from the faster native route above.
 
 ## Task quality and publication
 
-- Paired RAG source experiment: both complete arms run on the initial host, with context 2048,
+- Paired RAG source experiment: both arms completed on the initial host, with context 2048,
   general corpus, ChatML non-thinking prompts, 64 output tokens, one warmup and three iterations.
+  The artifact-bound publisher policy passes: decode ratio 0.900553, end-to-end latency ratio
+  1.132929, 12/27 direct model answers, all 12 correct. See `rag-source-06c75314/verdict.json`.
+  The resumed reference uses the repaired SSE parser; the original failed run remains recorded.
+  This source result predates the BF16 correction and does not establish final release admission.
 - External quality: `public-qa-protocol.md` freezes 100 SQuAD 2.0 and 100 BoolQ cases before quality
   outputs. `public-qa-cases.json` records source and prompt hashes. Eight 25-case shards run both
   arms on the same host per shard; answer-quality scores aggregate all cases, timings do not.
@@ -78,8 +82,8 @@ route produce identical continuation hashes. Java SIMD improves decode 4.034x an
 prefill ratio 0.400. It is rejected for release on ARM until corrected and remeasured.
 
 The separate `42185aa7` NEON experiment is bound in `arm-neon-host.json` and its payload
-receipt. Real projection outputs match Java and the independent oracle bit for bit; whole-model
-retention is still pending. The initial native result remains part of the evidence.
+receipt. Real projection outputs match Java and the independent oracle bit for bit.
+The initial native result remains part of the evidence.
 
 The NEON whole-model comparison is complete in `arm-neon-paired/`. All three measured output
 hashes match Java SIMD and the original native route, and the publisher continuation/fresh-session
@@ -87,3 +91,37 @@ oracle passes. NEON improves decode 6.109x and prefill 6.539x over the original 
 against Java SIMD the ratios are 2.538x and 2.610x. Both frozen retention gates pass. The measured
 source commit is retained in the release branch history. This is same-host short-prompt route
 validation, not a claim of ARM RAG qualification. The measurement host terminated after upload.
+
+## BF16 determinism release blocker
+
+[Real-weight CI run 38177312332](https://github.com/integrallis/models/actions/runs/38177312332)
+failed full-vocabulary sequential/batched equality on Linux x86 and ARM. The other nine
+large-model jobs passed. The same test fails locally with four active processors; those three
+failing XML reports are retained here. A separate 16-token probe shows that a second sequential
+session also differs from the first. This is cold/compiled arithmetic drift, not a batch-only
+state bug.
+
+The first divergence is in the layer-zero BF16 alpha/beta gate projections. PTQ query/key/value
+projections remain exact. Vectors `BFloat16Matrix.finishRow` used `reduceLanes(ADD)`, whose
+addition order changes after compilation. The corrected source uses Vectors' existing
+fixed-order reduction. New fresh-JVM public API tests reproduce the old failure and pass after
+the change. In the local 6 GB probe, all logits and session state arrays now match exactly for
+sequential → batch-16 → sequential. The temporary tracing patch is archived here and was
+removed from the working sources.
+
+Release remains blocked until the full tests pass with released Vectors artifacts on both
+architectures. External QA and RAG admission must bind the final runtime, not just the earlier
+passing source experiment.
+
+## Released catalog baseline
+
+`catalog-baseline/` rechecks the six previously failing catalog default smokes with Central
+Models 0.3.58 and Vectors 0.1.29. All six reproduce the earlier 8/9 result; they are unresolved
+baseline failures, not passing tests. The raw answers and evaluator reports are retained for
+investigation. All four bounded baseline instances terminated after uploading evidence.
+
+The gated MobileMoE baseline runs through ModelJars' normal authenticated CLI installer in
+[CI run 38177270567](https://github.com/ModelJars/modeljars/actions/runs/38177270567).
+It passes 9/9 with the released runtime. The workflow retains only reports and dependency
+provenance, not the gated weights or credentials. The full released catalog regression remains
+required after the dependency update.

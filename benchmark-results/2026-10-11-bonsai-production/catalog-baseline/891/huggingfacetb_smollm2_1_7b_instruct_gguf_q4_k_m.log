@@ -1,0 +1,18 @@
+WARNING: Using incubator modules: jdk.incubator.vector
+Oct 11, 2026 9:47:35 PM com.integrallis.vectors.core.PanamaVectorUtilSupportProvider create
+INFO: vectors-core: Using Panama Vector API SIMD provider (vector bits: 256)
+Oct 11, 2026 9:47:35 PM com.integrallis.vectors.core.VectorizationProvider logActiveToggles
+INFO: vectors-core: provider=PanamaVectorUtilSupport panama=true maxBits=256 preferredBits=256 fastVectorFMA=true fastScalarFMA=true sve=false ggufParallel=true ggufParallelThreshold=1048576 ggufExecutor=persistent ggufThreads=16 ggufChunksPerThread=2 mappedKQuantLongOffsets=auto(q4=true,q5=false,q6=false) q4ShortPairwiseSupported=true q4UnsignedPairwiseSupported=true toggles=[(defaults — no -Dvectors.* overrides)]
+Oct 11, 2026 9:47:35 PM org.apache.lucene.internal.vectorization.PanamaVectorizationProvider <init>
+INFO: Java vector incubator API enabled; uses preferredBitSize=256; FMA enabled
+iteration 1/1 case=auto-glass-deadline correct=true retrieval=32.5ms ttft=2610.9ms decode=21.01 tok/s e2e=3897.1ms
+iteration 1/1 case=travel-limit correct=true retrieval=3.2ms ttft=833.5ms decode=21.13 tok/s e2e=2022.7ms
+iteration 1/1 case=telemedicine-benefit correct=true retrieval=2.9ms ttft=817.6ms decode=16.50 tok/s e2e=2095.9ms
+iteration 1/1 case=claim-payment-times correct=true retrieval=3.3ms ttft=802.8ms decode=21.85 tok/s e2e=2228.8ms
+iteration 1/1 case=chargeback-evidence correct=false retrieval=2.5ms ttft=780.2ms decode=19.87 tok/s e2e=1138.5ms
+iteration 1/1 case=break-glass correct=true retrieval=3.6ms ttft=816.2ms decode=18.98 tok/s e2e=1033.7ms
+iteration 1/1 case=idempotency correct=true retrieval=2.5ms ttft=977.8ms decode=18.49 tok/s e2e=1256.7ms
+iteration 1/1 case=priority-one correct=true retrieval=3.2ms ttft=794.7ms decode=22.43 tok/s e2e=2181.5ms
+iteration 1/1 case=unsupported-lunar-vehicle correct=true retrieval=1.9ms ttft=789.6ms decode=19.09 tok/s e2e=1003.2ms
+plain-java/rust-ffm/huggingfacetb_smollm2_1_7b_instruct_gguf_q4_k_m: tier=FAILED_QUALITY success=9/9 p95-retrieval=21.0ms p95-ttft=1957.7ms p50-decode=19.87 tok/s p95-e2e=3229.7ms correct=88.9% model-answered=44.4% of-those-correct=75.0% extractive-fallback=44.4% truncated=0.0%
+report: /work/out/huggingfacetb_smollm2_1_7b_instruct_gguf_q4_k_m.json

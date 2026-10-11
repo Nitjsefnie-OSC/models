@@ -18,3 +18,4 @@ warning: consult docs/build.md for compilation instructions
 0.03.065.014 I slot get_availabl: id  0 | task -1 | selected slot by LRU, t_last = -1
 0.03.065.074 I slot launch_slot_: id  0 | task 0 | processing task, is_child = 0
 0.34.068.694 W srv          stop: cancel task, id_task = 0
+1.02.048.167 I srv    operator(): operator(): cleaning up before exit...

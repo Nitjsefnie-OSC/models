@@ -1,0 +1,40 @@
+{
+  "modelId": "qwen2_5_coder_1_5b_instruct_q8_0",
+  "format": "gguf",
+  "modelPath": "/work/models/qwen2_5_coder_1_5b_instruct_q8_0/model.gguf",
+  "job": {
+    "id": "qwen2_5_coder_1_5b_instruct_q8_0",
+    "format": "gguf",
+    "backend": "rust-ffm",
+    "revision": "f86cb2c1fa58255f8052cc32aeede1b7482d4361",
+    "wl": "coding",
+    "tpl": "chatml",
+    "context": 2048,
+    "threads": 8,
+    "mt": 64,
+    "topK": 1,
+    "settingsSource": {
+      "modelId": "qwen2.5-coder-1.5b-instruct-q8_0",
+      "report": "benchmark-results/certified-20260724/rag/native-q8-prefix-cache/qwen2.5-coder-1.5b-q8_0/qwen2.5-coder-1.5b-q8_0-rust-ffm-coding-v4-grounded.json",
+      "reportSha256": "8aae6eb24601b031acaaf33998f39e5c753eab106a27ec99242c2db2bd13db66"
+    },
+    "files": [
+      {
+        "path": "model.gguf",
+        "sha256": "507de59046601282ba768a9789900e6ccf60ed93ddf346730b7c68eb0715bc47",
+        "sizeBytes": 1894532160,
+        "uri": "https://huggingface.co/Qwen/Qwen2.5-Coder-1.5B-Instruct-GGUF/resolve/f86cb2c1fa58255f8052cc32aeede1b7482d4361/qwen2.5-coder-1.5b-instruct-q8_0.gguf"
+      }
+    ]
+  },
+  "files": [
+    {
+      "path": "model.gguf",
+      "sha256": "507de59046601282ba768a9789900e6ccf60ed93ddf346730b7c68eb0715bc47",
+      "sizeBytes": 1894532160,
+      "uri": "https://huggingface.co/Qwen/Qwen2.5-Coder-1.5B-Instruct-GGUF/resolve/f86cb2c1fa58255f8052cc32aeede1b7482d4361/qwen2.5-coder-1.5b-instruct-q8_0.gguf",
+      "verifiedSha256": "507de59046601282ba768a9789900e6ccf60ed93ddf346730b7c68eb0715bc47",
+      "verifiedSizeBytes": 1894532160
+    }
+  ]
+}

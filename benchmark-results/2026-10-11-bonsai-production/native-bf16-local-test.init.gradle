@@ -1,0 +1,6 @@
+gradle.projectsEvaluated {
+    def nativeProject = gradle.rootProject.project(':backend-native')
+    nativeProject.tasks.named('bonsai2NativeSlowTest').configure {
+        classpath = nativeProject.files('/Users/briansam-bodden/Code/java-ai/projects/vectors/vectors-core/build/classes/java/main') + classpath
+    }
+}
