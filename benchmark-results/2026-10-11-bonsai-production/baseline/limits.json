@@ -1,0 +1,5 @@
+{
+  "qualification": false,
+  "referenceContextMismatch": "The first publisher server had context capacity 2048 while the inference harness and Java arm declared 512. Preserve these exploratory reports; repeat with both servers at 512 before comparing for admission.",
+  "profile": "3327 execution samples: 2558 at PTQ reduction, 95 at its block loop, 610 at memory bounds checks. Profiled decode: 1.31 tokens/second."
+}

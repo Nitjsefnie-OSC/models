@@ -112,6 +112,9 @@ const Q8_K_SUM_BLOCK: usize = 16;
 const Q4_0_BLOCK_BYTES: usize = 18;
 const Q5_0_BLOCK_BYTES: usize = 22;
 const Q5_1_BLOCK_BYTES: usize = 24;
+const PTQ1_0_BLOCK_BYTES: usize = 28;
+const CAPABILITY_PTQ1_0_F32_BATCHED_MATMUL: u64 = 1 << 24;
+mod ptq;
 const Q8_0_BLOCK_BYTES: usize = 34;
 const Q4_K_BLOCK_BYTES: usize = 144;
 const Q5_K_BLOCK_BYTES: usize = 176;
@@ -193,6 +196,9 @@ enum DotKernel {
     Q5_1,
     #[cfg(target_arch = "x86_64")]
     Q5_1Avx2,
+    Ptq,
+    #[cfg(target_arch = "x86_64")]
+    PtqAvx2,
     Q8,
     #[cfg(target_arch = "x86_64")]
     Q8Avx2,
@@ -215,6 +221,7 @@ enum DotKernel {
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 enum WeightFormat {
+    Ptq,
     Q4_0,
     Q5_0,
     Q5_1,
@@ -242,6 +249,7 @@ impl WeightFormat {
             4 => Some(Self::Q5K),
             5 => Some(Self::Q5_0),
             6 => Some(Self::Q5_1),
+            7 => Some(Self::Ptq),
             _ => None,
         }
     }
@@ -251,6 +259,7 @@ impl WeightFormat {
             Self::Q4_0 => Q4_0_BLOCK_BYTES,
             Self::Q5_0 => Q5_0_BLOCK_BYTES,
             Self::Q5_1 => Q5_1_BLOCK_BYTES,
+            Self::Ptq => PTQ1_0_BLOCK_BYTES,
             Self::Q8_0 => Q8_0_BLOCK_BYTES,
             Self::Q4K => Q4_K_BLOCK_BYTES,
             Self::Q5K => Q5_K_BLOCK_BYTES,
@@ -260,6 +269,7 @@ impl WeightFormat {
 
     fn block_elements(self) -> usize {
         match self {
+            Self::Ptq => 128,
             Self::Q4_0 | Self::Q5_0 | Self::Q5_1 | Self::Q8_0 => QK_0,
             Self::Q4K | Self::Q5K | Self::Q6K => QK_K,
         }
@@ -268,7 +278,7 @@ impl WeightFormat {
     fn activation_format(self) -> ActivationFormat {
         match self {
             Self::Q4_0 | Self::Q5_0 | Self::Q8_0 => ActivationFormat::Q8_0,
-            Self::Q5_1 => ActivationFormat::F32,
+            Self::Q5_1 | Self::Ptq => ActivationFormat::F32,
             Self::Q4K | Self::Q5K | Self::Q6K => ActivationFormat::Q8K,
         }
     }
@@ -278,6 +288,13 @@ impl WeightFormat {
             Self::Q4_0 => selected_q4_kernel(),
             Self::Q5_0 => selected_q5_kernel(),
             Self::Q5_1 => selected_q5_1_kernel(),
+            Self::Ptq => {
+                #[cfg(target_arch = "x86_64")]
+                if is_x86_feature_detected!("avx2") && is_x86_feature_detected!("fma") {
+                    return DotKernel::PtqAvx2;
+                }
+                DotKernel::Ptq
+            }
             Self::Q8_0 => selected_q8_kernel(),
             Self::Q4K => selected_q4_k_kernel(),
             Self::Q5K => selected_q5_k_kernel(),
@@ -1084,10 +1101,9 @@ unsafe fn execute_gated_delta_net_partition(
                 None => branch,
                 Some(table) => table[branch] as usize,
             };
-            let state_offset =
-                slot * branch_state + head * job.key_dimension * job.value_dimension;
-            let head_state = &mut state
-                [state_offset..state_offset + job.key_dimension * job.value_dimension];
+            let state_offset = slot * branch_state + head * job.key_dimension * job.value_dimension;
+            let head_state =
+                &mut state[state_offset..state_offset + job.key_dimension * job.value_dimension];
             for token in 0..job.token_count {
                 let token_head = branch * branch_gate + token * job.value_head_count + head;
                 let query_offset = branch * branch_query
@@ -1734,6 +1750,7 @@ pub extern "C" fn jmodels_kernels_capabilities() -> u64 {
         | CAPABILITY_Q5_K_F32_GROUPED_BATCHED_MATMUL
         | CAPABILITY_Q5_0_F32_BATCHED_MATMUL
         | CAPABILITY_Q5_1_F32_BATCHED_MATMUL
+        | CAPABILITY_PTQ1_0_F32_BATCHED_MATMUL
         | CAPABILITY_Q5_0_F32_GROUPED_BATCHED_MATMUL
         | CAPABILITY_K_QUANT_BATCH_WEIGHT_REUSE
         | CAPABILITY_Q4_K_BATCH_VECTOR_ACCUMULATION
@@ -3011,10 +3028,7 @@ fn quantized_f32_independent_batched_matmul(
         // A grouped job shares one quantized activation across its matrices, which is the whole
         // point of grouping; a format that dots against F32 activations has nothing to share and
         // is refused here rather than silently handed an empty activation slice.
-        if matches!(
-            formats[matrix].activation_format(),
-            ActivationFormat::F32
-        ) {
+        if matches!(formats[matrix].activation_format(), ActivationFormat::F32) {
             return STATUS_INVALID_SHAPE;
         }
         let Some(matrix_input_elements) = batch_size.checked_mul(cols) else {
@@ -3349,6 +3363,26 @@ unsafe fn compute_batched_row_range(
     kernel: DotKernel,
 ) {
     match kernel {
+        DotKernel::Ptq => {
+            for row in start_row..end_row {
+                for batch in 0..batch_size {
+                    let value = ptq::dot_scalar(weights, activations, batch, row, cols);
+                    // SAFETY: this worker exclusively owns the assigned output rows.
+                    unsafe { *output.add(batch * rows + row) = value };
+                }
+            }
+        }
+        #[cfg(target_arch = "x86_64")]
+        DotKernel::PtqAvx2 => {
+            for row in start_row..end_row {
+                for batch in 0..batch_size {
+                    // SAFETY: dispatch requires AVX2 and FMA; input shapes were validated.
+                    let value = unsafe { ptq::dot_avx2(weights, activations, batch, row, cols) };
+                    // SAFETY: this worker exclusively owns the assigned output rows.
+                    unsafe { *output.add(batch * rows + row) = value };
+                }
+            }
+        }
         DotKernel::Q5_1 => {
             // SAFETY: the caller assigns this worker an exclusive matrix-row range.
             unsafe {
@@ -4754,6 +4788,12 @@ fn compute_output_range(
                 unsafe {
                     dot_q5_0_q8_0_row_avx2(weights, quantized, activation_scales, batch, row, cols)
                 }
+            }
+            DotKernel::Ptq => ptq::dot_scalar(weights, activations, batch, row, cols),
+            #[cfg(target_arch = "x86_64")]
+            DotKernel::PtqAvx2 => {
+                // SAFETY: dispatch requires AVX2 and FMA; input shapes were validated.
+                unsafe { ptq::dot_avx2(weights, activations, batch, row, cols) }
             }
             DotKernel::Q5_1 => dot_q5_1_f32_row_scalar(weights, activations, batch, row, cols),
             #[cfg(target_arch = "x86_64")]
@@ -6388,6 +6428,7 @@ mod tests {
                 | CAPABILITY_Q5_0_F32_BATCHED_MATMUL
                 | CAPABILITY_Q5_0_F32_GROUPED_BATCHED_MATMUL
                 | CAPABILITY_Q5_1_F32_BATCHED_MATMUL
+                | CAPABILITY_PTQ1_0_F32_BATCHED_MATMUL
                 | CAPABILITY_K_QUANT_BATCH_WEIGHT_REUSE
                 | CAPABILITY_Q4_K_BATCH_VECTOR_ACCUMULATION
                 | CAPABILITY_MANY_GROUPED_BATCHED_MATMUL
@@ -7809,8 +7850,8 @@ mod tests {
         let mut expected_state = initial.clone();
         for row in 0..ROWS {
             let slot = slots[row] as usize;
-            let mut row_state = expected_state[slot * STATE_PER_SLOT..(slot + 1) * STATE_PER_SLOT]
-                .to_vec();
+            let mut row_state =
+                expected_state[slot * STATE_PER_SLOT..(slot + 1) * STATE_PER_SLOT].to_vec();
             let mut row_output = vec![0.0_f32; VALUE_HEADS * DIMENSION];
             let query_span = KEY_HEADS * DIMENSION;
             let value_span = VALUE_HEADS * DIMENSION;
@@ -7865,7 +7906,10 @@ mod tests {
         }
 
         // SAFETY: the context was created above and is not used after this call.
-        assert_eq!(unsafe { jmodels_kernels_context_destroy(context) }, STATUS_OK);
+        assert_eq!(
+            unsafe { jmodels_kernels_context_destroy(context) },
+            STATUS_OK
+        );
     }
 
     /// A slot outside the state buffer is rejected rather than written on a worker thread.
@@ -7903,7 +7947,10 @@ mod tests {
             STATUS_INVALID_SHAPE
         );
         // SAFETY: the context was created above and is not used after this call.
-        assert_eq!(unsafe { jmodels_kernels_context_destroy(context) }, STATUS_OK);
+        assert_eq!(
+            unsafe { jmodels_kernels_context_destroy(context) },
+            STATUS_OK
+        );
     }
 
     #[test]

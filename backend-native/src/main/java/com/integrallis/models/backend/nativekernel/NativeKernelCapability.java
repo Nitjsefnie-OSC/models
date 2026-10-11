@@ -52,7 +52,9 @@ public enum NativeKernelCapability {
    * deliberately no grouped counterpart -- grouping exists to share one quantized activation
    * between matrices, and this format has none to share.
    */
-  Q5_1_F32_BATCHED_MATMUL(1L << 23);
+  Q5_1_F32_BATCHED_MATMUL(1L << 23),
+  /** PTQ1_0 packed ternary rows with the Java F32 activation and reduction contract. */
+  PTQ1_0_F32_BATCHED_MATMUL(1L << 24);
 
   private final long mask;
 

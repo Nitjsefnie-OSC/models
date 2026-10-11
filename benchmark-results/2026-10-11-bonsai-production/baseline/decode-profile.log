@@ -1,0 +1,30 @@
+WARNING: Using incubator modules: jdk.incubator.vector
+Oct 11, 2026 7:18:35 PM com.integrallis.vectors.core.PanamaVectorUtilSupportProvider create
+INFO: vectors-core: Using Panama Vector API SIMD provider (vector bits: 256)
+Oct 11, 2026 7:18:35 PM com.integrallis.vectors.core.VectorizationProvider logActiveToggles
+INFO: vectors-core: provider=PanamaVectorUtilSupport panama=true maxBits=256 preferredBits=256 fastVectorFMA=true fastScalarFMA=true sve=false ggufParallel=true ggufParallelThreshold=1048576 ggufExecutor=persistent ggufThreads=16 ggufChunksPerThread=2 mappedKQuantLongOffsets=auto(q4=true,q5=false,q6=false) q4ShortPairwiseSupported=true q4UnsignedPairwiseSupported=true toggles=[(defaults — no -Dvectors.* overrides)]
+decode profile: prompt=4 warmup=8 measured=16 decode=1.31 tok/s checksum=77.3669890 gc=0 gcPause=0 ms
+recording: /work/out/decode-profile.jfr
+	Command being timed: "/opt/jdk/bin/java --add-modules jdk.incubator.vector --enable-native-access=ALL-UNNAMED -Xmx16g -cp /work/payload/lib/* com.integrallis.models.bench.InferenceBenchmarkCli profile-decode --model /work/bonsai2.gguf --prompt The quick brown fox --context 128 --warmup-tokens 8 --measure-tokens 16 --output /work/out/decode-profile.jfr"
+	User time (seconds): 306.77
+	System time (seconds): 3.02
+	Percent of CPU this job got: 1188%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:26.06
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 6390844
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 294660
+	Voluntary context switches: 327590
+	Involuntary context switches: 3726
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 1240
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

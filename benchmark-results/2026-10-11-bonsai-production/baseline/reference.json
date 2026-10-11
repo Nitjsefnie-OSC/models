@@ -1,0 +1,26 @@
+{
+  "repository": "https://github.com/PrismML-Eng/llama.cpp",
+  "revision": "e8fd209c975c80aa7fb36a8423571ff3b1b7e955",
+  "command": [
+    "/work/prism/build/bin/llama-server",
+    "-m",
+    "/work/bonsai2.gguf",
+    "-c",
+    "2048",
+    "-t",
+    "16",
+    "-tb",
+    "16",
+    "-ngl",
+    "0",
+    "--parallel",
+    "1",
+    "--host",
+    "127.0.0.1",
+    "--port",
+    "8080",
+    "--no-warmup"
+  ],
+  "binarySha256": "0c22764d3198dee97629a26f2df7888297eeb021cb19b96852c70c2c9a38eb1d",
+  "role": "publisher llama.cpp fork; supporting reference, not Ollama"
+}

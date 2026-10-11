@@ -62,6 +62,7 @@ public final class NativeKernelLibrary implements AutoCloseable {
   private static final int FORMAT_Q5_K = 4;
   private static final int FORMAT_Q5_0 = 5;
   private static final int FORMAT_Q5_1 = 6;
+  private static final int FORMAT_PTQ1_0 = 7;
   private static final Linker LINKER = Linker.nativeLinker();
   private static final FunctionDescriptor ABI_VERSION_DESCRIPTOR =
       FunctionDescriptor.of(ValueLayout.JAVA_INT);
@@ -631,6 +632,23 @@ public final class NativeKernelLibrary implements AutoCloseable {
         output);
   }
 
+  /** Computes a batch-major {@code input[batch, cols] * weights[rows, cols]} PTQ1_0 projection. */
+  public void ptq1_0F32BatchedMatmul(
+      MemorySegment weights, float[] input, int batchSize, int rows, int cols, float[] output) {
+    f32BatchedMatmul(
+        "PTQ1_0",
+        FORMAT_PTQ1_0,
+        128,
+        28L,
+        NativeKernelCapability.PTQ1_0_F32_BATCHED_MATMUL,
+        weights,
+        input,
+        batchSize,
+        rows,
+        cols,
+        output);
+  }
+
   /** Computes a batch-major {@code input[batch, cols] * weights[rows, cols]} Q4_K projection. */
   public void q4_KF32BatchedMatmul(
       MemorySegment weights, float[] input, int batchSize, int rows, int cols, float[] output) {
@@ -771,6 +789,31 @@ public final class NativeKernelLibrary implements AutoCloseable {
         "Q5_1",
         FORMAT_Q5_1,
         NativeKernelCapability.Q5_1_F32_BATCHED_MATMUL,
+        weights,
+        weightBytes,
+        nativeInput,
+        inputElements,
+        nativeOutput,
+        outputElements,
+        batchSize,
+        rows,
+        cols);
+  }
+
+  void ptq1_0F32BatchedMatmul(
+      MemorySegment weights,
+      long weightBytes,
+      MemorySegment nativeInput,
+      long inputElements,
+      MemorySegment nativeOutput,
+      long outputElements,
+      int batchSize,
+      int rows,
+      int cols) {
+    invokeBatched(
+        "PTQ1_0",
+        FORMAT_PTQ1_0,
+        NativeKernelCapability.PTQ1_0_F32_BATCHED_MATMUL,
         weights,
         weightBytes,
         nativeInput,

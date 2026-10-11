@@ -580,3 +580,18 @@ if (githubPackagesEnabled) {
         dependsOn(nativeVerification, bundleVerification)
     }
 }
+
+
+ tasks.register<Test>("bonsai2NativeSlowTest") {
+    group = "verification"
+    description = "Run the exact Bonsai PTQ1_0 oracle and session tests through Rust/FFM"
+    testClassesDirs = sourceSets["test"].output.classesDirs
+    classpath = sourceSets["test"].runtimeClasspath
+    useJUnitPlatform { includeTags("slow") }
+    filter { includeTestsMatching("*Bonsai2NativeModelFixtureSlowTest") }
+    dependsOn(project(":backend-java").tasks.named("downloadBonsai2Ptq10Model"))
+    outputs.upToDateWhen { false }
+    maxParallelForks = 1
+    maxHeapSize = "4g"
+    extensions.configure<JacocoTaskExtension> { isEnabled = false }
+}
