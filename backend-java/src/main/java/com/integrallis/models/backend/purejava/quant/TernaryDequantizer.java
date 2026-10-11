@@ -188,26 +188,36 @@ public final class TernaryDequantizer {
       int at = inputOffset + block * 128;
       float blockSum = 0;
       for (int group = 0; group < 4; group++) {
-        int integerSum = 0;
-        for (int j = 0; j < 32; j++) {
-          int index = group * 32 + j;
-          int packedIndex, power;
-          if (index < 80) {
-            packedIndex = index % 16;
-            power = index / 16;
-          } else if (index < 120) {
-            packedIndex = 16 + (index - 80) % 8;
-            power = (index - 80) / 8;
+        IntVector vectorSum = IntVector.zero(IntVector.SPECIES_256);
+        int scalarTail = 0;
+        for (int lane = 0; lane < 4; lane++) {
+          int index = group * 32 + lane * 8;
+          if (index == 120) {
+            for (int j = 0; j < 8; j++) {
+              int packed =
+                  (Byte.toUnsignedInt(source.get(ValueLayout.JAVA_BYTE, base + 24 + j % 2))
+                          * POW3[j / 2])
+                      & 255;
+              scalarTail += ((packed * 3 >>> 8) - 1) * input[at + index + j];
+            }
           } else {
-            packedIndex = 24 + (index - 120) % 2;
-            power = (index - 120) / 2;
+            int packedIndex = index < 80 ? index % 16 : 16;
+            int power = index < 80 ? index / 16 : (index - 80) / 8;
+            IntVector trits =
+                ptqBytes(source, base + packedIndex)
+                    .mul(POW3[power])
+                    .and(255)
+                    .mul(3)
+                    .lanewise(VectorOperators.LSHR, 8)
+                    .sub(1);
+            IntVector activations =
+                (IntVector)
+                    ByteVector.fromArray(ByteVector.SPECIES_64, input, at + index)
+                        .convertShape(VectorOperators.B2I, IntVector.SPECIES_256, 0);
+            vectorSum = vectorSum.add(trits.mul(activations));
           }
-          int packed =
-              (Byte.toUnsignedInt(source.get(ValueLayout.JAVA_BYTE, base + packedIndex))
-                      * POW3[power])
-                  & 255;
-          integerSum += ((packed * 3 >>> 8) - 1) * input[at + index];
         }
+        int integerSum = vectorSum.reduceLanes(VectorOperators.ADD) + scalarTail;
         blockSum = Math.fma(integerSum, scales[at / 32 + group], blockSum);
       }
       total = Math.fma(blockSum, halfToFloat(source.get(LE_SHORT, base + 26)), total);

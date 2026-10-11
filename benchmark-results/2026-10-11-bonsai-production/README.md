@@ -1,0 +1,59 @@
+# Bonsai production evidence
+
+Qualification is **pending**. This directory retains source experiments, rejected optimizations,
+real-weight checks and the frozen external-QA protocol. It does not claim a new release or marker.
+
+The exact artifact is `prism-ml/Ternary-Bonsai-2-27B-gguf`, revision
+`b072e1d3b35a0a630cece372c2127528e0994386`, file
+`Ternary-Bonsai-2-27B-PTQ1_0.gguf`, 5,946,648,928 bytes, SHA-256
+`53107f530aa52eb00912263ab1ee29bd199261c87cd7b4ad4ca1318c1fe33ee3`.
+The publisher reference is `PrismML-Eng/llama.cpp` at
+`e8fd209c975c80aa7fb36a8423571ff3b1b7e955`, CPU only. It is not Ollama.
+
+## Measured kernel and whole-model experiments
+
+One isolated m6a.4xlarge, 16 logical workers unless stated otherwise. Median decode rates are
+from three measured short-prompt trials after one warmup, with context 512 and 16 output tokens.
+They describe this host and workload, not general production latency. Raw commands, classpath
+hashes, output and memory records live beside each result.
+
+| Experiment | Decode tokens/s | Decision |
+| --- | ---: | --- |
+| Released Java float-activation baseline | 1.364 | Baseline |
+| First native float prototype, `1b7f3b37` | 1.260 | Rejected |
+| Inlined float tail, `52abf966` | 1.734 | Superseded |
+| Row pairs, `2d69fe55` | 1.610 | Rejected |
+| Compact trit lookup, `9d49e9e1` | 1.440 | Rejected |
+| Sixteen-bit trits and batched prompts, `0383af38` | 1.844 | Best float prototype |
+| Same float route, eight pinned physical workers | 1.440 | Rejected |
+| Split multiply/add, `6788c475` | 1.757 | Rejected |
+| Native PTQ/Q8, `06c75314` | 2.445 | Current numerical contract |
+| Paired publisher reference for the Q8 run | 2.625 | Measured comparator |
+
+The initial baseline reference used context 2048 against Models context 512; that exploratory
+pair is explicitly excluded from admission. Subsequent short-probe pairs match context 512.
+The Q8 run gives a 0.931 decode ratio, but does not replace the paired RAG qualification.
+
+Q8 is a different activation contract from the earlier float route. The production Java fallback
+was aligned at `8b5c0b29`; independent Java-oracle and Rust scalar/SIMD tests require bit equality.
+The real-weight tests check session isolation, the publisher's short continuation and exact
+full-vocabulary sequential/batched parity. See `q8-validation-provenance.json` and its XML files.
+
+`PtqProjectionBenchmark.java` is the historical harness for the archived payloads. Its Java arm
+uses each payload's `TensorOps`; the archived comparisons labeled float use the recorded older
+Java JAR. Do not substitute a newer Q8 Java JAR and retain the historical float label.
+
+## Task quality and publication
+
+- Paired RAG source experiment: both complete arms run on the initial host, with context 2048,
+  general corpus, ChatML non-thinking prompts, 64 output tokens, one warmup and three iterations.
+- External quality: `public-qa-protocol.md` freezes 100 SQuAD 2.0 and 100 BoolQ cases before quality
+  outputs. `public-qa-cases.json` records source and prompt hashes. Eight 25-case shards run both
+  arms on the same host per shard; answer-quality scores aggregate all cases, timings do not.
+- `public-qa-fleet.json` records owned instances, fixed deadlines, exact payload and result paths.
+  Each worker uploads checkpoints and terminates automatically. The earlier failed bootstrap is
+  retained separately; its instance was terminated.
+- Completion still requires both task reports and verdicts, a Central release, a released-runtime
+  default smoke, ModelJars loading at the tested context, marker publication and Central verification.
+
+See the [execution plan](../../docs/findings/2026-10-11-bonsai-production.md) for the ordered queue.
