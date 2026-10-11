@@ -27,6 +27,20 @@ import org.junit.jupiter.api.Test;
 class RagProductionQualificationPolicyTest {
 
   @Test
+  void invalidDecodeMeasurementsCannotPassTheRelativeFloor() {
+    var reference = RagPublisherReference.BONSAI2_PTQ1_0;
+    var candidate = publisherReport("rust-ffm", "candidate", 100, 1000);
+    for (double invalid : new double[] {0, -1, Double.NaN, Double.POSITIVE_INFINITY}) {
+      var baseline = publisherReport("llama.cpp", reference.backendVersion(), invalid, 1000);
+      assertThat(
+              RagProductionQualificationPolicy.assessPublisherReference(
+                      candidate, List.of(baseline), reference)
+                  .qualified())
+          .isFalse();
+    }
+  }
+
+  @Test
   void publisherReferenceRequiresExplicitPolicyAndKeepsStrictRelativeThresholds() {
     var reference = RagPublisherReference.BONSAI2_PTQ1_0;
     var candidate = publisherReport("rust-ffm", "candidate", 80, 1500);

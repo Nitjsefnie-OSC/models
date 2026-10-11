@@ -639,7 +639,7 @@ class NativeKernelLibraryTest {
 
         assertThat(actual).containsExactly(expected);
       }
-      assertThat(kernel.implementation()).isEqualTo("rust-ffm-quantized-v13");
+      assertThat(kernel.implementation()).isEqualTo("rust-ffm-quantized-v14");
       // Batch one is decode. It used to be ineligible unless models.native.quantizedDecode was
       // set, which sent every decode step to the Java path at 6.2x the cost; the setting is gone
       // and the shim serves any batch size for a type it supports.

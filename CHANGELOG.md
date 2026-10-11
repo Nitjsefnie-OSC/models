@@ -4,6 +4,32 @@ All notable changes to models are documented here.
 
 ## [Unreleased]
 
+## [0.3.59] - 2026-10-11
+
+### Added and fixed
+
+- Native PTQ1_0 projections for Bonsai, with independent Java/Rust scalar/SIMD conformance tests.
+  Both production backends now use Q8_0 activations with binary16-rounded scales and a pinned FMA
+  order. This changes the earlier float-activation arithmetic; loading a native library preserves
+  the new Java contract. Signed Hadamard transforms, the graph and recurrent state remain in Java.
+- Batched Hadamard/PTQ prompt processing, with real-weight session isolation and exact full-logit
+  parity across sequential and batched prompts. Native activation-scale scratch now follows the
+  activation block width independently of the weight format's block width.
+- Explicit, artifact- and revision-bound publisher-reference RAG policy for Bonsai. It retains the
+  0.80 relative decode floor, 1.5 latency ceiling and existing quality/contribution gates. Historical
+  v6 qualifications are unchanged. Reject nonfinite decode ratios instead of letting an invalid
+  comparator measurement pass the relative floor.
+- Bonsai catalog admission and public QA are still pending in this release preparation; the
+  measurements and unsuccessful kernel experiments are retained under
+  `benchmark-results/2026-10-11-bonsai-production`.
+
+### Dependencies and device evidence
+
+Consumes released Vectors 0.1.29. No CUDA numeric path changed and device gates were not rerun.
+The last G1 result remains 1280/1280 exact token IDs on RTX 4090, Granite 4.1 3B Q4_K_M
+(`benchmark-results/2026-10-07-g1-parity`); G4 remains 6.184x on that host/model
+(`benchmark-results/2026-10-07-g4-dualpath`). This does not qualify Bonsai on CUDA.
+
 ## [0.3.58] - 2026-10-11
 
 ### Added

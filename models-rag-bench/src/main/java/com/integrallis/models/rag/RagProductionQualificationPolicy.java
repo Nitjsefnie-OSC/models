@@ -295,7 +295,7 @@ public final class RagProductionQualificationPolicy {
         ratio(candidate.summary().ttftMillis().p95(), baseline.summary().ttftMillis().p95());
 
     List<String> failures = new ArrayList<>();
-    if (decodeRatio < threshold.minimumDecodeRatio()) {
+    if (!Double.isFinite(decodeRatio) || decodeRatio < threshold.minimumDecodeRatio()) {
       failures.add("decode throughput below relative floor");
     }
     if (endToEndRatio > threshold.maximumEndToEndRatio()) {
