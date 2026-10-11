@@ -144,6 +144,77 @@ public final class TernaryDequantizer {
     return total;
   }
 
+  /**
+   * Quantizes complete 32-value blocks for the PTQ1_0 x Q8_0 contract. Scales are rounded to
+   * binary16; quants use nearest-even rounding before narrowing, matching the native kernel.
+   */
+  public static void quantizePtqActivations(
+      float[] input, int count, byte[] quants, float[] scales) {
+    if (count < 0 || count % 32 != 0)
+      throw new IllegalArgumentException(
+          "Q8_0 activation count must be a nonnegative multiple of 32");
+    java.util.Objects.checkFromIndexSize(0, count, input.length);
+    java.util.Objects.checkFromIndexSize(0, count, quants.length);
+    java.util.Objects.checkFromIndexSize(0, count / 32, scales.length);
+    for (int at = 0; at < count; at += 32) {
+      float maximum = 0;
+      for (int j = 0; j < 32; j++) maximum = Math.max(maximum, Math.abs(input[at + j]));
+      float inverse = maximum == 0 ? 0 : 127f / maximum;
+      scales[at / 32] = Float.float16ToFloat(Float.floatToFloat16(maximum / 127f));
+      for (int j = 0; j < 32; j++) quants[at + j] = (byte) Math.rint(input[at + j] * inverse);
+    }
+  }
+
+  /**
+   * PTQ1_0 row product with prequantized Q8_0 activations. Integer sums are exact; four activation
+   * scales and then the weight scale fold in a fixed FMA order on every backend. The
+   * float-activation method above remains an explicit accuracy reference.
+   */
+  public static float dotProductPtq1_0Q8_0(
+      MemorySegment source,
+      long sourceOffset,
+      byte[] input,
+      float[] scales,
+      int inputOffset,
+      int count) {
+    require(count, 128);
+    if (count < 0 || inputOffset % 32 != 0)
+      throw new IllegalArgumentException("PTQ/Q8 input must use aligned nonnegative dimensions");
+    java.util.Objects.checkFromIndexSize(inputOffset, count, input.length);
+    java.util.Objects.checkFromIndexSize(inputOffset / 32, count / 32, scales.length);
+    float total = 0;
+    for (int block = 0; block < count / 128; block++) {
+      long base = sourceOffset + (long) block * 28;
+      int at = inputOffset + block * 128;
+      float blockSum = 0;
+      for (int group = 0; group < 4; group++) {
+        int integerSum = 0;
+        for (int j = 0; j < 32; j++) {
+          int index = group * 32 + j;
+          int packedIndex, power;
+          if (index < 80) {
+            packedIndex = index % 16;
+            power = index / 16;
+          } else if (index < 120) {
+            packedIndex = 16 + (index - 80) % 8;
+            power = (index - 80) / 8;
+          } else {
+            packedIndex = 24 + (index - 120) % 2;
+            power = (index - 120) / 2;
+          }
+          int packed =
+              (Byte.toUnsignedInt(source.get(ValueLayout.JAVA_BYTE, base + packedIndex))
+                      * POW3[power])
+                  & 255;
+          integerSum += ((packed * 3 >>> 8) - 1) * input[at + index];
+        }
+        blockSum = Math.fma(integerSum, scales[at / 32 + group], blockSum);
+      }
+      total = Math.fma(blockSum, halfToFloat(source.get(LE_SHORT, base + 26)), total);
+    }
+    return total;
+  }
+
   private static IntVector ptqBytes(MemorySegment source, long offset) {
     return ((IntVector)
             ByteVector.fromMemorySegment(

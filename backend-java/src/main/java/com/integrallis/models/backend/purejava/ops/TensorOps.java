@@ -305,6 +305,9 @@ public final class TensorOps {
       throw new IllegalArgumentException("PTQ1_0 requires positive dimensions and 128-wide blocks");
     Objects.checkFromIndexSize(0, Math.multiplyExact(batchSize, rows), out.length);
     Objects.checkFromIndexSize(0, Math.multiplyExact(batchSize, columns), input.length);
+    byte[] quants = new byte[Math.multiplyExact(batchSize, columns)];
+    float[] scales = new float[quants.length / 32];
+    TernaryDequantizer.quantizePtqActivations(input, quants.length, quants, scales);
     long rowBytes = (long) (columns / 128) * 28;
     int threads = packedProjectionThreads(rows, rowBytes, weight);
     int chunk = (rows + threads - 1) / threads;
@@ -314,9 +317,12 @@ public final class TensorOps {
       int to = Math.min(rows, first + chunk);
       pending.add(
           PackedProjectionThreads.EXECUTOR.submit(
-              () -> ptqRows(out, input, weight, rowBytes, batchSize, rows, columns, from, to)));
+              () ->
+                  ptqRows(
+                      out, quants, scales, weight, rowBytes, batchSize, rows, columns, from, to)));
     }
-    ptqRows(out, input, weight, rowBytes, batchSize, rows, columns, 0, Math.min(rows, chunk));
+    ptqRows(
+        out, quants, scales, weight, rowBytes, batchSize, rows, columns, 0, Math.min(rows, chunk));
     for (Future<?> future : pending) {
       try {
         future.get();
@@ -331,7 +337,8 @@ public final class TensorOps {
 
   private static void ptqRows(
       float[] out,
-      float[] input,
+      byte[] input,
+      float[] scales,
       MemorySegment weight,
       long rowBytes,
       int batchSize,
@@ -342,8 +349,8 @@ public final class TensorOps {
     for (int index = from; index < to; index++) {
       for (int batch = 0; batch < batchSize; batch++) {
         out[batch * rows + index] =
-            TernaryDequantizer.dotProductPtq1_0(
-                weight, index * rowBytes, input, batch * columns, columns);
+            TernaryDequantizer.dotProductPtq1_0Q8_0(
+                weight, index * rowBytes, input, scales, batch * columns, columns);
       }
     }
   }

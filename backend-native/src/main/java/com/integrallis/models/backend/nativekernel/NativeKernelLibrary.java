@@ -632,7 +632,11 @@ public final class NativeKernelLibrary implements AutoCloseable {
         output);
   }
 
-  /** Computes a batch-major {@code input[batch, cols] * weights[rows, cols]} PTQ1_0 projection. */
+  /**
+   * Computes a batch-major {@code input[batch, cols] * weights[rows, cols]} PTQ1_0 projection. F32
+   * describes the input array; the kernel quantizes it to Q8_0 with binary16-rounded scales and
+   * nearest-even quants, then folds four integer block sums in a pinned FMA order.
+   */
   public void ptq1_0F32BatchedMatmul(
       MemorySegment weights, float[] input, int batchSize, int rows, int cols, float[] output) {
     f32BatchedMatmul(

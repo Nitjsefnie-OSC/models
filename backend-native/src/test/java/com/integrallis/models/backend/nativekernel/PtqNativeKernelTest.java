@@ -19,6 +19,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import com.integrallis.models.backend.purejava.gguf.GgufTensorType;
+import com.integrallis.models.backend.purejava.ops.TensorOps;
 import java.lang.foreign.Arena;
 import java.lang.foreign.MemorySegment;
 import java.nio.file.Path;
@@ -69,9 +70,27 @@ class PtqNativeKernelTest {
               float[] actual = new float[batch * rows];
               kernel.multiply(actual, input, weights, GgufTensorType.PTQ1_0, batch, rows, cols);
               float[] reference = PtqQ8Oracle.multiply(weights, input, batch, rows, cols);
+              float[] javaActual = new float[batch * rows];
+              TensorOps.ggufBatchedMatmul(
+                  javaActual,
+                  input,
+                  weights,
+                  GgufTensorType.PTQ1_0,
+                  batch,
+                  rows,
+                  cols,
+                  new byte[0],
+                  new float[0],
+                  new int[0],
+                  new short[0],
+                  new float[0],
+                  com.integrallis.vectors.core.GgufQ4Kernel.WIDENED);
               for (int b = 0; b < batch; b++) {
                 for (int row = 0; row < rows; row++) {
                   float expected = reference[b * rows + row];
+                  assertThat(Float.floatToRawIntBits(javaActual[b * rows + row]))
+                      .as("Java fallback batch=%d row=%d cols=%d", b, row, cols)
+                      .isEqualTo(Float.floatToRawIntBits(expected));
                   assertThat(Float.floatToRawIntBits(actual[b * rows + row]))
                       .as("threads=%d batch=%d row=%d cols=%d", threads, b, row, cols)
                       .isEqualTo(Float.floatToRawIntBits(expected));

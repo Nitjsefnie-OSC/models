@@ -1,0 +1,127 @@
+[ {
+  "tensor" : "blk.0.ffn_up.weight",
+  "rows" : 17408,
+  "columns" : 5120,
+  "bitExact" : true,
+  "trials" : [ {
+    "arm" : "java",
+    "millis" : 3.766248
+  }, {
+    "arm" : "native",
+    "millis" : 2.717019
+  }, {
+    "arm" : "native",
+    "millis" : 2.686427
+  }, {
+    "arm" : "java",
+    "millis" : 2.919363
+  }, {
+    "arm" : "java",
+    "millis" : 3.03321
+  }, {
+    "arm" : "native",
+    "millis" : 2.681007
+  }, {
+    "arm" : "native",
+    "millis" : 2.809684
+  }, {
+    "arm" : "java",
+    "millis" : 3.181029
+  }, {
+    "arm" : "java",
+    "millis" : 2.88805
+  }, {
+    "arm" : "native",
+    "millis" : 2.366345
+  }, {
+    "arm" : "native",
+    "millis" : 2.656364
+  }, {
+    "arm" : "java",
+    "millis" : 2.804675
+  } ]
+}, {
+  "tensor" : "blk.0.ffn_down.weight",
+  "rows" : 5120,
+  "columns" : 17408,
+  "bitExact" : true,
+  "trials" : [ {
+    "arm" : "java",
+    "millis" : 2.814455
+  }, {
+    "arm" : "native",
+    "millis" : 2.445391
+  }, {
+    "arm" : "native",
+    "millis" : 2.745872
+  }, {
+    "arm" : "java",
+    "millis" : 3.053281
+  }, {
+    "arm" : "java",
+    "millis" : 3.165639
+  }, {
+    "arm" : "native",
+    "millis" : 2.582271
+  }, {
+    "arm" : "native",
+    "millis" : 2.704088
+  }, {
+    "arm" : "java",
+    "millis" : 2.762072
+  }, {
+    "arm" : "java",
+    "millis" : 3.64097
+  }, {
+    "arm" : "native",
+    "millis" : 2.511345
+  }, {
+    "arm" : "native",
+    "millis" : 4.413451
+  }, {
+    "arm" : "java",
+    "millis" : 3.925318
+  } ]
+}, {
+  "tensor" : "output.weight",
+  "rows" : 248320,
+  "columns" : 5120,
+  "bitExact" : true,
+  "trials" : [ {
+    "arm" : "java",
+    "millis" : 28.334096
+  }, {
+    "arm" : "native",
+    "millis" : 27.994524
+  }, {
+    "arm" : "native",
+    "millis" : 43.319474
+  }, {
+    "arm" : "java",
+    "millis" : 29.425338
+  }, {
+    "arm" : "java",
+    "millis" : 27.839864
+  }, {
+    "arm" : "native",
+    "millis" : 28.07801
+  }, {
+    "arm" : "native",
+    "millis" : 28.714431
+  }, {
+    "arm" : "java",
+    "millis" : 27.985353
+  }, {
+    "arm" : "java",
+    "millis" : 41.331232
+  }, {
+    "arm" : "native",
+    "millis" : 28.090771
+  }, {
+    "arm" : "native",
+    "millis" : 28.318545
+  }, {
+    "arm" : "java",
+    "millis" : 41.429569
+  } ]
+} ]

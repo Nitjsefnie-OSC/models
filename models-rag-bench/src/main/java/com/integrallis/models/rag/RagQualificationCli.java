@@ -43,11 +43,16 @@ public final class RagQualificationCli {
     List<RagBenchmarkReport> comparators =
         arguments.comparators().stream().map(RagQualificationCli::readReportUnchecked).toList();
     RagProductionQualification qualification =
-        RagProductionQualificationPolicy.assess(candidate, comparators);
+        arguments.publisherReference() == null
+            ? RagProductionQualificationPolicy.assess(candidate, comparators)
+            : RagProductionQualificationPolicy.assessPublisherReference(
+                candidate, comparators, arguments.publisherReference());
     RagQualificationEvidence evidence =
         new RagQualificationEvidence(
             RagQualificationEvidence.CURRENT_SCHEMA_VERSION,
-            RagProductionQualificationPolicy.POLICY_ID,
+            arguments.publisherReference() == null
+                ? RagProductionQualificationPolicy.POLICY_ID
+                : RagProductionQualificationPolicy.PUBLISHER_POLICY_ID,
             reference(arguments.candidate()),
             arguments.comparators().stream().map(RagQualificationCli::referenceUnchecked).toList(),
             qualification);
@@ -107,7 +112,11 @@ public final class RagQualificationCli {
   }
 
   private record Arguments(
-      Path candidate, List<Path> comparators, Path output, boolean requireQualified) {
+      Path candidate,
+      List<Path> comparators,
+      Path output,
+      boolean requireQualified,
+      RagPublisherReference publisherReference) {
 
     private Arguments {
       comparators = List.copyOf(comparators);
@@ -118,6 +127,7 @@ public final class RagQualificationCli {
       List<Path> comparators = new ArrayList<>();
       Path output = null;
       boolean requireQualified = false;
+      RagPublisherReference publisherReference = null;
 
       for (int index = 0; index < args.length; index++) {
         switch (args[index]) {
@@ -131,6 +141,10 @@ public final class RagQualificationCli {
             output = Path.of(requireValue(args, ++index, "--output"));
           }
           case "--require-qualified" -> requireQualified = true;
+          case "--publisher-reference" ->
+              publisherReference =
+                  RagPublisherReference.fromId(
+                      requireValue(args, ++index, "--publisher-reference"));
           default ->
               throw new IllegalArgumentException("unknown qualification option: " + args[index]);
         }
@@ -141,7 +155,7 @@ public final class RagQualificationCli {
       if (comparators.isEmpty()) {
         throw new IllegalArgumentException("at least one --comparator is required");
       }
-      return new Arguments(candidate, comparators, output, requireQualified);
+      return new Arguments(candidate, comparators, output, requireQualified, publisherReference);
     }
 
     private static String requireValue(String[] args, int index, String option) {

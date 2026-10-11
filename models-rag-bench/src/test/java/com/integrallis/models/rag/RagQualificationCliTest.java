@@ -72,6 +72,38 @@ class RagQualificationCliTest {
   }
 
   @Test
+  void publisherPolicyIsExplicitAndEmitsItsOwnIdentity(@TempDir Path directory) throws Exception {
+    var mapper = new ObjectMapper();
+    var reference = RagPublisherReference.BONSAI2_PTQ1_0;
+    var candidate =
+        (com.fasterxml.jackson.databind.node.ObjectNode)
+            mapper.readTree(
+                EVIDENCE_ROOT.resolve("smollm2-360m-rust-ffm-prefix-cache-grounded.json").toFile());
+    candidate.put("modelId", reference.modelId());
+    candidate.put("artifactSha256", reference.artifactSha256());
+    candidate.put("artifactSizeBytes", reference.artifactSizeBytes());
+    // This is synthetic policy input; it deliberately reuses metrics to test the exact boundary.
+    var comparator = candidate.deepCopy();
+    comparator.put("backend", "llama.cpp");
+    comparator.put("backendVersion", reference.backendVersion());
+    Path candidateFile = directory.resolve("candidate.json");
+    Path comparatorFile = directory.resolve("comparator.json");
+    mapper.writeValue(candidateFile.toFile(), candidate);
+    mapper.writeValue(comparatorFile.toFile(), comparator);
+    var evidence =
+        RagQualificationCli.run(
+            new String[] {
+              "--candidate", candidateFile.toString(), "--comparator", comparatorFile.toString(),
+              "--publisher-reference", reference.id(), "--output",
+                  directory.resolve("qualification.json").toString(),
+              "--require-qualified"
+            });
+    assertThat(evidence.policyId()).isEqualTo(RagProductionQualificationPolicy.PUBLISHER_POLICY_ID);
+    assertThat(evidence.qualification().qualified()).isTrue();
+    assertThat(evidence.qualification().qualifyingComparators()).containsExactly("llama.cpp");
+  }
+
+  @Test
   void rejectsMissingComparatorEvidence() {
     assertThatThrownBy(
             () ->

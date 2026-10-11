@@ -104,6 +104,9 @@ public final class RustGgufBatchedMatrixKernel implements GgufBatchedMatrixKerne
 
   @Override
   public String implementation() {
+    if (library.supports(NativeKernelCapability.PTQ1_0_Q8_0_BATCHED_MATMUL)) {
+      return "rust-ffm-quantized-v14";
+    }
     if (library.supports(NativeKernelCapability.GATED_DELTA_NET_F32)) {
       return "rust-ffm-quantized-v13";
     }

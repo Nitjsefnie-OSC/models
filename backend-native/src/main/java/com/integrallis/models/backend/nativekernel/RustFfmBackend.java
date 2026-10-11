@@ -49,7 +49,7 @@ public final class RustFfmBackend
         BatchInferenceBackend {
   public static final String LIBRARY_PATH_PROPERTY = "models.native.kernels.library";
   public static final String LIBRARY_PATH_ENV = "MODELS_NATIVE_KERNELS_LIBRARY";
-  public static final String PLAN_VERSION = "rust-ffm-v13";
+  public static final String PLAN_VERSION = "rust-ffm-v14";
 
   /** The recorded decision this backend's grouping break-even turns on. */
   private static final String NATIVE_DECODE_ENVIRONMENT_KEY = "native-quantized-decode";
@@ -377,6 +377,18 @@ public final class RustFfmBackend
     environment.put("native-q5-0-grouped", "false");
     environment.put("native-gated-delta-net", Boolean.toString(kernel.supportsGatedDeltaNet()));
     List<OptimizationDecision> optimizations = new ArrayList<>(javaDiagnostics.optimizations());
+    boolean ptq =
+        kernel.supports(com.integrallis.models.backend.purejava.gguf.GgufTensorType.PTQ1_0);
+    environment.put("ptq-activation-contract", "q8_0-f16-scales-nearest-even");
+    optimizations.add(
+        new OptimizationDecision(
+            "rust-ptq1-0-q8-0-batched-matmul",
+            ptq ? OptimizationStatus.ENABLED : OptimizationStatus.DISABLED,
+            ptq
+                ? "eligible PTQ1_0 projections use Q8_0 activations with the Java fallback's pinned FMA order"
+                : "native PTQ1_0 capability absent; use the Java Q8_0 activation contract",
+            Map.of("activation", "Q8_0", "weight", "PTQ1_0", "transformer", "java")));
+
     optimizations.add(
         nativeQuantizedDecision(
             "rust-q4-0-batched-matmul",

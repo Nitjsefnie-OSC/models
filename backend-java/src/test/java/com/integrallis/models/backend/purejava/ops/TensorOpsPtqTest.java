@@ -28,7 +28,7 @@ import org.junit.jupiter.api.Test;
 @Tag("unit")
 class TensorOpsPtqTest {
   @Test
-  void batchedPackedProductsKeepEachTokensFloatContract() {
+  void batchedPackedProductsKeepEachTokensQ8Contract() {
     int rows = 257, columns = 512, batchSize = 3;
     byte[] packed = new byte[rows * columns / 128 * 28];
     var random = new Random(143);

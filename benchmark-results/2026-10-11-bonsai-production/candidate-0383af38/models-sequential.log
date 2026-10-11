@@ -1,0 +1,33 @@
+WARNING: Using incubator modules: jdk.incubator.vector
+Oct 11, 2026 7:46:04 PM com.integrallis.vectors.core.PanamaVectorUtilSupportProvider create
+INFO: vectors-core: Using Panama Vector API SIMD provider (vector bits: 256)
+Oct 11, 2026 7:46:04 PM com.integrallis.vectors.core.VectorizationProvider logActiveToggles
+INFO: vectors-core: provider=PanamaVectorUtilSupport panama=true maxBits=256 preferredBits=256 fastVectorFMA=true fastScalarFMA=true sve=false ggufParallel=true ggufParallelThreshold=1048576 ggufExecutor=persistent ggufThreads=16 ggufChunksPerThread=2 mappedKQuantLongOffsets=auto(q4=true,q5=false,q6=false) q4ShortPairwiseSupported=true q4UnsignedPairwiseSupported=true toggles=[(defaults — no -Dvectors.* overrides)]
+trial 1/3: ok ttft=10315.3ms decode=1.86 tok/s
+trial 2/3: ok ttft=10766.0ms decode=1.87 tok/s
+trial 3/3: ok ttft=9196.4ms decode=1.80 tok/s
+prism_ml_ternary_bonsai_2_27b_gguf_ptq1_0 rust-ffm: tier=FAILED load=693.1ms p95-ttft=10766.0ms p50-decode=1.86 tok/s p95-tpot=554.1ms peak-rss=6555090944 bytes
+report: /work/batch-out/models-sequential.json
+	Command being timed: "/opt/jdk/bin/java -Dmodels.native.kernels.library=/work/candidate-src/backend-native/src/main/rust/model-kernels/target/release/libjmodels_kernels.so --add-modules jdk.incubator.vector --enable-native-access=ALL-UNNAMED -Xmx16g -cp /work/batch/lib/* -Dmodels.purejava.prefillBatchSize=1 com.integrallis.models.bench.InferenceBenchmarkCli --model-id prism_ml_ternary_bonsai_2_27b_gguf_ptq1_0 --prompt The quick brown fox --max-tokens 16 --warmups 1 --iterations 3 --context 512 --threads 16 --backend rust-ffm --backend-version models-source@0383af38;prefill-batch=1 --model /work/bonsai2.gguf --output /work/batch-out/models-sequential.json"
+	User time (seconds): 1186.05
+	System time (seconds): 8.63
+	Percent of CPU this job got: 1485%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 1:20.43
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 6400244
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 298637
+	Voluntary context switches: 178304
+	Involuntary context switches: 6914
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 168
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

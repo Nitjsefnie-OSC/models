@@ -76,6 +76,72 @@ class Bonsai2NativeModelFixtureSlowTest {
     }
   }
 
+  @Test
+  void transformedBatchesMatchSequentialRealWeightLogitsAcrossChunkBoundaries() throws Exception {
+    Path model =
+        Path.of(
+                System.getProperty(
+                    "models.fixtures.directory",
+                    Path.of(System.getProperty("user.home"), ".jvllm", "models").toString()))
+            .resolve("Ternary-Bonsai-2-27B-PTQ1_0.gguf");
+    String prompt =
+        "Explain why independent requests must not share recurrent state. "
+            + "A second request should start with its own history and produce the same answer when repeated.";
+    float[][] expected = new float[3][];
+    int[] greedy = new int[3];
+    int[] tokens;
+    var sequential =
+        new BackendConfiguration(
+            Map.of(),
+            Map.of(
+                PureJavaBackend.MAX_CONTEXT_LENGTH_PROPERTY,
+                "96",
+                "models.purejava.prefillBatchSize",
+                "1"),
+            List.of());
+    try (var backend = RustFfmBackend.load(model, sequential)) {
+      tokens = backend.tokenizer().encode(prompt);
+      assertThat(tokens.length).isGreaterThan(16);
+      float[] logits = backend.prefill(tokens, 0);
+      for (int i = 0; i < 3; i++) {
+        expected[i] = logits.clone();
+        greedy[i] = argmax(logits);
+        if (i < 2) logits = backend.forward(greedy[i], tokens.length + i);
+      }
+    }
+    var batched =
+        new BackendConfiguration(
+            Map.of(),
+            Map.of(
+                PureJavaBackend.MAX_CONTEXT_LENGTH_PROPERTY,
+                "96",
+                "models.purejava.prefillBatchSize",
+                "16"),
+            List.of());
+    try (var backend = RustFfmBackend.load(model, batched)) {
+      float[] logits = backend.prefill(tokens, 0);
+      for (int i = 0; i < 3; i++) {
+        double largestScaledError = 0;
+        double largestAbsoluteError = 0;
+        for (int token = 0; token < logits.length; token++) {
+          assertThat(Float.isFinite(logits[token])).isTrue();
+          double error = Math.abs((double) logits[token] - expected[i][token]);
+          largestAbsoluteError = Math.max(largestAbsoluteError, error);
+          largestScaledError =
+              Math.max(largestScaledError, error / (1 + Math.abs(expected[i][token])));
+        }
+        System.out.printf(
+            "Bonsai batch logit parity step=%d maxAbsolute=%g maxScaled=%g%n",
+            i, largestAbsoluteError, largestScaledError);
+        assertThat(argmax(logits)).as("greedy continuation %d", i).isEqualTo(greedy[i]);
+        assertThat(largestAbsoluteError)
+            .as("full-vocabulary parity at continuation %d", i)
+            .isZero();
+        if (i < 2) logits = backend.forward(greedy[i], tokens.length + i);
+      }
+    }
+  }
+
   private static int argmax(float[] logits) {
     int best = 0;
     for (int i = 0; i < logits.length; i++) {

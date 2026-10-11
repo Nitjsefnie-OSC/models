@@ -8,11 +8,20 @@ the transformer graph, KV-cache ownership, sampling, and generation remain in Ja
 The native boundary is a versioned C ABI implemented by the Models-owned
 `jmodels-kernels` Rust crate.
 
-ABI 6 exposes Q4_0, Q5_0, Q5_1, Q8_0, Q4_K, Q5_K, and Q6_K projections,
+ABI 6 exposes Q4_0, Q5_0, Q5_1, Q8_0, Q4_K, Q5_K, Q6_K, and PTQ1_0 projections,
 grouped dispatch, attention, and experimental float32 Gated DeltaNet recurrence
 kernels. The production dispatcher leaves recurrence in Java; exported capabilities
 do not imply that every native route is enabled. Mixed Q4_K/Q5_K/Q6_K groups
 share one Q8_K activation quantization.
+
+PTQ1_0 uses Q8_0 activations in both Java and Rust: nearest-even integer rounding,
+32-value activation blocks with binary16-rounded scales, and a pinned FMA fold.
+This changes Bonsai's earlier float-activation arithmetic. The independent test
+oracle, Java fallback, scalar Rust and AVX2 routes must agree bit for bit.
+The float-activation method is retained only as an explicit accuracy reference;
+loading or losing the native capability does not select it. Bonsai's signed
+Hadamard transforms and recurrent state remain in Java. Qualification evidence
+for an earlier arithmetic contract does not transfer automatically.
 
 Q5_1 was added at ABI 6 and is the one format that dots against **F32**
 activations rather than quantized ones. Every other kernel here dots in Q8_0 or
@@ -61,7 +70,7 @@ Gradle builds the host library with Cargo under
 
 When the matching platform artifact is present on the runtime classpath,
 `RustFfmBackend` verifies its ABI/platform metadata and SHA-256, extracts it to
-`~/.models/native-kernels/abi-5/<platform>/<sha256>/`, and opens it through Java
+`~/.models/native-kernels/abi-6/<platform>/<sha256>/`, and opens it through Java
 25 FFM:
 
 ```java

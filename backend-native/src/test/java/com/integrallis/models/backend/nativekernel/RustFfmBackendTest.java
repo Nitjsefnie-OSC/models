@@ -41,7 +41,7 @@ class RustFfmBackendTest {
 
   @Test
   void versionsAutomaticNativeProfileSelection() {
-    assertThat(RustFfmBackend.PLAN_VERSION).isEqualTo("rust-ffm-v13");
+    assertThat(RustFfmBackend.PLAN_VERSION).isEqualTo("rust-ffm-v14");
   }
 
   @Test
@@ -187,6 +187,8 @@ class RustFfmBackendTest {
     RustGgufBatchedMatrixKernel kernel = mock(RustGgufBatchedMatrixKernel.class);
     when(kernel.implementation()).thenReturn("rust-test");
     when(kernel.threadCount()).thenReturn(4);
+    when(kernel.supports(com.integrallis.models.backend.purejava.gguf.GgufTensorType.PTQ1_0))
+        .thenReturn(true);
     BackendDiagnostics javaDiagnostics =
         new BackendDiagnostics("pure-java", "java-plan", Map.of("model", "nano"), List.of());
 
@@ -207,6 +209,11 @@ class RustFfmBackendTest {
         .hasValueSatisfying(
             decision -> assertThat(decision.status()).isEqualTo(OptimizationStatus.DISABLED));
     assertThat(diagnostics.optimization("rust-quantized-decode"))
+        .hasValueSatisfying(
+            decision -> assertThat(decision.status()).isEqualTo(OptimizationStatus.ENABLED));
+    assertThat(diagnostics.environment())
+        .containsEntry("ptq-activation-contract", "q8_0-f16-scales-nearest-even");
+    assertThat(diagnostics.optimization("rust-ptq1-0-q8-0-batched-matmul"))
         .hasValueSatisfying(
             decision -> assertThat(decision.status()).isEqualTo(OptimizationStatus.ENABLED));
     assertThat(diagnostics.optimization("rust-q6-k-batched-matmul"))
@@ -244,6 +251,9 @@ class RustFfmBackendTest {
               assertThat(decision.status()).isEqualTo(OptimizationStatus.DISABLED);
               assertThat(decision.reason()).contains("epoch change");
             });
+    assertThat(diagnostics.optimization("rust-ptq1-0-q8-0-batched-matmul"))
+        .hasValueSatisfying(
+            decision -> assertThat(decision.status()).isEqualTo(OptimizationStatus.DISABLED));
     // Decode is no longer something a setting can switch off, so it is never reported DISABLED.
     assertThat(diagnostics.optimization("rust-quantized-decode"))
         .hasValueSatisfying(
