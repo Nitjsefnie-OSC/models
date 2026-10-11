@@ -53,6 +53,12 @@ class Bonsai2NativeModelFixtureSlowTest {
     try (var backend = RustFfmBackend.load(model, configuration)) {
       assertThat(backend.diagnostics().environment())
           .containsEntry("native-quantized-decode", "true");
+      assertThat(backend.diagnostics().optimizations())
+          .anySatisfy(
+              optimization -> {
+                assertThat(optimization.id()).isEqualTo("batched-prefill");
+                assertThat(optimization.status().toString()).isEqualTo("ENABLED");
+              });
       int[] tokens = backend.tokenizer().encode("The quick brown fox");
       assertThat(tokens).containsExactly(760, 3841, 13477, 37550);
       int[] expected = {33075, 888, 279, 15217, 5388, 13, 271, 760};

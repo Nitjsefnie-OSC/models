@@ -51,7 +51,7 @@ class PtqNativeKernelTest {
             }
             MemorySegment weights = arena.allocate(packed.length + 13).asSlice(13);
             weights.copyFrom(MemorySegment.ofArray(packed));
-            for (int batch : new int[] {1, 3}) {
+            for (int batch : new int[] {1, 3, 4, 5, 16}) {
               float[] input = new float[batch * cols];
               for (int i = 0; i < input.length; i++) input[i] = random.nextFloat() * 2 - 1;
               float[] actual = new float[batch * rows];

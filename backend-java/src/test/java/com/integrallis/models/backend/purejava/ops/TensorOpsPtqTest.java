@@ -28,6 +28,49 @@ import org.junit.jupiter.api.Test;
 @Tag("unit")
 class TensorOpsPtqTest {
   @Test
+  void batchedPackedProductsKeepEachTokensFloatContract() {
+    int rows = 257, columns = 512, batchSize = 3;
+    byte[] packed = new byte[rows * columns / 128 * 28];
+    var random = new Random(143);
+    random.nextBytes(packed);
+    for (int block = 0; block < packed.length / 28; block++) {
+      packed[block * 28 + 26] = 0;
+      packed[block * 28 + 27] = 0x30;
+    }
+    float[] input = new float[batchSize * columns];
+    for (int i = 0; i < input.length; i++) input[i] = random.nextFloat() * 2 - 1;
+    try (var arena = Arena.ofShared()) {
+      var weights = arena.allocate(packed.length);
+      weights.copyFrom(MemorySegment.ofArray(packed));
+      float[] actual = new float[batchSize * rows];
+      TensorOps.ggufBatchedMatmul(
+          actual,
+          input,
+          weights,
+          GgufTensorType.PTQ1_0,
+          batchSize,
+          rows,
+          columns,
+          new byte[0],
+          new float[0],
+          new int[0],
+          new short[0],
+          new float[0],
+          com.integrallis.vectors.core.GgufQ4Kernel.WIDENED);
+      for (int batch = 0; batch < batchSize; batch++) {
+        float[] expected = new float[rows];
+        float[] rowInput =
+            java.util.Arrays.copyOfRange(input, batch * columns, (batch + 1) * columns);
+        TensorOps.ggufMatmul(expected, rowInput, weights, GgufTensorType.PTQ1_0, rows, columns);
+        for (int row = 0; row < rows; row++) {
+          assertThat(Float.floatToRawIntBits(actual[batch * rows + row]))
+              .isEqualTo(Float.floatToRawIntBits(expected[row]));
+        }
+      }
+    }
+  }
+
+  @Test
   void sharedParallelAndConfinedSerialProductsAreBitIdentical() {
     int rows = 2048;
     int columns = 4096;

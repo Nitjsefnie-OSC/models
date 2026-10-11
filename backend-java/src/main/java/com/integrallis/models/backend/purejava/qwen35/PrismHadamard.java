@@ -123,6 +123,10 @@ final class PrismHadamard {
           "Hadamard weights lack a transformed projection path: " + missing);
   }
 
+  boolean hasProjections() {
+    return !projections.isEmpty();
+  }
+
   Transform projection(String name) {
     return projections.get(name);
   }
@@ -170,6 +174,12 @@ final class PrismHadamard {
     }
 
     void forward(float[] input, float[] output) {
+      forward(input, 0, output, 0);
+    }
+
+    void forward(float[] input, int inputOffset, float[] output, int outputOffset) {
+      java.util.Objects.checkFromIndexSize(inputOffset, width, input.length);
+      java.util.Objects.checkFromIndexSize(outputOffset, width, output.length);
       int headDim = width / valueHeads;
       int repeats = valueHeads / keyHeads;
       for (int i = 0; i < width; i++) {
@@ -177,18 +187,18 @@ final class PrismHadamard {
         int head = i / headDim;
         int sourceHead = (head % repeats) * keyHeads + head / repeats;
         int source = sourceHead * headDim + i % headDim;
-        output[i] = input[source] * (signs == null ? 1 : signs[i]);
+        output[outputOffset + i] = input[inputOffset + source] * (signs == null ? 1 : signs[i]);
       }
-      walsh(output);
+      walsh(output, outputOffset);
     }
 
     void inverse(float[] row) {
-      walsh(row);
+      walsh(row, 0);
       if (signs != null) for (int i = 0; i < width; i++) row[i] *= signs[i];
     }
 
-    private void walsh(float[] values) {
-      for (int start = 0; start < width; start += block) {
+    private void walsh(float[] values, int offset) {
+      for (int start = offset; start < offset + width; start += block) {
         for (int stride = 1; stride < block; stride *= 2) {
           for (int group = start; group < start + block; group += 2 * stride) {
             for (int i = 0; i < stride; i++) {
@@ -201,7 +211,7 @@ final class PrismHadamard {
         }
       }
       float scale = (float) (1.0 / Math.sqrt(block));
-      for (int i = 0; i < width; i++) values[i] *= scale;
+      for (int i = 0; i < width; i++) values[offset + i] *= scale;
     }
   }
 }

@@ -296,8 +296,15 @@ public final class TensorOps {
 
   private static void ptqMatmul(
       float[] out, float[] input, MemorySegment weight, int rows, int columns) {
-    if (columns % 128 != 0)
-      throw new IllegalArgumentException("PTQ1_0 row width must be a multiple of 128");
+    ptqBatchedMatmul(out, input, weight, 1, rows, columns);
+  }
+
+  private static void ptqBatchedMatmul(
+      float[] out, float[] input, MemorySegment weight, int batchSize, int rows, int columns) {
+    if (batchSize < 1 || rows < 1 || columns < 128 || columns % 128 != 0)
+      throw new IllegalArgumentException("PTQ1_0 requires positive dimensions and 128-wide blocks");
+    Objects.checkFromIndexSize(0, Math.multiplyExact(batchSize, rows), out.length);
+    Objects.checkFromIndexSize(0, Math.multiplyExact(batchSize, columns), input.length);
     long rowBytes = (long) (columns / 128) * 28;
     int threads = packedProjectionThreads(rows, rowBytes, weight);
     int chunk = (rows + threads - 1) / threads;
@@ -307,9 +314,9 @@ public final class TensorOps {
       int to = Math.min(rows, first + chunk);
       pending.add(
           PackedProjectionThreads.EXECUTOR.submit(
-              () -> ptqRows(out, input, weight, rowBytes, columns, from, to)));
+              () -> ptqRows(out, input, weight, rowBytes, batchSize, rows, columns, from, to)));
     }
-    ptqRows(out, input, weight, rowBytes, columns, 0, Math.min(rows, chunk));
+    ptqRows(out, input, weight, rowBytes, batchSize, rows, columns, 0, Math.min(rows, chunk));
     for (Future<?> future : pending) {
       try {
         future.get();
@@ -327,11 +334,17 @@ public final class TensorOps {
       float[] input,
       MemorySegment weight,
       long rowBytes,
+      int batchSize,
+      int rows,
       int columns,
       int from,
       int to) {
     for (int index = from; index < to; index++) {
-      out[index] = TernaryDequantizer.dotProductPtq1_0(weight, index * rowBytes, input, 0, columns);
+      for (int batch = 0; batch < batchSize; batch++) {
+        out[batch * rows + index] =
+            TernaryDequantizer.dotProductPtq1_0(
+                weight, index * rowBytes, input, batch * columns, columns);
+      }
     }
   }
 
@@ -1475,6 +1488,7 @@ public final class TensorOps {
   /** Returns whether the mapped tensor type has a weight-reusing batched prefill kernel. */
   public static boolean supportsBatchedMatmul(GgufTensorType type) {
     return type == GgufTensorType.F16
+        || type == GgufTensorType.PTQ1_0
         || type == GgufTensorType.Q4_0
         || type == GgufTensorType.Q4_1
         || type == GgufTensorType.BF16
@@ -1575,6 +1589,7 @@ public final class TensorOps {
     }
     switch (type) {
       case F16 -> multiplyF16Batch(out, x, qWeight, batchSize, rows, cols);
+      case PTQ1_0 -> ptqBatchedMatmul(out, x, qWeight, batchSize, rows, cols);
       case BF16 -> BFloat16Matrix.of(qWeight, rows, cols).multiplyBatch(x, 0, batchSize, out, 0);
       case Q4_0 ->
           VectorUtil.ggufQ4_0Q8_0BatchedMatmul(

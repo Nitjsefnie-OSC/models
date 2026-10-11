@@ -56,40 +56,14 @@ pub(super) fn dot_scalar(
     total
 }
 
-// Each byte expands to five signed two-bit integers. This 1 KiB table replaces
-// repeated base-three arithmetic without expanding or repacking model weights.
-#[cfg(target_arch = "x86_64")]
-const TRITS: [i32; 256] = {
-    let mut table = [0; 256];
-    let mut byte = 0;
-    while byte < 256 {
-        let mut n = 0;
-        while n < 5 {
-            let trit = ((((byte as u32 * POWERS[n]) & 255) * 3) >> 8) as i32 - 1;
-            table[byte] |= (trit & 3) << (2 * n);
-            n += 1;
-        }
-        byte += 1;
-    }
-    table
-};
-
 #[cfg(target_arch = "x86_64")]
 #[target_feature(enable = "avx2")]
-unsafe fn packed_trits(weights: *const u8) -> __m256i {
-    // SAFETY: the caller provides eight readable bytes. Zero extension limits every
-    // gather index to the 256-element table; scale four addresses i32 entries.
-    unsafe {
-        let indices = _mm256_cvtepu8_epi32(_mm_loadl_epi64(weights.cast()));
-        _mm256_i32gather_epi32(TRITS.as_ptr(), indices, 4)
-    }
-}
-
-#[cfg(target_arch = "x86_64")]
-#[target_feature(enable = "avx2")]
-unsafe fn trits(packed: __m256i, position: usize) -> __m256 {
-    let shifted = _mm256_sllv_epi32(packed, _mm256_set1_epi32((30 - 2 * position) as i32));
-    _mm256_cvtepi32_ps(_mm256_srai_epi32(shifted, 30))
+unsafe fn next_trits(packed: &mut __m256i) -> __m256i {
+    // Recover the next base-three digit in sixteen lanes. The low byte of 3*x
+    // is the packed input for the following digit, so no powers or gathers are needed.
+    let triple = _mm256_add_epi16(*packed, _mm256_add_epi16(*packed, *packed));
+    *packed = _mm256_and_si256(triple, _mm256_set1_epi16(255));
+    _mm256_sub_epi16(_mm256_srli_epi16(triple, 8), _mm256_set1_epi16(1))
 }
 
 #[cfg(target_arch = "x86_64")]
@@ -101,47 +75,84 @@ pub(super) unsafe fn dot_avx2(
     row: usize,
     cols: usize,
 ) -> f32 {
-    let mut total = 0_f32;
+    // SAFETY: AVX2/FMA and one complete activation row are guaranteed by the caller.
+    unsafe { dot_batch_avx2::<1>(weights, input, batch, row, cols)[0] }
+}
+
+#[cfg(target_arch = "x86_64")]
+#[target_feature(enable = "avx2,fma")]
+pub(super) unsafe fn dot_batch4_avx2(
+    weights: &[u8],
+    input: &[f32],
+    batch: usize,
+    row: usize,
+    cols: usize,
+) -> [f32; 4] {
+    // SAFETY: the caller provides four complete activation rows and detects AVX2/FMA.
+    unsafe { dot_batch_avx2::<4>(weights, input, batch, row, cols) }
+}
+
+#[cfg(target_arch = "x86_64")]
+#[target_feature(enable = "avx2,fma")]
+unsafe fn dot_batch_avx2<const BATCHES: usize>(
+    weights: &[u8],
+    input: &[f32],
+    batch: usize,
+    row: usize,
+    cols: usize,
+) -> [f32; BATCHES] {
+    let mut totals = [0_f32; BATCHES];
     for block in 0..cols / 128 {
         let base = (row * (cols / 128) + block) * 28;
-        let at = batch * cols + block * 128;
-        // SAFETY: the caller validated complete 28-byte blocks and complete activation rows.
-        let (a, b, c) = unsafe {
+        // SAFETY: the caller validated complete 28-byte blocks and activation rows.
+        let (mut ab, mut c) = unsafe {
             (
-                packed_trits(weights.as_ptr().add(base)),
-                packed_trits(weights.as_ptr().add(base + 8)),
-                packed_trits(weights.as_ptr().add(base + 16)),
+                _mm256_cvtepu8_epi16(_mm_loadu_si128(weights.as_ptr().add(base).cast())),
+                _mm256_cvtepu8_epi16(_mm_loadl_epi64(weights.as_ptr().add(base + 16).cast())),
             )
         };
-        let mut sum = _mm256_setzero_ps();
+        let mut sums = [_mm256_setzero_ps(); BATCHES];
         for n in 0..5 {
-            // SAFETY: AVX2 is enabled here; all three eight-float groups are inside the row.
-            unsafe {
-                sum = _mm256_fmadd_ps(
-                    trits(a, n),
-                    _mm256_loadu_ps(input.as_ptr().add(at + n * 16)),
-                    sum,
-                );
-                sum = _mm256_fmadd_ps(
-                    trits(b, n),
-                    _mm256_loadu_ps(input.as_ptr().add(at + n * 16 + 8)),
-                    sum,
-                );
-                sum = _mm256_fmadd_ps(
-                    trits(c, n),
-                    _mm256_loadu_ps(input.as_ptr().add(at + 80 + n * 8)),
-                    sum,
-                );
+            // SAFETY: this function requires AVX2 and FMA.
+            let (a, b, c) = unsafe {
+                let qab = next_trits(&mut ab);
+                let qc = next_trits(&mut c);
+                (
+                    _mm256_cvtepi32_ps(_mm256_cvtepi16_epi32(_mm256_castsi256_si128(qab))),
+                    _mm256_cvtepi32_ps(_mm256_cvtepi16_epi32(_mm256_extracti128_si256(qab, 1))),
+                    _mm256_cvtepi32_ps(_mm256_cvtepi16_epi32(_mm256_castsi256_si128(qc))),
+                )
+            };
+            for (offset, sum) in sums.iter_mut().enumerate() {
+                let at = (batch + offset) * cols + block * 128;
+                // SAFETY: all three loads lie inside this validated activation row.
+                unsafe {
+                    *sum =
+                        _mm256_fmadd_ps(a, _mm256_loadu_ps(input.as_ptr().add(at + n * 16)), *sum);
+                    *sum = _mm256_fmadd_ps(
+                        b,
+                        _mm256_loadu_ps(input.as_ptr().add(at + n * 16 + 8)),
+                        *sum,
+                    );
+                    *sum = _mm256_fmadd_ps(
+                        c,
+                        _mm256_loadu_ps(input.as_ptr().add(at + 80 + n * 8)),
+                        *sum,
+                    );
+                }
             }
         }
-        let mut lanes = [0_f32; 8];
-        // SAFETY: the destination holds exactly eight floats.
-        unsafe { _mm256_storeu_ps(lanes.as_mut_ptr(), sum) };
-        let sum = finish_block(weights, base, input, at, lanes);
         let scale = f16_to_f32(u16::from_le_bytes([weights[base + 26], weights[base + 27]]));
-        total = sum.mul_add(scale, total);
+        for offset in 0..BATCHES {
+            let at = (batch + offset) * cols + block * 128;
+            let mut lanes = [0_f32; 8];
+            // SAFETY: the destination holds exactly eight floats.
+            unsafe { _mm256_storeu_ps(lanes.as_mut_ptr(), sums[offset]) };
+            let sum = finish_block(weights, base, input, at, lanes);
+            totals[offset] = sum.mul_add(scale, totals[offset]);
+        }
     }
-    total
+    totals
 }
 
 #[cfg(test)]

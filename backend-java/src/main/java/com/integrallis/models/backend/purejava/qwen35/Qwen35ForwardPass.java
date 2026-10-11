@@ -1808,6 +1808,7 @@ public final class Qwen35ForwardPass {
   }
 
   private static final class BatchProjectionScratch {
+    private final float[] transformedActivations;
     private final byte[] quantizedActivations;
     private final float[] quantizedActivationScales;
     private final int[] quantizedActivationZeroPointCorrections;
@@ -1820,6 +1821,10 @@ public final class Qwen35ForwardPass {
           Math.max(
               Math.max(2 * config.attentionQueryDim(), config.gdnConvDim()),
               Math.max(config.hiddenDim(), config.embeddingDim()));
+      transformedActivations =
+          weights.hadamard().hasProjections()
+              ? new float[Math.multiplyExact(batchSize, maximumInput)]
+              : new float[0];
       quantizedActivations = new byte[Math.multiplyExact(batchSize, maximumInput)];
       quantizedActivationScales =
           new float[Math.multiplyExact(batchSize, (maximumInput + 31) / 32)];
@@ -2045,9 +2050,17 @@ public final class Qwen35ForwardPass {
       int batchSize,
       ProjectionScratch scalarScratch,
       BatchProjectionScratch batchScratch) {
-    if (this.weights.hadamard().projection(weights.name()) == null
-        && batchedMatrixKernel.isEligible(
-            weights.type(), batchSize, weights.rows(), weights.columns())) {
+    float[] originalInput = input;
+    PrismHadamard.Transform transform = this.weights.hadamard().projection(weights.name());
+    if (transform != null) {
+      for (int batch = 0; batch < batchSize; batch++) {
+        int offset = batch * weights.columns();
+        transform.forward(input, offset, batchScratch.transformedActivations, offset);
+      }
+      input = batchScratch.transformedActivations;
+    }
+    if (batchedMatrixKernel.isEligible(
+        weights.type(), batchSize, weights.rows(), weights.columns())) {
       batchedMatrixKernel.multiply(
           output,
           input,
@@ -2058,8 +2071,7 @@ public final class Qwen35ForwardPass {
           weights.columns());
       return;
     }
-    if (this.weights.hadamard().projection(weights.name()) != null
-        || !TensorOps.supportsBatchedMatmul(weights.type())) {
+    if (!TensorOps.supportsBatchedMatmul(weights.type())) {
       PerformanceCliffs.report(
           PerformanceCliff.ROW_BY_ROW_PROJECTION,
           "architecture=qwen35, tensor-type="
@@ -2069,7 +2081,7 @@ public final class Qwen35ForwardPass {
       float[] rowInput = new float[weights.columns()];
       float[] rowOutput = new float[weights.rows()];
       for (int batch = 0; batch < batchSize; batch++) {
-        System.arraycopy(input, batch * weights.columns(), rowInput, 0, weights.columns());
+        System.arraycopy(originalInput, batch * weights.columns(), rowInput, 0, weights.columns());
         project(rowOutput, rowInput, weights, scalarScratch);
         System.arraycopy(rowOutput, 0, output, batch * weights.rows(), weights.rows());
       }
