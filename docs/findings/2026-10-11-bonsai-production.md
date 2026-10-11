@@ -58,8 +58,10 @@ Sources: ModelJars `docs/MODALITY-ROADMAP.md`, `docs/model-candidates-20260803.m
 Models `docs/proposals/model-intake-formats-and-kv-research.md`, and the workspace's
 `tool-calling-small-model-candidates-2026-09-02.md`.
 
-Status: native Q8 and Java parity checks passed; paired RAG and public QA pending.
-Nothing newly qualified or published by this plan.
+Status: paired source RAG passes and the measured ARM NEON repair is retained. Public QA is
+finishing. New x86/ARM real-weight CI exposed BF16 cold/compiled drift in Vectors; the local
+fix passes both real-weight tests. Vectors release, downstream CI and final-runtime task gates
+remain required. Nothing newly qualified or published by this plan.
 
 ## Publisher-reference admission (new policy, historical v6 unchanged)
 
@@ -170,9 +172,9 @@ improve by 5% with identical outputs to retain either replacement. This is route
 not an ARM RAG qualification. The native artifact is from CI run 38175035675; its synthetic merge
 tree matches source `75ec53de`, and every payload byte is recorded in `arm-q8-payload-provenance.json`.
 
-Publication order remains released Vectors dependency verification, Models, downloaded-artifact
+Publication order is Vectors repair/release and dependency verification, Models, downloaded-artifact
 Bonsai qualification/default smoke, ModelJars library/CLI, marker Central publication and site.
-Vectors has no code change in this phase. Preserve the exact source provenance of the public QA;
+Vectors now requires the BF16 fixed-order reduction repair. Preserve the exact source provenance of the public QA;
 changing artifact versions does not turn source results into released-runtime measurements.
 
 All discovered regressions are release blockers: repair and verify each one before publishing.
@@ -192,3 +194,17 @@ whole-model decode 6.109x and prefill 6.539x over scalar native, and 2.538x/2.61
 The same-host reports are in `arm-neon-paired/`. CI now runs the native real-weight continuation,
 fresh-session and complete batched-logit tests on both Linux x86 and ARM. Publication still waits
 for CI, complete public QA and the RAG gates; component speed alone does not qualify Bonsai.
+
+The new CI run `38177312332` fails exact full-vocabulary parity on x86 and ARM. Local tracing
+finds the first divergence in BF16 alpha/beta projections; a second sequential session differs
+too. Vectors' `reduceLanes(ADD)` changes its summation order after compilation. Reusing its
+fixed-order reduction makes all fresh-JVM BF16 checks and both full native Bonsai fixture tests
+pass locally, without changing their equality requirements. The local diagnostic classpath is
+explicitly recorded; Central artifacts and both CI architectures must verify the final fix.
+
+The completed source RAG pair passes the publisher policy: decode ratio 0.900553, end-to-end
+latency ratio 1.132929, model answer rate 12/27 and all twelve direct model answers correct.
+It predates the BF16 repair and therefore cannot stand in for final-runtime qualification.
+The source RAG host terminated. The separate authenticated MobileMoE baseline smoke passes
+9/9 in ModelJars CI; six older catalog smoke failures reproduce with released Models 0.3.58.
+Those unresolved failures remain recorded and require investigation rather than being omitted.
