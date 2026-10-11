@@ -640,7 +640,7 @@ public final class NativeKernelLibrary implements AutoCloseable {
         FORMAT_PTQ1_0,
         128,
         28L,
-        NativeKernelCapability.PTQ1_0_F32_BATCHED_MATMUL,
+        NativeKernelCapability.PTQ1_0_Q8_0_BATCHED_MATMUL,
         weights,
         input,
         batchSize,
@@ -813,7 +813,7 @@ public final class NativeKernelLibrary implements AutoCloseable {
     invokeBatched(
         "PTQ1_0",
         FORMAT_PTQ1_0,
-        NativeKernelCapability.PTQ1_0_F32_BATCHED_MATMUL,
+        NativeKernelCapability.PTQ1_0_Q8_0_BATCHED_MATMUL,
         weights,
         weightBytes,
         nativeInput,

@@ -113,7 +113,7 @@ const Q4_0_BLOCK_BYTES: usize = 18;
 const Q5_0_BLOCK_BYTES: usize = 22;
 const Q5_1_BLOCK_BYTES: usize = 24;
 const PTQ1_0_BLOCK_BYTES: usize = 28;
-const CAPABILITY_PTQ1_0_F32_BATCHED_MATMUL: u64 = 1 << 24;
+const CAPABILITY_PTQ1_0_Q8_0_BATCHED_MATMUL: u64 = 1 << 24;
 mod ptq;
 const Q8_0_BLOCK_BYTES: usize = 34;
 const Q4_K_BLOCK_BYTES: usize = 144;
@@ -277,8 +277,8 @@ impl WeightFormat {
 
     fn activation_format(self) -> ActivationFormat {
         match self {
-            Self::Q4_0 | Self::Q5_0 | Self::Q8_0 => ActivationFormat::Q8_0,
-            Self::Q5_1 | Self::Ptq => ActivationFormat::F32,
+            Self::Q4_0 | Self::Q5_0 | Self::Q8_0 | Self::Ptq => ActivationFormat::Q8_0,
+            Self::Q5_1 => ActivationFormat::F32,
             Self::Q4K | Self::Q5K | Self::Q6K => ActivationFormat::Q8K,
         }
     }
@@ -1750,7 +1750,7 @@ pub extern "C" fn jmodels_kernels_capabilities() -> u64 {
         | CAPABILITY_Q5_K_F32_GROUPED_BATCHED_MATMUL
         | CAPABILITY_Q5_0_F32_BATCHED_MATMUL
         | CAPABILITY_Q5_1_F32_BATCHED_MATMUL
-        | CAPABILITY_PTQ1_0_F32_BATCHED_MATMUL
+        | CAPABILITY_PTQ1_0_Q8_0_BATCHED_MATMUL
         | CAPABILITY_Q5_0_F32_GROUPED_BATCHED_MATMUL
         | CAPABILITY_K_QUANT_BATCH_WEIGHT_REUSE
         | CAPABILITY_Q4_K_BATCH_VECTOR_ACCUMULATION
@@ -2737,12 +2737,8 @@ fn quantized_f32_batched_matmul(
     let input = unsafe { slice::from_raw_parts(input, required_input_elements) };
     let output = unsafe { slice::from_raw_parts_mut(output, required_output_elements) };
 
-    // An F32 activation format prepares no per-block scales, so it must not reserve any: the
-    // scratch length is what the row kernel's bounds checks are written against.
-    let scale_elements = match format.activation_format() {
-        ActivationFormat::F32 => 0,
-        _ => batch_size * blocks_per_row,
-    };
+    // Weight blocks and activation blocks have independent widths (PTQ: 128 vs Q8: 32).
+    let scale_elements = activation_scale_elements(format.activation_format(), batch_size, cols);
     let sum_elements = activation_sum_elements(format.activation_format(), batch_size, cols);
     let succeeded = if let Some(context) = context {
         let mut scratch = lock(&context.scratch);
@@ -2934,8 +2930,7 @@ fn quantized_f32_mixed_grouped_batched_matmul(
     // buffers. Java retains every segment for this synchronous call and output does not alias.
     let input = unsafe { slice::from_raw_parts(input, required_input_elements) };
     let output = unsafe { slice::from_raw_parts_mut(output, required_output_elements) };
-    let activation_blocks = cols / formats[0].block_elements();
-    let scale_elements = batch_size * activation_blocks;
+    let scale_elements = activation_scale_elements(activation_format, batch_size, cols);
     let sum_elements = activation_sum_elements(activation_format, batch_size, cols);
     let succeeded = if let Some(context) = context {
         let mut scratch = lock(&context.scratch);
@@ -3069,12 +3064,11 @@ fn quantized_f32_independent_batched_matmul(
     // synchronous call.
     let input = unsafe { slice::from_raw_parts(input, required_input_elements) };
     let output = unsafe { slice::from_raw_parts_mut(output, required_output_elements) };
-    let activation_blocks = cols / formats[0].block_elements();
     let mut required_scale_elements = 0_usize;
     let mut required_sum_elements = 0_usize;
     for &batch_size in batch_sizes {
         let batch_size = batch_size as usize;
-        required_scale_elements += batch_size * activation_blocks;
+        required_scale_elements += activation_scale_elements(activation_format, batch_size, cols);
         required_sum_elements += activation_sum_elements(activation_format, batch_size, cols);
     }
     let mut scratch = lock(&context.scratch);
@@ -3122,7 +3116,7 @@ fn compute_independent_with_scratch(
     for matrix in 0..formats.len() {
         let batch_size = batch_sizes[matrix] as usize;
         let input_elements = batch_size * cols;
-        let scale_elements = batch_size * (cols / formats[matrix].block_elements());
+        let scale_elements = activation_scale_elements(activation_format, batch_size, cols);
         let sum_elements = activation_sum_elements(activation_format, batch_size, cols);
         quantize_activation_batch(
             activation_format,
@@ -3366,7 +3360,8 @@ unsafe fn compute_batched_row_range(
         DotKernel::Ptq => {
             for row in start_row..end_row {
                 for batch in 0..batch_size {
-                    let value = ptq::dot_scalar(weights, activations, batch, row, cols);
+                    let value =
+                        ptq::dot_scalar(weights, quantized, activation_scales, batch, row, cols);
                     // SAFETY: this worker exclusively owns the assigned output rows.
                     unsafe { *output.add(batch * rows + row) = value };
                 }
@@ -3375,19 +3370,12 @@ unsafe fn compute_batched_row_range(
         #[cfg(target_arch = "x86_64")]
         DotKernel::PtqAvx2 => {
             for row in start_row..end_row {
-                let mut batch = 0;
-                while batch + 4 <= batch_size {
-                    // SAFETY: four complete input rows and this worker's output row are validated.
-                    let values =
-                        unsafe { ptq::dot_batch4_avx2(weights, activations, batch, row, cols) };
-                    for (offset, value) in values.iter().enumerate() {
-                        unsafe { *output.add((batch + offset) * rows + row) = *value };
-                    }
-                    batch += 4;
-                }
-                for batch in batch..batch_size {
-                    // SAFETY: dispatch requires AVX2/FMA; this worker owns the remaining row.
-                    let value = unsafe { ptq::dot_avx2(weights, activations, batch, row, cols) };
+                for batch in 0..batch_size {
+                    // SAFETY: AVX2/FMA and all complete Q8 activation rows were validated.
+                    let value = unsafe {
+                        ptq::dot_avx2(weights, quantized, activation_scales, batch, row, cols)
+                    };
+                    // SAFETY: this worker exclusively owns this output row.
                     unsafe { *output.add(batch * rows + row) = value };
                 }
             }
@@ -4798,11 +4786,13 @@ fn compute_output_range(
                     dot_q5_0_q8_0_row_avx2(weights, quantized, activation_scales, batch, row, cols)
                 }
             }
-            DotKernel::Ptq => ptq::dot_scalar(weights, activations, batch, row, cols),
+            DotKernel::Ptq => {
+                ptq::dot_scalar(weights, quantized, activation_scales, batch, row, cols)
+            }
             #[cfg(target_arch = "x86_64")]
             DotKernel::PtqAvx2 => {
                 // SAFETY: dispatch requires AVX2 and FMA; input shapes were validated.
-                unsafe { ptq::dot_avx2(weights, activations, batch, row, cols) }
+                unsafe { ptq::dot_avx2(weights, quantized, activation_scales, batch, row, cols) }
             }
             DotKernel::Q5_1 => dot_q5_1_f32_row_scalar(weights, activations, batch, row, cols),
             #[cfg(target_arch = "x86_64")]
@@ -6044,6 +6034,14 @@ fn qk_min(scales: &[u8], group: usize) -> i32 {
     (low | (high << 4)) as i32
 }
 
+fn activation_scale_elements(format: ActivationFormat, batch_size: usize, cols: usize) -> usize {
+    match format {
+        ActivationFormat::F32 => 0,
+        ActivationFormat::Q8_0 => batch_size * (cols / QK_0),
+        ActivationFormat::Q8K => batch_size * (cols / QK_K),
+    }
+}
+
 fn activation_sum_elements(format: ActivationFormat, batch_size: usize, cols: usize) -> usize {
     match format {
         ActivationFormat::Q8_0 | ActivationFormat::F32 => 0,
@@ -6437,7 +6435,7 @@ mod tests {
                 | CAPABILITY_Q5_0_F32_BATCHED_MATMUL
                 | CAPABILITY_Q5_0_F32_GROUPED_BATCHED_MATMUL
                 | CAPABILITY_Q5_1_F32_BATCHED_MATMUL
-                | CAPABILITY_PTQ1_0_F32_BATCHED_MATMUL
+                | CAPABILITY_PTQ1_0_Q8_0_BATCHED_MATMUL
                 | CAPABILITY_K_QUANT_BATCH_WEIGHT_REUSE
                 | CAPABILITY_Q4_K_BATCH_VECTOR_ACCUMULATION
                 | CAPABILITY_MANY_GROUPED_BATCHED_MATMUL

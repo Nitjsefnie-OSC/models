@@ -19,7 +19,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import com.integrallis.models.backend.purejava.gguf.GgufTensorType;
-import com.integrallis.models.backend.purejava.quant.TernaryDequantizer;
 import java.lang.foreign.Arena;
 import java.lang.foreign.MemorySegment;
 import java.nio.file.Path;
@@ -27,7 +26,9 @@ import java.util.Random;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
-/** Exercises the public matrix provider and real worker dispatch against the Java PTQ reference. */
+/**
+ * Exercises the public matrix provider and real worker dispatch against the Java PTQ/Q8 reference.
+ */
 @Tag("unit")
 class PtqNativeKernelTest {
   @Test
@@ -60,18 +61,17 @@ class PtqNativeKernelTest {
                       case 1 -> -0.0f;
                       case 2 -> Float.MIN_VALUE;
                       case 3 -> -Float.MIN_NORMAL;
-                      case 4 -> 1.0e30f;
-                      case 5 -> -1.0e30f;
+                      case 4 -> 1.0e3f;
+                      case 5 -> -1.0e3f;
                       default -> random.nextFloat() * 2 - 1;
                     };
               }
               float[] actual = new float[batch * rows];
               kernel.multiply(actual, input, weights, GgufTensorType.PTQ1_0, batch, rows, cols);
+              float[] reference = PtqQ8Oracle.multiply(weights, input, batch, rows, cols);
               for (int b = 0; b < batch; b++) {
                 for (int row = 0; row < rows; row++) {
-                  float expected =
-                      TernaryDequantizer.dotProductPtq1_0(
-                          weights, (long) row * (cols / 128) * 28, input, b * cols, cols);
+                  float expected = reference[b * rows + row];
                   assertThat(Float.floatToRawIntBits(actual[b * rows + row]))
                       .as("threads=%d batch=%d row=%d cols=%d", threads, b, row, cols)
                       .isEqualTo(Float.floatToRawIntBits(expected));

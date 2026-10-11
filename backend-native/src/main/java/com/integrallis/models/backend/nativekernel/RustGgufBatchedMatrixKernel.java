@@ -319,7 +319,7 @@ public final class RustGgufBatchedMatrixKernel implements GgufBatchedMatrixKerne
       case Q4_0 -> library.supports(NativeKernelCapability.Q4_0_F32_BATCHED_MATMUL);
       case Q5_0 -> library.supports(NativeKernelCapability.Q5_0_F32_BATCHED_MATMUL);
       case Q5_1 -> library.supports(NativeKernelCapability.Q5_1_F32_BATCHED_MATMUL);
-      case PTQ1_0 -> library.supports(NativeKernelCapability.PTQ1_0_F32_BATCHED_MATMUL);
+      case PTQ1_0 -> library.supports(NativeKernelCapability.PTQ1_0_Q8_0_BATCHED_MATMUL);
       case Q8_0 -> library.supports(NativeKernelCapability.Q8_0_F32_BATCHED_MATMUL);
       case Q4_K -> library.supports(NativeKernelCapability.Q4_K_F32_BATCHED_MATMUL);
       case Q5_K -> library.supports(NativeKernelCapability.Q5_K_F32_BATCHED_MATMUL);
