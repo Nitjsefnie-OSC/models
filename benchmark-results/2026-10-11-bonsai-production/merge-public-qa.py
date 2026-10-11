@@ -8,12 +8,14 @@ case_file, fleet_file, shard_root, output_root = map(Path, sys.argv[1:])
 case_hash = hashlib.sha256(case_file.read_bytes()).hexdigest()
 fleet = json.loads(fleet_file.read_text())
 all_cases = json.loads(case_file.read_text())['cases']
+token_oracle = {r['index']: r for r in map(json.loads, case_file.with_name('public-qa-reference-tokens.jsonl').read_text().splitlines())}
 merged = {arm: [] for arm in ['models', 'publisher']}
 provenance = {arm: [] for arm in merged}
 covered = set()
 for shard in fleet['shards']:
     directory = shard_root / f"shard-{shard['shard']}"
     assert (directory / 'STATUS').read_text().strip() == 'PAIRED_PUBLIC_QA_COMPLETE', f'incomplete shard {directory}'
+    assert json.loads((directory / 'token-preflight-passed.json').read_text())['allTokenIdsMatch'] is True
     hostname = (directory / 'hostname.txt').read_text().strip()
     assert hostname == shard['privateDnsName'].split('.')[0], f'host identity differs for {directory}'
     indices = set(range(shard['first'], shard['first'] + shard['count']))
@@ -24,6 +26,7 @@ for shard in fleet['shards']:
         raw = source.read_bytes()
         header, *rows = [json.loads(line) for line in raw.splitlines() if line]
         assert header['caseSha256'] == case_hash and header['context'] == 2048, 'case manifest or context differs'
+        assert header['tokenizationMode'] == 'trusted-frozen-chatml-v2', 'invalid prompt tokenization harness'
         assert header['generation'] == {'temperature': 0, 'topK': 1, 'topP': 1, 'seed': 42,
             'repetitionPenalty': 1, 'rawPrompt': True, 'promptCache': False}, 'generation controls differ'
         assert header['first'] == shard['first'] and header['count'] == shard['count'], 'shard interval differs'
@@ -40,6 +43,7 @@ for shard in fleet['shards']:
         for row in rows:
             case = all_cases[row['index']]
             assert row['id'] == case['id'] and row['dataset'] == case['dataset'] and row['promptSha256'] == case['promptSha256'], 'case identity differs'
+            assert row.get('error') or row['inputTokenIds'] == token_oracle[row['index']]['inputTokenIds'], 'prompt token IDs differ'
         merged[arm].extend(rows)
         provenance[arm].append({'shard': shard['shard'], 'instanceId': shard['instanceId'], 'hostname': hostname,
             'source': str(source), 'sha256': hashlib.sha256(raw).hexdigest(), 'manifest': header})

@@ -56,3 +56,22 @@ Each worker has a 150-minute termination deadline and uploads checkpoints every
 minute. AWS Pricing API queried October 11 gives USD 0.6912/host-hour; the eight-host
 phase is capped at USD 15 including its gp3 volumes. This is separate from the
 initial single-host USD 5 experiment. An incomplete shard cannot pass by omission.
+
+## Prompt-tokenization correction, before the replacement run
+
+The first fleet was stopped and its partial outputs retained under `public-qa-invalid-raw/`.
+Its Java harness passed the rendered ChatML through the ordinary String API, which deliberately
+treats control-token spellings as text. The publisher parsed those controls. Matching character
+hashes therefore did not establish matching inputs: case 125 had 295 versus 268 prompt tokens.
+No quality or relative-performance conclusion is valid from that run.
+
+The corrected harness passes the immutable benchmark template through `ModelPrompt.control`.
+All 200 complete token arrays now match a tokenizer-only executable built against the pinned
+publisher source; see `public-qa-token-parity.json` and `public-qa-reference-tokens.jsonl`.
+Each replacement worker repeats the token check before inference, and the publisher server's
+`/tokenize` result is checked again before each completion. Both raw arms retain their token IDs.
+The case selection, prompt characters, token budgets, scoring and acceptance rule are unchanged.
+This repairs the API mismatch, without selecting cases or tuning prompts to observed answers.
+
+The replacement is a separately recorded eight-host phase with the same 150-minute per-host
+deadline and USD 15 ceiling. The first phase's resources were explicitly terminated before it.

@@ -43,6 +43,13 @@ full-vocabulary sequential/batched parity. See `q8-validation-provenance.json` a
 uses each payload's `TensorOps`; the archived comparisons labeled float use the recorded older
 Java JAR. Do not substitute a newer Q8 Java JAR and retain the historical float label.
 
+The separate Java Q8 scalar/SIMD pair is complete in `java-q8-paired/`: median decode improves
+from 0.133 to 0.575 tokens/s and prefill from 0.142 to 0.653 tokens/s. All three output hashes
+match, and actual projection tensors pass bit-exact Java/native and independent-oracle checks.
+Both rates exceed the frozen 5% improvement threshold, so the SIMD implementation is retained.
+These are pure-Java fallback rates, separate from the faster native route above.
+`java-vector-real-fixture.xml` also records the local real-weight continuation/session test.
+
 ## Task quality and publication
 
 - Paired RAG source experiment: both complete arms run on the initial host, with context 2048,
@@ -55,5 +62,10 @@ Java JAR. Do not substitute a newer Q8 Java JAR and retain the historical float 
   retained separately; its instance was terminated.
 - Completion still requires both task reports and verdicts, a Central release, a released-runtime
   default smoke, ModelJars loading at the tested context, marker publication and Central verification.
+
+The first public-QA fleet is invalid: its String API treated ChatML controls as ordinary text.
+It was stopped, with partial outputs retained in `public-qa-invalid-raw/` and explicit termination
+receipts. No quality claim uses those results. The corrected harness matches all 200 publisher
+token arrays before inference; `public-qa-protocol.md` records the correction and replacement run.
 
 See the [execution plan](../../docs/findings/2026-10-11-bonsai-production.md) for the ordered queue.

@@ -1,0 +1,33 @@
+WARNING: Using incubator modules: jdk.incubator.vector
+Oct 11, 2026 8:41:31 PM com.integrallis.vectors.core.PanamaVectorUtilSupportProvider create
+INFO: vectors-core: Using Panama Vector API SIMD provider (vector bits: 256)
+Oct 11, 2026 8:41:31 PM com.integrallis.vectors.core.VectorizationProvider logActiveToggles
+INFO: vectors-core: provider=PanamaVectorUtilSupport panama=true maxBits=256 preferredBits=256 fastVectorFMA=true fastScalarFMA=true sve=false ggufParallel=true ggufParallelThreshold=1048576 ggufExecutor=persistent ggufThreads=16 ggufChunksPerThread=2 mappedKQuantLongOffsets=auto(q4=true,q5=false,q6=false) q4ShortPairwiseSupported=true q4UnsignedPairwiseSupported=true toggles=[(defaults — no -Dvectors.* overrides)]
+trial 1/3: ok ttft=140944.8ms decode=0.13 tok/s
+trial 2/3: ok ttft=147908.5ms decode=0.13 tok/s
+trial 3/3: ok ttft=126971.4ms decode=0.13 tok/s
+prism_ml_ternary_bonsai_2_27b_gguf_ptq1_0 pure-java: tier=FAILED load=615.3ms p95-ttft=147908.5ms p50-decode=0.13 tok/s p95-tpot=7545.9ms peak-rss=6579408896 bytes
+report: /work/out/java-q8-scalar.json
+	Command being timed: "/opt/jdk/bin/java --add-modules jdk.incubator.vector -Xmx16g -cp /work/qa/lib/* com.integrallis.models.bench.InferenceBenchmarkCli --backend pure-java --backend-version models-source@8b5c0b29;java-q8-scalar --model-id prism_ml_ternary_bonsai_2_27b_gguf_ptq1_0 --model /work/bonsai2.gguf --prompt The quick brown fox --max-tokens 16 --warmups 1 --iterations 3 --context 512 --threads 16 --output /work/out/java-q8-scalar.json"
+	User time (seconds): 15920.40
+	System time (seconds): 4.72
+	Percent of CPU this job got: 1555%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 17:03.64
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 6424516
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 304722
+	Voluntary context switches: 585229
+	Involuntary context switches: 93108
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 680
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

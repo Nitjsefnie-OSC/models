@@ -1,0 +1,45 @@
+WARNING: Using incubator modules: jdk.incubator.vector
+Oct 11, 2026 9:02:13 PM org.apache.lucene.internal.vectorization.PanamaVectorizationProvider <init>
+INFO: Java vector incubator API enabled; uses preferredBitSize=256; FMA enabled
+Exception in thread "main" java.lang.IllegalStateException: llama.cpp generation failed
+	at com.integrallis.models.rag.HttpGenerationClient.generate(HttpGenerationClient.java:134)
+	at com.integrallis.models.rag.GenerationClient.generate(GenerationClient.java:45)
+	at com.integrallis.models.rag.PlainJavaRagApplication.run(PlainJavaRagApplication.java:51)
+	at com.integrallis.models.rag.RagBenchmarkCli.run(RagBenchmarkCli.java:233)
+	at com.integrallis.models.rag.RagBenchmarkCli.main(RagBenchmarkCli.java:93)
+Caused by: com.fasterxml.jackson.core.JsonParseException: Unexpected character (':' (code 58)): expected a valid value (JSON String, Number, Array, Object or token 'null', 'true' or 'false')
+ at [Source: REDACTED (`StreamReadFeature.INCLUDE_SOURCE_IN_LOCATION` disabled); line: 1, column: 1]
+	at com.fasterxml.jackson.core.JsonParser._constructReadException(JsonParser.java:2675)
+	at com.fasterxml.jackson.core.base.ParserMinimalBase._reportUnexpectedChar(ParserMinimalBase.java:743)
+	at com.fasterxml.jackson.core.json.ReaderBasedJsonParser._handleOddValue(ReaderBasedJsonParser.java:2065)
+	at com.fasterxml.jackson.core.json.ReaderBasedJsonParser.nextToken(ReaderBasedJsonParser.java:780)
+	at com.fasterxml.jackson.databind.ObjectMapper._readTreeAndClose(ObjectMapper.java:5081)
+	at com.fasterxml.jackson.databind.ObjectMapper.readTree(ObjectMapper.java:3349)
+	at com.integrallis.models.rag.LlamaCppGenerationParser.accept(LlamaCppGenerationParser.java:47)
+	at com.integrallis.models.rag.HttpGenerationClient.parse(HttpGenerationClient.java:195)
+	at com.integrallis.models.rag.HttpGenerationClient.generate(HttpGenerationClient.java:115)
+	... 4 more
+Command exited with non-zero status 1
+	Command being timed: "/opt/jdk/bin/java -Dmodels.native.kernels.library=/work/candidate-src/backend-native/src/main/rust/model-kernels/target/release/libjmodels_kernels.so --add-modules jdk.incubator.vector --enable-native-access=ALL-UNNAMED -Xmx16g -cp /work/q8/lib/* com.integrallis.models.rag.RagBenchmarkCli --framework plain-java --model-id prism_ml_ternary_bonsai_2_27b_gguf_ptq1_0 --workload general --prompt-template chatml-no-think --top-k 1 --max-tokens 64 --warmups 1 --iterations 3 --context 2048 --threads 16 --backend llama.cpp --backend-version PrismML-Eng/llama.cpp@e8fd209c975c80aa7fb36a8423571ff3b1b7e955 --model bonsai2 --artifact /work/bonsai2.gguf --endpoint http://127.0.0.1:8080 --pid 15214 --output /work/rag-q8-out/reference-rag.json"
+	User time (seconds): 1.73
+	System time (seconds): 0.18
+	Percent of CPU this job got: 6%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:30.82
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 153344
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 32750
+	Voluntary context switches: 10016
+	Involuntary context switches: 12
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 72
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 1

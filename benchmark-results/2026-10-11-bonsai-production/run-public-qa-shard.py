@@ -45,6 +45,15 @@ model = '/work/bonsai2.gguf'
 cases = str(root / 'public-qa-cases.json')
 identity = (root / 'source-revision.txt').read_text().strip()
 try:
+    run('token-preflight', java + ['PublicQaProbe', model, cases, str(out / 'token-preflight.jsonl'), 'validate', '2048', str(first), str(count), 'models-source@' + identity])
+    expected_tokens = {r['index']: r for r in map(json.loads, (root / 'public-qa-reference-tokens.jsonl').read_text().splitlines())}
+    preflight = [json.loads(line) for line in (out / 'token-preflight.jsonl').read_text().splitlines()][1:]
+    assert len(preflight) == count and {r['index'] for r in preflight} == set(range(first, first + count))
+    for row in preflight:
+        assert not row.get('error') and row['inputTokenIds'] == expected_tokens[row['index']]['inputTokenIds'], 'prompt tokens differ from publisher'
+    (out / 'token-preflight-passed.json').write_text(json.dumps({'first': first, 'count': count,
+        'tokenizationMode': 'trusted-frozen-chatml-v2', 'allTokenIdsMatch': True,
+        'publisherOracleSha256': hashlib.sha256((root / 'public-qa-reference-tokens.jsonl').read_bytes()).hexdigest()}, indent=2) + '\n')
     run('models', java + ['PublicQaProbe', model, cases, str(out / 'models.jsonl'), 'rust-ffm', '2048', str(first), str(count), 'models-source@' + identity])
     server_command = ['/work/prism/build/bin/llama-server', '-m', model, '-c', '2048', '-t', '16', '-tb', '16', '-ngl', '0', '--parallel', '1', '--host', '127.0.0.1', '--port', '8080', '--no-warmup']
     (out / 'reference-command.json').write_text(json.dumps(server_command, indent=2) + '\n')

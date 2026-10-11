@@ -1,0 +1,142 @@
+[ {
+  "tensor" : "blk.0.ffn_up.weight",
+  "rows" : 17408,
+  "columns" : 5120,
+  "javaReferenceContract" : "PTQ1_0 x Q8_0",
+  "nativeContract" : "PTQ1_0 x Q8_0",
+  "javaNativeBitExact" : true,
+  "sampledIndependentQ8OracleBitExact" : true,
+  "q8Cosine" : 1.0,
+  "q8MaxAbsoluteError" : 0.0,
+  "trials" : [ {
+    "millis" : 8.211882,
+    "arm" : "java"
+  }, {
+    "millis" : 1.802562,
+    "arm" : "native"
+  }, {
+    "millis" : 1.729508,
+    "arm" : "native"
+  }, {
+    "millis" : 8.013785,
+    "arm" : "java"
+  }, {
+    "millis" : 9.684959,
+    "arm" : "java"
+  }, {
+    "millis" : 1.863925,
+    "arm" : "native"
+  }, {
+    "millis" : 1.727318,
+    "arm" : "native"
+  }, {
+    "millis" : 6.904614,
+    "arm" : "java"
+  }, {
+    "millis" : 6.460973,
+    "arm" : "java"
+  }, {
+    "millis" : 1.871976,
+    "arm" : "native"
+  }, {
+    "millis" : 2.085085,
+    "arm" : "native"
+  }, {
+    "millis" : 6.60485,
+    "arm" : "java"
+  } ]
+}, {
+  "tensor" : "blk.0.ffn_down.weight",
+  "rows" : 5120,
+  "columns" : 17408,
+  "javaReferenceContract" : "PTQ1_0 x Q8_0",
+  "nativeContract" : "PTQ1_0 x Q8_0",
+  "javaNativeBitExact" : true,
+  "sampledIndependentQ8OracleBitExact" : true,
+  "q8Cosine" : 1.0,
+  "q8MaxAbsoluteError" : 0.0,
+  "trials" : [ {
+    "millis" : 6.39254,
+    "arm" : "java"
+  }, {
+    "millis" : 2.076084,
+    "arm" : "native"
+  }, {
+    "millis" : 1.75297,
+    "arm" : "native"
+  }, {
+    "millis" : 6.875212,
+    "arm" : "java"
+  }, {
+    "millis" : 6.815009,
+    "arm" : "java"
+  }, {
+    "millis" : 1.770811,
+    "arm" : "native"
+  }, {
+    "millis" : 2.055253,
+    "arm" : "native"
+  }, {
+    "millis" : 6.620421,
+    "arm" : "java"
+  }, {
+    "millis" : 6.154659,
+    "arm" : "java"
+  }, {
+    "millis" : 2.077964,
+    "arm" : "native"
+  }, {
+    "millis" : 1.810902,
+    "arm" : "native"
+  }, {
+    "millis" : 9.360514,
+    "arm" : "java"
+  } ]
+}, {
+  "tensor" : "output.weight",
+  "rows" : 248320,
+  "columns" : 5120,
+  "javaReferenceContract" : "PTQ1_0 x Q8_0",
+  "nativeContract" : "PTQ1_0 x Q8_0",
+  "javaNativeBitExact" : true,
+  "sampledIndependentQ8OracleBitExact" : true,
+  "q8Cosine" : 1.0,
+  "q8MaxAbsoluteError" : 0.0,
+  "trials" : [ {
+    "millis" : 78.788925,
+    "arm" : "java"
+  }, {
+    "millis" : 17.175411,
+    "arm" : "native"
+  }, {
+    "millis" : 17.20895,
+    "arm" : "native"
+  }, {
+    "millis" : 78.847889,
+    "arm" : "java"
+  }, {
+    "millis" : 78.691864,
+    "arm" : "java"
+  }, {
+    "millis" : 17.136818,
+    "arm" : "native"
+  }, {
+    "millis" : 17.369369,
+    "arm" : "native"
+  }, {
+    "millis" : 78.524218,
+    "arm" : "java"
+  }, {
+    "millis" : 80.085848,
+    "arm" : "java"
+  }, {
+    "millis" : 17.422853,
+    "arm" : "native"
+  }, {
+    "millis" : 27.72982,
+    "arm" : "native"
+  }, {
+    "millis" : 78.996,
+    "arm" : "java"
+  } ]
+} ]

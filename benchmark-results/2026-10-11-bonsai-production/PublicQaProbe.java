@@ -31,11 +31,14 @@ public class PublicQaProbe {
       header.put("first", first); header.put("count", count); header.put("processors", Runtime.getRuntime().availableProcessors());
       header.put("javaVersion", System.getProperty("java.version")); header.put("loadMillis", (System.nanoTime()-loadedAt)/1e6);
       header.put("generation", Map.of("temperature", 0, "topK", 1, "topP", 1, "seed", 42, "repetitionPenalty", 1, "rawPrompt", true, "promptCache", false));
+      header.put("tokenizationMode", "trusted-frozen-chatml-v2");
       header.put("diagnostics", backend.getClass().getMethod("diagnostics").invoke(backend));
       writer.write(mapper.writeValueAsString(header)); writer.newLine(); writer.flush();
       for (int index = first; index < first + count; index++) {
         JsonNode c = manifest.get("cases").get(index);
-        String prompt = c.get("prompt").asText();
+        // This immutable benchmark owns the complete rendered template. Match the publisher's
+        // raw completion API, which parses its controls; String generation intentionally does not.
+        ModelPrompt prompt = ModelPrompt.control(c.get("prompt").asText());
         int max = c.get("maxTokens").asInt();
         var row = new LinkedHashMap<String,Object>();
         row.put("index", index); row.put("dataset", c.get("dataset").asText()); row.put("id", c.get("id").asText());
@@ -43,8 +46,10 @@ public class PublicQaProbe {
         StringBuilder text = new StringBuilder();
         long start = System.nanoTime();
         try {
-          int tokens = backend.tokenizer().encode(prompt).length;
+          int[] tokenIds = backend.tokenizer().encode(prompt);
+          int tokens = tokenIds.length;
           row.put("inputTokens", tokens);
+          row.put("inputTokenIds", tokenIds);
           if (tokens + max > context) throw new IllegalArgumentException("context overflow: " + tokens + " + " + max + " > " + context);
           if (!args[3].equals("validate")) {
             backend.reset();

@@ -1,0 +1,25 @@
+[
+  {
+    "name": "models",
+    "command": [
+      "/opt/jdk/bin/java",
+      "--add-modules",
+      "jdk.incubator.vector",
+      "--enable-native-access=ALL-UNNAMED",
+      "-Xmx16g",
+      "-Dmodels.native.kernels.library=/work/qa/libjmodels_kernels.so",
+      "-cp",
+      "/work/qa/lib/*:/work/qa/classes",
+      "PublicQaProbe",
+      "/work/bonsai2.gguf",
+      "/work/qa/public-qa-cases.json",
+      "/work/out/models.jsonl",
+      "rust-ffm",
+      "2048",
+      "50",
+      "25",
+      "models-source@8b5c0b29d25bfce0e54659778e08ca65dcbd322b"
+    ],
+    "startedAt": 1791750080.0102615
+  }
+]

@@ -141,6 +141,22 @@ Backend diagnostics record the PTQ contract and the native plan advances to v14.
   measures scalar versus SIMD with the same arithmetic; no simultaneous inference shares that host.
   Its provenance and termination deadline are in `java-q8-host.json`. No speed claim is made yet.
 
+The Java fallback comparison is now complete: SIMD measured 4.338x decode and 4.601x prefill
+against scalar Q8 on the same host, with all output hashes equal and exact actual-tensor checks.
+The frozen retention rule passed. The local real-weight continuation and fresh-session test
+also passed with the retained SIMD code. The host terminated after uploading its results.
+
+The first public-QA fleet exposed a harness defect: raw String generation correctly treated
+ChatML control spellings as ordinary text, unlike the publisher's raw completion endpoint.
+Case 125 had 295 versus 268 input tokens. All eight hosts were stopped and partial outputs
+retained as invalid. The corrected harness uses the trusted frozen template API and requires
+exact publisher token arrays; all 200 match in the token-only preflight. No case, character
+prompt, output budget or scoring rule changed. The replacement repeats both complete arms.
+
+The source Models RAG arm completed 27/27 attempts: twelve correct model answers, twelve
+extractive fallbacks and three correct abstentions, with no truncations. Model answer rate is
+0.444 and correctness among those answers is 1.0. The paired publisher arm is still required.
+
 Publication order remains released Vectors dependency verification, Models, downloaded-artifact
 Bonsai qualification/default smoke, ModelJars library/CLI, marker Central publication and site.
 Vectors has no code change in this phase. Preserve the exact source provenance of the public QA;
