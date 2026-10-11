@@ -3374,11 +3374,23 @@ unsafe fn compute_batched_row_range(
         }
         #[cfg(target_arch = "x86_64")]
         DotKernel::PtqAvx2 => {
-            for row in start_row..end_row {
+            let mut row = start_row;
+            while row + 1 < end_row {
                 for batch in 0..batch_size {
-                    // SAFETY: dispatch requires AVX2 and FMA; input shapes were validated.
+                    // SAFETY: both rows are inside this worker's exclusive validated range.
+                    let values =
+                        unsafe { ptq::dot_pair_avx2(weights, activations, batch, row, cols) };
+                    unsafe {
+                        *output.add(batch * rows + row) = values[0];
+                        *output.add(batch * rows + row + 1) = values[1];
+                    }
+                }
+                row += 2;
+            }
+            if row < end_row {
+                for batch in 0..batch_size {
+                    // SAFETY: dispatch requires AVX2/FMA; this worker owns the remaining row.
                     let value = unsafe { ptq::dot_avx2(weights, activations, batch, row, cols) };
-                    // SAFETY: this worker exclusively owns the assigned output rows.
                     unsafe { *output.add(batch * rows + row) = value };
                 }
             }
