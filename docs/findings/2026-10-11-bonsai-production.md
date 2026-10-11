@@ -174,3 +174,15 @@ Publication order remains released Vectors dependency verification, Models, down
 Bonsai qualification/default smoke, ModelJars library/CLI, marker Central publication and site.
 Vectors has no code change in this phase. Preserve the exact source provenance of the public QA;
 changing artifact versions does not turn source results into released-runtime measurements.
+
+All discovered regressions are release blockers: repair and verify each one before publishing.
+The ARM projection check found scalar native PTQ slower than retained Java SIMD. An isolated
+NEON experiment at `42185aa7` is therefore measured on a second bounded m7g host; it does not
+ride the release branch before whole-model evidence. Its actual tensor checks are bit exact.
+On this host the native up/down projections improve from about 9 ms to 1.35 ms and the output
+projection from 123 ms to 16 ms. These component results do not replace whole-model measurements.
+
+The released-runtime regression manifest covers all 65 existing qualified RAG models, including
+both Safetensors directories. Every workload and artifact is bound to its hashed published report;
+four models retain their explicit stop sequence. MobileMoE requires authenticated access to its
+pinned upstream snapshot. It must be measured rather than counted as passing on download failure.

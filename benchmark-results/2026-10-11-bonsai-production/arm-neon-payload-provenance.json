@@ -1,0 +1,7 @@
+{
+  "sourceRevision": "42185aa7505dfe06b85e24b37d3be49346c30fde",
+  "payloadUri": "s3://models-qual-077051030817/payload/bonsai-arm-neon-42185aa7-v2.tar.gz",
+  "payloadSha256": "a739983f0a98ef79628a6385025879580c44eebb4f7625227c5576cdd8c1f80b",
+  "bytes": 30321278,
+  "userDataSha256": "74b2d7a62dfaf6d7112e214b623092b91d1c05ae24cd05b86c8c11d6dccf0a37"
+}
