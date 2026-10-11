@@ -2,6 +2,8 @@
 //! Java owns graph execution and state; this module only computes packed dot products.
 
 use super::f16_to_f32;
+#[cfg(target_arch = "aarch64")]
+use std::arch::aarch64::*;
 #[cfg(target_arch = "x86_64")]
 use std::arch::x86_64::*;
 
@@ -152,6 +154,74 @@ pub(super) unsafe fn dot_avx2(
     total
 }
 
+#[cfg(target_arch = "aarch64")]
+#[target_feature(enable = "neon")]
+unsafe fn next_trits_neon(packed: &mut uint16x8_t) -> int16x8_t {
+    let triple = vaddq_u16(*packed, vaddq_u16(*packed, *packed));
+    *packed = vandq_u16(triple, vdupq_n_u16(255));
+    vsubq_s16(
+        vreinterpretq_s16_u16(vshrq_n_u16::<8>(triple)),
+        vdupq_n_s16(1),
+    )
+}
+
+#[cfg(target_arch = "aarch64")]
+#[target_feature(enable = "neon")]
+pub(super) unsafe fn dot_neon(
+    weights: &[u8],
+    input: &[i8],
+    scales: &[f32],
+    batch: usize,
+    row: usize,
+    cols: usize,
+) -> f32 {
+    let mut total = 0_f32;
+    for block in 0..cols / 128 {
+        let base = (row * (cols / 128) + block) * 28;
+        let at = batch * cols + block * 128;
+        // SAFETY: the caller checked complete 28-byte weight and 128-value activation blocks.
+        let (mut a, mut b, mut c) = unsafe {
+            let ab = vld1q_u8(weights.as_ptr().add(base));
+            (
+                vmovl_u8(vget_low_u8(ab)),
+                vmovl_u8(vget_high_u8(ab)),
+                vmovl_u8(vld1_u8(weights.as_ptr().add(base + 16))),
+            )
+        };
+        let mut sums = [vdupq_n_s32(0); 4];
+        for n in 0..5 {
+            // Products fit signed 16 bits, including an activation of -128. Pairwise widening
+            // adds into 32-bit sums, so no floating-point reduction order changes.
+            unsafe {
+                let qa = next_trits_neon(&mut a);
+                let qb = next_trits_neon(&mut b);
+                let qc = next_trits_neon(&mut c);
+                let ab = vld1q_s8(input.as_ptr().add(at + n * 16));
+                let yc = vmovl_s8(vld1_s8(input.as_ptr().add(at + 80 + n * 8)));
+                sums[n / 2] = vpadalq_s16(sums[n / 2], vmulq_s16(qa, vmovl_s8(vget_low_s8(ab))));
+                sums[n / 2] = vpadalq_s16(sums[n / 2], vmulq_s16(qb, vmovl_s8(vget_high_s8(ab))));
+                sums[(80 + n * 8) / 32] = vpadalq_s16(sums[(80 + n * 8) / 32], vmulq_s16(qc, yc));
+            }
+        }
+        let mut scalar_sums = sums.map(|sum| vaddvq_s32(sum));
+        for (n, power) in POWERS.iter().take(4).enumerate() {
+            for h in 0..2 {
+                scalar_sums[3] +=
+                    trit(weights[base + 24 + h], *power) * i32::from(input[at + 120 + n * 2 + h]);
+            }
+        }
+        let scale = f16_to_f32(u16::from_le_bytes([weights[base + 26], weights[base + 27]]));
+        total = accumulate(
+            total,
+            scalar_sums,
+            scales,
+            batch * cols / 32 + block * 4,
+            scale,
+        );
+    }
+    total
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -182,6 +252,12 @@ mod tests {
             for row in 0..rows {
                 let scalar = dot_scalar(&weights, &input, &scales, b, row, cols);
                 assert!(scalar.is_finite());
+                #[cfg(target_arch = "aarch64")]
+                if std::arch::is_aarch64_feature_detected!("neon") {
+                    // SAFETY: NEON and the complete input shapes were checked above.
+                    let vector = unsafe { dot_neon(&weights, &input, &scales, b, row, cols) };
+                    assert_eq!(scalar.to_bits(), vector.to_bits());
+                }
                 #[cfg(target_arch = "x86_64")]
                 if is_x86_feature_detected!("avx2") && is_x86_feature_detected!("fma") {
                     // SAFETY: features and complete input shapes checked above.
