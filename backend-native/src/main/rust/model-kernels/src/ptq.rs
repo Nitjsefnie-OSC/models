@@ -13,6 +13,9 @@ fn trit(byte: u8, power: u32) -> f32 {
     ((((u32::from(byte) * power) & 255) * 3) >> 8) as f32 - 1.0
 }
 
+// Keep the tail inside the caller's target-feature context. An out-of-line baseline
+// helper lowers each mul_add to a libc fmaf call even when its caller has FMA.
+#[inline(always)]
 fn finish_block(weights: &[u8], base: usize, input: &[f32], at: usize, lanes: [f32; 8]) -> f32 {
     let even = (lanes[4] + lanes[0]) + (lanes[6] + lanes[2]);
     let odd = (lanes[5] + lanes[1]) + (lanes[7] + lanes[3]);

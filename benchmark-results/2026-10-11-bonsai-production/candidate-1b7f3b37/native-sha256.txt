@@ -1,0 +1,1 @@
+169c10a2a4fca99f18f196c032ebae9b04587a6ded0df853c088228abac18794  backend-native/src/main/rust/model-kernels/target/release/libjmodels_kernels.so
