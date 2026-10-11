@@ -123,20 +123,23 @@ unsafe fn dot_batch_avx2<const BATCHES: usize>(
                     _mm256_cvtepi32_ps(_mm256_cvtepi16_epi32(_mm256_castsi256_si128(qc))),
                 )
             };
+            // Multiplication by a trit (-1, 0, +1) is exact for finite F32 inputs.
+            // Separating it from addition preserves the FMA result and reduction order,
+            // while allowing a shorter loop-carried addition dependency.
             for (offset, sum) in sums.iter_mut().enumerate() {
                 let at = (batch + offset) * cols + block * 128;
                 // SAFETY: all three loads lie inside this validated activation row.
                 unsafe {
-                    *sum =
-                        _mm256_fmadd_ps(a, _mm256_loadu_ps(input.as_ptr().add(at + n * 16)), *sum);
-                    *sum = _mm256_fmadd_ps(
-                        b,
-                        _mm256_loadu_ps(input.as_ptr().add(at + n * 16 + 8)),
+                    *sum = _mm256_add_ps(
+                        _mm256_mul_ps(a, _mm256_loadu_ps(input.as_ptr().add(at + n * 16))),
                         *sum,
                     );
-                    *sum = _mm256_fmadd_ps(
-                        c,
-                        _mm256_loadu_ps(input.as_ptr().add(at + 80 + n * 8)),
+                    *sum = _mm256_add_ps(
+                        _mm256_mul_ps(b, _mm256_loadu_ps(input.as_ptr().add(at + n * 16 + 8))),
+                        *sum,
+                    );
+                    *sum = _mm256_add_ps(
+                        _mm256_mul_ps(c, _mm256_loadu_ps(input.as_ptr().add(at + 80 + n * 8))),
                         *sum,
                     );
                 }

@@ -53,7 +53,18 @@ class PtqNativeKernelTest {
             weights.copyFrom(MemorySegment.ofArray(packed));
             for (int batch : new int[] {1, 3, 4, 5, 16}) {
               float[] input = new float[batch * cols];
-              for (int i = 0; i < input.length; i++) input[i] = random.nextFloat() * 2 - 1;
+              for (int i = 0; i < input.length; i++) {
+                input[i] =
+                    switch (i % 97) {
+                      case 0 -> 0.0f;
+                      case 1 -> -0.0f;
+                      case 2 -> Float.MIN_VALUE;
+                      case 3 -> -Float.MIN_NORMAL;
+                      case 4 -> 1.0e30f;
+                      case 5 -> -1.0e30f;
+                      default -> random.nextFloat() * 2 - 1;
+                    };
+              }
               float[] actual = new float[batch * rows];
               kernel.multiply(actual, input, weights, GgufTensorType.PTQ1_0, batch, rows, cols);
               for (int b = 0; b < batch; b++) {
