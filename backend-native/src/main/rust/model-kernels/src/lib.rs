@@ -199,6 +199,8 @@ enum DotKernel {
     Ptq,
     #[cfg(target_arch = "x86_64")]
     PtqAvx2,
+    #[cfg(target_arch = "aarch64")]
+    PtqNeon,
     Q8,
     #[cfg(target_arch = "x86_64")]
     Q8Avx2,
@@ -292,6 +294,10 @@ impl WeightFormat {
                 #[cfg(target_arch = "x86_64")]
                 if is_x86_feature_detected!("avx2") && is_x86_feature_detected!("fma") {
                     return DotKernel::PtqAvx2;
+                }
+                #[cfg(target_arch = "aarch64")]
+                if std::arch::is_aarch64_feature_detected!("neon") {
+                    return DotKernel::PtqNeon;
                 }
                 DotKernel::Ptq
             }
@@ -3357,6 +3363,19 @@ unsafe fn compute_batched_row_range(
     kernel: DotKernel,
 ) {
     match kernel {
+        #[cfg(target_arch = "aarch64")]
+        DotKernel::PtqNeon => {
+            for row in start_row..end_row {
+                for batch in 0..batch_size {
+                    // SAFETY: NEON and complete input shapes were checked; each output row
+                    // belongs exclusively to this worker.
+                    unsafe {
+                        *output.add(batch * rows + row) =
+                            ptq::dot_neon(weights, quantized, activation_scales, batch, row, cols);
+                    }
+                }
+            }
+        }
         DotKernel::Ptq => {
             for row in start_row..end_row {
                 for batch in 0..batch_size {
@@ -4788,6 +4807,11 @@ fn compute_output_range(
             }
             DotKernel::Ptq => {
                 ptq::dot_scalar(weights, quantized, activation_scales, batch, row, cols)
+            }
+            #[cfg(target_arch = "aarch64")]
+            DotKernel::PtqNeon => {
+                // SAFETY: NEON was detected when selecting this kernel; shapes are validated.
+                unsafe { ptq::dot_neon(weights, quantized, activation_scales, batch, row, cols) }
             }
             #[cfg(target_arch = "x86_64")]
             DotKernel::PtqAvx2 => {
