@@ -186,3 +186,9 @@ The released-runtime regression manifest covers all 65 existing qualified RAG mo
 both Safetensors directories. Every workload and artifact is bound to its hashed published report;
 four models retain their explicit stop sequence. MobileMoE requires authenticated access to its
 pinned upstream snapshot. It must be measured rather than counted as passing on download failure.
+
+The ARM repair is now retained: all short-probe outputs and the pinned oracle match; NEON improves
+whole-model decode 6.109x and prefill 6.539x over scalar native, and 2.538x/2.610x over Java SIMD.
+The same-host reports are in `arm-neon-paired/`. CI now runs the native real-weight continuation,
+fresh-session and complete batched-logit tests on both Linux x86 and ARM. Publication still waits
+for CI, complete public QA and the RAG gates; component speed alone does not qualify Bonsai.

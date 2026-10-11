@@ -1,0 +1,21 @@
+{
+  "complete": true,
+  "outputHashesMatch": true,
+  "retentionRule": "complete; same outputs; both median rates improve by at least 5%",
+  "comparisons": {
+    "neonOverNative": {
+      "ratios": {
+        "p50DecodeTokensPerSecond": 6.108729138790052,
+        "p50PrefillTokensPerSecond": 6.538749164301799
+      },
+      "retain": true
+    },
+    "neonOverVector": {
+      "ratios": {
+        "p50DecodeTokensPerSecond": 2.5376407350478964,
+        "p50PrefillTokensPerSecond": 2.6097697147771184
+      },
+      "retain": true
+    }
+  }
+}

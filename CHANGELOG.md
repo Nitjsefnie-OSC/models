@@ -15,6 +15,9 @@ All notable changes to models are documented here.
 - Batched Hadamard/PTQ prompt processing, with real-weight session isolation and exact full-logit
   parity across sequential and batched prompts. Native activation-scale scratch now follows the
   activation block width independently of the weight format's block width.
+- SIMD Q8 fallback and ARM NEON PTQ products preserve exact scalar outputs. The ARM repair passes
+  same-host component and whole-model comparisons against both scalar native and Java SIMD;
+  native real-weight CI now exercises Linux x86 and ARM.
 - Explicit, artifact- and revision-bound publisher-reference RAG policy for Bonsai. It retains the
   0.80 relative decode floor, 1.5 latency ceiling and existing quality/contribution gates. Historical
   v6 qualifications are unchanged. Reject nonfinite decode ratios instead of letting an invalid

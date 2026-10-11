@@ -80,3 +80,10 @@ prefill ratio 0.400. It is rejected for release on ARM until corrected and remea
 The separate `42185aa7` NEON experiment is bound in `arm-neon-host.json` and its payload
 receipt. Real projection outputs match Java and the independent oracle bit for bit; whole-model
 retention is still pending. The initial native result remains part of the evidence.
+
+The NEON whole-model comparison is complete in `arm-neon-paired/`. All three measured output
+hashes match Java SIMD and the original native route, and the publisher continuation/fresh-session
+oracle passes. NEON improves decode 6.109x and prefill 6.539x over the original native route;
+against Java SIMD the ratios are 2.538x and 2.610x. Both frozen retention gates pass. The measured
+source commit is retained in the release branch history. This is same-host short-prompt route
+validation, not a claim of ARM RAG qualification. The measurement host terminated after upload.

@@ -1,0 +1,40 @@
+   Compiling jmodels-kernels v0.3.59 (/work/source/backend-native/src/main/rust/model-kernels)
+    Finished `release` profile [optimized] target(s) in 11.27s
+     Running unittests src/lib.rs (target/release/deps/jmodels_kernels-8e956fdf4000ab2e)
+
+running 32 tests
+test neon::tests::q4_0_matches_scalar_bit_for_bit ... ok
+test neon::tests::q4_k_matches_scalar_bit_for_bit ... ok
+test neon::tests::q5_0_matches_scalar_bit_for_bit ... ok
+test neon::tests::q6_k_matches_scalar_bit_for_bit ... ok
+test neon::tests::q8_0_matches_scalar_bit_for_bit ... ok
+test tests::batch_scratch_uses_stack_capacity_and_heap_fallback ... ok
+test ptq::tests::packed_scalar_and_vector_q8_reductions_are_bit_identical ... ok
+test tests::batched_k_quantized_rows_decode_each_weight_block_once ... ok
+test tests::completion_poll_observes_finished_workers_without_parking ... ok
+test tests::exports_stable_abi_and_capabilities ... ok
+test tests::a_published_job_partitions_across_the_active_pool_and_leaves_the_gate_alone ... ok
+test tests::creates_and_joins_persistent_worker_context ... ok
+test tests::chunked_gated_delta_net_matches_the_sequential_recurrence ... ok
+test tests::gated_delta_net_matches_pinned_freetoken_recurrence ... ok
+test tests::prefill_budget ... ignored
+test tests::grouped_gated_delta_net_matches_each_row_stepped_alone ... ok
+test tests::half_round_trip_matches_known_values ... ok
+test tests::q5_1_scalar_and_avx2_rows_agree_exactly ... ok
+test tests::q5_1_unpack_matches_the_block_layout ... ok
+test tests::active_count_changes_keep_every_generation_completing ... ok
+test tests::persistent_context_reuses_activation_workspace ... ok
+test tests::grouped_gated_delta_net_rejects_an_out_of_range_slot ... ok
+test tests::grouped_projection_uses_one_worker_generation ... ok
+test tests::worker_poll_observes_a_published_generation_without_parking ... ok
+test tests::rejects_invalid_dimensions_without_dereferencing_buffers ... ok
+test tests::half_conversion_preserves_subnormal_boundaries ... ok
+test tests::q5_1_grouping_is_refused_rather_than_given_empty_activations ... ok
+test tests::partition_count_bounds_the_rows_a_worker_takes ... ok
+test tests::grouped_attention_matches_a_naive_reference_across_two_spans_and_workers ... ok
+test tests::independent_projections_use_one_worker_generation ... ok
+test tests::persistent_workers_complete_repeated_generations ... ok
+test tests::worker_accounts_for_a_published_generation_without_a_job ... ok
+
+test result: ok. 31 passed; 0 failed; 1 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
