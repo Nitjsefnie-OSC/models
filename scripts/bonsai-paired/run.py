@@ -51,14 +51,7 @@ def origins(prefix, core):
     assert actual_models.parent == core.resolve().parent and actual_models.name.startswith('backend-java-')
 
 
-def main():
-    parser = argparse.ArgumentParser()
-    parser.add_argument('--model', choices=['bonsai2', 'qwen-bf16'], required=True)
-    parser.add_argument('--shard', choices=['0', '1'], required=True)
-    parser.add_argument('--models', type=Path, required=True)
-    parser.add_argument('--candidate-core', type=Path, required=True)
-    parser.add_argument('--output', type=Path, required=True)
-    args = parser.parse_args()
+def prepare(args):
     out = args.output.resolve()
     out.mkdir(parents=True, exist_ok=True)
     models = args.models.resolve()
@@ -109,6 +102,18 @@ def main():
         assert path.stat().st_size == file['sizeBytes'] and sha(path) == file['sha256']
     model = model_dir / entry['entrypoint']
     base = ['java', '--add-modules', 'jdk.incubator.vector', '--enable-native-access=ALL-UNNAMED', '-Xms2g', '-Xmx10g']
+    return out, classes, cores, native, model, base
+
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--model', choices=['bonsai2', 'qwen-bf16'], required=True)
+    parser.add_argument('--shard', choices=['0', '1'], required=True)
+    parser.add_argument('--models', type=Path, required=True)
+    parser.add_argument('--candidate-core', type=Path, required=True)
+    parser.add_argument('--output', type=Path, required=True)
+    args = parser.parse_args()
+    out, classes, cores, native, model, base = prepare(args)
     fixture_codes = {}
     for arm in ['baseline', 'candidate']:
         prefix = out / f'{args.model}-{arm}-fixture'
