@@ -265,9 +265,20 @@ public final class BertForwardPass implements SequenceEncoder {
 
   private void project(
       float[] output, float[] input, int sequenceLength, BertWeights.Matrix matrix) {
-    if (config.usesRotaryPositions()
-        || matrix.type() == GgufTensorType.Q5_1
-        || matrix.type() == GgufTensorType.Q4_1) {
+    if (matrix.type() == GgufTensorType.Q5_1) {
+      BertQ51Projection.multiply(
+          output,
+          input,
+          matrix.data(),
+          sequenceLength,
+          matrix.rows(),
+          matrix.columns(),
+          matrix.columns() == config.hiddenDim()
+              ? exactFeedForwardWeightRow
+              : exactHiddenWeightRow);
+      return;
+    }
+    if (config.usesRotaryPositions() || matrix.type() == GgufTensorType.Q4_1) {
       TensorOps.ggufExactBatchedMatmul(
           output,
           input,
