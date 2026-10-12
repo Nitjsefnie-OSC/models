@@ -31,6 +31,8 @@ fleet={'maximumCombinedUsd':budget,'maximumSecondsPerHost':duration,'payload':me
        'payloadSha256':meta['payloadSha256'],'quota':quota,'usedVcpus':used,'rates':rates,'hosts':[]}
 receipt.write_text(json.dumps(fleet,indent=2)+'\n')
 for arch,kind,jdkarch,awsarch,ami in configs:
+    if version == 'q5-final-v7':
+        assert datetime.datetime.now(datetime.timezone.utc) < datetime.datetime(2026,10,12,22,15,tzinfo=datetime.timezone.utc), 'final worker launch cutoff'
     deadline=datetime.datetime.now(datetime.timezone.utc)+datetime.timedelta(seconds=duration)
     result=f's3://models-qual-077051030817/results/{runName}/{arch}/'
     jdk=meta['jdk'][jdkarch]
