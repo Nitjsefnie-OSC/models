@@ -1,6 +1,11 @@
 name: Bonsai upstream correction validation
 
 on:
+  workflow_call:
+    inputs:
+      vectors_revision:
+        required: true
+        type: string
   workflow_dispatch:
     inputs:
       vectors_revision:

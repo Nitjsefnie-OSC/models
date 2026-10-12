@@ -30,12 +30,25 @@ on:
       - "backend-native/**"
       - "rust-toolchain.toml"
   workflow_dispatch:
+    inputs:
+      vectors_revision:
+        description: "Optional exact upstream commit: run Bonsai pre-publication validation only"
+        required: false
+        default: ""
+        type: string
 
 permissions:
   contents: read
 
 jobs:
+  bonsai-upstream-correction:
+    if: github.event_name == 'workflow_dispatch' && inputs.vectors_revision != ''
+    uses: ./.github/workflows/bonsai-upstream-validation.yml
+    with:
+      vectors_revision: ${{ inputs.vectors_revision }}
+
   bonsai-native-real-weights:
+    if: github.event_name != 'workflow_dispatch' || inputs.vectors_revision == ''
     name: Bonsai native real weights (${{ matrix.runner }})
     runs-on: ${{ matrix.runner }}
     timeout-minutes: 120
@@ -72,6 +85,7 @@ jobs:
           retention-days: 30
 
   pure-java-large-model:
+    if: github.event_name != 'workflow_dispatch' || inputs.vectors_revision == ''
     name: ${{ matrix.name }} pure-Java slow test
     runs-on: ubuntu-latest
     # Large GGUF fixtures compete for the finite Actions cache and may be evicted. A cold
