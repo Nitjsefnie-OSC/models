@@ -76,30 +76,36 @@ real Qwen/Bonsai fixture helpers already captured safely and are unaffected.
 The x86 Q4_K integer-minimum SIMD candidate preserves measured greedy continuations and final logits and reduces
 whole-request time in both tested Qwen sizes. Its first comparison has insufficient precision
 for several gates. A small-model Java-allocation difference comes from four baseline JVMs
-entering a different allocation regime; it cannot be silently discarded. The final protocol
-must record compilation and allocation during a stronger fixed warmup.
+entering a different allocation regime; it cannot be silently discarded. The final v11 protocol subsequently completed all 30 paired processes with a fixed
+32-request warmup; it retains the earlier allocation-regime observation separately.
 
 Rejected activation candidates and rejected grouped Q5_0 combinations remain experimental
 evidence. They are not production alternatives. No source revision is considered qualified
 merely because another revision passed a similarly named benchmark.
 
-## Final-candidate gates that have failed
+## Historical v9 failures and subsequent results
 
-The corrected activation implementation passes exactness checks but allocates vector/array
-objects in actual model execution. JFR confirms the exponential call boundary as the dominant
-source; a candidate keeps that vector loop inside one method. The small-model native path
-also has a separate FFM argument-view allocation cost. Neither is excused by latency gains.
+The earlier deterministic activation implementation allocated vector/array objects in
+actual model execution. The earlier small-model native path also incurred per-call FFM
+argument-view allocation. Both were measured defects. The subsequent method-boundary
+change reduced activation allocation, and prebound method-handle filters removed the
+measured FFM allocation. All 30 final v11 pairs have lower steady allocation than the
+published runtime, but RSS and several startup/precision gates still fail.
 
-Final corrected native DeltaNet equals corrected Java for both tested Qwen sizes across all
-148 cases and nine cloned snapshots on x86. Published-runtime task scores differ (small model
-86 versus 89; larger model 128 versus 130), and both allocation and resident memory regress.
-The factorial comparison isolates activation and projection corrections; these quality and
-resource results remain release gates, not harmless differences by assumption.
+Historical v9 corrected native/Java comparisons retained the full 148×9 vectors on x86.
+Its published-runtime scores differed: 86 versus 89 for the small model and 128 versus
+130 for the larger model. The factorial isolates activation and projection/Java artifact
+bundles; it does not individually attribute every correction. Final revision-specific
+cohorts and independent-oracle limitations are recorded in
+[the complete GDN report](../../benchmark-results/2026-10-11-gdn-proof/FINAL-GDN-FINDINGS.md).
 
-Bonsai's numerical fixtures pass, but first complete whole-model triplets show allocation at
-roughly 2.3–2.5 times the published runtime. Candidate/control equality attributes this to
-shared activation or Models changes, not the isolated BF16 optimization. The corrected final
-artifact must be measured again. The independent 200-case public QA run is still collecting.
+Bonsai's initial whole-model triplets allocated roughly 2.3–2.5 times the published
+runtime. Candidate/control equality did not identify the responsible shared component.
+Later actual-model JFR identified dominant BF16 helper call stacks; an isolated code-form
+change reduces their allocation on both hosts while preserving captured full logits.
+That experiment still needs its own complete performance/resource qualification.
+The independent 200-case public QA comparison is now complete: all raw answers match
+the pinned publisher, without failures or truncations, on the explicitly frozen revision.
 
 ## Publication boundary
 
@@ -128,8 +134,8 @@ The activation method-boundary correction keeps the exact arithmetic while reduc
 small-model allocation to 0.458 of the previous deterministic implementation (paired interval
 0.403–0.554). The native DeltaNet call now prebinds array-to-segment argument conversion;
 component measurements fell from 504 bytes per invocation to zero, with matching state and
-output hashes. Whole-model allocation and RSS remain separate gates; early final large-model
-measurements remove the allocation delta but still show higher RSS. The earlier failed runs
+output hashes. Whole-model allocation and RSS remain separate gates; all 30 final paired
+measurements improve steady allocation but still show higher RSS. The earlier failed runs
 above remain evidence of the rejected revisions.
 
 A further executor range check reproduced negative row indices and skipped stage work at
