@@ -40,6 +40,27 @@ permissions:
   contents: read
 
 jobs:
+  attention-memory:
+    name: Attention memory ownership
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - name: Checkout models
+        uses: actions/checkout@v5
+
+      - name: Install pinned Miri
+        run: rustup toolchain install nightly-2026-09-17 --profile minimal --component miri
+
+      - name: Check concurrent attention memory access
+        env:
+          # Keep exact cross-worker assertions reproducible; all memory checks stay enabled.
+          MIRIFLAGS: -Zmiri-deterministic-floats
+        run: >
+          cargo +nightly-2026-09-17 miri test
+          --manifest-path backend-native/src/main/rust/model-kernels/Cargo.toml
+          tests::grouped_attention_matches_a_naive_reference_across_two_spans_and_workers
+          -- --exact
+
   version:
     name: Resolve private test version
     runs-on: ubuntu-24.04
@@ -187,7 +208,7 @@ jobs:
 
   bundle:
     name: Standalone private-test JAR
-    needs: [version, native]
+    needs: [version, native, attention-memory]
     runs-on: ubuntu-24.04
     defaults:
       run:
