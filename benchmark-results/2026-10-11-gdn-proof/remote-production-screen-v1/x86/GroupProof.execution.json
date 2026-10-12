@@ -1,0 +1,18 @@
+{
+  "command": [
+    "/opt/jdk/bin/java",
+    "--add-modules",
+    "jdk.incubator.vector",
+    "--enable-native-access=ALL-UNNAMED",
+    "-Xms2g",
+    "-Xmx10g",
+    "-XX:ActiveProcessorCount=4",
+    "-Dmodels.native.kernels.threads=4",
+    "-cp",
+    "lib/*:gdn.jar:activation-probe.jar",
+    "com.integrallis.models.backend.purejava.qwen35.GroupProof",
+    "/work/rust/sequential-aligned-parallel-exclusive/target/release/libjmodels_kernels.so"
+  ],
+  "exitCode": 0,
+  "wallSeconds": 1.9684257839999972
+}

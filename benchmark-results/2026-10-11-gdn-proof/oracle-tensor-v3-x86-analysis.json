@@ -1,0 +1,3679 @@
+{
+  "scope": "diagnosis only; original independent greedy gate remains unchanged",
+  "models": {
+    "qwen-0.8b": {
+      "baseline-512": {
+        "cases": [
+          {
+            "id": "easy-intent-00",
+            "exactTokens": true,
+            "modelsTokens": [
+              357,
+              271,
+              248068,
+              271,
+              248069,
+              271,
+              760,
+              1156
+            ],
+            "oracleTokens": [
+              357,
+              271,
+              248068,
+              271,
+              248069,
+              271,
+              760,
+              1156
+            ],
+            "comparablePrefixSteps": [
+              {
+                "elements": 248320,
+                "exactElements": 0,
+                "maxAbsError": 0.8205394744873047,
+                "rmse": 0.16558388070211016,
+                "referenceRms": 3.0033907088474727,
+                "meanError": 0.03239111911164016,
+                "step": 0,
+                "modelsTopTokens": [
+                  357,
+                  271
+                ],
+                "oracleTopTokens": [
+                  357,
+                  271
+                ],
+                "modelsMargin": 0.21909332275390625,
+                "oracleMargin": 0.1474628448486328,
+                "modelsGapAtOracleWinner": 0.0,
+                "oracleGapAtModelsWinner": 0.0
+              },
+              {
+                "elements": 248320,
+                "exactElements": 0,
+                "maxAbsError": 0.7248835563659668,
+                "rmse": 0.15240230163061644,
+                "referenceRms": 2.498649124194689,
+                "meanError": -0.013718855265511762,
+                "step": 1,
+                "modelsTopTokens": [
+                  271,
+                  25
+                ],
+                "oracleTopTokens": [
+                  271,
+                  25
+                ],
+                "modelsMargin": 0.2769336700439453,
+                "oracleMargin": 0.17288780212402344,
+                "modelsGapAtOracleWinner": 0.0,
+                "oracleGapAtModelsWinner": 0.0
+              },
+              {
+                "elements": 248320,
+                "exactElements": 0,
+                "maxAbsError": 0.8302512168884277,
+                "rmse": 0.17143627630660155,
+                "referenceRms": 2.452061848893317,
+                "meanError": -0.06183151024367934,
+                "step": 2,
+                "modelsTopTokens": [
+                  248068,
+                  8160
+                ],
+                "oracleTopTokens": [
+                  248068,
+                  5328
+                ],
+                "modelsMargin": 2.0631370544433594,
+                "oracleMargin": 2.222005844116211,
+                "modelsGapAtOracleWinner": 0.0,
+                "oracleGapAtModelsWinner": 0.0
+              },
+              {
+                "elements": 248320,
+                "exactElements": 0,
+                "maxAbsError": 1.2998828887939453,
+                "rmse": 0.27279346444602554,
+                "referenceRms": 3.687187243533385,
+                "meanError": 0.06840387302554049,
+                "step": 3,
+                "modelsTopTokens": [
+                  271,
+                  198
+                ],
+                "oracleTopTokens": [
+                  271,
+                  198
+                ],
+                "modelsMargin": 0.1259593963623047,
+                "oracleMargin": 0.0206298828125,
+                "modelsGapAtOracleWinner": 0.0,
+                "oracleGapAtModelsWinner": 0.0
+              },
+              {
+                "elements": 248320,
+                "exactElements": 1,
+                "maxAbsError": 1.5290884971618652,
+                "rmse": 0.2871647483758229,
+                "referenceRms": 3.039098014070254,
+                "meanError": 0.030682800422403386,
+                "step": 4,
+                "modelsTopTokens": [
+                  248069,
+                  27
+                ],
+                "oracleTopTokens": [
+                  248069,
+                  27
+                ],
+                "modelsMargin": 7.958377838134766,
+                "oracleMargin": 7.239711761474609,
+                "modelsGapAtOracleWinner": 0.0,
+                "oracleGapAtModelsWinner": 0.0
+              },
+              {
+                "elements": 248320,
+                "exactElements": 0,
+                "maxAbsError": 1.1350181102752686,
+                "rmse": 0.2338430252473563,
+                "referenceRms": 2.980286474160162,
+                "meanError": -0.057548372949276734,
+                "step": 5,
+                "modelsTopTokens": [
+                  271,
+                  18050
+                ],
+                "oracleTopTokens": [
+                  271,
+                  18050
+                ],
+                "modelsMargin": 11.345220565795898,
+                "oracleMargin": 11.328424453735352,
+                "modelsGapAtOracleWinner": 0.0,
+                "oracleGapAtModelsWinner": 0.0
+              },
+              {
+                "elements": 248320,
+                "exactElements": 1,
+                "maxAbsError": 1.3319945335388184,
+                "rmse": 0.23767099250618193,
+                "referenceRms": 2.6524225852531584,
+                "meanError": -0.026697464842084056,
+                "step": 6,
+                "modelsTopTokens": [
+                  760,
+                  32
+                ],
+                "oracleTopTokens": [
+                  760,
+                  32
+                ],
+                "modelsMargin": 0.5945148468017578,
+                "oracleMargin": 0.3437309265136719,
+                "modelsGapAtOracleWinner": 0.0,
+                "oracleGapAtModelsWinner": 0.0
+              },
+              {
+                "elements": 248320,
+                "exactElements": 0,
+                "maxAbsError": 0.9009642601013184,
+                "rmse": 0.16679297552350444,
+                "referenceRms": 3.1356750823564856,
+                "meanError": 0.015822505624754804,
+                "step": 7,
+                "modelsTopTokens": [
+                  1156,
+                  1876
+                ],
+                "oracleTopTokens": [
+                  1156,
+                  1876
+                ],
+                "modelsMargin": 2.840190887451172,
+                "oracleMargin": 2.8936691284179688,
+                "modelsGapAtOracleWinner": 0.0,
+                "oracleGapAtModelsWinner": 0.0
+              }
+            ]
+          },
+          {
+            "id": "easy-intent-01",
+            "exactTokens": false,
+            "modelsTokens": [
+              417,
+              271,
+              248068,
+              198,
+              90700,
+              8340,
+              25,
+              271
+            ],
+            "oracleTokens": [
+              271,
+              248068,
+              271,
+              248069,
+              271,
+              760,
+              1156,
+              579
+            ],
+            "comparablePrefixSteps": [
+              {
+                "elements": 248320,
+                "exactElements": 0,
+                "maxAbsError": 0.742058277130127,
+                "rmse": 0.15353718600409438,
+                "referenceRms": 2.9465152841170865,
+                "meanError": 0.04748508340700712,
+                "step": 0,
+                "modelsTopTokens": [
+                  417,
+                  271
+                ],
+                "oracleTopTokens": [
+                  271,
+                  417
+                ],
+                "modelsMargin": 0.25313758850097656,
+                "oracleMargin": 0.03357696533203125,
+                "modelsGapAtOracleWinner": 0.25313758850097656,
+                "oracleGapAtModelsWinner": 0.03357696533203125
+              }
+            ]
+          },
+          {
+            "id": "easy-intent-02",
+            "exactTokens": false,
+            "modelsTokens": [
+              3627,
+              7621,
+              271,
+              248068,
+              198,
+              90700,
+              8340,
+              25
+            ],
+            "oracleTokens": [
+              271,
+              248068,
+              271,
+              248069,
+              271,
+              760,
+              1156,
+              579
+            ],
+            "comparablePrefixSteps": [
+              {
+                "elements": 248320,
+                "exactElements": 1,
+                "maxAbsError": 0.824113130569458,
+                "rmse": 0.1693417774048922,
+                "referenceRms": 2.9472112954346943,
+                "meanError": -0.05213751292756888,
+                "step": 0,
+                "modelsTopTokens": [
+                  3627,
+                  271
+                ],
+                "oracleTopTokens": [
+                  271,
+                  357
+                ],
+                "modelsMargin": 0.14377784729003906,
+                "oracleMargin": 0.2080535888671875,
+                "modelsGapAtOracleWinner": 0.14377784729003906,
+                "oracleGapAtModelsWinner": 0.417572021484375
+              }
+            ]
+          },
+          {
+            "id": "easy-intent-03",
+            "exactTokens": false,
+            "modelsTokens": [
+              414,
+              271,
+              248068,
+              198,
+              90700,
+              8340,
+              25,
+              271
+            ],
+            "oracleTokens": [
+              414,
+              271,
+              248068,
+              198,
+              760,
+              1156,
+              6587,
+              728
+            ],
+            "comparablePrefixSteps": [
+              {
+                "elements": 248320,
+                "exactElements": 0,
+                "maxAbsError": 0.9836065769195557,
+                "rmse": 0.21261297080550778,
+                "referenceRms": 3.0358523706415794,
+                "meanError": -0.060982258929679,
+                "step": 0,
+                "modelsTopTokens": [
+                  414,
+                  271
+                ],
+                "oracleTopTokens": [
+                  414,
+                  271
+                ],
+                "modelsMargin": 0.31514549255371094,
+                "oracleMargin": 0.3258647918701172,
+                "modelsGapAtOracleWinner": 0.0,
+                "oracleGapAtModelsWinner": 0.0
+              },
+              {
+                "elements": 248320,
+                "exactElements": 0,
+                "maxAbsError": 1.0170776844024658,
+                "rmse": 0.18617277392668313,
+                "referenceRms": 2.4068426763010704,
+                "meanError": 0.035929073974191324,
+                "step": 1,
+                "modelsTopTokens": [
+                  271,
+                  25
+                ],
+                "oracleTopTokens": [
+                  271,
+                  25
+                ],
+                "modelsMargin": 0.9146404266357422,
+                "oracleMargin": 0.5313510894775391,
+                "modelsGapAtOracleWinner": 0.0,
+                "oracleGapAtModelsWinner": 0.0
+              },
+              {
+                "elements": 248320,
+                "exactElements": 0,
+                "maxAbsError": 1.04514741897583,
+                "rmse": 0.20303936058368183,
+                "referenceRms": 2.4064667932476214,
+                "meanError": 0.09834514794044302,
+                "step": 2,
+                "modelsTopTokens": [
+                  248068,
+                  760
+                ],
+                "oracleTopTokens": [
+                  248068,
+                  760
+                ],
+                "modelsMargin": 0.6514148712158203,
+                "oracleMargin": 0.3524913787841797,
+                "modelsGapAtOracleWinner": 0.0,
+                "oracleGapAtModelsWinner": 0.0
+              },
+              {
+                "elements": 248320,
+                "exactElements": 0,
+                "maxAbsError": 1.4608283042907715,
+                "rmse": 0.3487970715117934,
+                "referenceRms": 3.7876230354392644,
+                "meanError": 0.209663674760143,
+                "step": 3,
+                "modelsTopTokens": [
+                  198,
+                  271
+                ],
+                "oracleTopTokens": [
+                  198,
+                  271
+                ],
+                "modelsMargin": 0.4242668151855469,
+                "oracleMargin": 0.3053722381591797,
+                "modelsGapAtOracleWinner": 0.0,
+                "oracleGapAtModelsWinner": 0.0
+              },
+              {
+                "elements": 248320,
+                "exactElements": 0,
+                "maxAbsError": 1.772472858428955,
+                "rmse": 0.3290420746680754,
+                "referenceRms": 3.0469036603346584,
+                "meanError": 0.012476693084445475,
+                "step": 4,
+                "modelsTopTokens": [
+                  90700,
+                  760
+                ],
+                "oracleTopTokens": [
+                  760,
+                  90700
+                ],
+                "modelsMargin": 0.3070564270019531,
+                "oracleMargin": 0.25044822692871094,
+                "modelsGapAtOracleWinner": 0.3070564270019531,
+                "oracleGapAtModelsWinner": 0.25044822692871094
+              }
+            ]
+          },
+          {
+            "id": "original-routing-06-0",
+            "exactTokens": false,
+            "modelsTokens": [
+              357,
+              271,
+              248068,
+              271,
+              248069,
+              271,
+              32,
+              25
+            ],
+            "oracleTokens": [
+              351,
+              271,
+              248068,
+              271,
+              248069,
+              271,
+              34,
+              248044
+            ],
+            "comparablePrefixSteps": [
+              {
+                "elements": 248320,
+                "exactElements": 0,
+                "maxAbsError": 1.024512767791748,
+                "rmse": 0.20070809316128838,
+                "referenceRms": 3.2715068116180888,
+                "meanError": 0.06886805995246252,
+                "step": 0,
+                "modelsTopTokens": [
+                  357,
+                  351
+                ],
+                "oracleTopTokens": [
+                  351,
+                  417
+                ],
+                "modelsMargin": 0.05543708801269531,
+                "oracleMargin": 0.11873817443847656,
+                "modelsGapAtOracleWinner": 0.05543708801269531,
+                "oracleGapAtModelsWinner": 0.16049766540527344
+              }
+            ]
+          },
+          {
+            "id": "snips-AddToPlaylist-0",
+            "exactTokens": true,
+            "modelsTokens": [
+              357,
+              271,
+              248068,
+              198,
+              760,
+              1156,
+              6587,
+              728
+            ],
+            "oracleTokens": [
+              357,
+              271,
+              248068,
+              198,
+              760,
+              1156,
+              6587,
+              728
+            ],
+            "comparablePrefixSteps": [
+              {
+                "elements": 248320,
+                "exactElements": 0,
+                "maxAbsError": 0.8730440139770508,
+                "rmse": 0.18056949266514324,
+                "referenceRms": 3.0008064175594056,
+                "meanError": -0.03549425080247564,
+                "step": 0,
+                "modelsTopTokens": [
+                  357,
+                  414
+                ],
+                "oracleTopTokens": [
+                  357,
+                  414
+                ],
+                "modelsMargin": 0.4795570373535156,
+                "oracleMargin": 0.21502685546875,
+                "modelsGapAtOracleWinner": 0.0,
+                "oracleGapAtModelsWinner": 0.0
+              },
+              {
+                "elements": 248320,
+                "exactElements": 0,
+                "maxAbsError": 0.8735830783843994,
+                "rmse": 0.17538336571195795,
+                "referenceRms": 2.403074238554183,
+                "meanError": 0.0785162071553695,
+                "step": 1,
+                "modelsTopTokens": [
+                  271,
+                  198
+                ],
+                "oracleTopTokens": [
+                  271,
+                  198
+                ],
+                "modelsMargin": 1.1998405456542969,
+                "oracleMargin": 1.2261981964111328,
+                "modelsGapAtOracleWinner": 0.0,
+                "oracleGapAtModelsWinner": 0.0
+              },
+              {
+                "elements": 248320,
+                "exactElements": 0,
+                "maxAbsError": 0.8297669887542725,
+                "rmse": 0.15558975320718768,
+                "referenceRms": 2.401363900134325,
+                "meanError": 0.03864976171420326,
+                "step": 2,
+                "modelsTopTokens": [
+                  248068,
+                  760
+                ],
+                "oracleTopTokens": [
+                  248068,
+                  760
+                ],
+                "modelsMargin": 1.5450401306152344,
+                "oracleMargin": 1.7445392608642578,
+                "modelsGapAtOracleWinner": 0.0,
+                "oracleGapAtModelsWinner": 0.0
+              },
+              {
+                "elements": 248320,
+                "exactElements": 0,
+                "maxAbsError": 1.566239356994629,
+                "rmse": 0.3011359164873192,
+                "referenceRms": 3.70099128341959,
+                "meanError": 0.1556820801231523,
+                "step": 3,
+                "modelsTopTokens": [
+                  198,
+                  271
+                ],
+                "oracleTopTokens": [
+                  198,
+                  271
+                ],
+                "modelsMargin": 0.11686134338378906,
+                "oracleMargin": 0.1387920379638672,
+                "modelsGapAtOracleWinner": 0.0,
+                "oracleGapAtModelsWinner": 0.0
+              },
+              {
+                "elements": 248320,
+                "exactElements": 0,
+                "maxAbsError": 1.994295358657837,
+                "rmse": 0.34801157392435905,
+                "referenceRms": 2.7770588637151485,
+                "meanError": 0.031315866537024895,
+                "step": 4,
+                "modelsTopTokens": [
+                  760,
+                  90700
+                ],
+                "oracleTopTokens": [
+                  760,
+                  90700
+                ],
+                "modelsMargin": 0.24689483642578125,
+                "oracleMargin": 0.026988983154296875,
+                "modelsGapAtOracleWinner": 0.0,
+                "oracleGapAtModelsWinner": 0.0
+              },
+              {
+                "elements": 248320,
+                "exactElements": 0,
+                "maxAbsError": 1.3732528686523438,
+                "rmse": 0.2796043317799101,
+                "referenceRms": 4.152866860222239,
+                "meanError": -0.02651893601551191,
+                "step": 5,
+                "modelsTopTokens": [
+                  1156,
+                  1622
+                ],
+                "oracleTopTokens": [
+                  1156,
+                  1622
+                ],
+                "modelsMargin": 7.235746383666992,
+                "oracleMargin": 6.9014434814453125,
+                "modelsGapAtOracleWinner": 0.0,
+                "oracleGapAtModelsWinner": 0.0
+              },
+              {
+                "elements": 248320,
+                "exactElements": 0,
+                "maxAbsError": 1.1477203369140625,
+                "rmse": 0.22720723495691686,
+                "referenceRms": 3.7158657686921637,
+                "meanError": 0.02070319369332097,
+                "step": 6,
+                "modelsTopTokens": [
+                  6587,
+                  369
+                ],
+                "oracleTopTokens": [
+                  6587,
+                  369
+                ],
+                "modelsMargin": 4.12022590637207,
+                "oracleMargin": 5.033760070800781,
+                "modelsGapAtOracleWinner": 0.0,
+                "oracleGapAtModelsWinner": 0.0
+              },
+              {
+                "elements": 248320,
+                "exactElements": 0,
+                "maxAbsError": 1.2938616275787354,
+                "rmse": 0.27951047793951894,
+                "referenceRms": 4.113151562665806,
+                "meanError": 0.09559642042107784,
+                "step": 7,
+                "modelsTopTokens": [
+                  728,
+                  310
+                ],
+                "oracleTopTokens": [
+                  728,
+                  310
+                ],
+                "modelsMargin": 0.010372161865234375,
+                "oracleMargin": 0.23532867431640625,
+                "modelsGapAtOracleWinner": 0.0,
+                "oracleGapAtModelsWinner": 0.0
+              }
+            ]
+          },
+          {
+            "id": "snips-AddToPlaylist-1",
+            "exactTokens": false,
+            "modelsTokens": [
+              414,
+              198,
+              35,
+              25,
+              6834,
+              23373,
+              198,
+              35
+            ],
+            "oracleTokens": [
+              357,
+              271,
+              248068,
+              198,
+              90700,
+              8340,
+              25,
+              271
+            ],
+            "comparablePrefixSteps": [
+              {
+                "elements": 248320,
+                "exactElements": 0,
+                "maxAbsError": 0.9436788558959961,
+                "rmse": 0.2182506242601791,
+                "referenceRms": 3.1318569119802318,
+                "meanError": 0.1315119304630627,
+                "step": 0,
+                "modelsTopTokens": [
+                  414,
+                  357
+                ],
+                "oracleTopTokens": [
+                  357,
+                  414
+                ],
+                "modelsMargin": 0.010318756103515625,
+                "oracleMargin": 0.44405555725097656,
+                "modelsGapAtOracleWinner": 0.010318756103515625,
+                "oracleGapAtModelsWinner": 0.44405555725097656
+              }
+            ]
+          },
+          {
+            "id": "snips-AddToPlaylist-2",
+            "exactTokens": true,
+            "modelsTokens": [
+              357,
+              271,
+              248068,
+              198,
+              90700,
+              8340,
+              25,
+              271
+            ],
+            "oracleTokens": [
+              357,
+              271,
+              248068,
+              198,
+              90700,
+              8340,
+              25,
+              271
+            ],
+            "comparablePrefixSteps": [
+              {
+                "elements": 248320,
+                "exactElements": 0,
+                "maxAbsError": 0.8867330551147461,
+                "rmse": 0.17885178602400978,
+                "referenceRms": 2.9030759757945317,
+                "meanError": -0.08056933085200708,
+                "step": 0,
+                "modelsTopTokens": [
+                  357,
+                  414
+                ],
+                "oracleTopTokens": [
+                  357,
+                  414
+                ],
+                "modelsMargin": 0.5700206756591797,
+                "oracleMargin": 0.37524986267089844,
+                "modelsGapAtOracleWinner": 0.0,
+                "oracleGapAtModelsWinner": 0.0
+              },
+              {
+                "elements": 248320,
+                "exactElements": 0,
+                "maxAbsError": 0.7938737869262695,
+                "rmse": 0.15345892287722288,
+                "referenceRms": 2.4046967628204294,
+                "meanError": 0.035809654186416136,
+                "step": 1,
+                "modelsTopTokens": [
+                  271,
+                  198
+                ],
+                "oracleTopTokens": [
+                  271,
+                  198
+                ],
+                "modelsMargin": 0.5946712493896484,
+                "oracleMargin": 0.6100502014160156,
+                "modelsGapAtOracleWinner": 0.0,
+                "oracleGapAtModelsWinner": 0.0
+              },
+              {
+                "elements": 248320,
+                "exactElements": 0,
+                "maxAbsError": 0.666440486907959,
+                "rmse": 0.14229869393664257,
+                "referenceRms": 2.328693750606397,
+                "meanError": -0.0493812056001487,
+                "step": 2,
+                "modelsTopTokens": [
+                  248068,
+                  3710
+                ],
+                "oracleTopTokens": [
+                  248068,
+                  3710
+                ],
+                "modelsMargin": 2.703306198120117,
+                "oracleMargin": 2.498699188232422,
+                "modelsGapAtOracleWinner": 0.0,
+                "oracleGapAtModelsWinner": 0.0
+              },
+              {
+                "elements": 248320,
+                "exactElements": 1,
+                "maxAbsError": 1.5437076091766357,
+                "rmse": 0.29010737597131186,
+                "referenceRms": 3.649278152844637,
+                "meanError": -0.1506006085082826,
+                "step": 3,
+                "modelsTopTokens": [
+                  198,
+                  271
+                ],
+                "oracleTopTokens": [
+                  198,
+                  271
+                ],
+                "modelsMargin": 0.003757476806640625,
+                "oracleMargin": 0.15954017639160156,
+                "modelsGapAtOracleWinner": 0.0,
+                "oracleGapAtModelsWinner": 0.0
+              },
+              {
+                "elements": 248320,
+                "exactElements": 0,
+                "maxAbsError": 1.6785790920257568,
+                "rmse": 0.2879140870281437,
+                "referenceRms": 2.785773858627157,
+                "meanError": 0.01675477778671379,
+                "step": 4,
+                "modelsTopTokens": [
+                  90700,
+                  760
+                ],
+                "oracleTopTokens": [
+                  90700,
+                  760
+                ],
+                "modelsMargin": 1.4168453216552734,
+                "oracleMargin": 0.9036407470703125,
+                "modelsGapAtOracleWinner": 0.0,
+                "oracleGapAtModelsWinner": 0.0
+              },
+              {
+                "elements": 248320,
+                "exactElements": 0,
+                "maxAbsError": 1.9589900970458984,
+                "rmse": 0.365121893720576,
+                "referenceRms": 3.78185540033518,
+                "meanError": 0.08959449671080441,
+                "step": 5,
+                "modelsTopTokens": [
+                  8340,
+                  4451
+                ],
+                "oracleTopTokens": [
+                  8340,
+                  26679
+                ],
+                "modelsMargin": 9.374307632446289,
+                "oracleMargin": 9.689064025878906,
+                "modelsGapAtOracleWinner": 0.0,
+                "oracleGapAtModelsWinner": 0.0
+              },
+              {
+                "elements": 248320,
+                "exactElements": 0,
+                "maxAbsError": 1.974128007888794,
+                "rmse": 0.4521041777123077,
+                "referenceRms": 3.755601898684757,
+                "meanError": 0.22834481115956412,
+                "step": 6,
+                "modelsTopTokens": [
+                  25,
+                  64700
+                ],
+                "oracleTopTokens": [
+                  25,
+                  64700
+                ],
+                "modelsMargin": 11.6539306640625,
+                "oracleMargin": 10.964532852172852,
+                "modelsGapAtOracleWinner": 0.0,
+                "oracleGapAtModelsWinner": 0.0
+              },
+              {
+                "elements": 248320,
+                "exactElements": 0,
+                "maxAbsError": 1.8922209739685059,
+                "rmse": 0.34397827828587874,
+                "referenceRms": 3.645291044402208,
+                "meanError": -0.002752158584219605,
+                "step": 7,
+                "modelsTopTokens": [
+                  271,
+                  198
+                ],
+                "oracleTopTokens": [
+                  271,
+                  198
+                ],
+                "modelsMargin": 10.000419616699219,
+                "oracleMargin": 9.497425079345703,
+                "modelsGapAtOracleWinner": 0.0,
+                "oracleGapAtModelsWinner": 0.0
+              }
+            ]
+          },
+          {
+            "id": "snips-AddToPlaylist-3",
+            "exactTokens": false,
+            "modelsTokens": [
+              357,
+              271,
+              248068,
+              271,
+              248069,
+              271,
+              32,
+              25
+            ],
+            "oracleTokens": [
+              357,
+              271,
+              248068,
+              198,
+              90700,
+              8340,
+              25,
+              271
+            ],
+            "comparablePrefixSteps": [
+              {
+                "elements": 248320,
+                "exactElements": 1,
+                "maxAbsError": 0.716111421585083,
+                "rmse": 0.15222507676153219,
+                "referenceRms": 2.9574758278882602,
+                "meanError": 0.026881140708946143,
+                "step": 0,
+                "modelsTopTokens": [
+                  357,
+                  414
+                ],
+                "oracleTopTokens": [
+                  357,
+                  414
+                ],
+                "modelsMargin": 1.1335220336914062,
+                "oracleMargin": 0.7618274688720703,
+                "modelsGapAtOracleWinner": 0.0,
+                "oracleGapAtModelsWinner": 0.0
+              },
+              {
+                "elements": 248320,
+                "exactElements": 0,
+                "maxAbsError": 0.9186935424804688,
+                "rmse": 0.16898588442867749,
+                "referenceRms": 2.391390814274659,
+                "meanError": -0.0430484705423689,
+                "step": 1,
+                "modelsTopTokens": [
+                  271,
+                  198
+                ],
+                "oracleTopTokens": [
+                  271,
+                  198
+                ],
+                "modelsMargin": 0.19524192810058594,
+                "oracleMargin": 0.1666736602783203,
+                "modelsGapAtOracleWinner": 0.0,
+                "oracleGapAtModelsWinner": 0.0
+              },
+              {
+                "elements": 248320,
+                "exactElements": 0,
+                "maxAbsError": 0.7431621551513672,
+                "rmse": 0.15948746088886276,
+                "referenceRms": 2.3470467273133355,
+                "meanError": 0.09100334114654916,
+                "step": 2,
+                "modelsTopTokens": [
+                  248068,
+                  760
+                ],
+                "oracleTopTokens": [
+                  248068,
+                  760
+                ],
+                "modelsMargin": 2.483541488647461,
+                "oracleMargin": 2.836030960083008,
+                "modelsGapAtOracleWinner": 0.0,
+                "oracleGapAtModelsWinner": 0.0
+              },
+              {
+                "elements": 248320,
+                "exactElements": 0,
+                "maxAbsError": 1.6718635559082031,
+                "rmse": 0.29792720735757483,
+                "referenceRms": 3.6321780624158455,
+                "meanError": 0.11848412188911359,
+                "step": 3,
+                "modelsTopTokens": [
+                  271,
+                  198
+                ],
+                "oracleTopTokens": [
+                  198,
+                  271
+                ],
+                "modelsMargin": 0.13187789916992188,
+                "oracleMargin": 0.00634002685546875,
+                "modelsGapAtOracleWinner": 0.13187789916992188,
+                "oracleGapAtModelsWinner": 0.00634002685546875
+              }
+            ]
+          }
+        ],
+        "exactCases": 3,
+        "firstLayer": [
+          {
+            "weight": "attn_qkv.weight",
+            "oracleTensor": "linear_attn_qkv_mixed-0",
+            "comparable": true,
+            "elements": 749568,
+            "exactElements": 140620,
+            "maxAbsError": 4.76837158203125e-06,
+            "rmse": 1.536765256620286e-07,
+            "referenceRms": 1.2855761079048798,
+            "meanError": 9.414107623384339e-11
+          },
+          {
+            "weight": "attn_gate.weight",
+            "oracleTensor": "z-0",
+            "comparable": true,
+            "elements": 249856,
+            "exactElements": 50194,
+            "maxAbsError": 3.814697265625e-06,
+            "rmse": 2.175870497187096e-07,
+            "referenceRms": 0.9141175641451368,
+            "meanError": 9.491891134649583e-10
+          },
+          {
+            "weight": "ssm_beta.weight",
+            "oracleTensor": "beta-0",
+            "comparable": true,
+            "elements": 1952,
+            "exactElements": 413,
+            "maxAbsError": 1.9073486328125e-06,
+            "rmse": 1.879508880243793e-07,
+            "referenceRms": 1.383245635942967,
+            "meanError": 1.5346903056211648e-08
+          },
+          {
+            "weight": "ssm_alpha.weight",
+            "oracleTensor": "alpha-0",
+            "comparable": true,
+            "elements": 1952,
+            "exactElements": 439,
+            "maxAbsError": 1.1920928955078125e-06,
+            "rmse": 2.810397063233055e-07,
+            "referenceRms": 2.366636147711021,
+            "meanError": -2.1702273115210357e-08
+          },
+          {
+            "weight": "ssm_out.weight",
+            "oracleTensor": "linear_attn_out-0",
+            "comparable": true,
+            "elements": 124928,
+            "exactElements": 1017,
+            "maxAbsError": 0.001315038651227951,
+            "rmse": 1.9135001133701666e-05,
+            "referenceRms": 0.03928620971550823,
+            "meanError": 1.3145416368182572e-07
+          },
+          {
+            "weight": "ffn_gate.weight",
+            "oracleTensor": "ffn_gate-0",
+            "comparable": true,
+            "elements": 437248,
+            "exactElements": 17297,
+            "maxAbsError": 0.03374791145324707,
+            "rmse": 0.0007842805313592341,
+            "referenceRms": 0.4237425151967081,
+            "meanError": 3.5154237591685233e-06
+          },
+          {
+            "weight": "ffn_up.weight",
+            "oracleTensor": "ffn_up-0",
+            "comparable": true,
+            "elements": 437248,
+            "exactElements": 16686,
+            "maxAbsError": 0.01678335666656494,
+            "rmse": 0.0005238587239425403,
+            "referenceRms": 0.20349818275330955,
+            "meanError": 4.947481959978568e-07
+          },
+          {
+            "weight": "ffn_down.weight",
+            "oracleTensor": "ffn_out-0",
+            "comparable": true,
+            "elements": 124928,
+            "exactElements": 3306,
+            "maxAbsError": 0.0056609660387039185,
+            "rmse": 0.00010951598711828166,
+            "referenceRms": 0.02049789927450571,
+            "meanError": 3.67818044379255e-07
+          },
+          {
+            "weight": "attn_qkv.weight.input",
+            "oracleTensor": "attn_norm-0",
+            "comparable": true,
+            "elements": 124928,
+            "exactElements": 119541,
+            "maxAbsError": 4.76837158203125e-07,
+            "rmse": 2.6305614826716813e-08,
+            "referenceRms": 1.2406567354399411,
+            "meanError": -1.0973575418112707e-11,
+            "q8KReferenceReplay": {
+              "quantizedIntegersDifferent": 0,
+              "blocksWithDifferentIntegers": 0,
+              "scaleBitsDifferent": 18,
+              "blocks": 488
+            }
+          },
+          {
+            "weight": "ssm_out.weight.input",
+            "oracleTensor": "final_output-0",
+            "comparable": true,
+            "elements": 249856,
+            "exactElements": 7359,
+            "maxAbsError": 0.0002651214599609375,
+            "rmse": 1.3192940127814172e-06,
+            "referenceRms": 0.10852740253969984,
+            "meanError": -1.2025022343658011e-08,
+            "q8KReferenceReplay": {
+              "quantizedIntegersDifferent": 5,
+              "blocksWithDifferentIntegers": 5,
+              "scaleBitsDifferent": 843,
+              "blocks": 976
+            }
+          },
+          {
+            "weight": "ffn_gate.weight.input",
+            "oracleTensor": "attn_post_norm-0",
+            "comparable": true,
+            "elements": 124928,
+            "exactElements": 788,
+            "maxAbsError": 0.03182554244995117,
+            "rmse": 0.0005652773074646562,
+            "referenceRms": 0.8938230652551448,
+            "meanError": 4.02953555854025e-06,
+            "q8KReferenceReplay": {
+              "quantizedIntegersDifferent": 423,
+              "blocksWithDifferentIntegers": 52,
+              "scaleBitsDifferent": 468,
+              "blocks": 488
+            }
+          }
+        ],
+        "availableOracleTensorNames": [
+          "a_softplus-0",
+          "alpha-0",
+          "attn_norm-0",
+          "attn_output-0",
+          "attn_post_norm-0",
+          "attn_residual-0",
+          "beta-0",
+          "beta_sigmoid-0",
+          "cache_s_l0 (view) (copy of new_state-0)",
+          "conv_input-0",
+          "conv_output_raw-0",
+          "conv_output_silu-0",
+          "conv_state_last-0",
+          "conv_state_update-0",
+          "conv_state_update-0 (copy of conv_state_last-0)",
+          "conv_states-0",
+          "conv_states_reshaped-0",
+          "ffn_gate-0",
+          "ffn_out-0",
+          "ffn_swiglu-0",
+          "ffn_up-0",
+          "final_output-0",
+          "gate-0",
+          "gate-0 (reshaped)",
+          "k_conv-0",
+          "k_conv_predelta-0",
+          "l_out-0",
+          "linear_attn_out-0",
+          "linear_attn_out-0 (reshaped)",
+          "linear_attn_qkv_mixed-0",
+          "model.input_embed",
+          "new_state-0",
+          "norm-0",
+          "q_conv-0",
+          "q_conv_predelta-0",
+          "qkv_mixed_transposed-0",
+          "state_predelta-0",
+          "v_conv_predelta-0",
+          "z-0",
+          "z-0 (reshaped)"
+        ],
+        "availableModelsTensorNames": [
+          "blk.0.attn_gate.weight.input",
+          "blk.0.attn_gate.weight.output",
+          "blk.0.attn_qkv.weight.input",
+          "blk.0.attn_qkv.weight.output",
+          "blk.0.ffn_down.weight.input",
+          "blk.0.ffn_down.weight.output",
+          "blk.0.ffn_gate.weight.input",
+          "blk.0.ffn_gate.weight.output",
+          "blk.0.ffn_up.weight.input",
+          "blk.0.ffn_up.weight.output",
+          "blk.0.ssm_alpha.weight.input",
+          "blk.0.ssm_alpha.weight.output",
+          "blk.0.ssm_beta.weight.input",
+          "blk.0.ssm_beta.weight.output",
+          "blk.0.ssm_out.weight.input",
+          "blk.0.ssm_out.weight.output"
+        ]
+      },
+      "baseline-32": {
+        "cases": [
+          {
+            "id": "easy-intent-00",
+            "exactTokens": true,
+            "modelsTokens": [
+              357,
+              271,
+              248068,
+              271,
+              248069,
+              271,
+              760,
+              1156
+            ],
+            "oracleTokens": [
+              357,
+              271,
+              248068,
+              271,
+              248069,
+              271,
+              760,
+              1156
+            ],
+            "comparablePrefixSteps": [
+              {
+                "elements": 248320,
+                "exactElements": 0,
+                "maxAbsError": 0.8205394744873047,
+                "rmse": 0.16558388070211016,
+                "referenceRms": 3.0033907088474727,
+                "meanError": 0.03239111911164016,
+                "step": 0,
+                "modelsTopTokens": [
+                  357,
+                  271
+                ],
+                "oracleTopTokens": [
+                  357,
+                  271
+                ],
+                "modelsMargin": 0.21909332275390625,
+                "oracleMargin": 0.1474628448486328,
+                "modelsGapAtOracleWinner": 0.0,
+                "oracleGapAtModelsWinner": 0.0
+              },
+              {
+                "elements": 248320,
+                "exactElements": 0,
+                "maxAbsError": 0.7248835563659668,
+                "rmse": 0.15240230163061644,
+                "referenceRms": 2.498649124194689,
+                "meanError": -0.013718855265511762,
+                "step": 1,
+                "modelsTopTokens": [
+                  271,
+                  25
+                ],
+                "oracleTopTokens": [
+                  271,
+                  25
+                ],
+                "modelsMargin": 0.2769336700439453,
+                "oracleMargin": 0.17288780212402344,
+                "modelsGapAtOracleWinner": 0.0,
+                "oracleGapAtModelsWinner": 0.0
+              },
+              {
+                "elements": 248320,
+                "exactElements": 0,
+                "maxAbsError": 0.8302512168884277,
+                "rmse": 0.17143627630660155,
+                "referenceRms": 2.452061848893317,
+                "meanError": -0.06183151024367934,
+                "step": 2,
+                "modelsTopTokens": [
+                  248068,
+                  8160
+                ],
+                "oracleTopTokens": [
+                  248068,
+                  5328
+                ],
+                "modelsMargin": 2.0631370544433594,
+                "oracleMargin": 2.222005844116211,
+                "modelsGapAtOracleWinner": 0.0,
+                "oracleGapAtModelsWinner": 0.0
+              },
+              {
+                "elements": 248320,
+                "exactElements": 0,
+                "maxAbsError": 1.2998828887939453,
+                "rmse": 0.27279346444602554,
+                "referenceRms": 3.687187243533385,
+                "meanError": 0.06840387302554049,
+                "step": 3,
+                "modelsTopTokens": [
+                  271,
+                  198
+                ],
+                "oracleTopTokens": [
+                  271,
+                  198
+                ],
+                "modelsMargin": 0.1259593963623047,
+                "oracleMargin": 0.0206298828125,
+                "modelsGapAtOracleWinner": 0.0,
+                "oracleGapAtModelsWinner": 0.0
+              },
+              {
+                "elements": 248320,
+                "exactElements": 1,
+                "maxAbsError": 1.5290884971618652,
+                "rmse": 0.2871647483758229,
+                "referenceRms": 3.039098014070254,
+                "meanError": 0.030682800422403386,
+                "step": 4,
+                "modelsTopTokens": [
+                  248069,
+                  27
+                ],
+                "oracleTopTokens": [
+                  248069,
+                  27
+                ],
+                "modelsMargin": 7.958377838134766,
+                "oracleMargin": 7.239711761474609,
+                "modelsGapAtOracleWinner": 0.0,
+                "oracleGapAtModelsWinner": 0.0
+              },
+              {
+                "elements": 248320,
+                "exactElements": 0,
+                "maxAbsError": 1.1350181102752686,
+                "rmse": 0.2338430252473563,
+                "referenceRms": 2.980286474160162,
+                "meanError": -0.057548372949276734,
+                "step": 5,
+                "modelsTopTokens": [
+                  271,
+                  18050
+                ],
+                "oracleTopTokens": [
+                  271,
+                  18050
+                ],
+                "modelsMargin": 11.345220565795898,
+                "oracleMargin": 11.328424453735352,
+                "modelsGapAtOracleWinner": 0.0,
+                "oracleGapAtModelsWinner": 0.0
+              },
+              {
+                "elements": 248320,
+                "exactElements": 1,
+                "maxAbsError": 1.3319945335388184,
+                "rmse": 0.23767099250618193,
+                "referenceRms": 2.6524225852531584,
+                "meanError": -0.026697464842084056,
+                "step": 6,
+                "modelsTopTokens": [
+                  760,
+                  32
+                ],
+                "oracleTopTokens": [
+                  760,
+                  32
+                ],
+                "modelsMargin": 0.5945148468017578,
+                "oracleMargin": 0.3437309265136719,
+                "modelsGapAtOracleWinner": 0.0,
+                "oracleGapAtModelsWinner": 0.0
+              },
+              {
+                "elements": 248320,
+                "exactElements": 0,
+                "maxAbsError": 0.9009642601013184,
+                "rmse": 0.16679297552350444,
+                "referenceRms": 3.1356750823564856,
+                "meanError": 0.015822505624754804,
+                "step": 7,
+                "modelsTopTokens": [
+                  1156,
+                  1876
+                ],
+                "oracleTopTokens": [
+                  1156,
+                  1876
+                ],
+                "modelsMargin": 2.840190887451172,
+                "oracleMargin": 2.8936691284179688,
+                "modelsGapAtOracleWinner": 0.0,
+                "oracleGapAtModelsWinner": 0.0
+              }
+            ]
+          },
+          {
+            "id": "easy-intent-01",
+            "exactTokens": false,
+            "modelsTokens": [
+              417,
+              271,
+              248068,
+              198,
+              90700,
+              8340,
+              25,
+              271
+            ],
+            "oracleTokens": [
+              271,
+              248068,
+              271,
+              248069,
+              271,
+              760,
+              1156,
+              579
+            ],
+            "comparablePrefixSteps": [
+              {
+                "elements": 248320,
+                "exactElements": 0,
+                "maxAbsError": 0.742058277130127,
+                "rmse": 0.15353718600409438,
+                "referenceRms": 2.9465152841170865,
+                "meanError": 0.04748508340700712,
+                "step": 0,
+                "modelsTopTokens": [
+                  417,
+                  271
+                ],
+                "oracleTopTokens": [
+                  271,
+                  417
+                ],
+                "modelsMargin": 0.25313758850097656,
+                "oracleMargin": 0.03357696533203125,
+                "modelsGapAtOracleWinner": 0.25313758850097656,
+                "oracleGapAtModelsWinner": 0.03357696533203125
+              }
+            ]
+          },
+          {
+            "id": "easy-intent-02",
+            "exactTokens": false,
+            "modelsTokens": [
+              3627,
+              7621,
+              271,
+              248068,
+              198,
+              90700,
+              8340,
+              25
+            ],
+            "oracleTokens": [
+              271,
+              248068,
+              271,
+              248069,
+              271,
+              760,
+              1156,
+              579
+            ],
+            "comparablePrefixSteps": [
+              {
+                "elements": 248320,
+                "exactElements": 1,
+                "maxAbsError": 0.824113130569458,
+                "rmse": 0.1693417774048922,
+                "referenceRms": 2.9472112954346943,
+                "meanError": -0.05213751292756888,
+                "step": 0,
+                "modelsTopTokens": [
+                  3627,
+                  271
+                ],
+                "oracleTopTokens": [
+                  271,
+                  357
+                ],
+                "modelsMargin": 0.14377784729003906,
+                "oracleMargin": 0.2080535888671875,
+                "modelsGapAtOracleWinner": 0.14377784729003906,
+                "oracleGapAtModelsWinner": 0.417572021484375
+              }
+            ]
+          },
+          {
+            "id": "easy-intent-03",
+            "exactTokens": false,
+            "modelsTokens": [
+              414,
+              271,
+              248068,
+              198,
+              90700,
+              8340,
+              25,
+              271
+            ],
+            "oracleTokens": [
+              414,
+              271,
+              248068,
+              198,
+              760,
+              1156,
+              6587,
+              728
+            ],
+            "comparablePrefixSteps": [
+              {
+                "elements": 248320,
+                "exactElements": 0,
+                "maxAbsError": 0.9836065769195557,
+                "rmse": 0.21261297080550778,
+                "referenceRms": 3.0358523706415794,
+                "meanError": -0.060982258929679,
+                "step": 0,
+                "modelsTopTokens": [
+                  414,
+                  271
+                ],
+                "oracleTopTokens": [
+                  414,
+                  271
+                ],
+                "modelsMargin": 0.31514549255371094,
+                "oracleMargin": 0.3258647918701172,
+                "modelsGapAtOracleWinner": 0.0,
+                "oracleGapAtModelsWinner": 0.0
+              },
+              {
+                "elements": 248320,
+                "exactElements": 0,
+                "maxAbsError": 1.0170776844024658,
+                "rmse": 0.18617277392668313,
+                "referenceRms": 2.4068426763010704,
+                "meanError": 0.035929073974191324,
+                "step": 1,
+                "modelsTopTokens": [
+                  271,
+                  25
+                ],
+                "oracleTopTokens": [
+                  271,
+                  25
+                ],
+                "modelsMargin": 0.9146404266357422,
+                "oracleMargin": 0.5313510894775391,
+                "modelsGapAtOracleWinner": 0.0,
+                "oracleGapAtModelsWinner": 0.0
+              },
+              {
+                "elements": 248320,
+                "exactElements": 0,
+                "maxAbsError": 1.04514741897583,
+                "rmse": 0.20303936058368183,
+                "referenceRms": 2.4064667932476214,
+                "meanError": 0.09834514794044302,
+                "step": 2,
+                "modelsTopTokens": [
+                  248068,
+                  760
+                ],
+                "oracleTopTokens": [
+                  248068,
+                  760
+                ],
+                "modelsMargin": 0.6514148712158203,
+                "oracleMargin": 0.3524913787841797,
+                "modelsGapAtOracleWinner": 0.0,
+                "oracleGapAtModelsWinner": 0.0
+              },
+              {
+                "elements": 248320,
+                "exactElements": 0,
+                "maxAbsError": 1.4608283042907715,
+                "rmse": 0.3487970715117934,
+                "referenceRms": 3.7876230354392644,
+                "meanError": 0.209663674760143,
+                "step": 3,
+                "modelsTopTokens": [
+                  198,
+                  271
+                ],
+                "oracleTopTokens": [
+                  198,
+                  271
+                ],
+                "modelsMargin": 0.4242668151855469,
+                "oracleMargin": 0.3053722381591797,
+                "modelsGapAtOracleWinner": 0.0,
+                "oracleGapAtModelsWinner": 0.0
+              },
+              {
+                "elements": 248320,
+                "exactElements": 0,
+                "maxAbsError": 1.772472858428955,
+                "rmse": 0.3290420746680754,
+                "referenceRms": 3.0469036603346584,
+                "meanError": 0.012476693084445475,
+                "step": 4,
+                "modelsTopTokens": [
+                  90700,
+                  760
+                ],
+                "oracleTopTokens": [
+                  760,
+                  90700
+                ],
+                "modelsMargin": 0.3070564270019531,
+                "oracleMargin": 0.25044822692871094,
+                "modelsGapAtOracleWinner": 0.3070564270019531,
+                "oracleGapAtModelsWinner": 0.25044822692871094
+              }
+            ]
+          },
+          {
+            "id": "original-routing-06-0",
+            "exactTokens": false,
+            "modelsTokens": [
+              357,
+              271,
+              248068,
+              271,
+              248069,
+              271,
+              32,
+              25
+            ],
+            "oracleTokens": [
+              351,
+              271,
+              248068,
+              271,
+              248069,
+              271,
+              34,
+              248044
+            ],
+            "comparablePrefixSteps": [
+              {
+                "elements": 248320,
+                "exactElements": 0,
+                "maxAbsError": 1.024512767791748,
+                "rmse": 0.20070809316128838,
+                "referenceRms": 3.2715068116180888,
+                "meanError": 0.06886805995246252,
+                "step": 0,
+                "modelsTopTokens": [
+                  357,
+                  351
+                ],
+                "oracleTopTokens": [
+                  351,
+                  417
+                ],
+                "modelsMargin": 0.05543708801269531,
+                "oracleMargin": 0.11873817443847656,
+                "modelsGapAtOracleWinner": 0.05543708801269531,
+                "oracleGapAtModelsWinner": 0.16049766540527344
+              }
+            ]
+          },
+          {
+            "id": "snips-AddToPlaylist-0",
+            "exactTokens": true,
+            "modelsTokens": [
+              357,
+              271,
+              248068,
+              198,
+              760,
+              1156,
+              6587,
+              728
+            ],
+            "oracleTokens": [
+              357,
+              271,
+              248068,
+              198,
+              760,
+              1156,
+              6587,
+              728
+            ],
+            "comparablePrefixSteps": [
+              {
+                "elements": 248320,
+                "exactElements": 0,
+                "maxAbsError": 0.8730440139770508,
+                "rmse": 0.18056949266514324,
+                "referenceRms": 3.0008064175594056,
+                "meanError": -0.03549425080247564,
+                "step": 0,
+                "modelsTopTokens": [
+                  357,
+                  414
+                ],
+                "oracleTopTokens": [
+                  357,
+                  414
+                ],
+                "modelsMargin": 0.4795570373535156,
+                "oracleMargin": 0.21502685546875,
+                "modelsGapAtOracleWinner": 0.0,
+                "oracleGapAtModelsWinner": 0.0
+              },
+              {
+                "elements": 248320,
+                "exactElements": 0,
+                "maxAbsError": 0.8735830783843994,
+                "rmse": 0.17538336571195795,
+                "referenceRms": 2.403074238554183,
+                "meanError": 0.0785162071553695,
+                "step": 1,
+                "modelsTopTokens": [
+                  271,
+                  198
+                ],
+                "oracleTopTokens": [
+                  271,
+                  198
+                ],
+                "modelsMargin": 1.1998405456542969,
+                "oracleMargin": 1.2261981964111328,
+                "modelsGapAtOracleWinner": 0.0,
+                "oracleGapAtModelsWinner": 0.0
+              },
+              {
+                "elements": 248320,
+                "exactElements": 0,
+                "maxAbsError": 0.8297669887542725,
+                "rmse": 0.15558975320718768,
+                "referenceRms": 2.401363900134325,
+                "meanError": 0.03864976171420326,
+                "step": 2,
+                "modelsTopTokens": [
+                  248068,
+                  760
+                ],
+                "oracleTopTokens": [
+                  248068,
+                  760
+                ],
+                "modelsMargin": 1.5450401306152344,
+                "oracleMargin": 1.7445392608642578,
+                "modelsGapAtOracleWinner": 0.0,
+                "oracleGapAtModelsWinner": 0.0
+              },
+              {
+                "elements": 248320,
+                "exactElements": 0,
+                "maxAbsError": 1.566239356994629,
+                "rmse": 0.3011359164873192,
+                "referenceRms": 3.70099128341959,
+                "meanError": 0.1556820801231523,
+                "step": 3,
+                "modelsTopTokens": [
+                  198,
+                  271
+                ],
+                "oracleTopTokens": [
+                  198,
+                  271
+                ],
+                "modelsMargin": 0.11686134338378906,
+                "oracleMargin": 0.1387920379638672,
+                "modelsGapAtOracleWinner": 0.0,
+                "oracleGapAtModelsWinner": 0.0
+              },
+              {
+                "elements": 248320,
+                "exactElements": 0,
+                "maxAbsError": 1.994295358657837,
+                "rmse": 0.34801157392435905,
+                "referenceRms": 2.7770588637151485,
+                "meanError": 0.031315866537024895,
+                "step": 4,
+                "modelsTopTokens": [
+                  760,
+                  90700
+                ],
+                "oracleTopTokens": [
+                  760,
+                  90700
+                ],
+                "modelsMargin": 0.24689483642578125,
+                "oracleMargin": 0.026988983154296875,
+                "modelsGapAtOracleWinner": 0.0,
+                "oracleGapAtModelsWinner": 0.0
+              },
+              {
+                "elements": 248320,
+                "exactElements": 0,
+                "maxAbsError": 1.3732528686523438,
+                "rmse": 0.2796043317799101,
+                "referenceRms": 4.152866860222239,
+                "meanError": -0.02651893601551191,
+                "step": 5,
+                "modelsTopTokens": [
+                  1156,
+                  1622
+                ],
+                "oracleTopTokens": [
+                  1156,
+                  1622
+                ],
+                "modelsMargin": 7.235746383666992,
+                "oracleMargin": 6.9014434814453125,
+                "modelsGapAtOracleWinner": 0.0,
+                "oracleGapAtModelsWinner": 0.0
+              },
+              {
+                "elements": 248320,
+                "exactElements": 0,
+                "maxAbsError": 1.1477203369140625,
+                "rmse": 0.22720723495691686,
+                "referenceRms": 3.7158657686921637,
+                "meanError": 0.02070319369332097,
+                "step": 6,
+                "modelsTopTokens": [
+                  6587,
+                  369
+                ],
+                "oracleTopTokens": [
+                  6587,
+                  369
+                ],
+                "modelsMargin": 4.12022590637207,
+                "oracleMargin": 5.033760070800781,
+                "modelsGapAtOracleWinner": 0.0,
+                "oracleGapAtModelsWinner": 0.0
+              },
+              {
+                "elements": 248320,
+                "exactElements": 0,
+                "maxAbsError": 1.2938616275787354,
+                "rmse": 0.27951047793951894,
+                "referenceRms": 4.113151562665806,
+                "meanError": 0.09559642042107784,
+                "step": 7,
+                "modelsTopTokens": [
+                  728,
+                  310
+                ],
+                "oracleTopTokens": [
+                  728,
+                  310
+                ],
+                "modelsMargin": 0.010372161865234375,
+                "oracleMargin": 0.23532867431640625,
+                "modelsGapAtOracleWinner": 0.0,
+                "oracleGapAtModelsWinner": 0.0
+              }
+            ]
+          },
+          {
+            "id": "snips-AddToPlaylist-1",
+            "exactTokens": false,
+            "modelsTokens": [
+              414,
+              198,
+              35,
+              25,
+              6834,
+              23373,
+              198,
+              35
+            ],
+            "oracleTokens": [
+              357,
+              271,
+              248068,
+              198,
+              90700,
+              8340,
+              25,
+              271
+            ],
+            "comparablePrefixSteps": [
+              {
+                "elements": 248320,
+                "exactElements": 0,
+                "maxAbsError": 0.9436788558959961,
+                "rmse": 0.2182506242601791,
+                "referenceRms": 3.1318569119802318,
+                "meanError": 0.1315119304630627,
+                "step": 0,
+                "modelsTopTokens": [
+                  414,
+                  357
+                ],
+                "oracleTopTokens": [
+                  357,
+                  414
+                ],
+                "modelsMargin": 0.010318756103515625,
+                "oracleMargin": 0.44405555725097656,
+                "modelsGapAtOracleWinner": 0.010318756103515625,
+                "oracleGapAtModelsWinner": 0.44405555725097656
+              }
+            ]
+          },
+          {
+            "id": "snips-AddToPlaylist-2",
+            "exactTokens": true,
+            "modelsTokens": [
+              357,
+              271,
+              248068,
+              198,
+              90700,
+              8340,
+              25,
+              271
+            ],
+            "oracleTokens": [
+              357,
+              271,
+              248068,
+              198,
+              90700,
+              8340,
+              25,
+              271
+            ],
+            "comparablePrefixSteps": [
+              {
+                "elements": 248320,
+                "exactElements": 0,
+                "maxAbsError": 0.8867330551147461,
+                "rmse": 0.17885178602400978,
+                "referenceRms": 2.9030759757945317,
+                "meanError": -0.08056933085200708,
+                "step": 0,
+                "modelsTopTokens": [
+                  357,
+                  414
+                ],
+                "oracleTopTokens": [
+                  357,
+                  414
+                ],
+                "modelsMargin": 0.5700206756591797,
+                "oracleMargin": 0.37524986267089844,
+                "modelsGapAtOracleWinner": 0.0,
+                "oracleGapAtModelsWinner": 0.0
+              },
+              {
+                "elements": 248320,
+                "exactElements": 0,
+                "maxAbsError": 0.7938737869262695,
+                "rmse": 0.15345892287722288,
+                "referenceRms": 2.4046967628204294,
+                "meanError": 0.035809654186416136,
+                "step": 1,
+                "modelsTopTokens": [
+                  271,
+                  198
+                ],
+                "oracleTopTokens": [
+                  271,
+                  198
+                ],
+                "modelsMargin": 0.5946712493896484,
+                "oracleMargin": 0.6100502014160156,
+                "modelsGapAtOracleWinner": 0.0,
+                "oracleGapAtModelsWinner": 0.0
+              },
+              {
+                "elements": 248320,
+                "exactElements": 0,
+                "maxAbsError": 0.666440486907959,
+                "rmse": 0.14229869393664257,
+                "referenceRms": 2.328693750606397,
+                "meanError": -0.0493812056001487,
+                "step": 2,
+                "modelsTopTokens": [
+                  248068,
+                  3710
+                ],
+                "oracleTopTokens": [
+                  248068,
+                  3710
+                ],
+                "modelsMargin": 2.703306198120117,
+                "oracleMargin": 2.498699188232422,
+                "modelsGapAtOracleWinner": 0.0,
+                "oracleGapAtModelsWinner": 0.0
+              },
+              {
+                "elements": 248320,
+                "exactElements": 1,
+                "maxAbsError": 1.5437076091766357,
+                "rmse": 0.29010737597131186,
+                "referenceRms": 3.649278152844637,
+                "meanError": -0.1506006085082826,
+                "step": 3,
+                "modelsTopTokens": [
+                  198,
+                  271
+                ],
+                "oracleTopTokens": [
+                  198,
+                  271
+                ],
+                "modelsMargin": 0.003757476806640625,
+                "oracleMargin": 0.15954017639160156,
+                "modelsGapAtOracleWinner": 0.0,
+                "oracleGapAtModelsWinner": 0.0
+              },
+              {
+                "elements": 248320,
+                "exactElements": 0,
+                "maxAbsError": 1.6785790920257568,
+                "rmse": 0.2879140870281437,
+                "referenceRms": 2.785773858627157,
+                "meanError": 0.01675477778671379,
+                "step": 4,
+                "modelsTopTokens": [
+                  90700,
+                  760
+                ],
+                "oracleTopTokens": [
+                  90700,
+                  760
+                ],
+                "modelsMargin": 1.4168453216552734,
+                "oracleMargin": 0.9036407470703125,
+                "modelsGapAtOracleWinner": 0.0,
+                "oracleGapAtModelsWinner": 0.0
+              },
+              {
+                "elements": 248320,
+                "exactElements": 0,
+                "maxAbsError": 1.9589900970458984,
+                "rmse": 0.365121893720576,
+                "referenceRms": 3.78185540033518,
+                "meanError": 0.08959449671080441,
+                "step": 5,
+                "modelsTopTokens": [
+                  8340,
+                  4451
+                ],
+                "oracleTopTokens": [
+                  8340,
+                  26679
+                ],
+                "modelsMargin": 9.374307632446289,
+                "oracleMargin": 9.689064025878906,
+                "modelsGapAtOracleWinner": 0.0,
+                "oracleGapAtModelsWinner": 0.0
+              },
+              {
+                "elements": 248320,
+                "exactElements": 0,
+                "maxAbsError": 1.974128007888794,
+                "rmse": 0.4521041777123077,
+                "referenceRms": 3.755601898684757,
+                "meanError": 0.22834481115956412,
+                "step": 6,
+                "modelsTopTokens": [
+                  25,
+                  64700
+                ],
+                "oracleTopTokens": [
+                  25,
+                  64700
+                ],
+                "modelsMargin": 11.6539306640625,
+                "oracleMargin": 10.964532852172852,
+                "modelsGapAtOracleWinner": 0.0,
+                "oracleGapAtModelsWinner": 0.0
+              },
+              {
+                "elements": 248320,
+                "exactElements": 0,
+                "maxAbsError": 1.8922209739685059,
+                "rmse": 0.34397827828587874,
+                "referenceRms": 3.645291044402208,
+                "meanError": -0.002752158584219605,
+                "step": 7,
+                "modelsTopTokens": [
+                  271,
+                  198
+                ],
+                "oracleTopTokens": [
+                  271,
+                  198
+                ],
+                "modelsMargin": 10.000419616699219,
+                "oracleMargin": 9.497425079345703,
+                "modelsGapAtOracleWinner": 0.0,
+                "oracleGapAtModelsWinner": 0.0
+              }
+            ]
+          },
+          {
+            "id": "snips-AddToPlaylist-3",
+            "exactTokens": false,
+            "modelsTokens": [
+              357,
+              271,
+              248068,
+              271,
+              248069,
+              271,
+              32,
+              25
+            ],
+            "oracleTokens": [
+              357,
+              271,
+              248068,
+              198,
+              90700,
+              8340,
+              25,
+              271
+            ],
+            "comparablePrefixSteps": [
+              {
+                "elements": 248320,
+                "exactElements": 1,
+                "maxAbsError": 0.716111421585083,
+                "rmse": 0.15222507676153219,
+                "referenceRms": 2.9574758278882602,
+                "meanError": 0.026881140708946143,
+                "step": 0,
+                "modelsTopTokens": [
+                  357,
+                  414
+                ],
+                "oracleTopTokens": [
+                  357,
+                  414
+                ],
+                "modelsMargin": 1.1335220336914062,
+                "oracleMargin": 0.7618274688720703,
+                "modelsGapAtOracleWinner": 0.0,
+                "oracleGapAtModelsWinner": 0.0
+              },
+              {
+                "elements": 248320,
+                "exactElements": 0,
+                "maxAbsError": 0.9186935424804688,
+                "rmse": 0.16898588442867749,
+                "referenceRms": 2.391390814274659,
+                "meanError": -0.0430484705423689,
+                "step": 1,
+                "modelsTopTokens": [
+                  271,
+                  198
+                ],
+                "oracleTopTokens": [
+                  271,
+                  198
+                ],
+                "modelsMargin": 0.19524192810058594,
+                "oracleMargin": 0.1666736602783203,
+                "modelsGapAtOracleWinner": 0.0,
+                "oracleGapAtModelsWinner": 0.0
+              },
+              {
+                "elements": 248320,
+                "exactElements": 0,
+                "maxAbsError": 0.7431621551513672,
+                "rmse": 0.15948746088886276,
+                "referenceRms": 2.3470467273133355,
+                "meanError": 0.09100334114654916,
+                "step": 2,
+                "modelsTopTokens": [
+                  248068,
+                  760
+                ],
+                "oracleTopTokens": [
+                  248068,
+                  760
+                ],
+                "modelsMargin": 2.483541488647461,
+                "oracleMargin": 2.836030960083008,
+                "modelsGapAtOracleWinner": 0.0,
+                "oracleGapAtModelsWinner": 0.0
+              },
+              {
+                "elements": 248320,
+                "exactElements": 0,
+                "maxAbsError": 1.6718635559082031,
+                "rmse": 0.29792720735757483,
+                "referenceRms": 3.6321780624158455,
+                "meanError": 0.11848412188911359,
+                "step": 3,
+                "modelsTopTokens": [
+                  271,
+                  198
+                ],
+                "oracleTopTokens": [
+                  198,
+                  271
+                ],
+                "modelsMargin": 0.13187789916992188,
+                "oracleMargin": 0.00634002685546875,
+                "modelsGapAtOracleWinner": 0.13187789916992188,
+                "oracleGapAtModelsWinner": 0.00634002685546875
+              }
+            ]
+          }
+        ],
+        "exactCases": 3,
+        "firstLayer": [
+          {
+            "weight": "attn_qkv.weight",
+            "oracleTensor": "linear_attn_qkv_mixed-0",
+            "comparable": true,
+            "elements": 749568,
+            "exactElements": 140620,
+            "maxAbsError": 4.76837158203125e-06,
+            "rmse": 1.536765256620286e-07,
+            "referenceRms": 1.2855761079048798,
+            "meanError": 9.414107623384339e-11
+          },
+          {
+            "weight": "attn_gate.weight",
+            "oracleTensor": "z-0",
+            "comparable": true,
+            "elements": 249856,
+            "exactElements": 50194,
+            "maxAbsError": 3.814697265625e-06,
+            "rmse": 2.175870497187096e-07,
+            "referenceRms": 0.9141175641451368,
+            "meanError": 9.491891134649583e-10
+          },
+          {
+            "weight": "ssm_beta.weight",
+            "oracleTensor": "beta-0",
+            "comparable": true,
+            "elements": 1952,
+            "exactElements": 413,
+            "maxAbsError": 1.9073486328125e-06,
+            "rmse": 1.879508880243793e-07,
+            "referenceRms": 1.383245635942967,
+            "meanError": 1.5346903056211648e-08
+          },
+          {
+            "weight": "ssm_alpha.weight",
+            "oracleTensor": "alpha-0",
+            "comparable": true,
+            "elements": 1952,
+            "exactElements": 439,
+            "maxAbsError": 1.1920928955078125e-06,
+            "rmse": 2.810397063233055e-07,
+            "referenceRms": 2.366636147711021,
+            "meanError": -2.1702273115210357e-08
+          },
+          {
+            "weight": "ssm_out.weight",
+            "oracleTensor": "linear_attn_out-0",
+            "comparable": true,
+            "elements": 124928,
+            "exactElements": 1017,
+            "maxAbsError": 0.001315038651227951,
+            "rmse": 1.9135001133701666e-05,
+            "referenceRms": 0.03928620971550823,
+            "meanError": 1.3145416368182572e-07
+          },
+          {
+            "weight": "ffn_gate.weight",
+            "oracleTensor": "ffn_gate-0",
+            "comparable": true,
+            "elements": 437248,
+            "exactElements": 17297,
+            "maxAbsError": 0.03374791145324707,
+            "rmse": 0.0007842805313592341,
+            "referenceRms": 0.4237425151967081,
+            "meanError": 3.5154237591685233e-06
+          },
+          {
+            "weight": "ffn_up.weight",
+            "oracleTensor": "ffn_up-0",
+            "comparable": true,
+            "elements": 437248,
+            "exactElements": 16686,
+            "maxAbsError": 0.01678335666656494,
+            "rmse": 0.0005238587239425403,
+            "referenceRms": 0.20349818275330955,
+            "meanError": 4.947481959978568e-07
+          },
+          {
+            "weight": "ffn_down.weight",
+            "oracleTensor": "ffn_out-0",
+            "comparable": true,
+            "elements": 124928,
+            "exactElements": 3306,
+            "maxAbsError": 0.0056609660387039185,
+            "rmse": 0.00010951598711828166,
+            "referenceRms": 0.02049789927450571,
+            "meanError": 3.67818044379255e-07
+          },
+          {
+            "weight": "attn_qkv.weight.input",
+            "oracleTensor": "attn_norm-0",
+            "comparable": true,
+            "elements": 124928,
+            "exactElements": 119541,
+            "maxAbsError": 4.76837158203125e-07,
+            "rmse": 2.6305614826716813e-08,
+            "referenceRms": 1.2406567354399411,
+            "meanError": -1.0973575418112707e-11,
+            "q8KReferenceReplay": {
+              "quantizedIntegersDifferent": 0,
+              "blocksWithDifferentIntegers": 0,
+              "scaleBitsDifferent": 18,
+              "blocks": 488
+            }
+          },
+          {
+            "weight": "ssm_out.weight.input",
+            "oracleTensor": "final_output-0",
+            "comparable": true,
+            "elements": 249856,
+            "exactElements": 7359,
+            "maxAbsError": 0.0002651214599609375,
+            "rmse": 1.3192940127814172e-06,
+            "referenceRms": 0.10852740253969984,
+            "meanError": -1.2025022343658011e-08,
+            "q8KReferenceReplay": {
+              "quantizedIntegersDifferent": 5,
+              "blocksWithDifferentIntegers": 5,
+              "scaleBitsDifferent": 843,
+              "blocks": 976
+            }
+          },
+          {
+            "weight": "ffn_gate.weight.input",
+            "oracleTensor": "attn_post_norm-0",
+            "comparable": true,
+            "elements": 124928,
+            "exactElements": 788,
+            "maxAbsError": 0.03182554244995117,
+            "rmse": 0.0005652773074646562,
+            "referenceRms": 0.8938230652551448,
+            "meanError": 4.02953555854025e-06,
+            "q8KReferenceReplay": {
+              "quantizedIntegersDifferent": 423,
+              "blocksWithDifferentIntegers": 52,
+              "scaleBitsDifferent": 468,
+              "blocks": 488
+            }
+          }
+        ],
+        "availableOracleTensorNames": [
+          "a_softplus-0",
+          "alpha-0",
+          "attn_norm-0",
+          "attn_output-0",
+          "attn_post_norm-0",
+          "attn_residual-0",
+          "beta-0",
+          "beta_sigmoid-0",
+          "cache_s_l0 (view) (copy of new_state-0)",
+          "conv_input-0",
+          "conv_output_raw-0",
+          "conv_output_silu-0",
+          "conv_state_last-0",
+          "conv_state_update-0",
+          "conv_state_update-0 (copy of conv_state_last-0)",
+          "conv_states-0",
+          "conv_states_reshaped-0",
+          "ffn_gate-0",
+          "ffn_out-0",
+          "ffn_swiglu-0",
+          "ffn_up-0",
+          "final_output-0",
+          "gate-0",
+          "gate-0 (reshaped)",
+          "k_conv-0",
+          "k_conv_predelta-0",
+          "l_out-0",
+          "linear_attn_out-0",
+          "linear_attn_out-0 (reshaped)",
+          "linear_attn_qkv_mixed-0",
+          "model.input_embed",
+          "new_state-0",
+          "norm-0",
+          "q_conv-0",
+          "q_conv_predelta-0",
+          "qkv_mixed_transposed-0",
+          "state_predelta-0",
+          "v_conv_predelta-0",
+          "z-0",
+          "z-0 (reshaped)"
+        ],
+        "availableModelsTensorNames": [
+          "blk.0.attn_gate.weight.input",
+          "blk.0.attn_gate.weight.output",
+          "blk.0.attn_qkv.weight.input",
+          "blk.0.attn_qkv.weight.output",
+          "blk.0.ffn_down.weight.input",
+          "blk.0.ffn_down.weight.output",
+          "blk.0.ffn_gate.weight.input",
+          "blk.0.ffn_gate.weight.output",
+          "blk.0.ffn_up.weight.input",
+          "blk.0.ffn_up.weight.output",
+          "blk.0.ssm_alpha.weight.input",
+          "blk.0.ssm_alpha.weight.output",
+          "blk.0.ssm_beta.weight.input",
+          "blk.0.ssm_beta.weight.output",
+          "blk.0.ssm_out.weight.input",
+          "blk.0.ssm_out.weight.output"
+        ]
+      },
+      "additive-32": {
+        "cases": [
+          {
+            "id": "easy-intent-00",
+            "exactTokens": false,
+            "modelsTokens": [
+              357,
+              271,
+              248068,
+              271,
+              248069,
+              271,
+              760,
+              1156
+            ],
+            "oracleTokens": [
+              357,
+              271,
+              248068,
+              198,
+              760,
+              1156,
+              6587,
+              310
+            ],
+            "comparablePrefixSteps": [
+              {
+                "elements": 248320,
+                "exactElements": 0,
+                "maxAbsError": 0.96165931224823,
+                "rmse": 0.18020834561610466,
+                "referenceRms": 3.0284458781552237,
+                "meanError": 0.07779510872190717,
+                "step": 0,
+                "modelsTopTokens": [
+                  357,
+                  271
+                ],
+                "oracleTopTokens": [
+                  357,
+                  3627
+                ],
+                "modelsMargin": 0.21909332275390625,
+                "oracleMargin": 0.13889312744140625,
+                "modelsGapAtOracleWinner": 0.0,
+                "oracleGapAtModelsWinner": 0.0
+              },
+              {
+                "elements": 248320,
+                "exactElements": 0,
+                "maxAbsError": 0.7941393852233887,
+                "rmse": 0.17057790607992437,
+                "referenceRms": 2.470110364715757,
+                "meanError": -0.08238496381799047,
+                "step": 1,
+                "modelsTopTokens": [
+                  271,
+                  25
+                ],
+                "oracleTopTokens": [
+                  271,
+                  25
+                ],
+                "modelsMargin": 0.2769336700439453,
+                "oracleMargin": 0.23757362365722656,
+                "modelsGapAtOracleWinner": 0.0,
+                "oracleGapAtModelsWinner": 0.0
+              },
+              {
+                "elements": 248320,
+                "exactElements": 1,
+                "maxAbsError": 0.7422819137573242,
+                "rmse": 0.15844391580099104,
+                "referenceRms": 2.440112900684469,
+                "meanError": -0.051478340725319045,
+                "step": 2,
+                "modelsTopTokens": [
+                  248068,
+                  8160
+                ],
+                "oracleTopTokens": [
+                  248068,
+                  5328
+                ],
+                "modelsMargin": 2.0631370544433594,
+                "oracleMargin": 2.1633682250976562,
+                "modelsGapAtOracleWinner": 0.0,
+                "oracleGapAtModelsWinner": 0.0
+              },
+              {
+                "elements": 248320,
+                "exactElements": 1,
+                "maxAbsError": 1.660738229751587,
+                "rmse": 0.3304190851743888,
+                "referenceRms": 3.693837138920698,
+                "meanError": 0.07174206121870287,
+                "step": 3,
+                "modelsTopTokens": [
+                  271,
+                  198
+                ],
+                "oracleTopTokens": [
+                  198,
+                  271
+                ],
+                "modelsMargin": 0.1259593963623047,
+                "oracleMargin": 0.24618148803710938,
+                "modelsGapAtOracleWinner": 0.1259593963623047,
+                "oracleGapAtModelsWinner": 0.24618148803710938
+              }
+            ]
+          },
+          {
+            "id": "easy-intent-01",
+            "exactTokens": true,
+            "modelsTokens": [
+              417,
+              271,
+              248068,
+              198,
+              90700,
+              8340,
+              25,
+              271
+            ],
+            "oracleTokens": [
+              417,
+              271,
+              248068,
+              198,
+              90700,
+              8340,
+              25,
+              271
+            ],
+            "comparablePrefixSteps": [
+              {
+                "elements": 248320,
+                "exactElements": 0,
+                "maxAbsError": 0.7928307056427002,
+                "rmse": 0.1677494992391181,
+                "referenceRms": 2.9334368115414913,
+                "meanError": 0.04811087686954949,
+                "step": 0,
+                "modelsTopTokens": [
+                  417,
+                  271
+                ],
+                "oracleTopTokens": [
+                  417,
+                  271
+                ],
+                "modelsMargin": 0.25313758850097656,
+                "oracleMargin": 0.09201622009277344,
+                "modelsGapAtOracleWinner": 0.0,
+                "oracleGapAtModelsWinner": 0.0
+              },
+              {
+                "elements": 248320,
+                "exactElements": 0,
+                "maxAbsError": 0.7756527662277222,
+                "rmse": 0.15584378526695222,
+                "referenceRms": 2.4394534752273564,
+                "meanError": 0.01074637138370554,
+                "step": 1,
+                "modelsTopTokens": [
+                  271,
+                  25
+                ],
+                "oracleTopTokens": [
+                  271,
+                  25
+                ],
+                "modelsMargin": 0.7425022125244141,
+                "oracleMargin": 0.8283309936523438,
+                "modelsGapAtOracleWinner": 0.0,
+                "oracleGapAtModelsWinner": 0.0
+              },
+              {
+                "elements": 248320,
+                "exactElements": 0,
+                "maxAbsError": 0.7884788513183594,
+                "rmse": 0.14854687108384257,
+                "referenceRms": 2.4071238157202495,
+                "meanError": -0.011995965507200718,
+                "step": 2,
+                "modelsTopTokens": [
+                  248068,
+                  5328
+                ],
+                "oracleTopTokens": [
+                  248068,
+                  5328
+                ],
+                "modelsMargin": 1.5156402587890625,
+                "oracleMargin": 1.430288314819336,
+                "modelsGapAtOracleWinner": 0.0,
+                "oracleGapAtModelsWinner": 0.0
+              },
+              {
+                "elements": 248320,
+                "exactElements": 1,
+                "maxAbsError": 1.5451221466064453,
+                "rmse": 0.2661191838942157,
+                "referenceRms": 3.661506157224999,
+                "meanError": 0.05019518675462021,
+                "step": 3,
+                "modelsTopTokens": [
+                  198,
+                  271
+                ],
+                "oracleTopTokens": [
+                  198,
+                  271
+                ],
+                "modelsMargin": 0.06601333618164062,
+                "oracleMargin": 0.03299140930175781,
+                "modelsGapAtOracleWinner": 0.0,
+                "oracleGapAtModelsWinner": 0.0
+              },
+              {
+                "elements": 248320,
+                "exactElements": 0,
+                "maxAbsError": 1.2498743534088135,
+                "rmse": 0.2465397057084314,
+                "referenceRms": 2.8503648104056722,
+                "meanError": -0.00975244657608162,
+                "step": 4,
+                "modelsTopTokens": [
+                  90700,
+                  760
+                ],
+                "oracleTopTokens": [
+                  90700,
+                  760
+                ],
+                "modelsMargin": 0.9640922546386719,
+                "oracleMargin": 1.0983467102050781,
+                "modelsGapAtOracleWinner": 0.0,
+                "oracleGapAtModelsWinner": 0.0
+              },
+              {
+                "elements": 248320,
+                "exactElements": 0,
+                "maxAbsError": 1.6002440452575684,
+                "rmse": 0.30778509199630744,
+                "referenceRms": 3.8888088808881855,
+                "meanError": 0.03037197581434157,
+                "step": 5,
+                "modelsTopTokens": [
+                  8340,
+                  1817
+                ],
+                "oracleTopTokens": [
+                  8340,
+                  1817
+                ],
+                "modelsMargin": 9.900247573852539,
+                "oracleMargin": 10.148651123046875,
+                "modelsGapAtOracleWinner": 0.0,
+                "oracleGapAtModelsWinner": 0.0
+              },
+              {
+                "elements": 248320,
+                "exactElements": 0,
+                "maxAbsError": 2.1632861495018005,
+                "rmse": 0.4225885816901961,
+                "referenceRms": 3.873816332730332,
+                "meanError": 0.06229925780420878,
+                "step": 6,
+                "modelsTopTokens": [
+                  25,
+                  4960
+                ],
+                "oracleTopTokens": [
+                  25,
+                  4960
+                ],
+                "modelsMargin": 10.872295379638672,
+                "oracleMargin": 11.462995529174805,
+                "modelsGapAtOracleWinner": 0.0,
+                "oracleGapAtModelsWinner": 0.0
+              },
+              {
+                "elements": 248320,
+                "exactElements": 0,
+                "maxAbsError": 1.7199726104736328,
+                "rmse": 0.33143117799132704,
+                "referenceRms": 3.3363150420712993,
+                "meanError": -0.11827990828206782,
+                "step": 7,
+                "modelsTopTokens": [
+                  271,
+                  198
+                ],
+                "oracleTopTokens": [
+                  271,
+                  198
+                ],
+                "modelsMargin": 11.631317138671875,
+                "oracleMargin": 12.075243949890137,
+                "modelsGapAtOracleWinner": 0.0,
+                "oracleGapAtModelsWinner": 0.0
+              }
+            ]
+          },
+          {
+            "id": "easy-intent-02",
+            "exactTokens": false,
+            "modelsTokens": [
+              3627,
+              7621,
+              271,
+              248068,
+              198,
+              90700,
+              8340,
+              25
+            ],
+            "oracleTokens": [
+              3627,
+              7621,
+              271,
+              248068,
+              198,
+              760,
+              1156,
+              6587
+            ],
+            "comparablePrefixSteps": [
+              {
+                "elements": 248320,
+                "exactElements": 0,
+                "maxAbsError": 1.0631232261657715,
+                "rmse": 0.18031436136255416,
+                "referenceRms": 2.9226354883825647,
+                "meanError": -0.0849083681065486,
+                "step": 0,
+                "modelsTopTokens": [
+                  3627,
+                  271
+                ],
+                "oracleTopTokens": [
+                  3627,
+                  357
+                ],
+                "modelsMargin": 0.14377784729003906,
+                "oracleMargin": 0.1249847412109375,
+                "modelsGapAtOracleWinner": 0.0,
+                "oracleGapAtModelsWinner": 0.0
+              },
+              {
+                "elements": 248320,
+                "exactElements": 1,
+                "maxAbsError": 0.7252926826477051,
+                "rmse": 0.1535968039859192,
+                "referenceRms": 2.662450427798069,
+                "meanError": 0.004395419358367043,
+                "step": 1,
+                "modelsTopTokens": [
+                  7621,
+                  62
+                ],
+                "oracleTopTokens": [
+                  7621,
+                  62
+                ],
+                "modelsMargin": 6.316934585571289,
+                "oracleMargin": 5.911420822143555,
+                "modelsGapAtOracleWinner": 0.0,
+                "oracleGapAtModelsWinner": 0.0
+              },
+              {
+                "elements": 248320,
+                "exactElements": 0,
+                "maxAbsError": 0.7990107536315918,
+                "rmse": 0.1707868867068835,
+                "referenceRms": 2.3642871773275322,
+                "meanError": -0.09078646625080698,
+                "step": 2,
+                "modelsTopTokens": [
+                  271,
+                  198
+                ],
+                "oracleTopTokens": [
+                  271,
+                  198
+                ],
+                "modelsMargin": 0.196258544921875,
+                "oracleMargin": 0.2635478973388672,
+                "modelsGapAtOracleWinner": 0.0,
+                "oracleGapAtModelsWinner": 0.0
+              },
+              {
+                "elements": 248320,
+                "exactElements": 1,
+                "maxAbsError": 0.7426457405090332,
+                "rmse": 0.14920439817419576,
+                "referenceRms": 2.430065958669956,
+                "meanError": -0.001452675758373141,
+                "step": 3,
+                "modelsTopTokens": [
+                  248068,
+                  760
+                ],
+                "oracleTopTokens": [
+                  248068,
+                  760
+                ],
+                "modelsMargin": 1.6153583526611328,
+                "oracleMargin": 1.6851425170898438,
+                "modelsGapAtOracleWinner": 0.0,
+                "oracleGapAtModelsWinner": 0.0
+              },
+              {
+                "elements": 248320,
+                "exactElements": 0,
+                "maxAbsError": 1.28824782371521,
+                "rmse": 0.2676188873933874,
+                "referenceRms": 3.68644600840007,
+                "meanError": -0.05184256328940728,
+                "step": 4,
+                "modelsTopTokens": [
+                  198,
+                  271
+                ],
+                "oracleTopTokens": [
+                  198,
+                  271
+                ],
+                "modelsMargin": 0.09403228759765625,
+                "oracleMargin": 0.2046985626220703,
+                "modelsGapAtOracleWinner": 0.0,
+                "oracleGapAtModelsWinner": 0.0
+              },
+              {
+                "elements": 248320,
+                "exactElements": 0,
+                "maxAbsError": 1.6285276412963867,
+                "rmse": 0.3266821673409118,
+                "referenceRms": 2.9058032502469517,
+                "meanError": 0.1528795397680219,
+                "step": 5,
+                "modelsTopTokens": [
+                  90700,
+                  760
+                ],
+                "oracleTopTokens": [
+                  760,
+                  90700
+                ],
+                "modelsMargin": 0.061267852783203125,
+                "oracleMargin": 0.21150588989257812,
+                "modelsGapAtOracleWinner": 0.061267852783203125,
+                "oracleGapAtModelsWinner": 0.21150588989257812
+              }
+            ]
+          },
+          {
+            "id": "easy-intent-03",
+            "exactTokens": false,
+            "modelsTokens": [
+              414,
+              271,
+              248068,
+              198,
+              90700,
+              8340,
+              25,
+              271
+            ],
+            "oracleTokens": [
+              271,
+              248068,
+              271,
+              248069,
+              271,
+              760,
+              1156,
+              16067
+            ],
+            "comparablePrefixSteps": [
+              {
+                "elements": 248320,
+                "exactElements": 0,
+                "maxAbsError": 1.266489028930664,
+                "rmse": 0.2373158984051242,
+                "referenceRms": 3.0958985429932584,
+                "meanError": 0.012401253292241047,
+                "step": 0,
+                "modelsTopTokens": [
+                  414,
+                  271
+                ],
+                "oracleTopTokens": [
+                  271,
+                  414
+                ],
+                "modelsMargin": 0.31514549255371094,
+                "oracleMargin": 0.15430831909179688,
+                "modelsGapAtOracleWinner": 0.31514549255371094,
+                "oracleGapAtModelsWinner": 0.15430831909179688
+              }
+            ]
+          },
+          {
+            "id": "original-routing-06-0",
+            "exactTokens": false,
+            "modelsTokens": [
+              357,
+              271,
+              248068,
+              271,
+              248069,
+              271,
+              32,
+              25
+            ],
+            "oracleTokens": [
+              351,
+              271,
+              248068,
+              271,
+              248069,
+              271,
+              34,
+              248044
+            ],
+            "comparablePrefixSteps": [
+              {
+                "elements": 248320,
+                "exactElements": 0,
+                "maxAbsError": 1.230118989944458,
+                "rmse": 0.18083148592795087,
+                "referenceRms": 3.2577631953233537,
+                "meanError": 0.0505720526597477,
+                "step": 0,
+                "modelsTopTokens": [
+                  357,
+                  351
+                ],
+                "oracleTopTokens": [
+                  351,
+                  417
+                ],
+                "modelsMargin": 0.05543708801269531,
+                "oracleMargin": 0.010913848876953125,
+                "modelsGapAtOracleWinner": 0.05543708801269531,
+                "oracleGapAtModelsWinner": 0.20020675659179688
+              }
+            ]
+          },
+          {
+            "id": "snips-AddToPlaylist-0",
+            "exactTokens": false,
+            "modelsTokens": [
+              357,
+              271,
+              248068,
+              198,
+              760,
+              1156,
+              6587,
+              728
+            ],
+            "oracleTokens": [
+              357,
+              271,
+              248068,
+              198,
+              90700,
+              8340,
+              25,
+              271
+            ],
+            "comparablePrefixSteps": [
+              {
+                "elements": 248320,
+                "exactElements": 1,
+                "maxAbsError": 0.9658317565917969,
+                "rmse": 0.19127312198538152,
+                "referenceRms": 3.065963625694595,
+                "meanError": 0.035542670481078585,
+                "step": 0,
+                "modelsTopTokens": [
+                  357,
+                  414
+                ],
+                "oracleTopTokens": [
+                  357,
+                  414
+                ],
+                "modelsMargin": 0.4795570373535156,
+                "oracleMargin": 0.3842182159423828,
+                "modelsGapAtOracleWinner": 0.0,
+                "oracleGapAtModelsWinner": 0.0
+              },
+              {
+                "elements": 248320,
+                "exactElements": 0,
+                "maxAbsError": 0.9055709838867188,
+                "rmse": 0.1807946172436863,
+                "referenceRms": 2.3617553742398902,
+                "meanError": -0.006164149587737521,
+                "step": 1,
+                "modelsTopTokens": [
+                  271,
+                  198
+                ],
+                "oracleTopTokens": [
+                  271,
+                  198
+                ],
+                "modelsMargin": 1.1998405456542969,
+                "oracleMargin": 1.1569385528564453,
+                "modelsGapAtOracleWinner": 0.0,
+                "oracleGapAtModelsWinner": 0.0
+              },
+              {
+                "elements": 248320,
+                "exactElements": 0,
+                "maxAbsError": 0.6995711326599121,
+                "rmse": 0.13271836519017777,
+                "referenceRms": 2.392176850923652,
+                "meanError": 0.01851905077661642,
+                "step": 2,
+                "modelsTopTokens": [
+                  248068,
+                  760
+                ],
+                "oracleTopTokens": [
+                  248068,
+                  760
+                ],
+                "modelsMargin": 1.5450401306152344,
+                "oracleMargin": 1.5971908569335938,
+                "modelsGapAtOracleWinner": 0.0,
+                "oracleGapAtModelsWinner": 0.0
+              },
+              {
+                "elements": 248320,
+                "exactElements": 1,
+                "maxAbsError": 1.449268102645874,
+                "rmse": 0.3012826649591515,
+                "referenceRms": 3.7116272081161905,
+                "meanError": 0.17687168808380316,
+                "step": 3,
+                "modelsTopTokens": [
+                  198,
+                  271
+                ],
+                "oracleTopTokens": [
+                  198,
+                  271
+                ],
+                "modelsMargin": 0.11686134338378906,
+                "oracleMargin": 0.15767669677734375,
+                "modelsGapAtOracleWinner": 0.0,
+                "oracleGapAtModelsWinner": 0.0
+              },
+              {
+                "elements": 248320,
+                "exactElements": 0,
+                "maxAbsError": 1.6569983959197998,
+                "rmse": 0.31236468800449224,
+                "referenceRms": 2.799529074424115,
+                "meanError": 0.055702547963436204,
+                "step": 4,
+                "modelsTopTokens": [
+                  760,
+                  90700
+                ],
+                "oracleTopTokens": [
+                  90700,
+                  760
+                ],
+                "modelsMargin": 0.24689483642578125,
+                "oracleMargin": 0.7352981567382812,
+                "modelsGapAtOracleWinner": 0.24689483642578125,
+                "oracleGapAtModelsWinner": 0.7352981567382812
+              }
+            ]
+          },
+          {
+            "id": "snips-AddToPlaylist-1",
+            "exactTokens": false,
+            "modelsTokens": [
+              414,
+              198,
+              35,
+              25,
+              6834,
+              23373,
+              198,
+              35
+            ],
+            "oracleTokens": [
+              357,
+              271,
+              248068,
+              198,
+              90700,
+              8340,
+              25,
+              271
+            ],
+            "comparablePrefixSteps": [
+              {
+                "elements": 248320,
+                "exactElements": 0,
+                "maxAbsError": 0.8601589202880859,
+                "rmse": 0.1730913125746252,
+                "referenceRms": 3.072101729872343,
+                "meanError": 0.0692916774712431,
+                "step": 0,
+                "modelsTopTokens": [
+                  414,
+                  357
+                ],
+                "oracleTopTokens": [
+                  357,
+                  414
+                ],
+                "modelsMargin": 0.010318756103515625,
+                "oracleMargin": 0.4619140625,
+                "modelsGapAtOracleWinner": 0.010318756103515625,
+                "oracleGapAtModelsWinner": 0.4619140625
+              }
+            ]
+          },
+          {
+            "id": "snips-AddToPlaylist-2",
+            "exactTokens": true,
+            "modelsTokens": [
+              357,
+              271,
+              248068,
+              198,
+              90700,
+              8340,
+              25,
+              271
+            ],
+            "oracleTokens": [
+              357,
+              271,
+              248068,
+              198,
+              90700,
+              8340,
+              25,
+              271
+            ],
+            "comparablePrefixSteps": [
+              {
+                "elements": 248320,
+                "exactElements": 1,
+                "maxAbsError": 0.8306252956390381,
+                "rmse": 0.17437342811702286,
+                "referenceRms": 2.8921815151475934,
+                "meanError": -0.09564618743438821,
+                "step": 0,
+                "modelsTopTokens": [
+                  357,
+                  414
+                ],
+                "oracleTopTokens": [
+                  357,
+                  414
+                ],
+                "modelsMargin": 0.5700206756591797,
+                "oracleMargin": 0.5293483734130859,
+                "modelsGapAtOracleWinner": 0.0,
+                "oracleGapAtModelsWinner": 0.0
+              },
+              {
+                "elements": 248320,
+                "exactElements": 0,
+                "maxAbsError": 0.6888037919998169,
+                "rmse": 0.13259593172129,
+                "referenceRms": 2.3779947667321757,
+                "meanError": -0.028128976421850763,
+                "step": 1,
+                "modelsTopTokens": [
+                  271,
+                  198
+                ],
+                "oracleTopTokens": [
+                  271,
+                  198
+                ],
+                "modelsMargin": 0.5946712493896484,
+                "oracleMargin": 0.5859661102294922,
+                "modelsGapAtOracleWinner": 0.0,
+                "oracleGapAtModelsWinner": 0.0
+              },
+              {
+                "elements": 248320,
+                "exactElements": 0,
+                "maxAbsError": 0.7200641632080078,
+                "rmse": 0.14173865442641886,
+                "referenceRms": 2.3278740552137487,
+                "meanError": -0.0067216275963445015,
+                "step": 2,
+                "modelsTopTokens": [
+                  248068,
+                  3710
+                ],
+                "oracleTopTokens": [
+                  248068,
+                  3710
+                ],
+                "modelsMargin": 2.703306198120117,
+                "oracleMargin": 2.479827880859375,
+                "modelsGapAtOracleWinner": 0.0,
+                "oracleGapAtModelsWinner": 0.0
+              },
+              {
+                "elements": 248320,
+                "exactElements": 1,
+                "maxAbsError": 1.2614336013793945,
+                "rmse": 0.2730473697092128,
+                "referenceRms": 3.6976634778211404,
+                "meanError": -0.10763798421356807,
+                "step": 3,
+                "modelsTopTokens": [
+                  198,
+                  271
+                ],
+                "oracleTopTokens": [
+                  198,
+                  271
+                ],
+                "modelsMargin": 0.003757476806640625,
+                "oracleMargin": 0.1631317138671875,
+                "modelsGapAtOracleWinner": 0.0,
+                "oracleGapAtModelsWinner": 0.0
+              },
+              {
+                "elements": 248320,
+                "exactElements": 0,
+                "maxAbsError": 1.537187099456787,
+                "rmse": 0.29747176246130697,
+                "referenceRms": 2.757798325473619,
+                "meanError": -0.03255145608131851,
+                "step": 4,
+                "modelsTopTokens": [
+                  90700,
+                  760
+                ],
+                "oracleTopTokens": [
+                  90700,
+                  760
+                ],
+                "modelsMargin": 1.4168453216552734,
+                "oracleMargin": 1.1500740051269531,
+                "modelsGapAtOracleWinner": 0.0,
+                "oracleGapAtModelsWinner": 0.0
+              },
+              {
+                "elements": 248320,
+                "exactElements": 0,
+                "maxAbsError": 1.6558690071105957,
+                "rmse": 0.3140405455338438,
+                "referenceRms": 3.711218538599217,
+                "meanError": -0.012674333913775027,
+                "step": 5,
+                "modelsTopTokens": [
+                  8340,
+                  4451
+                ],
+                "oracleTopTokens": [
+                  8340,
+                  26679
+                ],
+                "modelsMargin": 9.374307632446289,
+                "oracleMargin": 9.228836059570312,
+                "modelsGapAtOracleWinner": 0.0,
+                "oracleGapAtModelsWinner": 0.0
+              },
+              {
+                "elements": 248320,
+                "exactElements": 0,
+                "maxAbsError": 2.041382312774658,
+                "rmse": 0.35484780759542817,
+                "referenceRms": 3.6102119153461865,
+                "meanError": 0.03586624232735893,
+                "step": 6,
+                "modelsTopTokens": [
+                  25,
+                  64700
+                ],
+                "oracleTopTokens": [
+                  25,
+                  64700
+                ],
+                "modelsMargin": 11.6539306640625,
+                "oracleMargin": 11.216484069824219,
+                "modelsGapAtOracleWinner": 0.0,
+                "oracleGapAtModelsWinner": 0.0
+              },
+              {
+                "elements": 248320,
+                "exactElements": 0,
+                "maxAbsError": 2.0578055381774902,
+                "rmse": 0.4321747154464762,
+                "referenceRms": 3.8084685248258645,
+                "meanError": 0.17159884476841586,
+                "step": 7,
+                "modelsTopTokens": [
+                  271,
+                  198
+                ],
+                "oracleTopTokens": [
+                  271,
+                  198
+                ],
+                "modelsMargin": 10.000419616699219,
+                "oracleMargin": 10.581607818603516,
+                "modelsGapAtOracleWinner": 0.0,
+                "oracleGapAtModelsWinner": 0.0
+              }
+            ]
+          },
+          {
+            "id": "snips-AddToPlaylist-3",
+            "exactTokens": false,
+            "modelsTokens": [
+              357,
+              271,
+              248068,
+              271,
+              248069,
+              271,
+              32,
+              25
+            ],
+            "oracleTokens": [
+              357,
+              271,
+              248068,
+              198,
+              90700,
+              8340,
+              25,
+              271
+            ],
+            "comparablePrefixSteps": [
+              {
+                "elements": 248320,
+                "exactElements": 0,
+                "maxAbsError": 0.7027263641357422,
+                "rmse": 0.13723973741250284,
+                "referenceRms": 2.9622036729226937,
+                "meanError": 0.04210533504776378,
+                "step": 0,
+                "modelsTopTokens": [
+                  357,
+                  414
+                ],
+                "oracleTopTokens": [
+                  357,
+                  414
+                ],
+                "modelsMargin": 1.1335220336914062,
+                "oracleMargin": 0.9682598114013672,
+                "modelsGapAtOracleWinner": 0.0,
+                "oracleGapAtModelsWinner": 0.0
+              },
+              {
+                "elements": 248320,
+                "exactElements": 0,
+                "maxAbsError": 0.7395691871643066,
+                "rmse": 0.15285387275456402,
+                "referenceRms": 2.401078344737348,
+                "meanError": 0.0026063180429268073,
+                "step": 1,
+                "modelsTopTokens": [
+                  271,
+                  198
+                ],
+                "oracleTopTokens": [
+                  271,
+                  198
+                ],
+                "modelsMargin": 0.19524192810058594,
+                "oracleMargin": 0.10308647155761719,
+                "modelsGapAtOracleWinner": 0.0,
+                "oracleGapAtModelsWinner": 0.0
+              },
+              {
+                "elements": 248320,
+                "exactElements": 0,
+                "maxAbsError": 0.6818575859069824,
+                "rmse": 0.13711499169672559,
+                "referenceRms": 2.3550995367111596,
+                "meanError": 0.010932237622520128,
+                "step": 2,
+                "modelsTopTokens": [
+                  248068,
+                  760
+                ],
+                "oracleTopTokens": [
+                  248068,
+                  760
+                ],
+                "modelsMargin": 2.483541488647461,
+                "oracleMargin": 2.643157958984375,
+                "modelsGapAtOracleWinner": 0.0,
+                "oracleGapAtModelsWinner": 0.0
+              },
+              {
+                "elements": 248320,
+                "exactElements": 0,
+                "maxAbsError": 1.5885677337646484,
+                "rmse": 0.3393865097717686,
+                "referenceRms": 3.69481560106149,
+                "meanError": 0.2051113389513141,
+                "step": 3,
+                "modelsTopTokens": [
+                  271,
+                  198
+                ],
+                "oracleTopTokens": [
+                  198,
+                  271
+                ],
+                "modelsMargin": 0.13187789916992188,
+                "oracleMargin": 0.018041610717773438,
+                "modelsGapAtOracleWinner": 0.13187789916992188,
+                "oracleGapAtModelsWinner": 0.018041610717773438
+              }
+            ]
+          }
+        ],
+        "exactCases": 2,
+        "firstLayer": [
+          {
+            "weight": "attn_qkv.weight",
+            "oracleTensor": "linear_attn_qkv_mixed-0",
+            "comparable": true,
+            "elements": 749568,
+            "exactElements": 140620,
+            "maxAbsError": 4.76837158203125e-06,
+            "rmse": 1.536765256620286e-07,
+            "referenceRms": 1.2855761079048798,
+            "meanError": 9.414107623384339e-11
+          },
+          {
+            "weight": "attn_gate.weight",
+            "oracleTensor": "z-0",
+            "comparable": true,
+            "elements": 249856,
+            "exactElements": 50194,
+            "maxAbsError": 3.814697265625e-06,
+            "rmse": 2.175870497187096e-07,
+            "referenceRms": 0.9141175641451368,
+            "meanError": 9.491891134649583e-10
+          },
+          {
+            "weight": "ssm_beta.weight",
+            "oracleTensor": "beta-0",
+            "comparable": true,
+            "elements": 1952,
+            "exactElements": 413,
+            "maxAbsError": 1.9073486328125e-06,
+            "rmse": 1.879508880243793e-07,
+            "referenceRms": 1.383245635942967,
+            "meanError": 1.5346903056211648e-08
+          },
+          {
+            "weight": "ssm_alpha.weight",
+            "oracleTensor": "alpha-0",
+            "comparable": true,
+            "elements": 1952,
+            "exactElements": 439,
+            "maxAbsError": 1.1920928955078125e-06,
+            "rmse": 2.810397063233055e-07,
+            "referenceRms": 2.366636147711021,
+            "meanError": -2.1702273115210357e-08
+          },
+          {
+            "weight": "ssm_out.weight",
+            "oracleTensor": "linear_attn_out-0",
+            "comparable": true,
+            "elements": 124928,
+            "exactElements": 3918,
+            "maxAbsError": 5.960464477539062e-07,
+            "rmse": 3.253151499474189e-08,
+            "referenceRms": 0.03928607819562535,
+            "meanError": 1.3644431668302465e-10
+          },
+          {
+            "weight": "ffn_gate.weight",
+            "oracleTensor": "ffn_gate-0",
+            "comparable": true,
+            "elements": 437248,
+            "exactElements": 58318,
+            "maxAbsError": 0.0015121698379516602,
+            "rmse": 5.803886664700884e-05,
+            "referenceRms": 0.42373999322954514,
+            "meanError": -4.1521181748200923e-07
+          },
+          {
+            "weight": "ffn_up.weight",
+            "oracleTensor": "ffn_up-0",
+            "comparable": true,
+            "elements": 437248,
+            "exactElements": 56616,
+            "maxAbsError": 0.000794142484664917,
+            "rmse": 4.1284325376088153e-05,
+            "referenceRms": 0.20349982001391234,
+            "meanError": 4.595668447822885e-08
+          },
+          {
+            "weight": "ffn_down.weight",
+            "oracleTensor": "ffn_out-0",
+            "comparable": true,
+            "elements": 124928,
+            "exactElements": 11268,
+            "maxAbsError": 0.0006810426712036133,
+            "rmse": 3.156622396541792e-05,
+            "referenceRms": 0.020499841666528233,
+            "meanError": -3.045141598987789e-08
+          },
+          {
+            "weight": "attn_qkv.weight.input",
+            "oracleTensor": "attn_norm-0",
+            "comparable": true,
+            "elements": 124928,
+            "exactElements": 119541,
+            "maxAbsError": 4.76837158203125e-07,
+            "rmse": 2.6305614826716813e-08,
+            "referenceRms": 1.2406567354399411,
+            "meanError": -1.0973575418112707e-11,
+            "q8KReferenceReplay": {
+              "quantizedIntegersDifferent": 0,
+              "blocksWithDifferentIntegers": 0,
+              "scaleBitsDifferent": 18,
+              "blocks": 488
+            }
+          },
+          {
+            "weight": "ssm_out.weight.input",
+            "oracleTensor": "final_output-0",
+            "comparable": true,
+            "elements": 249856,
+            "exactElements": 16842,
+            "maxAbsError": 1.9073486328125e-06,
+            "rmse": 3.183522793544697e-08,
+            "referenceRms": 0.10852695636898514,
+            "meanError": 2.472083393025015e-10,
+            "q8KReferenceReplay": {
+              "quantizedIntegersDifferent": 0,
+              "blocksWithDifferentIntegers": 0,
+              "scaleBitsDifferent": 774,
+              "blocks": 976
+            }
+          },
+          {
+            "weight": "ffn_gate.weight.input",
+            "oracleTensor": "attn_post_norm-0",
+            "comparable": true,
+            "elements": 124928,
+            "exactElements": 4557,
+            "maxAbsError": 8.374452590942383e-06,
+            "rmse": 1.0492093641025189e-06,
+            "referenceRms": 0.89382432449451,
+            "meanError": 3.828316909383872e-09,
+            "q8KReferenceReplay": {
+              "quantizedIntegersDifferent": 9,
+              "blocksWithDifferentIntegers": 9,
+              "scaleBitsDifferent": 387,
+              "blocks": 488
+            }
+          }
+        ],
+        "availableOracleTensorNames": [
+          "a_softplus-0",
+          "alpha-0",
+          "attn_norm-0",
+          "attn_output-0",
+          "attn_post_norm-0",
+          "attn_residual-0",
+          "beta-0",
+          "beta_sigmoid-0",
+          "cache_s_l0 (view) (copy of new_state-0)",
+          "conv_input-0",
+          "conv_output_raw-0",
+          "conv_output_silu-0",
+          "conv_state_last-0",
+          "conv_state_update-0",
+          "conv_state_update-0 (copy of conv_state_last-0)",
+          "conv_states-0",
+          "conv_states_reshaped-0",
+          "ffn_gate-0",
+          "ffn_out-0",
+          "ffn_swiglu-0",
+          "ffn_up-0",
+          "final_output-0",
+          "gate-0",
+          "gate-0 (reshaped)",
+          "k_conv-0",
+          "k_conv_predelta-0",
+          "l_out-0",
+          "linear_attn_out-0",
+          "linear_attn_out-0 (reshaped)",
+          "linear_attn_qkv_mixed-0",
+          "model.input_embed",
+          "new_state-0",
+          "norm-0",
+          "q_conv-0",
+          "q_conv_predelta-0",
+          "qkv_mixed_transposed-0",
+          "state_predelta-0",
+          "v_conv_predelta-0",
+          "z-0",
+          "z-0 (reshaped)"
+        ],
+        "availableModelsTensorNames": [
+          "blk.0.attn_gate.weight.input",
+          "blk.0.attn_gate.weight.output",
+          "blk.0.attn_qkv.weight.input",
+          "blk.0.attn_qkv.weight.output",
+          "blk.0.ffn_down.weight.input",
+          "blk.0.ffn_down.weight.output",
+          "blk.0.ffn_gate.weight.input",
+          "blk.0.ffn_gate.weight.output",
+          "blk.0.ffn_up.weight.input",
+          "blk.0.ffn_up.weight.output",
+          "blk.0.ssm_alpha.weight.input",
+          "blk.0.ssm_alpha.weight.output",
+          "blk.0.ssm_beta.weight.input",
+          "blk.0.ssm_beta.weight.output",
+          "blk.0.ssm_out.weight.input",
+          "blk.0.ssm_out.weight.output"
+        ]
+      }
+    }
+  }
+}

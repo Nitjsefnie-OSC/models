@@ -1,0 +1,11 @@
+{
+  "status": "setup failure before inference",
+  "cause": "baseline package omitted tracked src/ptq.rs and src/neon.rs",
+  "hostsTerminated": [
+    "i-00d04e176e61184ba",
+    "i-034b62494d50e7ac9"
+  ],
+  "remedy": "copy the entire tracked baseline crate, then cargo check every packaged crate for x86_64 and aarch64 Linux before upload",
+  "replacement": "production-correctness-v2",
+  "timingMeasurements": 0
+}

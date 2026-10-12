@@ -1,0 +1,26 @@
+{
+  "capturedAt": "20261012T213431Z",
+  "pid": 5796,
+  "arm": "published",
+  "command": [
+    "/opt/jdk/bin/java",
+    "--add-modules",
+    "jdk.incubator.vector",
+    "--enable-native-access=ALL-UNNAMED",
+    "-Xms2g",
+    "-Xmx10g",
+    "-cp",
+    "lib/published/*:route-proof.jar",
+    "com.integrallis.models.backend.purejava.qwen35.ProductionRouteProof",
+    "cohort",
+    "qwen-4b.gguf",
+    "/work/rust/published/target/release/libjmodels_kernels.so",
+    "data/tasks.json"
+  ],
+  "diagnosticCommand": [
+    "/opt/jdk/bin/jcmd",
+    "5796",
+    "GC.heap_info"
+  ],
+  "scope": "Read-only /proc and heap-info diagnostic of untimed correctness JVM; no timing JVM attached and no explicit GC requested."
+}

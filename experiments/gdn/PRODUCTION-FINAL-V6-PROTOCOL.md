@@ -136,3 +136,25 @@ Five 16-vCPU hosts, at most70 minutes each and at most$8 total, with absolute te
 ### v11 actual integration artifact freeze
 
 The v10 payload was never launched. Once final integration JARs became available, v11 freezes all four actual Models0bc5de31 artifacts and their matching Rust source, together with Vectors ae337eeb. This includes Q5-specific dispatch/singleton changes and avoids inferring runtime equivalence from source overlays. The Java recurrence control is rebuilt by changing only the final provider's supportsGatedDeltaNet() result. Workloads, arms, samples, gates, sharding and budget are unchanged from the preceding frozen amendment.
+
+### Operational deadline amendment, final v11 ARM4B correctness shard
+
+At 2026-10-12T21:26:41Z the owned `arm-large-a` instance
+`i-01f4ffea2c7da6657` received a replacement shutdown watchdog with absolute
+2026-10-12T22:30:00Z deadline. Parent authorization covers this operational
+extension within the original four-hour campaign and $8 phase ceiling.
+The original 22:12:32Z receipt is retained in
+`hosts-production-final-v11-before-deadline-amendment.json`; the replacement
+command, process IDs and timestamps are in
+`production-final-v11-arm-large-a-deadline-amendment.json`.
+The complete 148-case correctness cohort takes longer than the 30-request timing
+set used for the initial duration estimate. Source, artifacts, cases, arms,
+process pairs, measurement protocol and all gates are unchanged.
+
+### Evidence export scope clarification
+
+The first export manifest at `/tmp/gdn-final-evidence-20261012-2128` described
+its contents as containing no model weights. That wording was too broad: it
+includes small captured weight blocks and tensors needed for independent scalar
+replay, but no full model artifacts. The original manifest remains an immutable
+receipt; subsequent manifests use this precise scope.

@@ -1,0 +1,19 @@
+{
+  "command": [
+    "/Users/briansam-bodden/.sdkman/candidates/java/25.0.3-tem/bin/java",
+    "--add-modules",
+    "jdk.incubator.vector",
+    "--enable-native-access=ALL-UNNAMED",
+    "-Xmx4g",
+    "-XX:ActiveProcessorCount=4",
+    "-cp",
+    "/Users/briansam-bodden/Code/java-ai/projects/models-gdn-proof/experiments/gdn/generated/payload-production-screen-v2/lib/vectors-core-0.1.29.jar:/Users/briansam-bodden/Code/java-ai/projects/models-gdn-production/backend-native/build/libs/backend-native-0.3.59.jar:/Users/briansam-bodden/Code/java-ai/projects/models-gdn-production/models-bench/build/install/models-bench/lib/*:/Users/briansam-bodden/Code/java-ai/projects/models-gdn-proof/experiments/gdn/generated/gdn-jmh.jar",
+    "com.integrallis.models.backend.purejava.qwen35.RecurrenceOracleCapture",
+    "/Users/briansam-bodden/.jvllm/models/Qwen3.5-4B-Q4_K_M.gguf",
+    "/Users/briansam-bodden/Code/java-ai/projects/models-gdn-production/backend-native/build/rust-target/release/libjmodels_kernels.dylib",
+    "experiments/gdn/data/tasks.json",
+    "/Users/briansam-bodden/Code/java-ai/projects/models-gdn-proof/benchmark-results/2026-10-11-gdn-proof/recurrence-oracle-4B"
+  ],
+  "exitCode": 0,
+  "wallSeconds": 80.70683787204325
+}

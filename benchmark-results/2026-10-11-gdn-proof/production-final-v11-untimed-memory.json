@@ -1,0 +1,117 @@
+{
+  "scope": "Untimed correctness JVM snapshots at different requests on separate same-type hosts. Descriptive memory attribution only; not a paired RSS gate, not evidence of retention lifetime or a leak. GC.heap_info requested without explicit GC.",
+  "captures": [
+    {
+      "capture": "benchmark-results/2026-10-11-gdn-proof/remote-production-final-v11/arm-large-a/memory-diagnostic-native-20261012T213037Z",
+      "metadata": {
+        "capturedAt": "20261012T213037Z",
+        "pid": 4188,
+        "arm": "native",
+        "command": [
+          "/opt/jdk/bin/java",
+          "--add-modules",
+          "jdk.incubator.vector",
+          "--enable-native-access=ALL-UNNAMED",
+          "-Xms2g",
+          "-Xmx10g",
+          "-cp",
+          "lib/native/*:route-proof.jar",
+          "com.integrallis.models.backend.purejava.qwen35.ProductionRouteProof",
+          "cohort",
+          "qwen-4b.gguf",
+          "/work/rust/native/target/release/libjmodels_kernels.so",
+          "data/tasks.json"
+        ],
+        "diagnosticCommand": [
+          "/opt/jdk/bin/jcmd",
+          "4188",
+          "GC.heap_info"
+        ],
+        "scope": "Read-only /proc and heap-info diagnostic of untimed correctness JVM; no timing JVM attached and no explicit GC requested."
+      },
+      "heapInfo": "4188:\ngarbage-first heap   total reserved 10485760K, committed 2105344K, used 778081K [0x0000000580000000, 0x0000000800000000)\n region size 8192K, 11 young (90112K), 9 survivors (73728K)\n",
+      "kilobytes": {
+        "Java heap": {
+          "Size": 10485760,
+          "Rss": 1539216,
+          "Pss": 1539216,
+          "Private_Dirty": 1538812
+        },
+        "Other anonymous": {
+          "Size": 5217560,
+          "Rss": 97176,
+          "Pss": 97172,
+          "Private_Dirty": 97172
+        },
+        "Other file": {
+          "Size": 186512,
+          "Rss": 35704,
+          "Pss": 33825,
+          "Private_Dirty": 12048
+        },
+        "GGUF file": {
+          "Size": 2676700,
+          "Rss": 2676700,
+          "Pss": 2676700,
+          "Private_Dirty": 0
+        }
+      }
+    },
+    {
+      "capture": "benchmark-results/2026-10-11-gdn-proof/remote-production-final-v9/arm-correctness/memory-diagnostic-published-20261012T213431Z",
+      "metadata": {
+        "capturedAt": "20261012T213431Z",
+        "pid": 5796,
+        "arm": "published",
+        "command": [
+          "/opt/jdk/bin/java",
+          "--add-modules",
+          "jdk.incubator.vector",
+          "--enable-native-access=ALL-UNNAMED",
+          "-Xms2g",
+          "-Xmx10g",
+          "-cp",
+          "lib/published/*:route-proof.jar",
+          "com.integrallis.models.backend.purejava.qwen35.ProductionRouteProof",
+          "cohort",
+          "qwen-4b.gguf",
+          "/work/rust/published/target/release/libjmodels_kernels.so",
+          "data/tasks.json"
+        ],
+        "diagnosticCommand": [
+          "/opt/jdk/bin/jcmd",
+          "5796",
+          "GC.heap_info"
+        ],
+        "scope": "Read-only /proc and heap-info diagnostic of untimed correctness JVM; no timing JVM attached and no explicit GC requested."
+      },
+      "heapInfo": "5796:\ngarbage-first heap   total reserved 10485760K, committed 2105344K, used 1131073K [0x0000000580000000, 0x0000000800000000)\n region size 8192K, 24 young (196608K), 3 survivors (24576K)\n",
+      "kilobytes": {
+        "Java heap": {
+          "Size": 10485760,
+          "Rss": 1283224,
+          "Pss": 1283224,
+          "Private_Dirty": 1282820
+        },
+        "Other anonymous": {
+          "Size": 5082408,
+          "Rss": 88492,
+          "Pss": 88488,
+          "Private_Dirty": 88488
+        },
+        "Other file": {
+          "Size": 186716,
+          "Rss": 35904,
+          "Pss": 34130,
+          "Private_Dirty": 12060
+        },
+        "GGUF file": {
+          "Size": 2676700,
+          "Rss": 2676700,
+          "Pss": 2676700,
+          "Private_Dirty": 0
+        }
+      }
+    }
+  ]
+}

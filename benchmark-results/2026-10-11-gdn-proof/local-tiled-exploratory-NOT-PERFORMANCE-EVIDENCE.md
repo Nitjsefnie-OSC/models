@@ -1,0 +1,1 @@
+The first local short JMH smoke run overlapped local correctness processes. Retain it for plumbing/correctness only; do not use its timings. A separate uncontended rerun is required even for exploratory timing. Cloud sustained measurements are on independent hosts.

@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "/work/run-oracle.py", line 60, in <module>
+    assert all(r['tokenizationExact'] and all(r['arms'][a]['exact'] for a in ['baseline','java','native']) for r in results), 'independent oracle mismatch'
+AssertionError: independent oracle mismatch

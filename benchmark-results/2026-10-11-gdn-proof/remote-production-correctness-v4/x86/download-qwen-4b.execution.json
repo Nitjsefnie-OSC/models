@@ -1,0 +1,13 @@
+{
+  "command": [
+    "curl",
+    "-fL",
+    "--retry",
+    "3",
+    "https://huggingface.co/unsloth/Qwen3.5-4B-GGUF/resolve/e87f176479d0855a907a41277aca2f8ee7a09523/Qwen3.5-4B-Q4_K_M.gguf",
+    "-o",
+    "qwen-4b.gguf"
+  ],
+  "exitCode": 0,
+  "wallSeconds": 8.929557754000001
+}

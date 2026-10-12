@@ -1,0 +1,12 @@
+[
+  {
+    "model": "qwen-0.8b",
+    "gate": "independent-oracle",
+    "error": "('qwen-0.8b-oracle', 1)"
+  },
+  {
+    "model": "qwen-4b",
+    "gate": "independent-oracle",
+    "error": "('qwen-4b-oracle', 1)"
+  }
+]

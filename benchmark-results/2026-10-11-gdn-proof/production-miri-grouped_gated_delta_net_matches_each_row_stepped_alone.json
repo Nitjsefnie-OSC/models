@@ -1,0 +1,17 @@
+{
+  "command": [
+    "cargo",
+    "+nightly-2026-09-17",
+    "miri",
+    "test",
+    "--manifest-path",
+    "experiments/gdn/generated/sequential-aligned-parallel-exclusive/Cargo.toml",
+    "--target",
+    "x86_64-unknown-linux-gnu",
+    "tests::grouped_gated_delta_net_matches_each_row_stepped_alone",
+    "--",
+    "--exact"
+  ],
+  "MIRIFLAGS": "-Zmiri-deterministic-floats",
+  "exitCode": 0
+}

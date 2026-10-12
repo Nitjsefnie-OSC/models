@@ -1,0 +1,2868 @@
+{
+  "method": "geometric mean of process-paired ratios; paired percentile bootstrap, 20000 resamples, fixed seed; warm metrics average three requests per process",
+  "results": [
+    {
+      "model": "qwen-0.8b",
+      "processPairs": 10,
+      "warmRequestsPerArm": 30,
+      "changes": [
+        {
+          "pair": 0,
+          "arm": "published",
+          "id": "easy-intent-00",
+          "repeat": -4,
+          "fields": [
+            "fullLogitSha256",
+            "greedyTokens"
+          ]
+        },
+        {
+          "pair": 0,
+          "arm": "published",
+          "id": "easy-intent-00",
+          "repeat": -3,
+          "fields": [
+            "fullLogitSha256",
+            "greedyTokens"
+          ]
+        },
+        {
+          "pair": 0,
+          "arm": "published",
+          "id": "snips-AddToPlaylist-0",
+          "repeat": -2,
+          "fields": [
+            "fullLogitSha256",
+            "greedyTokens"
+          ]
+        },
+        {
+          "pair": 0,
+          "arm": "published",
+          "id": "easy-intent-01",
+          "repeat": -1,
+          "fields": [
+            "fullLogitSha256"
+          ]
+        },
+        {
+          "pair": 0,
+          "arm": "published",
+          "id": "easy-intent-00",
+          "repeat": 0,
+          "fields": [
+            "fullLogitSha256",
+            "greedyTokens"
+          ]
+        },
+        {
+          "pair": 0,
+          "arm": "published",
+          "id": "snips-AddToPlaylist-0",
+          "repeat": 1,
+          "fields": [
+            "fullLogitSha256",
+            "greedyTokens"
+          ]
+        },
+        {
+          "pair": 0,
+          "arm": "published",
+          "id": "easy-intent-01",
+          "repeat": 2,
+          "fields": [
+            "fullLogitSha256",
+            "greedyTokens"
+          ]
+        },
+        {
+          "pair": 1,
+          "arm": "published",
+          "id": "easy-intent-00",
+          "repeat": -4,
+          "fields": [
+            "fullLogitSha256",
+            "greedyTokens"
+          ]
+        },
+        {
+          "pair": 1,
+          "arm": "published",
+          "id": "easy-intent-00",
+          "repeat": -3,
+          "fields": [
+            "fullLogitSha256",
+            "greedyTokens"
+          ]
+        },
+        {
+          "pair": 1,
+          "arm": "published",
+          "id": "snips-AddToPlaylist-0",
+          "repeat": -2,
+          "fields": [
+            "fullLogitSha256",
+            "greedyTokens"
+          ]
+        },
+        {
+          "pair": 1,
+          "arm": "published",
+          "id": "easy-intent-01",
+          "repeat": -1,
+          "fields": [
+            "fullLogitSha256"
+          ]
+        },
+        {
+          "pair": 1,
+          "arm": "published",
+          "id": "snips-AddToPlaylist-1",
+          "repeat": 0,
+          "fields": [
+            "fullLogitSha256",
+            "greedyTokens",
+            "prediction"
+          ]
+        },
+        {
+          "pair": 1,
+          "arm": "published",
+          "id": "easy-intent-02",
+          "repeat": 1,
+          "fields": [
+            "fullLogitSha256"
+          ]
+        },
+        {
+          "pair": 1,
+          "arm": "published",
+          "id": "snips-AddToPlaylist-2",
+          "repeat": 2,
+          "fields": [
+            "fullLogitSha256",
+            "greedyTokens"
+          ]
+        },
+        {
+          "pair": 2,
+          "arm": "published",
+          "id": "easy-intent-00",
+          "repeat": -4,
+          "fields": [
+            "fullLogitSha256",
+            "greedyTokens"
+          ]
+        },
+        {
+          "pair": 2,
+          "arm": "published",
+          "id": "easy-intent-00",
+          "repeat": -3,
+          "fields": [
+            "fullLogitSha256",
+            "greedyTokens"
+          ]
+        },
+        {
+          "pair": 2,
+          "arm": "published",
+          "id": "snips-AddToPlaylist-0",
+          "repeat": -2,
+          "fields": [
+            "fullLogitSha256",
+            "greedyTokens"
+          ]
+        },
+        {
+          "pair": 2,
+          "arm": "published",
+          "id": "easy-intent-01",
+          "repeat": -1,
+          "fields": [
+            "fullLogitSha256",
+            "greedyTokens"
+          ]
+        },
+        {
+          "pair": 2,
+          "arm": "published",
+          "id": "easy-intent-03",
+          "repeat": 0,
+          "fields": [
+            "fullLogitSha256"
+          ]
+        },
+        {
+          "pair": 2,
+          "arm": "published",
+          "id": "snips-AddToPlaylist-3",
+          "repeat": 1,
+          "fields": [
+            "fullLogitSha256",
+            "greedyTokens"
+          ]
+        },
+        {
+          "pair": 2,
+          "arm": "published",
+          "id": "easy-intent-04",
+          "repeat": 2,
+          "fields": [
+            "fullLogitSha256",
+            "greedyTokens"
+          ]
+        },
+        {
+          "pair": 3,
+          "arm": "published",
+          "id": "easy-intent-00",
+          "repeat": -4,
+          "fields": [
+            "fullLogitSha256",
+            "greedyTokens"
+          ]
+        },
+        {
+          "pair": 3,
+          "arm": "published",
+          "id": "easy-intent-00",
+          "repeat": -3,
+          "fields": [
+            "fullLogitSha256",
+            "greedyTokens"
+          ]
+        },
+        {
+          "pair": 3,
+          "arm": "published",
+          "id": "snips-AddToPlaylist-0",
+          "repeat": -2,
+          "fields": [
+            "fullLogitSha256",
+            "greedyTokens"
+          ]
+        },
+        {
+          "pair": 3,
+          "arm": "published",
+          "id": "easy-intent-01",
+          "repeat": -1,
+          "fields": [
+            "fullLogitSha256"
+          ]
+        },
+        {
+          "pair": 3,
+          "arm": "published",
+          "id": "snips-BookRestaurant-0",
+          "repeat": 0,
+          "fields": [
+            "fullLogitSha256"
+          ]
+        },
+        {
+          "pair": 3,
+          "arm": "published",
+          "id": "easy-intent-05",
+          "repeat": 1,
+          "fields": [
+            "fullLogitSha256",
+            "greedyTokens"
+          ]
+        },
+        {
+          "pair": 3,
+          "arm": "published",
+          "id": "snips-BookRestaurant-1",
+          "repeat": 2,
+          "fields": [
+            "fullLogitSha256",
+            "greedyTokens"
+          ]
+        },
+        {
+          "pair": 4,
+          "arm": "published",
+          "id": "easy-intent-00",
+          "repeat": -4,
+          "fields": [
+            "fullLogitSha256",
+            "greedyTokens"
+          ]
+        },
+        {
+          "pair": 4,
+          "arm": "published",
+          "id": "easy-intent-00",
+          "repeat": -3,
+          "fields": [
+            "fullLogitSha256",
+            "greedyTokens"
+          ]
+        },
+        {
+          "pair": 4,
+          "arm": "published",
+          "id": "snips-AddToPlaylist-0",
+          "repeat": -2,
+          "fields": [
+            "fullLogitSha256",
+            "greedyTokens"
+          ]
+        },
+        {
+          "pair": 4,
+          "arm": "published",
+          "id": "easy-intent-01",
+          "repeat": -1,
+          "fields": [
+            "fullLogitSha256"
+          ]
+        },
+        {
+          "pair": 4,
+          "arm": "published",
+          "id": "easy-intent-06",
+          "repeat": 0,
+          "fields": [
+            "fullLogitSha256",
+            "greedyTokens"
+          ]
+        },
+        {
+          "pair": 4,
+          "arm": "published",
+          "id": "snips-BookRestaurant-2",
+          "repeat": 1,
+          "fields": [
+            "fullLogitSha256",
+            "greedyTokens"
+          ]
+        },
+        {
+          "pair": 4,
+          "arm": "published",
+          "id": "easy-intent-07",
+          "repeat": 2,
+          "fields": [
+            "fullLogitSha256"
+          ]
+        },
+        {
+          "pair": 5,
+          "arm": "published",
+          "id": "easy-intent-00",
+          "repeat": -4,
+          "fields": [
+            "fullLogitSha256",
+            "greedyTokens"
+          ]
+        },
+        {
+          "pair": 5,
+          "arm": "published",
+          "id": "easy-intent-00",
+          "repeat": -3,
+          "fields": [
+            "fullLogitSha256",
+            "greedyTokens"
+          ]
+        },
+        {
+          "pair": 5,
+          "arm": "published",
+          "id": "snips-AddToPlaylist-0",
+          "repeat": -2,
+          "fields": [
+            "fullLogitSha256",
+            "greedyTokens"
+          ]
+        },
+        {
+          "pair": 5,
+          "arm": "published",
+          "id": "easy-intent-01",
+          "repeat": -1,
+          "fields": [
+            "fullLogitSha256",
+            "greedyTokens"
+          ]
+        },
+        {
+          "pair": 5,
+          "arm": "published",
+          "id": "snips-BookRestaurant-3",
+          "repeat": 0,
+          "fields": [
+            "fullLogitSha256",
+            "greedyTokens",
+            "prediction"
+          ]
+        },
+        {
+          "pair": 5,
+          "arm": "published",
+          "id": "easy-intent-08",
+          "repeat": 1,
+          "fields": [
+            "fullLogitSha256"
+          ]
+        },
+        {
+          "pair": 5,
+          "arm": "published",
+          "id": "snips-GetWeather-0",
+          "repeat": 2,
+          "fields": [
+            "fullLogitSha256"
+          ]
+        },
+        {
+          "pair": 6,
+          "arm": "published",
+          "id": "easy-intent-00",
+          "repeat": -4,
+          "fields": [
+            "fullLogitSha256",
+            "greedyTokens"
+          ]
+        },
+        {
+          "pair": 6,
+          "arm": "published",
+          "id": "easy-intent-00",
+          "repeat": -3,
+          "fields": [
+            "fullLogitSha256",
+            "greedyTokens"
+          ]
+        },
+        {
+          "pair": 6,
+          "arm": "published",
+          "id": "snips-AddToPlaylist-0",
+          "repeat": -2,
+          "fields": [
+            "fullLogitSha256",
+            "greedyTokens"
+          ]
+        },
+        {
+          "pair": 6,
+          "arm": "published",
+          "id": "easy-intent-01",
+          "repeat": -1,
+          "fields": [
+            "fullLogitSha256",
+            "greedyTokens"
+          ]
+        },
+        {
+          "pair": 6,
+          "arm": "published",
+          "id": "easy-intent-09",
+          "repeat": 0,
+          "fields": [
+            "fullLogitSha256"
+          ]
+        },
+        {
+          "pair": 6,
+          "arm": "published",
+          "id": "snips-GetWeather-1",
+          "repeat": 1,
+          "fields": [
+            "fullLogitSha256"
+          ]
+        },
+        {
+          "pair": 6,
+          "arm": "published",
+          "id": "easy-intent-10",
+          "repeat": 2,
+          "fields": [
+            "fullLogitSha256",
+            "prediction"
+          ]
+        },
+        {
+          "pair": 7,
+          "arm": "published",
+          "id": "easy-intent-00",
+          "repeat": -4,
+          "fields": [
+            "fullLogitSha256",
+            "greedyTokens"
+          ]
+        },
+        {
+          "pair": 7,
+          "arm": "published",
+          "id": "easy-intent-00",
+          "repeat": -3,
+          "fields": [
+            "fullLogitSha256",
+            "greedyTokens"
+          ]
+        },
+        {
+          "pair": 7,
+          "arm": "published",
+          "id": "snips-AddToPlaylist-0",
+          "repeat": -2,
+          "fields": [
+            "fullLogitSha256",
+            "greedyTokens"
+          ]
+        },
+        {
+          "pair": 7,
+          "arm": "published",
+          "id": "easy-intent-01",
+          "repeat": -1,
+          "fields": [
+            "fullLogitSha256",
+            "greedyTokens"
+          ]
+        },
+        {
+          "pair": 7,
+          "arm": "published",
+          "id": "snips-GetWeather-2",
+          "repeat": 0,
+          "fields": [
+            "fullLogitSha256"
+          ]
+        },
+        {
+          "pair": 7,
+          "arm": "published",
+          "id": "easy-intent-11",
+          "repeat": 1,
+          "fields": [
+            "fullLogitSha256",
+            "greedyTokens"
+          ]
+        },
+        {
+          "pair": 7,
+          "arm": "published",
+          "id": "snips-GetWeather-3",
+          "repeat": 2,
+          "fields": [
+            "fullLogitSha256"
+          ]
+        },
+        {
+          "pair": 8,
+          "arm": "published",
+          "id": "easy-intent-00",
+          "repeat": -4,
+          "fields": [
+            "fullLogitSha256",
+            "greedyTokens"
+          ]
+        },
+        {
+          "pair": 8,
+          "arm": "published",
+          "id": "easy-intent-00",
+          "repeat": -3,
+          "fields": [
+            "fullLogitSha256",
+            "greedyTokens"
+          ]
+        },
+        {
+          "pair": 8,
+          "arm": "published",
+          "id": "snips-AddToPlaylist-0",
+          "repeat": -2,
+          "fields": [
+            "fullLogitSha256",
+            "greedyTokens"
+          ]
+        },
+        {
+          "pair": 8,
+          "arm": "published",
+          "id": "easy-intent-01",
+          "repeat": -1,
+          "fields": [
+            "fullLogitSha256"
+          ]
+        },
+        {
+          "pair": 8,
+          "arm": "published",
+          "id": "easy-fact-00",
+          "repeat": 0,
+          "fields": [
+            "fullLogitSha256"
+          ]
+        },
+        {
+          "pair": 8,
+          "arm": "published",
+          "id": "snips-PlayMusic-0",
+          "repeat": 1,
+          "fields": [
+            "fullLogitSha256",
+            "greedyTokens"
+          ]
+        },
+        {
+          "pair": 8,
+          "arm": "published",
+          "id": "easy-fact-01",
+          "repeat": 2,
+          "fields": [
+            "fullLogitSha256"
+          ]
+        },
+        {
+          "pair": 9,
+          "arm": "published",
+          "id": "easy-intent-00",
+          "repeat": -4,
+          "fields": [
+            "fullLogitSha256",
+            "greedyTokens"
+          ]
+        },
+        {
+          "pair": 9,
+          "arm": "published",
+          "id": "easy-intent-00",
+          "repeat": -3,
+          "fields": [
+            "fullLogitSha256",
+            "greedyTokens"
+          ]
+        },
+        {
+          "pair": 9,
+          "arm": "published",
+          "id": "snips-AddToPlaylist-0",
+          "repeat": -2,
+          "fields": [
+            "fullLogitSha256",
+            "greedyTokens"
+          ]
+        },
+        {
+          "pair": 9,
+          "arm": "published",
+          "id": "easy-intent-01",
+          "repeat": -1,
+          "fields": [
+            "fullLogitSha256",
+            "greedyTokens"
+          ]
+        },
+        {
+          "pair": 9,
+          "arm": "published",
+          "id": "snips-PlayMusic-1",
+          "repeat": 0,
+          "fields": [
+            "fullLogitSha256"
+          ]
+        },
+        {
+          "pair": 9,
+          "arm": "published",
+          "id": "easy-fact-02",
+          "repeat": 1,
+          "fields": [
+            "fullLogitSha256",
+            "greedyTokens"
+          ]
+        },
+        {
+          "pair": 9,
+          "arm": "published",
+          "id": "snips-PlayMusic-2",
+          "repeat": 2,
+          "fields": [
+            "fullLogitSha256",
+            "greedyTokens"
+          ]
+        }
+      ],
+      "comparisons": [
+        {
+          "candidate": "java",
+          "reference": "baseline",
+          "metrics": {
+            "loadNanos": {
+              "ratio": 0.9944420791661783,
+              "ci95": [
+                0.9784788711608133,
+                1.0110974850110515
+              ],
+              "precisionTargetMet": false,
+              "direction": "unresolved",
+              "processRatios": [
+                1.002718753001221,
+                1.0100109939857171,
+                1.0491564201993442,
+                0.9921817144425783,
+                0.9929716676855653,
+                0.9559324775132795,
+                0.9931059655023327,
+                0.9579281043104341,
+                1.0161185512765274,
+                0.9777352417251551
+              ]
+            },
+            "coldRequestNanos": {
+              "ratio": 1.0586613134086909,
+              "ci95": [
+                1.0322955948431243,
+                1.0867141097182873
+              ],
+              "precisionTargetMet": false,
+              "direction": "slower",
+              "processRatios": [
+                1.0199227412469751,
+                1.0025359933320903,
+                1.0379794078717326,
+                1.1084835410509726,
+                1.0677515127190105,
+                1.0459018153980806,
+                1.1398438916680018,
+                1.0931401814191601,
+                1.0002915243589106,
+                1.0798818904896212
+              ]
+            },
+            "prefillNanos": {
+              "ratio": 0.8417538215250003,
+              "ci95": [
+                0.798253192173372,
+                0.870639469688598
+              ],
+              "precisionTargetMet": false,
+              "direction": "faster",
+              "processRatios": [
+                0.815052873940854,
+                0.8762749257654244,
+                0.8839898659181193,
+                0.8723023092719169,
+                0.8618853994430499,
+                0.6787946210411707,
+                0.8605762810943656,
+                0.8559471619820671,
+                0.877167905300344,
+                0.857834510785092
+              ]
+            },
+            "decodeNanos": {
+              "ratio": 1.2345879389216996,
+              "ci95": [
+                1.1323517550677842,
+                1.3082754814158262
+              ],
+              "precisionTargetMet": false,
+              "direction": "slower",
+              "processRatios": [
+                1.2521656511647286,
+                1.3041544502199813,
+                1.2351951941839199,
+                1.270203397405412,
+                1.3475272977493142,
+                0.8739210654684328,
+                1.2294393847297724,
+                1.3494184153465494,
+                1.2091361355014245,
+                1.3591953732034987
+              ]
+            },
+            "requestNanos": {
+              "ratio": 0.9313260906476584,
+              "ci95": [
+                0.8803660591793351,
+                0.9651416898883279
+              ],
+              "precisionTargetMet": false,
+              "direction": "faster",
+              "processRatios": [
+                0.9040827031618002,
+                0.9711550360912488,
+                0.9485894970717526,
+                0.9658107637603697,
+                0.958511851405809,
+                0.739360411498761,
+                0.9404547051128432,
+                0.9698413500716307,
+                0.9606260302099378,
+                0.9828879390596972
+              ]
+            },
+            "peakRssKiB": {
+              "ratio": 1.179576136666989,
+              "ci95": [
+                1.1542736363979462,
+                1.2040324939519278
+              ],
+              "precisionTargetMet": false,
+              "direction": "slower",
+              "processRatios": [
+                1.2366774469862165,
+                1.1143625517954978,
+                1.1180400679278444,
+                1.190479809795711,
+                1.1962771043827247,
+                1.224307118238528,
+                1.2196120353131945,
+                1.1764413993167548,
+                1.157209397773207,
+                1.1691528972034089
+              ]
+            },
+            "javaAllocatedBytes": {
+              "ratio": 1.006679401258919,
+              "ci95": [
+                1.0030897635457887,
+                1.0118013484048267
+              ],
+              "precisionTargetMet": true,
+              "direction": "slower",
+              "processRatios": [
+                1.0032778252189123,
+                1.0030890593011461,
+                1.0031852234491265,
+                1.0030486585731075,
+                1.023323768284279,
+                1.0030798690093412,
+                1.0032520313272841,
+                1.0188333324263594,
+                1.003009383571664,
+                1.0029544776798853
+              ]
+            }
+          }
+        },
+        {
+          "candidate": "native",
+          "reference": "baseline",
+          "metrics": {
+            "loadNanos": {
+              "ratio": 0.9914464771639596,
+              "ci95": [
+                0.9789267947539547,
+                1.0034377657156506
+              ],
+              "precisionTargetMet": false,
+              "direction": "unresolved",
+              "processRatios": [
+                0.9937127141381646,
+                0.986516845343396,
+                0.9975143789109838,
+                1.0227989699529196,
+                1.0063005357340131,
+                0.9938784240418568,
+                0.9811105181611066,
+                0.9545306216792822,
+                1.0148588304326747,
+                0.9652582953584811
+              ]
+            },
+            "coldRequestNanos": {
+              "ratio": 0.8372106687851654,
+              "ci95": [
+                0.8026213247911853,
+                0.8980678032755567
+              ],
+              "precisionTargetMet": false,
+              "direction": "faster",
+              "processRatios": [
+                1.1271830986707578,
+                0.813196930910081,
+                0.8275210089695051,
+                0.8361259852739753,
+                0.7872034569811386,
+                0.8142267169826317,
+                0.8191365357872618,
+                0.7933106994630321,
+                0.8078805079358298,
+                0.792734048932381
+              ]
+            },
+            "prefillNanos": {
+              "ratio": 0.790214846896721,
+              "ci95": [
+                0.7533720273671539,
+                0.8176431002608984
+              ],
+              "precisionTargetMet": false,
+              "direction": "faster",
+              "processRatios": [
+                0.8064751569119007,
+                0.8162136645943012,
+                0.8350057039314085,
+                0.7736384477272302,
+                0.7997965462880117,
+                0.6572767426344328,
+                0.8373030677567787,
+                0.7759075725254518,
+                0.831109589408558,
+                0.7865942250411481
+              ]
+            },
+            "decodeNanos": {
+              "ratio": 0.9071865506419805,
+              "ci95": [
+                0.8398072799823519,
+                0.9551113019319177
+              ],
+              "precisionTargetMet": false,
+              "direction": "faster",
+              "processRatios": [
+                0.8756545457659614,
+                0.8966762873667167,
+                0.9681379004982776,
+                0.9259629865881979,
+                0.9857233608978377,
+                0.6655125329251405,
+                0.9341199549810635,
+                0.9391925411465385,
+                0.9791663878284604,
+                0.9517910583533263
+              ]
+            },
+            "requestNanos": {
+              "ratio": 0.8248028255796797,
+              "ci95": [
+                0.7830983994719319,
+                0.8539268058407864
+              ],
+              "precisionTargetMet": false,
+              "direction": "faster",
+              "processRatios": [
+                0.8290078099965295,
+                0.8441526161167334,
+                0.8677917273626679,
+                0.8146527490930661,
+                0.8454960215699844,
+                0.6696631418178242,
+                0.8621014971162786,
+                0.8230992800010656,
+                0.8806495216546166,
+                0.8324383615752533
+              ]
+            },
+            "peakRssKiB": {
+              "ratio": 0.9855018904436627,
+              "ci95": [
+                0.9834391881635888,
+                0.9876759297193997
+              ],
+              "precisionTargetMet": true,
+              "direction": "faster",
+              "processRatios": [
+                0.9860623043941469,
+                0.9859740891383232,
+                0.9828066550286794,
+                0.9799843713258959,
+                0.9869202648855017,
+                0.980621148678801,
+                0.9924641162692931,
+                0.9871485962936809,
+                0.9863151966936943,
+                0.9867817932405757
+              ]
+            },
+            "javaAllocatedBytes": {
+              "ratio": 1.0011190344254992,
+              "ci95": [
+                1.0010917846211116,
+                1.0011463316751366
+              ],
+              "precisionTargetMet": true,
+              "direction": "slower",
+              "processRatios": [
+                1.0011599869437269,
+                1.0010916859018895,
+                1.0011599972987202,
+                1.001091691308622,
+                1.0011941153043975,
+                1.0010917009207232,
+                1.0011600116257964,
+                1.0010917009874745,
+                1.0010918531556565,
+                1.0010576098842086
+              ]
+            }
+          }
+        },
+        {
+          "candidate": "java",
+          "reference": "native",
+          "metrics": {
+            "loadNanos": {
+              "ratio": 1.0030214460096603,
+              "ci95": [
+                0.9877486996747873,
+                1.01859644028758
+              ],
+              "precisionTargetMet": false,
+              "direction": "unresolved",
+              "processRatios": [
+                1.0090630206647473,
+                1.0238152533869234,
+                1.0517707236909601,
+                0.970065226491428,
+                0.9867545851610566,
+                0.9618203337443824,
+                1.012226397657737,
+                1.0035593228273545,
+                1.0012412769205699,
+                1.0129260182758029
+              ]
+            },
+            "coldRequestNanos": {
+              "ratio": 1.264510060466455,
+              "ci95": [
+                1.1619275824670465,
+                1.340813294003439
+              ],
+              "precisionTargetMet": false,
+              "direction": "slower",
+              "processRatios": [
+                0.9048421169992076,
+                1.232832977136439,
+                1.2543239345237978,
+                1.325737461308242,
+                1.3563857008628377,
+                1.284533894041198,
+                1.3915188028727252,
+                1.3779471046578264,
+                1.2381676677838154,
+                1.362224685496931
+              ]
+            },
+            "prefillNanos": {
+              "ratio": 1.0652214708831147,
+              "ci95": [
+                1.044082986282286,
+                1.08655822442058
+              ],
+              "precisionTargetMet": false,
+              "direction": "slower",
+              "processRatios": [
+                1.0106360586007366,
+                1.0735852188911548,
+                1.0586632663179205,
+                1.127532262434136,
+                1.077630809289191,
+                1.0327379275896666,
+                1.0277954473521018,
+                1.103156087517099,
+                1.0554178612288212,
+                1.0905680253884615
+              ]
+            },
+            "decodeNanos": {
+              "ratio": 1.3608975332008943,
+              "ci95": [
+                1.3159693054896175,
+                1.4047353068553443
+              ],
+              "precisionTargetMet": false,
+              "direction": "slower",
+              "processRatios": [
+                1.4299767610632588,
+                1.4544317370652369,
+                1.2758463371263478,
+                1.3717647636063748,
+                1.367044092900396,
+                1.3131549328263892,
+                1.3161472230348572,
+                1.4367857028540914,
+                1.2348627879098035,
+                1.4280396535296453
+              ]
+            },
+            "requestNanos": {
+              "ratio": 1.1291499759268078,
+              "ci95": [
+                1.105962373648123,
+                1.1537117787821298
+              ],
+              "precisionTargetMet": false,
+              "direction": "slower",
+              "processRatios": [
+                1.090559934731598,
+                1.150449595902162,
+                1.093107328822596,
+                1.1855490143936596,
+                1.1336680799821717,
+                1.1040781033457228,
+                1.090886291531398,
+                1.1782799154803965,
+                1.0908153659188466,
+                1.1807335947369637
+              ]
+            },
+            "peakRssKiB": {
+              "ratio": 1.1969293495073419,
+              "ci95": [
+                1.1715597594941454,
+                1.221577058514994
+              ],
+              "precisionTargetMet": false,
+              "direction": "slower",
+              "processRatios": [
+                1.2541575126391753,
+                1.1302148444584155,
+                1.1375992034722424,
+                1.2147946892102164,
+                1.2121314628406297,
+                1.2485016460108442,
+                1.2288726769263538,
+                1.1917571515917533,
+                1.1732653026663087,
+                1.184814013809405
+              ]
+            },
+            "javaAllocatedBytes": {
+              "ratio": 1.0055541515466346,
+              "ci95": [
+                1.0019818089932861,
+                1.0106772638380332
+              ],
+              "precisionTargetMet": true,
+              "direction": "slower",
+              "processRatios": [
+                1.0021153844568345,
+                1.0019951952727058,
+                1.0020228796155166,
+                1.001954833190082,
+                1.0221032591398658,
+                1.0019859999706215,
+                1.002089595746129,
+                1.0177222840039377,
+                1.0019154390378497,
+                1.0018948637690253
+              ]
+            }
+          }
+        },
+        {
+          "candidate": "java",
+          "reference": "published",
+          "metrics": {
+            "loadNanos": {
+              "ratio": 1.006772722532578,
+              "ci95": [
+                0.9926504676446106,
+                1.0226127317430966
+              ],
+              "precisionTargetMet": false,
+              "direction": "unresolved",
+              "processRatios": [
+                1.025397280334136,
+                0.9952876029647718,
+                1.060134968089638,
+                0.9817264478452935,
+                0.9754753672844374,
+                0.9833874113705533,
+                1.0232742059005142,
+                0.9987232755138573,
+                1.0110387516174522,
+                1.0161926386955236
+              ]
+            },
+            "coldRequestNanos": {
+              "ratio": 1.3511526975527228,
+              "ci95": [
+                1.291887148730343,
+                1.4099109232723754
+              ],
+              "precisionTargetMet": false,
+              "direction": "slower",
+              "processRatios": [
+                1.3766841367653926,
+                1.3074991420224322,
+                1.2948843839477848,
+                1.342033965553294,
+                1.2994503715472816,
+                1.3472432409410189,
+                1.5131130920253795,
+                1.4200390915358148,
+                1.16785057222656,
+                1.4757385651392814
+              ]
+            },
+            "prefillNanos": {
+              "ratio": 1.527199487356335,
+              "ci95": [
+                1.498387833416111,
+                1.556037287406025
+              ],
+              "precisionTargetMet": false,
+              "direction": "slower",
+              "processRatios": [
+                1.4434933361516673,
+                1.581462624195007,
+                1.531969642704519,
+                1.6056330064524227,
+                1.4825519475904387,
+                1.5214714275188406,
+                1.4905239827555679,
+                1.570602663711192,
+                1.5356056978458115,
+                1.5157542694270232
+              ]
+            },
+            "decodeNanos": {
+              "ratio": 1.4313270375537632,
+              "ci95": [
+                1.3920047616025026,
+                1.4683391961741428
+              ],
+              "precisionTargetMet": false,
+              "direction": "slower",
+              "processRatios": [
+                1.4786920809951163,
+                1.424548199325417,
+                1.478144953468719,
+                1.451013383150528,
+                1.36223773612398,
+                1.3591328937719247,
+                1.4743319720851942,
+                1.5183882762615672,
+                1.3200899780676727,
+                1.4599867798453652
+              ]
+            },
+            "requestNanos": {
+              "ratio": 1.4647560041217014,
+              "ci95": [
+                1.4429408570401718,
+                1.488224325414753
+              ],
+              "precisionTargetMet": false,
+              "direction": "slower",
+              "processRatios": [
+                1.4318693936289537,
+                1.4912594948273685,
+                1.4838022911172593,
+                1.52645835975047,
+                1.4222364107929997,
+                1.437120539633666,
+                1.4631048630249737,
+                1.5179224629274946,
+                1.419786545260957,
+                1.4585527976736592
+              ]
+            },
+            "peakRssKiB": {
+              "ratio": 1.1839912456151123,
+              "ci95": [
+                1.1581306385285322,
+                1.2097411640435243
+              ],
+              "precisionTargetMet": false,
+              "direction": "slower",
+              "processRatios": [
+                1.2480460144441676,
+                1.119546055531071,
+                1.124683429379665,
+                1.1952235602718493,
+                1.1984576719829523,
+                1.2401473420485065,
+                1.213429382690083,
+                1.1834033260540904,
+                1.15243551782973,
+                1.1718526183666527
+              ]
+            },
+            "javaAllocatedBytes": {
+              "ratio": 1.0066760527969782,
+              "ci95": [
+                1.0030844621413613,
+                1.011798125353113
+              ],
+              "precisionTargetMet": true,
+              "direction": "slower",
+              "processRatios": [
+                1.0032778865613774,
+                1.0030890593011461,
+                1.003185162111783,
+                1.0030319770445675,
+                1.02332370571559,
+                1.0030799303419624,
+                1.0032520313272841,
+                1.0188332701305074,
+                1.0030095062350932,
+                1.0029377358128313
+              ]
+            }
+          }
+        },
+        {
+          "candidate": "native",
+          "reference": "published",
+          "metrics": {
+            "loadNanos": {
+              "ratio": 1.0037399763861896,
+              "ci95": [
+                0.9943813169794085,
+                1.0118100687179294
+              ],
+              "precisionTargetMet": true,
+              "direction": "unresolved",
+              "processRatios": [
+                1.0161875515551329,
+                0.9721359392451147,
+                1.0079525358619275,
+                1.0120210693419474,
+                0.9885693788037698,
+                1.0224231874389782,
+                1.0109143648776022,
+                0.9951811046905803,
+                1.009785328394586,
+                1.0032249348528741
+              ]
+            },
+            "coldRequestNanos": {
+              "ratio": 1.0685187408112093,
+              "ci95": [
+                1.0052927216222542,
+                1.1685262562488972
+              ],
+              "precisionTargetMet": false,
+              "direction": "slower",
+              "processRatios": [
+                1.5214633701302371,
+                1.060564704441492,
+                1.0323365028025122,
+                1.0122924068457495,
+                0.9580242336089669,
+                1.0488187561190265,
+                1.087382426239321,
+                1.0305468814700551,
+                0.9432087451587915,
+                1.0833297772760162
+              ]
+            },
+            "prefillNanos": {
+              "ratio": 1.4336919871603986,
+              "ci95": [
+                1.4139050233371169,
+                1.4522888167276824
+              ],
+              "precisionTargetMet": false,
+              "direction": "slower",
+              "processRatios": [
+                1.4283018341441704,
+                1.4730666894132631,
+                1.4470792474294307,
+                1.4240240035226617,
+                1.3757512636153517,
+                1.4732405839590317,
+                1.450214618672994,
+                1.4237356630521678,
+                1.454974142713397,
+                1.3898759491753023
+              ]
+            },
+            "decodeNanos": {
+              "ratio": 1.0517522463188065,
+              "ci95": [
+                1.0226580117709085,
+                1.084572171888702
+              ],
+              "precisionTargetMet": false,
+              "direction": "slower",
+              "processRatios": [
+                1.0340672109214106,
+                0.9794534614597181,
+                1.1585603300770677,
+                1.0577712896895006,
+                0.9964841245418657,
+                1.0350133558471841,
+                1.1201877314952535,
+                1.0567952292714058,
+                1.0690175386223513,
+                1.0223713159762455
+              ]
+            },
+            "requestNanos": {
+              "ratio": 1.297220064074684,
+              "ci95": [
+                1.2758940169108475,
+                1.3182905094134765
+              ],
+              "precisionTargetMet": false,
+              "direction": "slower",
+              "processRatios": [
+                1.3129671722089777,
+                1.2962406177021164,
+                1.3574168354680112,
+                1.287553986564753,
+                1.254543932131675,
+                1.301647533157948,
+                1.3412074882443077,
+                1.2882528531504522,
+                1.3015828247569672,
+                1.2352937226272336
+              ]
+            },
+            "peakRssKiB": {
+              "ratio": 0.9891905868148734,
+              "ci95": [
+                0.9868072319301125,
+                0.9915527359967574
+              ],
+              "precisionTargetMet": true,
+              "direction": "faster",
+              "processRatios": [
+                0.995127009061129,
+                0.9905603886025255,
+                0.9886464634880587,
+                0.9838893525694528,
+                0.9887192179422248,
+                0.9933085358845692,
+                0.9874329582500788,
+                0.9929903290057834,
+                0.9822463130979483,
+                0.9890603965755951
+              ]
+            },
+            "javaAllocatedBytes": {
+              "ratio": 1.0011157044586987,
+              "ci95": [
+                1.001086813995072,
+                1.0011446599814435
+              ],
+              "precisionTargetMet": true,
+              "direction": "slower",
+              "processRatios": [
+                1.0011600481567031,
+                1.0010916859018895,
+                1.0011599360852044,
+                1.001075042326066,
+                1.001194054088773,
+                1.0010917621317792,
+                1.0011600116257964,
+                1.001091639776422,
+                1.0010919755845804,
+                1.0010408996807136
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "model": "qwen-4b",
+      "processPairs": 10,
+      "warmRequestsPerArm": 30,
+      "changes": [
+        {
+          "pair": 0,
+          "arm": "published",
+          "id": "easy-intent-00",
+          "repeat": -4,
+          "fields": [
+            "fullLogitSha256"
+          ]
+        },
+        {
+          "pair": 0,
+          "arm": "published",
+          "id": "easy-intent-00",
+          "repeat": -3,
+          "fields": [
+            "fullLogitSha256"
+          ]
+        },
+        {
+          "pair": 0,
+          "arm": "published",
+          "id": "snips-AddToPlaylist-0",
+          "repeat": -2,
+          "fields": [
+            "fullLogitSha256"
+          ]
+        },
+        {
+          "pair": 0,
+          "arm": "published",
+          "id": "easy-intent-01",
+          "repeat": -1,
+          "fields": [
+            "fullLogitSha256"
+          ]
+        },
+        {
+          "pair": 0,
+          "arm": "published",
+          "id": "easy-intent-00",
+          "repeat": 0,
+          "fields": [
+            "fullLogitSha256"
+          ]
+        },
+        {
+          "pair": 0,
+          "arm": "published",
+          "id": "snips-AddToPlaylist-0",
+          "repeat": 1,
+          "fields": [
+            "fullLogitSha256"
+          ]
+        },
+        {
+          "pair": 0,
+          "arm": "published",
+          "id": "easy-intent-01",
+          "repeat": 2,
+          "fields": [
+            "fullLogitSha256"
+          ]
+        },
+        {
+          "pair": 1,
+          "arm": "published",
+          "id": "easy-intent-00",
+          "repeat": -4,
+          "fields": [
+            "fullLogitSha256"
+          ]
+        },
+        {
+          "pair": 1,
+          "arm": "published",
+          "id": "easy-intent-00",
+          "repeat": -3,
+          "fields": [
+            "fullLogitSha256"
+          ]
+        },
+        {
+          "pair": 1,
+          "arm": "published",
+          "id": "snips-AddToPlaylist-0",
+          "repeat": -2,
+          "fields": [
+            "fullLogitSha256"
+          ]
+        },
+        {
+          "pair": 1,
+          "arm": "published",
+          "id": "easy-intent-01",
+          "repeat": -1,
+          "fields": [
+            "fullLogitSha256"
+          ]
+        },
+        {
+          "pair": 1,
+          "arm": "published",
+          "id": "snips-AddToPlaylist-1",
+          "repeat": 0,
+          "fields": [
+            "fullLogitSha256"
+          ]
+        },
+        {
+          "pair": 1,
+          "arm": "published",
+          "id": "easy-intent-02",
+          "repeat": 1,
+          "fields": [
+            "fullLogitSha256"
+          ]
+        },
+        {
+          "pair": 1,
+          "arm": "published",
+          "id": "snips-AddToPlaylist-2",
+          "repeat": 2,
+          "fields": [
+            "fullLogitSha256"
+          ]
+        },
+        {
+          "pair": 2,
+          "arm": "published",
+          "id": "easy-intent-00",
+          "repeat": -4,
+          "fields": [
+            "fullLogitSha256"
+          ]
+        },
+        {
+          "pair": 2,
+          "arm": "published",
+          "id": "easy-intent-00",
+          "repeat": -3,
+          "fields": [
+            "fullLogitSha256"
+          ]
+        },
+        {
+          "pair": 2,
+          "arm": "published",
+          "id": "snips-AddToPlaylist-0",
+          "repeat": -2,
+          "fields": [
+            "fullLogitSha256"
+          ]
+        },
+        {
+          "pair": 2,
+          "arm": "published",
+          "id": "easy-intent-01",
+          "repeat": -1,
+          "fields": [
+            "fullLogitSha256"
+          ]
+        },
+        {
+          "pair": 2,
+          "arm": "published",
+          "id": "easy-intent-03",
+          "repeat": 0,
+          "fields": [
+            "fullLogitSha256"
+          ]
+        },
+        {
+          "pair": 2,
+          "arm": "published",
+          "id": "snips-AddToPlaylist-3",
+          "repeat": 1,
+          "fields": [
+            "fullLogitSha256"
+          ]
+        },
+        {
+          "pair": 2,
+          "arm": "published",
+          "id": "easy-intent-04",
+          "repeat": 2,
+          "fields": [
+            "fullLogitSha256"
+          ]
+        },
+        {
+          "pair": 3,
+          "arm": "published",
+          "id": "easy-intent-00",
+          "repeat": -4,
+          "fields": [
+            "fullLogitSha256"
+          ]
+        },
+        {
+          "pair": 3,
+          "arm": "published",
+          "id": "easy-intent-00",
+          "repeat": -3,
+          "fields": [
+            "fullLogitSha256"
+          ]
+        },
+        {
+          "pair": 3,
+          "arm": "published",
+          "id": "snips-AddToPlaylist-0",
+          "repeat": -2,
+          "fields": [
+            "fullLogitSha256"
+          ]
+        },
+        {
+          "pair": 3,
+          "arm": "published",
+          "id": "easy-intent-01",
+          "repeat": -1,
+          "fields": [
+            "fullLogitSha256"
+          ]
+        },
+        {
+          "pair": 3,
+          "arm": "published",
+          "id": "snips-BookRestaurant-0",
+          "repeat": 0,
+          "fields": [
+            "fullLogitSha256"
+          ]
+        },
+        {
+          "pair": 3,
+          "arm": "published",
+          "id": "easy-intent-05",
+          "repeat": 1,
+          "fields": [
+            "fullLogitSha256"
+          ]
+        },
+        {
+          "pair": 3,
+          "arm": "published",
+          "id": "snips-BookRestaurant-1",
+          "repeat": 2,
+          "fields": [
+            "fullLogitSha256"
+          ]
+        },
+        {
+          "pair": 4,
+          "arm": "published",
+          "id": "easy-intent-00",
+          "repeat": -4,
+          "fields": [
+            "fullLogitSha256"
+          ]
+        },
+        {
+          "pair": 4,
+          "arm": "published",
+          "id": "easy-intent-00",
+          "repeat": -3,
+          "fields": [
+            "fullLogitSha256"
+          ]
+        },
+        {
+          "pair": 4,
+          "arm": "published",
+          "id": "snips-AddToPlaylist-0",
+          "repeat": -2,
+          "fields": [
+            "fullLogitSha256"
+          ]
+        },
+        {
+          "pair": 4,
+          "arm": "published",
+          "id": "easy-intent-01",
+          "repeat": -1,
+          "fields": [
+            "fullLogitSha256"
+          ]
+        },
+        {
+          "pair": 4,
+          "arm": "published",
+          "id": "easy-intent-06",
+          "repeat": 0,
+          "fields": [
+            "fullLogitSha256"
+          ]
+        },
+        {
+          "pair": 4,
+          "arm": "published",
+          "id": "snips-BookRestaurant-2",
+          "repeat": 1,
+          "fields": [
+            "fullLogitSha256"
+          ]
+        },
+        {
+          "pair": 4,
+          "arm": "published",
+          "id": "easy-intent-07",
+          "repeat": 2,
+          "fields": [
+            "fullLogitSha256",
+            "greedyTokens"
+          ]
+        },
+        {
+          "pair": 5,
+          "arm": "published",
+          "id": "easy-intent-00",
+          "repeat": -4,
+          "fields": [
+            "fullLogitSha256"
+          ]
+        },
+        {
+          "pair": 5,
+          "arm": "published",
+          "id": "easy-intent-00",
+          "repeat": -3,
+          "fields": [
+            "fullLogitSha256"
+          ]
+        },
+        {
+          "pair": 5,
+          "arm": "published",
+          "id": "snips-AddToPlaylist-0",
+          "repeat": -2,
+          "fields": [
+            "fullLogitSha256"
+          ]
+        },
+        {
+          "pair": 5,
+          "arm": "published",
+          "id": "easy-intent-01",
+          "repeat": -1,
+          "fields": [
+            "fullLogitSha256"
+          ]
+        },
+        {
+          "pair": 5,
+          "arm": "published",
+          "id": "snips-BookRestaurant-3",
+          "repeat": 0,
+          "fields": [
+            "fullLogitSha256"
+          ]
+        },
+        {
+          "pair": 5,
+          "arm": "published",
+          "id": "easy-intent-08",
+          "repeat": 1,
+          "fields": [
+            "fullLogitSha256"
+          ]
+        },
+        {
+          "pair": 5,
+          "arm": "published",
+          "id": "snips-GetWeather-0",
+          "repeat": 2,
+          "fields": [
+            "fullLogitSha256"
+          ]
+        },
+        {
+          "pair": 6,
+          "arm": "published",
+          "id": "easy-intent-00",
+          "repeat": -4,
+          "fields": [
+            "fullLogitSha256"
+          ]
+        },
+        {
+          "pair": 6,
+          "arm": "published",
+          "id": "easy-intent-00",
+          "repeat": -3,
+          "fields": [
+            "fullLogitSha256"
+          ]
+        },
+        {
+          "pair": 6,
+          "arm": "published",
+          "id": "snips-AddToPlaylist-0",
+          "repeat": -2,
+          "fields": [
+            "fullLogitSha256"
+          ]
+        },
+        {
+          "pair": 6,
+          "arm": "published",
+          "id": "easy-intent-01",
+          "repeat": -1,
+          "fields": [
+            "fullLogitSha256"
+          ]
+        },
+        {
+          "pair": 6,
+          "arm": "published",
+          "id": "easy-intent-09",
+          "repeat": 0,
+          "fields": [
+            "fullLogitSha256"
+          ]
+        },
+        {
+          "pair": 6,
+          "arm": "published",
+          "id": "snips-GetWeather-1",
+          "repeat": 1,
+          "fields": [
+            "fullLogitSha256"
+          ]
+        },
+        {
+          "pair": 6,
+          "arm": "published",
+          "id": "easy-intent-10",
+          "repeat": 2,
+          "fields": [
+            "fullLogitSha256"
+          ]
+        },
+        {
+          "pair": 7,
+          "arm": "published",
+          "id": "easy-intent-00",
+          "repeat": -4,
+          "fields": [
+            "fullLogitSha256"
+          ]
+        },
+        {
+          "pair": 7,
+          "arm": "published",
+          "id": "easy-intent-00",
+          "repeat": -3,
+          "fields": [
+            "fullLogitSha256"
+          ]
+        },
+        {
+          "pair": 7,
+          "arm": "published",
+          "id": "snips-AddToPlaylist-0",
+          "repeat": -2,
+          "fields": [
+            "fullLogitSha256"
+          ]
+        },
+        {
+          "pair": 7,
+          "arm": "published",
+          "id": "easy-intent-01",
+          "repeat": -1,
+          "fields": [
+            "fullLogitSha256"
+          ]
+        },
+        {
+          "pair": 7,
+          "arm": "published",
+          "id": "snips-GetWeather-2",
+          "repeat": 0,
+          "fields": [
+            "fullLogitSha256"
+          ]
+        },
+        {
+          "pair": 7,
+          "arm": "published",
+          "id": "easy-intent-11",
+          "repeat": 1,
+          "fields": [
+            "fullLogitSha256"
+          ]
+        },
+        {
+          "pair": 7,
+          "arm": "published",
+          "id": "snips-GetWeather-3",
+          "repeat": 2,
+          "fields": [
+            "fullLogitSha256"
+          ]
+        },
+        {
+          "pair": 8,
+          "arm": "published",
+          "id": "easy-intent-00",
+          "repeat": -4,
+          "fields": [
+            "fullLogitSha256"
+          ]
+        },
+        {
+          "pair": 8,
+          "arm": "published",
+          "id": "easy-intent-00",
+          "repeat": -3,
+          "fields": [
+            "fullLogitSha256"
+          ]
+        },
+        {
+          "pair": 8,
+          "arm": "published",
+          "id": "snips-AddToPlaylist-0",
+          "repeat": -2,
+          "fields": [
+            "fullLogitSha256"
+          ]
+        },
+        {
+          "pair": 8,
+          "arm": "published",
+          "id": "easy-intent-01",
+          "repeat": -1,
+          "fields": [
+            "fullLogitSha256"
+          ]
+        },
+        {
+          "pair": 8,
+          "arm": "published",
+          "id": "easy-fact-00",
+          "repeat": 0,
+          "fields": [
+            "fullLogitSha256"
+          ]
+        },
+        {
+          "pair": 8,
+          "arm": "published",
+          "id": "snips-PlayMusic-0",
+          "repeat": 1,
+          "fields": [
+            "fullLogitSha256"
+          ]
+        },
+        {
+          "pair": 8,
+          "arm": "published",
+          "id": "easy-fact-01",
+          "repeat": 2,
+          "fields": [
+            "fullLogitSha256"
+          ]
+        },
+        {
+          "pair": 9,
+          "arm": "published",
+          "id": "easy-intent-00",
+          "repeat": -4,
+          "fields": [
+            "fullLogitSha256"
+          ]
+        },
+        {
+          "pair": 9,
+          "arm": "published",
+          "id": "easy-intent-00",
+          "repeat": -3,
+          "fields": [
+            "fullLogitSha256"
+          ]
+        },
+        {
+          "pair": 9,
+          "arm": "published",
+          "id": "snips-AddToPlaylist-0",
+          "repeat": -2,
+          "fields": [
+            "fullLogitSha256"
+          ]
+        },
+        {
+          "pair": 9,
+          "arm": "published",
+          "id": "easy-intent-01",
+          "repeat": -1,
+          "fields": [
+            "fullLogitSha256"
+          ]
+        },
+        {
+          "pair": 9,
+          "arm": "published",
+          "id": "snips-PlayMusic-1",
+          "repeat": 0,
+          "fields": [
+            "fullLogitSha256"
+          ]
+        },
+        {
+          "pair": 9,
+          "arm": "published",
+          "id": "easy-fact-02",
+          "repeat": 1,
+          "fields": [
+            "fullLogitSha256"
+          ]
+        },
+        {
+          "pair": 9,
+          "arm": "published",
+          "id": "snips-PlayMusic-2",
+          "repeat": 2,
+          "fields": [
+            "fullLogitSha256"
+          ]
+        }
+      ],
+      "comparisons": [
+        {
+          "candidate": "java",
+          "reference": "baseline",
+          "metrics": {
+            "loadNanos": {
+              "ratio": 0.992471870427895,
+              "ci95": [
+                0.9768129078458397,
+                1.0081855748495727
+              ],
+              "precisionTargetMet": false,
+              "direction": "unresolved",
+              "processRatios": [
+                1.0046254851668055,
+                1.010747186642605,
+                1.0050408267643467,
+                1.0382978863865147,
+                1.0165108573659902,
+                0.9671163234133826,
+                0.9895820987354484,
+                0.9702676405728724,
+                0.955181154583253,
+                0.970531866320383
+              ]
+            },
+            "coldRequestNanos": {
+              "ratio": 0.9913737026376089,
+              "ci95": [
+                0.9648687930801955,
+                1.0223979280652755
+              ],
+              "precisionTargetMet": false,
+              "direction": "unresolved",
+              "processRatios": [
+                1.0235891222709486,
+                0.9461643185415949,
+                0.9829389138751675,
+                0.9574193271154723,
+                1.0200994482867407,
+                1.1042808966833133,
+                0.9915854475933396,
+                0.9774364499618196,
+                0.9973456560050015,
+                0.923988468449652
+              ]
+            },
+            "prefillNanos": {
+              "ratio": 0.869829879347229,
+              "ci95": [
+                0.8550284223176616,
+                0.8860811286320046
+              ],
+              "precisionTargetMet": false,
+              "direction": "faster",
+              "processRatios": [
+                0.8872018797749326,
+                0.8556190601672272,
+                0.8316459693166369,
+                0.8668621615006975,
+                0.8540827752463274,
+                0.8408059682191981,
+                0.8933049999460572,
+                0.8839300497069654,
+                0.92045300222686,
+                0.8680340302136287
+              ]
+            },
+            "decodeNanos": {
+              "ratio": 1.052116460022324,
+              "ci95": [
+                1.0167801534476737,
+                1.0888575739324815
+              ],
+              "precisionTargetMet": false,
+              "direction": "slower",
+              "processRatios": [
+                1.0436247649383843,
+                1.1805212211855802,
+                1.0371740662033129,
+                0.9406550595523951,
+                1.069310417933285,
+                1.021060996418342,
+                1.0387496654846922,
+                1.0283517772070756,
+                1.0979413521437358,
+                1.0798183511690034
+              ]
+            },
+            "requestNanos": {
+              "ratio": 0.9109662248614087,
+              "ci95": [
+                0.8958916901843043,
+                0.9274634432592915
+              ],
+              "precisionTargetMet": false,
+              "direction": "faster",
+              "processRatios": [
+                0.9153873849110047,
+                0.9268895130800259,
+                0.871845727980436,
+                0.8863028795724675,
+                0.896823192845992,
+                0.8867837916026525,
+                0.923447437263514,
+                0.9187004905186007,
+                0.9652063635196936,
+                0.9218009988056958
+              ]
+            },
+            "peakRssKiB": {
+              "ratio": 1.0510860545302634,
+              "ci95": [
+                1.0465816368019902,
+                1.055678020277796
+              ],
+              "precisionTargetMet": true,
+              "direction": "slower",
+              "processRatios": [
+                1.0456569248147443,
+                1.0400449682499564,
+                1.0621965959691801,
+                1.0531966769809114,
+                1.0459637204596373,
+                1.0536602627830842,
+                1.0512434845020375,
+                1.0418768489076997,
+                1.054251532054965,
+                1.0630308085569644
+              ]
+            },
+            "javaAllocatedBytes": {
+              "ratio": 1.0017363508002093,
+              "ci95": [
+                1.0016995362658498,
+                1.0017739478118077
+              ],
+              "precisionTargetMet": true,
+              "direction": "slower",
+              "processRatios": [
+                1.0017845452918972,
+                1.0016914450563894,
+                1.0018161336716689,
+                1.001695209417389,
+                1.0018263600752726,
+                1.0017113087955676,
+                1.0017962205381465,
+                1.001677246707719,
+                1.0017185405536533,
+                1.0016465161580643
+              ]
+            }
+          }
+        },
+        {
+          "candidate": "native",
+          "reference": "baseline",
+          "metrics": {
+            "loadNanos": {
+              "ratio": 1.0011058543793439,
+              "ci95": [
+                0.9864981755027693,
+                1.015127856391108
+              ],
+              "precisionTargetMet": false,
+              "direction": "unresolved",
+              "processRatios": [
+                1.000419721111767,
+                1.0091788262039658,
+                0.9900057316491435,
+                1.0111333140595524,
+                1.0012096594573172,
+                1.0189598573281073,
+                1.000394591335924,
+                0.9809896318910444,
+                0.9548581902297362,
+                1.046518168472807
+              ]
+            },
+            "coldRequestNanos": {
+              "ratio": 0.8644777544870199,
+              "ci95": [
+                0.8506465331336872,
+                0.8786935625335242
+              ],
+              "precisionTargetMet": false,
+              "direction": "faster",
+              "processRatios": [
+                0.8913331408590709,
+                0.8506025579839944,
+                0.8511222491229387,
+                0.8552986570028539,
+                0.9037535016182147,
+                0.8821403375877038,
+                0.8385635633100696,
+                0.8302784048039902,
+                0.8778005315629,
+                0.8667992053329483
+              ]
+            },
+            "prefillNanos": {
+              "ratio": 0.8706128289459882,
+              "ci95": [
+                0.8509914752475369,
+                0.8904758481844218
+              ],
+              "precisionTargetMet": false,
+              "direction": "faster",
+              "processRatios": [
+                0.8687096040987665,
+                0.8863371657983088,
+                0.8168506130253291,
+                0.9108983457391201,
+                0.9206683359369348,
+                0.8576912495552778,
+                0.8359571067777747,
+                0.8405779374008092,
+                0.8959986723999182,
+                0.8783365487229323
+              ]
+            },
+            "decodeNanos": {
+              "ratio": 0.9501944784350187,
+              "ci95": [
+                0.8797239514028943,
+                1.0335771225470562
+              ],
+              "precisionTargetMet": false,
+              "direction": "unresolved",
+              "processRatios": [
+                0.9266513376966732,
+                1.1392120624412445,
+                1.2458245347908852,
+                0.7778596928723392,
+                0.9519672389871858,
+                0.8416405078267949,
+                0.9072425401669142,
+                0.8753101725049425,
+                0.9758887982811492,
+                0.9445209557802616
+              ]
+            },
+            "requestNanos": {
+              "ratio": 0.8894008074607939,
+              "ci95": [
+                0.8704395594022781,
+                0.9089893750337166
+              ],
+              "precisionTargetMet": false,
+              "direction": "faster",
+              "processRatios": [
+                0.8786572697408298,
+                0.9437484258039626,
+                0.9019503374297538,
+                0.8768517527685983,
+                0.9279665674411143,
+                0.8553679782832994,
+                0.8512974837105176,
+                0.8498620829415536,
+                0.9175129445041086,
+                0.896320493781561
+              ]
+            },
+            "peakRssKiB": {
+              "ratio": 0.9981671599230432,
+              "ci95": [
+                0.994436769371038,
+                1.0017790945707974
+              ],
+              "precisionTargetMet": true,
+              "direction": "unresolved",
+              "processRatios": [
+                0.9863256306843105,
+                0.9953694803376132,
+                1.0094510478635237,
+                1.00077726255811,
+                1.002289201103973,
+                1.0014526287595078,
+                0.9940277053288831,
+                0.996367740093351,
+                0.9952587291162385,
+                1.0005247509146429
+              ]
+            },
+            "javaAllocatedBytes": {
+              "ratio": 1.0006116375689875,
+              "ci95": [
+                1.0005967300372434,
+                1.0006265476766008
+              ],
+              "precisionTargetMet": true,
+              "direction": "slower",
+              "processRatios": [
+                1.000633997046485,
+                1.0005967240705715,
+                1.000634000129151,
+                1.0005967257456818,
+                1.0006526474044202,
+                1.0005967286173216,
+                1.000634004419509,
+                1.0005967286771478,
+                1.0005967332239682,
+                1.000578089063488
+              ]
+            }
+          }
+        },
+        {
+          "candidate": "java",
+          "reference": "native",
+          "metrics": {
+            "loadNanos": {
+              "ratio": 0.9913755534305594,
+              "ci95": [
+                0.9713791621806481,
+                1.0081680707694969
+              ],
+              "precisionTargetMet": false,
+              "direction": "unresolved",
+              "processRatios": [
+                1.0042039995476746,
+                1.0015540956646292,
+                1.0151868768377308,
+                1.026865470605355,
+                1.015282711032739,
+                0.9491211223465981,
+                0.9891917722325583,
+                0.9890702297255647,
+                1.0003382327939598,
+                0.9273913206272267
+              ]
+            },
+            "coldRequestNanos": {
+              "ratio": 1.1467891423370273,
+              "ci95": [
+                1.1192517031258271,
+                1.177408864041949
+              ],
+              "precisionTargetMet": false,
+              "direction": "slower",
+              "processRatios": [
+                1.1483799663102494,
+                1.1123459595326053,
+                1.1548739501147607,
+                1.119397673872739,
+                1.1287363716546637,
+                1.2518199765165188,
+                1.182480960273596,
+                1.1772393986238507,
+                1.1361871178515404,
+                1.0659775213969382
+              ]
+            },
+            "prefillNanos": {
+              "ratio": 0.9991006914064118,
+              "ci95": [
+                0.9726324458330413,
+                1.0257296501797004
+              ],
+              "precisionTargetMet": false,
+              "direction": "unresolved",
+              "processRatios": [
+                1.0212870625453148,
+                0.965342640683002,
+                1.0181126830969875,
+                0.9516563133038838,
+                0.9276769298003005,
+                0.9803131006118636,
+                1.0686014781180961,
+                1.0515741734076525,
+                1.0272928192643873,
+                0.9882704203482331
+              ]
+            },
+            "decodeNanos": {
+              "ratio": 1.10726433788078,
+              "ci95": [
+                1.0300279099590046,
+                1.1665168443596345
+              ],
+              "precisionTargetMet": false,
+              "direction": "slower",
+              "processRatios": [
+                1.126232405310573,
+                1.036261166911991,
+                0.8325201802013035,
+                1.2092862866809753,
+                1.1232638836090016,
+                1.2131794833103147,
+                1.1449525562299838,
+                1.1748427123429426,
+                1.1250680959526946,
+                1.1432444611850603
+              ]
+            },
+            "requestNanos": {
+              "ratio": 1.0242471304497498,
+              "ci95": [
+                0.9991572045693407,
+                1.0498731432670436
+              ],
+              "precisionTargetMet": false,
+              "direction": "unresolved",
+              "processRatios": [
+                1.0418025508182602,
+                0.9821362216211648,
+                0.9666227638041519,
+                1.0107784774039945,
+                0.9664391200202387,
+                1.0367278342385506,
+                1.0847529270714147,
+                1.0809995044593386,
+                1.051981194708225,
+                1.0284278951568238
+              ]
+            },
+            "peakRssKiB": {
+              "ratio": 1.0530160645750961,
+              "ci95": [
+                1.0490561072255002,
+                1.0569741828971884
+              ],
+              "precisionTargetMet": true,
+              "direction": "slower",
+              "processRatios": [
+                1.060153860230997,
+                1.0448833210128061,
+                1.0522517146495522,
+                1.052378702418569,
+                1.0435747679487704,
+                1.0521319057180425,
+                1.0575595417174253,
+                1.0456750123303722,
+                1.0592738362527205,
+                1.062473274734264
+              ]
+            },
+            "javaAllocatedBytes": {
+              "ratio": 1.0011240257348537,
+              "ci95": [
+                1.0011007021120666,
+                1.001147500208439
+              ],
+              "precisionTargetMet": true,
+              "direction": "slower",
+              "processRatios": [
+                1.001149819263395,
+                1.0010940681290303,
+                1.001181384544564,
+                1.0010978285691354,
+                1.0011729471499393,
+                1.0011139154730058,
+                1.001161479735352,
+                1.0010798736390032,
+                1.0011211383092073,
+                1.0010678098054058
+              ]
+            }
+          }
+        },
+        {
+          "candidate": "java",
+          "reference": "published",
+          "metrics": {
+            "loadNanos": {
+              "ratio": 1.0025187139968794,
+              "ci95": [
+                0.9938232116916804,
+                1.0111501577848536
+              ],
+              "precisionTargetMet": true,
+              "direction": "unresolved",
+              "processRatios": [
+                1.0227781570554322,
+                1.01244345323899,
+                1.0217164124346094,
+                1.0154870033110523,
+                1.0003434213900255,
+                0.9936817151050721,
+                0.9940481067672307,
+                0.9807426682334294,
+                0.9978451674466057,
+                0.9870652743643783
+              ]
+            },
+            "coldRequestNanos": {
+              "ratio": 1.3877650088016564,
+              "ci95": [
+                1.3511007993107014,
+                1.4283340966595544
+              ],
+              "precisionTargetMet": false,
+              "direction": "slower",
+              "processRatios": [
+                1.3852956038480486,
+                1.352301895139034,
+                1.3479528096474005,
+                1.3627627511127756,
+                1.418115351404437,
+                1.5347333897879063,
+                1.3985160337654459,
+                1.3985956975066678,
+                1.4169795466038109,
+                1.2763816590326524
+              ]
+            },
+            "prefillNanos": {
+              "ratio": 1.4706710851611706,
+              "ci95": [
+                1.4462625297806821,
+                1.494944702362841
+              ],
+              "precisionTargetMet": false,
+              "direction": "slower",
+              "processRatios": [
+                1.4633617690723042,
+                1.4649610462993623,
+                1.4781460958043349,
+                1.5221112156755803,
+                1.4561538660420863,
+                1.4281089926629713,
+                1.5024724730770957,
+                1.534550694469757,
+                1.3970451480793022,
+                1.4650322443062995
+              ]
+            },
+            "decodeNanos": {
+              "ratio": 1.1248053791016994,
+              "ci95": [
+                1.064351452792875,
+                1.173945903413961
+              ],
+              "precisionTargetMet": false,
+              "direction": "slower",
+              "processRatios": [
+                1.134063294159872,
+                1.1968770382702143,
+                1.1897117605195233,
+                1.2427902000870539,
+                1.0734019237783319,
+                1.1413534080306946,
+                1.1498085620135048,
+                1.1346306329769846,
+                0.9113746230944997,
+                1.1088887008143842
+              ]
+            },
+            "requestNanos": {
+              "ratio": 1.3544557795982415,
+              "ci95": [
+                1.313479699079627,
+                1.387383737722245
+              ],
+              "precisionTargetMet": false,
+              "direction": "slower",
+              "processRatios": [
+                1.3730681706028502,
+                1.373231852810635,
+                1.3936945218350496,
+                1.4279743644705278,
+                1.336947934641609,
+                1.3249714211482468,
+                1.3960736972825658,
+                1.3930233763829083,
+                1.2074985038575339,
+                1.3312204445898161
+              ]
+            },
+            "peakRssKiB": {
+              "ratio": 1.0508338916969269,
+              "ci95": [
+                1.0471383634133278,
+                1.0556880357534395
+              ],
+              "precisionTargetMet": true,
+              "direction": "slower",
+              "processRatios": [
+                1.0443657425984403,
+                1.0471244209295585,
+                1.0483519835552935,
+                1.0487983613215377,
+                1.045893240964173,
+                1.0494255190093282,
+                1.0453641338049866,
+                1.0522030646643592,
+                1.0580574307067245,
+                1.0689941018312776
+              ]
+            },
+            "javaAllocatedBytes": {
+              "ratio": 1.0017363457788528,
+              "ci95": [
+                1.0016995362658498,
+                1.001773932747173
+              ],
+              "precisionTargetMet": true,
+              "direction": "slower",
+              "processRatios": [
+                1.0017845452918972,
+                1.0016914450563894,
+                1.0018161336716689,
+                1.001695209417389,
+                1.0018263098571971,
+                1.0017113087955676,
+                1.0017962205381465,
+                1.001677246707719,
+                1.0017185405536533,
+                1.0016465161580643
+              ]
+            }
+          }
+        },
+        {
+          "candidate": "native",
+          "reference": "published",
+          "metrics": {
+            "loadNanos": {
+              "ratio": 1.0112401002100164,
+              "ci95": [
+                0.9977551906736015,
+                1.0273607779092564
+              ],
+              "precisionTargetMet": false,
+              "direction": "unresolved",
+              "processRatios": [
+                1.0184963986561733,
+                1.0108724607302761,
+                1.0064318557950807,
+                0.9889192229946199,
+                0.9852855864870218,
+                1.046949321545287,
+                1.0049093964092644,
+                0.9915804143711352,
+                0.9975077776039899,
+                1.0643460343113758
+              ]
+            },
+            "coldRequestNanos": {
+              "ratio": 1.2101309277951022,
+              "ci95": [
+                1.1939439351415564,
+                1.2267445252010964
+              ],
+              "precisionTargetMet": false,
+              "direction": "slower",
+              "processRatios": [
+                1.206304223765772,
+                1.215720598029821,
+                1.1671860894545707,
+                1.2174071671938316,
+                1.2563742845688226,
+                1.2260016764220845,
+                1.1826964498792987,
+                1.1880299785596493,
+                1.2471357264490304,
+                1.1973814019642597
+              ]
+            },
+            "prefillNanos": {
+              "ratio": 1.471994862790996,
+              "ci95": [
+                1.4307473355971343,
+                1.5156961976066095
+              ],
+              "precisionTargetMet": false,
+              "direction": "slower",
+              "processRatios": [
+                1.4328603805331908,
+                1.517555512996783,
+                1.451849211138374,
+                1.5994337392574394,
+                1.5696777824964883,
+                1.4567886441297329,
+                1.4060175882622639,
+                1.45928906707266,
+                1.3599288556106945,
+                1.4824204126134541
+              ]
+            },
+            "decodeNanos": {
+              "ratio": 1.0158417828704676,
+              "ci95": [
+                0.9368139171282464,
+                1.1166187664790002
+              ],
+              "precisionTargetMet": false,
+              "direction": "unresolved",
+              "processRatios": [
+                1.0069531730860999,
+                1.1549955517843546,
+                1.4290485549934067,
+                1.0277055266193698,
+                0.9556097542543028,
+                0.9407951780690905,
+                1.0042412288239353,
+                0.965772371957975,
+                0.8100617432607563,
+                0.9699488941017359
+              ]
+            },
+            "requestNanos": {
+              "ratio": 1.3223915784889688,
+              "ci95": [
+                1.2681928764697705,
+                1.372424110309136
+              ],
+              "precisionTargetMet": false,
+              "direction": "slower",
+              "processRatios": [
+                1.317973515734248,
+                1.3982091512152026,
+                1.4418184363361704,
+                1.4127471017566848,
+                1.383375224518655,
+                1.2780320710897122,
+                1.2869969395258016,
+                1.288643862126124,
+                1.1478327843991953,
+                1.2944227309069827
+              ]
+            },
+            "peakRssKiB": {
+              "ratio": 0.9979276926994939,
+              "ci95": [
+                0.9936862379960428,
+                1.0017612033349106
+              ],
+              "precisionTargetMet": true,
+              "direction": "unresolved",
+              "processRatios": [
+                0.9851077110362862,
+                1.0021448327020668,
+                0.9962939180426447,
+                0.9965978586522105,
+                1.0022216645003403,
+                0.997427711588247,
+                0.9884683486542669,
+                1.0062429074588277,
+                0.9988516609167852,
+                1.0061374034077653
+              ]
+            },
+            "javaAllocatedBytes": {
+              "ratio": 1.000611632553269,
+              "ci95": [
+                1.0005967300372434,
+                1.0006265369393559
+              ],
+              "precisionTargetMet": true,
+              "direction": "slower",
+              "processRatios": [
+                1.000633997046485,
+                1.0005967240705715,
+                1.000634000129151,
+                1.0005967257456818,
+                1.000652597245179,
+                1.0005967286173216,
+                1.000634004419509,
+                1.0005967286771478,
+                1.0005967332239682,
+                1.000578089063488
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

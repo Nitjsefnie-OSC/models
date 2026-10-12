@@ -1,0 +1,50 @@
+{
+  "maximumCombinedUsd": 1,
+  "maximumSecondsPerHost": 1800,
+  "payload": "s3://models-qual-077051030817/payload/gdn-proof-oracle-repack-v1.tar.gz",
+  "payloadSha256": "6a7bf1fff1989d176fb24e5bab02d79db786c12e031702315299fd6682cceeea",
+  "quota": 192.0,
+  "usedVcpus": 128,
+  "rates": {
+    "arm": 0.6528
+  },
+  "hosts": [
+    {
+      "arch": "arm",
+      "instanceId": "i-003fd6d4ce013e2c6",
+      "instanceType": "m7g.4xlarge",
+      "deadline": "2026-10-12T19:48:28.019405+00:00",
+      "resultUri": "s3://models-qual-077051030817/results/gdn-proof-oracle-repack-v1/arm/",
+      "launchCommand": [
+        "aws",
+        "ec2",
+        "run-instances",
+        "--region",
+        "us-east-1",
+        "--image-id",
+        "ami-03dac6c363b33b131",
+        "--instance-type",
+        "m7g.4xlarge",
+        "--key-name",
+        "qual-milan",
+        "--iam-instance-profile",
+        "Name=models-qual-worker",
+        "--security-group-ids",
+        "sg-0e9ff523da4140d55",
+        "--subnet-id",
+        "subnet-08fcc910aba0d5b23",
+        "--block-device-mappings",
+        "[{\"DeviceName\": \"/dev/sda1\", \"Ebs\": {\"VolumeSize\": 40, \"VolumeType\": \"gp3\", \"DeleteOnTermination\": true}}]",
+        "--instance-initiated-shutdown-behavior",
+        "terminate",
+        "--metadata-options",
+        "HttpTokens=required,HttpEndpoint=enabled",
+        "--user-data",
+        "file:///Users/briansam-bodden/Code/java-ai/projects/models-gdn-proof/benchmark-results/2026-10-11-gdn-proof/arm-oracle-repack-v1-worker.sh",
+        "--tag-specifications",
+        "ResourceType=instance,Tags=[{Key=Name,Value=models-gdn-proof-oracle-repack-v1-arm},{Key=project,Value=models-qualification},{Key=delete-after,Value=2026-10-12T19:48:28.019405+00:00}]"
+      ],
+      "userDataSha256": "15746c1a06459c5de5521efe9e15e437dabcdd03e8193023ec497c99bf1ed7d3"
+    }
+  ]
+}

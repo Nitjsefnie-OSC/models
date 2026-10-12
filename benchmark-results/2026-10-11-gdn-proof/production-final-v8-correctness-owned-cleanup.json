@@ -1,0 +1,30 @@
+{
+  "observedAt": "2026-10-12T20:09:51.878501+00:00",
+  "reason": "Final integrated artifact reruns entire unchanged cohort; preserve completed and incomplete prior records",
+  "termination": {
+    "TerminatingInstances": [
+      {
+        "InstanceId": "i-0542051a78012b00f",
+        "CurrentState": {
+          "Code": 32,
+          "Name": "shutting-down"
+        },
+        "PreviousState": {
+          "Code": 16,
+          "Name": "running"
+        }
+      },
+      {
+        "InstanceId": "i-028435cef3885cf15",
+        "CurrentState": {
+          "Code": 32,
+          "Name": "shutting-down"
+        },
+        "PreviousState": {
+          "Code": 16,
+          "Name": "running"
+        }
+      }
+    ]
+  }
+}

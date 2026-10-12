@@ -1,0 +1,704 @@
+{"name":"attn_norm-0","file":"0-attn_norm-0.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-0","src1":"blk.0.attn_norm.weight"}
+{"name":"attn_output-0","file":"1-attn_output-0.bin","bytes":524288,"op":"VIEW","ne":[128,32,32,1],"nb":[4,512,16384,524288],"src0":"node_44"}
+{"name":"linear_attn_out-0","file":"2-linear_attn_out-0.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.0.ssm_out.weight","src1":"final_output-0"}
+{"name":"linear_attn_out-0 (reshaped)","file":"3-linear_attn_out-0__reshaped_.bin","bytes":327680,"op":"RESHAPE","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"linear_attn_out-0"}
+{"name":"attn_post_norm-0","file":"4-attn_post_norm-0.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-0","src1":"blk.0.post_attention_norm.weight"}
+{"name":"ffn_out-0","file":"5-ffn_out-0.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.0.ffn_down.weight","src1":"ffn_swiglu-0"}
+{"name":"attn_norm-1","file":"6-attn_norm-1.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-1","src1":"blk.1.attn_norm.weight"}
+{"name":"attn_output-1","file":"7-attn_output-1.bin","bytes":524288,"op":"VIEW","ne":[128,32,32,1],"nb":[4,512,16384,524288],"src0":"node_107"}
+{"name":"linear_attn_out-1","file":"8-linear_attn_out-1.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.1.ssm_out.weight","src1":"final_output-1"}
+{"name":"linear_attn_out-1 (reshaped)","file":"9-linear_attn_out-1__reshaped_.bin","bytes":327680,"op":"RESHAPE","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"linear_attn_out-1"}
+{"name":"attn_post_norm-1","file":"10-attn_post_norm-1.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-1","src1":"blk.1.post_attention_norm.weight"}
+{"name":"ffn_out-1","file":"11-ffn_out-1.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.1.ffn_down.weight","src1":"ffn_swiglu-1"}
+{"name":"attn_norm-2","file":"12-attn_norm-2.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-2","src1":"blk.2.attn_norm.weight"}
+{"name":"attn_output-2","file":"13-attn_output-2.bin","bytes":524288,"op":"VIEW","ne":[128,32,32,1],"nb":[4,512,16384,524288],"src0":"node_170"}
+{"name":"linear_attn_out-2","file":"14-linear_attn_out-2.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.2.ssm_out.weight","src1":"final_output-2"}
+{"name":"linear_attn_out-2 (reshaped)","file":"15-linear_attn_out-2__reshaped_.bin","bytes":327680,"op":"RESHAPE","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"linear_attn_out-2"}
+{"name":"attn_post_norm-2","file":"16-attn_post_norm-2.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-2","src1":"blk.2.post_attention_norm.weight"}
+{"name":"ffn_out-2","file":"17-ffn_out-2.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.2.ffn_down.weight","src1":"ffn_swiglu-2"}
+{"name":"attn_norm-3","file":"18-attn_norm-3.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-3","src1":"blk.3.attn_norm.weight"}
+{"name":"attn_output-3","file":"19-attn_output-3.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.3.attn_output.weight","src1":"attn_gated-3"}
+{"name":"attn_post_norm-3","file":"20-attn_post_norm-3.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-3","src1":"blk.3.post_attention_norm.weight"}
+{"name":"ffn_out-3","file":"21-ffn_out-3.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.3.ffn_down.weight","src1":"ffn_swiglu-3"}
+{"name":"attn_norm-4","file":"22-attn_norm-4.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-4","src1":"blk.4.attn_norm.weight"}
+{"name":"attn_output-4","file":"23-attn_output-4.bin","bytes":524288,"op":"VIEW","ne":[128,32,32,1],"nb":[4,512,16384,524288],"src0":"node_277"}
+{"name":"linear_attn_out-4","file":"24-linear_attn_out-4.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.4.ssm_out.weight","src1":"final_output-4"}
+{"name":"linear_attn_out-4 (reshaped)","file":"25-linear_attn_out-4__reshaped_.bin","bytes":327680,"op":"RESHAPE","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"linear_attn_out-4"}
+{"name":"attn_post_norm-4","file":"26-attn_post_norm-4.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-4","src1":"blk.4.post_attention_norm.weight"}
+{"name":"ffn_out-4","file":"27-ffn_out-4.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.4.ffn_down.weight","src1":"ffn_swiglu-4"}
+{"name":"attn_norm-5","file":"28-attn_norm-5.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-5","src1":"blk.5.attn_norm.weight"}
+{"name":"attn_output-5","file":"29-attn_output-5.bin","bytes":524288,"op":"VIEW","ne":[128,32,32,1],"nb":[4,512,16384,524288],"src0":"node_340"}
+{"name":"linear_attn_out-5","file":"30-linear_attn_out-5.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.5.ssm_out.weight","src1":"final_output-5"}
+{"name":"linear_attn_out-5 (reshaped)","file":"31-linear_attn_out-5__reshaped_.bin","bytes":327680,"op":"RESHAPE","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"linear_attn_out-5"}
+{"name":"attn_post_norm-5","file":"32-attn_post_norm-5.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-5","src1":"blk.5.post_attention_norm.weight"}
+{"name":"ffn_out-5","file":"33-ffn_out-5.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.5.ffn_down.weight","src1":"ffn_swiglu-5"}
+{"name":"attn_norm-6","file":"34-attn_norm-6.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-6","src1":"blk.6.attn_norm.weight"}
+{"name":"attn_output-6","file":"35-attn_output-6.bin","bytes":524288,"op":"VIEW","ne":[128,32,32,1],"nb":[4,512,16384,524288],"src0":"node_403"}
+{"name":"linear_attn_out-6","file":"36-linear_attn_out-6.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.6.ssm_out.weight","src1":"final_output-6"}
+{"name":"linear_attn_out-6 (reshaped)","file":"37-linear_attn_out-6__reshaped_.bin","bytes":327680,"op":"RESHAPE","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"linear_attn_out-6"}
+{"name":"attn_post_norm-6","file":"38-attn_post_norm-6.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-6","src1":"blk.6.post_attention_norm.weight"}
+{"name":"ffn_out-6","file":"39-ffn_out-6.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.6.ffn_down.weight","src1":"ffn_swiglu-6"}
+{"name":"attn_norm-7","file":"40-attn_norm-7.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-7","src1":"blk.7.attn_norm.weight"}
+{"name":"attn_output-7","file":"41-attn_output-7.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.7.attn_output.weight","src1":"attn_gated-7"}
+{"name":"attn_post_norm-7","file":"42-attn_post_norm-7.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-7","src1":"blk.7.post_attention_norm.weight"}
+{"name":"ffn_out-7","file":"43-ffn_out-7.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.7.ffn_down.weight","src1":"ffn_swiglu-7"}
+{"name":"attn_norm-8","file":"44-attn_norm-8.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-8","src1":"blk.8.attn_norm.weight"}
+{"name":"attn_output-8","file":"45-attn_output-8.bin","bytes":524288,"op":"VIEW","ne":[128,32,32,1],"nb":[4,512,16384,524288],"src0":"node_510"}
+{"name":"linear_attn_out-8","file":"46-linear_attn_out-8.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.8.ssm_out.weight","src1":"final_output-8"}
+{"name":"linear_attn_out-8 (reshaped)","file":"47-linear_attn_out-8__reshaped_.bin","bytes":327680,"op":"RESHAPE","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"linear_attn_out-8"}
+{"name":"attn_post_norm-8","file":"48-attn_post_norm-8.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-8","src1":"blk.8.post_attention_norm.weight"}
+{"name":"ffn_out-8","file":"49-ffn_out-8.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.8.ffn_down.weight","src1":"ffn_swiglu-8"}
+{"name":"attn_norm-9","file":"50-attn_norm-9.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-9","src1":"blk.9.attn_norm.weight"}
+{"name":"attn_output-9","file":"51-attn_output-9.bin","bytes":524288,"op":"VIEW","ne":[128,32,32,1],"nb":[4,512,16384,524288],"src0":"node_573"}
+{"name":"linear_attn_out-9","file":"52-linear_attn_out-9.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.9.ssm_out.weight","src1":"final_output-9"}
+{"name":"linear_attn_out-9 (reshaped)","file":"53-linear_attn_out-9__reshaped_.bin","bytes":327680,"op":"RESHAPE","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"linear_attn_out-9"}
+{"name":"attn_post_norm-9","file":"54-attn_post_norm-9.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-9","src1":"blk.9.post_attention_norm.weight"}
+{"name":"ffn_out-9","file":"55-ffn_out-9.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.9.ffn_down.weight","src1":"ffn_swiglu-9"}
+{"name":"attn_norm-10","file":"56-attn_norm-10.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-10","src1":"blk.10.attn_norm.weight"}
+{"name":"attn_output-10","file":"57-attn_output-10.bin","bytes":524288,"op":"VIEW","ne":[128,32,32,1],"nb":[4,512,16384,524288],"src0":"node_636"}
+{"name":"linear_attn_out-10","file":"58-linear_attn_out-10.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.10.ssm_out.weight","src1":"final_output-10"}
+{"name":"linear_attn_out-10 (reshaped)","file":"59-linear_attn_out-10__reshaped_.bin","bytes":327680,"op":"RESHAPE","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"linear_attn_out-10"}
+{"name":"attn_post_norm-10","file":"60-attn_post_norm-10.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-10","src1":"blk.10.post_attention_norm.weight"}
+{"name":"ffn_out-10","file":"61-ffn_out-10.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.10.ffn_down.weight","src1":"ffn_swiglu-10"}
+{"name":"attn_norm-11","file":"62-attn_norm-11.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-11","src1":"blk.11.attn_norm.weight"}
+{"name":"attn_output-11","file":"63-attn_output-11.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.11.attn_output.weight","src1":"attn_gated-11"}
+{"name":"attn_post_norm-11","file":"64-attn_post_norm-11.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-11","src1":"blk.11.post_attention_norm.weight"}
+{"name":"ffn_out-11","file":"65-ffn_out-11.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.11.ffn_down.weight","src1":"ffn_swiglu-11"}
+{"name":"attn_norm-12","file":"66-attn_norm-12.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-12","src1":"blk.12.attn_norm.weight"}
+{"name":"attn_output-12","file":"67-attn_output-12.bin","bytes":524288,"op":"VIEW","ne":[128,32,32,1],"nb":[4,512,16384,524288],"src0":"node_743"}
+{"name":"linear_attn_out-12","file":"68-linear_attn_out-12.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.12.ssm_out.weight","src1":"final_output-12"}
+{"name":"linear_attn_out-12 (reshaped)","file":"69-linear_attn_out-12__reshaped_.bin","bytes":327680,"op":"RESHAPE","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"linear_attn_out-12"}
+{"name":"attn_post_norm-12","file":"70-attn_post_norm-12.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-12","src1":"blk.12.post_attention_norm.weight"}
+{"name":"ffn_out-12","file":"71-ffn_out-12.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.12.ffn_down.weight","src1":"ffn_swiglu-12"}
+{"name":"attn_norm-13","file":"72-attn_norm-13.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-13","src1":"blk.13.attn_norm.weight"}
+{"name":"attn_output-13","file":"73-attn_output-13.bin","bytes":524288,"op":"VIEW","ne":[128,32,32,1],"nb":[4,512,16384,524288],"src0":"node_806"}
+{"name":"linear_attn_out-13","file":"74-linear_attn_out-13.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.13.ssm_out.weight","src1":"final_output-13"}
+{"name":"linear_attn_out-13 (reshaped)","file":"75-linear_attn_out-13__reshaped_.bin","bytes":327680,"op":"RESHAPE","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"linear_attn_out-13"}
+{"name":"attn_post_norm-13","file":"76-attn_post_norm-13.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-13","src1":"blk.13.post_attention_norm.weight"}
+{"name":"ffn_out-13","file":"77-ffn_out-13.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.13.ffn_down.weight","src1":"ffn_swiglu-13"}
+{"name":"attn_norm-14","file":"78-attn_norm-14.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-14","src1":"blk.14.attn_norm.weight"}
+{"name":"attn_output-14","file":"79-attn_output-14.bin","bytes":524288,"op":"VIEW","ne":[128,32,32,1],"nb":[4,512,16384,524288],"src0":"node_869"}
+{"name":"linear_attn_out-14","file":"80-linear_attn_out-14.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.14.ssm_out.weight","src1":"final_output-14"}
+{"name":"linear_attn_out-14 (reshaped)","file":"81-linear_attn_out-14__reshaped_.bin","bytes":327680,"op":"RESHAPE","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"linear_attn_out-14"}
+{"name":"attn_post_norm-14","file":"82-attn_post_norm-14.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-14","src1":"blk.14.post_attention_norm.weight"}
+{"name":"ffn_out-14","file":"83-ffn_out-14.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.14.ffn_down.weight","src1":"ffn_swiglu-14"}
+{"name":"attn_norm-15","file":"84-attn_norm-15.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-15","src1":"blk.15.attn_norm.weight"}
+{"name":"attn_output-15","file":"85-attn_output-15.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.15.attn_output.weight","src1":"attn_gated-15"}
+{"name":"attn_post_norm-15","file":"86-attn_post_norm-15.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-15","src1":"blk.15.post_attention_norm.weight"}
+{"name":"ffn_out-15","file":"87-ffn_out-15.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.15.ffn_down.weight","src1":"ffn_swiglu-15"}
+{"name":"attn_norm-16","file":"88-attn_norm-16.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-16","src1":"blk.16.attn_norm.weight"}
+{"name":"attn_output-16","file":"89-attn_output-16.bin","bytes":524288,"op":"VIEW","ne":[128,32,32,1],"nb":[4,512,16384,524288],"src0":"node_976"}
+{"name":"linear_attn_out-16","file":"90-linear_attn_out-16.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.16.ssm_out.weight","src1":"final_output-16"}
+{"name":"linear_attn_out-16 (reshaped)","file":"91-linear_attn_out-16__reshaped_.bin","bytes":327680,"op":"RESHAPE","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"linear_attn_out-16"}
+{"name":"attn_post_norm-16","file":"92-attn_post_norm-16.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-16","src1":"blk.16.post_attention_norm.weight"}
+{"name":"ffn_out-16","file":"93-ffn_out-16.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.16.ffn_down.weight","src1":"ffn_swiglu-16"}
+{"name":"attn_norm-17","file":"94-attn_norm-17.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-17","src1":"blk.17.attn_norm.weight"}
+{"name":"attn_output-17","file":"95-attn_output-17.bin","bytes":524288,"op":"VIEW","ne":[128,32,32,1],"nb":[4,512,16384,524288],"src0":"node_1039"}
+{"name":"linear_attn_out-17","file":"96-linear_attn_out-17.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.17.ssm_out.weight","src1":"final_output-17"}
+{"name":"linear_attn_out-17 (reshaped)","file":"97-linear_attn_out-17__reshaped_.bin","bytes":327680,"op":"RESHAPE","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"linear_attn_out-17"}
+{"name":"attn_post_norm-17","file":"98-attn_post_norm-17.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-17","src1":"blk.17.post_attention_norm.weight"}
+{"name":"ffn_out-17","file":"99-ffn_out-17.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.17.ffn_down.weight","src1":"ffn_swiglu-17"}
+{"name":"attn_norm-18","file":"100-attn_norm-18.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-18","src1":"blk.18.attn_norm.weight"}
+{"name":"attn_output-18","file":"101-attn_output-18.bin","bytes":524288,"op":"VIEW","ne":[128,32,32,1],"nb":[4,512,16384,524288],"src0":"node_1102"}
+{"name":"linear_attn_out-18","file":"102-linear_attn_out-18.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.18.ssm_out.weight","src1":"final_output-18"}
+{"name":"linear_attn_out-18 (reshaped)","file":"103-linear_attn_out-18__reshaped_.bin","bytes":327680,"op":"RESHAPE","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"linear_attn_out-18"}
+{"name":"attn_post_norm-18","file":"104-attn_post_norm-18.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-18","src1":"blk.18.post_attention_norm.weight"}
+{"name":"ffn_out-18","file":"105-ffn_out-18.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.18.ffn_down.weight","src1":"ffn_swiglu-18"}
+{"name":"attn_norm-19","file":"106-attn_norm-19.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-19","src1":"blk.19.attn_norm.weight"}
+{"name":"attn_output-19","file":"107-attn_output-19.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.19.attn_output.weight","src1":"attn_gated-19"}
+{"name":"attn_post_norm-19","file":"108-attn_post_norm-19.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-19","src1":"blk.19.post_attention_norm.weight"}
+{"name":"ffn_out-19","file":"109-ffn_out-19.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.19.ffn_down.weight","src1":"ffn_swiglu-19"}
+{"name":"attn_norm-20","file":"110-attn_norm-20.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-20","src1":"blk.20.attn_norm.weight"}
+{"name":"attn_output-20","file":"111-attn_output-20.bin","bytes":524288,"op":"VIEW","ne":[128,32,32,1],"nb":[4,512,16384,524288],"src0":"node_1209"}
+{"name":"linear_attn_out-20","file":"112-linear_attn_out-20.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.20.ssm_out.weight","src1":"final_output-20"}
+{"name":"linear_attn_out-20 (reshaped)","file":"113-linear_attn_out-20__reshaped_.bin","bytes":327680,"op":"RESHAPE","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"linear_attn_out-20"}
+{"name":"attn_post_norm-20","file":"114-attn_post_norm-20.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-20","src1":"blk.20.post_attention_norm.weight"}
+{"name":"ffn_out-20","file":"115-ffn_out-20.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.20.ffn_down.weight","src1":"ffn_swiglu-20"}
+{"name":"attn_norm-21","file":"116-attn_norm-21.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-21","src1":"blk.21.attn_norm.weight"}
+{"name":"attn_output-21","file":"117-attn_output-21.bin","bytes":524288,"op":"VIEW","ne":[128,32,32,1],"nb":[4,512,16384,524288],"src0":"node_1272"}
+{"name":"linear_attn_out-21","file":"118-linear_attn_out-21.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.21.ssm_out.weight","src1":"final_output-21"}
+{"name":"linear_attn_out-21 (reshaped)","file":"119-linear_attn_out-21__reshaped_.bin","bytes":327680,"op":"RESHAPE","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"linear_attn_out-21"}
+{"name":"attn_post_norm-21","file":"120-attn_post_norm-21.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-21","src1":"blk.21.post_attention_norm.weight"}
+{"name":"ffn_out-21","file":"121-ffn_out-21.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.21.ffn_down.weight","src1":"ffn_swiglu-21"}
+{"name":"attn_norm-22","file":"122-attn_norm-22.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-22","src1":"blk.22.attn_norm.weight"}
+{"name":"attn_output-22","file":"123-attn_output-22.bin","bytes":524288,"op":"VIEW","ne":[128,32,32,1],"nb":[4,512,16384,524288],"src0":"node_1335"}
+{"name":"linear_attn_out-22","file":"124-linear_attn_out-22.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.22.ssm_out.weight","src1":"final_output-22"}
+{"name":"linear_attn_out-22 (reshaped)","file":"125-linear_attn_out-22__reshaped_.bin","bytes":327680,"op":"RESHAPE","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"linear_attn_out-22"}
+{"name":"attn_post_norm-22","file":"126-attn_post_norm-22.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-22","src1":"blk.22.post_attention_norm.weight"}
+{"name":"ffn_out-22","file":"127-ffn_out-22.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.22.ffn_down.weight","src1":"ffn_swiglu-22"}
+{"name":"attn_norm-23","file":"128-attn_norm-23.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-23","src1":"blk.23.attn_norm.weight"}
+{"name":"attn_output-23","file":"129-attn_output-23.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.23.attn_output.weight","src1":"attn_gated-23"}
+{"name":"attn_post_norm-23","file":"130-attn_post_norm-23.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-23","src1":"blk.23.post_attention_norm.weight"}
+{"name":"ffn_out-23","file":"131-ffn_out-23.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.23.ffn_down.weight","src1":"ffn_swiglu-23"}
+{"name":"attn_norm-24","file":"132-attn_norm-24.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-24","src1":"blk.24.attn_norm.weight"}
+{"name":"attn_output-24","file":"133-attn_output-24.bin","bytes":524288,"op":"VIEW","ne":[128,32,32,1],"nb":[4,512,16384,524288],"src0":"node_1442"}
+{"name":"linear_attn_out-24","file":"134-linear_attn_out-24.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.24.ssm_out.weight","src1":"final_output-24"}
+{"name":"linear_attn_out-24 (reshaped)","file":"135-linear_attn_out-24__reshaped_.bin","bytes":327680,"op":"RESHAPE","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"linear_attn_out-24"}
+{"name":"attn_post_norm-24","file":"136-attn_post_norm-24.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-24","src1":"blk.24.post_attention_norm.weight"}
+{"name":"ffn_out-24","file":"137-ffn_out-24.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.24.ffn_down.weight","src1":"ffn_swiglu-24"}
+{"name":"attn_norm-25","file":"138-attn_norm-25.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-25","src1":"blk.25.attn_norm.weight"}
+{"name":"attn_output-25","file":"139-attn_output-25.bin","bytes":524288,"op":"VIEW","ne":[128,32,32,1],"nb":[4,512,16384,524288],"src0":"node_1505"}
+{"name":"linear_attn_out-25","file":"140-linear_attn_out-25.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.25.ssm_out.weight","src1":"final_output-25"}
+{"name":"linear_attn_out-25 (reshaped)","file":"141-linear_attn_out-25__reshaped_.bin","bytes":327680,"op":"RESHAPE","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"linear_attn_out-25"}
+{"name":"attn_post_norm-25","file":"142-attn_post_norm-25.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-25","src1":"blk.25.post_attention_norm.weight"}
+{"name":"ffn_out-25","file":"143-ffn_out-25.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.25.ffn_down.weight","src1":"ffn_swiglu-25"}
+{"name":"attn_norm-26","file":"144-attn_norm-26.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-26","src1":"blk.26.attn_norm.weight"}
+{"name":"attn_output-26","file":"145-attn_output-26.bin","bytes":524288,"op":"VIEW","ne":[128,32,32,1],"nb":[4,512,16384,524288],"src0":"node_1568"}
+{"name":"linear_attn_out-26","file":"146-linear_attn_out-26.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.26.ssm_out.weight","src1":"final_output-26"}
+{"name":"linear_attn_out-26 (reshaped)","file":"147-linear_attn_out-26__reshaped_.bin","bytes":327680,"op":"RESHAPE","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"linear_attn_out-26"}
+{"name":"attn_post_norm-26","file":"148-attn_post_norm-26.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-26","src1":"blk.26.post_attention_norm.weight"}
+{"name":"ffn_out-26","file":"149-ffn_out-26.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.26.ffn_down.weight","src1":"ffn_swiglu-26"}
+{"name":"attn_norm-27","file":"150-attn_norm-27.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-27","src1":"blk.27.attn_norm.weight"}
+{"name":"attn_output-27","file":"151-attn_output-27.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.27.attn_output.weight","src1":"attn_gated-27"}
+{"name":"attn_post_norm-27","file":"152-attn_post_norm-27.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-27","src1":"blk.27.post_attention_norm.weight"}
+{"name":"ffn_out-27","file":"153-ffn_out-27.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.27.ffn_down.weight","src1":"ffn_swiglu-27"}
+{"name":"attn_norm-28","file":"154-attn_norm-28.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-28","src1":"blk.28.attn_norm.weight"}
+{"name":"attn_output-28","file":"155-attn_output-28.bin","bytes":524288,"op":"VIEW","ne":[128,32,32,1],"nb":[4,512,16384,524288],"src0":"node_1675"}
+{"name":"linear_attn_out-28","file":"156-linear_attn_out-28.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.28.ssm_out.weight","src1":"final_output-28"}
+{"name":"linear_attn_out-28 (reshaped)","file":"157-linear_attn_out-28__reshaped_.bin","bytes":327680,"op":"RESHAPE","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"linear_attn_out-28"}
+{"name":"attn_post_norm-28","file":"158-attn_post_norm-28.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-28","src1":"blk.28.post_attention_norm.weight"}
+{"name":"ffn_out-28","file":"159-ffn_out-28.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.28.ffn_down.weight","src1":"ffn_swiglu-28"}
+{"name":"attn_norm-29","file":"160-attn_norm-29.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-29","src1":"blk.29.attn_norm.weight"}
+{"name":"attn_output-29","file":"161-attn_output-29.bin","bytes":524288,"op":"VIEW","ne":[128,32,32,1],"nb":[4,512,16384,524288],"src0":"node_1738"}
+{"name":"linear_attn_out-29","file":"162-linear_attn_out-29.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.29.ssm_out.weight","src1":"final_output-29"}
+{"name":"linear_attn_out-29 (reshaped)","file":"163-linear_attn_out-29__reshaped_.bin","bytes":327680,"op":"RESHAPE","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"linear_attn_out-29"}
+{"name":"attn_post_norm-29","file":"164-attn_post_norm-29.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-29","src1":"blk.29.post_attention_norm.weight"}
+{"name":"ffn_out-29","file":"165-ffn_out-29.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.29.ffn_down.weight","src1":"ffn_swiglu-29"}
+{"name":"attn_norm-30","file":"166-attn_norm-30.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-30","src1":"blk.30.attn_norm.weight"}
+{"name":"attn_output-30","file":"167-attn_output-30.bin","bytes":524288,"op":"VIEW","ne":[128,32,32,1],"nb":[4,512,16384,524288],"src0":"node_1801"}
+{"name":"linear_attn_out-30","file":"168-linear_attn_out-30.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.30.ssm_out.weight","src1":"final_output-30"}
+{"name":"linear_attn_out-30 (reshaped)","file":"169-linear_attn_out-30__reshaped_.bin","bytes":327680,"op":"RESHAPE","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"linear_attn_out-30"}
+{"name":"attn_post_norm-30","file":"170-attn_post_norm-30.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-30","src1":"blk.30.post_attention_norm.weight"}
+{"name":"ffn_out-30","file":"171-ffn_out-30.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.30.ffn_down.weight","src1":"ffn_swiglu-30"}
+{"name":"attn_norm-31","file":"172-attn_norm-31.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-31","src1":"blk.31.attn_norm.weight"}
+{"name":"attn_output-31","file":"173-attn_output-31.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.31.attn_output.weight","src1":"attn_gated-31"}
+{"name":"attn_post_norm-31","file":"174-attn_post_norm-31.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-31","src1":"blk.31.post_attention_norm.weight"}
+{"name":"ffn_out-31","file":"175-ffn_out-31.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.31.ffn_down.weight","src1":"ffn_swiglu-31"}
+{"name":"attn_norm-0","file":"176-attn_norm-0.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-0","src1":"blk.0.attn_norm.weight"}
+{"name":"attn_output-0","file":"177-attn_output-0.bin","bytes":524288,"op":"VIEW","ne":[128,32,32,1],"nb":[4,512,16384,524288],"src0":"node_44"}
+{"name":"linear_attn_out-0","file":"178-linear_attn_out-0.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.0.ssm_out.weight","src1":"final_output-0"}
+{"name":"linear_attn_out-0 (reshaped)","file":"179-linear_attn_out-0__reshaped_.bin","bytes":327680,"op":"RESHAPE","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"linear_attn_out-0"}
+{"name":"attn_post_norm-0","file":"180-attn_post_norm-0.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-0","src1":"blk.0.post_attention_norm.weight"}
+{"name":"ffn_out-0","file":"181-ffn_out-0.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.0.ffn_down.weight","src1":"ffn_swiglu-0"}
+{"name":"attn_norm-1","file":"182-attn_norm-1.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-1","src1":"blk.1.attn_norm.weight"}
+{"name":"attn_output-1","file":"183-attn_output-1.bin","bytes":524288,"op":"VIEW","ne":[128,32,32,1],"nb":[4,512,16384,524288],"src0":"node_107"}
+{"name":"linear_attn_out-1","file":"184-linear_attn_out-1.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.1.ssm_out.weight","src1":"final_output-1"}
+{"name":"linear_attn_out-1 (reshaped)","file":"185-linear_attn_out-1__reshaped_.bin","bytes":327680,"op":"RESHAPE","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"linear_attn_out-1"}
+{"name":"attn_post_norm-1","file":"186-attn_post_norm-1.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-1","src1":"blk.1.post_attention_norm.weight"}
+{"name":"ffn_out-1","file":"187-ffn_out-1.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.1.ffn_down.weight","src1":"ffn_swiglu-1"}
+{"name":"attn_norm-2","file":"188-attn_norm-2.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-2","src1":"blk.2.attn_norm.weight"}
+{"name":"attn_output-2","file":"189-attn_output-2.bin","bytes":524288,"op":"VIEW","ne":[128,32,32,1],"nb":[4,512,16384,524288],"src0":"node_170"}
+{"name":"linear_attn_out-2","file":"190-linear_attn_out-2.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.2.ssm_out.weight","src1":"final_output-2"}
+{"name":"linear_attn_out-2 (reshaped)","file":"191-linear_attn_out-2__reshaped_.bin","bytes":327680,"op":"RESHAPE","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"linear_attn_out-2"}
+{"name":"attn_post_norm-2","file":"192-attn_post_norm-2.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-2","src1":"blk.2.post_attention_norm.weight"}
+{"name":"ffn_out-2","file":"193-ffn_out-2.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.2.ffn_down.weight","src1":"ffn_swiglu-2"}
+{"name":"attn_norm-3","file":"194-attn_norm-3.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-3","src1":"blk.3.attn_norm.weight"}
+{"name":"attn_output-3","file":"195-attn_output-3.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.3.attn_output.weight","src1":"attn_gated-3"}
+{"name":"attn_post_norm-3","file":"196-attn_post_norm-3.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-3","src1":"blk.3.post_attention_norm.weight"}
+{"name":"ffn_out-3","file":"197-ffn_out-3.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.3.ffn_down.weight","src1":"ffn_swiglu-3"}
+{"name":"attn_norm-4","file":"198-attn_norm-4.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-4","src1":"blk.4.attn_norm.weight"}
+{"name":"attn_output-4","file":"199-attn_output-4.bin","bytes":524288,"op":"VIEW","ne":[128,32,32,1],"nb":[4,512,16384,524288],"src0":"node_277"}
+{"name":"linear_attn_out-4","file":"200-linear_attn_out-4.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.4.ssm_out.weight","src1":"final_output-4"}
+{"name":"linear_attn_out-4 (reshaped)","file":"201-linear_attn_out-4__reshaped_.bin","bytes":327680,"op":"RESHAPE","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"linear_attn_out-4"}
+{"name":"attn_post_norm-4","file":"202-attn_post_norm-4.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-4","src1":"blk.4.post_attention_norm.weight"}
+{"name":"ffn_out-4","file":"203-ffn_out-4.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.4.ffn_down.weight","src1":"ffn_swiglu-4"}
+{"name":"attn_norm-5","file":"204-attn_norm-5.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-5","src1":"blk.5.attn_norm.weight"}
+{"name":"attn_output-5","file":"205-attn_output-5.bin","bytes":524288,"op":"VIEW","ne":[128,32,32,1],"nb":[4,512,16384,524288],"src0":"node_340"}
+{"name":"linear_attn_out-5","file":"206-linear_attn_out-5.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.5.ssm_out.weight","src1":"final_output-5"}
+{"name":"linear_attn_out-5 (reshaped)","file":"207-linear_attn_out-5__reshaped_.bin","bytes":327680,"op":"RESHAPE","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"linear_attn_out-5"}
+{"name":"attn_post_norm-5","file":"208-attn_post_norm-5.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-5","src1":"blk.5.post_attention_norm.weight"}
+{"name":"ffn_out-5","file":"209-ffn_out-5.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.5.ffn_down.weight","src1":"ffn_swiglu-5"}
+{"name":"attn_norm-6","file":"210-attn_norm-6.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-6","src1":"blk.6.attn_norm.weight"}
+{"name":"attn_output-6","file":"211-attn_output-6.bin","bytes":524288,"op":"VIEW","ne":[128,32,32,1],"nb":[4,512,16384,524288],"src0":"node_403"}
+{"name":"linear_attn_out-6","file":"212-linear_attn_out-6.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.6.ssm_out.weight","src1":"final_output-6"}
+{"name":"linear_attn_out-6 (reshaped)","file":"213-linear_attn_out-6__reshaped_.bin","bytes":327680,"op":"RESHAPE","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"linear_attn_out-6"}
+{"name":"attn_post_norm-6","file":"214-attn_post_norm-6.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-6","src1":"blk.6.post_attention_norm.weight"}
+{"name":"ffn_out-6","file":"215-ffn_out-6.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.6.ffn_down.weight","src1":"ffn_swiglu-6"}
+{"name":"attn_norm-7","file":"216-attn_norm-7.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-7","src1":"blk.7.attn_norm.weight"}
+{"name":"attn_output-7","file":"217-attn_output-7.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.7.attn_output.weight","src1":"attn_gated-7"}
+{"name":"attn_post_norm-7","file":"218-attn_post_norm-7.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-7","src1":"blk.7.post_attention_norm.weight"}
+{"name":"ffn_out-7","file":"219-ffn_out-7.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.7.ffn_down.weight","src1":"ffn_swiglu-7"}
+{"name":"attn_norm-8","file":"220-attn_norm-8.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-8","src1":"blk.8.attn_norm.weight"}
+{"name":"attn_output-8","file":"221-attn_output-8.bin","bytes":524288,"op":"VIEW","ne":[128,32,32,1],"nb":[4,512,16384,524288],"src0":"node_510"}
+{"name":"linear_attn_out-8","file":"222-linear_attn_out-8.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.8.ssm_out.weight","src1":"final_output-8"}
+{"name":"linear_attn_out-8 (reshaped)","file":"223-linear_attn_out-8__reshaped_.bin","bytes":327680,"op":"RESHAPE","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"linear_attn_out-8"}
+{"name":"attn_post_norm-8","file":"224-attn_post_norm-8.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-8","src1":"blk.8.post_attention_norm.weight"}
+{"name":"ffn_out-8","file":"225-ffn_out-8.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.8.ffn_down.weight","src1":"ffn_swiglu-8"}
+{"name":"attn_norm-9","file":"226-attn_norm-9.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-9","src1":"blk.9.attn_norm.weight"}
+{"name":"attn_output-9","file":"227-attn_output-9.bin","bytes":524288,"op":"VIEW","ne":[128,32,32,1],"nb":[4,512,16384,524288],"src0":"node_573"}
+{"name":"linear_attn_out-9","file":"228-linear_attn_out-9.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.9.ssm_out.weight","src1":"final_output-9"}
+{"name":"linear_attn_out-9 (reshaped)","file":"229-linear_attn_out-9__reshaped_.bin","bytes":327680,"op":"RESHAPE","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"linear_attn_out-9"}
+{"name":"attn_post_norm-9","file":"230-attn_post_norm-9.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-9","src1":"blk.9.post_attention_norm.weight"}
+{"name":"ffn_out-9","file":"231-ffn_out-9.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.9.ffn_down.weight","src1":"ffn_swiglu-9"}
+{"name":"attn_norm-10","file":"232-attn_norm-10.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-10","src1":"blk.10.attn_norm.weight"}
+{"name":"attn_output-10","file":"233-attn_output-10.bin","bytes":524288,"op":"VIEW","ne":[128,32,32,1],"nb":[4,512,16384,524288],"src0":"node_636"}
+{"name":"linear_attn_out-10","file":"234-linear_attn_out-10.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.10.ssm_out.weight","src1":"final_output-10"}
+{"name":"linear_attn_out-10 (reshaped)","file":"235-linear_attn_out-10__reshaped_.bin","bytes":327680,"op":"RESHAPE","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"linear_attn_out-10"}
+{"name":"attn_post_norm-10","file":"236-attn_post_norm-10.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-10","src1":"blk.10.post_attention_norm.weight"}
+{"name":"ffn_out-10","file":"237-ffn_out-10.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.10.ffn_down.weight","src1":"ffn_swiglu-10"}
+{"name":"attn_norm-11","file":"238-attn_norm-11.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-11","src1":"blk.11.attn_norm.weight"}
+{"name":"attn_output-11","file":"239-attn_output-11.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.11.attn_output.weight","src1":"attn_gated-11"}
+{"name":"attn_post_norm-11","file":"240-attn_post_norm-11.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-11","src1":"blk.11.post_attention_norm.weight"}
+{"name":"ffn_out-11","file":"241-ffn_out-11.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.11.ffn_down.weight","src1":"ffn_swiglu-11"}
+{"name":"attn_norm-12","file":"242-attn_norm-12.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-12","src1":"blk.12.attn_norm.weight"}
+{"name":"attn_output-12","file":"243-attn_output-12.bin","bytes":524288,"op":"VIEW","ne":[128,32,32,1],"nb":[4,512,16384,524288],"src0":"node_743"}
+{"name":"linear_attn_out-12","file":"244-linear_attn_out-12.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.12.ssm_out.weight","src1":"final_output-12"}
+{"name":"linear_attn_out-12 (reshaped)","file":"245-linear_attn_out-12__reshaped_.bin","bytes":327680,"op":"RESHAPE","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"linear_attn_out-12"}
+{"name":"attn_post_norm-12","file":"246-attn_post_norm-12.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-12","src1":"blk.12.post_attention_norm.weight"}
+{"name":"ffn_out-12","file":"247-ffn_out-12.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.12.ffn_down.weight","src1":"ffn_swiglu-12"}
+{"name":"attn_norm-13","file":"248-attn_norm-13.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-13","src1":"blk.13.attn_norm.weight"}
+{"name":"attn_output-13","file":"249-attn_output-13.bin","bytes":524288,"op":"VIEW","ne":[128,32,32,1],"nb":[4,512,16384,524288],"src0":"node_806"}
+{"name":"linear_attn_out-13","file":"250-linear_attn_out-13.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.13.ssm_out.weight","src1":"final_output-13"}
+{"name":"linear_attn_out-13 (reshaped)","file":"251-linear_attn_out-13__reshaped_.bin","bytes":327680,"op":"RESHAPE","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"linear_attn_out-13"}
+{"name":"attn_post_norm-13","file":"252-attn_post_norm-13.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-13","src1":"blk.13.post_attention_norm.weight"}
+{"name":"ffn_out-13","file":"253-ffn_out-13.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.13.ffn_down.weight","src1":"ffn_swiglu-13"}
+{"name":"attn_norm-14","file":"254-attn_norm-14.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-14","src1":"blk.14.attn_norm.weight"}
+{"name":"attn_output-14","file":"255-attn_output-14.bin","bytes":524288,"op":"VIEW","ne":[128,32,32,1],"nb":[4,512,16384,524288],"src0":"node_869"}
+{"name":"linear_attn_out-14","file":"256-linear_attn_out-14.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.14.ssm_out.weight","src1":"final_output-14"}
+{"name":"linear_attn_out-14 (reshaped)","file":"257-linear_attn_out-14__reshaped_.bin","bytes":327680,"op":"RESHAPE","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"linear_attn_out-14"}
+{"name":"attn_post_norm-14","file":"258-attn_post_norm-14.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-14","src1":"blk.14.post_attention_norm.weight"}
+{"name":"ffn_out-14","file":"259-ffn_out-14.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.14.ffn_down.weight","src1":"ffn_swiglu-14"}
+{"name":"attn_norm-15","file":"260-attn_norm-15.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-15","src1":"blk.15.attn_norm.weight"}
+{"name":"attn_output-15","file":"261-attn_output-15.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.15.attn_output.weight","src1":"attn_gated-15"}
+{"name":"attn_post_norm-15","file":"262-attn_post_norm-15.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-15","src1":"blk.15.post_attention_norm.weight"}
+{"name":"ffn_out-15","file":"263-ffn_out-15.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.15.ffn_down.weight","src1":"ffn_swiglu-15"}
+{"name":"attn_norm-16","file":"264-attn_norm-16.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-16","src1":"blk.16.attn_norm.weight"}
+{"name":"attn_output-16","file":"265-attn_output-16.bin","bytes":524288,"op":"VIEW","ne":[128,32,32,1],"nb":[4,512,16384,524288],"src0":"node_976"}
+{"name":"linear_attn_out-16","file":"266-linear_attn_out-16.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.16.ssm_out.weight","src1":"final_output-16"}
+{"name":"linear_attn_out-16 (reshaped)","file":"267-linear_attn_out-16__reshaped_.bin","bytes":327680,"op":"RESHAPE","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"linear_attn_out-16"}
+{"name":"attn_post_norm-16","file":"268-attn_post_norm-16.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-16","src1":"blk.16.post_attention_norm.weight"}
+{"name":"ffn_out-16","file":"269-ffn_out-16.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.16.ffn_down.weight","src1":"ffn_swiglu-16"}
+{"name":"attn_norm-17","file":"270-attn_norm-17.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-17","src1":"blk.17.attn_norm.weight"}
+{"name":"attn_output-17","file":"271-attn_output-17.bin","bytes":524288,"op":"VIEW","ne":[128,32,32,1],"nb":[4,512,16384,524288],"src0":"node_1039"}
+{"name":"linear_attn_out-17","file":"272-linear_attn_out-17.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.17.ssm_out.weight","src1":"final_output-17"}
+{"name":"linear_attn_out-17 (reshaped)","file":"273-linear_attn_out-17__reshaped_.bin","bytes":327680,"op":"RESHAPE","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"linear_attn_out-17"}
+{"name":"attn_post_norm-17","file":"274-attn_post_norm-17.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-17","src1":"blk.17.post_attention_norm.weight"}
+{"name":"ffn_out-17","file":"275-ffn_out-17.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.17.ffn_down.weight","src1":"ffn_swiglu-17"}
+{"name":"attn_norm-18","file":"276-attn_norm-18.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-18","src1":"blk.18.attn_norm.weight"}
+{"name":"attn_output-18","file":"277-attn_output-18.bin","bytes":524288,"op":"VIEW","ne":[128,32,32,1],"nb":[4,512,16384,524288],"src0":"node_1102"}
+{"name":"linear_attn_out-18","file":"278-linear_attn_out-18.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.18.ssm_out.weight","src1":"final_output-18"}
+{"name":"linear_attn_out-18 (reshaped)","file":"279-linear_attn_out-18__reshaped_.bin","bytes":327680,"op":"RESHAPE","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"linear_attn_out-18"}
+{"name":"attn_post_norm-18","file":"280-attn_post_norm-18.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-18","src1":"blk.18.post_attention_norm.weight"}
+{"name":"ffn_out-18","file":"281-ffn_out-18.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.18.ffn_down.weight","src1":"ffn_swiglu-18"}
+{"name":"attn_norm-19","file":"282-attn_norm-19.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-19","src1":"blk.19.attn_norm.weight"}
+{"name":"attn_output-19","file":"283-attn_output-19.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.19.attn_output.weight","src1":"attn_gated-19"}
+{"name":"attn_post_norm-19","file":"284-attn_post_norm-19.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-19","src1":"blk.19.post_attention_norm.weight"}
+{"name":"ffn_out-19","file":"285-ffn_out-19.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.19.ffn_down.weight","src1":"ffn_swiglu-19"}
+{"name":"attn_norm-20","file":"286-attn_norm-20.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-20","src1":"blk.20.attn_norm.weight"}
+{"name":"attn_output-20","file":"287-attn_output-20.bin","bytes":524288,"op":"VIEW","ne":[128,32,32,1],"nb":[4,512,16384,524288],"src0":"node_1209"}
+{"name":"linear_attn_out-20","file":"288-linear_attn_out-20.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.20.ssm_out.weight","src1":"final_output-20"}
+{"name":"linear_attn_out-20 (reshaped)","file":"289-linear_attn_out-20__reshaped_.bin","bytes":327680,"op":"RESHAPE","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"linear_attn_out-20"}
+{"name":"attn_post_norm-20","file":"290-attn_post_norm-20.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-20","src1":"blk.20.post_attention_norm.weight"}
+{"name":"ffn_out-20","file":"291-ffn_out-20.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.20.ffn_down.weight","src1":"ffn_swiglu-20"}
+{"name":"attn_norm-21","file":"292-attn_norm-21.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-21","src1":"blk.21.attn_norm.weight"}
+{"name":"attn_output-21","file":"293-attn_output-21.bin","bytes":524288,"op":"VIEW","ne":[128,32,32,1],"nb":[4,512,16384,524288],"src0":"node_1272"}
+{"name":"linear_attn_out-21","file":"294-linear_attn_out-21.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.21.ssm_out.weight","src1":"final_output-21"}
+{"name":"linear_attn_out-21 (reshaped)","file":"295-linear_attn_out-21__reshaped_.bin","bytes":327680,"op":"RESHAPE","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"linear_attn_out-21"}
+{"name":"attn_post_norm-21","file":"296-attn_post_norm-21.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-21","src1":"blk.21.post_attention_norm.weight"}
+{"name":"ffn_out-21","file":"297-ffn_out-21.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.21.ffn_down.weight","src1":"ffn_swiglu-21"}
+{"name":"attn_norm-22","file":"298-attn_norm-22.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-22","src1":"blk.22.attn_norm.weight"}
+{"name":"attn_output-22","file":"299-attn_output-22.bin","bytes":524288,"op":"VIEW","ne":[128,32,32,1],"nb":[4,512,16384,524288],"src0":"node_1335"}
+{"name":"linear_attn_out-22","file":"300-linear_attn_out-22.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.22.ssm_out.weight","src1":"final_output-22"}
+{"name":"linear_attn_out-22 (reshaped)","file":"301-linear_attn_out-22__reshaped_.bin","bytes":327680,"op":"RESHAPE","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"linear_attn_out-22"}
+{"name":"attn_post_norm-22","file":"302-attn_post_norm-22.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-22","src1":"blk.22.post_attention_norm.weight"}
+{"name":"ffn_out-22","file":"303-ffn_out-22.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.22.ffn_down.weight","src1":"ffn_swiglu-22"}
+{"name":"attn_norm-23","file":"304-attn_norm-23.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-23","src1":"blk.23.attn_norm.weight"}
+{"name":"attn_output-23","file":"305-attn_output-23.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.23.attn_output.weight","src1":"attn_gated-23"}
+{"name":"attn_post_norm-23","file":"306-attn_post_norm-23.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-23","src1":"blk.23.post_attention_norm.weight"}
+{"name":"ffn_out-23","file":"307-ffn_out-23.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.23.ffn_down.weight","src1":"ffn_swiglu-23"}
+{"name":"attn_norm-24","file":"308-attn_norm-24.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-24","src1":"blk.24.attn_norm.weight"}
+{"name":"attn_output-24","file":"309-attn_output-24.bin","bytes":524288,"op":"VIEW","ne":[128,32,32,1],"nb":[4,512,16384,524288],"src0":"node_1442"}
+{"name":"linear_attn_out-24","file":"310-linear_attn_out-24.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.24.ssm_out.weight","src1":"final_output-24"}
+{"name":"linear_attn_out-24 (reshaped)","file":"311-linear_attn_out-24__reshaped_.bin","bytes":327680,"op":"RESHAPE","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"linear_attn_out-24"}
+{"name":"attn_post_norm-24","file":"312-attn_post_norm-24.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-24","src1":"blk.24.post_attention_norm.weight"}
+{"name":"ffn_out-24","file":"313-ffn_out-24.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.24.ffn_down.weight","src1":"ffn_swiglu-24"}
+{"name":"attn_norm-25","file":"314-attn_norm-25.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-25","src1":"blk.25.attn_norm.weight"}
+{"name":"attn_output-25","file":"315-attn_output-25.bin","bytes":524288,"op":"VIEW","ne":[128,32,32,1],"nb":[4,512,16384,524288],"src0":"node_1505"}
+{"name":"linear_attn_out-25","file":"316-linear_attn_out-25.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.25.ssm_out.weight","src1":"final_output-25"}
+{"name":"linear_attn_out-25 (reshaped)","file":"317-linear_attn_out-25__reshaped_.bin","bytes":327680,"op":"RESHAPE","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"linear_attn_out-25"}
+{"name":"attn_post_norm-25","file":"318-attn_post_norm-25.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-25","src1":"blk.25.post_attention_norm.weight"}
+{"name":"ffn_out-25","file":"319-ffn_out-25.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.25.ffn_down.weight","src1":"ffn_swiglu-25"}
+{"name":"attn_norm-26","file":"320-attn_norm-26.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-26","src1":"blk.26.attn_norm.weight"}
+{"name":"attn_output-26","file":"321-attn_output-26.bin","bytes":524288,"op":"VIEW","ne":[128,32,32,1],"nb":[4,512,16384,524288],"src0":"node_1568"}
+{"name":"linear_attn_out-26","file":"322-linear_attn_out-26.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.26.ssm_out.weight","src1":"final_output-26"}
+{"name":"linear_attn_out-26 (reshaped)","file":"323-linear_attn_out-26__reshaped_.bin","bytes":327680,"op":"RESHAPE","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"linear_attn_out-26"}
+{"name":"attn_post_norm-26","file":"324-attn_post_norm-26.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-26","src1":"blk.26.post_attention_norm.weight"}
+{"name":"ffn_out-26","file":"325-ffn_out-26.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.26.ffn_down.weight","src1":"ffn_swiglu-26"}
+{"name":"attn_norm-27","file":"326-attn_norm-27.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-27","src1":"blk.27.attn_norm.weight"}
+{"name":"attn_output-27","file":"327-attn_output-27.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.27.attn_output.weight","src1":"attn_gated-27"}
+{"name":"attn_post_norm-27","file":"328-attn_post_norm-27.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-27","src1":"blk.27.post_attention_norm.weight"}
+{"name":"ffn_out-27","file":"329-ffn_out-27.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.27.ffn_down.weight","src1":"ffn_swiglu-27"}
+{"name":"attn_norm-28","file":"330-attn_norm-28.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-28","src1":"blk.28.attn_norm.weight"}
+{"name":"attn_output-28","file":"331-attn_output-28.bin","bytes":524288,"op":"VIEW","ne":[128,32,32,1],"nb":[4,512,16384,524288],"src0":"node_1675"}
+{"name":"linear_attn_out-28","file":"332-linear_attn_out-28.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.28.ssm_out.weight","src1":"final_output-28"}
+{"name":"linear_attn_out-28 (reshaped)","file":"333-linear_attn_out-28__reshaped_.bin","bytes":327680,"op":"RESHAPE","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"linear_attn_out-28"}
+{"name":"attn_post_norm-28","file":"334-attn_post_norm-28.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-28","src1":"blk.28.post_attention_norm.weight"}
+{"name":"ffn_out-28","file":"335-ffn_out-28.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.28.ffn_down.weight","src1":"ffn_swiglu-28"}
+{"name":"attn_norm-29","file":"336-attn_norm-29.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-29","src1":"blk.29.attn_norm.weight"}
+{"name":"attn_output-29","file":"337-attn_output-29.bin","bytes":524288,"op":"VIEW","ne":[128,32,32,1],"nb":[4,512,16384,524288],"src0":"node_1738"}
+{"name":"linear_attn_out-29","file":"338-linear_attn_out-29.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.29.ssm_out.weight","src1":"final_output-29"}
+{"name":"linear_attn_out-29 (reshaped)","file":"339-linear_attn_out-29__reshaped_.bin","bytes":327680,"op":"RESHAPE","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"linear_attn_out-29"}
+{"name":"attn_post_norm-29","file":"340-attn_post_norm-29.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-29","src1":"blk.29.post_attention_norm.weight"}
+{"name":"ffn_out-29","file":"341-ffn_out-29.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.29.ffn_down.weight","src1":"ffn_swiglu-29"}
+{"name":"attn_norm-30","file":"342-attn_norm-30.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-30","src1":"blk.30.attn_norm.weight"}
+{"name":"attn_output-30","file":"343-attn_output-30.bin","bytes":524288,"op":"VIEW","ne":[128,32,32,1],"nb":[4,512,16384,524288],"src0":"node_1801"}
+{"name":"linear_attn_out-30","file":"344-linear_attn_out-30.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.30.ssm_out.weight","src1":"final_output-30"}
+{"name":"linear_attn_out-30 (reshaped)","file":"345-linear_attn_out-30__reshaped_.bin","bytes":327680,"op":"RESHAPE","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"linear_attn_out-30"}
+{"name":"attn_post_norm-30","file":"346-attn_post_norm-30.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-30","src1":"blk.30.post_attention_norm.weight"}
+{"name":"ffn_out-30","file":"347-ffn_out-30.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.30.ffn_down.weight","src1":"ffn_swiglu-30"}
+{"name":"attn_norm-31","file":"348-attn_norm-31.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-31","src1":"blk.31.attn_norm.weight"}
+{"name":"attn_output-31","file":"349-attn_output-31.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.31.attn_output.weight","src1":"attn_gated-31"}
+{"name":"attn_post_norm-31","file":"350-attn_post_norm-31.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-31","src1":"blk.31.post_attention_norm.weight"}
+{"name":"ffn_out-31","file":"351-ffn_out-31.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.31.ffn_down.weight","src1":"ffn_swiglu-31"}
+{"name":"attn_norm-0","file":"352-attn_norm-0.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-0","src1":"blk.0.attn_norm.weight"}
+{"name":"attn_output-0","file":"353-attn_output-0.bin","bytes":524288,"op":"VIEW","ne":[128,32,32,1],"nb":[4,512,16384,524288],"src0":"node_44"}
+{"name":"linear_attn_out-0","file":"354-linear_attn_out-0.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.0.ssm_out.weight","src1":"final_output-0"}
+{"name":"linear_attn_out-0 (reshaped)","file":"355-linear_attn_out-0__reshaped_.bin","bytes":327680,"op":"RESHAPE","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"linear_attn_out-0"}
+{"name":"attn_post_norm-0","file":"356-attn_post_norm-0.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-0","src1":"blk.0.post_attention_norm.weight"}
+{"name":"ffn_out-0","file":"357-ffn_out-0.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.0.ffn_down.weight","src1":"ffn_swiglu-0"}
+{"name":"attn_norm-1","file":"358-attn_norm-1.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-1","src1":"blk.1.attn_norm.weight"}
+{"name":"attn_output-1","file":"359-attn_output-1.bin","bytes":524288,"op":"VIEW","ne":[128,32,32,1],"nb":[4,512,16384,524288],"src0":"node_107"}
+{"name":"linear_attn_out-1","file":"360-linear_attn_out-1.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.1.ssm_out.weight","src1":"final_output-1"}
+{"name":"linear_attn_out-1 (reshaped)","file":"361-linear_attn_out-1__reshaped_.bin","bytes":327680,"op":"RESHAPE","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"linear_attn_out-1"}
+{"name":"attn_post_norm-1","file":"362-attn_post_norm-1.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-1","src1":"blk.1.post_attention_norm.weight"}
+{"name":"ffn_out-1","file":"363-ffn_out-1.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.1.ffn_down.weight","src1":"ffn_swiglu-1"}
+{"name":"attn_norm-2","file":"364-attn_norm-2.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-2","src1":"blk.2.attn_norm.weight"}
+{"name":"attn_output-2","file":"365-attn_output-2.bin","bytes":524288,"op":"VIEW","ne":[128,32,32,1],"nb":[4,512,16384,524288],"src0":"node_170"}
+{"name":"linear_attn_out-2","file":"366-linear_attn_out-2.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.2.ssm_out.weight","src1":"final_output-2"}
+{"name":"linear_attn_out-2 (reshaped)","file":"367-linear_attn_out-2__reshaped_.bin","bytes":327680,"op":"RESHAPE","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"linear_attn_out-2"}
+{"name":"attn_post_norm-2","file":"368-attn_post_norm-2.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-2","src1":"blk.2.post_attention_norm.weight"}
+{"name":"ffn_out-2","file":"369-ffn_out-2.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.2.ffn_down.weight","src1":"ffn_swiglu-2"}
+{"name":"attn_norm-3","file":"370-attn_norm-3.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-3","src1":"blk.3.attn_norm.weight"}
+{"name":"attn_output-3","file":"371-attn_output-3.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.3.attn_output.weight","src1":"attn_gated-3"}
+{"name":"attn_post_norm-3","file":"372-attn_post_norm-3.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-3","src1":"blk.3.post_attention_norm.weight"}
+{"name":"ffn_out-3","file":"373-ffn_out-3.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.3.ffn_down.weight","src1":"ffn_swiglu-3"}
+{"name":"attn_norm-4","file":"374-attn_norm-4.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-4","src1":"blk.4.attn_norm.weight"}
+{"name":"attn_output-4","file":"375-attn_output-4.bin","bytes":524288,"op":"VIEW","ne":[128,32,32,1],"nb":[4,512,16384,524288],"src0":"node_277"}
+{"name":"linear_attn_out-4","file":"376-linear_attn_out-4.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.4.ssm_out.weight","src1":"final_output-4"}
+{"name":"linear_attn_out-4 (reshaped)","file":"377-linear_attn_out-4__reshaped_.bin","bytes":327680,"op":"RESHAPE","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"linear_attn_out-4"}
+{"name":"attn_post_norm-4","file":"378-attn_post_norm-4.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-4","src1":"blk.4.post_attention_norm.weight"}
+{"name":"ffn_out-4","file":"379-ffn_out-4.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.4.ffn_down.weight","src1":"ffn_swiglu-4"}
+{"name":"attn_norm-5","file":"380-attn_norm-5.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-5","src1":"blk.5.attn_norm.weight"}
+{"name":"attn_output-5","file":"381-attn_output-5.bin","bytes":524288,"op":"VIEW","ne":[128,32,32,1],"nb":[4,512,16384,524288],"src0":"node_340"}
+{"name":"linear_attn_out-5","file":"382-linear_attn_out-5.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.5.ssm_out.weight","src1":"final_output-5"}
+{"name":"linear_attn_out-5 (reshaped)","file":"383-linear_attn_out-5__reshaped_.bin","bytes":327680,"op":"RESHAPE","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"linear_attn_out-5"}
+{"name":"attn_post_norm-5","file":"384-attn_post_norm-5.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-5","src1":"blk.5.post_attention_norm.weight"}
+{"name":"ffn_out-5","file":"385-ffn_out-5.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.5.ffn_down.weight","src1":"ffn_swiglu-5"}
+{"name":"attn_norm-6","file":"386-attn_norm-6.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-6","src1":"blk.6.attn_norm.weight"}
+{"name":"attn_output-6","file":"387-attn_output-6.bin","bytes":524288,"op":"VIEW","ne":[128,32,32,1],"nb":[4,512,16384,524288],"src0":"node_403"}
+{"name":"linear_attn_out-6","file":"388-linear_attn_out-6.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.6.ssm_out.weight","src1":"final_output-6"}
+{"name":"linear_attn_out-6 (reshaped)","file":"389-linear_attn_out-6__reshaped_.bin","bytes":327680,"op":"RESHAPE","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"linear_attn_out-6"}
+{"name":"attn_post_norm-6","file":"390-attn_post_norm-6.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-6","src1":"blk.6.post_attention_norm.weight"}
+{"name":"ffn_out-6","file":"391-ffn_out-6.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.6.ffn_down.weight","src1":"ffn_swiglu-6"}
+{"name":"attn_norm-7","file":"392-attn_norm-7.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-7","src1":"blk.7.attn_norm.weight"}
+{"name":"attn_output-7","file":"393-attn_output-7.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.7.attn_output.weight","src1":"attn_gated-7"}
+{"name":"attn_post_norm-7","file":"394-attn_post_norm-7.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-7","src1":"blk.7.post_attention_norm.weight"}
+{"name":"ffn_out-7","file":"395-ffn_out-7.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.7.ffn_down.weight","src1":"ffn_swiglu-7"}
+{"name":"attn_norm-8","file":"396-attn_norm-8.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-8","src1":"blk.8.attn_norm.weight"}
+{"name":"attn_output-8","file":"397-attn_output-8.bin","bytes":524288,"op":"VIEW","ne":[128,32,32,1],"nb":[4,512,16384,524288],"src0":"node_510"}
+{"name":"linear_attn_out-8","file":"398-linear_attn_out-8.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.8.ssm_out.weight","src1":"final_output-8"}
+{"name":"linear_attn_out-8 (reshaped)","file":"399-linear_attn_out-8__reshaped_.bin","bytes":327680,"op":"RESHAPE","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"linear_attn_out-8"}
+{"name":"attn_post_norm-8","file":"400-attn_post_norm-8.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-8","src1":"blk.8.post_attention_norm.weight"}
+{"name":"ffn_out-8","file":"401-ffn_out-8.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.8.ffn_down.weight","src1":"ffn_swiglu-8"}
+{"name":"attn_norm-9","file":"402-attn_norm-9.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-9","src1":"blk.9.attn_norm.weight"}
+{"name":"attn_output-9","file":"403-attn_output-9.bin","bytes":524288,"op":"VIEW","ne":[128,32,32,1],"nb":[4,512,16384,524288],"src0":"node_573"}
+{"name":"linear_attn_out-9","file":"404-linear_attn_out-9.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.9.ssm_out.weight","src1":"final_output-9"}
+{"name":"linear_attn_out-9 (reshaped)","file":"405-linear_attn_out-9__reshaped_.bin","bytes":327680,"op":"RESHAPE","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"linear_attn_out-9"}
+{"name":"attn_post_norm-9","file":"406-attn_post_norm-9.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-9","src1":"blk.9.post_attention_norm.weight"}
+{"name":"ffn_out-9","file":"407-ffn_out-9.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.9.ffn_down.weight","src1":"ffn_swiglu-9"}
+{"name":"attn_norm-10","file":"408-attn_norm-10.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-10","src1":"blk.10.attn_norm.weight"}
+{"name":"attn_output-10","file":"409-attn_output-10.bin","bytes":524288,"op":"VIEW","ne":[128,32,32,1],"nb":[4,512,16384,524288],"src0":"node_636"}
+{"name":"linear_attn_out-10","file":"410-linear_attn_out-10.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.10.ssm_out.weight","src1":"final_output-10"}
+{"name":"linear_attn_out-10 (reshaped)","file":"411-linear_attn_out-10__reshaped_.bin","bytes":327680,"op":"RESHAPE","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"linear_attn_out-10"}
+{"name":"attn_post_norm-10","file":"412-attn_post_norm-10.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-10","src1":"blk.10.post_attention_norm.weight"}
+{"name":"ffn_out-10","file":"413-ffn_out-10.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.10.ffn_down.weight","src1":"ffn_swiglu-10"}
+{"name":"attn_norm-11","file":"414-attn_norm-11.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-11","src1":"blk.11.attn_norm.weight"}
+{"name":"attn_output-11","file":"415-attn_output-11.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.11.attn_output.weight","src1":"attn_gated-11"}
+{"name":"attn_post_norm-11","file":"416-attn_post_norm-11.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-11","src1":"blk.11.post_attention_norm.weight"}
+{"name":"ffn_out-11","file":"417-ffn_out-11.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.11.ffn_down.weight","src1":"ffn_swiglu-11"}
+{"name":"attn_norm-12","file":"418-attn_norm-12.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-12","src1":"blk.12.attn_norm.weight"}
+{"name":"attn_output-12","file":"419-attn_output-12.bin","bytes":524288,"op":"VIEW","ne":[128,32,32,1],"nb":[4,512,16384,524288],"src0":"node_743"}
+{"name":"linear_attn_out-12","file":"420-linear_attn_out-12.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.12.ssm_out.weight","src1":"final_output-12"}
+{"name":"linear_attn_out-12 (reshaped)","file":"421-linear_attn_out-12__reshaped_.bin","bytes":327680,"op":"RESHAPE","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"linear_attn_out-12"}
+{"name":"attn_post_norm-12","file":"422-attn_post_norm-12.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-12","src1":"blk.12.post_attention_norm.weight"}
+{"name":"ffn_out-12","file":"423-ffn_out-12.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.12.ffn_down.weight","src1":"ffn_swiglu-12"}
+{"name":"attn_norm-13","file":"424-attn_norm-13.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-13","src1":"blk.13.attn_norm.weight"}
+{"name":"attn_output-13","file":"425-attn_output-13.bin","bytes":524288,"op":"VIEW","ne":[128,32,32,1],"nb":[4,512,16384,524288],"src0":"node_806"}
+{"name":"linear_attn_out-13","file":"426-linear_attn_out-13.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.13.ssm_out.weight","src1":"final_output-13"}
+{"name":"linear_attn_out-13 (reshaped)","file":"427-linear_attn_out-13__reshaped_.bin","bytes":327680,"op":"RESHAPE","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"linear_attn_out-13"}
+{"name":"attn_post_norm-13","file":"428-attn_post_norm-13.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-13","src1":"blk.13.post_attention_norm.weight"}
+{"name":"ffn_out-13","file":"429-ffn_out-13.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.13.ffn_down.weight","src1":"ffn_swiglu-13"}
+{"name":"attn_norm-14","file":"430-attn_norm-14.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-14","src1":"blk.14.attn_norm.weight"}
+{"name":"attn_output-14","file":"431-attn_output-14.bin","bytes":524288,"op":"VIEW","ne":[128,32,32,1],"nb":[4,512,16384,524288],"src0":"node_869"}
+{"name":"linear_attn_out-14","file":"432-linear_attn_out-14.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.14.ssm_out.weight","src1":"final_output-14"}
+{"name":"linear_attn_out-14 (reshaped)","file":"433-linear_attn_out-14__reshaped_.bin","bytes":327680,"op":"RESHAPE","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"linear_attn_out-14"}
+{"name":"attn_post_norm-14","file":"434-attn_post_norm-14.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-14","src1":"blk.14.post_attention_norm.weight"}
+{"name":"ffn_out-14","file":"435-ffn_out-14.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.14.ffn_down.weight","src1":"ffn_swiglu-14"}
+{"name":"attn_norm-15","file":"436-attn_norm-15.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-15","src1":"blk.15.attn_norm.weight"}
+{"name":"attn_output-15","file":"437-attn_output-15.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.15.attn_output.weight","src1":"attn_gated-15"}
+{"name":"attn_post_norm-15","file":"438-attn_post_norm-15.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-15","src1":"blk.15.post_attention_norm.weight"}
+{"name":"ffn_out-15","file":"439-ffn_out-15.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.15.ffn_down.weight","src1":"ffn_swiglu-15"}
+{"name":"attn_norm-16","file":"440-attn_norm-16.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-16","src1":"blk.16.attn_norm.weight"}
+{"name":"attn_output-16","file":"441-attn_output-16.bin","bytes":524288,"op":"VIEW","ne":[128,32,32,1],"nb":[4,512,16384,524288],"src0":"node_976"}
+{"name":"linear_attn_out-16","file":"442-linear_attn_out-16.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.16.ssm_out.weight","src1":"final_output-16"}
+{"name":"linear_attn_out-16 (reshaped)","file":"443-linear_attn_out-16__reshaped_.bin","bytes":327680,"op":"RESHAPE","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"linear_attn_out-16"}
+{"name":"attn_post_norm-16","file":"444-attn_post_norm-16.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-16","src1":"blk.16.post_attention_norm.weight"}
+{"name":"ffn_out-16","file":"445-ffn_out-16.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.16.ffn_down.weight","src1":"ffn_swiglu-16"}
+{"name":"attn_norm-17","file":"446-attn_norm-17.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-17","src1":"blk.17.attn_norm.weight"}
+{"name":"attn_output-17","file":"447-attn_output-17.bin","bytes":524288,"op":"VIEW","ne":[128,32,32,1],"nb":[4,512,16384,524288],"src0":"node_1039"}
+{"name":"linear_attn_out-17","file":"448-linear_attn_out-17.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.17.ssm_out.weight","src1":"final_output-17"}
+{"name":"linear_attn_out-17 (reshaped)","file":"449-linear_attn_out-17__reshaped_.bin","bytes":327680,"op":"RESHAPE","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"linear_attn_out-17"}
+{"name":"attn_post_norm-17","file":"450-attn_post_norm-17.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-17","src1":"blk.17.post_attention_norm.weight"}
+{"name":"ffn_out-17","file":"451-ffn_out-17.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.17.ffn_down.weight","src1":"ffn_swiglu-17"}
+{"name":"attn_norm-18","file":"452-attn_norm-18.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-18","src1":"blk.18.attn_norm.weight"}
+{"name":"attn_output-18","file":"453-attn_output-18.bin","bytes":524288,"op":"VIEW","ne":[128,32,32,1],"nb":[4,512,16384,524288],"src0":"node_1102"}
+{"name":"linear_attn_out-18","file":"454-linear_attn_out-18.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.18.ssm_out.weight","src1":"final_output-18"}
+{"name":"linear_attn_out-18 (reshaped)","file":"455-linear_attn_out-18__reshaped_.bin","bytes":327680,"op":"RESHAPE","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"linear_attn_out-18"}
+{"name":"attn_post_norm-18","file":"456-attn_post_norm-18.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-18","src1":"blk.18.post_attention_norm.weight"}
+{"name":"ffn_out-18","file":"457-ffn_out-18.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.18.ffn_down.weight","src1":"ffn_swiglu-18"}
+{"name":"attn_norm-19","file":"458-attn_norm-19.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-19","src1":"blk.19.attn_norm.weight"}
+{"name":"attn_output-19","file":"459-attn_output-19.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.19.attn_output.weight","src1":"attn_gated-19"}
+{"name":"attn_post_norm-19","file":"460-attn_post_norm-19.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-19","src1":"blk.19.post_attention_norm.weight"}
+{"name":"ffn_out-19","file":"461-ffn_out-19.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.19.ffn_down.weight","src1":"ffn_swiglu-19"}
+{"name":"attn_norm-20","file":"462-attn_norm-20.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-20","src1":"blk.20.attn_norm.weight"}
+{"name":"attn_output-20","file":"463-attn_output-20.bin","bytes":524288,"op":"VIEW","ne":[128,32,32,1],"nb":[4,512,16384,524288],"src0":"node_1209"}
+{"name":"linear_attn_out-20","file":"464-linear_attn_out-20.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.20.ssm_out.weight","src1":"final_output-20"}
+{"name":"linear_attn_out-20 (reshaped)","file":"465-linear_attn_out-20__reshaped_.bin","bytes":327680,"op":"RESHAPE","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"linear_attn_out-20"}
+{"name":"attn_post_norm-20","file":"466-attn_post_norm-20.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-20","src1":"blk.20.post_attention_norm.weight"}
+{"name":"ffn_out-20","file":"467-ffn_out-20.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.20.ffn_down.weight","src1":"ffn_swiglu-20"}
+{"name":"attn_norm-21","file":"468-attn_norm-21.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-21","src1":"blk.21.attn_norm.weight"}
+{"name":"attn_output-21","file":"469-attn_output-21.bin","bytes":524288,"op":"VIEW","ne":[128,32,32,1],"nb":[4,512,16384,524288],"src0":"node_1272"}
+{"name":"linear_attn_out-21","file":"470-linear_attn_out-21.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.21.ssm_out.weight","src1":"final_output-21"}
+{"name":"linear_attn_out-21 (reshaped)","file":"471-linear_attn_out-21__reshaped_.bin","bytes":327680,"op":"RESHAPE","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"linear_attn_out-21"}
+{"name":"attn_post_norm-21","file":"472-attn_post_norm-21.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-21","src1":"blk.21.post_attention_norm.weight"}
+{"name":"ffn_out-21","file":"473-ffn_out-21.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.21.ffn_down.weight","src1":"ffn_swiglu-21"}
+{"name":"attn_norm-22","file":"474-attn_norm-22.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-22","src1":"blk.22.attn_norm.weight"}
+{"name":"attn_output-22","file":"475-attn_output-22.bin","bytes":524288,"op":"VIEW","ne":[128,32,32,1],"nb":[4,512,16384,524288],"src0":"node_1335"}
+{"name":"linear_attn_out-22","file":"476-linear_attn_out-22.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.22.ssm_out.weight","src1":"final_output-22"}
+{"name":"linear_attn_out-22 (reshaped)","file":"477-linear_attn_out-22__reshaped_.bin","bytes":327680,"op":"RESHAPE","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"linear_attn_out-22"}
+{"name":"attn_post_norm-22","file":"478-attn_post_norm-22.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-22","src1":"blk.22.post_attention_norm.weight"}
+{"name":"ffn_out-22","file":"479-ffn_out-22.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.22.ffn_down.weight","src1":"ffn_swiglu-22"}
+{"name":"attn_norm-23","file":"480-attn_norm-23.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-23","src1":"blk.23.attn_norm.weight"}
+{"name":"attn_output-23","file":"481-attn_output-23.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.23.attn_output.weight","src1":"attn_gated-23"}
+{"name":"attn_post_norm-23","file":"482-attn_post_norm-23.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-23","src1":"blk.23.post_attention_norm.weight"}
+{"name":"ffn_out-23","file":"483-ffn_out-23.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.23.ffn_down.weight","src1":"ffn_swiglu-23"}
+{"name":"attn_norm-24","file":"484-attn_norm-24.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-24","src1":"blk.24.attn_norm.weight"}
+{"name":"attn_output-24","file":"485-attn_output-24.bin","bytes":524288,"op":"VIEW","ne":[128,32,32,1],"nb":[4,512,16384,524288],"src0":"node_1442"}
+{"name":"linear_attn_out-24","file":"486-linear_attn_out-24.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.24.ssm_out.weight","src1":"final_output-24"}
+{"name":"linear_attn_out-24 (reshaped)","file":"487-linear_attn_out-24__reshaped_.bin","bytes":327680,"op":"RESHAPE","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"linear_attn_out-24"}
+{"name":"attn_post_norm-24","file":"488-attn_post_norm-24.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-24","src1":"blk.24.post_attention_norm.weight"}
+{"name":"ffn_out-24","file":"489-ffn_out-24.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.24.ffn_down.weight","src1":"ffn_swiglu-24"}
+{"name":"attn_norm-25","file":"490-attn_norm-25.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-25","src1":"blk.25.attn_norm.weight"}
+{"name":"attn_output-25","file":"491-attn_output-25.bin","bytes":524288,"op":"VIEW","ne":[128,32,32,1],"nb":[4,512,16384,524288],"src0":"node_1505"}
+{"name":"linear_attn_out-25","file":"492-linear_attn_out-25.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.25.ssm_out.weight","src1":"final_output-25"}
+{"name":"linear_attn_out-25 (reshaped)","file":"493-linear_attn_out-25__reshaped_.bin","bytes":327680,"op":"RESHAPE","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"linear_attn_out-25"}
+{"name":"attn_post_norm-25","file":"494-attn_post_norm-25.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-25","src1":"blk.25.post_attention_norm.weight"}
+{"name":"ffn_out-25","file":"495-ffn_out-25.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.25.ffn_down.weight","src1":"ffn_swiglu-25"}
+{"name":"attn_norm-26","file":"496-attn_norm-26.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-26","src1":"blk.26.attn_norm.weight"}
+{"name":"attn_output-26","file":"497-attn_output-26.bin","bytes":524288,"op":"VIEW","ne":[128,32,32,1],"nb":[4,512,16384,524288],"src0":"node_1568"}
+{"name":"linear_attn_out-26","file":"498-linear_attn_out-26.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.26.ssm_out.weight","src1":"final_output-26"}
+{"name":"linear_attn_out-26 (reshaped)","file":"499-linear_attn_out-26__reshaped_.bin","bytes":327680,"op":"RESHAPE","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"linear_attn_out-26"}
+{"name":"attn_post_norm-26","file":"500-attn_post_norm-26.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-26","src1":"blk.26.post_attention_norm.weight"}
+{"name":"ffn_out-26","file":"501-ffn_out-26.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.26.ffn_down.weight","src1":"ffn_swiglu-26"}
+{"name":"attn_norm-27","file":"502-attn_norm-27.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-27","src1":"blk.27.attn_norm.weight"}
+{"name":"attn_output-27","file":"503-attn_output-27.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.27.attn_output.weight","src1":"attn_gated-27"}
+{"name":"attn_post_norm-27","file":"504-attn_post_norm-27.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-27","src1":"blk.27.post_attention_norm.weight"}
+{"name":"ffn_out-27","file":"505-ffn_out-27.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.27.ffn_down.weight","src1":"ffn_swiglu-27"}
+{"name":"attn_norm-28","file":"506-attn_norm-28.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-28","src1":"blk.28.attn_norm.weight"}
+{"name":"attn_output-28","file":"507-attn_output-28.bin","bytes":524288,"op":"VIEW","ne":[128,32,32,1],"nb":[4,512,16384,524288],"src0":"node_1675"}
+{"name":"linear_attn_out-28","file":"508-linear_attn_out-28.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.28.ssm_out.weight","src1":"final_output-28"}
+{"name":"linear_attn_out-28 (reshaped)","file":"509-linear_attn_out-28__reshaped_.bin","bytes":327680,"op":"RESHAPE","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"linear_attn_out-28"}
+{"name":"attn_post_norm-28","file":"510-attn_post_norm-28.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-28","src1":"blk.28.post_attention_norm.weight"}
+{"name":"ffn_out-28","file":"511-ffn_out-28.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.28.ffn_down.weight","src1":"ffn_swiglu-28"}
+{"name":"attn_norm-29","file":"512-attn_norm-29.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-29","src1":"blk.29.attn_norm.weight"}
+{"name":"attn_output-29","file":"513-attn_output-29.bin","bytes":524288,"op":"VIEW","ne":[128,32,32,1],"nb":[4,512,16384,524288],"src0":"node_1738"}
+{"name":"linear_attn_out-29","file":"514-linear_attn_out-29.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.29.ssm_out.weight","src1":"final_output-29"}
+{"name":"linear_attn_out-29 (reshaped)","file":"515-linear_attn_out-29__reshaped_.bin","bytes":327680,"op":"RESHAPE","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"linear_attn_out-29"}
+{"name":"attn_post_norm-29","file":"516-attn_post_norm-29.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-29","src1":"blk.29.post_attention_norm.weight"}
+{"name":"ffn_out-29","file":"517-ffn_out-29.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.29.ffn_down.weight","src1":"ffn_swiglu-29"}
+{"name":"attn_norm-30","file":"518-attn_norm-30.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-30","src1":"blk.30.attn_norm.weight"}
+{"name":"attn_output-30","file":"519-attn_output-30.bin","bytes":524288,"op":"VIEW","ne":[128,32,32,1],"nb":[4,512,16384,524288],"src0":"node_1801"}
+{"name":"linear_attn_out-30","file":"520-linear_attn_out-30.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.30.ssm_out.weight","src1":"final_output-30"}
+{"name":"linear_attn_out-30 (reshaped)","file":"521-linear_attn_out-30__reshaped_.bin","bytes":327680,"op":"RESHAPE","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"linear_attn_out-30"}
+{"name":"attn_post_norm-30","file":"522-attn_post_norm-30.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-30","src1":"blk.30.post_attention_norm.weight"}
+{"name":"ffn_out-30","file":"523-ffn_out-30.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.30.ffn_down.weight","src1":"ffn_swiglu-30"}
+{"name":"attn_norm-31","file":"524-attn_norm-31.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-31","src1":"blk.31.attn_norm.weight"}
+{"name":"attn_output-31","file":"525-attn_output-31.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.31.attn_output.weight","src1":"attn_gated-31"}
+{"name":"attn_post_norm-31","file":"526-attn_post_norm-31.bin","bytes":327680,"op":"MUL","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"norm-31","src1":"blk.31.post_attention_norm.weight"}
+{"name":"ffn_out-31","file":"527-ffn_out-31.bin","bytes":327680,"op":"MUL_MAT","ne":[2560,32,1,1],"nb":[4,10240,327680,327680],"src0":"blk.31.ffn_down.weight","src1":"ffn_swiglu-31"}
+{"name":"attn_norm-0","file":"528-attn_norm-0.bin","bytes":266240,"op":"MUL","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"norm-0","src1":"blk.0.attn_norm.weight"}
+{"name":"attn_output-0","file":"529-attn_output-0.bin","bytes":425984,"op":"VIEW","ne":[128,32,26,1],"nb":[4,512,16384,425984],"src0":"node_44"}
+{"name":"linear_attn_out-0","file":"530-linear_attn_out-0.bin","bytes":266240,"op":"MUL_MAT","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"blk.0.ssm_out.weight","src1":"final_output-0"}
+{"name":"linear_attn_out-0 (reshaped)","file":"531-linear_attn_out-0__reshaped_.bin","bytes":266240,"op":"RESHAPE","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"linear_attn_out-0"}
+{"name":"attn_post_norm-0","file":"532-attn_post_norm-0.bin","bytes":266240,"op":"MUL","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"norm-0","src1":"blk.0.post_attention_norm.weight"}
+{"name":"ffn_out-0","file":"533-ffn_out-0.bin","bytes":266240,"op":"MUL_MAT","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"blk.0.ffn_down.weight","src1":"ffn_swiglu-0"}
+{"name":"attn_norm-1","file":"534-attn_norm-1.bin","bytes":266240,"op":"MUL","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"norm-1","src1":"blk.1.attn_norm.weight"}
+{"name":"attn_output-1","file":"535-attn_output-1.bin","bytes":425984,"op":"VIEW","ne":[128,32,26,1],"nb":[4,512,16384,425984],"src0":"node_107"}
+{"name":"linear_attn_out-1","file":"536-linear_attn_out-1.bin","bytes":266240,"op":"MUL_MAT","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"blk.1.ssm_out.weight","src1":"final_output-1"}
+{"name":"linear_attn_out-1 (reshaped)","file":"537-linear_attn_out-1__reshaped_.bin","bytes":266240,"op":"RESHAPE","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"linear_attn_out-1"}
+{"name":"attn_post_norm-1","file":"538-attn_post_norm-1.bin","bytes":266240,"op":"MUL","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"norm-1","src1":"blk.1.post_attention_norm.weight"}
+{"name":"ffn_out-1","file":"539-ffn_out-1.bin","bytes":266240,"op":"MUL_MAT","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"blk.1.ffn_down.weight","src1":"ffn_swiglu-1"}
+{"name":"attn_norm-2","file":"540-attn_norm-2.bin","bytes":266240,"op":"MUL","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"norm-2","src1":"blk.2.attn_norm.weight"}
+{"name":"attn_output-2","file":"541-attn_output-2.bin","bytes":425984,"op":"VIEW","ne":[128,32,26,1],"nb":[4,512,16384,425984],"src0":"node_170"}
+{"name":"linear_attn_out-2","file":"542-linear_attn_out-2.bin","bytes":266240,"op":"MUL_MAT","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"blk.2.ssm_out.weight","src1":"final_output-2"}
+{"name":"linear_attn_out-2 (reshaped)","file":"543-linear_attn_out-2__reshaped_.bin","bytes":266240,"op":"RESHAPE","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"linear_attn_out-2"}
+{"name":"attn_post_norm-2","file":"544-attn_post_norm-2.bin","bytes":266240,"op":"MUL","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"norm-2","src1":"blk.2.post_attention_norm.weight"}
+{"name":"ffn_out-2","file":"545-ffn_out-2.bin","bytes":266240,"op":"MUL_MAT","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"blk.2.ffn_down.weight","src1":"ffn_swiglu-2"}
+{"name":"attn_norm-3","file":"546-attn_norm-3.bin","bytes":266240,"op":"MUL","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"norm-3","src1":"blk.3.attn_norm.weight"}
+{"name":"attn_output-3","file":"547-attn_output-3.bin","bytes":266240,"op":"MUL_MAT","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"blk.3.attn_output.weight","src1":"attn_gated-3"}
+{"name":"attn_post_norm-3","file":"548-attn_post_norm-3.bin","bytes":266240,"op":"MUL","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"norm-3","src1":"blk.3.post_attention_norm.weight"}
+{"name":"ffn_out-3","file":"549-ffn_out-3.bin","bytes":266240,"op":"MUL_MAT","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"blk.3.ffn_down.weight","src1":"ffn_swiglu-3"}
+{"name":"attn_norm-4","file":"550-attn_norm-4.bin","bytes":266240,"op":"MUL","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"norm-4","src1":"blk.4.attn_norm.weight"}
+{"name":"attn_output-4","file":"551-attn_output-4.bin","bytes":425984,"op":"VIEW","ne":[128,32,26,1],"nb":[4,512,16384,425984],"src0":"node_277"}
+{"name":"linear_attn_out-4","file":"552-linear_attn_out-4.bin","bytes":266240,"op":"MUL_MAT","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"blk.4.ssm_out.weight","src1":"final_output-4"}
+{"name":"linear_attn_out-4 (reshaped)","file":"553-linear_attn_out-4__reshaped_.bin","bytes":266240,"op":"RESHAPE","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"linear_attn_out-4"}
+{"name":"attn_post_norm-4","file":"554-attn_post_norm-4.bin","bytes":266240,"op":"MUL","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"norm-4","src1":"blk.4.post_attention_norm.weight"}
+{"name":"ffn_out-4","file":"555-ffn_out-4.bin","bytes":266240,"op":"MUL_MAT","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"blk.4.ffn_down.weight","src1":"ffn_swiglu-4"}
+{"name":"attn_norm-5","file":"556-attn_norm-5.bin","bytes":266240,"op":"MUL","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"norm-5","src1":"blk.5.attn_norm.weight"}
+{"name":"attn_output-5","file":"557-attn_output-5.bin","bytes":425984,"op":"VIEW","ne":[128,32,26,1],"nb":[4,512,16384,425984],"src0":"node_340"}
+{"name":"linear_attn_out-5","file":"558-linear_attn_out-5.bin","bytes":266240,"op":"MUL_MAT","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"blk.5.ssm_out.weight","src1":"final_output-5"}
+{"name":"linear_attn_out-5 (reshaped)","file":"559-linear_attn_out-5__reshaped_.bin","bytes":266240,"op":"RESHAPE","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"linear_attn_out-5"}
+{"name":"attn_post_norm-5","file":"560-attn_post_norm-5.bin","bytes":266240,"op":"MUL","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"norm-5","src1":"blk.5.post_attention_norm.weight"}
+{"name":"ffn_out-5","file":"561-ffn_out-5.bin","bytes":266240,"op":"MUL_MAT","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"blk.5.ffn_down.weight","src1":"ffn_swiglu-5"}
+{"name":"attn_norm-6","file":"562-attn_norm-6.bin","bytes":266240,"op":"MUL","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"norm-6","src1":"blk.6.attn_norm.weight"}
+{"name":"attn_output-6","file":"563-attn_output-6.bin","bytes":425984,"op":"VIEW","ne":[128,32,26,1],"nb":[4,512,16384,425984],"src0":"node_403"}
+{"name":"linear_attn_out-6","file":"564-linear_attn_out-6.bin","bytes":266240,"op":"MUL_MAT","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"blk.6.ssm_out.weight","src1":"final_output-6"}
+{"name":"linear_attn_out-6 (reshaped)","file":"565-linear_attn_out-6__reshaped_.bin","bytes":266240,"op":"RESHAPE","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"linear_attn_out-6"}
+{"name":"attn_post_norm-6","file":"566-attn_post_norm-6.bin","bytes":266240,"op":"MUL","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"norm-6","src1":"blk.6.post_attention_norm.weight"}
+{"name":"ffn_out-6","file":"567-ffn_out-6.bin","bytes":266240,"op":"MUL_MAT","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"blk.6.ffn_down.weight","src1":"ffn_swiglu-6"}
+{"name":"attn_norm-7","file":"568-attn_norm-7.bin","bytes":266240,"op":"MUL","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"norm-7","src1":"blk.7.attn_norm.weight"}
+{"name":"attn_output-7","file":"569-attn_output-7.bin","bytes":266240,"op":"MUL_MAT","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"blk.7.attn_output.weight","src1":"attn_gated-7"}
+{"name":"attn_post_norm-7","file":"570-attn_post_norm-7.bin","bytes":266240,"op":"MUL","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"norm-7","src1":"blk.7.post_attention_norm.weight"}
+{"name":"ffn_out-7","file":"571-ffn_out-7.bin","bytes":266240,"op":"MUL_MAT","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"blk.7.ffn_down.weight","src1":"ffn_swiglu-7"}
+{"name":"attn_norm-8","file":"572-attn_norm-8.bin","bytes":266240,"op":"MUL","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"norm-8","src1":"blk.8.attn_norm.weight"}
+{"name":"attn_output-8","file":"573-attn_output-8.bin","bytes":425984,"op":"VIEW","ne":[128,32,26,1],"nb":[4,512,16384,425984],"src0":"node_510"}
+{"name":"linear_attn_out-8","file":"574-linear_attn_out-8.bin","bytes":266240,"op":"MUL_MAT","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"blk.8.ssm_out.weight","src1":"final_output-8"}
+{"name":"linear_attn_out-8 (reshaped)","file":"575-linear_attn_out-8__reshaped_.bin","bytes":266240,"op":"RESHAPE","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"linear_attn_out-8"}
+{"name":"attn_post_norm-8","file":"576-attn_post_norm-8.bin","bytes":266240,"op":"MUL","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"norm-8","src1":"blk.8.post_attention_norm.weight"}
+{"name":"ffn_out-8","file":"577-ffn_out-8.bin","bytes":266240,"op":"MUL_MAT","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"blk.8.ffn_down.weight","src1":"ffn_swiglu-8"}
+{"name":"attn_norm-9","file":"578-attn_norm-9.bin","bytes":266240,"op":"MUL","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"norm-9","src1":"blk.9.attn_norm.weight"}
+{"name":"attn_output-9","file":"579-attn_output-9.bin","bytes":425984,"op":"VIEW","ne":[128,32,26,1],"nb":[4,512,16384,425984],"src0":"node_573"}
+{"name":"linear_attn_out-9","file":"580-linear_attn_out-9.bin","bytes":266240,"op":"MUL_MAT","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"blk.9.ssm_out.weight","src1":"final_output-9"}
+{"name":"linear_attn_out-9 (reshaped)","file":"581-linear_attn_out-9__reshaped_.bin","bytes":266240,"op":"RESHAPE","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"linear_attn_out-9"}
+{"name":"attn_post_norm-9","file":"582-attn_post_norm-9.bin","bytes":266240,"op":"MUL","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"norm-9","src1":"blk.9.post_attention_norm.weight"}
+{"name":"ffn_out-9","file":"583-ffn_out-9.bin","bytes":266240,"op":"MUL_MAT","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"blk.9.ffn_down.weight","src1":"ffn_swiglu-9"}
+{"name":"attn_norm-10","file":"584-attn_norm-10.bin","bytes":266240,"op":"MUL","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"norm-10","src1":"blk.10.attn_norm.weight"}
+{"name":"attn_output-10","file":"585-attn_output-10.bin","bytes":425984,"op":"VIEW","ne":[128,32,26,1],"nb":[4,512,16384,425984],"src0":"node_636"}
+{"name":"linear_attn_out-10","file":"586-linear_attn_out-10.bin","bytes":266240,"op":"MUL_MAT","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"blk.10.ssm_out.weight","src1":"final_output-10"}
+{"name":"linear_attn_out-10 (reshaped)","file":"587-linear_attn_out-10__reshaped_.bin","bytes":266240,"op":"RESHAPE","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"linear_attn_out-10"}
+{"name":"attn_post_norm-10","file":"588-attn_post_norm-10.bin","bytes":266240,"op":"MUL","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"norm-10","src1":"blk.10.post_attention_norm.weight"}
+{"name":"ffn_out-10","file":"589-ffn_out-10.bin","bytes":266240,"op":"MUL_MAT","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"blk.10.ffn_down.weight","src1":"ffn_swiglu-10"}
+{"name":"attn_norm-11","file":"590-attn_norm-11.bin","bytes":266240,"op":"MUL","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"norm-11","src1":"blk.11.attn_norm.weight"}
+{"name":"attn_output-11","file":"591-attn_output-11.bin","bytes":266240,"op":"MUL_MAT","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"blk.11.attn_output.weight","src1":"attn_gated-11"}
+{"name":"attn_post_norm-11","file":"592-attn_post_norm-11.bin","bytes":266240,"op":"MUL","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"norm-11","src1":"blk.11.post_attention_norm.weight"}
+{"name":"ffn_out-11","file":"593-ffn_out-11.bin","bytes":266240,"op":"MUL_MAT","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"blk.11.ffn_down.weight","src1":"ffn_swiglu-11"}
+{"name":"attn_norm-12","file":"594-attn_norm-12.bin","bytes":266240,"op":"MUL","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"norm-12","src1":"blk.12.attn_norm.weight"}
+{"name":"attn_output-12","file":"595-attn_output-12.bin","bytes":425984,"op":"VIEW","ne":[128,32,26,1],"nb":[4,512,16384,425984],"src0":"node_743"}
+{"name":"linear_attn_out-12","file":"596-linear_attn_out-12.bin","bytes":266240,"op":"MUL_MAT","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"blk.12.ssm_out.weight","src1":"final_output-12"}
+{"name":"linear_attn_out-12 (reshaped)","file":"597-linear_attn_out-12__reshaped_.bin","bytes":266240,"op":"RESHAPE","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"linear_attn_out-12"}
+{"name":"attn_post_norm-12","file":"598-attn_post_norm-12.bin","bytes":266240,"op":"MUL","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"norm-12","src1":"blk.12.post_attention_norm.weight"}
+{"name":"ffn_out-12","file":"599-ffn_out-12.bin","bytes":266240,"op":"MUL_MAT","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"blk.12.ffn_down.weight","src1":"ffn_swiglu-12"}
+{"name":"attn_norm-13","file":"600-attn_norm-13.bin","bytes":266240,"op":"MUL","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"norm-13","src1":"blk.13.attn_norm.weight"}
+{"name":"attn_output-13","file":"601-attn_output-13.bin","bytes":425984,"op":"VIEW","ne":[128,32,26,1],"nb":[4,512,16384,425984],"src0":"node_806"}
+{"name":"linear_attn_out-13","file":"602-linear_attn_out-13.bin","bytes":266240,"op":"MUL_MAT","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"blk.13.ssm_out.weight","src1":"final_output-13"}
+{"name":"linear_attn_out-13 (reshaped)","file":"603-linear_attn_out-13__reshaped_.bin","bytes":266240,"op":"RESHAPE","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"linear_attn_out-13"}
+{"name":"attn_post_norm-13","file":"604-attn_post_norm-13.bin","bytes":266240,"op":"MUL","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"norm-13","src1":"blk.13.post_attention_norm.weight"}
+{"name":"ffn_out-13","file":"605-ffn_out-13.bin","bytes":266240,"op":"MUL_MAT","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"blk.13.ffn_down.weight","src1":"ffn_swiglu-13"}
+{"name":"attn_norm-14","file":"606-attn_norm-14.bin","bytes":266240,"op":"MUL","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"norm-14","src1":"blk.14.attn_norm.weight"}
+{"name":"attn_output-14","file":"607-attn_output-14.bin","bytes":425984,"op":"VIEW","ne":[128,32,26,1],"nb":[4,512,16384,425984],"src0":"node_869"}
+{"name":"linear_attn_out-14","file":"608-linear_attn_out-14.bin","bytes":266240,"op":"MUL_MAT","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"blk.14.ssm_out.weight","src1":"final_output-14"}
+{"name":"linear_attn_out-14 (reshaped)","file":"609-linear_attn_out-14__reshaped_.bin","bytes":266240,"op":"RESHAPE","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"linear_attn_out-14"}
+{"name":"attn_post_norm-14","file":"610-attn_post_norm-14.bin","bytes":266240,"op":"MUL","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"norm-14","src1":"blk.14.post_attention_norm.weight"}
+{"name":"ffn_out-14","file":"611-ffn_out-14.bin","bytes":266240,"op":"MUL_MAT","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"blk.14.ffn_down.weight","src1":"ffn_swiglu-14"}
+{"name":"attn_norm-15","file":"612-attn_norm-15.bin","bytes":266240,"op":"MUL","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"norm-15","src1":"blk.15.attn_norm.weight"}
+{"name":"attn_output-15","file":"613-attn_output-15.bin","bytes":266240,"op":"MUL_MAT","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"blk.15.attn_output.weight","src1":"attn_gated-15"}
+{"name":"attn_post_norm-15","file":"614-attn_post_norm-15.bin","bytes":266240,"op":"MUL","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"norm-15","src1":"blk.15.post_attention_norm.weight"}
+{"name":"ffn_out-15","file":"615-ffn_out-15.bin","bytes":266240,"op":"MUL_MAT","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"blk.15.ffn_down.weight","src1":"ffn_swiglu-15"}
+{"name":"attn_norm-16","file":"616-attn_norm-16.bin","bytes":266240,"op":"MUL","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"norm-16","src1":"blk.16.attn_norm.weight"}
+{"name":"attn_output-16","file":"617-attn_output-16.bin","bytes":425984,"op":"VIEW","ne":[128,32,26,1],"nb":[4,512,16384,425984],"src0":"node_976"}
+{"name":"linear_attn_out-16","file":"618-linear_attn_out-16.bin","bytes":266240,"op":"MUL_MAT","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"blk.16.ssm_out.weight","src1":"final_output-16"}
+{"name":"linear_attn_out-16 (reshaped)","file":"619-linear_attn_out-16__reshaped_.bin","bytes":266240,"op":"RESHAPE","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"linear_attn_out-16"}
+{"name":"attn_post_norm-16","file":"620-attn_post_norm-16.bin","bytes":266240,"op":"MUL","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"norm-16","src1":"blk.16.post_attention_norm.weight"}
+{"name":"ffn_out-16","file":"621-ffn_out-16.bin","bytes":266240,"op":"MUL_MAT","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"blk.16.ffn_down.weight","src1":"ffn_swiglu-16"}
+{"name":"attn_norm-17","file":"622-attn_norm-17.bin","bytes":266240,"op":"MUL","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"norm-17","src1":"blk.17.attn_norm.weight"}
+{"name":"attn_output-17","file":"623-attn_output-17.bin","bytes":425984,"op":"VIEW","ne":[128,32,26,1],"nb":[4,512,16384,425984],"src0":"node_1039"}
+{"name":"linear_attn_out-17","file":"624-linear_attn_out-17.bin","bytes":266240,"op":"MUL_MAT","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"blk.17.ssm_out.weight","src1":"final_output-17"}
+{"name":"linear_attn_out-17 (reshaped)","file":"625-linear_attn_out-17__reshaped_.bin","bytes":266240,"op":"RESHAPE","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"linear_attn_out-17"}
+{"name":"attn_post_norm-17","file":"626-attn_post_norm-17.bin","bytes":266240,"op":"MUL","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"norm-17","src1":"blk.17.post_attention_norm.weight"}
+{"name":"ffn_out-17","file":"627-ffn_out-17.bin","bytes":266240,"op":"MUL_MAT","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"blk.17.ffn_down.weight","src1":"ffn_swiglu-17"}
+{"name":"attn_norm-18","file":"628-attn_norm-18.bin","bytes":266240,"op":"MUL","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"norm-18","src1":"blk.18.attn_norm.weight"}
+{"name":"attn_output-18","file":"629-attn_output-18.bin","bytes":425984,"op":"VIEW","ne":[128,32,26,1],"nb":[4,512,16384,425984],"src0":"node_1102"}
+{"name":"linear_attn_out-18","file":"630-linear_attn_out-18.bin","bytes":266240,"op":"MUL_MAT","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"blk.18.ssm_out.weight","src1":"final_output-18"}
+{"name":"linear_attn_out-18 (reshaped)","file":"631-linear_attn_out-18__reshaped_.bin","bytes":266240,"op":"RESHAPE","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"linear_attn_out-18"}
+{"name":"attn_post_norm-18","file":"632-attn_post_norm-18.bin","bytes":266240,"op":"MUL","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"norm-18","src1":"blk.18.post_attention_norm.weight"}
+{"name":"ffn_out-18","file":"633-ffn_out-18.bin","bytes":266240,"op":"MUL_MAT","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"blk.18.ffn_down.weight","src1":"ffn_swiglu-18"}
+{"name":"attn_norm-19","file":"634-attn_norm-19.bin","bytes":266240,"op":"MUL","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"norm-19","src1":"blk.19.attn_norm.weight"}
+{"name":"attn_output-19","file":"635-attn_output-19.bin","bytes":266240,"op":"MUL_MAT","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"blk.19.attn_output.weight","src1":"attn_gated-19"}
+{"name":"attn_post_norm-19","file":"636-attn_post_norm-19.bin","bytes":266240,"op":"MUL","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"norm-19","src1":"blk.19.post_attention_norm.weight"}
+{"name":"ffn_out-19","file":"637-ffn_out-19.bin","bytes":266240,"op":"MUL_MAT","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"blk.19.ffn_down.weight","src1":"ffn_swiglu-19"}
+{"name":"attn_norm-20","file":"638-attn_norm-20.bin","bytes":266240,"op":"MUL","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"norm-20","src1":"blk.20.attn_norm.weight"}
+{"name":"attn_output-20","file":"639-attn_output-20.bin","bytes":425984,"op":"VIEW","ne":[128,32,26,1],"nb":[4,512,16384,425984],"src0":"node_1209"}
+{"name":"linear_attn_out-20","file":"640-linear_attn_out-20.bin","bytes":266240,"op":"MUL_MAT","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"blk.20.ssm_out.weight","src1":"final_output-20"}
+{"name":"linear_attn_out-20 (reshaped)","file":"641-linear_attn_out-20__reshaped_.bin","bytes":266240,"op":"RESHAPE","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"linear_attn_out-20"}
+{"name":"attn_post_norm-20","file":"642-attn_post_norm-20.bin","bytes":266240,"op":"MUL","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"norm-20","src1":"blk.20.post_attention_norm.weight"}
+{"name":"ffn_out-20","file":"643-ffn_out-20.bin","bytes":266240,"op":"MUL_MAT","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"blk.20.ffn_down.weight","src1":"ffn_swiglu-20"}
+{"name":"attn_norm-21","file":"644-attn_norm-21.bin","bytes":266240,"op":"MUL","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"norm-21","src1":"blk.21.attn_norm.weight"}
+{"name":"attn_output-21","file":"645-attn_output-21.bin","bytes":425984,"op":"VIEW","ne":[128,32,26,1],"nb":[4,512,16384,425984],"src0":"node_1272"}
+{"name":"linear_attn_out-21","file":"646-linear_attn_out-21.bin","bytes":266240,"op":"MUL_MAT","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"blk.21.ssm_out.weight","src1":"final_output-21"}
+{"name":"linear_attn_out-21 (reshaped)","file":"647-linear_attn_out-21__reshaped_.bin","bytes":266240,"op":"RESHAPE","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"linear_attn_out-21"}
+{"name":"attn_post_norm-21","file":"648-attn_post_norm-21.bin","bytes":266240,"op":"MUL","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"norm-21","src1":"blk.21.post_attention_norm.weight"}
+{"name":"ffn_out-21","file":"649-ffn_out-21.bin","bytes":266240,"op":"MUL_MAT","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"blk.21.ffn_down.weight","src1":"ffn_swiglu-21"}
+{"name":"attn_norm-22","file":"650-attn_norm-22.bin","bytes":266240,"op":"MUL","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"norm-22","src1":"blk.22.attn_norm.weight"}
+{"name":"attn_output-22","file":"651-attn_output-22.bin","bytes":425984,"op":"VIEW","ne":[128,32,26,1],"nb":[4,512,16384,425984],"src0":"node_1335"}
+{"name":"linear_attn_out-22","file":"652-linear_attn_out-22.bin","bytes":266240,"op":"MUL_MAT","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"blk.22.ssm_out.weight","src1":"final_output-22"}
+{"name":"linear_attn_out-22 (reshaped)","file":"653-linear_attn_out-22__reshaped_.bin","bytes":266240,"op":"RESHAPE","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"linear_attn_out-22"}
+{"name":"attn_post_norm-22","file":"654-attn_post_norm-22.bin","bytes":266240,"op":"MUL","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"norm-22","src1":"blk.22.post_attention_norm.weight"}
+{"name":"ffn_out-22","file":"655-ffn_out-22.bin","bytes":266240,"op":"MUL_MAT","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"blk.22.ffn_down.weight","src1":"ffn_swiglu-22"}
+{"name":"attn_norm-23","file":"656-attn_norm-23.bin","bytes":266240,"op":"MUL","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"norm-23","src1":"blk.23.attn_norm.weight"}
+{"name":"attn_output-23","file":"657-attn_output-23.bin","bytes":266240,"op":"MUL_MAT","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"blk.23.attn_output.weight","src1":"attn_gated-23"}
+{"name":"attn_post_norm-23","file":"658-attn_post_norm-23.bin","bytes":266240,"op":"MUL","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"norm-23","src1":"blk.23.post_attention_norm.weight"}
+{"name":"ffn_out-23","file":"659-ffn_out-23.bin","bytes":266240,"op":"MUL_MAT","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"blk.23.ffn_down.weight","src1":"ffn_swiglu-23"}
+{"name":"attn_norm-24","file":"660-attn_norm-24.bin","bytes":266240,"op":"MUL","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"norm-24","src1":"blk.24.attn_norm.weight"}
+{"name":"attn_output-24","file":"661-attn_output-24.bin","bytes":425984,"op":"VIEW","ne":[128,32,26,1],"nb":[4,512,16384,425984],"src0":"node_1442"}
+{"name":"linear_attn_out-24","file":"662-linear_attn_out-24.bin","bytes":266240,"op":"MUL_MAT","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"blk.24.ssm_out.weight","src1":"final_output-24"}
+{"name":"linear_attn_out-24 (reshaped)","file":"663-linear_attn_out-24__reshaped_.bin","bytes":266240,"op":"RESHAPE","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"linear_attn_out-24"}
+{"name":"attn_post_norm-24","file":"664-attn_post_norm-24.bin","bytes":266240,"op":"MUL","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"norm-24","src1":"blk.24.post_attention_norm.weight"}
+{"name":"ffn_out-24","file":"665-ffn_out-24.bin","bytes":266240,"op":"MUL_MAT","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"blk.24.ffn_down.weight","src1":"ffn_swiglu-24"}
+{"name":"attn_norm-25","file":"666-attn_norm-25.bin","bytes":266240,"op":"MUL","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"norm-25","src1":"blk.25.attn_norm.weight"}
+{"name":"attn_output-25","file":"667-attn_output-25.bin","bytes":425984,"op":"VIEW","ne":[128,32,26,1],"nb":[4,512,16384,425984],"src0":"node_1505"}
+{"name":"linear_attn_out-25","file":"668-linear_attn_out-25.bin","bytes":266240,"op":"MUL_MAT","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"blk.25.ssm_out.weight","src1":"final_output-25"}
+{"name":"linear_attn_out-25 (reshaped)","file":"669-linear_attn_out-25__reshaped_.bin","bytes":266240,"op":"RESHAPE","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"linear_attn_out-25"}
+{"name":"attn_post_norm-25","file":"670-attn_post_norm-25.bin","bytes":266240,"op":"MUL","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"norm-25","src1":"blk.25.post_attention_norm.weight"}
+{"name":"ffn_out-25","file":"671-ffn_out-25.bin","bytes":266240,"op":"MUL_MAT","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"blk.25.ffn_down.weight","src1":"ffn_swiglu-25"}
+{"name":"attn_norm-26","file":"672-attn_norm-26.bin","bytes":266240,"op":"MUL","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"norm-26","src1":"blk.26.attn_norm.weight"}
+{"name":"attn_output-26","file":"673-attn_output-26.bin","bytes":425984,"op":"VIEW","ne":[128,32,26,1],"nb":[4,512,16384,425984],"src0":"node_1568"}
+{"name":"linear_attn_out-26","file":"674-linear_attn_out-26.bin","bytes":266240,"op":"MUL_MAT","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"blk.26.ssm_out.weight","src1":"final_output-26"}
+{"name":"linear_attn_out-26 (reshaped)","file":"675-linear_attn_out-26__reshaped_.bin","bytes":266240,"op":"RESHAPE","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"linear_attn_out-26"}
+{"name":"attn_post_norm-26","file":"676-attn_post_norm-26.bin","bytes":266240,"op":"MUL","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"norm-26","src1":"blk.26.post_attention_norm.weight"}
+{"name":"ffn_out-26","file":"677-ffn_out-26.bin","bytes":266240,"op":"MUL_MAT","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"blk.26.ffn_down.weight","src1":"ffn_swiglu-26"}
+{"name":"attn_norm-27","file":"678-attn_norm-27.bin","bytes":266240,"op":"MUL","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"norm-27","src1":"blk.27.attn_norm.weight"}
+{"name":"attn_output-27","file":"679-attn_output-27.bin","bytes":266240,"op":"MUL_MAT","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"blk.27.attn_output.weight","src1":"attn_gated-27"}
+{"name":"attn_post_norm-27","file":"680-attn_post_norm-27.bin","bytes":266240,"op":"MUL","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"norm-27","src1":"blk.27.post_attention_norm.weight"}
+{"name":"ffn_out-27","file":"681-ffn_out-27.bin","bytes":266240,"op":"MUL_MAT","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"blk.27.ffn_down.weight","src1":"ffn_swiglu-27"}
+{"name":"attn_norm-28","file":"682-attn_norm-28.bin","bytes":266240,"op":"MUL","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"norm-28","src1":"blk.28.attn_norm.weight"}
+{"name":"attn_output-28","file":"683-attn_output-28.bin","bytes":425984,"op":"VIEW","ne":[128,32,26,1],"nb":[4,512,16384,425984],"src0":"node_1675"}
+{"name":"linear_attn_out-28","file":"684-linear_attn_out-28.bin","bytes":266240,"op":"MUL_MAT","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"blk.28.ssm_out.weight","src1":"final_output-28"}
+{"name":"linear_attn_out-28 (reshaped)","file":"685-linear_attn_out-28__reshaped_.bin","bytes":266240,"op":"RESHAPE","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"linear_attn_out-28"}
+{"name":"attn_post_norm-28","file":"686-attn_post_norm-28.bin","bytes":266240,"op":"MUL","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"norm-28","src1":"blk.28.post_attention_norm.weight"}
+{"name":"ffn_out-28","file":"687-ffn_out-28.bin","bytes":266240,"op":"MUL_MAT","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"blk.28.ffn_down.weight","src1":"ffn_swiglu-28"}
+{"name":"attn_norm-29","file":"688-attn_norm-29.bin","bytes":266240,"op":"MUL","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"norm-29","src1":"blk.29.attn_norm.weight"}
+{"name":"attn_output-29","file":"689-attn_output-29.bin","bytes":425984,"op":"VIEW","ne":[128,32,26,1],"nb":[4,512,16384,425984],"src0":"node_1738"}
+{"name":"linear_attn_out-29","file":"690-linear_attn_out-29.bin","bytes":266240,"op":"MUL_MAT","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"blk.29.ssm_out.weight","src1":"final_output-29"}
+{"name":"linear_attn_out-29 (reshaped)","file":"691-linear_attn_out-29__reshaped_.bin","bytes":266240,"op":"RESHAPE","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"linear_attn_out-29"}
+{"name":"attn_post_norm-29","file":"692-attn_post_norm-29.bin","bytes":266240,"op":"MUL","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"norm-29","src1":"blk.29.post_attention_norm.weight"}
+{"name":"ffn_out-29","file":"693-ffn_out-29.bin","bytes":266240,"op":"MUL_MAT","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"blk.29.ffn_down.weight","src1":"ffn_swiglu-29"}
+{"name":"attn_norm-30","file":"694-attn_norm-30.bin","bytes":266240,"op":"MUL","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"norm-30","src1":"blk.30.attn_norm.weight"}
+{"name":"attn_output-30","file":"695-attn_output-30.bin","bytes":425984,"op":"VIEW","ne":[128,32,26,1],"nb":[4,512,16384,425984],"src0":"node_1801"}
+{"name":"linear_attn_out-30","file":"696-linear_attn_out-30.bin","bytes":266240,"op":"MUL_MAT","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"blk.30.ssm_out.weight","src1":"final_output-30"}
+{"name":"linear_attn_out-30 (reshaped)","file":"697-linear_attn_out-30__reshaped_.bin","bytes":266240,"op":"RESHAPE","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"linear_attn_out-30"}
+{"name":"attn_post_norm-30","file":"698-attn_post_norm-30.bin","bytes":266240,"op":"MUL","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"norm-30","src1":"blk.30.post_attention_norm.weight"}
+{"name":"ffn_out-30","file":"699-ffn_out-30.bin","bytes":266240,"op":"MUL_MAT","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"blk.30.ffn_down.weight","src1":"ffn_swiglu-30"}
+{"name":"attn_norm-31","file":"700-attn_norm-31.bin","bytes":266240,"op":"MUL","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"norm-31","src1":"blk.31.attn_norm.weight"}
+{"name":"attn_output-31","file":"701-attn_output-31.bin","bytes":266240,"op":"MUL_MAT","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"blk.31.attn_output.weight","src1":"attn_gated-31"}
+{"name":"attn_post_norm-31","file":"702-attn_post_norm-31.bin","bytes":266240,"op":"MUL","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"norm-31","src1":"blk.31.post_attention_norm.weight"}
+{"name":"ffn_out-31","file":"703-ffn_out-31.bin","bytes":266240,"op":"MUL_MAT","ne":[2560,26,1,1],"nb":[4,10240,266240,266240],"src0":"blk.31.ffn_down.weight","src1":"ffn_swiglu-31"}

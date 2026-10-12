@@ -1,0 +1,213 @@
+[
+  {
+    "name": "extract",
+    "command": [
+      "tar",
+      "xf",
+      "oracle-source.tar",
+      "-C",
+      "oracle-source"
+    ],
+    "exitCode": 0,
+    "wallSeconds": 0.1639686030000007
+  },
+  {
+    "name": "configure",
+    "command": [
+      "cmake",
+      "-S",
+      "oracle-source",
+      "-B",
+      "oracle-build",
+      "-DCMAKE_BUILD_TYPE=Release",
+      "-DBUILD_SHARED_LIBS=OFF",
+      "-DLLAMA_BUILD_TESTS=OFF",
+      "-DLLAMA_BUILD_EXAMPLES=ON",
+      "-DLLAMA_BUILD_APP=OFF",
+      "-DLLAMA_BUILD_UI=OFF",
+      "-DLLAMA_OPENSSL=OFF",
+      "-DGGML_BLAS=OFF"
+    ],
+    "exitCode": 0,
+    "wallSeconds": 2.116530646000001
+  },
+  {
+    "name": "build-baseline",
+    "command": [
+      "cmake",
+      "--build",
+      "oracle-build",
+      "--target",
+      "llama-eval-callback",
+      "-j",
+      "8"
+    ],
+    "exitCode": 0,
+    "wallSeconds": 76.363992983
+  },
+  {
+    "name": "build-additive",
+    "command": [
+      "cmake",
+      "--build",
+      "oracle-build",
+      "--target",
+      "llama-eval-callback",
+      "-j",
+      "8"
+    ],
+    "exitCode": 0,
+    "wallSeconds": 7.472794499000003
+  },
+  {
+    "name": "build-native",
+    "command": [
+      "/root/.cargo/bin/cargo",
+      "build",
+      "--locked",
+      "--release",
+      "--manifest-path",
+      "rust/Cargo.toml"
+    ],
+    "exitCode": 0,
+    "wallSeconds": 6.421229381999979
+  },
+  {
+    "name": "download-qwen-0.8b",
+    "command": [
+      "curl",
+      "-fL",
+      "--retry",
+      "3",
+      "https://huggingface.co/unsloth/Qwen3.5-0.8B-GGUF/resolve/6ab461498e2023f6e3c1baea90a8f0fe38ab64d0/Qwen3.5-0.8B-Q4_K_M.gguf",
+      "-o",
+      "qwen-0.8b.gguf"
+    ],
+    "exitCode": 0,
+    "wallSeconds": 2.767025488999991
+  },
+  {
+    "name": "qwen-0.8b-models",
+    "command": [
+      "/opt/jdk/bin/java",
+      "--add-modules",
+      "jdk.incubator.vector",
+      "--enable-native-access=ALL-UNNAMED",
+      "-Xmx16g",
+      "-cp",
+      "capture.jar:lib/*",
+      "com.integrallis.models.backend.purejava.qwen35.OracleTensorCapture",
+      "qwen-0.8b.gguf",
+      "rust/target/release/libjmodels_kernels.so",
+      "tasks.json",
+      "/work/out/qwen-0.8b-models"
+    ],
+    "exitCode": 0,
+    "wallSeconds": 17.175566500000002
+  },
+  {
+    "name": "qwen-0.8b-baseline-512",
+    "command": [
+      "/work/oracle-baseline",
+      "qwen-0.8b.gguf",
+      "/work/out/qwen-0.8b-requests.json",
+      "/work/out/qwen-0.8b-baseline-512",
+      "512"
+    ],
+    "exitCode": 0,
+    "wallSeconds": 5.970580807000005
+  },
+  {
+    "name": "qwen-0.8b-baseline-32",
+    "command": [
+      "/work/oracle-baseline",
+      "qwen-0.8b.gguf",
+      "/work/out/qwen-0.8b-requests.json",
+      "/work/out/qwen-0.8b-baseline-32",
+      "32"
+    ],
+    "exitCode": 0,
+    "wallSeconds": 6.070693911999996
+  },
+  {
+    "name": "qwen-0.8b-additive-32",
+    "command": [
+      "/work/oracle-additive",
+      "qwen-0.8b.gguf",
+      "/work/out/qwen-0.8b-requests.json",
+      "/work/out/qwen-0.8b-additive-32",
+      "32"
+    ],
+    "exitCode": 0,
+    "wallSeconds": 6.02066222800002
+  },
+  {
+    "name": "download-qwen-4b",
+    "command": [
+      "curl",
+      "-fL",
+      "--retry",
+      "3",
+      "https://huggingface.co/unsloth/Qwen3.5-4B-GGUF/resolve/e87f176479d0855a907a41277aca2f8ee7a09523/Qwen3.5-4B-Q4_K_M.gguf",
+      "-o",
+      "qwen-4b.gguf"
+    ],
+    "exitCode": 0,
+    "wallSeconds": 14.230434422000002
+  },
+  {
+    "name": "qwen-4b-models",
+    "command": [
+      "/opt/jdk/bin/java",
+      "--add-modules",
+      "jdk.incubator.vector",
+      "--enable-native-access=ALL-UNNAMED",
+      "-Xmx16g",
+      "-cp",
+      "capture.jar:lib/*",
+      "com.integrallis.models.backend.purejava.qwen35.OracleTensorCapture",
+      "qwen-4b.gguf",
+      "rust/target/release/libjmodels_kernels.so",
+      "tasks.json",
+      "/work/out/qwen-4b-models"
+    ],
+    "exitCode": 0,
+    "wallSeconds": 64.70271339300001
+  },
+  {
+    "name": "qwen-4b-baseline-512",
+    "command": [
+      "/work/oracle-baseline",
+      "qwen-4b.gguf",
+      "/work/out/qwen-4b-requests.json",
+      "/work/out/qwen-4b-baseline-512",
+      "512"
+    ],
+    "exitCode": 0,
+    "wallSeconds": 26.295103162999965
+  },
+  {
+    "name": "qwen-4b-baseline-32",
+    "command": [
+      "/work/oracle-baseline",
+      "qwen-4b.gguf",
+      "/work/out/qwen-4b-requests.json",
+      "/work/out/qwen-4b-baseline-32",
+      "32"
+    ],
+    "exitCode": 0,
+    "wallSeconds": 26.744593221000002
+  },
+  {
+    "name": "qwen-4b-additive-32",
+    "command": [
+      "/work/oracle-additive",
+      "qwen-4b.gguf",
+      "/work/out/qwen-4b-requests.json",
+      "/work/out/qwen-4b-additive-32",
+      "32"
+    ],
+    "exitCode": 0,
+    "wallSeconds": 26.698380713000006
+  }
+]

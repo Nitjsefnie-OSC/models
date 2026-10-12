@@ -1,0 +1,11 @@
+{
+  "command": [
+    "/root/.cargo/bin/cargo",
+    "build",
+    "--release",
+    "--manifest-path",
+    "rust/native/Cargo.toml"
+  ],
+  "exitCode": 0,
+  "wallSeconds": 6.170957084999998
+}

@@ -1,0 +1,16 @@
+{
+  "command": [
+    "/opt/jdk/bin/java",
+    "--add-modules",
+    "jdk.incubator.vector",
+    "--enable-native-access=ALL-UNNAMED",
+    "-Xms2g",
+    "-Xmx10g",
+    "-XX:ActiveProcessorCount=4",
+    "-cp",
+    "baseline/vectors-core.jar:lib/*:gdn.jar:activation-probe.jar",
+    "com.integrallis.vectors.core.ActivationColdHotProbe"
+  ],
+  "exitCode": 1,
+  "wallSeconds": 0.31464702099999897
+}

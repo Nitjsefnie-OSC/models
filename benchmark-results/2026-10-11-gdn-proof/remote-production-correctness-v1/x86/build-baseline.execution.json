@@ -1,0 +1,11 @@
+{
+  "command": [
+    "/root/.cargo/bin/cargo",
+    "build",
+    "--release",
+    "--manifest-path",
+    "rust/baseline/Cargo.toml"
+  ],
+  "exitCode": 101,
+  "wallSeconds": 0.314739203000002
+}

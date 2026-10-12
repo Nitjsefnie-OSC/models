@@ -1,0 +1,78 @@
+--- /tmp/gdn-final-panama-original.java	2026-10-12 14:51:24
++++ /tmp/q5-final-v4/source/scalar-activation/PanamaVectorUtilSupport.java	2026-10-12 14:37:44
+@@ -6927,7 +6927,10 @@
+       float[] up,
+       int upOffset,
+       int length) {
+-    ReproducibleActivationExp.swiGlu(out, outOffset, gate, gateOffset, up, upOffset, length);
++    for (int index = 0; index < length; index++) {
++      float value = gate[gateOffset + index];
++      out[outOffset + index] = value / (1.0f + (float) StrictMath.exp(-value)) * up[upOffset + index];
++    }
+   }
+ 
+   @Override
+@@ -6987,56 +6990,19 @@
+       int channels,
+       int kernelSize) {
+     int historyLength = kernelSize - 1;
+-    int channel = 0;
+-    int limit = FLOAT_SPECIES.loopBound(channels);
+-    FloatVector one = FloatVector.broadcast(ReproducibleActivationExp.FLOAT_SPECIES, 1.0f);
+-    for (; channel < limit; channel += ReproducibleActivationExp.FLOAT_SPECIES.length()) {
+-      FloatVector input =
+-          FloatVector.fromArray(
+-              ReproducibleActivationExp.FLOAT_SPECIES, values, valuesOffset + channel);
+-      FloatVector convolved =
+-          input.mul(
+-              FloatVector.fromArray(
+-                  ReproducibleActivationExp.FLOAT_SPECIES,
+-                  weights,
+-                  weightsOffset + historyLength * channels + channel));
+-      FloatVector previous =
+-          FloatVector.fromArray(
+-              ReproducibleActivationExp.FLOAT_SPECIES, history, historyOffset + channel);
+-      convolved =
+-          fma(
+-              previous,
+-              FloatVector.fromArray(
+-                  ReproducibleActivationExp.FLOAT_SPECIES, weights, weightsOffset + channel),
+-              convolved);
+-      for (int tap = 1; tap < historyLength; tap++) {
+-        int historyIndex = historyOffset + tap * channels + channel;
+-        FloatVector current =
+-            FloatVector.fromArray(ReproducibleActivationExp.FLOAT_SPECIES, history, historyIndex);
+-        convolved =
+-            fma(
+-                current,
+-                FloatVector.fromArray(
+-                    ReproducibleActivationExp.FLOAT_SPECIES,
+-                    weights,
+-                    weightsOffset + tap * channels + channel),
+-                convolved);
+-        current.intoArray(history, historyIndex - channels);
+-      }
+-      input.intoArray(history, historyOffset + (historyLength - 1) * channels + channel);
+-      convolved
+-          .div(one.add(ReproducibleActivationExp.exp(convolved.neg())))
+-          .intoArray(values, valuesOffset + channel);
+-    }
+-    for (; channel < channels; channel++) {
++    int vectorLimit = FLOAT_SPECIES.loopBound(channels);
++    for (int channel = 0; channel < channels; channel++) {
+       float input = values[valuesOffset + channel];
+       float convolved = input * weights[weightsOffset + historyLength * channels + channel];
+       float previous = history[historyOffset + channel];
+-      convolved += previous * weights[weightsOffset + channel];
++      boolean fused = channel < vectorLimit && PanamaConstants.HAS_FAST_VECTOR_FMA;
++      convolved = fused ? Math.fma(previous, weights[weightsOffset + channel], convolved)
++          : convolved + previous * weights[weightsOffset + channel];
+       for (int tap = 1; tap < historyLength; tap++) {
+         int historyIndex = historyOffset + tap * channels + channel;
+         float current = history[historyIndex];
+-        convolved += current * weights[weightsOffset + tap * channels + channel];
++        convolved = fused ? Math.fma(current, weights[weightsOffset + tap * channels + channel], convolved)
++            : convolved + current * weights[weightsOffset + tap * channels + channel];
+         history[historyIndex - channels] = current;
+       }
+       history[historyOffset + (historyLength - 1) * channels + channel] = input;

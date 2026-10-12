@@ -1,0 +1,10 @@
+{
+  "baseVectorsRevision": "ae337eeb",
+  "baseSourceSha256": "840575cf7c3e2315b68037756b6a75b936ae114f7c14c4ec1463a8d6f6c4de93",
+  "scalarSourceSha256": "245b7a112668525fe653f5f5ab6a15b668cd81b17520084fbeac34e20f5dfbc8",
+  "changedMethods": [
+    "swiGlu",
+    "causalDepthwiseConv1dSilu"
+  ],
+  "scope": "Fixed scalar StrictMath.exp; preserves original vector-lane fused arithmetic and unfused tail. No invocation counter or compilation-state dispatch. Actual model exactness remains a hard gate before timing."
+}

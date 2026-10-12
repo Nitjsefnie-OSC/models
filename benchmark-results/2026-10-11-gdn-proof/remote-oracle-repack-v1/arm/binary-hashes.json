@@ -1,0 +1,5 @@
+{
+  "oracle-baseline": "0cc0cde46794ac6a359c0d01cfe0d5a1ce7f133864bf385958d2780a8ef2b1e0",
+  "oracle-additive": "590358226c1fef48dcffcdc512115bb6c6a383e939d3be54f82dd92137ee4b95",
+  "rust/target/release/libjmodels_kernels.so": "40200b8e85e0a12e24f1c4128886fac668230b7a70c0543c94517bc3cf555678"
+}

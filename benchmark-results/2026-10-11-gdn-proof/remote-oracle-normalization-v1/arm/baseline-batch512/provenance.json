@@ -1,0 +1,31 @@
+{
+  "command": [
+    "/work/llama-server-baseline",
+    "-m",
+    "model.gguf",
+    "--host",
+    "127.0.0.1",
+    "--port",
+    "57683",
+    "-t",
+    "4",
+    "-tb",
+    "4",
+    "-c",
+    "2048",
+    "-np",
+    "1",
+    "-ngl",
+    "0",
+    "--no-op-offload",
+    "-fa",
+    "off",
+    "-ctk",
+    "f32",
+    "-ctv",
+    "f32",
+    "-ub",
+    "512"
+  ],
+  "binarySha256": "1633b068cc39abcccbab91443b61bd319cb63a6ca24f1440293b244cf18197e2"
+}

@@ -1,0 +1,24 @@
+warning: no usable GPU found, --gpu-layers option will be ignored
+warning: one possible reason is that llama.cpp was compiled without GPU support
+warning: consult docs/build.md for compilation instructions
+0.00.033.991 I cmn  common_param: common_params_print_info: verbosity = 3 (adjust with the `-lv N` CLI arg)
+0.00.037.000 I srv    load_model: loading model '/Users/briansam-bodden/.jvllm/models/Qwen3.5-4B-Q4_K_M.gguf'
+0.04.697.114 I srv    load_model: initializing, n_slots = 1, n_ctx_slot = 2048, kv_unified = 'false'
+0.04.762.385 I srv  llama_server: model loaded
+0.04.762.393 I srv  llama_server: listening on http://127.0.0.1:53231
+0.05.008.626 I slot get_availabl: id  0 | task -1 | selected slot by LRU, t_last = -1
+0.05.008.648 I slot launch_slot_: id  0 | task 0 | processing task, is_child = 0
+0.09.054.954 I slot print_timing: id  0 | task 0 | prompt processing, n_tokens =    123, progress = 0.97, t =   4.05 s / 30.40 tokens per second
+0.10.294.961 I slot print_timing: id  0 | task 0 | prompt eval time =    4292.02 ms /   127 tokens (   33.80 ms per token,    29.59 tokens per second)
+0.10.294.969 I slot print_timing: id  0 | task 0 |        eval time =     991.34 ms /     8 tokens (  123.92 ms per token,     8.07 tokens per second)
+0.10.294.972 I slot print_timing: id  0 | task 0 |       total time =    5283.37 ms /   135 tokens
+0.10.294.973 I slot print_timing: id  0 | task 0 |    graphs reused =          7
+0.10.295.014 I slot      release: id  0 | task 0 | stop processing: n_tokens = 134, truncated = 0
+0.10.300.698 I slot get_availabl: id  0 | task -1 | selected slot by LRU, t_last = 1415834400871
+0.10.410.668 I slot launch_slot_: id  0 | task 10 | processing task, is_child = 0
+0.14.289.221 I slot print_timing: id  0 | task 10 | prompt eval time =    2863.53 ms /    64 tokens (   44.74 ms per token,    22.35 tokens per second)
+0.14.289.228 I slot print_timing: id  0 | task 10 |        eval time =    1011.91 ms /     8 tokens (  126.49 ms per token,     7.91 tokens per second)
+0.14.289.229 I slot print_timing: id  0 | task 10 |       total time =    3875.44 ms /    72 tokens
+0.14.289.230 I slot print_timing: id  0 | task 10 |    graphs reused =         13
+0.14.289.264 I slot      release: id  0 | task 10 | stop processing: n_tokens = 71, truncated = 0
+0.14.293.258 I srv    operator(): operator(): cleaning up before exit...

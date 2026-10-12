@@ -1,0 +1,9 @@
+{
+  "baseRevision": "a935fbffe1a3d31509c325c116454ab5d56b2eb8",
+  "file": "oracle-source/ggml/src/ggml-cpu/ops.cpp",
+  "before": "const float scale = 1.0f/fmaxf(sqrtf(sum), eps);",
+  "after": "const float scale = 1.0f/sqrtf(sum + eps);",
+  "sourceBeforeSha256": "701c57328cc54ec1979a1dcd120b46c36928e9c4d6d017c86d042f9725cf98f6",
+  "sourceAfterSha256": "bb515da9dc4ebf6718b840c49573603304a9420905cfb98334279e14ddc1110c",
+  "scope": "Diagnostic oracle variant only; not a publisher reference or a qualification pass"
+}

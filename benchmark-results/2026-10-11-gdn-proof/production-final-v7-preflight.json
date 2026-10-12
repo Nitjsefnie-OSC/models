@@ -1,0 +1,14 @@
+{
+  "filesVerified": 94,
+  "runtimeClasses": 2511,
+  "baselineClassDifferences": [
+    "backend-native-0.3.59.jar:com/integrallis/models/backend/nativekernel/RustGgufBatchedMatrixKernel$1.class",
+    "backend-native-0.3.59.jar:com/integrallis/models/backend/nativekernel/RustGgufBatchedMatrixKernel.class"
+  ],
+  "syntheticEnumMapInstructionsIdentical": true,
+  "vectorsSha256": "3b037e5e405b526e67cd4078c58e191e60589b7b3dbccb9992f8d98d258f5202",
+  "initialVerificationCorrections": [
+    "Module descriptors cannot be treated as duplicated application classes across jars",
+    "Javac regenerated synthetic enum mapping metadata; disassembled instructions verified identical"
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "complete": true,
+  "pending": [],
+  "results": [
+    {
+      "architecture": "arm",
+      "model": "qwen-0.8b",
+      "requests": 148,
+      "vectorsPerComparison": 1332,
+      "differences": [],
+      "correctLabels": 89
+    },
+    {
+      "architecture": "arm",
+      "model": "qwen-4b",
+      "requests": 148,
+      "vectorsPerComparison": 1332,
+      "differences": [],
+      "correctLabels": 128
+    },
+    {
+      "architecture": "x86",
+      "model": "qwen-4b",
+      "requests": 148,
+      "vectorsPerComparison": 1332,
+      "differences": [],
+      "correctLabels": 128
+    }
+  ]
+}

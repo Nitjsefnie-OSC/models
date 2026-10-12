@@ -1,0 +1,32 @@
+{
+  "jdk": {
+    "x64": {
+      "url": "https://github.com/adoptium/temurin25-binaries/releases/download/jdk-25.0.3%2B9/OpenJDK25U-jdk_x64_linux_hotspot_25.0.3_9.tar.gz",
+      "sha256": "69264a7a211bf5029830d07bc3370f879769d62ebc5b5488e90c9343a2da0e1f"
+    },
+    "aarch64": {
+      "url": "https://github.com/adoptium/temurin25-binaries/releases/download/jdk-25.0.3%2B9/OpenJDK25U-jdk_aarch64_linux_hotspot_25.0.3_9.tar.gz",
+      "sha256": "3e4287cb98870ba824ed698854bdc27cff984254caf66dd12cc291e7bfdde26b"
+    }
+  },
+  "rust": "1.96.0",
+  "runName": "gdn-proof-oracle-normalization-v1",
+  "revision": "0f967e1ee860e87d69e57a624b924aa81769061c",
+  "maximumSecondsPerHost": 1800,
+  "maximumCombinedUsd": 1.25,
+  "files": {
+    "diagnostic.json": "41c83b121e1d3531e8dbc66df2fcf53c14ef5956eb5add3b3a8e647891102449",
+    "oracle-source.tar": "381e3cada9351d222d846330cf4d98a98f3b7b41394f7cdb939b73e4b64fff68",
+    "requests/easy-intent-00.request.json": "e5377e9d264e2ac9f61035ff52975291b61846e5430979fc169e02963ce28042",
+    "requests/easy-intent-01.request.json": "474f9e3c55c21e555c05a1bf91705e2d44f764999713106c39512a1e87c3b16d",
+    "requests/easy-intent-02.request.json": "c366a8b2c513e389caf395de38ff009127658c52d0f297552dc3ca0a6f86cd3d",
+    "requests/easy-intent-03.request.json": "e9c3e08dcfb0775debe55d13ac823fa62d11598aba7b4ab2851e7db51047e60e",
+    "requests/original-routing-06-0.request.json": "173180e04aaade0536ae8b4fca82f57ce6a43f5d55110ce635dde77840bd941c",
+    "requests/results.json": "eb0e8c447cbbedb92959545e8bdb680b07253fcd5c39efaa394bada69f17a097",
+    "requests/snips-AddToPlaylist-0.request.json": "b6b6e9bbf53a2dfb7a75ce069f5b03e763575283bc454b67203e1f3d07d762d3",
+    "requests/snips-AddToPlaylist-1.request.json": "8123b8f32849767c10d8a2ed45bf68a145534f218cd608049a7986d5230b377b",
+    "requests/snips-AddToPlaylist-2.request.json": "c2ba11816bfe072774ca090aafe3ad845e2ae387ded38c8302906889ff4c0a7f",
+    "requests/snips-AddToPlaylist-3.request.json": "fe341671acf8fe924aa1ec5b905a03336d3a87287431bced7649f2e8edf40fe9",
+    "run-host.py": "41c6c3c8c0f51e01f7190a1428889ba6eaeddfdf247973ab9d38ae997538689c"
+  }
+}

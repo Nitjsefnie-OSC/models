@@ -1,0 +1,54 @@
+[
+  {
+    "id": "original-routing-06-0",
+    "tokenizationExact": true,
+    "modelsTokens": [
+      271,
+      248068,
+      198,
+      90700,
+      8340,
+      25,
+      271,
+      16
+    ],
+    "oracleTokens": [
+      271,
+      248068,
+      198,
+      90700,
+      8340,
+      25,
+      271,
+      16
+    ],
+    "continuationExact": true,
+    "scope": "independent greedy-token check only; no performance or full-logit qualification"
+  },
+  {
+    "id": "snips-AddToPlaylist-0",
+    "tokenizationExact": true,
+    "modelsTokens": [
+      271,
+      248068,
+      271,
+      248069,
+      271,
+      760,
+      1156,
+      369
+    ],
+    "oracleTokens": [
+      271,
+      248068,
+      271,
+      248069,
+      271,
+      760,
+      1156,
+      369
+    ],
+    "continuationExact": true,
+    "scope": "independent greedy-token check only; no performance or full-logit qualification"
+  }
+]

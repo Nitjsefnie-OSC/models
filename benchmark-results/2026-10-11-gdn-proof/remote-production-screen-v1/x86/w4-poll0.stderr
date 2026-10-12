@@ -1,0 +1,32 @@
+WARNING: Using incubator modules: jdk.incubator.vector
+Exception in thread "main" java.lang.IllegalArgumentException: models.native.kernels.pollMillis must be between 1 and 60000 milliseconds: 0
+	at com.integrallis.models.backend.nativekernel.NativeKernelLibrary.configuredPollMillis(NativeKernelLibrary.java:1380)
+	at com.integrallis.models.backend.nativekernel.NativeKernelLibrary.open(NativeKernelLibrary.java:329)
+	at com.integrallis.models.backend.nativekernel.RustGgufBatchedMatrixKernel.open(RustGgufBatchedMatrixKernel.java:89)
+	at com.integrallis.models.backend.nativekernel.RustGgufBatchedMatrixKernel.open(RustGgufBatchedMatrixKernel.java:65)
+	at com.integrallis.models.backend.purejava.qwen35.GdnCampaign.cohort(GdnCampaign.java:174)
+	at com.integrallis.models.backend.purejava.qwen35.GdnCampaign.main(GdnCampaign.java:305)
+Command exited with non-zero status 1
+	Command being timed: "/opt/jdk/bin/java --add-modules jdk.incubator.vector --enable-native-access=ALL-UNNAMED -Xms2g -Xmx10g -XX:ActiveProcessorCount=4 -Dmodels.native.kernels.threads=4 -Dvectors.gguf.threads=4 -Dmodels.native.kernels.pollMillis=0 -Dmodels.purejava.maxContextLength=2048 -Dgdn.sharedNativeOnly=true -Dgdn.timeAllCases=true -Dgdn.timingRepeats=2 -Dgdn.arms=java,java-tiled,java-tiled-stage,native-shared -cp lib/*:gdn.jar:activation-probe.jar com.integrallis.models.backend.purejava.qwen35.GdnCampaign /work/rust/sequential-aligned-parallel-exclusive/target/release/libjmodels_kernels.so /work/rust/sequential-aligned-parallel-exclusive/target/release/libjmodels_kernels.so /work/rust/sequential-aligned-parallel-exclusive/target/release/libjmodels_kernels.so cohort model.gguf screening-tasks.json"
+	User time (seconds): 0.57
+	System time (seconds): 0.05
+	Percent of CPU this job got: 200%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.31
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 89580
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 16587
+	Voluntary context switches: 1092
+	Involuntary context switches: 5
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 72
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 1

@@ -1,0 +1,32 @@
+{
+  "command": [
+    "/usr/bin/time",
+    "-v",
+    "/opt/jdk/bin/java",
+    "--add-modules",
+    "jdk.incubator.vector",
+    "--enable-native-access=ALL-UNNAMED",
+    "-Xms2g",
+    "-Xmx10g",
+    "-XX:ActiveProcessorCount=16",
+    "-Dmodels.native.kernels.threads=16",
+    "-Dvectors.gguf.threads=16",
+    "-Dmodels.native.kernels.pollMillis=1",
+    "-Dmodels.purejava.maxContextLength=2048",
+    "-Dgdn.sharedNativeOnly=true",
+    "-Dgdn.timeAllCases=true",
+    "-Dgdn.timingRepeats=2",
+    "-Dgdn.arms=java,java-tiled,java-tiled-stage,native-shared",
+    "-cp",
+    "lib/*:gdn.jar:activation-probe.jar",
+    "com.integrallis.models.backend.purejava.qwen35.GdnCampaign",
+    "/work/rust/sequential-aligned-parallel-exclusive/target/release/libjmodels_kernels.so",
+    "/work/rust/sequential-aligned-parallel-exclusive/target/release/libjmodels_kernels.so",
+    "/work/rust/sequential-aligned-parallel-exclusive/target/release/libjmodels_kernels.so",
+    "cohort",
+    "model.gguf",
+    "screening-tasks.json"
+  ],
+  "exitCode": 0,
+  "wallSeconds": 641.1055062790001
+}

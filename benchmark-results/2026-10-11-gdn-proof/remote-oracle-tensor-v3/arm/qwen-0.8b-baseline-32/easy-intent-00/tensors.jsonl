@@ -1,0 +1,168 @@
+{"name":"model.input_embed","file":"0-model.input_embed.bin","bytes":131072,"op":"GET_ROWS","ne":[1024,32,1,1],"nb":[4,4096,131072,131072],"src0":"token_embd.weight","src1":"inp_tokens"}
+{"name":"norm-0","file":"1-norm-0.bin","bytes":131072,"op":"RMS_NORM","ne":[1024,32,1,1],"nb":[4,4096,131072,131072],"src0":"model.input_embed"}
+{"name":"attn_norm-0","file":"2-attn_norm-0.bin","bytes":131072,"op":"MUL","ne":[1024,32,1,1],"nb":[4,4096,131072,131072],"src0":"norm-0","src1":"blk.0.attn_norm.weight"}
+{"name":"conv_states-0","file":"3-conv_states-0.bin","bytes":73728,"op":"GET_ROWS","ne":[18432,1,1,1],"nb":[4,73728,73728,73728],"src0":"cache_r_l0 (reshaped)","src1":" (view)"}
+{"name":"conv_states_reshaped-0","file":"4-conv_states_reshaped-0.bin","bytes":73728,"op":"RESHAPE","ne":[3,6144,1,1],"nb":[4,12,73728,73728],"src0":"conv_states-0"}
+{"name":"linear_attn_qkv_mixed-0","file":"5-linear_attn_qkv_mixed-0.bin","bytes":786432,"op":"RESHAPE","ne":[6144,32,1,1],"nb":[4,24576,786432,786432],"src0":"node_13"}
+{"name":"qkv_mixed_transposed-0","file":"6-qkv_mixed_transposed-0.bin","bytes":786432,"op":"TRANSPOSE","ne":[32,6144,1,1],"nb":[24576,4,786432,786432],"src0":"linear_attn_qkv_mixed-0"}
+{"name":"conv_input-0","file":"7-conv_input-0.bin","bytes":860160,"op":"CONCAT","ne":[35,6144,1,1],"nb":[4,140,860160,860160],"src0":"conv_states_reshaped-0","src1":"qkv_mixed_transposed-0"}
+{"name":"conv_state_last-0","file":"8-conv_state_last-0.bin","bytes":860032,"op":"VIEW","ne":[3,6144,1,1],"nb":[4,140,860160,860160],"src0":"conv_input-0"}
+{"name":"conv_state_update-0","file":"9-conv_state_update-0.bin","bytes":73728,"op":"VIEW","ne":[18432,1,1,1],"nb":[4,73728,73728,73728],"src0":"cache_r_l0"}
+{"name":"conv_state_update-0 (copy of conv_state_last-0)","file":"10-conv_state_update-0__copy_of_conv_state_last-0_.bin","bytes":73728,"op":"CPY","ne":[18432,1,1,1],"nb":[4,73728,73728,73728],"src0":"conv_state_last-0","src1":"conv_state_update-0"}
+{"name":"conv_output_raw-0","file":"11-conv_output_raw-0.bin","bytes":786432,"op":"SSM_CONV","ne":[6144,32,1,1],"nb":[4,24576,786432,786432],"src0":"conv_input-0","src1":"blk.0.ssm_conv1d.weight"}
+{"name":"conv_output_silu-0","file":"12-conv_output_silu-0.bin","bytes":786432,"op":"UNARY","ne":[6144,32,1,1],"nb":[4,24576,786432,786432],"src0":"conv_output_raw-0"}
+{"name":"q_conv-0","file":"13-q_conv-0.bin","bytes":770048,"op":"VIEW","ne":[128,16,32,1],"nb":[4,512,24576,786432],"src0":"conv_output_silu-0"}
+{"name":"q_conv_predelta-0","file":"14-q_conv_predelta-0.bin","bytes":262144,"op":"L2_NORM","ne":[128,16,32,1],"nb":[4,512,8192,262144],"src0":"q_conv-0"}
+{"name":"k_conv-0","file":"15-k_conv-0.bin","bytes":770048,"op":"VIEW","ne":[128,16,32,1],"nb":[4,512,24576,786432],"src0":"conv_output_silu-0"}
+{"name":"k_conv_predelta-0","file":"16-k_conv_predelta-0.bin","bytes":262144,"op":"L2_NORM","ne":[128,16,32,1],"nb":[4,512,8192,262144],"src0":"k_conv-0"}
+{"name":"v_conv_predelta-0","file":"17-v_conv_predelta-0.bin","bytes":770048,"op":"VIEW","ne":[128,16,32,1],"nb":[4,512,24576,786432],"src0":"conv_output_silu-0"}
+{"name":"alpha-0","file":"18-alpha-0.bin","bytes":2048,"op":"RESHAPE","ne":[16,32,1,1],"nb":[4,64,2048,2048],"src0":"node_34"}
+{"name":"a_softplus-0","file":"19-a_softplus-0.bin","bytes":2048,"op":"UNARY","ne":[16,32,1,1],"nb":[4,64,2048,2048],"src0":"node_36"}
+{"name":"gate-0","file":"20-gate-0.bin","bytes":2048,"op":"MUL","ne":[16,32,1,1],"nb":[4,64,2048,2048],"src0":"a_softplus-0","src1":"blk.0.ssm_a"}
+{"name":"gate-0 (reshaped)","file":"21-gate-0__reshaped_.bin","bytes":2048,"op":"RESHAPE","ne":[1,16,32,1],"nb":[4,4,64,2048],"src0":"gate-0"}
+{"name":"beta-0","file":"22-beta-0.bin","bytes":2048,"op":"RESHAPE","ne":[1,16,32,1],"nb":[4,4,64,2048],"src0":"node_40"}
+{"name":"beta_sigmoid-0","file":"23-beta_sigmoid-0.bin","bytes":2048,"op":"UNARY","ne":[1,16,32,1],"nb":[4,4,64,2048],"src0":"beta-0"}
+{"name":"state_predelta-0","file":"24-state_predelta-0.bin","bytes":1048576,"op":"RESHAPE","ne":[128,128,16,1],"nb":[4,512,65536,1048576],"src0":"node_23"}
+{"name":"new_state-0","file":"25-new_state-0.bin","bytes":1048576,"op":"VIEW","ne":[128,128,16,1],"nb":[4,512,65536,1048576],"src0":"node_44"}
+{"name":"cache_s_l0 (view) (copy of new_state-0)","file":"26-cache_s_l0__view___copy_of_new_state-0_.bin","bytes":1048576,"op":"CPY","ne":[262144,1,1,1],"nb":[4,1048576,1048576,1048576],"src0":"new_state-0","src1":"cache_s_l0 (view)"}
+{"name":"attn_output-0","file":"27-attn_output-0.bin","bytes":262144,"op":"VIEW","ne":[128,16,32,1],"nb":[4,512,8192,262144],"src0":"node_44"}
+{"name":"norm-0","file":"28-norm-0.bin","bytes":262144,"op":"RMS_NORM","ne":[128,16,32,1],"nb":[4,512,8192,262144],"src0":"attn_output-0"}
+{"name":"z-0","file":"29-z-0.bin","bytes":262144,"op":"MUL_MAT","ne":[2048,32,1,1],"nb":[4,8192,262144,262144],"src0":"blk.0.attn_gate.weight","src1":"attn_norm-0"}
+{"name":"z-0 (reshaped)","file":"30-z-0__reshaped_.bin","bytes":262144,"op":"RESHAPE","ne":[128,16,32,1],"nb":[4,512,8192,262144],"src0":"z-0"}
+{"name":"final_output-0","file":"31-final_output-0.bin","bytes":262144,"op":"RESHAPE","ne":[2048,32,1,1],"nb":[4,8192,262144,262144],"src0":"node_54"}
+{"name":"linear_attn_out-0","file":"32-linear_attn_out-0.bin","bytes":131072,"op":"MUL_MAT","ne":[1024,32,1,1],"nb":[4,4096,131072,131072],"src0":"blk.0.ssm_out.weight","src1":"final_output-0"}
+{"name":"linear_attn_out-0 (reshaped)","file":"33-linear_attn_out-0__reshaped_.bin","bytes":131072,"op":"RESHAPE","ne":[1024,32,1,1],"nb":[4,4096,131072,131072],"src0":"linear_attn_out-0"}
+{"name":"attn_residual-0","file":"34-attn_residual-0.bin","bytes":131072,"op":"ADD","ne":[1024,32,1,1],"nb":[4,4096,131072,131072],"src0":"linear_attn_out-0 (reshaped)","src1":"model.input_embed"}
+{"name":"norm-0","file":"35-norm-0.bin","bytes":131072,"op":"RMS_NORM","ne":[1024,32,1,1],"nb":[4,4096,131072,131072],"src0":"attn_residual-0"}
+{"name":"attn_post_norm-0","file":"36-attn_post_norm-0.bin","bytes":131072,"op":"MUL","ne":[1024,32,1,1],"nb":[4,4096,131072,131072],"src0":"norm-0","src1":"blk.0.post_attention_norm.weight"}
+{"name":"ffn_gate-0","file":"37-ffn_gate-0.bin","bytes":458752,"op":"MUL_MAT","ne":[3584,32,1,1],"nb":[4,14336,458752,458752],"src0":"blk.0.ffn_gate.weight","src1":"attn_post_norm-0"}
+{"name":"ffn_up-0","file":"38-ffn_up-0.bin","bytes":458752,"op":"MUL_MAT","ne":[3584,32,1,1],"nb":[4,14336,458752,458752],"src0":"blk.0.ffn_up.weight","src1":"attn_post_norm-0"}
+{"name":"ffn_swiglu-0","file":"39-ffn_swiglu-0.bin","bytes":458752,"op":"GLU","ne":[3584,32,1,1],"nb":[4,14336,458752,458752],"src0":"ffn_gate-0","src1":"ffn_up-0"}
+{"name":"ffn_out-0","file":"40-ffn_out-0.bin","bytes":131072,"op":"MUL_MAT","ne":[1024,32,1,1],"nb":[4,4096,131072,131072],"src0":"blk.0.ffn_down.weight","src1":"ffn_swiglu-0"}
+{"name":"l_out-0","file":"41-l_out-0.bin","bytes":131072,"op":"ADD","ne":[1024,32,1,1],"nb":[4,4096,131072,131072],"src0":"ffn_out-0","src1":"attn_residual-0"}
+{"name":"model.input_embed","file":"42-model.input_embed.bin","bytes":131072,"op":"GET_ROWS","ne":[1024,32,1,1],"nb":[4,4096,131072,131072],"src0":"token_embd.weight","src1":"inp_tokens"}
+{"name":"norm-0","file":"43-norm-0.bin","bytes":131072,"op":"RMS_NORM","ne":[1024,32,1,1],"nb":[4,4096,131072,131072],"src0":"model.input_embed"}
+{"name":"attn_norm-0","file":"44-attn_norm-0.bin","bytes":131072,"op":"MUL","ne":[1024,32,1,1],"nb":[4,4096,131072,131072],"src0":"norm-0","src1":"blk.0.attn_norm.weight"}
+{"name":"conv_states-0","file":"45-conv_states-0.bin","bytes":73728,"op":"GET_ROWS","ne":[18432,1,1,1],"nb":[4,73728,73728,73728],"src0":"cache_r_l0 (reshaped)","src1":" (view)"}
+{"name":"conv_states_reshaped-0","file":"46-conv_states_reshaped-0.bin","bytes":73728,"op":"RESHAPE","ne":[3,6144,1,1],"nb":[4,12,73728,73728],"src0":"conv_states-0"}
+{"name":"linear_attn_qkv_mixed-0","file":"47-linear_attn_qkv_mixed-0.bin","bytes":786432,"op":"RESHAPE","ne":[6144,32,1,1],"nb":[4,24576,786432,786432],"src0":"node_13"}
+{"name":"qkv_mixed_transposed-0","file":"48-qkv_mixed_transposed-0.bin","bytes":786432,"op":"TRANSPOSE","ne":[32,6144,1,1],"nb":[24576,4,786432,786432],"src0":"linear_attn_qkv_mixed-0"}
+{"name":"conv_input-0","file":"49-conv_input-0.bin","bytes":860160,"op":"CONCAT","ne":[35,6144,1,1],"nb":[4,140,860160,860160],"src0":"conv_states_reshaped-0","src1":"qkv_mixed_transposed-0"}
+{"name":"conv_state_last-0","file":"50-conv_state_last-0.bin","bytes":860032,"op":"VIEW","ne":[3,6144,1,1],"nb":[4,140,860160,860160],"src0":"conv_input-0"}
+{"name":"conv_state_update-0","file":"51-conv_state_update-0.bin","bytes":73728,"op":"VIEW","ne":[18432,1,1,1],"nb":[4,73728,73728,73728],"src0":"cache_r_l0"}
+{"name":"conv_state_update-0 (copy of conv_state_last-0)","file":"52-conv_state_update-0__copy_of_conv_state_last-0_.bin","bytes":73728,"op":"CPY","ne":[18432,1,1,1],"nb":[4,73728,73728,73728],"src0":"conv_state_last-0","src1":"conv_state_update-0"}
+{"name":"conv_output_raw-0","file":"53-conv_output_raw-0.bin","bytes":786432,"op":"SSM_CONV","ne":[6144,32,1,1],"nb":[4,24576,786432,786432],"src0":"conv_input-0","src1":"blk.0.ssm_conv1d.weight"}
+{"name":"conv_output_silu-0","file":"54-conv_output_silu-0.bin","bytes":786432,"op":"UNARY","ne":[6144,32,1,1],"nb":[4,24576,786432,786432],"src0":"conv_output_raw-0"}
+{"name":"q_conv-0","file":"55-q_conv-0.bin","bytes":770048,"op":"VIEW","ne":[128,16,32,1],"nb":[4,512,24576,786432],"src0":"conv_output_silu-0"}
+{"name":"q_conv_predelta-0","file":"56-q_conv_predelta-0.bin","bytes":262144,"op":"L2_NORM","ne":[128,16,32,1],"nb":[4,512,8192,262144],"src0":"q_conv-0"}
+{"name":"k_conv-0","file":"57-k_conv-0.bin","bytes":770048,"op":"VIEW","ne":[128,16,32,1],"nb":[4,512,24576,786432],"src0":"conv_output_silu-0"}
+{"name":"k_conv_predelta-0","file":"58-k_conv_predelta-0.bin","bytes":262144,"op":"L2_NORM","ne":[128,16,32,1],"nb":[4,512,8192,262144],"src0":"k_conv-0"}
+{"name":"v_conv_predelta-0","file":"59-v_conv_predelta-0.bin","bytes":770048,"op":"VIEW","ne":[128,16,32,1],"nb":[4,512,24576,786432],"src0":"conv_output_silu-0"}
+{"name":"alpha-0","file":"60-alpha-0.bin","bytes":2048,"op":"RESHAPE","ne":[16,32,1,1],"nb":[4,64,2048,2048],"src0":"node_34"}
+{"name":"a_softplus-0","file":"61-a_softplus-0.bin","bytes":2048,"op":"UNARY","ne":[16,32,1,1],"nb":[4,64,2048,2048],"src0":"node_36"}
+{"name":"gate-0","file":"62-gate-0.bin","bytes":2048,"op":"MUL","ne":[16,32,1,1],"nb":[4,64,2048,2048],"src0":"a_softplus-0","src1":"blk.0.ssm_a"}
+{"name":"gate-0 (reshaped)","file":"63-gate-0__reshaped_.bin","bytes":2048,"op":"RESHAPE","ne":[1,16,32,1],"nb":[4,4,64,2048],"src0":"gate-0"}
+{"name":"beta-0","file":"64-beta-0.bin","bytes":2048,"op":"RESHAPE","ne":[1,16,32,1],"nb":[4,4,64,2048],"src0":"node_40"}
+{"name":"beta_sigmoid-0","file":"65-beta_sigmoid-0.bin","bytes":2048,"op":"UNARY","ne":[1,16,32,1],"nb":[4,4,64,2048],"src0":"beta-0"}
+{"name":"state_predelta-0","file":"66-state_predelta-0.bin","bytes":1048576,"op":"RESHAPE","ne":[128,128,16,1],"nb":[4,512,65536,1048576],"src0":"node_23"}
+{"name":"new_state-0","file":"67-new_state-0.bin","bytes":1048576,"op":"VIEW","ne":[128,128,16,1],"nb":[4,512,65536,1048576],"src0":"node_44"}
+{"name":"cache_s_l0 (view) (copy of new_state-0)","file":"68-cache_s_l0__view___copy_of_new_state-0_.bin","bytes":1048576,"op":"CPY","ne":[262144,1,1,1],"nb":[4,1048576,1048576,1048576],"src0":"new_state-0","src1":"cache_s_l0 (view)"}
+{"name":"attn_output-0","file":"69-attn_output-0.bin","bytes":262144,"op":"VIEW","ne":[128,16,32,1],"nb":[4,512,8192,262144],"src0":"node_44"}
+{"name":"norm-0","file":"70-norm-0.bin","bytes":262144,"op":"RMS_NORM","ne":[128,16,32,1],"nb":[4,512,8192,262144],"src0":"attn_output-0"}
+{"name":"z-0","file":"71-z-0.bin","bytes":262144,"op":"MUL_MAT","ne":[2048,32,1,1],"nb":[4,8192,262144,262144],"src0":"blk.0.attn_gate.weight","src1":"attn_norm-0"}
+{"name":"z-0 (reshaped)","file":"72-z-0__reshaped_.bin","bytes":262144,"op":"RESHAPE","ne":[128,16,32,1],"nb":[4,512,8192,262144],"src0":"z-0"}
+{"name":"final_output-0","file":"73-final_output-0.bin","bytes":262144,"op":"RESHAPE","ne":[2048,32,1,1],"nb":[4,8192,262144,262144],"src0":"node_54"}
+{"name":"linear_attn_out-0","file":"74-linear_attn_out-0.bin","bytes":131072,"op":"MUL_MAT","ne":[1024,32,1,1],"nb":[4,4096,131072,131072],"src0":"blk.0.ssm_out.weight","src1":"final_output-0"}
+{"name":"linear_attn_out-0 (reshaped)","file":"75-linear_attn_out-0__reshaped_.bin","bytes":131072,"op":"RESHAPE","ne":[1024,32,1,1],"nb":[4,4096,131072,131072],"src0":"linear_attn_out-0"}
+{"name":"attn_residual-0","file":"76-attn_residual-0.bin","bytes":131072,"op":"ADD","ne":[1024,32,1,1],"nb":[4,4096,131072,131072],"src0":"linear_attn_out-0 (reshaped)","src1":"model.input_embed"}
+{"name":"norm-0","file":"77-norm-0.bin","bytes":131072,"op":"RMS_NORM","ne":[1024,32,1,1],"nb":[4,4096,131072,131072],"src0":"attn_residual-0"}
+{"name":"attn_post_norm-0","file":"78-attn_post_norm-0.bin","bytes":131072,"op":"MUL","ne":[1024,32,1,1],"nb":[4,4096,131072,131072],"src0":"norm-0","src1":"blk.0.post_attention_norm.weight"}
+{"name":"ffn_gate-0","file":"79-ffn_gate-0.bin","bytes":458752,"op":"MUL_MAT","ne":[3584,32,1,1],"nb":[4,14336,458752,458752],"src0":"blk.0.ffn_gate.weight","src1":"attn_post_norm-0"}
+{"name":"ffn_up-0","file":"80-ffn_up-0.bin","bytes":458752,"op":"MUL_MAT","ne":[3584,32,1,1],"nb":[4,14336,458752,458752],"src0":"blk.0.ffn_up.weight","src1":"attn_post_norm-0"}
+{"name":"ffn_swiglu-0","file":"81-ffn_swiglu-0.bin","bytes":458752,"op":"GLU","ne":[3584,32,1,1],"nb":[4,14336,458752,458752],"src0":"ffn_gate-0","src1":"ffn_up-0"}
+{"name":"ffn_out-0","file":"82-ffn_out-0.bin","bytes":131072,"op":"MUL_MAT","ne":[1024,32,1,1],"nb":[4,4096,131072,131072],"src0":"blk.0.ffn_down.weight","src1":"ffn_swiglu-0"}
+{"name":"l_out-0","file":"83-l_out-0.bin","bytes":131072,"op":"ADD","ne":[1024,32,1,1],"nb":[4,4096,131072,131072],"src0":"ffn_out-0","src1":"attn_residual-0"}
+{"name":"model.input_embed","file":"84-model.input_embed.bin","bytes":131072,"op":"GET_ROWS","ne":[1024,32,1,1],"nb":[4,4096,131072,131072],"src0":"token_embd.weight","src1":"inp_tokens"}
+{"name":"norm-0","file":"85-norm-0.bin","bytes":131072,"op":"RMS_NORM","ne":[1024,32,1,1],"nb":[4,4096,131072,131072],"src0":"model.input_embed"}
+{"name":"attn_norm-0","file":"86-attn_norm-0.bin","bytes":131072,"op":"MUL","ne":[1024,32,1,1],"nb":[4,4096,131072,131072],"src0":"norm-0","src1":"blk.0.attn_norm.weight"}
+{"name":"conv_states-0","file":"87-conv_states-0.bin","bytes":73728,"op":"GET_ROWS","ne":[18432,1,1,1],"nb":[4,73728,73728,73728],"src0":"cache_r_l0 (reshaped)","src1":" (view)"}
+{"name":"conv_states_reshaped-0","file":"88-conv_states_reshaped-0.bin","bytes":73728,"op":"RESHAPE","ne":[3,6144,1,1],"nb":[4,12,73728,73728],"src0":"conv_states-0"}
+{"name":"linear_attn_qkv_mixed-0","file":"89-linear_attn_qkv_mixed-0.bin","bytes":786432,"op":"RESHAPE","ne":[6144,32,1,1],"nb":[4,24576,786432,786432],"src0":"node_13"}
+{"name":"qkv_mixed_transposed-0","file":"90-qkv_mixed_transposed-0.bin","bytes":786432,"op":"TRANSPOSE","ne":[32,6144,1,1],"nb":[24576,4,786432,786432],"src0":"linear_attn_qkv_mixed-0"}
+{"name":"conv_input-0","file":"91-conv_input-0.bin","bytes":860160,"op":"CONCAT","ne":[35,6144,1,1],"nb":[4,140,860160,860160],"src0":"conv_states_reshaped-0","src1":"qkv_mixed_transposed-0"}
+{"name":"conv_state_last-0","file":"92-conv_state_last-0.bin","bytes":860032,"op":"VIEW","ne":[3,6144,1,1],"nb":[4,140,860160,860160],"src0":"conv_input-0"}
+{"name":"conv_state_update-0","file":"93-conv_state_update-0.bin","bytes":73728,"op":"VIEW","ne":[18432,1,1,1],"nb":[4,73728,73728,73728],"src0":"cache_r_l0"}
+{"name":"conv_state_update-0 (copy of conv_state_last-0)","file":"94-conv_state_update-0__copy_of_conv_state_last-0_.bin","bytes":73728,"op":"CPY","ne":[18432,1,1,1],"nb":[4,73728,73728,73728],"src0":"conv_state_last-0","src1":"conv_state_update-0"}
+{"name":"conv_output_raw-0","file":"95-conv_output_raw-0.bin","bytes":786432,"op":"SSM_CONV","ne":[6144,32,1,1],"nb":[4,24576,786432,786432],"src0":"conv_input-0","src1":"blk.0.ssm_conv1d.weight"}
+{"name":"conv_output_silu-0","file":"96-conv_output_silu-0.bin","bytes":786432,"op":"UNARY","ne":[6144,32,1,1],"nb":[4,24576,786432,786432],"src0":"conv_output_raw-0"}
+{"name":"q_conv-0","file":"97-q_conv-0.bin","bytes":770048,"op":"VIEW","ne":[128,16,32,1],"nb":[4,512,24576,786432],"src0":"conv_output_silu-0"}
+{"name":"q_conv_predelta-0","file":"98-q_conv_predelta-0.bin","bytes":262144,"op":"L2_NORM","ne":[128,16,32,1],"nb":[4,512,8192,262144],"src0":"q_conv-0"}
+{"name":"k_conv-0","file":"99-k_conv-0.bin","bytes":770048,"op":"VIEW","ne":[128,16,32,1],"nb":[4,512,24576,786432],"src0":"conv_output_silu-0"}
+{"name":"k_conv_predelta-0","file":"100-k_conv_predelta-0.bin","bytes":262144,"op":"L2_NORM","ne":[128,16,32,1],"nb":[4,512,8192,262144],"src0":"k_conv-0"}
+{"name":"v_conv_predelta-0","file":"101-v_conv_predelta-0.bin","bytes":770048,"op":"VIEW","ne":[128,16,32,1],"nb":[4,512,24576,786432],"src0":"conv_output_silu-0"}
+{"name":"alpha-0","file":"102-alpha-0.bin","bytes":2048,"op":"RESHAPE","ne":[16,32,1,1],"nb":[4,64,2048,2048],"src0":"node_34"}
+{"name":"a_softplus-0","file":"103-a_softplus-0.bin","bytes":2048,"op":"UNARY","ne":[16,32,1,1],"nb":[4,64,2048,2048],"src0":"node_36"}
+{"name":"gate-0","file":"104-gate-0.bin","bytes":2048,"op":"MUL","ne":[16,32,1,1],"nb":[4,64,2048,2048],"src0":"a_softplus-0","src1":"blk.0.ssm_a"}
+{"name":"gate-0 (reshaped)","file":"105-gate-0__reshaped_.bin","bytes":2048,"op":"RESHAPE","ne":[1,16,32,1],"nb":[4,4,64,2048],"src0":"gate-0"}
+{"name":"beta-0","file":"106-beta-0.bin","bytes":2048,"op":"RESHAPE","ne":[1,16,32,1],"nb":[4,4,64,2048],"src0":"node_40"}
+{"name":"beta_sigmoid-0","file":"107-beta_sigmoid-0.bin","bytes":2048,"op":"UNARY","ne":[1,16,32,1],"nb":[4,4,64,2048],"src0":"beta-0"}
+{"name":"state_predelta-0","file":"108-state_predelta-0.bin","bytes":1048576,"op":"RESHAPE","ne":[128,128,16,1],"nb":[4,512,65536,1048576],"src0":"node_23"}
+{"name":"new_state-0","file":"109-new_state-0.bin","bytes":1048576,"op":"VIEW","ne":[128,128,16,1],"nb":[4,512,65536,1048576],"src0":"node_44"}
+{"name":"cache_s_l0 (view) (copy of new_state-0)","file":"110-cache_s_l0__view___copy_of_new_state-0_.bin","bytes":1048576,"op":"CPY","ne":[262144,1,1,1],"nb":[4,1048576,1048576,1048576],"src0":"new_state-0","src1":"cache_s_l0 (view)"}
+{"name":"attn_output-0","file":"111-attn_output-0.bin","bytes":262144,"op":"VIEW","ne":[128,16,32,1],"nb":[4,512,8192,262144],"src0":"node_44"}
+{"name":"norm-0","file":"112-norm-0.bin","bytes":262144,"op":"RMS_NORM","ne":[128,16,32,1],"nb":[4,512,8192,262144],"src0":"attn_output-0"}
+{"name":"z-0","file":"113-z-0.bin","bytes":262144,"op":"MUL_MAT","ne":[2048,32,1,1],"nb":[4,8192,262144,262144],"src0":"blk.0.attn_gate.weight","src1":"attn_norm-0"}
+{"name":"z-0 (reshaped)","file":"114-z-0__reshaped_.bin","bytes":262144,"op":"RESHAPE","ne":[128,16,32,1],"nb":[4,512,8192,262144],"src0":"z-0"}
+{"name":"final_output-0","file":"115-final_output-0.bin","bytes":262144,"op":"RESHAPE","ne":[2048,32,1,1],"nb":[4,8192,262144,262144],"src0":"node_54"}
+{"name":"linear_attn_out-0","file":"116-linear_attn_out-0.bin","bytes":131072,"op":"MUL_MAT","ne":[1024,32,1,1],"nb":[4,4096,131072,131072],"src0":"blk.0.ssm_out.weight","src1":"final_output-0"}
+{"name":"linear_attn_out-0 (reshaped)","file":"117-linear_attn_out-0__reshaped_.bin","bytes":131072,"op":"RESHAPE","ne":[1024,32,1,1],"nb":[4,4096,131072,131072],"src0":"linear_attn_out-0"}
+{"name":"attn_residual-0","file":"118-attn_residual-0.bin","bytes":131072,"op":"ADD","ne":[1024,32,1,1],"nb":[4,4096,131072,131072],"src0":"linear_attn_out-0 (reshaped)","src1":"model.input_embed"}
+{"name":"norm-0","file":"119-norm-0.bin","bytes":131072,"op":"RMS_NORM","ne":[1024,32,1,1],"nb":[4,4096,131072,131072],"src0":"attn_residual-0"}
+{"name":"attn_post_norm-0","file":"120-attn_post_norm-0.bin","bytes":131072,"op":"MUL","ne":[1024,32,1,1],"nb":[4,4096,131072,131072],"src0":"norm-0","src1":"blk.0.post_attention_norm.weight"}
+{"name":"ffn_gate-0","file":"121-ffn_gate-0.bin","bytes":458752,"op":"MUL_MAT","ne":[3584,32,1,1],"nb":[4,14336,458752,458752],"src0":"blk.0.ffn_gate.weight","src1":"attn_post_norm-0"}
+{"name":"ffn_up-0","file":"122-ffn_up-0.bin","bytes":458752,"op":"MUL_MAT","ne":[3584,32,1,1],"nb":[4,14336,458752,458752],"src0":"blk.0.ffn_up.weight","src1":"attn_post_norm-0"}
+{"name":"ffn_swiglu-0","file":"123-ffn_swiglu-0.bin","bytes":458752,"op":"GLU","ne":[3584,32,1,1],"nb":[4,14336,458752,458752],"src0":"ffn_gate-0","src1":"ffn_up-0"}
+{"name":"ffn_out-0","file":"124-ffn_out-0.bin","bytes":131072,"op":"MUL_MAT","ne":[1024,32,1,1],"nb":[4,4096,131072,131072],"src0":"blk.0.ffn_down.weight","src1":"ffn_swiglu-0"}
+{"name":"l_out-0","file":"125-l_out-0.bin","bytes":131072,"op":"ADD","ne":[1024,32,1,1],"nb":[4,4096,131072,131072],"src0":"ffn_out-0","src1":"attn_residual-0"}
+{"name":"model.input_embed","file":"126-model.input_embed.bin","bytes":106496,"op":"GET_ROWS","ne":[1024,26,1,1],"nb":[4,4096,106496,106496],"src0":"token_embd.weight","src1":"inp_tokens"}
+{"name":"norm-0","file":"127-norm-0.bin","bytes":106496,"op":"RMS_NORM","ne":[1024,26,1,1],"nb":[4,4096,106496,106496],"src0":"model.input_embed"}
+{"name":"attn_norm-0","file":"128-attn_norm-0.bin","bytes":106496,"op":"MUL","ne":[1024,26,1,1],"nb":[4,4096,106496,106496],"src0":"norm-0","src1":"blk.0.attn_norm.weight"}
+{"name":"conv_states-0","file":"129-conv_states-0.bin","bytes":73728,"op":"GET_ROWS","ne":[18432,1,1,1],"nb":[4,73728,73728,73728],"src0":"cache_r_l0 (reshaped)","src1":" (view)"}
+{"name":"conv_states_reshaped-0","file":"130-conv_states_reshaped-0.bin","bytes":73728,"op":"RESHAPE","ne":[3,6144,1,1],"nb":[4,12,73728,73728],"src0":"conv_states-0"}
+{"name":"linear_attn_qkv_mixed-0","file":"131-linear_attn_qkv_mixed-0.bin","bytes":638976,"op":"RESHAPE","ne":[6144,26,1,1],"nb":[4,24576,638976,638976],"src0":"node_13"}
+{"name":"qkv_mixed_transposed-0","file":"132-qkv_mixed_transposed-0.bin","bytes":638976,"op":"TRANSPOSE","ne":[26,6144,1,1],"nb":[24576,4,638976,638976],"src0":"linear_attn_qkv_mixed-0"}
+{"name":"conv_input-0","file":"133-conv_input-0.bin","bytes":712704,"op":"CONCAT","ne":[29,6144,1,1],"nb":[4,116,712704,712704],"src0":"conv_states_reshaped-0","src1":"qkv_mixed_transposed-0"}
+{"name":"conv_state_last-0","file":"134-conv_state_last-0.bin","bytes":712600,"op":"VIEW","ne":[3,6144,1,1],"nb":[4,116,712704,712704],"src0":"conv_input-0"}
+{"name":"conv_state_update-0","file":"135-conv_state_update-0.bin","bytes":73728,"op":"VIEW","ne":[18432,1,1,1],"nb":[4,73728,73728,73728],"src0":"cache_r_l0"}
+{"name":"conv_state_update-0 (copy of conv_state_last-0)","file":"136-conv_state_update-0__copy_of_conv_state_last-0_.bin","bytes":73728,"op":"CPY","ne":[18432,1,1,1],"nb":[4,73728,73728,73728],"src0":"conv_state_last-0","src1":"conv_state_update-0"}
+{"name":"conv_output_raw-0","file":"137-conv_output_raw-0.bin","bytes":638976,"op":"SSM_CONV","ne":[6144,26,1,1],"nb":[4,24576,638976,638976],"src0":"conv_input-0","src1":"blk.0.ssm_conv1d.weight"}
+{"name":"conv_output_silu-0","file":"138-conv_output_silu-0.bin","bytes":638976,"op":"UNARY","ne":[6144,26,1,1],"nb":[4,24576,638976,638976],"src0":"conv_output_raw-0"}
+{"name":"q_conv-0","file":"139-q_conv-0.bin","bytes":622592,"op":"VIEW","ne":[128,16,26,1],"nb":[4,512,24576,638976],"src0":"conv_output_silu-0"}
+{"name":"q_conv_predelta-0","file":"140-q_conv_predelta-0.bin","bytes":212992,"op":"L2_NORM","ne":[128,16,26,1],"nb":[4,512,8192,212992],"src0":"q_conv-0"}
+{"name":"k_conv-0","file":"141-k_conv-0.bin","bytes":622592,"op":"VIEW","ne":[128,16,26,1],"nb":[4,512,24576,638976],"src0":"conv_output_silu-0"}
+{"name":"k_conv_predelta-0","file":"142-k_conv_predelta-0.bin","bytes":212992,"op":"L2_NORM","ne":[128,16,26,1],"nb":[4,512,8192,212992],"src0":"k_conv-0"}
+{"name":"v_conv_predelta-0","file":"143-v_conv_predelta-0.bin","bytes":622592,"op":"VIEW","ne":[128,16,26,1],"nb":[4,512,24576,638976],"src0":"conv_output_silu-0"}
+{"name":"alpha-0","file":"144-alpha-0.bin","bytes":1664,"op":"RESHAPE","ne":[16,26,1,1],"nb":[4,64,1664,1664],"src0":"node_34"}
+{"name":"a_softplus-0","file":"145-a_softplus-0.bin","bytes":1664,"op":"UNARY","ne":[16,26,1,1],"nb":[4,64,1664,1664],"src0":"node_36"}
+{"name":"gate-0","file":"146-gate-0.bin","bytes":1664,"op":"MUL","ne":[16,26,1,1],"nb":[4,64,1664,1664],"src0":"a_softplus-0","src1":"blk.0.ssm_a"}
+{"name":"gate-0 (reshaped)","file":"147-gate-0__reshaped_.bin","bytes":1664,"op":"RESHAPE","ne":[1,16,26,1],"nb":[4,4,64,1664],"src0":"gate-0"}
+{"name":"beta-0","file":"148-beta-0.bin","bytes":1664,"op":"RESHAPE","ne":[1,16,26,1],"nb":[4,4,64,1664],"src0":"node_40"}
+{"name":"beta_sigmoid-0","file":"149-beta_sigmoid-0.bin","bytes":1664,"op":"UNARY","ne":[1,16,26,1],"nb":[4,4,64,1664],"src0":"beta-0"}
+{"name":"state_predelta-0","file":"150-state_predelta-0.bin","bytes":1048576,"op":"RESHAPE","ne":[128,128,16,1],"nb":[4,512,65536,1048576],"src0":"node_23"}
+{"name":"new_state-0","file":"151-new_state-0.bin","bytes":1048576,"op":"VIEW","ne":[128,128,16,1],"nb":[4,512,65536,1048576],"src0":"node_44"}
+{"name":"cache_s_l0 (view) (copy of new_state-0)","file":"152-cache_s_l0__view___copy_of_new_state-0_.bin","bytes":1048576,"op":"CPY","ne":[262144,1,1,1],"nb":[4,1048576,1048576,1048576],"src0":"new_state-0","src1":"cache_s_l0 (view)"}
+{"name":"attn_output-0","file":"153-attn_output-0.bin","bytes":212992,"op":"VIEW","ne":[128,16,26,1],"nb":[4,512,8192,212992],"src0":"node_44"}
+{"name":"norm-0","file":"154-norm-0.bin","bytes":212992,"op":"RMS_NORM","ne":[128,16,26,1],"nb":[4,512,8192,212992],"src0":"attn_output-0"}
+{"name":"z-0","file":"155-z-0.bin","bytes":212992,"op":"MUL_MAT","ne":[2048,26,1,1],"nb":[4,8192,212992,212992],"src0":"blk.0.attn_gate.weight","src1":"attn_norm-0"}
+{"name":"z-0 (reshaped)","file":"156-z-0__reshaped_.bin","bytes":212992,"op":"RESHAPE","ne":[128,16,26,1],"nb":[4,512,8192,212992],"src0":"z-0"}
+{"name":"final_output-0","file":"157-final_output-0.bin","bytes":212992,"op":"RESHAPE","ne":[2048,26,1,1],"nb":[4,8192,212992,212992],"src0":"node_54"}
+{"name":"linear_attn_out-0","file":"158-linear_attn_out-0.bin","bytes":106496,"op":"MUL_MAT","ne":[1024,26,1,1],"nb":[4,4096,106496,106496],"src0":"blk.0.ssm_out.weight","src1":"final_output-0"}
+{"name":"linear_attn_out-0 (reshaped)","file":"159-linear_attn_out-0__reshaped_.bin","bytes":106496,"op":"RESHAPE","ne":[1024,26,1,1],"nb":[4,4096,106496,106496],"src0":"linear_attn_out-0"}
+{"name":"attn_residual-0","file":"160-attn_residual-0.bin","bytes":106496,"op":"ADD","ne":[1024,26,1,1],"nb":[4,4096,106496,106496],"src0":"linear_attn_out-0 (reshaped)","src1":"model.input_embed"}
+{"name":"norm-0","file":"161-norm-0.bin","bytes":106496,"op":"RMS_NORM","ne":[1024,26,1,1],"nb":[4,4096,106496,106496],"src0":"attn_residual-0"}
+{"name":"attn_post_norm-0","file":"162-attn_post_norm-0.bin","bytes":106496,"op":"MUL","ne":[1024,26,1,1],"nb":[4,4096,106496,106496],"src0":"norm-0","src1":"blk.0.post_attention_norm.weight"}
+{"name":"ffn_gate-0","file":"163-ffn_gate-0.bin","bytes":372736,"op":"MUL_MAT","ne":[3584,26,1,1],"nb":[4,14336,372736,372736],"src0":"blk.0.ffn_gate.weight","src1":"attn_post_norm-0"}
+{"name":"ffn_up-0","file":"164-ffn_up-0.bin","bytes":372736,"op":"MUL_MAT","ne":[3584,26,1,1],"nb":[4,14336,372736,372736],"src0":"blk.0.ffn_up.weight","src1":"attn_post_norm-0"}
+{"name":"ffn_swiglu-0","file":"165-ffn_swiglu-0.bin","bytes":372736,"op":"GLU","ne":[3584,26,1,1],"nb":[4,14336,372736,372736],"src0":"ffn_gate-0","src1":"ffn_up-0"}
+{"name":"ffn_out-0","file":"166-ffn_out-0.bin","bytes":106496,"op":"MUL_MAT","ne":[1024,26,1,1],"nb":[4,4096,106496,106496],"src0":"blk.0.ffn_down.weight","src1":"ffn_swiglu-0"}
+{"name":"l_out-0","file":"167-l_out-0.bin","bytes":106496,"op":"ADD","ne":[1024,26,1,1],"nb":[4,4096,106496,106496],"src0":"ffn_out-0","src1":"attn_residual-0"}

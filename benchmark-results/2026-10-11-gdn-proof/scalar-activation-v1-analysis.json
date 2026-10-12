@@ -1,0 +1,188 @@
+{
+  "scope": "Descriptive five-pair ARM0.8B diagnostic only, all pairs retained. Does not replace original ten-pair product qualification or 4B/other-architecture coverage.",
+  "complete": true,
+  "correctness": {
+    "requests": 148,
+    "vectors": 1332,
+    "changes": []
+  },
+  "summary": {
+    "loadNanos": {
+      "geometricMean": 1.002813243128198,
+      "min": 0.9949056520595346,
+      "max": 1.0109232536648205
+    },
+    "coldRequestNanos": {
+      "geometricMean": 0.9263399780836906,
+      "min": 0.8947860864648851,
+      "max": 1.0066902952385608
+    },
+    "coldAllocatedBytes": {
+      "geometricMean": 0.20536296022476785,
+      "min": 0.2034569469792938,
+      "max": 0.2067762483055998
+    },
+    "javaAllocatedBytes": {
+      "geometricMean": 1.0,
+      "min": 1.0,
+      "max": 1.0
+    },
+    "requestNanos": {
+      "geometricMean": 1.2530974187867565,
+      "min": 1.2156163740794266,
+      "max": 1.3559795592325827
+    },
+    "peakRssKiB": {
+      "geometricMean": 0.8517086293904479,
+      "min": 0.8402065730109465,
+      "max": 0.8726852468372491
+    }
+  },
+  "pairs": [
+    {
+      "pair": 0,
+      "arms": {
+        "native": {
+          "loadNanos": 542746711,
+          "coldRequestNanos": 2805514455,
+          "coldAllocatedBytes": 773689712,
+          "javaAllocatedBytes": 96143746.66666667,
+          "requestNanos": 1380334194.3333333,
+          "peakRssKiB": 2102600
+        },
+        "scalar": {
+          "loadNanos": 548675271,
+          "coldRequestNanos": 2824284175,
+          "coldAllocatedBytes": 159980656,
+          "javaAllocatedBytes": 96143746.66666667,
+          "requestNanos": 1677956848.3333333,
+          "peakRssKiB": 1834908
+        }
+      },
+      "scalarOverFinalVector": {
+        "loadNanos": 1.0109232536648205,
+        "coldRequestNanos": 1.0066902952385608,
+        "coldAllocatedBytes": 0.2067762483055998,
+        "javaAllocatedBytes": 1.0,
+        "requestNanos": 1.2156163740794266,
+        "peakRssKiB": 0.8726852468372491
+      }
+    },
+    {
+      "pair": 1,
+      "arms": {
+        "native": {
+          "loadNanos": 553414889,
+          "coldRequestNanos": 2800563686,
+          "coldAllocatedBytes": 785459776,
+          "javaAllocatedBytes": 96139570.66666667,
+          "requestNanos": 1113029889.3333333,
+          "peakRssKiB": 2151468
+        },
+        "scalar": {
+          "loadNanos": 550595601,
+          "coldRequestNanos": 2555563486,
+          "coldAllocatedBytes": 159807248,
+          "javaAllocatedBytes": 96139570.66666667,
+          "requestNanos": 1380646455.3333333,
+          "peakRssKiB": 1831832
+        }
+      },
+      "scalarOverFinalVector": {
+        "loadNanos": 0.9949056520595346,
+        "coldRequestNanos": 0.9125175402277925,
+        "coldAllocatedBytes": 0.2034569469792938,
+        "javaAllocatedBytes": 1.0,
+        "requestNanos": 1.240439693996262,
+        "peakRssKiB": 0.8514335328250292
+      }
+    },
+    {
+      "pair": 2,
+      "arms": {
+        "native": {
+          "loadNanos": 543078733,
+          "coldRequestNanos": 2777356817,
+          "coldAllocatedBytes": 780767568,
+          "javaAllocatedBytes": 96142984,
+          "requestNanos": 1333842576.3333333,
+          "peakRssKiB": 2181892
+        },
+        "scalar": {
+          "loadNanos": 548687650,
+          "coldRequestNanos": 2485140237,
+          "coldAllocatedBytes": 159985136,
+          "javaAllocatedBytes": 96142984,
+          "requestNanos": 1634236349.3333333,
+          "peakRssKiB": 1833240
+        }
+      },
+      "scalarOverFinalVector": {
+        "loadNanos": 1.010327999715651,
+        "coldRequestNanos": 0.8947860864648851,
+        "coldAllocatedBytes": 0.20490750712124867,
+        "javaAllocatedBytes": 1.0,
+        "requestNanos": 1.2252093150495822,
+        "peakRssKiB": 0.8402065730109465
+      }
+    },
+    {
+      "pair": 3,
+      "arms": {
+        "native": {
+          "loadNanos": 552387693,
+          "coldRequestNanos": 2813270419,
+          "coldAllocatedBytes": 780529392,
+          "javaAllocatedBytes": 96139128,
+          "requestNanos": 1091021268.6666667,
+          "peakRssKiB": 2169744
+        },
+        "scalar": {
+          "loadNanos": 551153413,
+          "coldRequestNanos": 2530264533,
+          "coldAllocatedBytes": 159985232,
+          "javaAllocatedBytes": 96139128,
+          "requestNanos": 1479402539,
+          "peakRssKiB": 1836816
+        }
+      },
+      "scalarOverFinalVector": {
+        "loadNanos": 0.9977655548527943,
+        "coldRequestNanos": 0.8994032411215568,
+        "coldAllocatedBytes": 0.20497015697264095,
+        "javaAllocatedBytes": 1.0,
+        "requestNanos": 1.3559795592325827,
+        "peakRssKiB": 0.84655885671305
+      }
+    },
+    {
+      "pair": 4,
+      "arms": {
+        "native": {
+          "loadNanos": 543152988,
+          "coldRequestNanos": 2766357119,
+          "coldAllocatedBytes": 773565952,
+          "javaAllocatedBytes": 96142221.33333333,
+          "requestNanos": 1280537292,
+          "peakRssKiB": 2162400
+        },
+        "scalar": {
+          "loadNanos": 543289730,
+          "coldRequestNanos": 2552404531,
+          "coldAllocatedBytes": 159913912,
+          "javaAllocatedBytes": 96142221.33333333,
+          "requestNanos": 1579358704.3333333,
+          "peakRssKiB": 1833748
+        }
+      },
+      "scalarOverFinalVector": {
+        "loadNanos": 1.0002517559564637,
+        "coldRequestNanos": 0.9226590860122423,
+        "coldAllocatedBytes": 0.20672304874142133,
+        "javaAllocatedBytes": 1.0,
+        "requestNanos": 1.2333562749013116,
+        "peakRssKiB": 0.8480151683314835
+      }
+    }
+  ]
+}

@@ -1,0 +1,1604 @@
+{
+  "index": 0,
+  "content": " C\n\n<think>\nThe user wants me",
+  "tokens": [
+    351,
+    271,
+    248068,
+    198,
+    760,
+    1156,
+    6587,
+    728
+  ],
+  "id_slot": 0,
+  "stop": true,
+  "model": "model.gguf",
+  "tokens_predicted": 8,
+  "tokens_evaluated": 127,
+  "generation_settings": {
+    "seed": 0,
+    "temperature": 0.0,
+    "dynatemp_range": 0.0,
+    "dynatemp_exponent": 1.0,
+    "top_k": 40,
+    "top_p": 0.949999988079071,
+    "min_p": 0.05000000074505806,
+    "top_n_sigma": -1.0,
+    "xtc_probability": 0.0,
+    "xtc_threshold": 0.10000000149011612,
+    "typical_p": 1.0,
+    "repeat_last_n": 64,
+    "repeat_penalty": 1.0,
+    "presence_penalty": 0.0,
+    "frequency_penalty": 0.0,
+    "dry_multiplier": 0.0,
+    "dry_base": 1.75,
+    "dry_allowed_length": 2,
+    "dry_penalty_last_n": 2048,
+    "dry_sequence_breakers": [
+      "\n",
+      ":",
+      "\"",
+      "*"
+    ],
+    "mirostat": 0,
+    "mirostat_tau": 5.0,
+    "mirostat_eta": 0.10000000149011612,
+    "stop": [],
+    "max_tokens": 8,
+    "n_predict": 8,
+    "n_keep": 0,
+    "n_discard": 0,
+    "ignore_eos": false,
+    "stream": false,
+    "logit_bias": [],
+    "n_probs": 16,
+    "min_keep": 0,
+    "grammar": "",
+    "grammar_lazy": false,
+    "grammar_triggers": [],
+    "preserved_tokens": [],
+    "chat_format": "Content-only",
+    "reasoning_format": "deepseek",
+    "reasoning_in_content": false,
+    "generation_prompt": "",
+    "samplers": [
+      "temperature"
+    ],
+    "speculative.types": "none",
+    "timings_per_token": false,
+    "post_sampling_probs": false,
+    "backend_sampling": false,
+    "lora": []
+  },
+  "prompt": "Suggest three imaginative names for a pet dragon.\nOptions:\n- math: Self-contained calculation or proof\n- coding: Self-contained code writing or explanation without repository operations\n- coding_agent: Inspect/edit repository files or run tests\n- document: Answer from a supplied document\n- tools: Carry out an external service action\n- general: None of the specialist categories\nChoose the specialist needed for the request. File edits with test execution use coding_agent, even if code-related.\nA: math\nB: coding\nC: coding_agent\nD: document\nE: tools\nF: general\nAnswer:",
+  "has_new_line": true,
+  "truncated": false,
+  "stop_type": "limit",
+  "stopping_word": "",
+  "tokens_cached": 134,
+  "timings": {
+    "cache_n": 0,
+    "prompt_n": 127,
+    "prompt_ms": 1507.313,
+    "prompt_per_token_ms": 11.8686062992126,
+    "prompt_per_second": 84.25589111219766,
+    "predicted_n": 8,
+    "predicted_ms": 147.999,
+    "predicted_per_token_ms": 18.499875,
+    "predicted_per_second": 54.054419286616806
+  },
+  "completion_probabilities": [
+    {
+      "id": 351,
+      "token": " C",
+      "bytes": [
+        32,
+        67
+      ],
+      "logprob": -0.6829928159713745,
+      "top_logprobs": [
+        {
+          "id": 351,
+          "token": " C",
+          "bytes": [
+            32,
+            67
+          ],
+          "logprob": -0.6829928159713745
+        },
+        {
+          "id": 458,
+          "token": " E",
+          "bytes": [
+            32,
+            69
+          ],
+          "logprob": -2.6338250637054443
+        },
+        {
+          "id": 271,
+          "token": "\n\n",
+          "bytes": [
+            10,
+            10
+          ],
+          "logprob": -2.642324209213257
+        },
+        {
+          "id": 414,
+          "token": " D",
+          "bytes": [
+            32,
+            68
+          ],
+          "logprob": -2.6807076930999756
+        },
+        {
+          "id": 417,
+          "token": " B",
+          "bytes": [
+            32,
+            66
+          ],
+          "logprob": -2.836656332015991
+        },
+        {
+          "id": 357,
+          "token": " A",
+          "bytes": [
+            32,
+            65
+          ],
+          "logprob": -2.88083815574646
+        },
+        {
+          "id": 426,
+          "token": " F",
+          "bytes": [
+            32,
+            70
+          ],
+          "logprob": -3.6964452266693115
+        },
+        {
+          "id": 220,
+          "token": " ",
+          "bytes": [
+            32
+          ],
+          "logprob": -3.7079694271087646
+        },
+        {
+          "id": 198,
+          "token": "\n",
+          "bytes": [
+            10
+          ],
+          "logprob": -4.511857509613037
+        },
+        {
+          "id": 561,
+          "token": " The",
+          "bytes": [
+            32,
+            84,
+            104,
+            101
+          ],
+          "logprob": -4.6339569091796875
+        },
+        {
+          "id": 907,
+          "token": " ?",
+          "bytes": [
+            32,
+            63
+          ],
+          "logprob": -5.064568519592285
+        },
+        {
+          "id": 469,
+          "token": " G",
+          "bytes": [
+            32,
+            71
+          ],
+          "logprob": -5.253134250640869
+        },
+        {
+          "id": 2972,
+          "token": " **",
+          "bytes": [
+            32,
+            42,
+            42
+          ],
+          "logprob": -5.331348419189453
+        },
+        {
+          "id": 318,
+          "token": " (",
+          "bytes": [
+            32,
+            40
+          ],
+          "logprob": -5.376948356628418
+        },
+        {
+          "id": 21134,
+          "token": " Answer",
+          "bytes": [
+            32,
+            65,
+            110,
+            115,
+            119,
+            101,
+            114
+          ],
+          "logprob": -5.402010917663574
+        },
+        {
+          "id": 498,
+          "token": " [",
+          "bytes": [
+            32,
+            91
+          ],
+          "logprob": -5.518805503845215
+        }
+      ]
+    },
+    {
+      "id": 271,
+      "token": "\n\n",
+      "bytes": [
+        10,
+        10
+      ],
+      "logprob": -0.43142083287239075,
+      "top_logprobs": [
+        {
+          "id": 271,
+          "token": "\n\n",
+          "bytes": [
+            10,
+            10
+          ],
+          "logprob": -0.43142083287239075
+        },
+        {
+          "id": 25,
+          "token": ":",
+          "bytes": [
+            58
+          ],
+          "logprob": -1.9077181816101074
+        },
+        {
+          "id": 198,
+          "token": "\n",
+          "bytes": [
+            10
+          ],
+          "logprob": -2.2434706687927246
+        },
+        {
+          "id": 13,
+          "token": ".",
+          "bytes": [
+            46
+          ],
+          "logprob": -2.849395275115967
+        },
+        {
+          "id": 318,
+          "token": " (",
+          "bytes": [
+            32,
+            40
+          ],
+          "logprob": -4.871412754058838
+        },
+        {
+          "id": 11,
+          "token": ",",
+          "bytes": [
+            44
+          ],
+          "logprob": -5.245019435882568
+        },
+        {
+          "id": 248046,
+          "token": "",
+          "bytes": [],
+          "logprob": -6.052135944366455
+        },
+        {
+          "id": 248044,
+          "token": "",
+          "bytes": [],
+          "logprob": -6.5229811668396
+        },
+        {
+          "id": 1358,
+          "token": "\n\n\n",
+          "bytes": [
+            10,
+            10,
+            10
+          ],
+          "logprob": -6.689921855926514
+        },
+        {
+          "id": 220,
+          "token": " ",
+          "bytes": [
+            32
+          ],
+          "logprob": -6.712671756744385
+        },
+        {
+          "id": 26,
+          "token": ";",
+          "bytes": [
+            59
+          ],
+          "logprob": -6.7392897605896
+        },
+        {
+          "id": 321,
+          "token": " and",
+          "bytes": [
+            32,
+            97,
+            110,
+            100
+          ],
+          "logprob": -7.025404453277588
+        },
+        {
+          "id": 471,
+          "token": " -",
+          "bytes": [
+            32,
+            45
+          ],
+          "logprob": -7.138458728790283
+        },
+        {
+          "id": 10505,
+          "token": " coding",
+          "bytes": [
+            32,
+            99,
+            111,
+            100,
+            105,
+            110,
+            103
+          ],
+          "logprob": -7.286837100982666
+        },
+        {
+          "id": 6,
+          "token": "'",
+          "bytes": [
+            39
+          ],
+          "logprob": -7.679057598114014
+        },
+        {
+          "id": 369,
+          "token": " is",
+          "bytes": [
+            32,
+            105,
+            115
+          ],
+          "logprob": -7.772118091583252
+        }
+      ]
+    },
+    {
+      "id": 248068,
+      "token": "<think>",
+      "bytes": [
+        60,
+        116,
+        104,
+        105,
+        110,
+        107,
+        62
+      ],
+      "logprob": -0.507783830165863,
+      "top_logprobs": [
+        {
+          "id": 248068,
+          "token": "<think>",
+          "bytes": [
+            60,
+            116,
+            104,
+            105,
+            110,
+            107,
+            62
+          ],
+          "logprob": -0.507783830165863
+        },
+        {
+          "id": 760,
+          "token": "The",
+          "bytes": [
+            84,
+            104,
+            101
+          ],
+          "logprob": -3.0369529724121094
+        },
+        {
+          "id": 27775,
+          "token": "Based",
+          "bytes": [
+            66,
+            97,
+            115,
+            101,
+            100
+          ],
+          "logprob": -3.795705795288086
+        },
+        {
+          "id": 15666,
+          "token": "Answer",
+          "bytes": [
+            65,
+            110,
+            115,
+            119,
+            101,
+            114
+          ],
+          "logprob": -3.8659133911132812
+        },
+        {
+          "id": 332,
+          "token": "**",
+          "bytes": [
+            42,
+            42
+          ],
+          "logprob": -4.02079963684082
+        },
+        {
+          "id": 16,
+          "token": "1",
+          "bytes": [
+            49
+          ],
+          "logprob": -4.300325393676758
+        },
+        {
+          "id": 550,
+          "token": "##",
+          "bytes": [
+            35,
+            35
+          ],
+          "logprob": -4.411252975463867
+        },
+        {
+          "id": 3710,
+          "token": "What",
+          "bytes": [
+            87,
+            104,
+            97,
+            116
+          ],
+          "logprob": -4.415369033813477
+        },
+        {
+          "id": 5328,
+          "token": "Please",
+          "bytes": [
+            80,
+            108,
+            101,
+            97,
+            115,
+            101
+          ],
+          "logprob": -4.4637250900268555
+        },
+        {
+          "id": 8160,
+          "token": "Here",
+          "bytes": [
+            72,
+            101,
+            114,
+            101
+          ],
+          "logprob": -4.521139144897461
+        },
+        {
+          "id": 58,
+          "token": "[",
+          "bytes": [
+            91
+          ],
+          "logprob": -4.740277290344238
+        },
+        {
+          "id": 71093,
+          "token": "```",
+          "bytes": [
+            96,
+            96,
+            96
+          ],
+          "logprob": -4.834038734436035
+        },
+        {
+          "id": 14162,
+          "token": "Question",
+          "bytes": [
+            81,
+            117,
+            101,
+            115,
+            116,
+            105,
+            111,
+            110
+          ],
+          "logprob": -4.970926284790039
+        },
+        {
+          "id": 248069,
+          "token": "</think>",
+          "bytes": [
+            60,
+            47,
+            116,
+            104,
+            105,
+            110,
+            107,
+            62
+          ],
+          "logprob": -5.035953521728516
+        },
+        {
+          "id": 40,
+          "token": "I",
+          "bytes": [
+            73
+          ],
+          "logprob": -5.127052307128906
+        },
+        {
+          "id": 1919,
+          "token": "This",
+          "bytes": [
+            84,
+            104,
+            105,
+            115
+          ],
+          "logprob": -5.242774963378906
+        }
+      ]
+    },
+    {
+      "id": 198,
+      "token": "\n",
+      "bytes": [
+        10
+      ],
+      "logprob": -0.593059241771698,
+      "top_logprobs": [
+        {
+          "id": 198,
+          "token": "\n",
+          "bytes": [
+            10
+          ],
+          "logprob": -0.593059241771698
+        },
+        {
+          "id": 271,
+          "token": "\n\n",
+          "bytes": [
+            10,
+            10
+          ],
+          "logprob": -0.8052079081535339
+        },
+        {
+          "id": 25,
+          "token": ":",
+          "bytes": [
+            58
+          ],
+          "logprob": -8.40041446685791
+        },
+        {
+          "id": 332,
+          "token": "**",
+          "bytes": [
+            42,
+            42
+          ],
+          "logprob": -9.950804710388184
+        },
+        {
+          "id": 363,
+          "token": "()",
+          "bytes": [
+            40,
+            41
+          ],
+          "logprob": -11.085296630859375
+        },
+        {
+          "id": 1,
+          "token": "\"",
+          "bytes": [
+            34
+          ],
+          "logprob": -11.089656829833984
+        },
+        {
+          "id": 248046,
+          "token": "",
+          "bytes": [],
+          "logprob": -11.401294708251953
+        },
+        {
+          "id": 8,
+          "token": ")",
+          "bytes": [
+            41
+          ],
+          "logprob": -11.56735610961914
+        },
+        {
+          "id": 561,
+          "token": " The",
+          "bytes": [
+            32,
+            84,
+            104,
+            101
+          ],
+          "logprob": -12.089285850524902
+        },
+        {
+          "id": 7,
+          "token": "(",
+          "bytes": [
+            40
+          ],
+          "logprob": -12.35051441192627
+        },
+        {
+          "id": 60,
+          "token": "]",
+          "bytes": [
+            93
+          ],
+          "logprob": -12.815704345703125
+        },
+        {
+          "id": 2228,
+          "token": "  \n",
+          "bytes": [
+            32,
+            32,
+            10
+          ],
+          "logprob": -12.990714073181152
+        },
+        {
+          "id": 579,
+          "token": "'s",
+          "bytes": [
+            39,
+            115
+          ],
+          "logprob": -12.998425483703613
+        },
+        {
+          "id": 27,
+          "token": "<",
+          "bytes": [
+            60
+          ],
+          "logprob": -13.153700828552246
+        },
+        {
+          "id": 760,
+          "token": "The",
+          "bytes": [
+            84,
+            104,
+            101
+          ],
+          "logprob": -13.25986385345459
+        },
+        {
+          "id": 6987,
+          "token": "\n    \n",
+          "bytes": [
+            10,
+            32,
+            32,
+            32,
+            32,
+            10
+          ],
+          "logprob": -13.353922843933105
+        }
+      ]
+    },
+    {
+      "id": 760,
+      "token": "The",
+      "bytes": [
+        84,
+        104,
+        101
+      ],
+      "logprob": -0.668372631072998,
+      "top_logprobs": [
+        {
+          "id": 760,
+          "token": "The",
+          "bytes": [
+            84,
+            104,
+            101
+          ],
+          "logprob": -0.668372631072998
+        },
+        {
+          "id": 90700,
+          "token": "Thinking",
+          "bytes": [
+            84,
+            104,
+            105,
+            110,
+            107,
+            105,
+            110,
+            103
+          ],
+          "logprob": -0.8100924491882324
+        },
+        {
+          "id": 248069,
+          "token": "</think>",
+          "bytes": [
+            60,
+            47,
+            116,
+            104,
+            105,
+            110,
+            107,
+            62
+          ],
+          "logprob": -3.620479106903076
+        },
+        {
+          "id": 8160,
+          "token": "Here",
+          "bytes": [
+            72,
+            101,
+            114,
+            101
+          ],
+          "logprob": -5.093320369720459
+        },
+        {
+          "id": 40,
+          "token": "I",
+          "bytes": [
+            73
+          ],
+          "logprob": -5.724465847015381
+        },
+        {
+          "id": 27,
+          "token": "<",
+          "bytes": [
+            60
+          ],
+          "logprob": -7.175490856170654
+        },
+        {
+          "id": 31248,
+          "token": "Okay",
+          "bytes": [
+            79,
+            107,
+            97,
+            121
+          ],
+          "logprob": -7.531060695648193
+        },
+        {
+          "id": 16,
+          "token": "1",
+          "bytes": [
+            49
+          ],
+          "logprob": -7.582713603973389
+        },
+        {
+          "id": 37405,
+          "token": "Think",
+          "bytes": [
+            84,
+            104,
+            105,
+            110,
+            107
+          ],
+          "logprob": -7.646911144256592
+        },
+        {
+          "id": 3733,
+          "token": "There",
+          "bytes": [
+            84,
+            104,
+            101,
+            114,
+            101
+          ],
+          "logprob": -8.20722484588623
+        },
+        {
+          "id": 1919,
+          "token": "This",
+          "bytes": [
+            84,
+            104,
+            105,
+            115
+          ],
+          "logprob": -8.344209671020508
+        },
+        {
+          "id": 12,
+          "token": "-",
+          "bytes": [
+            45
+          ],
+          "logprob": -8.368595123291016
+        },
+        {
+          "id": 1421,
+          "token": "User",
+          "bytes": [
+            85,
+            115,
+            101,
+            114
+          ],
+          "logprob": -8.377087593078613
+        },
+        {
+          "id": 9764,
+          "token": "Let",
+          "bytes": [
+            76,
+            101,
+            116
+          ],
+          "logprob": -8.411377906799316
+        },
+        {
+          "id": 248068,
+          "token": "<think>",
+          "bytes": [
+            60,
+            116,
+            104,
+            105,
+            110,
+            107,
+            62
+          ],
+          "logprob": -8.468610763549805
+        },
+        {
+          "id": 1596,
+          "token": "We",
+          "bytes": [
+            87,
+            101
+          ],
+          "logprob": -8.592723846435547
+        }
+      ]
+    },
+    {
+      "id": 1156,
+      "token": " user",
+      "bytes": [
+        32,
+        117,
+        115,
+        101,
+        114
+      ],
+      "logprob": -0.009630773216485977,
+      "top_logprobs": [
+        {
+          "id": 1156,
+          "token": " user",
+          "bytes": [
+            32,
+            117,
+            115,
+            101,
+            114
+          ],
+          "logprob": -0.009630773216485977
+        },
+        {
+          "id": 9640,
+          "token": " prompt",
+          "bytes": [
+            32,
+            112,
+            114,
+            111,
+            109,
+            112,
+            116
+          ],
+          "logprob": -6.05015230178833
+        },
+        {
+          "id": 1558,
+          "token": " model",
+          "bytes": [
+            32,
+            109,
+            111,
+            100,
+            101,
+            108
+          ],
+          "logprob": -6.5518879890441895
+        },
+        {
+          "id": 1622,
+          "token": " request",
+          "bytes": [
+            32,
+            114,
+            101,
+            113,
+            117,
+            101,
+            115,
+            116
+          ],
+          "logprob": -6.568594455718994
+        },
+        {
+          "id": 2570,
+          "token": " User",
+          "bytes": [
+            32,
+            85,
+            115,
+            101,
+            114
+          ],
+          "logprob": -6.963871479034424
+        },
+        {
+          "id": 1879,
+          "token": " input",
+          "bytes": [
+            32,
+            105,
+            110,
+            112,
+            117,
+            116
+          ],
+          "logprob": -7.432749271392822
+        },
+        {
+          "id": 3272,
+          "token": " thought",
+          "bytes": [
+            32,
+            116,
+            104,
+            111,
+            117,
+            103,
+            104,
+            116
+          ],
+          "logprob": -7.51725435256958
+        },
+        {
+          "id": 3274,
+          "token": " task",
+          "bytes": [
+            32,
+            116,
+            97,
+            115,
+            107
+          ],
+          "logprob": -7.970144748687744
+        },
+        {
+          "id": 31626,
+          "token": " reasoning",
+          "bytes": [
+            32,
+            114,
+            101,
+            97,
+            115,
+            111,
+            110,
+            105,
+            110,
+            103
+          ],
+          "logprob": -8.019834518432617
+        },
+        {
+          "id": 1785,
+          "token": " system",
+          "bytes": [
+            32,
+            115,
+            121,
+            115,
+            116,
+            101,
+            109
+          ],
+          "logprob": -8.359381675720215
+        },
+        {
+          "id": 5614,
+          "token": " goal",
+          "bytes": [
+            32,
+            103,
+            111,
+            97,
+            108
+          ],
+          "logprob": -9.222792625427246
+        },
+        {
+          "id": 11870,
+          "token": " logic",
+          "bytes": [
+            32,
+            108,
+            111,
+            103,
+            105,
+            99
+          ],
+          "logprob": -9.363722801208496
+        },
+        {
+          "id": 2468,
+          "token": " output",
+          "bytes": [
+            32,
+            111,
+            117,
+            116,
+            112,
+            117,
+            116
+          ],
+          "logprob": -9.465813636779785
+        },
+        {
+          "id": 2100,
+          "token": " target",
+          "bytes": [
+            32,
+            116,
+            97,
+            114,
+            103,
+            101,
+            116
+          ],
+          "logprob": -9.501763343811035
+        },
+        {
+          "id": 3296,
+          "token": " question",
+          "bytes": [
+            32,
+            113,
+            117,
+            101,
+            115,
+            116,
+            105,
+            111,
+            110
+          ],
+          "logprob": -9.526172637939453
+        },
+        {
+          "id": 5952,
+          "token": " Request",
+          "bytes": [
+            32,
+            82,
+            101,
+            113,
+            117,
+            101,
+            115,
+            116
+          ],
+          "logprob": -9.65443229675293
+        }
+      ]
+    },
+    {
+      "id": 6587,
+      "token": " wants",
+      "bytes": [
+        32,
+        119,
+        97,
+        110,
+        116,
+        115
+      ],
+      "logprob": -0.006660299841314554,
+      "top_logprobs": [
+        {
+          "id": 6587,
+          "token": " wants",
+          "bytes": [
+            32,
+            119,
+            97,
+            110,
+            116,
+            115
+          ],
+          "logprob": -0.006660299841314554
+        },
+        {
+          "id": 369,
+          "token": " is",
+          "bytes": [
+            32,
+            105,
+            115
+          ],
+          "logprob": -6.088109970092773
+        },
+        {
+          "id": 682,
+          "token": " has",
+          "bytes": [
+            32,
+            104,
+            97,
+            115
+          ],
+          "logprob": -6.290622711181641
+        },
+        {
+          "id": 16561,
+          "token": " asks",
+          "bytes": [
+            32,
+            97,
+            115,
+            107,
+            115
+          ],
+          "logprob": -7.047983169555664
+        },
+        {
+          "id": 3749,
+          "token": " needs",
+          "bytes": [
+            32,
+            110,
+            101,
+            101,
+            100,
+            115
+          ],
+          "logprob": -7.3819732666015625
+        },
+        {
+          "id": 5529,
+          "token": " provides",
+          "bytes": [
+            32,
+            112,
+            114,
+            111,
+            118,
+            105,
+            100,
+            101,
+            115
+          ],
+          "logprob": -7.801279067993164
+        },
+        {
+          "id": 3766,
+          "token": " provided",
+          "bytes": [
+            32,
+            112,
+            114,
+            111,
+            118,
+            105,
+            100,
+            101,
+            100
+          ],
+          "logprob": -9.254140853881836
+        },
+        {
+          "id": 7225,
+          "token": " requires",
+          "bytes": [
+            32,
+            114,
+            101,
+            113,
+            117,
+            105,
+            114,
+            101,
+            115
+          ],
+          "logprob": -9.36625862121582
+        },
+        {
+          "id": 4439,
+          "token": " asked",
+          "bytes": [
+            32,
+            97,
+            115,
+            107,
+            101,
+            100
+          ],
+          "logprob": -9.555227279663086
+        },
+        {
+          "id": 579,
+          "token": "'s",
+          "bytes": [
+            39,
+            115
+          ],
+          "logprob": -9.678802490234375
+        },
+        {
+          "id": 7154,
+          "token": " requests",
+          "bytes": [
+            32,
+            114,
+            101,
+            113,
+            117,
+            101,
+            115,
+            116,
+            115
+          ],
+          "logprob": -9.73179817199707
+        },
+        {
+          "id": 9640,
+          "token": " prompt",
+          "bytes": [
+            32,
+            112,
+            114,
+            111,
+            109,
+            112,
+            116
+          ],
+          "logprob": -9.844446182250977
+        },
+        {
+          "id": 17855,
+          "token": " presents",
+          "bytes": [
+            32,
+            112,
+            114,
+            101,
+            115,
+            101,
+            110,
+            116,
+            115
+          ],
+          "logprob": -10.220582962036133
+        },
+        {
+          "id": 1318,
+          "token": " want",
+          "bytes": [
+            32,
+            119,
+            97,
+            110,
+            116
+          ],
+          "logprob": -11.053285598754883
+        },
+        {
+          "id": 1622,
+          "token": " request",
+          "bytes": [
+            32,
+            114,
+            101,
+            113,
+            117,
+            101,
+            115,
+            116
+          ],
+          "logprob": -11.090347290039062
+        },
+        {
+          "id": 1879,
+          "token": " input",
+          "bytes": [
+            32,
+            105,
+            110,
+            112,
+            117,
+            116
+          ],
+          "logprob": -11.225723266601562
+        }
+      ]
+    },
+    {
+      "id": 728,
+      "token": " me",
+      "bytes": [
+        32,
+        109,
+        101
+      ],
+      "logprob": -0.8009902238845825,
+      "top_logprobs": [
+        {
+          "id": 728,
+          "token": " me",
+          "bytes": [
+            32,
+            109,
+            101
+          ],
+          "logprob": -0.8009902238845825
+        },
+        {
+          "id": 2250,
+          "token": " three",
+          "bytes": [
+            32,
+            116,
+            104,
+            114,
+            101,
+            101
+          ],
+          "logprob": -1.4446135759353638
+        },
+        {
+          "id": 310,
+          "token": " to",
+          "bytes": [
+            32,
+            116,
+            111
+          ],
+          "logprob": -1.748311161994934
+        },
+        {
+          "id": 264,
+          "token": " a",
+          "bytes": [
+            32,
+            97
+          ],
+          "logprob": -2.352626085281372
+        },
+        {
+          "id": 279,
+          "token": " the",
+          "bytes": [
+            32,
+            116,
+            104,
+            101
+          ],
+          "logprob": -3.8039236068725586
+        },
+        {
+          "id": 17683,
+          "token": " suggestions",
+          "bytes": [
+            32,
+            115,
+            117,
+            103,
+            103,
+            101,
+            115,
+            116,
+            105,
+            111,
+            110,
+            115
+          ],
+          "logprob": -4.898707389831543
+        },
+        {
+          "id": 220,
+          "token": " ",
+          "bytes": [
+            32
+          ],
+          "logprob": -5.6536970138549805
+        },
+        {
+          "id": 449,
+          "token": " an",
+          "bytes": [
+            32,
+            97,
+            110
+          ],
+          "logprob": -6.45023250579834
+        },
+        {
+          "id": 4874,
+          "token": " names",
+          "bytes": [
+            32,
+            110,
+            97,
+            109,
+            101,
+            115
+          ],
+          "logprob": -6.691828727722168
+        },
+        {
+          "id": 1330,
+          "token": " two",
+          "bytes": [
+            32,
+            116,
+            119,
+            111
+          ],
+          "logprob": -6.807604789733887
+        },
+        {
+          "id": 9183,
+          "token": " advice",
+          "bytes": [
+            32,
+            97,
+            100,
+            118,
+            105,
+            99,
+            101
+          ],
+          "logprob": -6.962170600891113
+        },
+        {
+          "id": 2943,
+          "token": " four",
+          "bytes": [
+            32,
+            102,
+            111,
+            117,
+            114
+          ],
+          "logprob": -7.11161994934082
+        },
+        {
+          "id": 4097,
+          "token": " five",
+          "bytes": [
+            32,
+            102,
+            105,
+            118,
+            101
+          ],
+          "logprob": -7.145743370056152
+        },
+        {
+          "id": 799,
+          "token": " one",
+          "bytes": [
+            32,
+            111,
+            110,
+            101
+          ],
+          "logprob": -7.288264274597168
+        },
+        {
+          "id": 1438,
+          "token": " help",
+          "bytes": [
+            32,
+            104,
+            101,
+            108,
+            112
+          ],
+          "logprob": -7.956694602966309
+        },
+        {
+          "id": 3050,
+          "token": " specific",
+          "bytes": [
+            32,
+            115,
+            112,
+            101,
+            99,
+            105,
+            102,
+            105,
+            99
+          ],
+          "logprob": -8.00235652923584
+        }
+      ]
+    }
+  ]
+}

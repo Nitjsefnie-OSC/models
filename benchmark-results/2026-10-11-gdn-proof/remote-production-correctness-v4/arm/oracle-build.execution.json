@@ -1,0 +1,13 @@
+{
+  "command": [
+    "cmake",
+    "--build",
+    "oracle-build",
+    "--target",
+    "llama-server",
+    "-j",
+    "8"
+  ],
+  "exitCode": 0,
+  "wallSeconds": 112.251866277
+}

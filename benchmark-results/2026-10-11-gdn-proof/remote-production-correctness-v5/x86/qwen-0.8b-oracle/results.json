@@ -1,0 +1,623 @@
+[
+  {
+    "id": "easy-intent-00",
+    "tokenizationExact": true,
+    "oracleTokens": [
+      3627,
+      7621,
+      271,
+      248068,
+      198,
+      760,
+      1156,
+      6587
+    ],
+    "arms": {
+      "baseline": {
+        "tokens": [
+          357,
+          271,
+          248068,
+          271,
+          248069,
+          271,
+          760,
+          1156
+        ],
+        "exact": false
+      },
+      "java": {
+        "tokens": [
+          357,
+          271,
+          248068,
+          271,
+          248069,
+          271,
+          760,
+          1156
+        ],
+        "exact": false
+      },
+      "native": {
+        "tokens": [
+          357,
+          271,
+          248068,
+          271,
+          248069,
+          271,
+          760,
+          1156
+        ],
+        "exact": false
+      },
+      "published": {
+        "tokens": [
+          271,
+          248068,
+          271,
+          248069,
+          271,
+          760,
+          1156,
+          579
+        ],
+        "exact": false
+      }
+    },
+    "scope": "independent token check; full-logit equality is checked separately between Models artifacts"
+  },
+  {
+    "id": "easy-intent-01",
+    "tokenizationExact": true,
+    "oracleTokens": [
+      271,
+      248068,
+      271,
+      248069,
+      271,
+      760,
+      1156,
+      579
+    ],
+    "arms": {
+      "baseline": {
+        "tokens": [
+          417,
+          271,
+          248068,
+          198,
+          90700,
+          8340,
+          25,
+          271
+        ],
+        "exact": false
+      },
+      "java": {
+        "tokens": [
+          417,
+          271,
+          248068,
+          198,
+          90700,
+          8340,
+          25,
+          271
+        ],
+        "exact": false
+      },
+      "native": {
+        "tokens": [
+          417,
+          271,
+          248068,
+          198,
+          90700,
+          8340,
+          25,
+          271
+        ],
+        "exact": false
+      },
+      "published": {
+        "tokens": [
+          417,
+          271,
+          248068,
+          198,
+          90700,
+          8340,
+          25,
+          271
+        ],
+        "exact": false
+      }
+    },
+    "scope": "independent token check; full-logit equality is checked separately between Models artifacts"
+  },
+  {
+    "id": "easy-intent-02",
+    "tokenizationExact": true,
+    "oracleTokens": [
+      271,
+      248068,
+      271,
+      248069,
+      271,
+      760,
+      1156,
+      579
+    ],
+    "arms": {
+      "baseline": {
+        "tokens": [
+          3627,
+          7621,
+          271,
+          248068,
+          198,
+          90700,
+          8340,
+          25
+        ],
+        "exact": false
+      },
+      "java": {
+        "tokens": [
+          3627,
+          7621,
+          271,
+          248068,
+          198,
+          90700,
+          8340,
+          25
+        ],
+        "exact": false
+      },
+      "native": {
+        "tokens": [
+          3627,
+          7621,
+          271,
+          248068,
+          198,
+          90700,
+          8340,
+          25
+        ],
+        "exact": false
+      },
+      "published": {
+        "tokens": [
+          357,
+          271,
+          248068,
+          198,
+          760,
+          1156,
+          6587,
+          310
+        ],
+        "exact": false
+      }
+    },
+    "scope": "independent token check; full-logit equality is checked separately between Models artifacts"
+  },
+  {
+    "id": "easy-intent-03",
+    "tokenizationExact": true,
+    "oracleTokens": [
+      414,
+      271,
+      248068,
+      198,
+      90700,
+      8340,
+      25,
+      271
+    ],
+    "arms": {
+      "baseline": {
+        "tokens": [
+          414,
+          271,
+          248068,
+          198,
+          90700,
+          8340,
+          25,
+          271
+        ],
+        "exact": true
+      },
+      "java": {
+        "tokens": [
+          414,
+          271,
+          248068,
+          198,
+          90700,
+          8340,
+          25,
+          271
+        ],
+        "exact": true
+      },
+      "native": {
+        "tokens": [
+          414,
+          271,
+          248068,
+          198,
+          90700,
+          8340,
+          25,
+          271
+        ],
+        "exact": true
+      },
+      "published": {
+        "tokens": [
+          414,
+          271,
+          248068,
+          198,
+          90700,
+          8340,
+          25,
+          271
+        ],
+        "exact": true
+      }
+    },
+    "scope": "independent token check; full-logit equality is checked separately between Models artifacts"
+  },
+  {
+    "id": "snips-AddToPlaylist-0",
+    "tokenizationExact": true,
+    "oracleTokens": [
+      357,
+      271,
+      248068,
+      198,
+      760,
+      1156,
+      6587,
+      728
+    ],
+    "arms": {
+      "baseline": {
+        "tokens": [
+          357,
+          271,
+          248068,
+          198,
+          760,
+          1156,
+          6587,
+          728
+        ],
+        "exact": true
+      },
+      "java": {
+        "tokens": [
+          357,
+          271,
+          248068,
+          198,
+          760,
+          1156,
+          6587,
+          728
+        ],
+        "exact": true
+      },
+      "native": {
+        "tokens": [
+          357,
+          271,
+          248068,
+          198,
+          760,
+          1156,
+          6587,
+          728
+        ],
+        "exact": true
+      },
+      "published": {
+        "tokens": [
+          357,
+          271,
+          248068,
+          198,
+          90700,
+          8340,
+          25,
+          271
+        ],
+        "exact": false
+      }
+    },
+    "scope": "independent token check; full-logit equality is checked separately between Models artifacts"
+  },
+  {
+    "id": "snips-AddToPlaylist-1",
+    "tokenizationExact": true,
+    "oracleTokens": [
+      357,
+      271,
+      248068,
+      271,
+      248069,
+      271,
+      32,
+      25
+    ],
+    "arms": {
+      "baseline": {
+        "tokens": [
+          414,
+          198,
+          35,
+          25,
+          6834,
+          23373,
+          198,
+          35
+        ],
+        "exact": false
+      },
+      "java": {
+        "tokens": [
+          414,
+          198,
+          35,
+          25,
+          6834,
+          23373,
+          198,
+          35
+        ],
+        "exact": false
+      },
+      "native": {
+        "tokens": [
+          414,
+          198,
+          35,
+          25,
+          6834,
+          23373,
+          198,
+          35
+        ],
+        "exact": false
+      },
+      "published": {
+        "tokens": [
+          357,
+          271,
+          248068,
+          271,
+          248069,
+          271,
+          32,
+          25
+        ],
+        "exact": true
+      }
+    },
+    "scope": "independent token check; full-logit equality is checked separately between Models artifacts"
+  },
+  {
+    "id": "snips-AddToPlaylist-2",
+    "tokenizationExact": true,
+    "oracleTokens": [
+      357,
+      271,
+      248068,
+      198,
+      90700,
+      8340,
+      25,
+      271
+    ],
+    "arms": {
+      "baseline": {
+        "tokens": [
+          357,
+          271,
+          248068,
+          198,
+          90700,
+          8340,
+          25,
+          271
+        ],
+        "exact": true
+      },
+      "java": {
+        "tokens": [
+          357,
+          271,
+          248068,
+          198,
+          90700,
+          8340,
+          25,
+          271
+        ],
+        "exact": true
+      },
+      "native": {
+        "tokens": [
+          357,
+          271,
+          248068,
+          198,
+          90700,
+          8340,
+          25,
+          271
+        ],
+        "exact": true
+      },
+      "published": {
+        "tokens": [
+          357,
+          271,
+          248068,
+          271,
+          248069,
+          271,
+          32,
+          25
+        ],
+        "exact": false
+      }
+    },
+    "scope": "independent token check; full-logit equality is checked separately between Models artifacts"
+  },
+  {
+    "id": "snips-AddToPlaylist-3",
+    "tokenizationExact": true,
+    "oracleTokens": [
+      357,
+      271,
+      248068,
+      271,
+      248069,
+      271,
+      15666,
+      25
+    ],
+    "arms": {
+      "baseline": {
+        "tokens": [
+          357,
+          271,
+          248068,
+          271,
+          248069,
+          271,
+          32,
+          25
+        ],
+        "exact": false
+      },
+      "java": {
+        "tokens": [
+          357,
+          271,
+          248068,
+          271,
+          248069,
+          271,
+          32,
+          25
+        ],
+        "exact": false
+      },
+      "native": {
+        "tokens": [
+          357,
+          271,
+          248068,
+          271,
+          248069,
+          271,
+          32,
+          25
+        ],
+        "exact": false
+      },
+      "published": {
+        "tokens": [
+          357,
+          271,
+          248068,
+          198,
+          90700,
+          8340,
+          25,
+          271
+        ],
+        "exact": false
+      }
+    },
+    "scope": "independent token check; full-logit equality is checked separately between Models artifacts"
+  },
+  {
+    "id": "original-routing-06-0",
+    "tokenizationExact": true,
+    "oracleTokens": [
+      351,
+      271,
+      248068,
+      271,
+      248069,
+      271,
+      34,
+      248044
+    ],
+    "arms": {
+      "baseline": {
+        "tokens": [
+          357,
+          271,
+          248068,
+          271,
+          248069,
+          271,
+          32,
+          25
+        ],
+        "exact": false
+      },
+      "java": {
+        "tokens": [
+          357,
+          271,
+          248068,
+          271,
+          248069,
+          271,
+          32,
+          25
+        ],
+        "exact": false
+      },
+      "native": {
+        "tokens": [
+          357,
+          271,
+          248068,
+          271,
+          248069,
+          271,
+          32,
+          25
+        ],
+        "exact": false
+      },
+      "published": {
+        "tokens": [
+          351,
+          271,
+          248068,
+          271,
+          248069,
+          271,
+          34,
+          248044
+        ],
+        "exact": true
+      }
+    },
+    "scope": "independent token check; full-logit equality is checked separately between Models artifacts"
+  }
+]

@@ -1,0 +1,44 @@
+[
+  {
+    "instanceId": "i-0f9d3f2a2de683618",
+    "state": "terminated",
+    "observedAt": "2026-10-12T22:14:21.516352+00:00",
+    "launchTime": "2026-10-12T21:19:54+00:00",
+    "transitionReason": "User initiated"
+  },
+  {
+    "instanceId": "i-0092107fe59122379",
+    "state": "terminated",
+    "observedAt": "2026-10-12T22:14:21.516789+00:00",
+    "launchTime": "2026-10-12T21:03:06+00:00",
+    "transitionReason": "User initiated"
+  },
+  {
+    "instanceId": "i-0e594f3319922897c",
+    "state": "terminated",
+    "observedAt": "2026-10-12T22:14:21.516900+00:00",
+    "launchTime": "2026-10-12T21:02:53+00:00",
+    "transitionReason": "User initiated"
+  },
+  {
+    "instanceId": "i-0cd1aac41e6c83fd8",
+    "state": "terminated",
+    "observedAt": "2026-10-12T22:14:21.516996+00:00",
+    "launchTime": "2026-10-12T21:19:40+00:00",
+    "transitionReason": "User initiated"
+  },
+  {
+    "instanceId": "i-01f4ffea2c7da6657",
+    "state": "terminated",
+    "observedAt": "2026-10-12T22:14:21.517089+00:00",
+    "launchTime": "2026-10-12T21:02:38+00:00",
+    "transitionReason": "User initiated"
+  },
+  {
+    "instanceId": "i-0141497591e6a1991",
+    "state": "terminated",
+    "observedAt": "2026-10-12T22:14:21.519248+00:00",
+    "launchTime": "2026-10-12T20:43:34+00:00",
+    "transitionReason": "User initiated"
+  }
+]

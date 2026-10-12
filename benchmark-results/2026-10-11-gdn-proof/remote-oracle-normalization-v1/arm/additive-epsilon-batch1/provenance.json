@@ -1,0 +1,31 @@
+{
+  "command": [
+    "/work/llama-server-additive-epsilon",
+    "-m",
+    "model.gguf",
+    "--host",
+    "127.0.0.1",
+    "--port",
+    "52035",
+    "-t",
+    "4",
+    "-tb",
+    "4",
+    "-c",
+    "2048",
+    "-np",
+    "1",
+    "-ngl",
+    "0",
+    "--no-op-offload",
+    "-fa",
+    "off",
+    "-ctk",
+    "f32",
+    "-ctv",
+    "f32",
+    "-ub",
+    "1"
+  ],
+  "binarySha256": "a8e9c7430bfad3c459e251fb02b6041619b9e8c6ddf84df05132b073536bd0c4"
+}

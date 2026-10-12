@@ -1,0 +1,11 @@
+{
+  "command": [
+    "python3",
+    "run-oracle.py",
+    "qwen-0.8b",
+    "qwen-0.8b.gguf",
+    "/work/oracle-build/bin/llama-server"
+  ],
+  "exitCode": 1,
+  "wallSeconds": 7.6224598329999935
+}

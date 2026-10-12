@@ -1,0 +1,36 @@
+[
+  {
+    "model": "qwen-0.8b",
+    "arm": "baseline",
+    "requests": 148,
+    "changes": [],
+    "correctLabels": 89,
+    "perDataset": {
+      "jevbench": {
+        "correct": 74,
+        "total": 120
+      },
+      "snips": {
+        "correct": 15,
+        "total": 28
+      }
+    }
+  },
+  {
+    "model": "qwen-0.8b",
+    "arm": "native",
+    "requests": 148,
+    "changes": [],
+    "correctLabels": 89,
+    "perDataset": {
+      "jevbench": {
+        "correct": 74,
+        "total": 120
+      },
+      "snips": {
+        "correct": 15,
+        "total": 28
+      }
+    }
+  }
+]

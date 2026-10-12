@@ -1,0 +1,75 @@
+[
+  {
+    "name": "extract",
+    "command": [
+      "tar",
+      "xf",
+      "oracle-source.tar",
+      "-C",
+      "oracle-source"
+    ],
+    "exitCode": 0,
+    "wallSeconds": 0.2642835410000046
+  },
+  {
+    "name": "configure",
+    "command": [
+      "cmake",
+      "-S",
+      "oracle-source",
+      "-B",
+      "oracle-build",
+      "-DCMAKE_BUILD_TYPE=Release",
+      "-DBUILD_SHARED_LIBS=OFF",
+      "-DLLAMA_BUILD_TESTS=OFF",
+      "-DLLAMA_BUILD_EXAMPLES=ON",
+      "-DLLAMA_BUILD_APP=OFF",
+      "-DLLAMA_BUILD_UI=OFF",
+      "-DLLAMA_OPENSSL=OFF",
+      "-DGGML_BLAS=OFF"
+    ],
+    "exitCode": 0,
+    "wallSeconds": 1.0661395469999988
+  },
+  {
+    "name": "build-baseline",
+    "command": [
+      "cmake",
+      "--build",
+      "oracle-build",
+      "--target",
+      "llama-eval-callback",
+      "-j",
+      "8"
+    ],
+    "exitCode": 0,
+    "wallSeconds": 68.639848914
+  },
+  {
+    "name": "build-additive",
+    "command": [
+      "cmake",
+      "--build",
+      "oracle-build",
+      "--target",
+      "llama-eval-callback",
+      "-j",
+      "8"
+    ],
+    "exitCode": 0,
+    "wallSeconds": 7.576526374000011
+  },
+  {
+    "name": "build-native",
+    "command": [
+      "/root/.cargo/bin/cargo",
+      "build",
+      "--locked",
+      "--release",
+      "--manifest-path",
+      "rust/Cargo.toml"
+    ],
+    "exitCode": 0,
+    "wallSeconds": 4.972233631999984
+  }
+]

@@ -1,0 +1,7 @@
+{
+  "revision": "12796ebfce92671c9171c37c9199813fa68b8591",
+  "parent": "4337ee45",
+  "status": "candidate, not qualified or published",
+  "patchSha256": "8064cc2712bc0798751e80c21601d6eb4639b96da02f84346c0d038eabdba1b1",
+  "checks": "models-gdn-production-q4-k-build.log"
+}

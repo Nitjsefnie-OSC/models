@@ -1,0 +1,3 @@
+4188:
+garbage-first heap   total reserved 10485760K, committed 2105344K, used 778081K [0x0000000580000000, 0x0000000800000000)
+ region size 8192K, 11 young (90112K), 9 survivors (73728K)

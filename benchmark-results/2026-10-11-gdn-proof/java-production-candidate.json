@@ -1,0 +1,9 @@
+{
+  "revision": "acf295bd3186bc9be2b30ff4212b7287ccc42a09",
+  "parent": "4337ee45",
+  "status": "candidate, not qualified or published",
+  "checks": [
+    "java-production-candidate-build-v3.log",
+    "java-production-candidate-build-v4.log"
+  ]
+}
