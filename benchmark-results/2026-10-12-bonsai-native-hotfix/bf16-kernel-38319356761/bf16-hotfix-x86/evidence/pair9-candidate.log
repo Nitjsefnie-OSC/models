@@ -1,0 +1,506 @@
+WARNING: Using incubator modules: jdk.incubator.vector
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by org.openjdk.jmh.util.Utils (file:/home/runner/work/vectors/vectors/evidence/jmh-libs/jmh-core-1.37.jar)
+WARNING: Please consider reporting this to the maintainers of class org.openjdk.jmh.util.Utils
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+# JMH version: 1.37
+# VM version: JDK 25.0.3, OpenJDK 64-Bit Server VM, 25.0.3+9-LTS
+# VM invoker: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.3-9.0.LTS/x64/bin/java
+# VM options: --add-modules jdk.incubator.vector --add-modules=jdk.incubator.vector -XX:ActiveProcessorCount=4 -Xmx3g
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.integrallis.vectors.bench.BFloat16MatrixBenchmark.mappedBfloat16MatVec
+# Parameters: (shape = 48x5120)
+
+# Run progress: 0.00% complete, ETA 00:01:00
+# Fork: 1 of 1
+WARNING: Using incubator modules: jdk.incubator.vector
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by org.openjdk.jmh.util.Utils (file:/home/runner/work/vectors/vectors/evidence/jmh-libs/jmh-core-1.37.jar)
+WARNING: Please consider reporting this to the maintainers of class org.openjdk.jmh.util.Utils
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+# Warmup Iteration   1: Oct 12, 2026 11:17:27 PM com.integrallis.vectors.core.PanamaVectorUtilSupportProvider create
+INFO: vectors-core: Using Panama Vector API SIMD provider (vector bits: 256)
+Oct 12, 2026 11:17:27 PM com.integrallis.vectors.core.VectorizationProvider logActiveToggles
+INFO: vectors-core: provider=PanamaVectorUtilSupport panama=true maxBits=256 preferredBits=256 fastVectorFMA=true fastScalarFMA=true sve=false ggufParallel=true ggufParallelThreshold=1048576 ggufExecutor=persistent ggufThreads=4 ggufChunksPerThread=2 mappedKQuantLongOffsets=auto(q4=true,q5=false,q6=false) q4ShortPairwiseSupported=true q4UnsignedPairwiseSupported=true toggles=[(defaults — no -Dvectors.* overrides)]
+44.496 us/op
+# Warmup Iteration   2: 34.355 us/op
+# Warmup Iteration   3: 27.598 us/op
+# Warmup Iteration   4: 26.660 us/op
+# Warmup Iteration   5: 31.590 us/op
+Iteration   1: 31.518 us/op
+                 gc.alloc.rate:      69.652 MB/sec
+                 gc.alloc.rate.norm: 2304.219 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   2: 31.761 us/op
+                 gc.alloc.rate:      69.165 MB/sec
+                 gc.alloc.rate.norm: 2304.222 B/op
+                 gc.count:           1.000 counts
+                 gc.time:            2.000 ms
+
+Iteration   3: 31.875 us/op
+                 gc.alloc.rate:      68.920 MB/sec
+                 gc.alloc.rate.norm: 2304.221 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   4: 31.744 us/op
+                 gc.alloc.rate:      69.208 MB/sec
+                 gc.alloc.rate.norm: 2304.222 B/op
+                 gc.count:           1.000 counts
+                 gc.time:            1.000 ms
+
+Iteration   5: 31.527 us/op
+                 gc.alloc.rate:      69.662 MB/sec
+                 gc.alloc.rate.norm: 2304.356 B/op
+                 gc.count:           ≈ 0 counts
+
+
+
+Result "com.integrallis.vectors.bench.BFloat16MatrixBenchmark.mappedBfloat16MatVec":
+  31.685 ±(99.9%) 0.603 us/op [Average]
+  (min, avg, max) = (31.518, 31.685, 31.875), stdev = 0.157
+  CI (99.9%): [31.082, 32.288] (assumes normal distribution)
+
+Secondary result "com.integrallis.vectors.bench.BFloat16MatrixBenchmark.mappedBfloat16MatVec:gc.alloc.rate":
+  69.321 ±(99.9%) 1.254 MB/sec [Average]
+  (min, avg, max) = (68.920, 69.321, 69.662), stdev = 0.326
+  CI (99.9%): [68.068, 70.575] (assumes normal distribution)
+
+Secondary result "com.integrallis.vectors.bench.BFloat16MatrixBenchmark.mappedBfloat16MatVec:gc.alloc.rate.norm":
+  2304.248 ±(99.9%) 0.233 B/op [Average]
+  (min, avg, max) = (2304.219, 2304.248, 2304.356), stdev = 0.061
+  CI (99.9%): [2304.015, 2304.481] (assumes normal distribution)
+
+Secondary result "com.integrallis.vectors.bench.BFloat16MatrixBenchmark.mappedBfloat16MatVec:gc.count":
+  2.000 ±(99.9%) 0.001 counts [Sum]
+  (min, avg, max) = (≈ 0, 0.400, 1.000), stdev = 0.548
+  CI (99.9%): [2.000, 2.000] (assumes normal distribution)
+
+Secondary result "com.integrallis.vectors.bench.BFloat16MatrixBenchmark.mappedBfloat16MatVec:gc.time":
+  3.000 ±(99.9%) 0.001 ms [Sum]
+  (min, avg, max) = (≈ 0, 0.600, 2.000), stdev = 0.894
+  CI (99.9%): [3.000, 3.000] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 25.0.3, OpenJDK 64-Bit Server VM, 25.0.3+9-LTS
+# VM invoker: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.3-9.0.LTS/x64/bin/java
+# VM options: --add-modules jdk.incubator.vector --add-modules=jdk.incubator.vector -XX:ActiveProcessorCount=4 -Xmx3g
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.integrallis.vectors.bench.BFloat16MatrixBenchmark.mappedBfloat16MatVec
+# Parameters: (shape = 4864x896)
+
+# Run progress: 16.67% complete, ETA 00:00:53
+# Fork: 1 of 1
+WARNING: Using incubator modules: jdk.incubator.vector
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by org.openjdk.jmh.util.Utils (file:/home/runner/work/vectors/vectors/evidence/jmh-libs/jmh-core-1.37.jar)
+WARNING: Please consider reporting this to the maintainers of class org.openjdk.jmh.util.Utils
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+# Warmup Iteration   1: Oct 12, 2026 11:17:37 PM com.integrallis.vectors.core.PanamaVectorUtilSupportProvider create
+INFO: vectors-core: Using Panama Vector API SIMD provider (vector bits: 256)
+Oct 12, 2026 11:17:37 PM com.integrallis.vectors.core.VectorizationProvider logActiveToggles
+INFO: vectors-core: provider=PanamaVectorUtilSupport panama=true maxBits=256 preferredBits=256 fastVectorFMA=true fastScalarFMA=true sve=false ggufParallel=true ggufParallelThreshold=1048576 ggufExecutor=persistent ggufThreads=4 ggufChunksPerThread=2 mappedKQuantLongOffsets=auto(q4=true,q5=false,q6=false) q4ShortPairwiseSupported=true q4UnsignedPairwiseSupported=true toggles=[(defaults — no -Dvectors.* overrides)]
+291.441 us/op
+# Warmup Iteration   2: 255.553 us/op
+# Warmup Iteration   3: 253.529 us/op
+# Warmup Iteration   4: 248.726 us/op
+# Warmup Iteration   5: 249.836 us/op
+Iteration   1: 248.622 us/op
+                 gc.alloc.rate:      0.160 MB/sec
+                 gc.alloc.rate.norm: 41.702 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   2: 245.266 us/op
+                 gc.alloc.rate:      0.162 MB/sec
+                 gc.alloc.rate.norm: 41.679 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   3: 244.869 us/op
+                 gc.alloc.rate:      0.162 MB/sec
+                 gc.alloc.rate.norm: 41.727 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   4: 246.224 us/op
+                 gc.alloc.rate:      0.161 MB/sec
+                 gc.alloc.rate.norm: 41.685 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   5: 246.184 us/op
+                 gc.alloc.rate:      0.165 MB/sec
+                 gc.alloc.rate.norm: 42.661 B/op
+                 gc.count:           ≈ 0 counts
+
+
+
+Result "com.integrallis.vectors.bench.BFloat16MatrixBenchmark.mappedBfloat16MatVec":
+  246.233 ±(99.9%) 5.615 us/op [Average]
+  (min, avg, max) = (244.869, 246.233, 248.622), stdev = 1.458
+  CI (99.9%): [240.618, 251.848] (assumes normal distribution)
+
+Secondary result "com.integrallis.vectors.bench.BFloat16MatrixBenchmark.mappedBfloat16MatVec:gc.alloc.rate":
+  0.162 ±(99.9%) 0.007 MB/sec [Average]
+  (min, avg, max) = (0.160, 0.162, 0.165), stdev = 0.002
+  CI (99.9%): [0.155, 0.169] (assumes normal distribution)
+
+Secondary result "com.integrallis.vectors.bench.BFloat16MatrixBenchmark.mappedBfloat16MatVec:gc.alloc.rate.norm":
+  41.891 ±(99.9%) 1.660 B/op [Average]
+  (min, avg, max) = (41.679, 41.891, 42.661), stdev = 0.431
+  CI (99.9%): [40.230, 43.551] (assumes normal distribution)
+
+Secondary result "com.integrallis.vectors.bench.BFloat16MatrixBenchmark.mappedBfloat16MatVec:gc.count":
+  ≈ 0 counts
+
+
+# JMH version: 1.37
+# VM version: JDK 25.0.3, OpenJDK 64-Bit Server VM, 25.0.3+9-LTS
+# VM invoker: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.3-9.0.LTS/x64/bin/java
+# VM options: --add-modules jdk.incubator.vector --add-modules=jdk.incubator.vector -XX:ActiveProcessorCount=4 -Xmx3g
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.integrallis.vectors.bench.BFloat16MatrixBenchmark.mappedBfloat16MatVec
+# Parameters: (shape = 151936x896)
+
+# Run progress: 33.33% complete, ETA 00:00:43
+# Fork: 1 of 1
+WARNING: Using incubator modules: jdk.incubator.vector
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by org.openjdk.jmh.util.Utils (file:/home/runner/work/vectors/vectors/evidence/jmh-libs/jmh-core-1.37.jar)
+WARNING: Please consider reporting this to the maintainers of class org.openjdk.jmh.util.Utils
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+# Warmup Iteration   1: Oct 12, 2026 11:17:49 PM com.integrallis.vectors.core.PanamaVectorUtilSupportProvider create
+INFO: vectors-core: Using Panama Vector API SIMD provider (vector bits: 256)
+Oct 12, 2026 11:17:49 PM com.integrallis.vectors.core.VectorizationProvider logActiveToggles
+INFO: vectors-core: provider=PanamaVectorUtilSupport panama=true maxBits=256 preferredBits=256 fastVectorFMA=true fastScalarFMA=true sve=false ggufParallel=true ggufParallelThreshold=1048576 ggufExecutor=persistent ggufThreads=4 ggufChunksPerThread=2 mappedKQuantLongOffsets=auto(q4=true,q5=false,q6=false) q4ShortPairwiseSupported=true q4UnsignedPairwiseSupported=true toggles=[(defaults — no -Dvectors.* overrides)]
+8589.538 us/op
+# Warmup Iteration   2: 8383.028 us/op
+# Warmup Iteration   3: 8216.722 us/op
+# Warmup Iteration   4: 8218.526 us/op
+# Warmup Iteration   5: 8262.941 us/op
+Iteration   1: 8467.444 us/op
+                 gc.alloc.rate:      0.011 MB/sec
+                 gc.alloc.rate.norm: 98.084 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   2: 8240.595 us/op
+                 gc.alloc.rate:      0.011 MB/sec
+                 gc.alloc.rate.norm: 96.131 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   3: 8218.119 us/op
+                 gc.alloc.rate:      0.011 MB/sec
+                 gc.alloc.rate.norm: 96.918 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   4: 8204.351 us/op
+                 gc.alloc.rate:      0.011 MB/sec
+                 gc.alloc.rate.norm: 95.675 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   5: 8185.871 us/op
+                 gc.alloc.rate:      0.015 MB/sec
+                 gc.alloc.rate.norm: 129.106 B/op
+                 gc.count:           ≈ 0 counts
+
+
+
+Result "com.integrallis.vectors.bench.BFloat16MatrixBenchmark.mappedBfloat16MatVec":
+  8263.276 ±(99.9%) 446.167 us/op [Average]
+  (min, avg, max) = (8185.871, 8263.276, 8467.444), stdev = 115.868
+  CI (99.9%): [7817.109, 8709.443] (assumes normal distribution)
+
+Secondary result "com.integrallis.vectors.bench.BFloat16MatrixBenchmark.mappedBfloat16MatVec:gc.alloc.rate":
+  0.012 ±(99.9%) 0.007 MB/sec [Average]
+  (min, avg, max) = (0.011, 0.012, 0.015), stdev = 0.002
+  CI (99.9%): [0.005, 0.019] (assumes normal distribution)
+
+Secondary result "com.integrallis.vectors.bench.BFloat16MatrixBenchmark.mappedBfloat16MatVec:gc.alloc.rate.norm":
+  103.183 ±(99.9%) 55.912 B/op [Average]
+  (min, avg, max) = (95.675, 103.183, 129.106), stdev = 14.520
+  CI (99.9%): [47.271, 159.095] (assumes normal distribution)
+
+Secondary result "com.integrallis.vectors.bench.BFloat16MatrixBenchmark.mappedBfloat16MatVec:gc.count":
+  ≈ 0 counts
+
+
+# JMH version: 1.37
+# VM version: JDK 25.0.3, OpenJDK 64-Bit Server VM, 25.0.3+9-LTS
+# VM invoker: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.3-9.0.LTS/x64/bin/java
+# VM options: --add-modules jdk.incubator.vector --add-modules=jdk.incubator.vector -XX:ActiveProcessorCount=4 -Xmx3g
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.integrallis.vectors.bench.BFloat16MatrixBenchmark.mappedBfloat16PromptBatch
+# Parameters: (shape = 48x5120)
+
+# Run progress: 50.00% complete, ETA 00:00:33
+# Fork: 1 of 1
+WARNING: Using incubator modules: jdk.incubator.vector
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by org.openjdk.jmh.util.Utils (file:/home/runner/work/vectors/vectors/evidence/jmh-libs/jmh-core-1.37.jar)
+WARNING: Please consider reporting this to the maintainers of class org.openjdk.jmh.util.Utils
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+# Warmup Iteration   1: Oct 12, 2026 11:18:01 PM com.integrallis.vectors.core.PanamaVectorUtilSupportProvider create
+INFO: vectors-core: Using Panama Vector API SIMD provider (vector bits: 256)
+Oct 12, 2026 11:18:01 PM com.integrallis.vectors.core.VectorizationProvider logActiveToggles
+INFO: vectors-core: provider=PanamaVectorUtilSupport panama=true maxBits=256 preferredBits=256 fastVectorFMA=true fastScalarFMA=true sve=false ggufParallel=true ggufParallelThreshold=1048576 ggufExecutor=persistent ggufThreads=4 ggufChunksPerThread=2 mappedKQuantLongOffsets=auto(q4=true,q5=false,q6=false) q4ShortPairwiseSupported=true q4UnsignedPairwiseSupported=true toggles=[(defaults — no -Dvectors.* overrides)]
+588.928 us/op
+# Warmup Iteration   2: 469.357 us/op
+# Warmup Iteration   3: 515.558 us/op
+# Warmup Iteration   4: 700.647 us/op
+# Warmup Iteration   5: 700.703 us/op
+Iteration   1: 702.689 us/op
+                 gc.alloc.rate:      0.007 MB/sec
+                 gc.alloc.rate.norm: 4.876 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   2: 700.517 us/op
+                 gc.alloc.rate:      0.007 MB/sec
+                 gc.alloc.rate.norm: 4.863 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   3: 700.435 us/op
+                 gc.alloc.rate:      0.007 MB/sec
+                 gc.alloc.rate.norm: 4.863 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   4: 700.170 us/op
+                 gc.alloc.rate:      0.007 MB/sec
+                 gc.alloc.rate.norm: 4.859 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   5: 700.394 us/op
+                 gc.alloc.rate:      0.010 MB/sec
+                 gc.alloc.rate.norm: 7.574 B/op
+                 gc.count:           ≈ 0 counts
+
+
+
+Result "com.integrallis.vectors.bench.BFloat16MatrixBenchmark.mappedBfloat16PromptBatch":
+  700.841 ±(99.9%) 4.009 us/op [Average]
+  (min, avg, max) = (700.170, 700.841, 702.689), stdev = 1.041
+  CI (99.9%): [696.832, 704.850] (assumes normal distribution)
+
+Secondary result "com.integrallis.vectors.bench.BFloat16MatrixBenchmark.mappedBfloat16PromptBatch:gc.alloc.rate":
+  0.007 ±(99.9%) 0.006 MB/sec [Average]
+  (min, avg, max) = (0.007, 0.007, 0.010), stdev = 0.002
+  CI (99.9%): [0.001, 0.014] (assumes normal distribution)
+
+Secondary result "com.integrallis.vectors.bench.BFloat16MatrixBenchmark.mappedBfloat16PromptBatch:gc.alloc.rate.norm":
+  5.407 ±(99.9%) 4.665 B/op [Average]
+  (min, avg, max) = (4.859, 5.407, 7.574), stdev = 1.211
+  CI (99.9%): [0.742, 10.072] (assumes normal distribution)
+
+Secondary result "com.integrallis.vectors.bench.BFloat16MatrixBenchmark.mappedBfloat16PromptBatch:gc.count":
+  ≈ 0 counts
+
+
+# JMH version: 1.37
+# VM version: JDK 25.0.3, OpenJDK 64-Bit Server VM, 25.0.3+9-LTS
+# VM invoker: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.3-9.0.LTS/x64/bin/java
+# VM options: --add-modules jdk.incubator.vector --add-modules=jdk.incubator.vector -XX:ActiveProcessorCount=4 -Xmx3g
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.integrallis.vectors.bench.BFloat16MatrixBenchmark.mappedBfloat16PromptBatch
+# Parameters: (shape = 4864x896)
+
+# Run progress: 66.67% complete, ETA 00:00:22
+# Fork: 1 of 1
+WARNING: Using incubator modules: jdk.incubator.vector
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by org.openjdk.jmh.util.Utils (file:/home/runner/work/vectors/vectors/evidence/jmh-libs/jmh-core-1.37.jar)
+WARNING: Please consider reporting this to the maintainers of class org.openjdk.jmh.util.Utils
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+# Warmup Iteration   1: Oct 12, 2026 11:18:11 PM com.integrallis.vectors.core.PanamaVectorUtilSupportProvider create
+INFO: vectors-core: Using Panama Vector API SIMD provider (vector bits: 256)
+Oct 12, 2026 11:18:11 PM com.integrallis.vectors.core.VectorizationProvider logActiveToggles
+INFO: vectors-core: provider=PanamaVectorUtilSupport panama=true maxBits=256 preferredBits=256 fastVectorFMA=true fastScalarFMA=true sve=false ggufParallel=true ggufParallelThreshold=1048576 ggufExecutor=persistent ggufThreads=4 ggufChunksPerThread=2 mappedKQuantLongOffsets=auto(q4=true,q5=false,q6=false) q4ShortPairwiseSupported=true q4UnsignedPairwiseSupported=true toggles=[(defaults — no -Dvectors.* overrides)]
+3899.295 us/op
+# Warmup Iteration   2: 3172.491 us/op
+# Warmup Iteration   3: 3175.925 us/op
+# Warmup Iteration   4: 3122.905 us/op
+# Warmup Iteration   5: 3124.501 us/op
+Iteration   1: 3144.714 us/op
+                 gc.alloc.rate:      0.021 MB/sec
+                 gc.alloc.rate.norm: 70.119 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   2: 3143.241 us/op
+                 gc.alloc.rate:      0.021 MB/sec
+                 gc.alloc.rate.norm: 69.668 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   3: 3125.993 us/op
+                 gc.alloc.rate:      0.021 MB/sec
+                 gc.alloc.rate.norm: 69.533 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   4: 3133.192 us/op
+                 gc.alloc.rate:      0.021 MB/sec
+                 gc.alloc.rate.norm: 69.533 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   5: 3127.671 us/op
+                 gc.alloc.rate:      0.025 MB/sec
+                 gc.alloc.rate.norm: 81.800 B/op
+                 gc.count:           ≈ 0 counts
+
+
+
+Result "com.integrallis.vectors.bench.BFloat16MatrixBenchmark.mappedBfloat16PromptBatch":
+  3134.962 ±(99.9%) 33.368 us/op [Average]
+  (min, avg, max) = (3125.993, 3134.962, 3144.714), stdev = 8.666
+  CI (99.9%): [3101.594, 3168.330] (assumes normal distribution)
+
+Secondary result "com.integrallis.vectors.bench.BFloat16MatrixBenchmark.mappedBfloat16PromptBatch:gc.alloc.rate":
+  0.022 ±(99.9%) 0.006 MB/sec [Average]
+  (min, avg, max) = (0.021, 0.022, 0.025), stdev = 0.002
+  CI (99.9%): [0.016, 0.028] (assumes normal distribution)
+
+Secondary result "com.integrallis.vectors.bench.BFloat16MatrixBenchmark.mappedBfloat16PromptBatch:gc.alloc.rate.norm":
+  72.130 ±(99.9%) 20.835 B/op [Average]
+  (min, avg, max) = (69.533, 72.130, 81.800), stdev = 5.411
+  CI (99.9%): [51.295, 92.966] (assumes normal distribution)
+
+Secondary result "com.integrallis.vectors.bench.BFloat16MatrixBenchmark.mappedBfloat16PromptBatch:gc.count":
+  ≈ 0 counts
+
+
+# JMH version: 1.37
+# VM version: JDK 25.0.3, OpenJDK 64-Bit Server VM, 25.0.3+9-LTS
+# VM invoker: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.3-9.0.LTS/x64/bin/java
+# VM options: --add-modules jdk.incubator.vector --add-modules=jdk.incubator.vector -XX:ActiveProcessorCount=4 -Xmx3g
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.integrallis.vectors.bench.BFloat16MatrixBenchmark.mappedBfloat16PromptBatch
+# Parameters: (shape = 151936x896)
+
+# Run progress: 83.33% complete, ETA 00:00:11
+# Fork: 1 of 1
+WARNING: Using incubator modules: jdk.incubator.vector
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by org.openjdk.jmh.util.Utils (file:/home/runner/work/vectors/vectors/evidence/jmh-libs/jmh-core-1.37.jar)
+WARNING: Please consider reporting this to the maintainers of class org.openjdk.jmh.util.Utils
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+# Warmup Iteration   1: Oct 12, 2026 11:18:23 PM com.integrallis.vectors.core.PanamaVectorUtilSupportProvider create
+INFO: vectors-core: Using Panama Vector API SIMD provider (vector bits: 256)
+Oct 12, 2026 11:18:23 PM com.integrallis.vectors.core.VectorizationProvider logActiveToggles
+INFO: vectors-core: provider=PanamaVectorUtilSupport panama=true maxBits=256 preferredBits=256 fastVectorFMA=true fastScalarFMA=true sve=false ggufParallel=true ggufParallelThreshold=1048576 ggufExecutor=persistent ggufThreads=4 ggufChunksPerThread=2 mappedKQuantLongOffsets=auto(q4=true,q5=false,q6=false) q4ShortPairwiseSupported=true q4UnsignedPairwiseSupported=true toggles=[(defaults — no -Dvectors.* overrides)]
+116580.602 us/op
+# Warmup Iteration   2: 92960.856 us/op
+# Warmup Iteration   3: 92658.023 us/op
+# Warmup Iteration   4: 92919.848 us/op
+# Warmup Iteration   5: 92278.712 us/op
+Iteration   1: 92377.123 us/op
+                 gc.alloc.rate:      0.007 MB/sec
+                 gc.alloc.rate.norm: 676.364 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   2: 92588.135 us/op
+                 gc.alloc.rate:      0.007 MB/sec
+                 gc.alloc.rate.norm: 680.727 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   3: 92523.682 us/op
+                 gc.alloc.rate:      0.007 MB/sec
+                 gc.alloc.rate.norm: 680.727 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   4: 92542.967 us/op
+                 gc.alloc.rate:      0.007 MB/sec
+                 gc.alloc.rate.norm: 679.273 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   5: 92634.943 us/op
+                 gc.alloc.rate:      0.011 MB/sec
+                 gc.alloc.rate.norm: 1050.182 B/op
+                 gc.count:           ≈ 0 counts
+
+
+
+Result "com.integrallis.vectors.bench.BFloat16MatrixBenchmark.mappedBfloat16PromptBatch":
+  92533.370 ±(99.9%) 374.896 us/op [Average]
+  (min, avg, max) = (92377.123, 92533.370, 92634.943), stdev = 97.359
+  CI (99.9%): [92158.474, 92908.266] (assumes normal distribution)
+
+Secondary result "com.integrallis.vectors.bench.BFloat16MatrixBenchmark.mappedBfloat16PromptBatch:gc.alloc.rate":
+  0.008 ±(99.9%) 0.006 MB/sec [Average]
+  (min, avg, max) = (0.007, 0.008, 0.011), stdev = 0.002
+  CI (99.9%): [0.001, 0.014] (assumes normal distribution)
+
+Secondary result "com.integrallis.vectors.bench.BFloat16MatrixBenchmark.mappedBfloat16PromptBatch:gc.alloc.rate.norm":
+  753.455 ±(99.9%) 638.765 B/op [Average]
+  (min, avg, max) = (676.364, 753.455, 1050.182), stdev = 165.885
+  CI (99.9%): [114.690, 1392.219] (assumes normal distribution)
+
+Secondary result "com.integrallis.vectors.bench.BFloat16MatrixBenchmark.mappedBfloat16PromptBatch:gc.count":
+  ≈ 0 counts
+
+
+# Run complete. Total time: 00:01:07
+
+REMEMBER: The numbers below are just data. To gain reusable insights, you need to follow up on
+why the numbers are the way they are. Use profilers (see -prof, -lprof), design factorial
+experiments, perform baseline and negative tests that provide experimental control, make sure
+the benchmarking environment is safe on JVM/OS/HW level, ask for reviews from the domain experts.
+Do not assume the numbers tell you what you want them to tell.
+
+NOTE: Current JVM experimentally supports Compiler Blackholes, and they are in use. Please exercise
+extra caution when trusting the results, look into the generated code to check the benchmark still
+works, and factor in a small probability of new VM bugs. Additionally, while comparisons between
+different JVMs are already problematic, the performance difference caused by different Blackhole
+modes can be very significant. Please make sure you use the consistent Blackhole mode for comparisons.
+
+Benchmark                                                                (shape)  Mode  Cnt      Score     Error   Units
+BFloat16MatrixBenchmark.mappedBfloat16MatVec                             48x5120  avgt    5     31.685 ±   0.603   us/op
+BFloat16MatrixBenchmark.mappedBfloat16MatVec:gc.alloc.rate               48x5120  avgt    5     69.321 ±   1.254  MB/sec
+BFloat16MatrixBenchmark.mappedBfloat16MatVec:gc.alloc.rate.norm          48x5120  avgt    5   2304.248 ±   0.233    B/op
+BFloat16MatrixBenchmark.mappedBfloat16MatVec:gc.count                    48x5120  avgt    5      2.000            counts
+BFloat16MatrixBenchmark.mappedBfloat16MatVec:gc.time                     48x5120  avgt    5      3.000                ms
+BFloat16MatrixBenchmark.mappedBfloat16MatVec                            4864x896  avgt    5    246.233 ±   5.615   us/op
+BFloat16MatrixBenchmark.mappedBfloat16MatVec:gc.alloc.rate              4864x896  avgt    5      0.162 ±   0.007  MB/sec
+BFloat16MatrixBenchmark.mappedBfloat16MatVec:gc.alloc.rate.norm         4864x896  avgt    5     41.891 ±   1.660    B/op
+BFloat16MatrixBenchmark.mappedBfloat16MatVec:gc.count                   4864x896  avgt    5        ≈ 0            counts
+BFloat16MatrixBenchmark.mappedBfloat16MatVec                          151936x896  avgt    5   8263.276 ± 446.167   us/op
+BFloat16MatrixBenchmark.mappedBfloat16MatVec:gc.alloc.rate            151936x896  avgt    5      0.012 ±   0.007  MB/sec
+BFloat16MatrixBenchmark.mappedBfloat16MatVec:gc.alloc.rate.norm       151936x896  avgt    5    103.183 ±  55.912    B/op
+BFloat16MatrixBenchmark.mappedBfloat16MatVec:gc.count                 151936x896  avgt    5        ≈ 0            counts
+BFloat16MatrixBenchmark.mappedBfloat16PromptBatch                        48x5120  avgt    5    700.841 ±   4.009   us/op
+BFloat16MatrixBenchmark.mappedBfloat16PromptBatch:gc.alloc.rate          48x5120  avgt    5      0.007 ±   0.006  MB/sec
+BFloat16MatrixBenchmark.mappedBfloat16PromptBatch:gc.alloc.rate.norm     48x5120  avgt    5      5.407 ±   4.665    B/op
+BFloat16MatrixBenchmark.mappedBfloat16PromptBatch:gc.count               48x5120  avgt    5        ≈ 0            counts
+BFloat16MatrixBenchmark.mappedBfloat16PromptBatch                       4864x896  avgt    5   3134.962 ±  33.368   us/op
+BFloat16MatrixBenchmark.mappedBfloat16PromptBatch:gc.alloc.rate         4864x896  avgt    5      0.022 ±   0.006  MB/sec
+BFloat16MatrixBenchmark.mappedBfloat16PromptBatch:gc.alloc.rate.norm    4864x896  avgt    5     72.130 ±  20.835    B/op
+BFloat16MatrixBenchmark.mappedBfloat16PromptBatch:gc.count              4864x896  avgt    5        ≈ 0            counts
+BFloat16MatrixBenchmark.mappedBfloat16PromptBatch                     151936x896  avgt    5  92533.370 ± 374.896   us/op
+BFloat16MatrixBenchmark.mappedBfloat16PromptBatch:gc.alloc.rate       151936x896  avgt    5      0.008 ±   0.006  MB/sec
+BFloat16MatrixBenchmark.mappedBfloat16PromptBatch:gc.alloc.rate.norm  151936x896  avgt    5    753.455 ± 638.765    B/op
+BFloat16MatrixBenchmark.mappedBfloat16PromptBatch:gc.count            151936x896  avgt    5        ≈ 0            counts
+
+Benchmark result is saved to /home/runner/work/vectors/vectors/evidence/pair9-candidate.json

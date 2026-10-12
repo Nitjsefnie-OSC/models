@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.integrallis.models.backend.nativekernel.Bonsai2NativeModelFixtureSlowTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2026-10-12T23:20:16.969Z" hostname="runnervmy3dvn" time="99.189">
+  <properties/>
+  <testcase name="releasedArtifactOracleAndFreshSessionSurviveNativeProjectionRouting()" classname="com.integrallis.models.backend.nativekernel.Bonsai2NativeModelFixtureSlowTest" time="28.614"/>
+  <testcase name="transformedBatchesMatchSequentialRealWeightLogitsAcrossChunkBoundaries()" classname="com.integrallis.models.backend.nativekernel.Bonsai2NativeModelFixtureSlowTest" time="70.561"/>
+  <system-out><![CDATA[Bonsai batch logit parity step=0 maxAbsolute=0.00000 maxScaled=0.00000
+Bonsai batch logit parity step=1 maxAbsolute=0.00000 maxScaled=0.00000
+Bonsai batch logit parity step=2 maxAbsolute=0.00000 maxScaled=0.00000
+]]></system-out>
+  <system-err><![CDATA[Oct 12, 2026 11:20:20 PM com.integrallis.vectors.core.PanamaVectorUtilSupportProvider create
+INFO: vectors-core: Using Panama Vector API SIMD provider (vector bits: 128)
+Oct 12, 2026 11:20:20 PM com.integrallis.vectors.core.VectorizationProvider logActiveToggles
+INFO: vectors-core: provider=PanamaVectorUtilSupport panama=true maxBits=256 preferredBits=128 fastVectorFMA=true fastScalarFMA=true sve=true ggufParallel=true ggufParallelThreshold=1048576 ggufExecutor=persistent ggufThreads=4 ggufChunksPerThread=2 mappedKQuantLongOffsets=auto(q4=false,q5=false,q6=false) q4ShortPairwiseSupported=false q4UnsignedPairwiseSupported=false toggles=[(defaults — no -Dvectors.* overrides)]
+]]></system-err>
+</testsuite>

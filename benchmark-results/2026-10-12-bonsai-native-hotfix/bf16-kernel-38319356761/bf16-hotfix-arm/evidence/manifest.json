@@ -1,0 +1,24 @@
+{
+  "pairs": 12,
+  "jdk": "openjdk version \"25.0.3\" 2026-04-21 LTS\nOpenJDK Runtime Environment Temurin-25.0.3+9 (build 25.0.3+9-LTS)\nOpenJDK 64-Bit Server VM Temurin-25.0.3+9 (build 25.0.3+9-LTS, mixed mode, sharing)\n",
+  "cpuCount": 4,
+  "artifacts": {
+    "baseline": {
+      "source": "1440ca7555e492ae7c2a17cde7cb3ffe6c07b7b5",
+      "jar": "/home/runner/work/vectors/vectors/baseline/vectors-core/build/libs/vectors-core-0.1.29.jar",
+      "sha256": "21eeae4fcaa56fa26ed45d99610142f794cdec0e1d852894e637263f5bd0b40c"
+    },
+    "candidate": {
+      "source": "cb3dab3dd35c7f3209b41d833c878a744620e77c",
+      "jar": "/home/runner/work/vectors/vectors/candidate/vectors-core/build/libs/vectors-core-0.1.30.jar",
+      "sha256": "107b807f5dfd3ec420ebbdfd72c3e825240b224861fcb2f7d940683c5843fd96"
+    }
+  },
+  "jmhDependencies": {
+    "commons-math3-3.6.1.jar": "1e56d7b058d28b65abd256b8458e3885b674c1d588fa43cd7d1cbb9c7ef2b308",
+    "jmh-core-1.37.jar": "dc0eaf2bbf0036a70b60798c785d6e03a9daf06b68b8edb0f1ba9eb3421baeb3",
+    "jmh-generator-annprocess-1.37.jar": "6a5604b5b804e0daca1145df1077609321687734a8b49387e49f10557c186c77",
+    "jopt-simple-5.0.4.jar": "df26cc58f235f477db07f753ba5a3ab243ebe5789d9f89ecf68dd62ea9a66c28"
+  },
+  "benchmarkSha256": "c84bd9b8fdecd6a90482f4f52d9a5a6641b11250afdad03d8c07ea288a326e2b"
+}

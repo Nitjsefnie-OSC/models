@@ -1,0 +1,40 @@
+{
+    "scope": "Unchanged Bonsai fixture with an unpublished upstream correction; not a release gate",
+    "vectorsRevision": "3f4db6c80c59bdb228c82b7dfb2cddf103fa91da",
+    "candidate": {
+        "path": "/home/runner/work/models/models/vectors/vectors-core/build/libs/vectors-core-0.1.30.jar",
+        "sha256": "f2d4e7a23ca4cae79cf8795acf06f98c6a56f412cd0e8078312c9377d01e2c6f"
+    },
+    "replaced": [
+        {
+            "path": "/home/runner/.gradle/caches/modules-2/files-2.1/com.integrallis/vectors-core/0.1.29/9a9831f6b838978ea5cbca052e6045573f556390/vectors-core-0.1.29.jar",
+            "sha256": "21eeae4fcaa56fa26ed45d99610142f794cdec0e1d852894e637263f5bd0b40c"
+        }
+    ],
+    "classpath": [
+        "/home/runner/work/models/models/vectors/vectors-core/build/libs/vectors-core-0.1.30.jar",
+        "/home/runner/work/models/models/models/backend-native/build/classes/java/test",
+        "/home/runner/work/models/models/models/backend-native/build/resources/test",
+        "/home/runner/work/models/models/models/backend-native/build/classes/java/main",
+        "/home/runner/work/models/models/models/backend-native/build/resources/main",
+        "/home/runner/work/models/models/models/backend-java/build/libs/backend-java-0.3.59.jar",
+        "/home/runner/work/models/models/models/models-runtime/build/libs/models-runtime-0.3.59.jar",
+        "/home/runner/work/models/models/models/models-api/build/libs/models-api-0.3.59.jar",
+        "/home/runner/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-core/2.22.3/8695aab38355c65b60e242ec62edf13c52916d88/jackson-core-2.22.3.jar",
+        "/home/runner/.gradle/caches/modules-2/files-2.1/org.junit.platform/junit-platform-launcher/1.13.4/e72a4d00af6177569fd57df4c8c4bb241c6aa4b6/junit-platform-launcher-1.13.4.jar",
+        "/home/runner/.gradle/caches/modules-2/files-2.1/org.mockito/mockito-junit-jupiter/5.23.0/e66b5f34ffea58bf4388aba58f66a209daeba4fd/mockito-junit-jupiter-5.23.0.jar",
+        "/home/runner/.gradle/caches/modules-2/files-2.1/org.junit.jupiter/junit-jupiter-params/5.13.4/c8930eb7fcfbed0b191703ab53f48475a75bd17/junit-jupiter-params-5.13.4.jar",
+        "/home/runner/.gradle/caches/modules-2/files-2.1/org.junit.jupiter/junit-jupiter-engine/5.13.4/d29fc8b6a28d21b8741f299ae4deb3e3aa68b2e8/junit-jupiter-engine-5.13.4.jar",
+        "/home/runner/.gradle/caches/modules-2/files-2.1/org.junit.jupiter/junit-jupiter-api/5.13.4/2817f736551fe4949b79924715ef6f594ee072f4/junit-jupiter-api-5.13.4.jar",
+        "/home/runner/.gradle/caches/modules-2/files-2.1/org.junit.platform/junit-platform-engine/1.13.4/cdd49063ae6e25494d1a9a08f4a9ab5de2b73bcb/junit-platform-engine-1.13.4.jar",
+        "/home/runner/.gradle/caches/modules-2/files-2.1/org.junit.platform/junit-platform-commons/1.13.4/8f63c7ed05b473d95cc63d1082054d7bfcf9c0e5/junit-platform-commons-1.13.4.jar",
+        "/home/runner/.gradle/caches/modules-2/files-2.1/org.junit.jupiter/junit-jupiter/5.13.4/93547b3eca48a61f65f735c1898d3ec196e34149/junit-jupiter-5.13.4.jar",
+        "/home/runner/.gradle/caches/modules-2/files-2.1/org.assertj/assertj-core/3.27.2/b56956eacc9817a46b5ca5e7a4d9fb647ab06e87/assertj-core-3.27.2.jar",
+        "/home/runner/.gradle/caches/modules-2/files-2.1/org.mockito/mockito-core/5.23.0/a5cf3cf244300e4cd05f779827cf50d373a8460e/mockito-core-5.23.0.jar",
+        "/home/runner/.gradle/caches/modules-2/files-2.1/net.bytebuddy/byte-buddy-agent/1.17.7/fbf3d6d649ed37fc9e9c59480a05be0a26e3c2da/byte-buddy-agent-1.17.7.jar",
+        "/home/runner/.gradle/caches/modules-2/files-2.1/net.bytebuddy/byte-buddy/1.17.7/3856bfab61beb23e099a0d6629f2ba8de4b98ace/byte-buddy-1.17.7.jar",
+        "/home/runner/.gradle/caches/modules-2/files-2.1/org.opentest4j/opentest4j/1.3.0/152ea56b3a72f655d4fd677fc0ef2596c3dd5e6e/opentest4j-1.3.0.jar",
+        "/home/runner/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-api/2.0.20/7fea9d92ba67e9b3c8f03515fb202b86a1fe44f6/slf4j-api-2.0.20.jar",
+        "/home/runner/.gradle/caches/modules-2/files-2.1/org.objenesis/objenesis/3.3/1049c09f1de4331e8193e579448d0916d75b7631/objenesis-3.3.jar"
+    ]
+}

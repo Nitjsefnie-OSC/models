@@ -1,0 +1,58 @@
+[
+  {
+    "configuration": "bonsai-upstream-ubuntu-24.04-arm-jdk-25",
+    "counts": {
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "java": [
+      "Bonsai fresh-session JVM=25.0.4.1+1-LTS vendor=Eclipse Adoptium"
+    ],
+    "coreSha256": "e3e7b0ab79d0630bcad65c4cbe9fd356cf589dd159eba8e6c0aa402db24bd33c",
+    "vectorsRevision": "4e8d1374e71788adef07be395560771c12d10f73"
+  },
+  {
+    "configuration": "bonsai-upstream-ubuntu-24.04-arm-jdk-25.0.3",
+    "counts": {
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "java": [
+      "Bonsai fresh-session JVM=25.0.3+9-LTS vendor=Eclipse Adoptium"
+    ],
+    "coreSha256": "e3e7b0ab79d0630bcad65c4cbe9fd356cf589dd159eba8e6c0aa402db24bd33c",
+    "vectorsRevision": "4e8d1374e71788adef07be395560771c12d10f73"
+  },
+  {
+    "configuration": "bonsai-upstream-ubuntu-24.04-jdk-25",
+    "counts": {
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "java": [
+      "Bonsai fresh-session JVM=25.0.4.1+1-LTS vendor=Eclipse Adoptium"
+    ],
+    "coreSha256": "e3e7b0ab79d0630bcad65c4cbe9fd356cf589dd159eba8e6c0aa402db24bd33c",
+    "vectorsRevision": "4e8d1374e71788adef07be395560771c12d10f73"
+  },
+  {
+    "configuration": "bonsai-upstream-ubuntu-24.04-jdk-25.0.3",
+    "counts": {
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "java": [
+      "Bonsai fresh-session JVM=25.0.3+9-LTS vendor=Eclipse Adoptium"
+    ],
+    "coreSha256": "e3e7b0ab79d0630bcad65c4cbe9fd356cf589dd159eba8e6c0aa402db24bd33c",
+    "vectorsRevision": "4e8d1374e71788adef07be395560771c12d10f73"
+  }
+]

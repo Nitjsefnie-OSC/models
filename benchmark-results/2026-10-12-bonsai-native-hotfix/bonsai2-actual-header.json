@@ -1,0 +1,721 @@
+{
+  "path": "/Users/briansam-bodden/.jvllm/models/Ternary-Bonsai-2-27B-PTQ1_0.gguf",
+  "magic": "GGUF",
+  "version": 3,
+  "metadata": {
+    "general.architecture": "qwen35",
+    "general.type": "model",
+    "general.sampling.top_k": 20,
+    "general.sampling.top_p": 0.949999988079071,
+    "general.sampling.temp": 1.0,
+    "general.name": "Hf",
+    "general.version": "v5",
+    "general.basename": "folded",
+    "general.size_label": "27B",
+    "qwen35.block_count": 64,
+    "qwen35.context_length": 262144,
+    "qwen35.embedding_length": 5120,
+    "qwen35.feed_forward_length": 17408,
+    "qwen35.attention.head_count": 24,
+    "qwen35.attention.head_count_kv": 4,
+    "qwen35.rope.dimension_sections": [
+      11,
+      11,
+      10,
+      0
+    ],
+    "qwen35.rope.freq_base": 10000000.0,
+    "qwen35.attention.layer_norm_rms_epsilon": 9.999999974752427e-07,
+    "qwen35.attention.key_length": 256,
+    "qwen35.attention.value_length": 256,
+    "qwen35.ssm.conv_kernel": 4,
+    "qwen35.ssm.state_size": 128,
+    "qwen35.ssm.group_count": 16,
+    "qwen35.ssm.time_step_rank": 48,
+    "qwen35.ssm.inner_size": 6144,
+    "qwen35.full_attention_interval": 4,
+    "qwen35.rope.dimension_count": 64,
+    "prism.hadamard.gdn_v_grouped": true,
+    "general.quantization_version": 2,
+    "general.file_type": 143
+  },
+  "tensorTypeCounts": {
+    "143": 402,
+    "0": 353,
+    "30": 96
+  },
+  "bf16Tensors": [
+    {
+      "name": "blk.0.ssm_alpha.weight",
+      "dimensions": [
+        5120,
+        48
+      ]
+    },
+    {
+      "name": "blk.0.ssm_beta.weight",
+      "dimensions": [
+        5120,
+        48
+      ]
+    },
+    {
+      "name": "blk.1.ssm_alpha.weight",
+      "dimensions": [
+        5120,
+        48
+      ]
+    },
+    {
+      "name": "blk.1.ssm_beta.weight",
+      "dimensions": [
+        5120,
+        48
+      ]
+    },
+    {
+      "name": "blk.2.ssm_alpha.weight",
+      "dimensions": [
+        5120,
+        48
+      ]
+    },
+    {
+      "name": "blk.2.ssm_beta.weight",
+      "dimensions": [
+        5120,
+        48
+      ]
+    },
+    {
+      "name": "blk.4.ssm_alpha.weight",
+      "dimensions": [
+        5120,
+        48
+      ]
+    },
+    {
+      "name": "blk.4.ssm_beta.weight",
+      "dimensions": [
+        5120,
+        48
+      ]
+    },
+    {
+      "name": "blk.5.ssm_alpha.weight",
+      "dimensions": [
+        5120,
+        48
+      ]
+    },
+    {
+      "name": "blk.5.ssm_beta.weight",
+      "dimensions": [
+        5120,
+        48
+      ]
+    },
+    {
+      "name": "blk.6.ssm_alpha.weight",
+      "dimensions": [
+        5120,
+        48
+      ]
+    },
+    {
+      "name": "blk.6.ssm_beta.weight",
+      "dimensions": [
+        5120,
+        48
+      ]
+    },
+    {
+      "name": "blk.8.ssm_alpha.weight",
+      "dimensions": [
+        5120,
+        48
+      ]
+    },
+    {
+      "name": "blk.8.ssm_beta.weight",
+      "dimensions": [
+        5120,
+        48
+      ]
+    },
+    {
+      "name": "blk.9.ssm_alpha.weight",
+      "dimensions": [
+        5120,
+        48
+      ]
+    },
+    {
+      "name": "blk.9.ssm_beta.weight",
+      "dimensions": [
+        5120,
+        48
+      ]
+    },
+    {
+      "name": "blk.10.ssm_alpha.weight",
+      "dimensions": [
+        5120,
+        48
+      ]
+    },
+    {
+      "name": "blk.10.ssm_beta.weight",
+      "dimensions": [
+        5120,
+        48
+      ]
+    },
+    {
+      "name": "blk.12.ssm_alpha.weight",
+      "dimensions": [
+        5120,
+        48
+      ]
+    },
+    {
+      "name": "blk.12.ssm_beta.weight",
+      "dimensions": [
+        5120,
+        48
+      ]
+    },
+    {
+      "name": "blk.13.ssm_alpha.weight",
+      "dimensions": [
+        5120,
+        48
+      ]
+    },
+    {
+      "name": "blk.13.ssm_beta.weight",
+      "dimensions": [
+        5120,
+        48
+      ]
+    },
+    {
+      "name": "blk.14.ssm_alpha.weight",
+      "dimensions": [
+        5120,
+        48
+      ]
+    },
+    {
+      "name": "blk.14.ssm_beta.weight",
+      "dimensions": [
+        5120,
+        48
+      ]
+    },
+    {
+      "name": "blk.16.ssm_alpha.weight",
+      "dimensions": [
+        5120,
+        48
+      ]
+    },
+    {
+      "name": "blk.16.ssm_beta.weight",
+      "dimensions": [
+        5120,
+        48
+      ]
+    },
+    {
+      "name": "blk.17.ssm_alpha.weight",
+      "dimensions": [
+        5120,
+        48
+      ]
+    },
+    {
+      "name": "blk.17.ssm_beta.weight",
+      "dimensions": [
+        5120,
+        48
+      ]
+    },
+    {
+      "name": "blk.18.ssm_alpha.weight",
+      "dimensions": [
+        5120,
+        48
+      ]
+    },
+    {
+      "name": "blk.18.ssm_beta.weight",
+      "dimensions": [
+        5120,
+        48
+      ]
+    },
+    {
+      "name": "blk.20.ssm_alpha.weight",
+      "dimensions": [
+        5120,
+        48
+      ]
+    },
+    {
+      "name": "blk.20.ssm_beta.weight",
+      "dimensions": [
+        5120,
+        48
+      ]
+    },
+    {
+      "name": "blk.21.ssm_alpha.weight",
+      "dimensions": [
+        5120,
+        48
+      ]
+    },
+    {
+      "name": "blk.21.ssm_beta.weight",
+      "dimensions": [
+        5120,
+        48
+      ]
+    },
+    {
+      "name": "blk.22.ssm_alpha.weight",
+      "dimensions": [
+        5120,
+        48
+      ]
+    },
+    {
+      "name": "blk.22.ssm_beta.weight",
+      "dimensions": [
+        5120,
+        48
+      ]
+    },
+    {
+      "name": "blk.24.ssm_alpha.weight",
+      "dimensions": [
+        5120,
+        48
+      ]
+    },
+    {
+      "name": "blk.24.ssm_beta.weight",
+      "dimensions": [
+        5120,
+        48
+      ]
+    },
+    {
+      "name": "blk.25.ssm_alpha.weight",
+      "dimensions": [
+        5120,
+        48
+      ]
+    },
+    {
+      "name": "blk.25.ssm_beta.weight",
+      "dimensions": [
+        5120,
+        48
+      ]
+    },
+    {
+      "name": "blk.26.ssm_alpha.weight",
+      "dimensions": [
+        5120,
+        48
+      ]
+    },
+    {
+      "name": "blk.26.ssm_beta.weight",
+      "dimensions": [
+        5120,
+        48
+      ]
+    },
+    {
+      "name": "blk.28.ssm_alpha.weight",
+      "dimensions": [
+        5120,
+        48
+      ]
+    },
+    {
+      "name": "blk.28.ssm_beta.weight",
+      "dimensions": [
+        5120,
+        48
+      ]
+    },
+    {
+      "name": "blk.29.ssm_alpha.weight",
+      "dimensions": [
+        5120,
+        48
+      ]
+    },
+    {
+      "name": "blk.29.ssm_beta.weight",
+      "dimensions": [
+        5120,
+        48
+      ]
+    },
+    {
+      "name": "blk.30.ssm_alpha.weight",
+      "dimensions": [
+        5120,
+        48
+      ]
+    },
+    {
+      "name": "blk.30.ssm_beta.weight",
+      "dimensions": [
+        5120,
+        48
+      ]
+    },
+    {
+      "name": "blk.32.ssm_alpha.weight",
+      "dimensions": [
+        5120,
+        48
+      ]
+    },
+    {
+      "name": "blk.32.ssm_beta.weight",
+      "dimensions": [
+        5120,
+        48
+      ]
+    },
+    {
+      "name": "blk.33.ssm_alpha.weight",
+      "dimensions": [
+        5120,
+        48
+      ]
+    },
+    {
+      "name": "blk.33.ssm_beta.weight",
+      "dimensions": [
+        5120,
+        48
+      ]
+    },
+    {
+      "name": "blk.34.ssm_alpha.weight",
+      "dimensions": [
+        5120,
+        48
+      ]
+    },
+    {
+      "name": "blk.34.ssm_beta.weight",
+      "dimensions": [
+        5120,
+        48
+      ]
+    },
+    {
+      "name": "blk.36.ssm_alpha.weight",
+      "dimensions": [
+        5120,
+        48
+      ]
+    },
+    {
+      "name": "blk.36.ssm_beta.weight",
+      "dimensions": [
+        5120,
+        48
+      ]
+    },
+    {
+      "name": "blk.37.ssm_alpha.weight",
+      "dimensions": [
+        5120,
+        48
+      ]
+    },
+    {
+      "name": "blk.37.ssm_beta.weight",
+      "dimensions": [
+        5120,
+        48
+      ]
+    },
+    {
+      "name": "blk.38.ssm_alpha.weight",
+      "dimensions": [
+        5120,
+        48
+      ]
+    },
+    {
+      "name": "blk.38.ssm_beta.weight",
+      "dimensions": [
+        5120,
+        48
+      ]
+    },
+    {
+      "name": "blk.40.ssm_alpha.weight",
+      "dimensions": [
+        5120,
+        48
+      ]
+    },
+    {
+      "name": "blk.40.ssm_beta.weight",
+      "dimensions": [
+        5120,
+        48
+      ]
+    },
+    {
+      "name": "blk.41.ssm_alpha.weight",
+      "dimensions": [
+        5120,
+        48
+      ]
+    },
+    {
+      "name": "blk.41.ssm_beta.weight",
+      "dimensions": [
+        5120,
+        48
+      ]
+    },
+    {
+      "name": "blk.42.ssm_alpha.weight",
+      "dimensions": [
+        5120,
+        48
+      ]
+    },
+    {
+      "name": "blk.42.ssm_beta.weight",
+      "dimensions": [
+        5120,
+        48
+      ]
+    },
+    {
+      "name": "blk.44.ssm_alpha.weight",
+      "dimensions": [
+        5120,
+        48
+      ]
+    },
+    {
+      "name": "blk.44.ssm_beta.weight",
+      "dimensions": [
+        5120,
+        48
+      ]
+    },
+    {
+      "name": "blk.45.ssm_alpha.weight",
+      "dimensions": [
+        5120,
+        48
+      ]
+    },
+    {
+      "name": "blk.45.ssm_beta.weight",
+      "dimensions": [
+        5120,
+        48
+      ]
+    },
+    {
+      "name": "blk.46.ssm_alpha.weight",
+      "dimensions": [
+        5120,
+        48
+      ]
+    },
+    {
+      "name": "blk.46.ssm_beta.weight",
+      "dimensions": [
+        5120,
+        48
+      ]
+    },
+    {
+      "name": "blk.48.ssm_alpha.weight",
+      "dimensions": [
+        5120,
+        48
+      ]
+    },
+    {
+      "name": "blk.48.ssm_beta.weight",
+      "dimensions": [
+        5120,
+        48
+      ]
+    },
+    {
+      "name": "blk.49.ssm_alpha.weight",
+      "dimensions": [
+        5120,
+        48
+      ]
+    },
+    {
+      "name": "blk.49.ssm_beta.weight",
+      "dimensions": [
+        5120,
+        48
+      ]
+    },
+    {
+      "name": "blk.50.ssm_alpha.weight",
+      "dimensions": [
+        5120,
+        48
+      ]
+    },
+    {
+      "name": "blk.50.ssm_beta.weight",
+      "dimensions": [
+        5120,
+        48
+      ]
+    },
+    {
+      "name": "blk.52.ssm_alpha.weight",
+      "dimensions": [
+        5120,
+        48
+      ]
+    },
+    {
+      "name": "blk.52.ssm_beta.weight",
+      "dimensions": [
+        5120,
+        48
+      ]
+    },
+    {
+      "name": "blk.53.ssm_alpha.weight",
+      "dimensions": [
+        5120,
+        48
+      ]
+    },
+    {
+      "name": "blk.53.ssm_beta.weight",
+      "dimensions": [
+        5120,
+        48
+      ]
+    },
+    {
+      "name": "blk.54.ssm_alpha.weight",
+      "dimensions": [
+        5120,
+        48
+      ]
+    },
+    {
+      "name": "blk.54.ssm_beta.weight",
+      "dimensions": [
+        5120,
+        48
+      ]
+    },
+    {
+      "name": "blk.56.ssm_alpha.weight",
+      "dimensions": [
+        5120,
+        48
+      ]
+    },
+    {
+      "name": "blk.56.ssm_beta.weight",
+      "dimensions": [
+        5120,
+        48
+      ]
+    },
+    {
+      "name": "blk.57.ssm_alpha.weight",
+      "dimensions": [
+        5120,
+        48
+      ]
+    },
+    {
+      "name": "blk.57.ssm_beta.weight",
+      "dimensions": [
+        5120,
+        48
+      ]
+    },
+    {
+      "name": "blk.58.ssm_alpha.weight",
+      "dimensions": [
+        5120,
+        48
+      ]
+    },
+    {
+      "name": "blk.58.ssm_beta.weight",
+      "dimensions": [
+        5120,
+        48
+      ]
+    },
+    {
+      "name": "blk.60.ssm_alpha.weight",
+      "dimensions": [
+        5120,
+        48
+      ]
+    },
+    {
+      "name": "blk.60.ssm_beta.weight",
+      "dimensions": [
+        5120,
+        48
+      ]
+    },
+    {
+      "name": "blk.61.ssm_alpha.weight",
+      "dimensions": [
+        5120,
+        48
+      ]
+    },
+    {
+      "name": "blk.61.ssm_beta.weight",
+      "dimensions": [
+        5120,
+        48
+      ]
+    },
+    {
+      "name": "blk.62.ssm_alpha.weight",
+      "dimensions": [
+        5120,
+        48
+      ]
+    },
+    {
+      "name": "blk.62.ssm_beta.weight",
+      "dimensions": [
+        5120,
+        48
+      ]
+    }
+  ]
+}
