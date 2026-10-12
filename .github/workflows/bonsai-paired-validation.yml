@@ -61,6 +61,7 @@ jobs:
           (cd vectors && ./gradlew :vectors-core:jar --no-daemon --max-workers=2)
           (cd models && ./gradlew :backend-native:cargoBuildRelease :backend-native:copyPairedRuntime --init-script ../harness/scripts/bonsai-paired/runtime.init.gradle --no-daemon --max-workers=2)
       - name: Execute fixtures and fixed paired blocks
+        timeout-minutes: 280
         env:
           MODEL: ${{ matrix.model }}
           SHARD: ${{ matrix.shard }}

@@ -28,6 +28,7 @@ def write(path, value):
 
 
 def run(command, prefix, timeout=7200):
+    print(f'RUN {prefix.name}', flush=True)
     start = time.monotonic()
     code = None
     try:
@@ -36,6 +37,7 @@ def run(command, prefix, timeout=7200):
     finally:
         write(prefix.with_suffix('.execution.json'), {'command': command, 'exitCode': code,
               'wallSeconds': time.monotonic() - start})
+    print(f'FINISHED {prefix.name}: exit={code}', flush=True)
     return code
 
 
