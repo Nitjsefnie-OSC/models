@@ -38,7 +38,7 @@ jobs:
         run: |
           python3 - <<'PY'
           import json, os
-          p=json.load(open('harness/scripts/bonsai-paired/protocol.json'))
+          p=json.load(open('harness/scripts/qwen-precision/protocol.json'))
           with open(os.environ['GITHUB_OUTPUT'],'a') as f:
               f.write('models='+p['modelsRevision']+'\n')
               f.write('vectors='+p['vectorsRevision']+'\n')

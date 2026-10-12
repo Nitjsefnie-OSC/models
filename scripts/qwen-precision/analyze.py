@@ -25,7 +25,7 @@ def compare_records(before, after, history):
 
 
 def analyze(root, arch):
-    expected = json.loads((HERE.parent / 'bonsai-load' / f'expected-{arch}.json').read_text())
+    expected = json.loads((HERE / f'expected-{arch}.json').read_text())
     groups = {k: [] for k in CONFIG['limits']}
     history, differences, fixtures = {}, [], []
     quality = {arm:{d:{'count':0,'correct':0} for d in ['jevbench','snips']} for arm in ['baseline','candidate']}

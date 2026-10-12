@@ -50,3 +50,8 @@ The startup count was chosen from the earlier CI-implied log SD≈0.029. Direct 
 ten ARM load ratios is0.03199; that predicts400-pair width0.00627 and about87% normal-approximation
 power at true ratio1.005, versus the original CI-derived planning estimate≈93%. Both are uncertain
 planning approximations; the fixed400 count and the original1.01/0.02 limits remain unchanged.
+
+The prepared candidate is now91dd64ae / SHA25613f0bd51, pending its bounded supported-host gate.
+Full JAR comparison proves only `BFloat16Matrix.class` differs from the measured combined e3e7
+artifact; no added or removed entries. The fixed cohort size and all metrics/limits are unchanged.
+New core correspondence is retained in `candidate-correspondence.json`.

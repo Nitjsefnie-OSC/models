@@ -49,7 +49,7 @@
     }
   ],
   "modelsRevision": "4f3d3e9a548bf3781ab3d002ff37df0875760e49",
-  "vectorsRevision": "6893a587d7f1d8fd2cd58e85310ef87579b42b25",
+  "vectorsRevision": "91dd64ae1a4b4bffa534514f10aeaba7e9671574",
   "baselineCore": "0.1.29",
   "bootstrapSeed": 716309,
   "bootstrapResamples": 20000,
@@ -576,6 +576,10 @@
     }
   },
   "checkpointPairs": 20,
-  "candidateCoreSha256": "e3e7b0ab79d0630bcad65c4cbe9fd356cf589dd159eba8e6c0aa402db24bd33c",
-  "planningEvidenceRun": 38321278750
+  "candidateCoreSha256": "13f0bd516ede8e4306541c72ef368e94c9bddddd80a99631ff5aa65992fdbba8",
+  "planningEvidenceRun": 38321278750,
+  "priorCombinedCoreSha256": "e3e7b0ab79d0630bcad65c4cbe9fd356cf589dd159eba8e6c0aa402db24bd33c",
+  "changedJarEntries": [
+    "com/integrallis/vectors/core/BFloat16Matrix.class"
+  ]
 }

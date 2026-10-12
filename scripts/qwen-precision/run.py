@@ -28,7 +28,7 @@ def main():
         assert paired.sha(args.candidate_core) == CONFIG['candidateCoreSha256']
         out, classes, cores, native, model, base = paired.prepare(args)
         provenance = json.loads((out / 'provenance.json').read_text())
-        expected = json.loads((HERE.parent / 'bonsai-load' / f'expected-{args.arch}.json').read_text())
+        expected = json.loads((HERE / f'expected-{args.arch}.json').read_text())
         assert provenance['jarEntries'] == expected['jarEntries']
         assert provenance['nativeSha256'] == expected['nativeSha256']
         assert '25.0.3' in provenance['java']
