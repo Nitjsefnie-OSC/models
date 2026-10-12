@@ -1,0 +1,3 @@
+WARNING: Using incubator modules: jdk.incubator.vector
+batch=1 bytesPerCall=102480.0
+batch=2 bytesPerCall=65552.0
