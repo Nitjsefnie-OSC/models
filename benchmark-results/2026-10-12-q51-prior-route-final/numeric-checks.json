@@ -1,0 +1,13 @@
+{
+  "x86": {
+    "exact": true,
+    "requests": 148,
+    "fullLogitSnapshotsPerRequest": 9
+  },
+  "arm": {
+    "exact": true,
+    "requests": 148,
+    "fullLogitSnapshotsPerRequest": 9
+  },
+  "crossHostExact": true
+}
