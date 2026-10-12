@@ -4130,6 +4130,17 @@ unsafe fn compute_q4_k_batched_row_range_avx2(
                 group_mins[group] = qk_min(scales, group);
             }
 
+            let minimum_values = _mm256_setr_epi32(
+                group_mins[0],
+                group_mins[1],
+                group_mins[2],
+                group_mins[3],
+                group_mins[4],
+                group_mins[5],
+                group_mins[6],
+                group_mins[7],
+            );
+
             for batch in 0..batch_size {
                 let activation_offset = batch * cols + block * QK_K;
                 let sum_offset = batch * sums_per_batch + block * QK_K / Q8_K_SUM_BLOCK;
@@ -4152,12 +4163,16 @@ unsafe fn compute_q4_k_batched_row_range_avx2(
                 // Match the single-row reduction order: the minimum correction is a
                 // scalar FMA per block, added only after reducing the quantized lanes.
                 // Folding it into SIMD lanes changes rounding when prefill batch size changes.
-                let mut block_minimum_sum = 0_i32;
-                for group in 0..8 {
-                    block_minimum_sum += group_mins[group]
-                        * (activation_sums[sum_offset + group * 2] as i32
-                            + activation_sums[sum_offset + group * 2 + 1] as i32);
-                }
+                // Integer summation is exact here: eight groups of 32 signed bytes
+                // multiplied by six-bit minima cannot overflow i32. Vectorize this
+                // portion without changing the scalar floating-point FMA contract.
+                // SAFETY: one Q8_K block contains sixteen complete i16 group sums.
+                let activation_sum_values = unsafe {
+                    _mm256_loadu_si256(activation_sums.as_ptr().add(sum_offset).cast())
+                };
+                let paired_sums = _mm256_madd_epi16(activation_sum_values, _mm256_set1_epi16(1));
+                let block_minimum_sum =
+                    horizontal_sum_i32_avx2(_mm256_mullo_epi32(minimum_values, paired_sums));
                 let activation_scale = activation_scales[batch * blocks_per_row + block];
                 let d = weight_scale * activation_scale;
                 let d_min = weight_min_scale * activation_scale;
