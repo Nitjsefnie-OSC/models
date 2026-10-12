@@ -76,7 +76,7 @@ const CAPABILITY_MIXED_K_F32_GROUPED_BATCHED_MATMUL: u64 = 1 << 9;
 const CAPABILITY_Q5_K_F32_BATCHED_MATMUL: u64 = 1 << 10;
 const CAPABILITY_Q5_K_F32_GROUPED_BATCHED_MATMUL: u64 = 1 << 11;
 const CAPABILITY_Q5_0_F32_BATCHED_MATMUL: u64 = 1 << 12;
-const CAPABILITY_Q5_0_F32_GROUPED_BATCHED_MATMUL: u64 = 1 << 13;
+// Bit 13 is retired: Q5_0 grouping has no qualified production route.
 const CAPABILITY_K_QUANT_BATCH_WEIGHT_REUSE: u64 = 1 << 14;
 const CAPABILITY_Q4_K_BATCH_VECTOR_ACCUMULATION: u64 = 1 << 15;
 const CAPABILITY_MANY_GROUPED_BATCHED_MATMUL: u64 = 1 << 16;
@@ -1470,7 +1470,6 @@ pub extern "C" fn jmodels_kernels_capabilities() -> u64 {
         | CAPABILITY_Q5_0_F32_BATCHED_MATMUL
         | CAPABILITY_Q5_1_F32_BATCHED_MATMUL
         | CAPABILITY_PTQ1_0_Q8_0_BATCHED_MATMUL
-        | CAPABILITY_Q5_0_F32_GROUPED_BATCHED_MATMUL
         | CAPABILITY_K_QUANT_BATCH_WEIGHT_REUSE
         | CAPABILITY_Q4_K_BATCH_VECTOR_ACCUMULATION
         | CAPABILITY_MANY_GROUPED_BATCHED_MATMUL
@@ -2601,9 +2600,9 @@ fn quantized_f32_mixed_grouped_batched_matmul(
     if formats
         .iter()
         .any(|format| format.activation_format() != activation_format)
-        || formats
-            .iter()
-            .any(|format| cols % format.block_elements() != 0)
+        || formats.iter().any(|format| {
+            matches!(format, WeightFormat::Q5_0) || cols % format.block_elements() != 0
+        })
     {
         return STATUS_INVALID_SHAPE;
     }
@@ -2721,9 +2720,9 @@ fn quantized_f32_independent_batched_matmul(
     if formats
         .iter()
         .any(|format| format.activation_format() != activation_format)
-        || formats
-            .iter()
-            .any(|format| cols % format.block_elements() != 0)
+        || formats.iter().any(|format| {
+            matches!(format, WeightFormat::Q5_0) || cols % format.block_elements() != 0
+        })
     {
         return STATUS_INVALID_SHAPE;
     }
@@ -6180,7 +6179,6 @@ mod tests {
                 | CAPABILITY_Q5_K_F32_BATCHED_MATMUL
                 | CAPABILITY_Q5_K_F32_GROUPED_BATCHED_MATMUL
                 | CAPABILITY_Q5_0_F32_BATCHED_MATMUL
-                | CAPABILITY_Q5_0_F32_GROUPED_BATCHED_MATMUL
                 | CAPABILITY_Q5_1_F32_BATCHED_MATMUL
                 | CAPABILITY_PTQ1_0_Q8_0_BATCHED_MATMUL
                 | CAPABILITY_K_QUANT_BATCH_WEIGHT_REUSE
@@ -6661,14 +6659,14 @@ mod tests {
     fn grouped_projection_uses_one_worker_generation() {
         let context = jmodels_kernels_context_create(2);
         assert!(!context.is_null());
-        let weights: [Vec<u8>; 3] = std::array::from_fn(|_| vec![0_u8; 64 * Q5_0_BLOCK_BYTES]);
+        let weights: [Vec<u8>; 3] = std::array::from_fn(|_| vec![0_u8; 64 * Q4_0_BLOCK_BYTES]);
         let weight_pointers = [
             weights[0].as_ptr(),
             weights[1].as_ptr(),
             weights[2].as_ptr(),
         ];
-        let weight_bytes = [(64 * Q5_0_BLOCK_BYTES) as u64; 3];
-        let formats = [5_u32; 3];
+        let weight_bytes = [(64 * Q4_0_BLOCK_BYTES) as u64; 3];
+        let formats = [0_u32; 3];
         let rows = [64_u32; 3];
         let input = [0.25_f32; QK_0];
         let mut output = [0_f32; 64 * 3];
@@ -6714,6 +6712,29 @@ mod tests {
         );
 
         assert_eq!(after.wrapping_sub(before), 1);
+        // Q5_0 grouping was retired after the supported-host real-model gate rejected it.
+        let retired_formats = [5_u32; 3];
+        // SAFETY: all metadata and buffers are valid; the format is rejected before dereferencing
+        // its weight layout, so this cannot dispatch a worker job.
+        assert_eq!(
+            unsafe {
+                jmodels_quantized_f32_grouped_batched_matmul_with_context(
+                    context,
+                    retired_formats.as_ptr(),
+                    weight_pointers.as_ptr(),
+                    weight_bytes.as_ptr(),
+                    rows.as_ptr(),
+                    3,
+                    input.as_ptr(),
+                    input.len() as u64,
+                    output.as_mut_ptr(),
+                    output.len() as u64,
+                    1,
+                    QK_0 as u32,
+                )
+            },
+            STATUS_INVALID_SHAPE
+        );
         // SAFETY: the test consumes the unique context pointer exactly once.
         assert_eq!(
             unsafe { jmodels_kernels_context_destroy(context) },
@@ -6868,7 +6889,8 @@ mod tests {
             weights[offset + 2..offset + 4]
                 .copy_from_slice(&f32_to_f16(0.0093 * (block + 1) as f32).to_le_bytes());
             for (index, value) in weights[offset + 4..offset + Q4_K_BLOCK_BYTES]
-                .iter_mut().enumerate()
+                .iter_mut()
+                .enumerate()
             {
                 *value = (index * 19 + block * 7 + 3) as u8;
             }
@@ -6879,23 +6901,37 @@ mod tests {
                 .map(|index| (((index * 17 + 11) % 255) as i32 - 127) as i8)
                 .collect();
             let scales: Vec<f32> = (0..batch_size * BLOCKS)
-                .map(|index| 0.00371 * (index + 1) as f32).collect();
-            let sums: Vec<i16> = quantized.chunks_exact(Q8_K_SUM_BLOCK)
-                .map(|values| values.iter().map(|&value| value as i16).sum()).collect();
+                .map(|index| 0.00371 * (index + 1) as f32)
+                .collect();
+            let sums: Vec<i16> = quantized
+                .chunks_exact(Q8_K_SUM_BLOCK)
+                .map(|values| values.iter().map(|&value| value as i16).sum())
+                .collect();
             let mut actual = vec![f32::NAN; batch_size * ROWS];
             // SAFETY: CPU features are checked above and all complete fixture buffers are disjoint.
             unsafe {
                 compute_q4_k_batched_row_range_avx2(
-                    &weights, &quantized, &scales, &sums, actual.as_mut_ptr(),
-                    batch_size, ROWS, COLS, 0, ROWS,
+                    &weights,
+                    &quantized,
+                    &scales,
+                    &sums,
+                    actual.as_mut_ptr(),
+                    batch_size,
+                    ROWS,
+                    COLS,
+                    0,
+                    ROWS,
                 );
                 for batch in 0..batch_size {
                     for row in 0..ROWS {
                         let expected = dot_q4_k_q8_k_row_avx2(
                             &weights, &quantized, &scales, &sums, batch, row, COLS,
                         );
-                        assert_eq!(actual[batch * ROWS + row].to_bits(), expected.to_bits(),
-                            "batch size {batch_size}, batch {batch}, row {row}");
+                        assert_eq!(
+                            actual[batch * ROWS + row].to_bits(),
+                            expected.to_bits(),
+                            "batch size {batch_size}, batch {batch}, row {row}"
+                        );
                     }
                 }
             }

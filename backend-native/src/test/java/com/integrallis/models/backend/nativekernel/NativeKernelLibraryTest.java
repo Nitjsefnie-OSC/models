@@ -45,7 +45,6 @@ class NativeKernelLibraryTest {
       assertThat(kernels.abiVersion()).isEqualTo(NativeKernelLibrary.ABI_VERSION);
       assertThat(kernels.supports(NativeKernelCapability.Q4_0_F32_BATCHED_MATMUL)).isTrue();
       assertThat(kernels.supports(NativeKernelCapability.Q5_0_F32_BATCHED_MATMUL)).isTrue();
-      assertThat(kernels.supports(NativeKernelCapability.Q5_0_F32_GROUPED_BATCHED_MATMUL)).isTrue();
       assertThat(kernels.supports(NativeKernelCapability.Q5_1_F32_BATCHED_MATMUL)).isTrue();
       assertThat(kernels.supports(NativeKernelCapability.Q8_0_F32_BATCHED_MATMUL)).isTrue();
       assertThat(kernels.supports(NativeKernelCapability.Q8_0_F32_GROUPED_BATCHED_MATMUL)).isTrue();
@@ -777,7 +776,6 @@ class NativeKernelLibraryTest {
     try (RustGgufBatchedMatrixKernel kernel =
         RustGgufBatchedMatrixKernel.open(libraryPath(), settings)) {
       assertThat(kernel.threadCount()).isEqualTo(4);
-      assertThat(kernel.supportsQ5_0Grouped()).isTrue();
       assertThat(kernel.supportsGatedDeltaNet()).isTrue();
       assertThat(kernel.supportsGroupedGatedDeltaNet()).isTrue();
       assertThat(kernel.supportsGatedDeltaNet(128, 128)).isTrue();
@@ -790,9 +788,8 @@ class NativeKernelLibraryTest {
   void q5_0ProjectionsAreNeverGrouped() {
     try (RustGgufBatchedMatrixKernel kernel = RustGgufBatchedMatrixKernel.open(libraryPath())) {
       assertThat(kernel.supports(GgufTensorType.Q5_0)).isTrue();
-      // The shim can group Q5_0; we do not, because grouping it decoded slower than independent
-      // projections on the controlled profile. One route, chosen by measurement.
-      assertThat(kernel.supportsQ5_0Grouped()).isTrue();
+      // The supported-host real-model comparison did not qualify Q5_0 grouping.
+      // Single projections stay supported; the unused grouped capability was removed.
       assertThat(kernel.supportsDual(GgufTensorType.Q5_0, GgufTensorType.Q5_0)).isFalse();
       assertThat(
               kernel.supportsTriple(GgufTensorType.Q5_0, GgufTensorType.Q5_0, GgufTensorType.Q5_0))
@@ -1144,66 +1141,6 @@ class NativeKernelLibraryTest {
       assertThat(actual[0]).containsExactly(expected[0]);
       assertThat(actual[1]).containsExactly(expected[1]);
       assertThat(actual[2]).containsExactly(expected[2]);
-    }
-  }
-
-  @Test
-  void groupedKernelSharesInputAcrossThreeQ5_0ProjectionsWithinReductionTolerance() {
-    int batchSize = 4;
-    int cols = 64;
-    int[] rowCounts = {3, 5, 7};
-    float[] input = inputs(batchSize, cols);
-
-    try (Arena arena = Arena.ofConfined();
-        RustGgufBatchedMatrixKernel kernel = RustGgufBatchedMatrixKernel.open(libraryPath())) {
-      MemorySegment[] weights = new MemorySegment[rowCounts.length];
-      float[][] expected = new float[rowCounts.length][];
-      float[][] actual = new float[rowCounts.length][];
-      for (int index = 0; index < rowCounts.length; index++) {
-        int rows = rowCounts[index];
-        weights[index] = arena.allocate(rows * cols / 32L * 22L);
-        fillQ5_0Weights(weights[index], rows, cols);
-        expected[index] = new float[batchSize * rows];
-        actual[index] = new float[batchSize * rows];
-        referenceQ5_0F32BatchedMatmul(
-            weights[index], input, batchSize, rows, cols, expected[index]);
-      }
-
-      // The grouped Q5_0 kernel is correct, which the numerics below check, but the shipping path
-      // does not route to it: grouping Q5_0 decoded slower than independent projections on the
-      // controlled profile. The kernel is a deletion candidate once that measurement is re-run
-      // with a committed artifact.
-      assertThat(
-              kernel.isTripleEligible(
-                  GgufTensorType.Q5_0,
-                  rowCounts[0],
-                  GgufTensorType.Q5_0,
-                  rowCounts[1],
-                  GgufTensorType.Q5_0,
-                  rowCounts[2],
-                  batchSize,
-                  cols))
-          .isFalse();
-      kernel.multiplyTriple(
-          actual[0],
-          weights[0],
-          GgufTensorType.Q5_0,
-          rowCounts[0],
-          actual[1],
-          weights[1],
-          GgufTensorType.Q5_0,
-          rowCounts[1],
-          actual[2],
-          weights[2],
-          GgufTensorType.Q5_0,
-          rowCounts[2],
-          input,
-          batchSize,
-          cols);
-
-      assertClose(actual[0], expected[0], BLOCK_QUANT_REDUCTION_TOLERANCE);
-      assertClose(actual[1], expected[1], BLOCK_QUANT_REDUCTION_TOLERANCE);
-      assertClose(actual[2], expected[2], BLOCK_QUANT_REDUCTION_TOLERANCE);
     }
   }
 

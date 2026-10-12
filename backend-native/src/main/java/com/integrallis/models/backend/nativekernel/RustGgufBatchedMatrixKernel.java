@@ -144,11 +144,6 @@ public final class RustGgufBatchedMatrixKernel implements GgufBatchedMatrixKerne
         && valueDimension <= 256;
   }
 
-  /** Whether the loaded shim can share one activation quantization across grouped Q5_0 rows. */
-  boolean supportsQ5_0Grouped() {
-    return library.supports(NativeKernelCapability.Q5_0_F32_GROUPED_BATCHED_MATMUL);
-  }
-
   @Override
   public synchronized void gatedDeltaNet(
       float[] query,
@@ -830,7 +825,6 @@ public final class RustGgufBatchedMatrixKernel implements GgufBatchedMatrixKerne
     }
     return switch (type) {
       case Q4_0 -> library.supports(NativeKernelCapability.Q4_0_F32_GROUPED_BATCHED_MATMUL);
-      case Q5_0 -> library.supports(NativeKernelCapability.Q5_0_F32_GROUPED_BATCHED_MATMUL);
       case Q8_0 -> library.supports(NativeKernelCapability.Q8_0_F32_GROUPED_BATCHED_MATMUL);
       case Q4_K -> library.supports(NativeKernelCapability.Q4_K_F32_GROUPED_BATCHED_MATMUL);
       case Q5_K -> library.supports(NativeKernelCapability.Q5_K_F32_GROUPED_BATCHED_MATMUL);
@@ -1013,7 +1007,6 @@ public final class RustGgufBatchedMatrixKernel implements GgufBatchedMatrixKerne
   private static NativeKernelCapability groupedCapability(GgufTensorType type) {
     return switch (type) {
       case Q4_0 -> NativeKernelCapability.Q4_0_F32_GROUPED_BATCHED_MATMUL;
-      case Q5_0 -> NativeKernelCapability.Q5_0_F32_GROUPED_BATCHED_MATMUL;
       case Q8_0 -> NativeKernelCapability.Q8_0_F32_GROUPED_BATCHED_MATMUL;
       case Q4_K -> NativeKernelCapability.Q4_K_F32_GROUPED_BATCHED_MATMUL;
       case Q5_K -> NativeKernelCapability.Q5_K_F32_GROUPED_BATCHED_MATMUL;

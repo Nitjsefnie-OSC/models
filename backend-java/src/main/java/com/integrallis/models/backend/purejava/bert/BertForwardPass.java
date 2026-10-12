@@ -17,6 +17,7 @@ package com.integrallis.models.backend.purejava.bert;
 
 import com.integrallis.models.backend.purejava.SequenceEncoder;
 import com.integrallis.models.backend.purejava.gguf.GgufFile;
+import com.integrallis.models.backend.purejava.gguf.GgufTensorType;
 import com.integrallis.models.backend.purejava.ops.TensorOps;
 import com.integrallis.vectors.core.GgufQ4Kernel;
 import com.integrallis.vectors.core.VectorUtil;
@@ -264,7 +265,9 @@ public final class BertForwardPass implements SequenceEncoder {
 
   private void project(
       float[] output, float[] input, int sequenceLength, BertWeights.Matrix matrix) {
-    if (config.usesRotaryPositions()) {
+    if (config.usesRotaryPositions()
+        || matrix.type() == GgufTensorType.Q5_1
+        || matrix.type() == GgufTensorType.Q4_1) {
       TensorOps.ggufExactBatchedMatmul(
           output,
           input,
