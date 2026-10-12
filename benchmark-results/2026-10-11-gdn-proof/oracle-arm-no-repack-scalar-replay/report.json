@@ -1,0 +1,1330 @@
+{
+  "scope": "independent scalar analysis of recorded bytes, not a changed qualification gate",
+  "modelFile": "/Users/briansam-bodden/.jvllm/models/Qwen3.5-0.8B-Q4_K_M.gguf",
+  "modelSha256": "bd258782e35f7f458f8aced1adc053e6e92e89bc735ba3be89d38a06121dc517",
+  "oracleVariant": "baseline-32-repack0",
+  "ggufVersion": 3,
+  "dataStart": 10961920,
+  "projections": [
+    {
+      "name": "blk.0.ssm_alpha.weight",
+      "shape": [
+        1024,
+        16
+      ],
+      "type": 8,
+      "offset": 221245504,
+      "absoluteByteOffset": 232207424,
+      "weightFile": "blk.0.ssm_alpha.weight.q8_0",
+      "weightSha256": "391baf89894fdbd551736ef6791411d808e1bffa0ddc5a3b0ea313675a15b1ee",
+      "modelsOutputFiles": [
+        {
+          "file": "benchmark-results/2026-10-11-gdn-proof/remote-oracle-repack-v1/arm/qwen-0.8b-models/easy-intent-00/0007-blk.0.ssm_alpha.weight.output.f32",
+          "sha256": "839d2cd82a040f5c11bc37a5478167ec8af651f418599b7f72bb5f3ef874e15b"
+        },
+        {
+          "file": "benchmark-results/2026-10-11-gdn-proof/remote-oracle-repack-v1/arm/qwen-0.8b-models/easy-intent-00/0023-blk.0.ssm_alpha.weight.output.f32",
+          "sha256": "36e8f7cc4bd035d6ebbebba857e47918f76c7cf0af5ba00e487bcba8f119a784"
+        },
+        {
+          "file": "benchmark-results/2026-10-11-gdn-proof/remote-oracle-repack-v1/arm/qwen-0.8b-models/easy-intent-00/0039-blk.0.ssm_alpha.weight.output.f32",
+          "sha256": "45749ae9b1c9542b43f6dcafa47fa1bafd3908c6ceeb49b5cd0324ecb5022ce3"
+        },
+        {
+          "file": "benchmark-results/2026-10-11-gdn-proof/remote-oracle-repack-v1/arm/qwen-0.8b-models/easy-intent-00/0055-blk.0.ssm_alpha.weight.output.f32",
+          "sha256": "b89e74e65f50d67dc937249c942a829c03c0b5dc4899eed38addbdba062c922c"
+        }
+      ],
+      "oracleOutputFiles": [
+        {
+          "file": "benchmark-results/2026-10-11-gdn-proof/remote-oracle-repack-v1/arm/qwen-0.8b-baseline-32-repack0/easy-intent-00/18-alpha-0.bin",
+          "sha256": "839d2cd82a040f5c11bc37a5478167ec8af651f418599b7f72bb5f3ef874e15b"
+        },
+        {
+          "file": "benchmark-results/2026-10-11-gdn-proof/remote-oracle-repack-v1/arm/qwen-0.8b-baseline-32-repack0/easy-intent-00/60-alpha-0.bin",
+          "sha256": "36e8f7cc4bd035d6ebbebba857e47918f76c7cf0af5ba00e487bcba8f119a784"
+        },
+        {
+          "file": "benchmark-results/2026-10-11-gdn-proof/remote-oracle-repack-v1/arm/qwen-0.8b-baseline-32-repack0/easy-intent-00/102-alpha-0.bin",
+          "sha256": "45749ae9b1c9542b43f6dcafa47fa1bafd3908c6ceeb49b5cd0324ecb5022ce3"
+        },
+        {
+          "file": "benchmark-results/2026-10-11-gdn-proof/remote-oracle-repack-v1/arm/qwen-0.8b-baseline-32-repack0/easy-intent-00/144-alpha-0.bin",
+          "sha256": "3b23a437b5a5cdeb39d9bdce1fa88bf9f31301a52b5a306eb1625bd01efc49fc"
+        }
+      ],
+      "replays": [
+        {
+          "inputSource": "models",
+          "inputFile": "blk.0.ssm_alpha.weight.models.input.f32",
+          "inputSha256": "c7a9d2bd963bb07e319a6f197ce490614cc4905e238729d936c758b1f0538fa5",
+          "captureFiles": [
+            {
+              "file": "benchmark-results/2026-10-11-gdn-proof/remote-oracle-repack-v1/arm/qwen-0.8b-models/easy-intent-00/0006-blk.0.ssm_alpha.weight.input.f32",
+              "sha256": "5cd58d73aad651c610ca59c462e9829b06c9ac2254428022c81675645d2a5766"
+            },
+            {
+              "file": "benchmark-results/2026-10-11-gdn-proof/remote-oracle-repack-v1/arm/qwen-0.8b-models/easy-intent-00/0022-blk.0.ssm_alpha.weight.input.f32",
+              "sha256": "43d0c987394e1373005926ec7e5074705fa5dbc1222554b7000b2d29e2c923bf"
+            },
+            {
+              "file": "benchmark-results/2026-10-11-gdn-proof/remote-oracle-repack-v1/arm/qwen-0.8b-models/easy-intent-00/0038-blk.0.ssm_alpha.weight.input.f32",
+              "sha256": "e11fb5a2124f27ec0ef3e23c5a5f6c7fa2951af778c45bf1715761df38c2fe43"
+            },
+            {
+              "file": "benchmark-results/2026-10-11-gdn-proof/remote-oracle-repack-v1/arm/qwen-0.8b-models/easy-intent-00/0054-blk.0.ssm_alpha.weight.input.f32",
+              "sha256": "65f2c3097294de8c5e0f06e03f045689e038b86fa857c1922c88721ff904f913"
+            }
+          ],
+          "quantizedScalarVsModels": {
+            "maxAbsError": 1.017915565171279e-06,
+            "rmse": 2.2988036315729916e-07
+          },
+          "quantizedScalarVsOracle": {
+            "maxAbsError": 0.0023589043084939476,
+            "rmse": 0.00012485919674515302
+          },
+          "first120TokensScalarVsOracle": {
+            "maxAbsError": 1.017915565171279e-06,
+            "rmse": 2.1983155664781383e-07
+          },
+          "lastTwoTokensScalarVsOracle": {
+            "maxAbsError": 0.0023589043084939476,
+            "rmse": 0.0009751800142372365
+          },
+          "floatScalarVsModels": {
+            "maxAbsError": 0.039132970953119184,
+            "rmse": 0.008430670408861463
+          },
+          "floatScalarVsOracle": {
+            "maxAbsError": 0.039132970953119184,
+            "rmse": 0.008435265171723693
+          },
+          "lastTwoTokens": [
+            {
+              "token": 120,
+              "row": 0,
+              "quantizedScalar": -1.4286268805444706,
+              "floatScalar": -1.433326265553731,
+              "models": -1.4286272525787354,
+              "oracle": -1.4307427406311035
+            },
+            {
+              "token": 120,
+              "row": 1,
+              "quantizedScalar": 4.193692217129865,
+              "floatScalar": 4.204992251050571,
+              "models": 4.193692684173584,
+              "oracle": 4.19296407699585
+            },
+            {
+              "token": 120,
+              "row": 2,
+              "quantizedScalar": 4.012914741229906,
+              "floatScalar": 4.021743068941083,
+              "models": 4.012914657592773,
+              "oracle": 4.010798931121826
+            },
+            {
+              "token": 120,
+              "row": 3,
+              "quantizedScalar": -2.4170351625143667,
+              "floatScalar": -2.4207442615058943,
+              "models": -2.4170353412628174,
+              "oracle": -2.4168264865875244
+            },
+            {
+              "token": 120,
+              "row": 4,
+              "quantizedScalar": -1.588162323787401,
+              "floatScalar": -1.5823460413438148,
+              "models": -1.5881621837615967,
+              "oracle": -1.5882964134216309
+            },
+            {
+              "token": 120,
+              "row": 5,
+              "quantizedScalar": 4.082519321862492,
+              "floatScalar": 4.0905878149776544,
+              "models": 4.082519054412842,
+              "oracle": 4.080986976623535
+            },
+            {
+              "token": 120,
+              "row": 6,
+              "quantizedScalar": 1.8932280444350909,
+              "floatScalar": 1.900754499484611,
+              "models": 1.8932281732559204,
+              "oracle": 1.8915905952453613
+            },
+            {
+              "token": 120,
+              "row": 7,
+              "quantizedScalar": 4.427912423205271,
+              "floatScalar": 4.429400059546886,
+              "models": 4.427912712097168,
+              "oracle": 4.426313877105713
+            },
+            {
+              "token": 120,
+              "row": 8,
+              "quantizedScalar": 0.06242414803818974,
+              "floatScalar": 0.06469468650334198,
+              "models": 0.062424130737781525,
+              "oracle": 0.061441391706466675
+            },
+            {
+              "token": 120,
+              "row": 9,
+              "quantizedScalar": 3.468525756350573,
+              "floatScalar": 3.4661048830303613,
+              "models": 3.4685258865356445,
+              "oracle": 3.46734619140625
+            },
+            {
+              "token": 120,
+              "row": 10,
+              "quantizedScalar": 3.768002470918873,
+              "floatScalar": 3.773130396860143,
+              "models": 3.768002510070801,
+              "oracle": 3.7667946815490723
+            },
+            {
+              "token": 120,
+              "row": 11,
+              "quantizedScalar": -0.6916498348364257,
+              "floatScalar": -0.6947911153389033,
+              "models": -0.691649854183197,
+              "oracle": -0.6930845975875854
+            },
+            {
+              "token": 120,
+              "row": 12,
+              "quantizedScalar": 3.06425287242746,
+              "floatScalar": 3.070775394788491,
+              "models": 3.0642528533935547,
+              "oracle": 3.0644946098327637
+            },
+            {
+              "token": 120,
+              "row": 13,
+              "quantizedScalar": -1.3678787216886121,
+              "floatScalar": -1.373502259005333,
+              "models": -1.3678791522979736,
+              "oracle": -1.367935061454773
+            },
+            {
+              "token": 120,
+              "row": 14,
+              "quantizedScalar": 1.4933546811080305,
+              "floatScalar": 1.5035059511829836,
+              "models": 1.493354320526123,
+              "oracle": 1.4920127391815186
+            },
+            {
+              "token": 120,
+              "row": 15,
+              "quantizedScalar": 3.8098275570337137,
+              "floatScalar": 3.8106802352410867,
+              "models": 3.8098275661468506,
+              "oracle": 3.8074686527252197
+            },
+            {
+              "token": 121,
+              "row": 0,
+              "quantizedScalar": -0.39421595295425504,
+              "floatScalar": -0.4075434795422037,
+              "models": -0.3942161798477173,
+              "oracle": -0.39421606063842773
+            },
+            {
+              "token": 121,
+              "row": 1,
+              "quantizedScalar": 0.18227802329784026,
+              "floatScalar": 0.17818266152414353,
+              "models": 0.18227800726890564,
+              "oracle": 0.1822780966758728
+            },
+            {
+              "token": 121,
+              "row": 2,
+              "quantizedScalar": -1.3222653488919605,
+              "floatScalar": -1.3229709093262532,
+              "models": -1.3222652673721313,
+              "oracle": -1.3222650289535522
+            },
+            {
+              "token": 121,
+              "row": 3,
+              "quantizedScalar": -1.7686233596032253,
+              "floatScalar": -1.7623482188662827,
+              "models": -1.7686234712600708,
+              "oracle": -1.7686233520507812
+            },
+            {
+              "token": 121,
+              "row": 4,
+              "quantizedScalar": -1.400173054127663,
+              "floatScalar": -1.3955556888489813,
+              "models": -1.4001730680465698,
+              "oracle": -1.4001729488372803
+            },
+            {
+              "token": 121,
+              "row": 5,
+              "quantizedScalar": 0.036461297917412594,
+              "floatScalar": 0.029287012470852858,
+              "models": 0.03646126389503479,
+              "oracle": 0.036461442708969116
+            },
+            {
+              "token": 121,
+              "row": 6,
+              "quantizedScalar": -1.037311542801035,
+              "floatScalar": -1.043140111400085,
+              "models": -1.0373116731643677,
+              "oracle": -1.0373115539550781
+            },
+            {
+              "token": 121,
+              "row": 7,
+              "quantizedScalar": -0.8203952741532703,
+              "floatScalar": -0.8196539077093448,
+              "models": -0.8203951120376587,
+              "oracle": -0.8203949332237244
+            },
+            {
+              "token": 121,
+              "row": 8,
+              "quantizedScalar": 5.105816345989297,
+              "floatScalar": 5.101200044359668,
+              "models": 5.105816841125488,
+              "oracle": 5.105816841125488
+            },
+            {
+              "token": 121,
+              "row": 9,
+              "quantizedScalar": 0.3667222038602631,
+              "floatScalar": 0.3729941341757961,
+              "models": 0.3667222559452057,
+              "oracle": 0.36672234535217285
+            },
+            {
+              "token": 121,
+              "row": 10,
+              "quantizedScalar": -0.6220834469859255,
+              "floatScalar": -0.6169417930122947,
+              "models": -0.6220837235450745,
+              "oracle": -0.6220835447311401
+            },
+            {
+              "token": 121,
+              "row": 11,
+              "quantizedScalar": -0.45908648400654783,
+              "floatScalar": -0.47094750072172253,
+              "models": -0.4590863287448883,
+              "oracle": -0.4590862989425659
+            },
+            {
+              "token": 121,
+              "row": 12,
+              "quantizedScalar": -3.4366262392140925,
+              "floatScalar": -3.4414213651696812,
+              "models": -3.436626434326172,
+              "oracle": -3.436626672744751
+            },
+            {
+              "token": 121,
+              "row": 13,
+              "quantizedScalar": -4.755468065075547,
+              "floatScalar": -4.753609507857869,
+              "models": -4.755468368530273,
+              "oracle": -4.755467891693115
+            },
+            {
+              "token": 121,
+              "row": 14,
+              "quantizedScalar": -3.974473988862883,
+              "floatScalar": -3.9895416552829577,
+              "models": -3.9744739532470703,
+              "oracle": -3.974473714828491
+            },
+            {
+              "token": 121,
+              "row": 15,
+              "quantizedScalar": -1.311168013846327,
+              "floatScalar": -1.305248583417459,
+              "models": -1.3111677169799805,
+              "oracle": -1.3111679553985596
+            }
+          ]
+        },
+        {
+          "inputSource": "oracle",
+          "inputFile": "blk.0.ssm_alpha.weight.oracle.input.f32",
+          "inputSha256": "80279f337fdb13dca5fd0129ac112de2b6910bebaeae4118acb6f5909ea20899",
+          "captureFiles": [
+            {
+              "file": "benchmark-results/2026-10-11-gdn-proof/remote-oracle-repack-v1/arm/qwen-0.8b-baseline-32-repack0/easy-intent-00/2-attn_norm-0.bin",
+              "sha256": "972d58ad3463294d577576e8b0120bd870f26bc6a5867d8b7cef2a75920772d0"
+            },
+            {
+              "file": "benchmark-results/2026-10-11-gdn-proof/remote-oracle-repack-v1/arm/qwen-0.8b-baseline-32-repack0/easy-intent-00/44-attn_norm-0.bin",
+              "sha256": "974d1b44d95a79b696ba26cf15993d0cc5ef5db524eff7a72bad8ad171bf27b9"
+            },
+            {
+              "file": "benchmark-results/2026-10-11-gdn-proof/remote-oracle-repack-v1/arm/qwen-0.8b-baseline-32-repack0/easy-intent-00/86-attn_norm-0.bin",
+              "sha256": "03465e1f40443130a44cfb2cdc0d4fb521fac2e8ace857879e8e53891f7eed4c"
+            },
+            {
+              "file": "benchmark-results/2026-10-11-gdn-proof/remote-oracle-repack-v1/arm/qwen-0.8b-baseline-32-repack0/easy-intent-00/128-attn_norm-0.bin",
+              "sha256": "65f2c3097294de8c5e0f06e03f045689e038b86fa857c1922c88721ff904f913"
+            }
+          ],
+          "quantizedScalarVsModels": {
+            "maxAbsError": 0.002358963745791698,
+            "rmse": 0.00012485451840479168
+          },
+          "quantizedScalarVsOracle": {
+            "maxAbsError": 1.017915565171279e-06,
+            "rmse": 2.1930638766790575e-07
+          },
+          "first120TokensScalarVsOracle": {
+            "maxAbsError": 1.017915565171279e-06,
+            "rmse": 2.1983155664781383e-07
+          },
+          "lastTwoTokensScalarVsOracle": {
+            "maxAbsError": 4.951361916027963e-07,
+            "rmse": 1.8508915175296702e-07
+          },
+          "floatScalarVsModels": {
+            "maxAbsError": 0.03913312600027652,
+            "rmse": 0.008430670281868207
+          },
+          "floatScalarVsOracle": {
+            "maxAbsError": 0.03913312600027652,
+            "rmse": 0.008435265044799613
+          },
+          "lastTwoTokens": [
+            {
+              "token": 120,
+              "row": 0,
+              "quantizedScalar": -1.4307427179519436,
+              "floatScalar": -1.433326265553731,
+              "models": -1.4286272525787354,
+              "oracle": -1.4307427406311035
+            },
+            {
+              "token": 120,
+              "row": 1,
+              "quantizedScalar": 4.192964156711241,
+              "floatScalar": 4.204992251050571,
+              "models": 4.193692684173584,
+              "oracle": 4.19296407699585
+            },
+            {
+              "token": 120,
+              "row": 2,
+              "quantizedScalar": 4.010799188188685,
+              "floatScalar": 4.021743068941083,
+              "models": 4.012914657592773,
+              "oracle": 4.010798931121826
+            },
+            {
+              "token": 120,
+              "row": 3,
+              "quantizedScalar": -2.4168263765386655,
+              "floatScalar": -2.4207442615058943,
+              "models": -2.4170353412628174,
+              "oracle": -2.4168264865875244
+            },
+            {
+              "token": 120,
+              "row": 4,
+              "quantizedScalar": -1.5882963992626173,
+              "floatScalar": -1.5823460413438148,
+              "models": -1.5881621837615967,
+              "oracle": -1.5882964134216309
+            },
+            {
+              "token": 120,
+              "row": 5,
+              "quantizedScalar": 4.080986930246581,
+              "floatScalar": 4.0905878149776544,
+              "models": 4.082519054412842,
+              "oracle": 4.080986976623535
+            },
+            {
+              "token": 120,
+              "row": 6,
+              "quantizedScalar": 1.89159065073909,
+              "floatScalar": 1.900754499484611,
+              "models": 1.8932281732559204,
+              "oracle": 1.8915905952453613
+            },
+            {
+              "token": 120,
+              "row": 7,
+              "quantizedScalar": 4.426313719282916,
+              "floatScalar": 4.429400059546886,
+              "models": 4.427912712097168,
+              "oracle": 4.426313877105713
+            },
+            {
+              "token": 120,
+              "row": 8,
+              "quantizedScalar": 0.06144141090589983,
+              "floatScalar": 0.06469468650334198,
+              "models": 0.062424130737781525,
+              "oracle": 0.061441391706466675
+            },
+            {
+              "token": 120,
+              "row": 9,
+              "quantizedScalar": 3.4673460442318174,
+              "floatScalar": 3.4661048830303613,
+              "models": 3.4685258865356445,
+              "oracle": 3.46734619140625
+            },
+            {
+              "token": 120,
+              "row": 10,
+              "quantizedScalar": 3.766794844174001,
+              "floatScalar": 3.773130396860143,
+              "models": 3.768002510070801,
+              "oracle": 3.7667946815490723
+            },
+            {
+              "token": 120,
+              "row": 11,
+              "quantizedScalar": -0.6930843877562438,
+              "floatScalar": -0.6947911153389033,
+              "models": -0.691649854183197,
+              "oracle": -0.6930845975875854
+            },
+            {
+              "token": 120,
+              "row": 12,
+              "quantizedScalar": 3.064494548874791,
+              "floatScalar": 3.070775394788491,
+              "models": 3.0642528533935547,
+              "oracle": 3.0644946098327637
+            },
+            {
+              "token": 120,
+              "row": 13,
+              "quantizedScalar": -1.3679350909478671,
+              "floatScalar": -1.373502259005333,
+              "models": -1.3678791522979736,
+              "oracle": -1.367935061454773
+            },
+            {
+              "token": 120,
+              "row": 14,
+              "quantizedScalar": 1.492012650182005,
+              "floatScalar": 1.5035059511829836,
+              "models": 1.493354320526123,
+              "oracle": 1.4920127391815186
+            },
+            {
+              "token": 120,
+              "row": 15,
+              "quantizedScalar": 3.807468602401059,
+              "floatScalar": 3.8106802352410867,
+              "models": 3.8098275661468506,
+              "oracle": 3.8074686527252197
+            },
+            {
+              "token": 121,
+              "row": 0,
+              "quantizedScalar": -0.39421595295425504,
+              "floatScalar": -0.4075434795422037,
+              "models": -0.3942161798477173,
+              "oracle": -0.39421606063842773
+            },
+            {
+              "token": 121,
+              "row": 1,
+              "quantizedScalar": 0.18227802329784026,
+              "floatScalar": 0.17818266152414353,
+              "models": 0.18227800726890564,
+              "oracle": 0.1822780966758728
+            },
+            {
+              "token": 121,
+              "row": 2,
+              "quantizedScalar": -1.3222653488919605,
+              "floatScalar": -1.3229709093262532,
+              "models": -1.3222652673721313,
+              "oracle": -1.3222650289535522
+            },
+            {
+              "token": 121,
+              "row": 3,
+              "quantizedScalar": -1.7686233596032253,
+              "floatScalar": -1.7623482188662827,
+              "models": -1.7686234712600708,
+              "oracle": -1.7686233520507812
+            },
+            {
+              "token": 121,
+              "row": 4,
+              "quantizedScalar": -1.400173054127663,
+              "floatScalar": -1.3955556888489813,
+              "models": -1.4001730680465698,
+              "oracle": -1.4001729488372803
+            },
+            {
+              "token": 121,
+              "row": 5,
+              "quantizedScalar": 0.036461297917412594,
+              "floatScalar": 0.029287012470852858,
+              "models": 0.03646126389503479,
+              "oracle": 0.036461442708969116
+            },
+            {
+              "token": 121,
+              "row": 6,
+              "quantizedScalar": -1.037311542801035,
+              "floatScalar": -1.043140111400085,
+              "models": -1.0373116731643677,
+              "oracle": -1.0373115539550781
+            },
+            {
+              "token": 121,
+              "row": 7,
+              "quantizedScalar": -0.8203952741532703,
+              "floatScalar": -0.8196539077093448,
+              "models": -0.8203951120376587,
+              "oracle": -0.8203949332237244
+            },
+            {
+              "token": 121,
+              "row": 8,
+              "quantizedScalar": 5.105816345989297,
+              "floatScalar": 5.101200044359668,
+              "models": 5.105816841125488,
+              "oracle": 5.105816841125488
+            },
+            {
+              "token": 121,
+              "row": 9,
+              "quantizedScalar": 0.3667222038602631,
+              "floatScalar": 0.3729941341757961,
+              "models": 0.3667222559452057,
+              "oracle": 0.36672234535217285
+            },
+            {
+              "token": 121,
+              "row": 10,
+              "quantizedScalar": -0.6220834469859255,
+              "floatScalar": -0.6169417930122947,
+              "models": -0.6220837235450745,
+              "oracle": -0.6220835447311401
+            },
+            {
+              "token": 121,
+              "row": 11,
+              "quantizedScalar": -0.45908648400654783,
+              "floatScalar": -0.47094750072172253,
+              "models": -0.4590863287448883,
+              "oracle": -0.4590862989425659
+            },
+            {
+              "token": 121,
+              "row": 12,
+              "quantizedScalar": -3.4366262392140925,
+              "floatScalar": -3.4414213651696812,
+              "models": -3.436626434326172,
+              "oracle": -3.436626672744751
+            },
+            {
+              "token": 121,
+              "row": 13,
+              "quantizedScalar": -4.755468065075547,
+              "floatScalar": -4.753609507857869,
+              "models": -4.755468368530273,
+              "oracle": -4.755467891693115
+            },
+            {
+              "token": 121,
+              "row": 14,
+              "quantizedScalar": -3.974473988862883,
+              "floatScalar": -3.9895416552829577,
+              "models": -3.9744739532470703,
+              "oracle": -3.974473714828491
+            },
+            {
+              "token": 121,
+              "row": 15,
+              "quantizedScalar": -1.311168013846327,
+              "floatScalar": -1.305248583417459,
+              "models": -1.3111677169799805,
+              "oracle": -1.3111679553985596
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "blk.0.ssm_beta.weight",
+      "shape": [
+        1024,
+        16
+      ],
+      "type": 8,
+      "offset": 221262912,
+      "absoluteByteOffset": 232224832,
+      "weightFile": "blk.0.ssm_beta.weight.q8_0",
+      "weightSha256": "82729cc6f367bbd3527421785e472aa82197d8ddec9d660d77cfe78d78bed20c",
+      "modelsOutputFiles": [
+        {
+          "file": "benchmark-results/2026-10-11-gdn-proof/remote-oracle-repack-v1/arm/qwen-0.8b-models/easy-intent-00/0005-blk.0.ssm_beta.weight.output.f32",
+          "sha256": "6868993bb8d448d4f8fe384741fbd4f661fd4f6f195d750e641a274da2f0b1d2"
+        },
+        {
+          "file": "benchmark-results/2026-10-11-gdn-proof/remote-oracle-repack-v1/arm/qwen-0.8b-models/easy-intent-00/0021-blk.0.ssm_beta.weight.output.f32",
+          "sha256": "894a519d98adfc83bf4508c611ab9ca5a565b5ea2dacba54a242ffa4ce61f085"
+        },
+        {
+          "file": "benchmark-results/2026-10-11-gdn-proof/remote-oracle-repack-v1/arm/qwen-0.8b-models/easy-intent-00/0037-blk.0.ssm_beta.weight.output.f32",
+          "sha256": "0a751f6838912a3b225cb5387eaaa40d4e7e915fc4c52e94163c0efe5c8823d0"
+        },
+        {
+          "file": "benchmark-results/2026-10-11-gdn-proof/remote-oracle-repack-v1/arm/qwen-0.8b-models/easy-intent-00/0053-blk.0.ssm_beta.weight.output.f32",
+          "sha256": "5d956d8d2e6751dc8ecb93e7059c7724c0ff78a69062e167774216736634b7f8"
+        }
+      ],
+      "oracleOutputFiles": [
+        {
+          "file": "benchmark-results/2026-10-11-gdn-proof/remote-oracle-repack-v1/arm/qwen-0.8b-baseline-32-repack0/easy-intent-00/22-beta-0.bin",
+          "sha256": "6868993bb8d448d4f8fe384741fbd4f661fd4f6f195d750e641a274da2f0b1d2"
+        },
+        {
+          "file": "benchmark-results/2026-10-11-gdn-proof/remote-oracle-repack-v1/arm/qwen-0.8b-baseline-32-repack0/easy-intent-00/64-beta-0.bin",
+          "sha256": "894a519d98adfc83bf4508c611ab9ca5a565b5ea2dacba54a242ffa4ce61f085"
+        },
+        {
+          "file": "benchmark-results/2026-10-11-gdn-proof/remote-oracle-repack-v1/arm/qwen-0.8b-baseline-32-repack0/easy-intent-00/106-beta-0.bin",
+          "sha256": "0a751f6838912a3b225cb5387eaaa40d4e7e915fc4c52e94163c0efe5c8823d0"
+        },
+        {
+          "file": "benchmark-results/2026-10-11-gdn-proof/remote-oracle-repack-v1/arm/qwen-0.8b-baseline-32-repack0/easy-intent-00/148-beta-0.bin",
+          "sha256": "19cb1f1a9d7db6bec6883c59bb09e7954cca9ff9845318e6cb651158ff0d44a5"
+        }
+      ],
+      "replays": [
+        {
+          "inputSource": "models",
+          "inputFile": "blk.0.ssm_beta.weight.models.input.f32",
+          "inputSha256": "c7a9d2bd963bb07e319a6f197ce490614cc4905e238729d936c758b1f0538fa5",
+          "captureFiles": [
+            {
+              "file": "benchmark-results/2026-10-11-gdn-proof/remote-oracle-repack-v1/arm/qwen-0.8b-models/easy-intent-00/0004-blk.0.ssm_beta.weight.input.f32",
+              "sha256": "5cd58d73aad651c610ca59c462e9829b06c9ac2254428022c81675645d2a5766"
+            },
+            {
+              "file": "benchmark-results/2026-10-11-gdn-proof/remote-oracle-repack-v1/arm/qwen-0.8b-models/easy-intent-00/0020-blk.0.ssm_beta.weight.input.f32",
+              "sha256": "43d0c987394e1373005926ec7e5074705fa5dbc1222554b7000b2d29e2c923bf"
+            },
+            {
+              "file": "benchmark-results/2026-10-11-gdn-proof/remote-oracle-repack-v1/arm/qwen-0.8b-models/easy-intent-00/0036-blk.0.ssm_beta.weight.input.f32",
+              "sha256": "e11fb5a2124f27ec0ef3e23c5a5f6c7fa2951af778c45bf1715761df38c2fe43"
+            },
+            {
+              "file": "benchmark-results/2026-10-11-gdn-proof/remote-oracle-repack-v1/arm/qwen-0.8b-models/easy-intent-00/0052-blk.0.ssm_beta.weight.input.f32",
+              "sha256": "65f2c3097294de8c5e0f06e03f045689e038b86fa857c1922c88721ff904f913"
+            }
+          ],
+          "quantizedScalarVsModels": {
+            "maxAbsError": 1.4365723473019898e-06,
+            "rmse": 1.4676278550379187e-07
+          },
+          "quantizedScalarVsOracle": {
+            "maxAbsError": 0.0011751212332455907,
+            "rmse": 4.0680651063397696e-05
+          },
+          "first120TokensScalarVsOracle": {
+            "maxAbsError": 1.4365723473019898e-06,
+            "rmse": 1.4053708999716121e-07
+          },
+          "lastTwoTokensScalarVsOracle": {
+            "maxAbsError": 0.0011751212332455907,
+            "rmse": 0.00031772417690040087
+          },
+          "floatScalarVsModels": {
+            "maxAbsError": 0.016457005874881858,
+            "rmse": 0.003330463270285669
+          },
+          "floatScalarVsOracle": {
+            "maxAbsError": 0.016457005874881858,
+            "rmse": 0.003332456003075267
+          },
+          "lastTwoTokens": [
+            {
+              "token": 120,
+              "row": 0,
+              "quantizedScalar": 0.27077914592882735,
+              "floatScalar": 0.27341031848485464,
+              "models": 0.2707791328430176,
+              "oracle": 0.2710042893886566
+            },
+            {
+              "token": 120,
+              "row": 1,
+              "quantizedScalar": 0.7406571369647281,
+              "floatScalar": 0.7438134303674913,
+              "models": 0.7406571507453918,
+              "oracle": 0.7406013011932373
+            },
+            {
+              "token": 120,
+              "row": 2,
+              "quantizedScalar": 1.9187177942185372,
+              "floatScalar": 1.9194633502868026,
+              "models": 1.9187180995941162,
+              "oracle": 1.9190208911895752
+            },
+            {
+              "token": 120,
+              "row": 3,
+              "quantizedScalar": 5.25220364204506,
+              "floatScalar": 5.257682708579845,
+              "models": 5.252203941345215,
+              "oracle": 5.251995086669922
+            },
+            {
+              "token": 120,
+              "row": 4,
+              "quantizedScalar": 1.3975913818012486,
+              "floatScalar": 1.3954035321168585,
+              "models": 1.397591233253479,
+              "oracle": 1.397958517074585
+            },
+            {
+              "token": 120,
+              "row": 5,
+              "quantizedScalar": 1.2323824429768138,
+              "floatScalar": 1.2337940684188125,
+              "models": 1.2323822975158691,
+              "oracle": 1.2319340705871582
+            },
+            {
+              "token": 120,
+              "row": 6,
+              "quantizedScalar": -0.6927305440713099,
+              "floatScalar": -0.6931937113167348,
+              "models": -0.6927304267883301,
+              "oracle": -0.6928927898406982
+            },
+            {
+              "token": 120,
+              "row": 7,
+              "quantizedScalar": 0.7963863883778686,
+              "floatScalar": 0.7977950267282501,
+              "models": 0.7963864207267761,
+              "oracle": 0.7964692711830139
+            },
+            {
+              "token": 120,
+              "row": 8,
+              "quantizedScalar": 1.1131941133044165,
+              "floatScalar": 1.1161573027583849,
+              "models": 1.1131941080093384,
+              "oracle": 1.112489938735962
+            },
+            {
+              "token": 120,
+              "row": 9,
+              "quantizedScalar": 1.2319111358992814,
+              "floatScalar": 1.2324232108494493,
+              "models": 1.231911063194275,
+              "oracle": 1.2316046953201294
+            },
+            {
+              "token": 120,
+              "row": 10,
+              "quantizedScalar": 0.4707477331194241,
+              "floatScalar": 0.47349993164383974,
+              "models": 0.4707477390766144,
+              "oracle": 0.4702628254890442
+            },
+            {
+              "token": 120,
+              "row": 11,
+              "quantizedScalar": 0.5945070791858598,
+              "floatScalar": 0.5956295731183063,
+              "models": 0.594507098197937,
+              "oracle": 0.5947812795639038
+            },
+            {
+              "token": 120,
+              "row": 12,
+              "quantizedScalar": 0.36483614509779727,
+              "floatScalar": 0.3696561966047587,
+              "models": 0.3648361265659332,
+              "oracle": 0.36457839608192444
+            },
+            {
+              "token": 120,
+              "row": 13,
+              "quantizedScalar": 1.9632913884815935,
+              "floatScalar": 1.9623247732783708,
+              "models": 1.9632917642593384,
+              "oracle": 1.9635437726974487
+            },
+            {
+              "token": 120,
+              "row": 14,
+              "quantizedScalar": 1.0133091963980405,
+              "floatScalar": 1.016832245501826,
+              "models": 1.013309121131897,
+              "oracle": 1.012134075164795
+            },
+            {
+              "token": 120,
+              "row": 15,
+              "quantizedScalar": 1.193316802928166,
+              "floatScalar": 1.1946820041919084,
+              "models": 1.1933168172836304,
+              "oracle": 1.1928058862686157
+            },
+            {
+              "token": 121,
+              "row": 0,
+              "quantizedScalar": 1.9853847583563038,
+              "floatScalar": 1.9860805217850395,
+              "models": 1.9853845834732056,
+              "oracle": 1.9853845834732056
+            },
+            {
+              "token": 121,
+              "row": 1,
+              "quantizedScalar": 0.649686619235581,
+              "floatScalar": 0.6492562948431049,
+              "models": 0.6496865749359131,
+              "oracle": 0.6496865749359131
+            },
+            {
+              "token": 121,
+              "row": 2,
+              "quantizedScalar": 1.154147461269531,
+              "floatScalar": 1.1544242143028263,
+              "models": 1.154147744178772,
+              "oracle": 1.1541472673416138
+            },
+            {
+              "token": 121,
+              "row": 3,
+              "quantizedScalar": 0.48169075177429477,
+              "floatScalar": 0.4893917987393408,
+              "models": 0.48169073462486267,
+              "oracle": 0.4816908836364746
+            },
+            {
+              "token": 121,
+              "row": 4,
+              "quantizedScalar": 0.5161578406623448,
+              "floatScalar": 0.516350615243196,
+              "models": 0.5161578059196472,
+              "oracle": 0.5161577463150024
+            },
+            {
+              "token": 121,
+              "row": 5,
+              "quantizedScalar": -0.3174220286309719,
+              "floatScalar": -0.3199201304878394,
+              "models": -0.3174220025539398,
+              "oracle": -0.3174220323562622
+            },
+            {
+              "token": 121,
+              "row": 6,
+              "quantizedScalar": -1.063764648130018,
+              "floatScalar": -1.0677866194623018,
+              "models": -1.0637645721435547,
+              "oracle": -1.0637645721435547
+            },
+            {
+              "token": 121,
+              "row": 7,
+              "quantizedScalar": -0.2577198370236147,
+              "floatScalar": -0.2581478889871156,
+              "models": -0.25771981477737427,
+              "oracle": -0.25771981477737427
+            },
+            {
+              "token": 121,
+              "row": 8,
+              "quantizedScalar": 0.3907955275954009,
+              "floatScalar": 0.3882278297557882,
+              "models": 0.3907955288887024,
+              "oracle": 0.39079549908638
+            },
+            {
+              "token": 121,
+              "row": 9,
+              "quantizedScalar": -0.2411083933111513,
+              "floatScalar": -0.24257518479865503,
+              "models": -0.24110837280750275,
+              "oracle": -0.2411082535982132
+            },
+            {
+              "token": 121,
+              "row": 10,
+              "quantizedScalar": -0.8688606023679313,
+              "floatScalar": -0.8661007052427134,
+              "models": -0.8688607215881348,
+              "oracle": -0.8688604235649109
+            },
+            {
+              "token": 121,
+              "row": 11,
+              "quantizedScalar": 0.03625551431468921,
+              "floatScalar": 0.03173160964035482,
+              "models": 0.036255575716495514,
+              "oracle": 0.036255672574043274
+            },
+            {
+              "token": 121,
+              "row": 12,
+              "quantizedScalar": 0.49434163494333916,
+              "floatScalar": 0.49441875959829495,
+              "models": 0.4943416118621826,
+              "oracle": 0.494341641664505
+            },
+            {
+              "token": 121,
+              "row": 13,
+              "quantizedScalar": 1.804913607198614,
+              "floatScalar": 1.8058259400523937,
+              "models": 1.8049136400222778,
+              "oracle": 1.8049136400222778
+            },
+            {
+              "token": 121,
+              "row": 14,
+              "quantizedScalar": -0.233431342527183,
+              "floatScalar": -0.2345324573942822,
+              "models": -0.23343130946159363,
+              "oracle": -0.23343124985694885
+            },
+            {
+              "token": 121,
+              "row": 15,
+              "quantizedScalar": 0.11148962585139088,
+              "floatScalar": 0.11276503314281427,
+              "models": 0.11148963868618011,
+              "oracle": 0.11148956418037415
+            }
+          ]
+        },
+        {
+          "inputSource": "oracle",
+          "inputFile": "blk.0.ssm_beta.weight.oracle.input.f32",
+          "inputSha256": "80279f337fdb13dca5fd0129ac112de2b6910bebaeae4118acb6f5909ea20899",
+          "captureFiles": [
+            {
+              "file": "benchmark-results/2026-10-11-gdn-proof/remote-oracle-repack-v1/arm/qwen-0.8b-baseline-32-repack0/easy-intent-00/2-attn_norm-0.bin",
+              "sha256": "972d58ad3463294d577576e8b0120bd870f26bc6a5867d8b7cef2a75920772d0"
+            },
+            {
+              "file": "benchmark-results/2026-10-11-gdn-proof/remote-oracle-repack-v1/arm/qwen-0.8b-baseline-32-repack0/easy-intent-00/44-attn_norm-0.bin",
+              "sha256": "974d1b44d95a79b696ba26cf15993d0cc5ef5db524eff7a72bad8ad171bf27b9"
+            },
+            {
+              "file": "benchmark-results/2026-10-11-gdn-proof/remote-oracle-repack-v1/arm/qwen-0.8b-baseline-32-repack0/easy-intent-00/86-attn_norm-0.bin",
+              "sha256": "03465e1f40443130a44cfb2cdc0d4fb521fac2e8ace857879e8e53891f7eed4c"
+            },
+            {
+              "file": "benchmark-results/2026-10-11-gdn-proof/remote-oracle-repack-v1/arm/qwen-0.8b-baseline-32-repack0/easy-intent-00/128-attn_norm-0.bin",
+              "sha256": "65f2c3097294de8c5e0f06e03f045689e038b86fa857c1922c88721ff904f913"
+            }
+          ],
+          "quantizedScalarVsModels": {
+            "maxAbsError": 0.0011750993980967905,
+            "rmse": 4.067994367246237e-05
+          },
+          "quantizedScalarVsOracle": {
+            "maxAbsError": 1.4365723473019898e-06,
+            "rmse": 1.3989430538554625e-07
+          },
+          "first120TokensScalarVsOracle": {
+            "maxAbsError": 1.4365723473019898e-06,
+            "rmse": 1.4053708999716121e-07
+          },
+          "lastTwoTokensScalarVsOracle": {
+            "maxAbsError": 1.939279172802344e-07,
+            "rmse": 9.356814385976308e-08
+          },
+          "floatScalarVsModels": {
+            "maxAbsError": 0.016457005874881858,
+            "rmse": 0.0033304683631729046
+          },
+          "floatScalarVsOracle": {
+            "maxAbsError": 0.016457005874881858,
+            "rmse": 0.0033324610929170765
+          },
+          "lastTwoTokens": [
+            {
+              "token": 120,
+              "row": 0,
+              "quantizedScalar": 0.2710042852704646,
+              "floatScalar": 0.27341031848485464,
+              "models": 0.2707791328430176,
+              "oracle": 0.2710042893886566
+            },
+            {
+              "token": 120,
+              "row": 1,
+              "quantizedScalar": 0.7406013586769404,
+              "floatScalar": 0.7438134303674913,
+              "models": 0.7406571507453918,
+              "oracle": 0.7406013011932373
+            },
+            {
+              "token": 120,
+              "row": 2,
+              "quantizedScalar": 1.919020871995599,
+              "floatScalar": 1.9194633502868026,
+              "models": 1.9187180995941162,
+              "oracle": 1.9190208911895752
+            },
+            {
+              "token": 120,
+              "row": 3,
+              "quantizedScalar": 5.2519949682937295,
+              "floatScalar": 5.257682708579845,
+              "models": 5.252203941345215,
+              "oracle": 5.251995086669922
+            },
+            {
+              "token": 120,
+              "row": 4,
+              "quantizedScalar": 1.3979585641718586,
+              "floatScalar": 1.3954035321168585,
+              "models": 1.397591233253479,
+              "oracle": 1.397958517074585
+            },
+            {
+              "token": 120,
+              "row": 5,
+              "quantizedScalar": 1.231934168312364,
+              "floatScalar": 1.2337940684188125,
+              "models": 1.2323822975158691,
+              "oracle": 1.2319340705871582
+            },
+            {
+              "token": 120,
+              "row": 6,
+              "quantizedScalar": -0.6928927947537886,
+              "floatScalar": -0.6931937113167348,
+              "models": -0.6927304267883301,
+              "oracle": -0.6928927898406982
+            },
+            {
+              "token": 120,
+              "row": 7,
+              "quantizedScalar": 0.7964693106623599,
+              "floatScalar": 0.7977950267282501,
+              "models": 0.7963864207267761,
+              "oracle": 0.7964692711830139
+            },
+            {
+              "token": 120,
+              "row": 8,
+              "quantizedScalar": 1.112489796925729,
+              "floatScalar": 1.1161573027583849,
+              "models": 1.1131941080093384,
+              "oracle": 1.112489938735962
+            },
+            {
+              "token": 120,
+              "row": 9,
+              "quantizedScalar": 1.2316045379993739,
+              "floatScalar": 1.2324232108494493,
+              "models": 1.231911063194275,
+              "oracle": 1.2316046953201294
+            },
+            {
+              "token": 120,
+              "row": 10,
+              "quantizedScalar": 0.470262870667284,
+              "floatScalar": 0.47349993164383974,
+              "models": 0.4707477390766144,
+              "oracle": 0.4702628254890442
+            },
+            {
+              "token": 120,
+              "row": 11,
+              "quantizedScalar": 0.5947813167440472,
+              "floatScalar": 0.5956295731183063,
+              "models": 0.594507098197937,
+              "oracle": 0.5947812795639038
+            },
+            {
+              "token": 120,
+              "row": 12,
+              "quantizedScalar": 0.36457845604127215,
+              "floatScalar": 0.3696561966047587,
+              "models": 0.3648361265659332,
+              "oracle": 0.36457839608192444
+            },
+            {
+              "token": 120,
+              "row": 13,
+              "quantizedScalar": 1.9635437451579492,
+              "floatScalar": 1.9623247732783708,
+              "models": 1.9632917642593384,
+              "oracle": 1.9635437726974487
+            },
+            {
+              "token": 120,
+              "row": 14,
+              "quantizedScalar": 1.0121340217338002,
+              "floatScalar": 1.016832245501826,
+              "models": 1.013309121131897,
+              "oracle": 1.012134075164795
+            },
+            {
+              "token": 120,
+              "row": 15,
+              "quantizedScalar": 1.192805881240929,
+              "floatScalar": 1.1946820041919084,
+              "models": 1.1933168172836304,
+              "oracle": 1.1928058862686157
+            },
+            {
+              "token": 121,
+              "row": 0,
+              "quantizedScalar": 1.9853847583563038,
+              "floatScalar": 1.9860805217850395,
+              "models": 1.9853845834732056,
+              "oracle": 1.9853845834732056
+            },
+            {
+              "token": 121,
+              "row": 1,
+              "quantizedScalar": 0.649686619235581,
+              "floatScalar": 0.6492562948431049,
+              "models": 0.6496865749359131,
+              "oracle": 0.6496865749359131
+            },
+            {
+              "token": 121,
+              "row": 2,
+              "quantizedScalar": 1.154147461269531,
+              "floatScalar": 1.1544242143028263,
+              "models": 1.154147744178772,
+              "oracle": 1.1541472673416138
+            },
+            {
+              "token": 121,
+              "row": 3,
+              "quantizedScalar": 0.48169075177429477,
+              "floatScalar": 0.4893917987393408,
+              "models": 0.48169073462486267,
+              "oracle": 0.4816908836364746
+            },
+            {
+              "token": 121,
+              "row": 4,
+              "quantizedScalar": 0.5161578406623448,
+              "floatScalar": 0.516350615243196,
+              "models": 0.5161578059196472,
+              "oracle": 0.5161577463150024
+            },
+            {
+              "token": 121,
+              "row": 5,
+              "quantizedScalar": -0.3174220286309719,
+              "floatScalar": -0.3199201304878394,
+              "models": -0.3174220025539398,
+              "oracle": -0.3174220323562622
+            },
+            {
+              "token": 121,
+              "row": 6,
+              "quantizedScalar": -1.063764648130018,
+              "floatScalar": -1.0677866194623018,
+              "models": -1.0637645721435547,
+              "oracle": -1.0637645721435547
+            },
+            {
+              "token": 121,
+              "row": 7,
+              "quantizedScalar": -0.2577198370236147,
+              "floatScalar": -0.2581478889871156,
+              "models": -0.25771981477737427,
+              "oracle": -0.25771981477737427
+            },
+            {
+              "token": 121,
+              "row": 8,
+              "quantizedScalar": 0.3907955275954009,
+              "floatScalar": 0.3882278297557882,
+              "models": 0.3907955288887024,
+              "oracle": 0.39079549908638
+            },
+            {
+              "token": 121,
+              "row": 9,
+              "quantizedScalar": -0.2411083933111513,
+              "floatScalar": -0.24257518479865503,
+              "models": -0.24110837280750275,
+              "oracle": -0.2411082535982132
+            },
+            {
+              "token": 121,
+              "row": 10,
+              "quantizedScalar": -0.8688606023679313,
+              "floatScalar": -0.8661007052427134,
+              "models": -0.8688607215881348,
+              "oracle": -0.8688604235649109
+            },
+            {
+              "token": 121,
+              "row": 11,
+              "quantizedScalar": 0.03625551431468921,
+              "floatScalar": 0.03173160964035482,
+              "models": 0.036255575716495514,
+              "oracle": 0.036255672574043274
+            },
+            {
+              "token": 121,
+              "row": 12,
+              "quantizedScalar": 0.49434163494333916,
+              "floatScalar": 0.49441875959829495,
+              "models": 0.4943416118621826,
+              "oracle": 0.494341641664505
+            },
+            {
+              "token": 121,
+              "row": 13,
+              "quantizedScalar": 1.804913607198614,
+              "floatScalar": 1.8058259400523937,
+              "models": 1.8049136400222778,
+              "oracle": 1.8049136400222778
+            },
+            {
+              "token": 121,
+              "row": 14,
+              "quantizedScalar": -0.233431342527183,
+              "floatScalar": -0.2345324573942822,
+              "models": -0.23343130946159363,
+              "oracle": -0.23343124985694885
+            },
+            {
+              "token": 121,
+              "row": 15,
+              "quantizedScalar": 0.11148962585139088,
+              "floatScalar": 0.11276503314281427,
+              "models": 0.11148963868618011,
+              "oracle": 0.11148956418037415
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

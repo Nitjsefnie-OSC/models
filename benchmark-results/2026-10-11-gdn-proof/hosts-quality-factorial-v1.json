@@ -1,0 +1,50 @@
+{
+  "maximumCombinedUsd": 0.25,
+  "maximumSecondsPerHost": 1800,
+  "payload": "s3://models-qual-077051030817/payload/gdn-proof-quality-factorial-v1.tar.gz",
+  "payloadSha256": "98ff9a5815e2a2f11fb9723b83282cb45cff34efbc1f855b90940d086e604fc5",
+  "quota": 32.0,
+  "usedVcpus": 0,
+  "rates": {
+    "x86": 0.1728
+  },
+  "hosts": [
+    {
+      "arch": "x86",
+      "instanceId": "i-0099a428cd2b5de9a",
+      "instanceType": "m6a.xlarge",
+      "deadline": "2026-10-12T21:08:11.339246+00:00",
+      "resultUri": "s3://models-qual-077051030817/results/gdn-proof-quality-factorial-v1/x86/",
+      "launchCommand": [
+        "aws",
+        "ec2",
+        "run-instances",
+        "--region",
+        "us-west-2",
+        "--image-id",
+        "ami-03d70b8354a16a8bc",
+        "--instance-type",
+        "m6a.xlarge",
+        "--iam-instance-profile",
+        "Name=models-qual-worker",
+        "--security-group-ids",
+        "sg-c75bb5a8",
+        "--subnet-id",
+        "subnet-d63efbbd",
+        "--block-device-mappings",
+        "[{\"DeviceName\": \"/dev/sda1\", \"Ebs\": {\"VolumeSize\": 40, \"VolumeType\": \"gp3\", \"DeleteOnTermination\": true}}]",
+        "--instance-market-options",
+        "{\"MarketType\": \"spot\", \"SpotOptions\": {\"SpotInstanceType\": \"one-time\", \"InstanceInterruptionBehavior\": \"terminate\", \"MaxPrice\": \"0.1728\"}}",
+        "--instance-initiated-shutdown-behavior",
+        "terminate",
+        "--metadata-options",
+        "HttpTokens=required,HttpEndpoint=enabled",
+        "--user-data",
+        "file:///Users/briansam-bodden/Code/java-ai/projects/models-gdn-proof/benchmark-results/2026-10-11-gdn-proof/x86-quality-factorial-v1-worker.sh",
+        "--tag-specifications",
+        "ResourceType=instance,Tags=[{Key=Name,Value=models-gdn-proof-quality-factorial-v1-x86},{Key=project,Value=models-qualification},{Key=delete-after,Value=2026-10-12T21:08:11.339246+00:00}]"
+      ],
+      "userDataSha256": "64221c6e8e11d0fc9b24328dad17a496c77946b788c32a1e5699a627d1c08da3"
+    }
+  ]
+}

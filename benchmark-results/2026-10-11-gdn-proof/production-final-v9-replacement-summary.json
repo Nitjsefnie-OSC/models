@@ -1,0 +1,30 @@
+{
+  "supersededBy": "production-final-v11",
+  "completedTimingGroups": [
+    "x86/qwen-0.8b",
+    "x86/qwen-4b",
+    "arm/qwen-0.8b"
+  ],
+  "incompleteTimingGroup": "arm/qwen-4b:8 complete same-host process triplets of10planned, allraw retained",
+  "reason": "Known allocation regressions fixed; prospective replacement preserves failures and does not claim incomplete precision gate passed.",
+  "hosts": [
+    {
+      "shard": "arm-large-a",
+      "lastCompletePair": 3,
+      "observedStatus": "TIMING_qwen-4b_4_native",
+      "terminationRequested": "2026-10-12T21:02:07.664065+00:00"
+    },
+    {
+      "shard": "x86-large",
+      "lastCompletePair": 9,
+      "observedStatus": "COMPLETE_WITH_FAILED_PUBLISHED_GATES",
+      "terminationRequested": "2026-10-12T21:01:46.162696+00:00"
+    },
+    {
+      "shard": "arm-large-b",
+      "lastCompletePair": 8,
+      "observedStatus": "TIMING_qwen-4b_9_published",
+      "terminationRequested": "2026-10-12T21:01:46.200128+00:00"
+    }
+  ]
+}

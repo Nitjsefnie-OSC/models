@@ -1,0 +1,2394 @@
+{
+  "scope": "diagnostic scalar projection delta; no qualification gate changed",
+  "oracleVariant": "additive-32",
+  "projections": [
+    {
+      "weight": "blk.0.ffn_gate.weight",
+      "ggufType": "Q4_K",
+      "absoluteByteOffset": 228074496,
+      "rows": 3584,
+      "cols": 1024,
+      "modelsInputFiles": [
+        {
+          "file": "benchmark-results/2026-10-11-gdn-proof/remote-oracle-tensor-v3/x86/qwen-0.8b-models/easy-intent-00/0010-blk.0.ffn_gate.weight.input.f32",
+          "sha256": "8877e9efb4366fb9d30e4751c007a3803147335a821e3ddff9fc447756b30ef6"
+        },
+        {
+          "file": "benchmark-results/2026-10-11-gdn-proof/remote-oracle-tensor-v3/x86/qwen-0.8b-models/easy-intent-00/0026-blk.0.ffn_gate.weight.input.f32",
+          "sha256": "1085f07a3ae2f4b75f239bdc8f531d665de2580a82eb5ca2b4d185098eb5579f"
+        },
+        {
+          "file": "benchmark-results/2026-10-11-gdn-proof/remote-oracle-tensor-v3/x86/qwen-0.8b-models/easy-intent-00/0042-blk.0.ffn_gate.weight.input.f32",
+          "sha256": "23b69c76bae348fb4e861d741fa8ceec2ad9fc456831a91c5a1e2d05452799d5"
+        },
+        {
+          "file": "benchmark-results/2026-10-11-gdn-proof/remote-oracle-tensor-v3/x86/qwen-0.8b-models/easy-intent-00/0058-blk.0.ffn_gate.weight.input.f32",
+          "sha256": "39743011aa267b10430148ccd911e2c6c3a8fdb18854f532c2b50567e38e6fcb"
+        }
+      ],
+      "oracleInputFiles": [
+        {
+          "file": "benchmark-results/2026-10-11-gdn-proof/remote-oracle-tensor-v3/x86/qwen-0.8b-additive-32/easy-intent-00/36-attn_post_norm-0.bin",
+          "sha256": "a15f0059df41a8d469666cde7b7988f62819ad05ed552d6e1cd5c5baa5b0e4ba"
+        },
+        {
+          "file": "benchmark-results/2026-10-11-gdn-proof/remote-oracle-tensor-v3/x86/qwen-0.8b-additive-32/easy-intent-00/78-attn_post_norm-0.bin",
+          "sha256": "a8abe1a6d2cb2174064d1603d89c017f6c659bba3f22ed581f6391e2c4c75d8f"
+        },
+        {
+          "file": "benchmark-results/2026-10-11-gdn-proof/remote-oracle-tensor-v3/x86/qwen-0.8b-additive-32/easy-intent-00/120-attn_post_norm-0.bin",
+          "sha256": "908b21b6183323fb14b01363651d3a73dd4003d2a801480bd12c732fb9822ef6"
+        },
+        {
+          "file": "benchmark-results/2026-10-11-gdn-proof/remote-oracle-tensor-v3/x86/qwen-0.8b-additive-32/easy-intent-00/162-attn_post_norm-0.bin",
+          "sha256": "7f2a43ee3ed6e4f36ba06c2044c666d320894f18efeabdaf678cb45a31aa2f0b"
+        }
+      ],
+      "modelsOutputFiles": [
+        {
+          "file": "benchmark-results/2026-10-11-gdn-proof/remote-oracle-tensor-v3/x86/qwen-0.8b-models/easy-intent-00/0011-blk.0.ffn_gate.weight.output.f32",
+          "sha256": "9633ecf69401c4dbc1a7dbcec52d0b7e81e5aad72f0101fc4f57a0d746c39359"
+        },
+        {
+          "file": "benchmark-results/2026-10-11-gdn-proof/remote-oracle-tensor-v3/x86/qwen-0.8b-models/easy-intent-00/0027-blk.0.ffn_gate.weight.output.f32",
+          "sha256": "3c6fbf3cdcbeb289db1556f88b105040c51c05d7adb00b39e91648c55816a657"
+        },
+        {
+          "file": "benchmark-results/2026-10-11-gdn-proof/remote-oracle-tensor-v3/x86/qwen-0.8b-models/easy-intent-00/0043-blk.0.ffn_gate.weight.output.f32",
+          "sha256": "f0deb78770f1043b48f1b0da1a8a9ca0858de595f5aa6f88d2ba5b4e89aad59c"
+        },
+        {
+          "file": "benchmark-results/2026-10-11-gdn-proof/remote-oracle-tensor-v3/x86/qwen-0.8b-models/easy-intent-00/0059-blk.0.ffn_gate.weight.output.f32",
+          "sha256": "b55f7da1c53585670077e70ac479f2a7e900aa00d80b6433dea528bd0005013a"
+        }
+      ],
+      "oracleOutputFiles": [
+        {
+          "file": "benchmark-results/2026-10-11-gdn-proof/remote-oracle-tensor-v3/x86/qwen-0.8b-additive-32/easy-intent-00/37-ffn_gate-0.bin",
+          "sha256": "83e6318608f59d6f130f30f98b295cf8d5ab6b27c60eb49f2dfc336f6724b913"
+        },
+        {
+          "file": "benchmark-results/2026-10-11-gdn-proof/remote-oracle-tensor-v3/x86/qwen-0.8b-additive-32/easy-intent-00/79-ffn_gate-0.bin",
+          "sha256": "90fad208d5c12cbe70d08846dbbb3a88c725cfac2093c119c4e318e8d3c087c6"
+        },
+        {
+          "file": "benchmark-results/2026-10-11-gdn-proof/remote-oracle-tensor-v3/x86/qwen-0.8b-additive-32/easy-intent-00/121-ffn_gate-0.bin",
+          "sha256": "4c6eb68849b9af30cb59a0c0f74db071e9529b5e9c6ee09b6f399f7619f1b26d"
+        },
+        {
+          "file": "benchmark-results/2026-10-11-gdn-proof/remote-oracle-tensor-v3/x86/qwen-0.8b-additive-32/easy-intent-00/163-ffn_gate-0.bin",
+          "sha256": "e1d5e0f9e4d318ded0deb47d231f2fab59c1a78365f7477107f012672826fa2d"
+        }
+      ],
+      "differentQuantizedIntegers": 9,
+      "maxObservedDifference": 0.0015121698379516602,
+      "maxResidualAfterScalarInputDelta": 2.7950868410897556e-06,
+      "weightRows": {
+        "13": {
+          "file": "ffn_gate-row-13.bin",
+          "sha256": "2c2f91dc0e80386af79b78e7c1e8de6585e3702c33ff8c23777d81431a4faba4"
+        },
+        "158": {
+          "file": "ffn_gate-row-158.bin",
+          "sha256": "e941c6d1ec2d68e26c17927fefb3ae4a6fbd0fba2ecc77e8ba22d607bb945a01"
+        },
+        "16": {
+          "file": "ffn_gate-row-16.bin",
+          "sha256": "4eab1548081af029c8895a62526d0decbb43519b588763a3f1d88f902817025d"
+        },
+        "2": {
+          "file": "ffn_gate-row-2.bin",
+          "sha256": "1d600d074b76731f2658366ba44cca3cc07e1ebc637506d3eb71b875f59dcad7"
+        },
+        "861": {
+          "file": "ffn_gate-row-861.bin",
+          "sha256": "73220706c8e1ab4baa4f06c3a1045cd79eef99083cafad06d5bea08aa09ca650"
+        },
+        "5": {
+          "file": "ffn_gate-row-5.bin",
+          "sha256": "6c0de172b35e5d08218b33a12ae99585b8e8428b7507bcaa86ba377b1d0a1b78"
+        },
+        "366": {
+          "file": "ffn_gate-row-366.bin",
+          "sha256": "066572f4feb02892d72269f5f40894e628bd30ea1895ce21dc76c8b8a0b85c14"
+        },
+        "4": {
+          "file": "ffn_gate-row-4.bin",
+          "sha256": "2191b6ee3a7f3c4742a7c4572a335a637720ae2737d781447914dba1cb95fbc2"
+        },
+        "56": {
+          "file": "ffn_gate-row-56.bin",
+          "sha256": "e5538ac1b2c8f67edfa3b2bc01559fe87aa0c675fff0e7978f1c69897726ec7d"
+        },
+        "91": {
+          "file": "ffn_gate-row-91.bin",
+          "sha256": "a5b9ca544bd2544cf677b4c8c03d046a1562889782d6592b93649f0f9f3936c0"
+        },
+        "387": {
+          "file": "ffn_gate-row-387.bin",
+          "sha256": "816cebb58930dabfa434febac8931b7537fa5e466a8c3d71d3e5530fea995b58"
+        },
+        "2866": {
+          "file": "ffn_gate-row-2866.bin",
+          "sha256": "3254a34ef53317e758ab23fd836a479c270f7f0aa88018e80b400afa1345d99f"
+        },
+        "52": {
+          "file": "ffn_gate-row-52.bin",
+          "sha256": "6f83fd8d15ceacd7963a3a084da4eb17682c87714e516d9e2ba1362a22f684d8"
+        },
+        "48": {
+          "file": "ffn_gate-row-48.bin",
+          "sha256": "222879be09fb60c3796e1d51afa7dc217f8986c1ae758697c270ee2260f5a909"
+        },
+        "833": {
+          "file": "ffn_gate-row-833.bin",
+          "sha256": "4cad53399aff4aab9b7426bf48baff836fc3636e301c4e284d1a265fe15b5c9d"
+        },
+        "21": {
+          "file": "ffn_gate-row-21.bin",
+          "sha256": "b1aa65af8387e62066755f8f2b2e46397f95e7f1ac43a878544250284203b856"
+        },
+        "0": {
+          "file": "ffn_gate-row-0.bin",
+          "sha256": "e7474d7c9fd3eb166935b07c908657a14722f7c64eda921e47251b588314252f"
+        },
+        "222": {
+          "file": "ffn_gate-row-222.bin",
+          "sha256": "71c464acff8ea16d9dea93feecf22b8f0a3459129925d1cc05d11571637e17f0"
+        },
+        "49": {
+          "file": "ffn_gate-row-49.bin",
+          "sha256": "4d2d269ad48f3dbdd1121ce57f338251826320d7e3fcf26900e3be3aaad233bc"
+        },
+        "71": {
+          "file": "ffn_gate-row-71.bin",
+          "sha256": "3c11d55fac5f6b8aa1ff4c0fd7aa3babd51a69059c62ea88658192d87d625280"
+        },
+        "75": {
+          "file": "ffn_gate-row-75.bin",
+          "sha256": "7ad61bb9abd2c2fdf6cd114991d7867939227250e2ab2f5e7f167054074b5142"
+        },
+        "82": {
+          "file": "ffn_gate-row-82.bin",
+          "sha256": "b1a75ba834dde04d3dbe308aeb4fe5638226805c2a55497bf1aa0f1cf98ffeb1"
+        },
+        "1898": {
+          "file": "ffn_gate-row-1898.bin",
+          "sha256": "87135853bd17f8d07e5afb5f70d35f672d3e68afab24dc332fa7de5702625445"
+        },
+        "93": {
+          "file": "ffn_gate-row-93.bin",
+          "sha256": "d85b002f8f56a25394b1a9657c8622e7b627ef9712186426bd68f58609a0730a"
+        },
+        "352": {
+          "file": "ffn_gate-row-352.bin",
+          "sha256": "7522954d8ce6cd2f356d6be84912e12cef0999ae680356d561c94a5b25d0346a"
+        },
+        "7": {
+          "file": "ffn_gate-row-7.bin",
+          "sha256": "9af319042d9bddf73a6019bcf0ad70ea78b2a93c8b3ea61645179fb86adf9675"
+        },
+        "98": {
+          "file": "ffn_gate-row-98.bin",
+          "sha256": "3bfcc96efb5ce20d3e4ef2045b4748c6bb971fddc92f66c75dfd572f24c9fccd"
+        },
+        "544": {
+          "file": "ffn_gate-row-544.bin",
+          "sha256": "365c87b168159767ef560a59a37d51e5f58cdb0558ca57f54c8561a9fe8afe02"
+        },
+        "157": {
+          "file": "ffn_gate-row-157.bin",
+          "sha256": "001b413790240be6030c1a8c3b3fb95d638cb00ab2ca1a3e73e0af76489f14c0"
+        },
+        "747": {
+          "file": "ffn_gate-row-747.bin",
+          "sha256": "586bbbd4e47dfe3c36c88d3b79fefac4d90ac5d994c2f7f971251bdbc6ba3392"
+        },
+        "18": {
+          "file": "ffn_gate-row-18.bin",
+          "sha256": "d9e61d688fc7592479ac85e68ef2fb7a0beb1d5f141661cbdc702983cfacfb8b"
+        },
+        "928": {
+          "file": "ffn_gate-row-928.bin",
+          "sha256": "7f5e89fa4b84931442f8b70aebfcc1d7e87cf8093e1e4aed9be1905a65ae27f1"
+        },
+        "27": {
+          "file": "ffn_gate-row-27.bin",
+          "sha256": "944173e3c5a4ccc08f78741373a2cda13e013ac613fb64ae3744ca9a2eecf7ec"
+        },
+        "32": {
+          "file": "ffn_gate-row-32.bin",
+          "sha256": "b8d8425f31283ab4e66ce2f60e5867b30777a4d421222933f171c282305374f6"
+        },
+        "188": {
+          "file": "ffn_gate-row-188.bin",
+          "sha256": "41a3c77f8948af9828bf770c2c65556711d517cca56d95d90afd07b3630616eb"
+        },
+        "243": {
+          "file": "ffn_gate-row-243.bin",
+          "sha256": "cfb3226abadb8b9a8d7a1fbd2a12792fb3f983f7331559c8b33c6be3a7d307c3"
+        },
+        "1462": {
+          "file": "ffn_gate-row-1462.bin",
+          "sha256": "4fc01062be39854d6d2bb50ddf9a29a8145e84ba15711b37e7f820ee8273c825"
+        },
+        "87": {
+          "file": "ffn_gate-row-87.bin",
+          "sha256": "c4755c1c72b2fc54cbba0d839eef15d1e5413ec0d6ce530bc2a0b93b8d668de9"
+        },
+        "77": {
+          "file": "ffn_gate-row-77.bin",
+          "sha256": "070cb1015b4f47dc7cf6fa217df4241b6f4f951d614b1dcae2290dd5e7520383"
+        },
+        "144": {
+          "file": "ffn_gate-row-144.bin",
+          "sha256": "0be9435a7d2d7b2cdbbd4c553e00883bd9fd87e9b9730810caff861fe29a6d16"
+        },
+        "834": {
+          "file": "ffn_gate-row-834.bin",
+          "sha256": "cab38e97f30bd827c013f48ca579adf81fda3fb92d058d65021c37c052bb30bb"
+        },
+        "314": {
+          "file": "ffn_gate-row-314.bin",
+          "sha256": "2d6e8fe73f84fbf9f9727f7b90695a21008bbc601f7cf8310768a8da352348be"
+        },
+        "72": {
+          "file": "ffn_gate-row-72.bin",
+          "sha256": "c617b4bc515258ea0090eda35f0403dcb190d662909b673630f909cac7ec8e2c"
+        },
+        "524": {
+          "file": "ffn_gate-row-524.bin",
+          "sha256": "415400c9ae81f4671ef1aa97bb7bb4842e68849d7de6551e17c2a6a0b621d084"
+        },
+        "187": {
+          "file": "ffn_gate-row-187.bin",
+          "sha256": "0dfa9c21222d0582fdd9dd06640b364310e4e6cfed9cc6d33c4d275de4201335"
+        },
+        "73": {
+          "file": "ffn_gate-row-73.bin",
+          "sha256": "2a0b3f624d63c7ef2a0d563510f39c1e8f4f17d90963b2e2d801435545f32aa5"
+        },
+        "99": {
+          "file": "ffn_gate-row-99.bin",
+          "sha256": "f3e5e404f734345fea30617ae96922ac5e6e9672675a32b00251dfec10e3d460"
+        },
+        "1078": {
+          "file": "ffn_gate-row-1078.bin",
+          "sha256": "6c72b1ecbf69397507da5902e38616058d3ed31abe27497ec75231f628e4a77d"
+        }
+      },
+      "samples": [
+        {
+          "token": 0,
+          "row": 13,
+          "observedDelta": -8.344650268554688e-07,
+          "predictedDelta": -2.881712592994745e-07,
+          "residual": -5.462937675559942e-07
+        },
+        {
+          "token": 1,
+          "row": 158,
+          "observedDelta": 0.0010133981704711914,
+          "predictedDelta": 0.0010133298531425083,
+          "residual": 6.831732868306517e-08
+        },
+        {
+          "token": 2,
+          "row": 16,
+          "observedDelta": 9.5367431640625e-07,
+          "predictedDelta": 3.084667286046283e-07,
+          "residual": 6.452075878016217e-07
+        },
+        {
+          "token": 3,
+          "row": 13,
+          "observedDelta": 4.76837158203125e-07,
+          "predictedDelta": 2.4304313361867e-07,
+          "residual": 2.3379402458445497e-07
+        },
+        {
+          "token": 4,
+          "row": 2,
+          "observedDelta": -1.430511474609375e-06,
+          "predictedDelta": -2.1593781873718854e-07,
+          "residual": -1.2145736558721865e-06
+        },
+        {
+          "token": 5,
+          "row": 861,
+          "observedDelta": -9.5367431640625e-07,
+          "predictedDelta": -2.49731637258499e-07,
+          "residual": -7.03942679147751e-07
+        },
+        {
+          "token": 6,
+          "row": 5,
+          "observedDelta": 9.5367431640625e-07,
+          "predictedDelta": 1.8599592843671076e-07,
+          "residual": 7.676783879695392e-07
+        },
+        {
+          "token": 7,
+          "row": 13,
+          "observedDelta": 1.6689300537109375e-06,
+          "predictedDelta": 3.7656715168310484e-07,
+          "residual": 1.2923629020278327e-06
+        },
+        {
+          "token": 8,
+          "row": 5,
+          "observedDelta": 9.5367431640625e-07,
+          "predictedDelta": 3.449856142978547e-07,
+          "residual": 6.086887021083953e-07
+        },
+        {
+          "token": 9,
+          "row": 366,
+          "observedDelta": 7.152557373046875e-07,
+          "predictedDelta": 2.0412759549337522e-07,
+          "residual": 5.111281418113123e-07
+        },
+        {
+          "token": 10,
+          "row": 5,
+          "observedDelta": 9.5367431640625e-07,
+          "predictedDelta": 1.5224167015936985e-07,
+          "residual": 8.014326462468802e-07
+        },
+        {
+          "token": 11,
+          "row": 4,
+          "observedDelta": -9.5367431640625e-07,
+          "predictedDelta": -6.121627541544328e-07,
+          "residual": -3.415115622518172e-07
+        },
+        {
+          "token": 12,
+          "row": 56,
+          "observedDelta": -4.76837158203125e-07,
+          "predictedDelta": 6.183949263771638e-08,
+          "residual": -5.386766508408414e-07
+        },
+        {
+          "token": 13,
+          "row": 91,
+          "observedDelta": -1.0728836059570312e-06,
+          "predictedDelta": -2.618376448992876e-07,
+          "residual": -8.110459610577436e-07
+        },
+        {
+          "token": 14,
+          "row": 387,
+          "observedDelta": 1.430511474609375e-06,
+          "predictedDelta": 5.7085775995169286e-08,
+          "residual": 1.3734256986142057e-06
+        },
+        {
+          "token": 15,
+          "row": 2866,
+          "observedDelta": 0.0013080835342407227,
+          "predictedDelta": 0.0013081046305191135,
+          "residual": -2.1096278390864143e-08
+        },
+        {
+          "token": 16,
+          "row": 5,
+          "observedDelta": -1.3113021850585938e-06,
+          "predictedDelta": -2.8789833894649064e-07,
+          "residual": -1.0234038461121031e-06
+        },
+        {
+          "token": 17,
+          "row": 2,
+          "observedDelta": -7.152557373046875e-07,
+          "predictedDelta": -4.723357811542428e-07,
+          "residual": -2.429199561504447e-07
+        },
+        {
+          "token": 18,
+          "row": 52,
+          "observedDelta": -1.0728836059570312e-06,
+          "predictedDelta": -5.43292668631068e-07,
+          "residual": -5.295909373259633e-07
+        },
+        {
+          "token": 19,
+          "row": 48,
+          "observedDelta": -1.6689300537109375e-06,
+          "predictedDelta": -2.59852374950853e-07,
+          "residual": -1.4090776787600845e-06
+        },
+        {
+          "token": 20,
+          "row": 833,
+          "observedDelta": -8.344650268554688e-07,
+          "predictedDelta": -2.661790001745601e-07,
+          "residual": -5.682860266809087e-07
+        },
+        {
+          "token": 21,
+          "row": 21,
+          "observedDelta": 7.152557373046875e-07,
+          "predictedDelta": 3.31128302555328e-09,
+          "residual": 7.119444542791342e-07
+        },
+        {
+          "token": 22,
+          "row": 48,
+          "observedDelta": -4.76837158203125e-07,
+          "predictedDelta": -2.209666604136018e-07,
+          "residual": -2.558704977895232e-07
+        },
+        {
+          "token": 23,
+          "row": 5,
+          "observedDelta": 7.152557373046875e-07,
+          "predictedDelta": 1.32575458167139e-07,
+          "residual": 5.826802791375485e-07
+        },
+        {
+          "token": 24,
+          "row": 4,
+          "observedDelta": -7.152557373046875e-07,
+          "predictedDelta": -1.6162660332330603e-07,
+          "residual": -5.536291339813815e-07
+        },
+        {
+          "token": 25,
+          "row": 5,
+          "observedDelta": 9.5367431640625e-07,
+          "predictedDelta": 7.44981694111857e-08,
+          "residual": 8.791761469950643e-07
+        },
+        {
+          "token": 26,
+          "row": 21,
+          "observedDelta": 1.430511474609375e-06,
+          "predictedDelta": 4.838820844010883e-09,
+          "residual": 1.4256726537653641e-06
+        },
+        {
+          "token": 27,
+          "row": 48,
+          "observedDelta": 9.5367431640625e-07,
+          "predictedDelta": 2.964664372884229e-07,
+          "residual": 6.572078791178271e-07
+        },
+        {
+          "token": 28,
+          "row": 0,
+          "observedDelta": 9.5367431640625e-07,
+          "predictedDelta": 2.62527119154754e-07,
+          "residual": 6.91147197251496e-07
+        },
+        {
+          "token": 29,
+          "row": 5,
+          "observedDelta": 1.430511474609375e-06,
+          "predictedDelta": 2.551063678080112e-07,
+          "residual": 1.1754051068013638e-06
+        },
+        {
+          "token": 30,
+          "row": 222,
+          "observedDelta": 5.960464477539062e-07,
+          "predictedDelta": 9.393807354207695e-08,
+          "residual": 5.021083742118293e-07
+        },
+        {
+          "token": 31,
+          "row": 2,
+          "observedDelta": -1.9073486328125e-06,
+          "predictedDelta": -1.5244155049387587e-07,
+          "residual": -1.7549070823186241e-06
+        },
+        {
+          "token": 32,
+          "row": 49,
+          "observedDelta": 1.6689300537109375e-06,
+          "predictedDelta": 9.936125431320164e-07,
+          "residual": 6.753175105789211e-07
+        },
+        {
+          "token": 33,
+          "row": 71,
+          "observedDelta": -9.5367431640625e-07,
+          "predictedDelta": -4.4813574540114587e-07,
+          "residual": -5.055385710051041e-07
+        },
+        {
+          "token": 34,
+          "row": 2,
+          "observedDelta": 1.1920928955078125e-06,
+          "predictedDelta": 6.88379444113707e-07,
+          "residual": 5.037134513941055e-07
+        },
+        {
+          "token": 35,
+          "row": 861,
+          "observedDelta": 5.960464477539062e-07,
+          "predictedDelta": -1.3817853972142302e-08,
+          "residual": 6.098643017260486e-07
+        },
+        {
+          "token": 36,
+          "row": 75,
+          "observedDelta": 7.748603820800781e-07,
+          "predictedDelta": 5.892370190663243e-07,
+          "residual": 1.8562336301375382e-07
+        },
+        {
+          "token": 37,
+          "row": 2,
+          "observedDelta": -1.430511474609375e-06,
+          "predictedDelta": -9.134129008714353e-09,
+          "residual": -1.4213773456006606e-06
+        },
+        {
+          "token": 38,
+          "row": 21,
+          "observedDelta": 1.1920928955078125e-06,
+          "predictedDelta": 6.273377373133826e-08,
+          "residual": 1.1293591217764742e-06
+        },
+        {
+          "token": 39,
+          "row": 5,
+          "observedDelta": 0.001196146011352539,
+          "predictedDelta": 0.0011960674054876108,
+          "residual": 7.86058649282495e-08
+        },
+        {
+          "token": 40,
+          "row": 82,
+          "observedDelta": 1.1920928955078125e-06,
+          "predictedDelta": 3.709636762216917e-07,
+          "residual": 8.211292192861208e-07
+        },
+        {
+          "token": 41,
+          "row": 91,
+          "observedDelta": 7.152557373046875e-07,
+          "predictedDelta": 1.4536423309507995e-07,
+          "residual": 5.698915042096075e-07
+        },
+        {
+          "token": 42,
+          "row": 5,
+          "observedDelta": -1.9073486328125e-06,
+          "predictedDelta": 3.9283669650558295e-09,
+          "residual": -1.911276999777556e-06
+        },
+        {
+          "token": 43,
+          "row": 2,
+          "observedDelta": -1.6689300537109375e-06,
+          "predictedDelta": -5.120466228802911e-07,
+          "residual": -1.1568834308306464e-06
+        },
+        {
+          "token": 44,
+          "row": 21,
+          "observedDelta": -1.9073486328125e-06,
+          "predictedDelta": -5.324285501373538e-08,
+          "residual": -1.8541057777987646e-06
+        },
+        {
+          "token": 45,
+          "row": 1898,
+          "observedDelta": 5.960464477539062e-07,
+          "predictedDelta": 1.511621460226209e-07,
+          "residual": 4.4488430173128535e-07
+        },
+        {
+          "token": 46,
+          "row": 5,
+          "observedDelta": 0.0005763769149780273,
+          "predictedDelta": 0.0005769696307228456,
+          "residual": -5.927157448182285e-07
+        },
+        {
+          "token": 47,
+          "row": 93,
+          "observedDelta": -9.5367431640625e-07,
+          "predictedDelta": -3.0690422303525366e-07,
+          "residual": -6.467700933709963e-07
+        },
+        {
+          "token": 48,
+          "row": 5,
+          "observedDelta": -1.7881393432617188e-06,
+          "predictedDelta": -7.387601417274681e-07,
+          "residual": -1.0493792015342507e-06
+        },
+        {
+          "token": 49,
+          "row": 352,
+          "observedDelta": -8.344650268554688e-07,
+          "predictedDelta": -1.3897329020906568e-07,
+          "residual": -6.954917366464031e-07
+        },
+        {
+          "token": 50,
+          "row": 7,
+          "observedDelta": -7.152557373046875e-07,
+          "predictedDelta": -5.5519669417414264e-08,
+          "residual": -6.597360678872732e-07
+        },
+        {
+          "token": 51,
+          "row": 21,
+          "observedDelta": 4.76837158203125e-07,
+          "predictedDelta": 5.7671787789814744e-08,
+          "residual": 4.1916537041331026e-07
+        },
+        {
+          "token": 52,
+          "row": 48,
+          "observedDelta": -2.86102294921875e-06,
+          "predictedDelta": -6.593610812899442e-08,
+          "residual": -2.7950868410897556e-06
+        },
+        {
+          "token": 53,
+          "row": 2,
+          "observedDelta": 9.5367431640625e-07,
+          "predictedDelta": 4.961644637369034e-07,
+          "residual": 4.5750985266934663e-07
+        },
+        {
+          "token": 54,
+          "row": 98,
+          "observedDelta": 1.1920928955078125e-06,
+          "predictedDelta": 3.478120109701166e-07,
+          "residual": 8.442808845376959e-07
+        },
+        {
+          "token": 55,
+          "row": 21,
+          "observedDelta": 9.5367431640625e-07,
+          "predictedDelta": 2.643823584502769e-07,
+          "residual": 6.892919579559731e-07
+        },
+        {
+          "token": 56,
+          "row": 5,
+          "observedDelta": 9.5367431640625e-07,
+          "predictedDelta": 2.5162249528420944e-07,
+          "residual": 7.020518211220406e-07
+        },
+        {
+          "token": 57,
+          "row": 2,
+          "observedDelta": 9.5367431640625e-07,
+          "predictedDelta": 7.294279225078526e-08,
+          "residual": 8.807315241554647e-07
+        },
+        {
+          "token": 58,
+          "row": 222,
+          "observedDelta": 0.0015121698379516602,
+          "predictedDelta": 0.0015121503417923066,
+          "residual": 1.9496159353593612e-08
+        },
+        {
+          "token": 59,
+          "row": 2,
+          "observedDelta": 4.76837158203125e-07,
+          "predictedDelta": 2.862630270605848e-07,
+          "residual": 1.9057413114254018e-07
+        },
+        {
+          "token": 60,
+          "row": 544,
+          "observedDelta": -1.1920928955078125e-06,
+          "predictedDelta": -9.890393659617303e-08,
+          "residual": -1.0931889589116395e-06
+        },
+        {
+          "token": 61,
+          "row": 48,
+          "observedDelta": -9.5367431640625e-07,
+          "predictedDelta": 5.969693084306726e-08,
+          "residual": -1.0133712472493173e-06
+        },
+        {
+          "token": 62,
+          "row": 48,
+          "observedDelta": 7.152557373046875e-07,
+          "predictedDelta": 3.351727304590213e-07,
+          "residual": 3.800830068456662e-07
+        },
+        {
+          "token": 63,
+          "row": 5,
+          "observedDelta": -1.9073486328125e-06,
+          "predictedDelta": -1.1498256846653732e-06,
+          "residual": -7.575229481471268e-07
+        },
+        {
+          "token": 64,
+          "row": 157,
+          "observedDelta": 5.960464477539062e-07,
+          "predictedDelta": 1.5466178671097452e-07,
+          "residual": 4.413846610429317e-07
+        },
+        {
+          "token": 65,
+          "row": 56,
+          "observedDelta": -7.152557373046875e-07,
+          "predictedDelta": -4.174971302006725e-08,
+          "residual": -6.735060242846203e-07
+        },
+        {
+          "token": 66,
+          "row": 747,
+          "observedDelta": -1.0728836059570312e-06,
+          "predictedDelta": -2.0308751624842358e-07,
+          "residual": -8.697960897086077e-07
+        },
+        {
+          "token": 67,
+          "row": 48,
+          "observedDelta": 9.5367431640625e-07,
+          "predictedDelta": -8.30912272320461e-09,
+          "residual": 9.619834391294546e-07
+        },
+        {
+          "token": 68,
+          "row": 48,
+          "observedDelta": 1.1920928955078125e-06,
+          "predictedDelta": 1.5660452945542858e-07,
+          "residual": 1.035488366052384e-06
+        },
+        {
+          "token": 69,
+          "row": 5,
+          "observedDelta": -7.152557373046875e-07,
+          "predictedDelta": -9.451316618225292e-09,
+          "residual": -7.058044206864622e-07
+        },
+        {
+          "token": 70,
+          "row": 18,
+          "observedDelta": -8.344650268554688e-07,
+          "predictedDelta": -4.4021576955932673e-07,
+          "residual": -3.94249257296142e-07
+        },
+        {
+          "token": 71,
+          "row": 928,
+          "observedDelta": -0.000906825065612793,
+          "predictedDelta": -0.0009067255600417878,
+          "residual": -9.95055710051318e-08
+        },
+        {
+          "token": 72,
+          "row": 2,
+          "observedDelta": -5.960464477539062e-07,
+          "predictedDelta": -2.6086348636766843e-08,
+          "residual": -5.699600991171394e-07
+        },
+        {
+          "token": 73,
+          "row": 21,
+          "observedDelta": 7.152557373046875e-07,
+          "predictedDelta": 4.9096395393632974e-08,
+          "residual": 6.661593419110545e-07
+        },
+        {
+          "token": 74,
+          "row": 2,
+          "observedDelta": 1.1920928955078125e-06,
+          "predictedDelta": 1.2136293414677368e-07,
+          "residual": 1.0707299613610388e-06
+        },
+        {
+          "token": 75,
+          "row": 52,
+          "observedDelta": -7.152557373046875e-07,
+          "predictedDelta": -9.706233583539614e-08,
+          "residual": -6.181934014692914e-07
+        },
+        {
+          "token": 76,
+          "row": 27,
+          "observedDelta": -2.384185791015625e-06,
+          "predictedDelta": -1.6295383840070343e-06,
+          "residual": -7.546474070085907e-07
+        },
+        {
+          "token": 77,
+          "row": 52,
+          "observedDelta": -1.430511474609375e-06,
+          "predictedDelta": -2.1780399717119536e-07,
+          "residual": -1.2127074774381796e-06
+        },
+        {
+          "token": 78,
+          "row": 32,
+          "observedDelta": -1.1920928955078125e-06,
+          "predictedDelta": -3.280782578940489e-08,
+          "residual": -1.1592850697184076e-06
+        },
+        {
+          "token": 79,
+          "row": 188,
+          "observedDelta": -1.1920928955078125e-06,
+          "predictedDelta": -3.54339413366489e-08,
+          "residual": -1.1566589541711636e-06
+        },
+        {
+          "token": 80,
+          "row": 243,
+          "observedDelta": -1.0728836059570312e-06,
+          "predictedDelta": -2.1927868298909914e-07,
+          "residual": -8.536049229679321e-07
+        },
+        {
+          "token": 81,
+          "row": 5,
+          "observedDelta": -4.76837158203125e-07,
+          "predictedDelta": 2.5381757140507943e-08,
+          "residual": -5.022189153436329e-07
+        },
+        {
+          "token": 82,
+          "row": 1462,
+          "observedDelta": 1.430511474609375e-06,
+          "predictedDelta": 9.367045893937664e-07,
+          "residual": 4.938068852156086e-07
+        },
+        {
+          "token": 83,
+          "row": 48,
+          "observedDelta": 7.152557373046875e-07,
+          "predictedDelta": 4.071907255820406e-10,
+          "residual": 7.148485465791055e-07
+        },
+        {
+          "token": 84,
+          "row": 87,
+          "observedDelta": 5.960464477539062e-07,
+          "predictedDelta": 1.8280572577911158e-07,
+          "residual": 4.1324072197479467e-07
+        },
+        {
+          "token": 85,
+          "row": 91,
+          "observedDelta": 1.9073486328125e-06,
+          "predictedDelta": 3.4171486917866645e-07,
+          "residual": 1.5656337636338336e-06
+        },
+        {
+          "token": 86,
+          "row": 5,
+          "observedDelta": -7.152557373046875e-07,
+          "predictedDelta": -1.6201736396936894e-07,
+          "residual": -5.532383733353186e-07
+        },
+        {
+          "token": 87,
+          "row": 2,
+          "observedDelta": -1.9073486328125e-06,
+          "predictedDelta": 4.766545647072462e-08,
+          "residual": -1.9550140892832246e-06
+        },
+        {
+          "token": 88,
+          "row": 5,
+          "observedDelta": 1.9073486328125e-06,
+          "predictedDelta": 1.887337430783731e-07,
+          "residual": 1.718614889734127e-06
+        },
+        {
+          "token": 89,
+          "row": 48,
+          "observedDelta": 9.5367431640625e-07,
+          "predictedDelta": 4.018488257706565e-07,
+          "residual": 5.518254906355935e-07
+        },
+        {
+          "token": 90,
+          "row": 366,
+          "observedDelta": -1.3113021850585938e-06,
+          "predictedDelta": -6.984010316735123e-07,
+          "residual": -6.129011533850814e-07
+        },
+        {
+          "token": 91,
+          "row": 0,
+          "observedDelta": 5.960464477539062e-07,
+          "predictedDelta": 1.8627004028104466e-07,
+          "residual": 4.097764074728616e-07
+        },
+        {
+          "token": 92,
+          "row": 48,
+          "observedDelta": -1.430511474609375e-06,
+          "predictedDelta": -5.449426430104154e-07,
+          "residual": -8.855688315989596e-07
+        },
+        {
+          "token": 93,
+          "row": 48,
+          "observedDelta": 9.5367431640625e-07,
+          "predictedDelta": 2.4475889148778407e-07,
+          "residual": 7.089154249184659e-07
+        },
+        {
+          "token": 94,
+          "row": 52,
+          "observedDelta": -7.152557373046875e-07,
+          "predictedDelta": -1.3681828803235874e-07,
+          "residual": -5.784374492723288e-07
+        },
+        {
+          "token": 95,
+          "row": 77,
+          "observedDelta": 1.1920928955078125e-06,
+          "predictedDelta": -9.614072904451376e-08,
+          "residual": 1.2882336245523263e-06
+        },
+        {
+          "token": 96,
+          "row": 48,
+          "observedDelta": -9.5367431640625e-07,
+          "predictedDelta": -2.79891911536545e-07,
+          "residual": -6.73782404869705e-07
+        },
+        {
+          "token": 97,
+          "row": 144,
+          "observedDelta": 4.172325134277344e-07,
+          "predictedDelta": 7.548682490199354e-08,
+          "residual": 3.4174568852574083e-07
+        },
+        {
+          "token": 98,
+          "row": 861,
+          "observedDelta": -8.344650268554688e-07,
+          "predictedDelta": 4.439887013596433e-09,
+          "residual": -8.389049138690652e-07
+        },
+        {
+          "token": 99,
+          "row": 56,
+          "observedDelta": 1.0728836059570312e-06,
+          "predictedDelta": 3.812353787657763e-07,
+          "residual": 6.91648227191255e-07
+        },
+        {
+          "token": 100,
+          "row": 834,
+          "observedDelta": 1.0728836059570312e-06,
+          "predictedDelta": 2.070464546477524e-07,
+          "residual": 8.658371513092789e-07
+        },
+        {
+          "token": 101,
+          "row": 314,
+          "observedDelta": -8.344650268554688e-07,
+          "predictedDelta": -3.9567086757008596e-07,
+          "residual": -4.387941592853828e-07
+        },
+        {
+          "token": 102,
+          "row": 48,
+          "observedDelta": -1.1920928955078125e-06,
+          "predictedDelta": -1.7691149878373835e-08,
+          "residual": -1.1744017456294387e-06
+        },
+        {
+          "token": 103,
+          "row": 2,
+          "observedDelta": -7.152557373046875e-07,
+          "predictedDelta": -7.783430167052074e-08,
+          "residual": -6.374214356341668e-07
+        },
+        {
+          "token": 104,
+          "row": 861,
+          "observedDelta": -9.5367431640625e-07,
+          "predictedDelta": -1.307876201783742e-07,
+          "residual": -8.228866962278758e-07
+        },
+        {
+          "token": 105,
+          "row": 48,
+          "observedDelta": -9.5367431640625e-07,
+          "predictedDelta": 9.325109728841596e-08,
+          "residual": -1.046925413694666e-06
+        },
+        {
+          "token": 106,
+          "row": 16,
+          "observedDelta": -7.152557373046875e-07,
+          "predictedDelta": -9.518709587208463e-08,
+          "residual": -6.200686414326029e-07
+        },
+        {
+          "token": 107,
+          "row": 2,
+          "observedDelta": -9.5367431640625e-07,
+          "predictedDelta": 1.5330736191643268e-07,
+          "residual": -1.1069816783226827e-06
+        },
+        {
+          "token": 108,
+          "row": 5,
+          "observedDelta": -2.384185791015625e-06,
+          "predictedDelta": -1.1824801082749303e-06,
+          "residual": -1.2017056827406947e-06
+        },
+        {
+          "token": 109,
+          "row": 87,
+          "observedDelta": 7.152557373046875e-07,
+          "predictedDelta": 3.2675235006607295e-07,
+          "residual": 3.8850338723861455e-07
+        },
+        {
+          "token": 110,
+          "row": 72,
+          "observedDelta": -0.0005748271942138672,
+          "predictedDelta": -0.00057526974740707,
+          "residual": 4.425531932028548e-07
+        },
+        {
+          "token": 111,
+          "row": 524,
+          "observedDelta": 0.000789642333984375,
+          "predictedDelta": 0.0007898561001065119,
+          "residual": -2.137661221368603e-07
+        },
+        {
+          "token": 112,
+          "row": 187,
+          "observedDelta": -7.152557373046875e-07,
+          "predictedDelta": -4.91355746534694e-07,
+          "residual": -2.2389999076999345e-07
+        },
+        {
+          "token": 113,
+          "row": 0,
+          "observedDelta": 9.5367431640625e-07,
+          "predictedDelta": -1.1949340583683465e-07,
+          "residual": 1.0731677222430847e-06
+        },
+        {
+          "token": 114,
+          "row": 73,
+          "observedDelta": 1.430511474609375e-06,
+          "predictedDelta": 1.24261842576745e-06,
+          "residual": 1.8789304884192504e-07
+        },
+        {
+          "token": 115,
+          "row": 16,
+          "observedDelta": -9.5367431640625e-07,
+          "predictedDelta": -2.5155415706024087e-07,
+          "residual": -7.021201593460091e-07
+        },
+        {
+          "token": 116,
+          "row": 48,
+          "observedDelta": -9.5367431640625e-07,
+          "predictedDelta": -1.8169845705795495e-07,
+          "residual": -7.71975859348295e-07
+        },
+        {
+          "token": 117,
+          "row": 99,
+          "observedDelta": -7.152557373046875e-07,
+          "predictedDelta": -2.7951412517879248e-08,
+          "residual": -6.873043247868083e-07
+        },
+        {
+          "token": 118,
+          "row": 5,
+          "observedDelta": -7.152557373046875e-07,
+          "predictedDelta": -1.5130807073937547e-07,
+          "residual": -5.63947666565312e-07
+        },
+        {
+          "token": 119,
+          "row": 2,
+          "observedDelta": -1.1920928955078125e-06,
+          "predictedDelta": 9.999621819467563e-08,
+          "residual": -1.2920891137024881e-06
+        },
+        {
+          "token": 120,
+          "row": 1078,
+          "observedDelta": -0.0008566379547119141,
+          "predictedDelta": -0.0008565329676364364,
+          "residual": -1.0498707547768049e-07
+        },
+        {
+          "token": 121,
+          "row": 2,
+          "observedDelta": 9.5367431640625e-07,
+          "predictedDelta": 8.56670378635016e-07,
+          "residual": 9.700393777123395e-08
+        }
+      ]
+    },
+    {
+      "weight": "blk.0.ffn_up.weight",
+      "ggufType": "Q4_K",
+      "absoluteByteOffset": 230138880,
+      "rows": 3584,
+      "cols": 1024,
+      "modelsInputFiles": [
+        {
+          "file": "benchmark-results/2026-10-11-gdn-proof/remote-oracle-tensor-v3/x86/qwen-0.8b-models/easy-intent-00/0012-blk.0.ffn_up.weight.input.f32",
+          "sha256": "8877e9efb4366fb9d30e4751c007a3803147335a821e3ddff9fc447756b30ef6"
+        },
+        {
+          "file": "benchmark-results/2026-10-11-gdn-proof/remote-oracle-tensor-v3/x86/qwen-0.8b-models/easy-intent-00/0028-blk.0.ffn_up.weight.input.f32",
+          "sha256": "1085f07a3ae2f4b75f239bdc8f531d665de2580a82eb5ca2b4d185098eb5579f"
+        },
+        {
+          "file": "benchmark-results/2026-10-11-gdn-proof/remote-oracle-tensor-v3/x86/qwen-0.8b-models/easy-intent-00/0044-blk.0.ffn_up.weight.input.f32",
+          "sha256": "23b69c76bae348fb4e861d741fa8ceec2ad9fc456831a91c5a1e2d05452799d5"
+        },
+        {
+          "file": "benchmark-results/2026-10-11-gdn-proof/remote-oracle-tensor-v3/x86/qwen-0.8b-models/easy-intent-00/0060-blk.0.ffn_up.weight.input.f32",
+          "sha256": "39743011aa267b10430148ccd911e2c6c3a8fdb18854f532c2b50567e38e6fcb"
+        }
+      ],
+      "oracleInputFiles": [
+        {
+          "file": "benchmark-results/2026-10-11-gdn-proof/remote-oracle-tensor-v3/x86/qwen-0.8b-additive-32/easy-intent-00/36-attn_post_norm-0.bin",
+          "sha256": "a15f0059df41a8d469666cde7b7988f62819ad05ed552d6e1cd5c5baa5b0e4ba"
+        },
+        {
+          "file": "benchmark-results/2026-10-11-gdn-proof/remote-oracle-tensor-v3/x86/qwen-0.8b-additive-32/easy-intent-00/78-attn_post_norm-0.bin",
+          "sha256": "a8abe1a6d2cb2174064d1603d89c017f6c659bba3f22ed581f6391e2c4c75d8f"
+        },
+        {
+          "file": "benchmark-results/2026-10-11-gdn-proof/remote-oracle-tensor-v3/x86/qwen-0.8b-additive-32/easy-intent-00/120-attn_post_norm-0.bin",
+          "sha256": "908b21b6183323fb14b01363651d3a73dd4003d2a801480bd12c732fb9822ef6"
+        },
+        {
+          "file": "benchmark-results/2026-10-11-gdn-proof/remote-oracle-tensor-v3/x86/qwen-0.8b-additive-32/easy-intent-00/162-attn_post_norm-0.bin",
+          "sha256": "7f2a43ee3ed6e4f36ba06c2044c666d320894f18efeabdaf678cb45a31aa2f0b"
+        }
+      ],
+      "modelsOutputFiles": [
+        {
+          "file": "benchmark-results/2026-10-11-gdn-proof/remote-oracle-tensor-v3/x86/qwen-0.8b-models/easy-intent-00/0013-blk.0.ffn_up.weight.output.f32",
+          "sha256": "ad47b44271f0dc7d6368a1d7770241ce4dca38f5258486b285671b3e006c57e9"
+        },
+        {
+          "file": "benchmark-results/2026-10-11-gdn-proof/remote-oracle-tensor-v3/x86/qwen-0.8b-models/easy-intent-00/0029-blk.0.ffn_up.weight.output.f32",
+          "sha256": "e4be9e954db4ca35b6f69baa0795e5b45992547c594b2a9f45b6a0b5665e5803"
+        },
+        {
+          "file": "benchmark-results/2026-10-11-gdn-proof/remote-oracle-tensor-v3/x86/qwen-0.8b-models/easy-intent-00/0045-blk.0.ffn_up.weight.output.f32",
+          "sha256": "eb40860b8008cf2977ac076775b7ed65ae0229a8788e1deb3e77d2e0bebc632c"
+        },
+        {
+          "file": "benchmark-results/2026-10-11-gdn-proof/remote-oracle-tensor-v3/x86/qwen-0.8b-models/easy-intent-00/0061-blk.0.ffn_up.weight.output.f32",
+          "sha256": "2d77c1ab79de6d27f16e72e2df23c1482edd80feb9810beaa952c28d46d8a0bd"
+        }
+      ],
+      "oracleOutputFiles": [
+        {
+          "file": "benchmark-results/2026-10-11-gdn-proof/remote-oracle-tensor-v3/x86/qwen-0.8b-additive-32/easy-intent-00/38-ffn_up-0.bin",
+          "sha256": "bfcbbf14a18164eea867f6018b6671836a82f6f85a32ec5586f12f705f02763d"
+        },
+        {
+          "file": "benchmark-results/2026-10-11-gdn-proof/remote-oracle-tensor-v3/x86/qwen-0.8b-additive-32/easy-intent-00/80-ffn_up-0.bin",
+          "sha256": "24112e9c5d82f0ce2a66ffd19e9e548424c02e5b0f73ddccf977751366e40918"
+        },
+        {
+          "file": "benchmark-results/2026-10-11-gdn-proof/remote-oracle-tensor-v3/x86/qwen-0.8b-additive-32/easy-intent-00/122-ffn_up-0.bin",
+          "sha256": "41dce86b32d8d5cdb223227c42e2f7c5e0a24fe403abd7a3aa58d0aee3297d11"
+        },
+        {
+          "file": "benchmark-results/2026-10-11-gdn-proof/remote-oracle-tensor-v3/x86/qwen-0.8b-additive-32/easy-intent-00/164-ffn_up-0.bin",
+          "sha256": "d6615c673243989ccf70861f69b7e7eb14b4ff5a0c398f592fd1dd8f75093294"
+        }
+      ],
+      "differentQuantizedIntegers": 9,
+      "maxObservedDifference": 0.000794142484664917,
+      "maxResidualAfterScalarInputDelta": 9.818233975278368e-07,
+      "weightRows": {
+        "1837": {
+          "file": "ffn_up-row-1837.bin",
+          "sha256": "25596d61f2ff5246563c17e73e7d7813dd07693ad26752cf5fc5062654ff653b"
+        },
+        "290": {
+          "file": "ffn_up-row-290.bin",
+          "sha256": "181f42eba6259672d0d78adb4580897be282931cecb8371715ab965abc0fcbf7"
+        },
+        "253": {
+          "file": "ffn_up-row-253.bin",
+          "sha256": "7aafdbef3d328a67d4223bfad8b0303c758f46cf6c605a1a5c9830e39d1297ba"
+        },
+        "2237": {
+          "file": "ffn_up-row-2237.bin",
+          "sha256": "1dfd37b1b7d182dab188bbba1e77fb0436832120c9942dd541a368db610b3292"
+        },
+        "625": {
+          "file": "ffn_up-row-625.bin",
+          "sha256": "fcb7b09096f21e932eed483fd3b79ee7b4bcec9caef1ca8936d7c943ea8f8221"
+        },
+        "3312": {
+          "file": "ffn_up-row-3312.bin",
+          "sha256": "5aced63028daeed581d244bb65e9883d85c22bd9e023cfee93360ac9e67d7290"
+        },
+        "2810": {
+          "file": "ffn_up-row-2810.bin",
+          "sha256": "ddc5c7e364fb6584b6243ea1f150d11533dd8dc9ce996d9f194f626dfd5235f9"
+        },
+        "10": {
+          "file": "ffn_up-row-10.bin",
+          "sha256": "86989c5f60b7c5d4b7bdeae4e570930fc8a078e9edb1fba34bdb00af3e4d40f8"
+        },
+        "14": {
+          "file": "ffn_up-row-14.bin",
+          "sha256": "502cff5fd8c8882080d0a911c8d6567d4c598ae1ba672947afc18b0c98f31a37"
+        },
+        "2661": {
+          "file": "ffn_up-row-2661.bin",
+          "sha256": "f6d3379bc4e70b55e3b7b0c90e0388b7e373658c587c71c19e3ac8cb35e09472"
+        },
+        "7": {
+          "file": "ffn_up-row-7.bin",
+          "sha256": "7f0447efeaf837f68a6a87fcaa31cc559f326dd95190b343e2e531f01a019231"
+        },
+        "980": {
+          "file": "ffn_up-row-980.bin",
+          "sha256": "5623c9b137ae96764a5ecbdf12781d032f1f8d538756690b2ed9171f83d31960"
+        },
+        "1880": {
+          "file": "ffn_up-row-1880.bin",
+          "sha256": "5cbed1ac4226c31828d63c340a7b3bd5b8b9ce2d8a16cc2d2021ddcff0ebb602"
+        },
+        "1679": {
+          "file": "ffn_up-row-1679.bin",
+          "sha256": "eb98ca4962f5161c01a1dd93fbcc4e4e754940e07055f5c5d85b351512762ed1"
+        },
+        "4": {
+          "file": "ffn_up-row-4.bin",
+          "sha256": "07d8d1e84418ab866c3429f3b0d5f9839ccdeb5afd1435d3170709365494bb28"
+        },
+        "2596": {
+          "file": "ffn_up-row-2596.bin",
+          "sha256": "457d8fe3aebfa9fd0cde19e5127deaa222d03042944ad4cb6194e886367d8241"
+        },
+        "131": {
+          "file": "ffn_up-row-131.bin",
+          "sha256": "1683ce765ebe69c07815d98afc47fd8bc2fa1a2b706dab29fc83c6de2ae2a797"
+        },
+        "2170": {
+          "file": "ffn_up-row-2170.bin",
+          "sha256": "27b0ddb7877e6748d4b511ae0b71347315357069c44ad429b09d07335c4f0935"
+        },
+        "1185": {
+          "file": "ffn_up-row-1185.bin",
+          "sha256": "43f829688c91c564f60f20874f7380acee87fc9a539792759f46a0a308e6e67d"
+        },
+        "1631": {
+          "file": "ffn_up-row-1631.bin",
+          "sha256": "26fd223f6c9f134879fab451340e69e7d1c816713ccff0ac45757d3e8dc34a83"
+        },
+        "273": {
+          "file": "ffn_up-row-273.bin",
+          "sha256": "9250efa9e675b44464b542030b43bf1e2a2106edc302bab7252c6e0fa1467a3d"
+        },
+        "261": {
+          "file": "ffn_up-row-261.bin",
+          "sha256": "f19019b95e2c8d5a6138c6ca3432b55046fde4b5bc1aeab238d97cfe89192279"
+        },
+        "317": {
+          "file": "ffn_up-row-317.bin",
+          "sha256": "bf60d3f866223a5eea4134acda3d1861a99ab9ef97645f4f9c901795fe0d3066"
+        },
+        "2267": {
+          "file": "ffn_up-row-2267.bin",
+          "sha256": "2cf5b15bc78ebe2cc2c4c7d3b951ae1a856f07e1b7378c025039efea1d9c0858"
+        },
+        "171": {
+          "file": "ffn_up-row-171.bin",
+          "sha256": "f3240aee7eabbce4ffe5799d608d1941b907399de22c47e2fe06bc237fe01c03"
+        },
+        "1542": {
+          "file": "ffn_up-row-1542.bin",
+          "sha256": "1608758d68e7a6db8e96ac40b97e44d7fc7d940639d127123a232876ba1ca722"
+        },
+        "0": {
+          "file": "ffn_up-row-0.bin",
+          "sha256": "93fd5847ca065154b6a9ef3f0e294f525805230c5b2b03b3506136c580993861"
+        },
+        "1407": {
+          "file": "ffn_up-row-1407.bin",
+          "sha256": "077254235b9afcf0d600b55ce179d2ca0014b04e4496eaa09a7a583118e673e4"
+        },
+        "729": {
+          "file": "ffn_up-row-729.bin",
+          "sha256": "5d76fab8425fccc54367d4084b65c4fdfa66c95e69abfece9ef413e1e8cef8ed"
+        },
+        "40": {
+          "file": "ffn_up-row-40.bin",
+          "sha256": "89ee9d78cf454a88bfc9a9b4f98ffbcbe29125ac982dddbf6aa0743ac1743a4f"
+        },
+        "99": {
+          "file": "ffn_up-row-99.bin",
+          "sha256": "d03785e5b8ebaf086e8b02edbb21a1151bd59e5cb5f186bff118846b6124cc46"
+        },
+        "880": {
+          "file": "ffn_up-row-880.bin",
+          "sha256": "35032d7026af111f171888e2304ec20704627a6107b3f4a10a5d95b5abc8ad12"
+        },
+        "737": {
+          "file": "ffn_up-row-737.bin",
+          "sha256": "0c2d9c5007e03fd53016375d81b9147d821c20ab4ac2f360319a15bed4ceef6d"
+        },
+        "6": {
+          "file": "ffn_up-row-6.bin",
+          "sha256": "9a51d71d855ed3be7b56b77bbf8a6c779c7dc859113ebdc9c524755a7155fd28"
+        },
+        "1688": {
+          "file": "ffn_up-row-1688.bin",
+          "sha256": "0daaa40f489de990ff71e66e187ad712f67dc85da3546a835c1ececb428088e5"
+        },
+        "1340": {
+          "file": "ffn_up-row-1340.bin",
+          "sha256": "a6e00c7da4806177fe90009c48530dd2bbeadcc83c76464c1d41d9cd99382be0"
+        },
+        "2537": {
+          "file": "ffn_up-row-2537.bin",
+          "sha256": "dea62a666d7b3a555d19489f1a7064847b32604cf1693964ed4d1e938bcc3a98"
+        },
+        "2180": {
+          "file": "ffn_up-row-2180.bin",
+          "sha256": "60b780308598e2a67231452149d0a95f2949e83d4d2794abf5ad595918bf4e6b"
+        },
+        "252": {
+          "file": "ffn_up-row-252.bin",
+          "sha256": "e5f8c3de9b67d362a1296c8d97b311e1c21c906f332cc228a759dc0a308f0c30"
+        },
+        "30": {
+          "file": "ffn_up-row-30.bin",
+          "sha256": "72b124abdbe583cf9dc68dfe654418f98fb3b426c1953dc95ba66869d8c072e2"
+        },
+        "57": {
+          "file": "ffn_up-row-57.bin",
+          "sha256": "b4f7e64644b9310f9158b90c9b21872b698e1c16ac3fb0b885ba5275b7ce650d"
+        },
+        "3272": {
+          "file": "ffn_up-row-3272.bin",
+          "sha256": "a0b4ddd37cc3e0558ba9ec4c15d7e209c2640d318c9ce7e2c3bbcc0e429b6a3b"
+        },
+        "1788": {
+          "file": "ffn_up-row-1788.bin",
+          "sha256": "908d8dae39bdecf0903ac82487147b3551d5ea94a09e8c168d86e84d347dddc6"
+        },
+        "452": {
+          "file": "ffn_up-row-452.bin",
+          "sha256": "56c516420f976e8345565a0663515f702c26c8cfda24b223b9abfa89b7b0436c"
+        },
+        "1228": {
+          "file": "ffn_up-row-1228.bin",
+          "sha256": "6195735756a078233b3bb9b16eaed05ab85a454b45df58a3c563c69a530ab272"
+        },
+        "79": {
+          "file": "ffn_up-row-79.bin",
+          "sha256": "17c827a1739efa3a0b0d60b449912295a849689d0462faf432226989fb7dce2a"
+        },
+        "71": {
+          "file": "ffn_up-row-71.bin",
+          "sha256": "b27194b32205edaaa7555f5ad7abaebb9f7ec42322915bd97c2fa5b6cda6431b"
+        },
+        "1161": {
+          "file": "ffn_up-row-1161.bin",
+          "sha256": "6048f8260327daea66ea5af85ced0dbab8251a6c62816bd8cb81b394406f1fce"
+        },
+        "41": {
+          "file": "ffn_up-row-41.bin",
+          "sha256": "45c2b2bb9cfb04a04e3f0eeed1ae7782dcf4f8ad231933de615e24582db6bada"
+        },
+        "993": {
+          "file": "ffn_up-row-993.bin",
+          "sha256": "96efb9ede256dfdd1177cf2c6498e1ad4fc923cb9bccb4765a1744e09c6af32c"
+        },
+        "5": {
+          "file": "ffn_up-row-5.bin",
+          "sha256": "74f885b0b7089b6497cdeeb0e9a79ccabe29f1d511e8552b58a546b1293623c3"
+        },
+        "589": {
+          "file": "ffn_up-row-589.bin",
+          "sha256": "1626e1bb3537cb49cc9217e5897ffca4c3e7ec505d8bba75deecb185e55104e7"
+        },
+        "159": {
+          "file": "ffn_up-row-159.bin",
+          "sha256": "e1e2b697e6086ab43d84d4173f276564e4adda23f40b941c0f76a4313b5ea7cd"
+        },
+        "1118": {
+          "file": "ffn_up-row-1118.bin",
+          "sha256": "1df72b2f8a365259b3d65657bfca478d20535264608f94171a17f6a6f1ba3f0b"
+        },
+        "1111": {
+          "file": "ffn_up-row-1111.bin",
+          "sha256": "16d64c4c22abd80bb7d7b46ebd9b654e69833c36156d43097ffb06d0c86d71bf"
+        },
+        "1048": {
+          "file": "ffn_up-row-1048.bin",
+          "sha256": "0d56de874852855a6b48ddddd39fcef4160d81e2c873c1f402b397bd7e6e7ff0"
+        },
+        "44": {
+          "file": "ffn_up-row-44.bin",
+          "sha256": "c0fb8d5b11fe910a0d8c6f908a69f9b5135c3e951f0a19c8ad17d7eaf078b178"
+        },
+        "335": {
+          "file": "ffn_up-row-335.bin",
+          "sha256": "bca969a138ccc21838be8c0d1802eafd2b70958028999360e9af5e3a04f16588"
+        },
+        "1994": {
+          "file": "ffn_up-row-1994.bin",
+          "sha256": "cdeff66c54819cf1114a9fd4f7fe6a419f43ecbeafe33bc6111f6cb851d35426"
+        },
+        "2579": {
+          "file": "ffn_up-row-2579.bin",
+          "sha256": "c2855c1baae2fa672701a0bef0d3ac7e460208f45517160ad2514a3d8075c828"
+        },
+        "147": {
+          "file": "ffn_up-row-147.bin",
+          "sha256": "0f4c22887ad3189689d66c6698214fb8681b6283afac9d7d5133c732026a2c73"
+        },
+        "2004": {
+          "file": "ffn_up-row-2004.bin",
+          "sha256": "3062c22e3d2cda161aaa2a87be075ab11ac81e43fc857932a1e9f1a8afc0b2f9"
+        },
+        "1532": {
+          "file": "ffn_up-row-1532.bin",
+          "sha256": "1fe7f5b02727ffbc059cef58b3f45f936552eb5d6314410166216fd60055269c"
+        },
+        "770": {
+          "file": "ffn_up-row-770.bin",
+          "sha256": "bf7da42550a5d593e6ebdffd8c574071416cffa729044fcfe9dee394f3d94392"
+        },
+        "626": {
+          "file": "ffn_up-row-626.bin",
+          "sha256": "2f3b9efcf89e942bb8175f6aeeaab0a6ae0bf1d7c9634f1705ffffadea6c3894"
+        },
+        "17": {
+          "file": "ffn_up-row-17.bin",
+          "sha256": "52544fcb370a4f90a6f4faa6cabe816ca56d10548931dd298b8870e6e554e91f"
+        },
+        "2350": {
+          "file": "ffn_up-row-2350.bin",
+          "sha256": "9c94dba808589e80e219f6cedbf0caec753bed7db6bfeb512c7ed6465b136cf5"
+        },
+        "3": {
+          "file": "ffn_up-row-3.bin",
+          "sha256": "3ea984a7dcc70165c106d5b6145daa38698ec527ceb135c1f217693aa7c7e5ec"
+        },
+        "318": {
+          "file": "ffn_up-row-318.bin",
+          "sha256": "edbc523a281e1a31b56d27c4a1553cdb6e2074dad4a4b0dc8c050cf34ef09eb3"
+        },
+        "364": {
+          "file": "ffn_up-row-364.bin",
+          "sha256": "6a42751cd42367dbf2ff9fc9cb0ff123ad737a850b432dc39df12e2e1af2bdce"
+        },
+        "1539": {
+          "file": "ffn_up-row-1539.bin",
+          "sha256": "610e0e8f240d4c260e7523610e4a5ae6a8d01624d9e67ebdcbbaa68391d6f730"
+        },
+        "3433": {
+          "file": "ffn_up-row-3433.bin",
+          "sha256": "103cfb66fb7ff61e1f0d1ee94b44b2c25b70c9ca398db8cfbe8122be44b1f930"
+        },
+        "3016": {
+          "file": "ffn_up-row-3016.bin",
+          "sha256": "b627b7afec568e3a55b517334068a4531119973072dbdc2f372f3bf719227ccd"
+        },
+        "18": {
+          "file": "ffn_up-row-18.bin",
+          "sha256": "0fda45e97515f576e8a207f6dba55ced81034ef91e08c87dde972fbdc5ee1c76"
+        },
+        "964": {
+          "file": "ffn_up-row-964.bin",
+          "sha256": "c29c6786ca3ee33f21d63875d0c97911f78dd7c0dac32743c2c36e537102879d"
+        },
+        "95": {
+          "file": "ffn_up-row-95.bin",
+          "sha256": "e47186e3d9569d78bd7aeb42308e02087a0fb1d8a004dada20276affa6bd0bd0"
+        },
+        "2824": {
+          "file": "ffn_up-row-2824.bin",
+          "sha256": "6a4f3b8786db39bed648cc3b9e367a4758e366534f3b9945ab6cc09eb0fdb08e"
+        },
+        "1413": {
+          "file": "ffn_up-row-1413.bin",
+          "sha256": "7a6929aa176db41dfa4f6944245d5e77b93dc1e69ad1cd94be5a0cf7e0473c44"
+        },
+        "293": {
+          "file": "ffn_up-row-293.bin",
+          "sha256": "022473690a94ccf045599c69252fecba6eeb7d88946ba87d8536ff4f0e03b257"
+        }
+      },
+      "samples": [
+        {
+          "token": 0,
+          "row": 1837,
+          "observedDelta": 3.2782554626464844e-07,
+          "predictedDelta": 1.2531834325812952e-07,
+          "residual": 2.0250720300651892e-07
+        },
+        {
+          "token": 1,
+          "row": 290,
+          "observedDelta": -0.0005751196295022964,
+          "predictedDelta": -0.0005751465203944761,
+          "residual": 2.6890892179665116e-08
+        },
+        {
+          "token": 2,
+          "row": 253,
+          "observedDelta": 4.76837158203125e-07,
+          "predictedDelta": 1.3976284618522072e-07,
+          "residual": 3.370743120179043e-07
+        },
+        {
+          "token": 3,
+          "row": 2237,
+          "observedDelta": 2.682209014892578e-07,
+          "predictedDelta": 1.0459313948274485e-07,
+          "residual": 1.6362776200651297e-07
+        },
+        {
+          "token": 4,
+          "row": 625,
+          "observedDelta": 4.470348358154297e-07,
+          "predictedDelta": 8.761097136655849e-08,
+          "residual": 3.594238644488712e-07
+        },
+        {
+          "token": 5,
+          "row": 3312,
+          "observedDelta": 4.76837158203125e-07,
+          "predictedDelta": 2.5199643971518526e-07,
+          "residual": 2.2484071848793974e-07
+        },
+        {
+          "token": 6,
+          "row": 2810,
+          "observedDelta": 4.172325134277344e-07,
+          "predictedDelta": 3.5876027926207144e-08,
+          "residual": 3.8135648550152723e-07
+        },
+        {
+          "token": 7,
+          "row": 10,
+          "observedDelta": 7.152557373046875e-07,
+          "predictedDelta": -2.64762816115649e-08,
+          "residual": 7.417320189162524e-07
+        },
+        {
+          "token": 8,
+          "row": 14,
+          "observedDelta": 4.76837158203125e-07,
+          "predictedDelta": 5.2885371637501066e-08,
+          "residual": 4.2395178656562393e-07
+        },
+        {
+          "token": 9,
+          "row": 2661,
+          "observedDelta": -2.980232238769531e-07,
+          "predictedDelta": -1.0475736711423878e-07,
+          "residual": -1.9326585676271435e-07
+        },
+        {
+          "token": 10,
+          "row": 7,
+          "observedDelta": -4.76837158203125e-07,
+          "predictedDelta": -3.380726498747322e-08,
+          "residual": -4.430298932156518e-07
+        },
+        {
+          "token": 11,
+          "row": 980,
+          "observedDelta": 5.960464477539062e-07,
+          "predictedDelta": 2.3228281742504464e-07,
+          "residual": 3.637636303288616e-07
+        },
+        {
+          "token": 12,
+          "row": 1880,
+          "observedDelta": 2.980232238769531e-07,
+          "predictedDelta": 2.9615703889263045e-08,
+          "residual": 2.684075199876901e-07
+        },
+        {
+          "token": 13,
+          "row": 1679,
+          "observedDelta": 3.5762786865234375e-07,
+          "predictedDelta": 8.108087246050388e-08,
+          "residual": 2.7654699619183987e-07
+        },
+        {
+          "token": 14,
+          "row": 4,
+          "observedDelta": -7.152557373046875e-07,
+          "predictedDelta": -6.66262580661936e-08,
+          "residual": -6.486294792384939e-07
+        },
+        {
+          "token": 15,
+          "row": 2596,
+          "observedDelta": 0.000794142484664917,
+          "predictedDelta": 0.0007942054449399105,
+          "residual": -6.296027499352874e-08
+        },
+        {
+          "token": 16,
+          "row": 131,
+          "observedDelta": 4.76837158203125e-07,
+          "predictedDelta": 1.984178203962017e-07,
+          "residual": 2.784193378069233e-07
+        },
+        {
+          "token": 17,
+          "row": 2170,
+          "observedDelta": 2.682209014892578e-07,
+          "predictedDelta": 1.0949734885468132e-07,
+          "residual": 1.587235526345765e-07
+        },
+        {
+          "token": 18,
+          "row": 10,
+          "observedDelta": -5.960464477539062e-07,
+          "predictedDelta": -1.9382370197718046e-07,
+          "residual": -4.022227457767258e-07
+        },
+        {
+          "token": 19,
+          "row": 1185,
+          "observedDelta": 5.960464477539062e-07,
+          "predictedDelta": 1.6045698103539507e-08,
+          "residual": 5.800007496503667e-07
+        },
+        {
+          "token": 20,
+          "row": 1631,
+          "observedDelta": -3.5762786865234375e-07,
+          "predictedDelta": -3.062900373329569e-07,
+          "residual": -5.133783131938685e-08
+        },
+        {
+          "token": 21,
+          "row": 273,
+          "observedDelta": -3.5762786865234375e-07,
+          "predictedDelta": -1.6337431962831772e-08,
+          "residual": -3.41290436689512e-07
+        },
+        {
+          "token": 22,
+          "row": 10,
+          "observedDelta": -2.384185791015625e-07,
+          "predictedDelta": -4.2440715386504735e-08,
+          "residual": -1.9597786371505777e-07
+        },
+        {
+          "token": 23,
+          "row": 261,
+          "observedDelta": 2.980232238769531e-07,
+          "predictedDelta": 1.2070128763141952e-07,
+          "residual": 1.773219362455336e-07
+        },
+        {
+          "token": 24,
+          "row": 317,
+          "observedDelta": -4.470348358154297e-07,
+          "predictedDelta": -3.5024336542122114e-08,
+          "residual": -4.1201049927330757e-07
+        },
+        {
+          "token": 25,
+          "row": 2267,
+          "observedDelta": -2.8312206268310547e-07,
+          "predictedDelta": -1.6473872899158692e-07,
+          "residual": -1.1838333369151854e-07
+        },
+        {
+          "token": 26,
+          "row": 4,
+          "observedDelta": 7.152557373046875e-07,
+          "predictedDelta": -7.304112958905762e-08,
+          "residual": 7.882968668937451e-07
+        },
+        {
+          "token": 27,
+          "row": 171,
+          "observedDelta": 2.980232238769531e-07,
+          "predictedDelta": 1.1351858708597007e-07,
+          "residual": 1.8450463679098306e-07
+        },
+        {
+          "token": 28,
+          "row": 1542,
+          "observedDelta": -4.76837158203125e-07,
+          "predictedDelta": -9.45432638843613e-08,
+          "residual": -3.822938943187637e-07
+        },
+        {
+          "token": 29,
+          "row": 0,
+          "observedDelta": -5.960464477539062e-07,
+          "predictedDelta": -9.33586985496504e-10,
+          "residual": -5.951128607684097e-07
+        },
+        {
+          "token": 30,
+          "row": 1407,
+          "observedDelta": -4.172325134277344e-07,
+          "predictedDelta": -5.308564621220313e-08,
+          "residual": -3.6414686721553124e-07
+        },
+        {
+          "token": 31,
+          "row": 4,
+          "observedDelta": -4.76837158203125e-07,
+          "predictedDelta": 2.4900001949212935e-08,
+          "residual": -5.017371601523379e-07
+        },
+        {
+          "token": 32,
+          "row": 729,
+          "observedDelta": 7.152557373046875e-07,
+          "predictedDelta": 5.185928725337519e-07,
+          "residual": 1.9666286477093564e-07
+        },
+        {
+          "token": 33,
+          "row": 40,
+          "observedDelta": 5.364418029785156e-07,
+          "predictedDelta": 6.929165929925318e-08,
+          "residual": 4.6715014367926244e-07
+        },
+        {
+          "token": 34,
+          "row": 4,
+          "observedDelta": -6.556510925292969e-07,
+          "predictedDelta": -5.479012639142411e-07,
+          "residual": -1.0774982861505578e-07
+        },
+        {
+          "token": 35,
+          "row": 10,
+          "observedDelta": 3.5762786865234375e-07,
+          "predictedDelta": 2.501713369795766e-08,
+          "residual": 3.326107349543861e-07
+        },
+        {
+          "token": 36,
+          "row": 99,
+          "observedDelta": 3.5762786865234375e-07,
+          "predictedDelta": 1.2041084113123546e-07,
+          "residual": 2.372170275211083e-07
+        },
+        {
+          "token": 37,
+          "row": 880,
+          "observedDelta": -3.5762786865234375e-07,
+          "predictedDelta": 3.452557006955459e-08,
+          "residual": -3.9215343872189834e-07
+        },
+        {
+          "token": 38,
+          "row": 1185,
+          "observedDelta": 4.76837158203125e-07,
+          "predictedDelta": 2.9138238488712886e-09,
+          "residual": 4.739233343542537e-07
+        },
+        {
+          "token": 39,
+          "row": 737,
+          "observedDelta": -0.0006973743438720703,
+          "predictedDelta": -0.0006972073201777507,
+          "residual": -1.670236943196457e-07
+        },
+        {
+          "token": 40,
+          "row": 6,
+          "observedDelta": -3.5762786865234375e-07,
+          "predictedDelta": -1.3845697188763495e-07,
+          "residual": -2.191708967647088e-07
+        },
+        {
+          "token": 41,
+          "row": 1688,
+          "observedDelta": -3.5762786865234375e-07,
+          "predictedDelta": -1.240370608446284e-07,
+          "residual": -2.3359080780771535e-07
+        },
+        {
+          "token": 42,
+          "row": 10,
+          "observedDelta": 7.152557373046875e-07,
+          "predictedDelta": -1.5496133265457956e-08,
+          "residual": 7.307518705701455e-07
+        },
+        {
+          "token": 43,
+          "row": 10,
+          "observedDelta": -5.960464477539062e-07,
+          "predictedDelta": -9.69191580324491e-08,
+          "residual": -4.991272897214571e-07
+        },
+        {
+          "token": 44,
+          "row": 10,
+          "observedDelta": -9.5367431640625e-07,
+          "predictedDelta": -2.783472741185733e-08,
+          "residual": -9.258395889943927e-07
+        },
+        {
+          "token": 45,
+          "row": 1340,
+          "observedDelta": 4.76837158203125e-07,
+          "predictedDelta": 1.3245004837347807e-07,
+          "residual": 3.4438710982964693e-07
+        },
+        {
+          "token": 46,
+          "row": 2537,
+          "observedDelta": 0.0003793388605117798,
+          "predictedDelta": 0.00037939460199293285,
+          "residual": -5.574148115305988e-08
+        },
+        {
+          "token": 47,
+          "row": 10,
+          "observedDelta": 4.76837158203125e-07,
+          "predictedDelta": 4.396981911902742e-08,
+          "residual": 4.328673390840976e-07
+        },
+        {
+          "token": 48,
+          "row": 2180,
+          "observedDelta": -5.364418029785156e-07,
+          "predictedDelta": -1.6244877143467562e-07,
+          "residual": -3.7399303154384e-07
+        },
+        {
+          "token": 49,
+          "row": 4,
+          "observedDelta": 4.76837158203125e-07,
+          "predictedDelta": 1.0909798442426677e-07,
+          "residual": 3.6773917377885823e-07
+        },
+        {
+          "token": 50,
+          "row": 252,
+          "observedDelta": 3.2782554626464844e-07,
+          "predictedDelta": 3.2826120710538476e-08,
+          "residual": 2.9499942555410996e-07
+        },
+        {
+          "token": 51,
+          "row": 10,
+          "observedDelta": -3.5762786865234375e-07,
+          "predictedDelta": 2.073761162790788e-09,
+          "residual": -3.5970162981513454e-07
+        },
+        {
+          "token": 52,
+          "row": 10,
+          "observedDelta": -7.152557373046875e-07,
+          "predictedDelta": -1.2730522458426208e-07,
+          "residual": -5.879505127204254e-07
+        },
+        {
+          "token": 53,
+          "row": 4,
+          "observedDelta": 1.0132789611816406e-06,
+          "predictedDelta": 8.766735940524129e-07,
+          "residual": 1.3660536712922777e-07
+        },
+        {
+          "token": 54,
+          "row": 30,
+          "observedDelta": 5.960464477539062e-07,
+          "predictedDelta": 4.848396795154031e-09,
+          "residual": 5.911980509587522e-07
+        },
+        {
+          "token": 55,
+          "row": 10,
+          "observedDelta": 5.960464477539062e-07,
+          "predictedDelta": 2.0902569408676186e-07,
+          "residual": 3.870207536671444e-07
+        },
+        {
+          "token": 56,
+          "row": 10,
+          "observedDelta": -3.5762786865234375e-07,
+          "predictedDelta": 5.225993038315835e-08,
+          "residual": -4.098877990355021e-07
+        },
+        {
+          "token": 57,
+          "row": 6,
+          "observedDelta": -3.2782554626464844e-07,
+          "predictedDelta": -1.4539113801781411e-08,
+          "residual": -3.13286432462867e-07
+        },
+        {
+          "token": 58,
+          "row": 57,
+          "observedDelta": 0.0005254745483398438,
+          "predictedDelta": 0.0005252500064796273,
+          "residual": 2.2454186021647615e-07
+        },
+        {
+          "token": 59,
+          "row": 3272,
+          "observedDelta": 3.5762786865234375e-07,
+          "predictedDelta": 1.238772253664422e-07,
+          "residual": 2.3375064328590156e-07
+        },
+        {
+          "token": 60,
+          "row": 1788,
+          "observedDelta": -5.960464477539062e-07,
+          "predictedDelta": -1.030936225276946e-09,
+          "residual": -5.950155115286293e-07
+        },
+        {
+          "token": 61,
+          "row": 6,
+          "observedDelta": 4.172325134277344e-07,
+          "predictedDelta": -9.801155997912758e-09,
+          "residual": 4.2703366942564713e-07
+        },
+        {
+          "token": 62,
+          "row": 4,
+          "observedDelta": 4.76837158203125e-07,
+          "predictedDelta": 4.301878386847591e-08,
+          "residual": 4.338183743346491e-07
+        },
+        {
+          "token": 63,
+          "row": 4,
+          "observedDelta": 7.152557373046875e-07,
+          "predictedDelta": -1.5524327845461983e-07,
+          "residual": 8.704990157593073e-07
+        },
+        {
+          "token": 64,
+          "row": 452,
+          "observedDelta": -2.682209014892578e-07,
+          "predictedDelta": -2.896609407887496e-08,
+          "residual": -2.3925480741038285e-07
+        },
+        {
+          "token": 65,
+          "row": 10,
+          "observedDelta": -3.5762786865234375e-07,
+          "predictedDelta": -3.132127446292543e-09,
+          "residual": -3.544957412060512e-07
+        },
+        {
+          "token": 66,
+          "row": 1228,
+          "observedDelta": 3.8743019104003906e-07,
+          "predictedDelta": 9.323728072940796e-08,
+          "residual": 2.941929103106311e-07
+        },
+        {
+          "token": 67,
+          "row": 79,
+          "observedDelta": -3.2782554626464844e-07,
+          "predictedDelta": -3.373128398820313e-08,
+          "residual": -2.940942622764453e-07
+        },
+        {
+          "token": 68,
+          "row": 71,
+          "observedDelta": -5.960464477539062e-07,
+          "predictedDelta": -3.1335518846375976e-08,
+          "residual": -5.647109289075303e-07
+        },
+        {
+          "token": 69,
+          "row": 1161,
+          "observedDelta": -3.5762786865234375e-07,
+          "predictedDelta": -9.141446033478218e-08,
+          "residual": -2.6621340831756157e-07
+        },
+        {
+          "token": 70,
+          "row": 41,
+          "observedDelta": 2.980232238769531e-07,
+          "predictedDelta": 1.280672231596114e-07,
+          "residual": 1.6995600071734174e-07
+        },
+        {
+          "token": 71,
+          "row": 993,
+          "observedDelta": -0.000631868839263916,
+          "predictedDelta": -0.0006318549715549349,
+          "residual": -1.3867708981152305e-08
+        },
+        {
+          "token": 72,
+          "row": 5,
+          "observedDelta": -5.364418029785156e-07,
+          "predictedDelta": -4.6240333784197674e-10,
+          "residual": -5.359793996406736e-07
+        },
+        {
+          "token": 73,
+          "row": 5,
+          "observedDelta": 2.980232238769531e-07,
+          "predictedDelta": 4.8310147438002105e-08,
+          "residual": 2.49713076438951e-07
+        },
+        {
+          "token": 74,
+          "row": 589,
+          "observedDelta": -7.152557373046875e-07,
+          "predictedDelta": -2.441899593086383e-07,
+          "residual": -4.710657779960492e-07
+        },
+        {
+          "token": 75,
+          "row": 4,
+          "observedDelta": 2.384185791015625e-07,
+          "predictedDelta": 1.2109446817509806e-07,
+          "residual": 1.1732411092646444e-07
+        },
+        {
+          "token": 76,
+          "row": 159,
+          "observedDelta": 7.152557373046875e-07,
+          "predictedDelta": 6.607044779061155e-07,
+          "residual": 5.455125939857197e-08
+        },
+        {
+          "token": 77,
+          "row": 1118,
+          "observedDelta": -7.152557373046875e-07,
+          "predictedDelta": -1.97567884052674e-07,
+          "residual": -5.176878532520135e-07
+        },
+        {
+          "token": 78,
+          "row": 4,
+          "observedDelta": 5.960464477539062e-07,
+          "predictedDelta": -1.3390394981716014e-07,
+          "residual": 7.299503975710664e-07
+        },
+        {
+          "token": 79,
+          "row": 1111,
+          "observedDelta": -4.172325134277344e-07,
+          "predictedDelta": -1.285402497774868e-07,
+          "residual": -2.886922636502476e-07
+        },
+        {
+          "token": 80,
+          "row": 1048,
+          "observedDelta": 4.172325134277344e-07,
+          "predictedDelta": 1.8793769096525637e-08,
+          "residual": 3.9843874433120874e-07
+        },
+        {
+          "token": 81,
+          "row": 44,
+          "observedDelta": 2.384185791015625e-07,
+          "predictedDelta": 5.581913509189462e-08,
+          "residual": 1.8259944400966788e-07
+        },
+        {
+          "token": 82,
+          "row": 335,
+          "observedDelta": -8.344650268554688e-07,
+          "predictedDelta": -8.079221117673896e-07,
+          "residual": -2.6542915088079155e-08
+        },
+        {
+          "token": 83,
+          "row": 5,
+          "observedDelta": 2.384185791015625e-07,
+          "predictedDelta": -7.583730088356333e-09,
+          "residual": 2.4600230918991883e-07
+        },
+        {
+          "token": 84,
+          "row": 1994,
+          "observedDelta": -3.129243850708008e-07,
+          "predictedDelta": -1.8035905668956076e-07,
+          "residual": -1.3256532838124002e-07
+        },
+        {
+          "token": 85,
+          "row": 2579,
+          "observedDelta": 7.152557373046875e-07,
+          "predictedDelta": 3.6186502549995225e-07,
+          "residual": 3.5339071180473525e-07
+        },
+        {
+          "token": 86,
+          "row": 147,
+          "observedDelta": 3.5762786865234375e-07,
+          "predictedDelta": 1.4391808766944791e-07,
+          "residual": 2.1370978098289584e-07
+        },
+        {
+          "token": 87,
+          "row": 2004,
+          "observedDelta": 7.152557373046875e-07,
+          "predictedDelta": 4.647738744978369e-07,
+          "residual": 2.504818628068506e-07
+        },
+        {
+          "token": 88,
+          "row": 40,
+          "observedDelta": 9.5367431640625e-07,
+          "predictedDelta": -2.814908112158676e-08,
+          "residual": 9.818233975278368e-07
+        },
+        {
+          "token": 89,
+          "row": 4,
+          "observedDelta": -8.344650268554688e-07,
+          "predictedDelta": -2.951082936908378e-07,
+          "residual": -5.39356733164631e-07
+        },
+        {
+          "token": 90,
+          "row": 1532,
+          "observedDelta": -7.748603820800781e-07,
+          "predictedDelta": -4.1626772140368473e-07,
+          "residual": -3.585926606763934e-07
+        },
+        {
+          "token": 91,
+          "row": 6,
+          "observedDelta": -2.980232238769531e-07,
+          "predictedDelta": -6.227609339326534e-08,
+          "residual": -2.3574713048368778e-07
+        },
+        {
+          "token": 92,
+          "row": 10,
+          "observedDelta": -4.76837158203125e-07,
+          "predictedDelta": -3.0278533258432105e-07,
+          "residual": -1.7405182561880395e-07
+        },
+        {
+          "token": 93,
+          "row": 770,
+          "observedDelta": -3.5762786865234375e-07,
+          "predictedDelta": -1.8945755075883142e-08,
+          "residual": -3.386821135764606e-07
+        },
+        {
+          "token": 94,
+          "row": 626,
+          "observedDelta": 3.2782554626464844e-07,
+          "predictedDelta": 1.9181334037776665e-07,
+          "residual": 1.360122058868818e-07
+        },
+        {
+          "token": 95,
+          "row": 6,
+          "observedDelta": 5.960464477539062e-07,
+          "predictedDelta": 7.889643183212058e-08,
+          "residual": 5.171500159217857e-07
+        },
+        {
+          "token": 96,
+          "row": 17,
+          "observedDelta": 2.384185791015625e-07,
+          "predictedDelta": 8.149404151502893e-08,
+          "residual": 1.5692453758653357e-07
+        },
+        {
+          "token": 97,
+          "row": 2350,
+          "observedDelta": 3.5762786865234375e-07,
+          "predictedDelta": 6.643250682891733e-08,
+          "residual": 2.911953618234264e-07
+        },
+        {
+          "token": 98,
+          "row": 10,
+          "observedDelta": -4.76837158203125e-07,
+          "predictedDelta": 5.1987818050491796e-08,
+          "residual": -5.288249762536168e-07
+        },
+        {
+          "token": 99,
+          "row": 5,
+          "observedDelta": 2.384185791015625e-07,
+          "predictedDelta": 4.037459144790034e-09,
+          "residual": 2.3438111995677247e-07
+        },
+        {
+          "token": 100,
+          "row": 3,
+          "observedDelta": 4.172325134277344e-07,
+          "predictedDelta": 1.1759596918459181e-07,
+          "residual": 2.9963654424314257e-07
+        },
+        {
+          "token": 101,
+          "row": 4,
+          "observedDelta": -3.5762786865234375e-07,
+          "predictedDelta": -6.68182947305418e-08,
+          "residual": -2.9080957392180196e-07
+        },
+        {
+          "token": 102,
+          "row": 318,
+          "observedDelta": -3.5762786865234375e-07,
+          "predictedDelta": -4.278305176796948e-08,
+          "residual": -3.1484481688437427e-07
+        },
+        {
+          "token": 103,
+          "row": 147,
+          "observedDelta": 3.5762786865234375e-07,
+          "predictedDelta": 1.265008431339254e-08,
+          "residual": 3.449777843389512e-07
+        },
+        {
+          "token": 104,
+          "row": 5,
+          "observedDelta": 3.5762786865234375e-07,
+          "predictedDelta": 3.0038293352685486e-08,
+          "residual": 3.2758957529965826e-07
+        },
+        {
+          "token": 105,
+          "row": 364,
+          "observedDelta": 5.960464477539062e-07,
+          "predictedDelta": -7.18758100815009e-08,
+          "residual": 6.679222578354072e-07
+        },
+        {
+          "token": 106,
+          "row": 6,
+          "observedDelta": 3.5762786865234375e-07,
+          "predictedDelta": -3.36531954525654e-08,
+          "residual": 3.9128106410490915e-07
+        },
+        {
+          "token": 107,
+          "row": 5,
+          "observedDelta": 5.364418029785156e-07,
+          "predictedDelta": 5.302287975350595e-08,
+          "residual": 4.834189232250097e-07
+        },
+        {
+          "token": 108,
+          "row": 1539,
+          "observedDelta": -5.960464477539062e-07,
+          "predictedDelta": -1.797818413029617e-07,
+          "residual": -4.1626460645094454e-07
+        },
+        {
+          "token": 109,
+          "row": 4,
+          "observedDelta": -4.76837158203125e-07,
+          "predictedDelta": -2.7332077279229594e-07,
+          "residual": -2.0351638541082906e-07
+        },
+        {
+          "token": 110,
+          "row": 3433,
+          "observedDelta": 0.00044524669647216797,
+          "predictedDelta": 0.000445142127034448,
+          "residual": 1.0456943771997018e-07
+        },
+        {
+          "token": 111,
+          "row": 3016,
+          "observedDelta": 0.00044383108615875244,
+          "predictedDelta": 0.0004438188260375009,
+          "residual": 1.2260121251550515e-08
+        },
+        {
+          "token": 112,
+          "row": 4,
+          "observedDelta": 7.748603820800781e-07,
+          "predictedDelta": 4.524003283101763e-07,
+          "residual": 3.2246005376990183e-07
+        },
+        {
+          "token": 113,
+          "row": 14,
+          "observedDelta": -5.960464477539062e-07,
+          "predictedDelta": -6.321370926709591e-08,
+          "residual": -5.328327384868103e-07
+        },
+        {
+          "token": 114,
+          "row": 18,
+          "observedDelta": -4.76837158203125e-07,
+          "predictedDelta": -4.753711298488561e-07,
+          "residual": -1.4660283542689e-09
+        },
+        {
+          "token": 115,
+          "row": 1185,
+          "observedDelta": 5.960464477539062e-07,
+          "predictedDelta": 1.1127869559146575e-07,
+          "residual": 4.847677521624405e-07
+        },
+        {
+          "token": 116,
+          "row": 964,
+          "observedDelta": -2.8312206268310547e-07,
+          "predictedDelta": 2.2118834541728916e-09,
+          "residual": -2.8533394613727836e-07
+        },
+        {
+          "token": 117,
+          "row": 95,
+          "observedDelta": -3.5762786865234375e-07,
+          "predictedDelta": 1.080490807936485e-08,
+          "residual": -3.684327767317086e-07
+        },
+        {
+          "token": 118,
+          "row": 2824,
+          "observedDelta": -2.980232238769531e-07,
+          "predictedDelta": -1.237998651371086e-07,
+          "residual": -1.7422335873984451e-07
+        },
+        {
+          "token": 119,
+          "row": 1413,
+          "observedDelta": 2.980232238769531e-07,
+          "predictedDelta": 9.953431612252928e-08,
+          "residual": 1.9848890775442385e-07
+        },
+        {
+          "token": 120,
+          "row": 293,
+          "observedDelta": -0.0005565285682678223,
+          "predictedDelta": -0.0005566002876955523,
+          "residual": 7.171942772998818e-08
+        },
+        {
+          "token": 121,
+          "row": 317,
+          "observedDelta": 7.748603820800781e-07,
+          "predictedDelta": 4.6669345937777607e-07,
+          "residual": 3.0816692270230206e-07
+        }
+      ]
+    }
+  ]
+}

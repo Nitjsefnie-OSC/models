@@ -1,0 +1,104 @@
+{
+  "Reservations": [
+    {
+      "ReservationId": "r-0f6b2a7380b46d3dd",
+      "OwnerId": "077051030817",
+      "Groups": [],
+      "Instances": [
+        {
+          "Architecture": "x86_64",
+          "BlockDeviceMappings": [],
+          "ClientToken": "c12ca62e-1ea4-45ed-ba9f-572066ae00ef",
+          "EbsOptimized": false,
+          "EnaSupport": true,
+          "Hypervisor": "xen",
+          "InstanceLifecycle": "spot",
+          "NetworkInterfaces": [],
+          "RootDeviceName": "/dev/sda1",
+          "RootDeviceType": "ebs",
+          "SecurityGroups": [],
+          "SpotInstanceRequestId": "sir-thi7q7rh",
+          "StateReason": {
+            "Code": "Client.InstanceInitiatedShutdown",
+            "Message": "Client.InstanceInitiatedShutdown: Instance initiated shutdown"
+          },
+          "Tags": [
+            {
+              "Key": "project",
+              "Value": "models-qualification"
+            },
+            {
+              "Key": "Name",
+              "Value": "models-gdn-proof-ffm-array-adapter-v1-x86"
+            },
+            {
+              "Key": "delete-after",
+              "Value": "2026-10-12T21:21:47.681493+00:00"
+            }
+          ],
+          "VirtualizationType": "hvm",
+          "CpuOptions": {
+            "CoreCount": 2,
+            "ThreadsPerCore": 2
+          },
+          "CapacityReservationSpecification": {
+            "CapacityReservationPreference": "open"
+          },
+          "HibernationOptions": {
+            "Configured": false
+          },
+          "MetadataOptions": {
+            "State": "pending",
+            "HttpTokens": "required",
+            "HttpPutResponseHopLimit": 2,
+            "HttpEndpoint": "enabled",
+            "HttpProtocolIpv6": "disabled",
+            "InstanceMetadataTags": "disabled"
+          },
+          "EnclaveOptions": {
+            "Enabled": false
+          },
+          "BootMode": "uefi-preferred",
+          "PlatformDetails": "Linux/UNIX",
+          "UsageOperation": "RunInstances",
+          "UsageOperationUpdateTime": "2026-10-12T20:51:51+00:00",
+          "MaintenanceOptions": {
+            "AutoRecovery": "default",
+            "RebootMigration": "default"
+          },
+          "CurrentInstanceBootMode": "uefi",
+          "NetworkPerformanceOptions": {
+            "BandwidthWeighting": "default"
+          },
+          "Operator": {
+            "Managed": false,
+            "HiddenByDefault": false
+          },
+          "SecondaryInterfaces": [],
+          "InstanceId": "i-006b089396a5b50ef",
+          "ImageId": "ami-03d70b8354a16a8bc",
+          "State": {
+            "Code": 48,
+            "Name": "terminated"
+          },
+          "PrivateDnsName": "",
+          "PublicDnsName": "",
+          "StateTransitionReason": "User initiated",
+          "AmiLaunchIndex": 0,
+          "ProductCodes": [],
+          "InstanceType": "m6a.xlarge",
+          "LaunchTime": "2026-10-12T20:51:51+00:00",
+          "Placement": {
+            "AvailabilityZoneId": "usw2-az2",
+            "GroupName": "",
+            "Tenancy": "default",
+            "AvailabilityZone": "us-west-2a"
+          },
+          "Monitoring": {
+            "State": "disabled"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "time": "2026-10-12T21:04:22.360242+00:00",
+  "reason": "Live quota race with previously reserved critical BF16 x86 replacement; release newest owned GDN bootstrap immediately before any model measurements. Retry will use a distinct result prefix.",
+  "host": {
+    "shard": "x86-large-b",
+    "arch": "x86",
+    "instanceId": "i-0cbd9e20b7a18378a",
+    "instanceType": "m6a.4xlarge",
+    "deadline": "2026-10-12T22:13:15.642252+00:00",
+    "resultUri": "s3://models-qual-077051030817/results/gdn-proof-production-final-v11/x86-large-b/",
+    "launchCommand": [
+      "aws",
+      "ec2",
+      "run-instances",
+      "--region",
+      "us-east-1",
+      "--image-id",
+      "ami-0045d7fc2ad003464",
+      "--instance-type",
+      "m6a.4xlarge",
+      "--key-name",
+      "qual-milan",
+      "--iam-instance-profile",
+      "Name=models-qual-worker",
+      "--security-group-ids",
+      "sg-0e9ff523da4140d55",
+      "--subnet-id",
+      "subnet-08fcc910aba0d5b23",
+      "--block-device-mappings",
+      "[{\"DeviceName\": \"/dev/sda1\", \"Ebs\": {\"VolumeSize\": 40, \"VolumeType\": \"gp3\", \"DeleteOnTermination\": true}}]",
+      "--instance-initiated-shutdown-behavior",
+      "terminate",
+      "--metadata-options",
+      "HttpTokens=required,HttpEndpoint=enabled",
+      "--user-data",
+      "file:///Users/briansam-bodden/Code/java-ai/projects/models-gdn-proof/benchmark-results/2026-10-11-gdn-proof/x86-large-b-production-final-v11-worker.sh",
+      "--tag-specifications",
+      "ResourceType=instance,Tags=[{Key=Name,Value=models-gdn-proof-production-final-v11-x86-large-b},{Key=project,Value=models-qualification},{Key=delete-after,Value=2026-10-12T22:13:15.642252+00:00}]"
+    ],
+    "userDataSha256": "73aebb4095f7af8483e5aed0afa9eb5da14442384486e903f9177f77971c9960"
+  },
+  "termination": {
+    "TerminatingInstances": [
+      {
+        "InstanceId": "i-0cbd9e20b7a18378a",
+        "CurrentState": {
+          "Code": 32,
+          "Name": "shutting-down"
+        },
+        "PreviousState": {
+          "Code": 16,
+          "Name": "running"
+        }
+      }
+    ]
+  }
+}

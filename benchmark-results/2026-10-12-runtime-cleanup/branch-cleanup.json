@@ -1,0 +1,9 @@
+{
+  "removedBranch": "fix/native-shim-evidence",
+  "originalHead": "fe9ba2c7a509f3f90823001c99f3454c708abe24",
+  "integratedPatch": "git cherry HEAD fix/native-shim-evidence reports negative/equivalent",
+  "integrationHead": "574b8f0660acd216cd7b91284548bd89753c44c4",
+  "worktree": "projects/models-shim-evidence",
+  "worktreeStatus": "clean",
+  "retainedContinuation": "continue/router-measurements: unfinished collector; not promoted as production-ready"
+}

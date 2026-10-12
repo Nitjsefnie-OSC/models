@@ -1,0 +1,200 @@
+{
+  "time": "2026-10-12T21:01:46.200128+00:00",
+  "reason": "Prospective replacement of known allocation-regressing v9 by verified allocation-fix v11 after current complete triplet; all raw completed and partial data retained. Incomplete phase is not claimed complete.",
+  "shard": "arm-large-b",
+  "lastRequiredCompletePair": 8,
+  "observedStatus": "TIMING_qwen-4b_9_published",
+  "before": {
+    "Reservations": [
+      {
+        "ReservationId": "r-0b1d7caa8a01dc61b",
+        "OwnerId": "077051030817",
+        "Groups": [],
+        "Instances": [
+          {
+            "Architecture": "arm64",
+            "BlockDeviceMappings": [
+              {
+                "DeviceName": "/dev/sda1",
+                "Ebs": {
+                  "AttachTime": "2026-10-12T20:13:27+00:00",
+                  "DeleteOnTermination": true,
+                  "Status": "attached",
+                  "VolumeId": "vol-06d12310f926f4dc8",
+                  "EbsCardIndex": 0
+                }
+              }
+            ],
+            "ClientToken": "76f61c04-65dd-4f2c-8aac-ad30b4460ead",
+            "EbsOptimized": false,
+            "EnaSupport": true,
+            "Hypervisor": "xen",
+            "IamInstanceProfile": {
+              "Arn": "arn:aws:iam::077051030817:instance-profile/models-qual-worker",
+              "Id": "AIPARD4EZNUQZWEAPQ35K"
+            },
+            "NetworkInterfaces": [
+              {
+                "Association": {
+                  "IpOwnerId": "amazon",
+                  "PublicDnsName": "ec2-54-227-216-47.compute-1.amazonaws.com",
+                  "PublicIp": "54.227.216.47"
+                },
+                "Attachment": {
+                  "AttachTime": "2026-10-12T20:13:26+00:00",
+                  "AttachmentId": "eni-attach-0c728fd2b5e19a531",
+                  "DeleteOnTermination": true,
+                  "DeviceIndex": 0,
+                  "Status": "attached",
+                  "NetworkCardIndex": 0
+                },
+                "Description": "",
+                "Groups": [
+                  {
+                    "GroupId": "sg-0e9ff523da4140d55",
+                    "GroupName": "modeljars-qual-20260830"
+                  }
+                ],
+                "Ipv6Addresses": [],
+                "MacAddress": "12:ff:c5:99:24:d5",
+                "NetworkInterfaceId": "eni-0710b3a53836783df",
+                "OwnerId": "077051030817",
+                "PrivateDnsName": "ip-172-31-88-96.ec2.internal",
+                "PrivateIpAddress": "172.31.88.96",
+                "PrivateIpAddresses": [
+                  {
+                    "Association": {
+                      "IpOwnerId": "amazon",
+                      "PublicDnsName": "ec2-54-227-216-47.compute-1.amazonaws.com",
+                      "PublicIp": "54.227.216.47"
+                    },
+                    "Primary": true,
+                    "PrivateDnsName": "ip-172-31-88-96.ec2.internal",
+                    "PrivateIpAddress": "172.31.88.96"
+                  }
+                ],
+                "SourceDestCheck": true,
+                "Status": "in-use",
+                "SubnetId": "subnet-01f39c58c12cba0b3",
+                "VpcId": "vpc-07e55adfd5d943c73",
+                "InterfaceType": "interface",
+                "Operator": {
+                  "Managed": false
+                }
+              }
+            ],
+            "RootDeviceName": "/dev/sda1",
+            "RootDeviceType": "ebs",
+            "SecurityGroups": [
+              {
+                "GroupId": "sg-0e9ff523da4140d55",
+                "GroupName": "modeljars-qual-20260830"
+              }
+            ],
+            "SourceDestCheck": true,
+            "Tags": [
+              {
+                "Key": "delete-after",
+                "Value": "2026-10-12T21:43:22.626412+00:00"
+              },
+              {
+                "Key": "project",
+                "Value": "models-qualification"
+              },
+              {
+                "Key": "Name",
+                "Value": "models-gdn-proof-production-final-v9-arm-large-b"
+              }
+            ],
+            "VirtualizationType": "hvm",
+            "CpuOptions": {
+              "CoreCount": 16,
+              "ThreadsPerCore": 1
+            },
+            "CapacityReservationSpecification": {
+              "CapacityReservationPreference": "open"
+            },
+            "HibernationOptions": {
+              "Configured": false
+            },
+            "MetadataOptions": {
+              "State": "applied",
+              "HttpTokens": "required",
+              "HttpPutResponseHopLimit": 1,
+              "HttpEndpoint": "enabled",
+              "HttpProtocolIpv6": "disabled",
+              "InstanceMetadataTags": "disabled"
+            },
+            "EnclaveOptions": {
+              "Enabled": false
+            },
+            "BootMode": "uefi",
+            "PlatformDetails": "Linux/UNIX",
+            "UsageOperation": "RunInstances",
+            "UsageOperationUpdateTime": "2026-10-12T20:13:26+00:00",
+            "PrivateDnsNameOptions": {
+              "HostnameType": "ip-name",
+              "EnableResourceNameDnsARecord": false,
+              "EnableResourceNameDnsAAAARecord": false
+            },
+            "MaintenanceOptions": {
+              "AutoRecovery": "default",
+              "RebootMigration": "default"
+            },
+            "CurrentInstanceBootMode": "uefi",
+            "NetworkPerformanceOptions": {
+              "BandwidthWeighting": "default"
+            },
+            "Operator": {
+              "Managed": false,
+              "HiddenByDefault": false
+            },
+            "SecondaryInterfaces": [],
+            "InstanceId": "i-099e10266dbeb0954",
+            "ImageId": "ami-03dac6c363b33b131",
+            "State": {
+              "Code": 16,
+              "Name": "running"
+            },
+            "PrivateDnsName": "ip-172-31-88-96.ec2.internal",
+            "PublicDnsName": "ec2-54-227-216-47.compute-1.amazonaws.com",
+            "StateTransitionReason": "",
+            "KeyName": "qual-milan",
+            "AmiLaunchIndex": 0,
+            "ProductCodes": [],
+            "InstanceType": "m7g.4xlarge",
+            "LaunchTime": "2026-10-12T20:13:26+00:00",
+            "Placement": {
+              "AvailabilityZoneId": "use1-az2",
+              "GroupName": "",
+              "Tenancy": "default",
+              "AvailabilityZone": "us-east-1b"
+            },
+            "Monitoring": {
+              "State": "disabled"
+            },
+            "SubnetId": "subnet-01f39c58c12cba0b3",
+            "VpcId": "vpc-07e55adfd5d943c73",
+            "PrivateIpAddress": "172.31.88.96",
+            "PublicIpAddress": "54.227.216.47"
+          }
+        ]
+      }
+    ]
+  },
+  "termination": {
+    "TerminatingInstances": [
+      {
+        "InstanceId": "i-099e10266dbeb0954",
+        "CurrentState": {
+          "Code": 32,
+          "Name": "shutting-down"
+        },
+        "PreviousState": {
+          "Code": 16,
+          "Name": "running"
+        }
+      }
+    ]
+  }
+}

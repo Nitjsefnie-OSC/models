@@ -44,5 +44,10 @@
       "sha256": "17ddb3292ced84e10188b0b56e36df1084f8c830f05b0708ae29bfdb5c80a662"
     }
   ],
-  "reason": "Superseded unpublished experiment; retained before updating primary checkout to the integrated candidate. Original untracked evidence remains in place."
+  "reason": "Superseded unpublished experiment; retained before updating primary checkout to the integrated candidate. Original untracked evidence remains in place.",
+  "duplicateUntrackedCleanup": {
+    "removedFromPrimary": 4,
+    "evidenceLocation": "untracked/",
+    "verification": "All removed files matched the committed archive SHA-256; tracked files were untouched."
+  }
 }

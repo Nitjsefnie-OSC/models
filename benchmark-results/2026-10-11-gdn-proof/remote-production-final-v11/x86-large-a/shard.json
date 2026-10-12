@@ -1,0 +1,14 @@
+{
+  "shard": "x86-large-a",
+  "arch": "x86",
+  "phase": "timing",
+  "model": "qwen-4b",
+  "pairs": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "correctness": true
+}

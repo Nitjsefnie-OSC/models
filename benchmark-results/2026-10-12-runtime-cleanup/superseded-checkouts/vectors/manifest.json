@@ -482,5 +482,10 @@
     }
   ],
   "reason": "Superseded unpublished experiment; retained before updating primary checkout to the integrated candidate. Original untracked evidence remains in place.",
-  "checkoutUpdateOutcome": "Archived dirty patch verified unchanged, four superseded tracked edits restored, and original branch fast-forwarded to a40bcb71 after preserving both unique evidence commits by merge. Untracked evidence retained."
+  "checkoutUpdateOutcome": "Archived dirty patch verified unchanged, four superseded tracked edits restored, and original branch fast-forwarded to a40bcb71 after preserving both unique evidence commits by merge. Untracked evidence retained.",
+  "duplicateUntrackedCleanup": {
+    "removedFromPrimary": 94,
+    "evidenceLocation": "untracked/",
+    "verification": "All removed files matched the committed archive SHA-256; tracked files were untouched."
+  }
 }

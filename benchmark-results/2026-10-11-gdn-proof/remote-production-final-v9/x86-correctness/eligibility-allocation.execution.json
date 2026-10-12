@@ -1,0 +1,20 @@
+{
+  "command": [
+    "/opt/jdk/bin/java",
+    "--add-modules",
+    "jdk.incubator.vector",
+    "--enable-native-access=ALL-UNNAMED",
+    "-Xms2g",
+    "-Xmx10g",
+    "-cp",
+    "lib/native/*:route-proof.jar",
+    "com.integrallis.models.backend.purejava.qwen35.ProductionRouteProof",
+    "eligibility",
+    "unused",
+    "/work/rust/native/target/release/libjmodels_kernels.so",
+    "data/tasks.json"
+  ],
+  "exitCode": 0,
+  "wallSeconds": 0.4647182089999973,
+  "shard": "x86-correctness"
+}

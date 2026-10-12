@@ -1,0 +1,17 @@
+{
+  "command": [
+    "/opt/jdk/bin/java",
+    "--add-modules",
+    "jdk.incubator.vector",
+    "--enable-native-access=ALL-UNNAMED",
+    "-Xms2g",
+    "-Xmx10g",
+    "-cp",
+    "lib/projection/*:route-proof.jar:factorial.jar",
+    "com.integrallis.models.backend.purejava.qwen35.QualityFactorial",
+    "model.gguf",
+    "/work/rust/projection/target/release/libjmodels_kernels.so",
+    "data/tasks.json"
+  ],
+  "exitCode": 0
+}

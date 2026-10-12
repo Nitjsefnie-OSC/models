@@ -1,0 +1,107 @@
+{
+  "scope": "scalar replay of recorded projection differences, not a changed qualification gate",
+  "weightTensor": "blk.0.attn_qkv.weight",
+  "tensorByteOffset": 220738560,
+  "inputFiles": [
+    {
+      "file": "benchmark-results/2026-10-11-gdn-proof/remote-oracle-tensor-v3/arm/qwen-0.8b-models/easy-intent-00/0000-blk.0.attn_qkv.weight.input.f32",
+      "sha256": "5cd58d73aad651c610ca59c462e9829b06c9ac2254428022c81675645d2a5766"
+    },
+    {
+      "file": "benchmark-results/2026-10-11-gdn-proof/remote-oracle-tensor-v3/arm/qwen-0.8b-models/easy-intent-00/0016-blk.0.attn_qkv.weight.input.f32",
+      "sha256": "43d0c987394e1373005926ec7e5074705fa5dbc1222554b7000b2d29e2c923bf"
+    },
+    {
+      "file": "benchmark-results/2026-10-11-gdn-proof/remote-oracle-tensor-v3/arm/qwen-0.8b-models/easy-intent-00/0032-blk.0.attn_qkv.weight.input.f32",
+      "sha256": "e11fb5a2124f27ec0ef3e23c5a5f6c7fa2951af778c45bf1715761df38c2fe43"
+    },
+    {
+      "file": "benchmark-results/2026-10-11-gdn-proof/remote-oracle-tensor-v3/arm/qwen-0.8b-models/easy-intent-00/0048-blk.0.attn_qkv.weight.input.f32",
+      "sha256": "65f2c3097294de8c5e0f06e03f045689e038b86fa857c1922c88721ff904f913"
+    }
+  ],
+  "modelsOutputFiles": [
+    {
+      "file": "benchmark-results/2026-10-11-gdn-proof/remote-oracle-tensor-v3/arm/qwen-0.8b-models/easy-intent-00/0001-blk.0.attn_qkv.weight.output.f32",
+      "sha256": "51afdbd190ea2561e8bc4851ad28f57f467c9d1e4b0ffe21a4274f2b8ea64c3f"
+    },
+    {
+      "file": "benchmark-results/2026-10-11-gdn-proof/remote-oracle-tensor-v3/arm/qwen-0.8b-models/easy-intent-00/0017-blk.0.attn_qkv.weight.output.f32",
+      "sha256": "6557806616a98ee4a7acdbccc522e137c46f2b4b7038c5de6304a6938980a4ee"
+    },
+    {
+      "file": "benchmark-results/2026-10-11-gdn-proof/remote-oracle-tensor-v3/arm/qwen-0.8b-models/easy-intent-00/0033-blk.0.attn_qkv.weight.output.f32",
+      "sha256": "7653e9af9ec03300802d16abb806e6a32b45c6676c8f21bb1b7d2f3a12cd082e"
+    },
+    {
+      "file": "benchmark-results/2026-10-11-gdn-proof/remote-oracle-tensor-v3/arm/qwen-0.8b-models/easy-intent-00/0049-blk.0.attn_qkv.weight.output.f32",
+      "sha256": "19e18b6e189cbe7e6eeeb631a7dac12abfa376c03b7b9721108e3f5a5e13e2ed"
+    }
+  ],
+  "oracleOutputFiles": [
+    {
+      "file": "benchmark-results/2026-10-11-gdn-proof/remote-oracle-tensor-v3/arm/qwen-0.8b-baseline-512/easy-intent-00/5-linear_attn_qkv_mixed-0.bin",
+      "sha256": "8e7dd91bf7982961838ae689fe2bc5fe8dc5a334689e0805f5c03f2a7c018ec1"
+    }
+  ],
+  "boundaryChanges": [
+    {
+      "token": 59,
+      "inputColumn": 497,
+      "globalBlock": 237,
+      "separateQ": 64,
+      "fusedQ": 63,
+      "input": 1.724079966545105,
+      "inverseScale": 36.83123779296875,
+      "activationScale": 0.027150865644216537,
+      "changedIntegers": -1,
+      "maxObservedOutputDifference": 0.002681732177734375,
+      "maxErrorAfterAccountingForSingleQuantizerInteger": 1.08962325606754e-06,
+      "worstRow": 988,
+      "worstObserved": 0.002681732177734375,
+      "worstPredicted": 0.002681798416617198,
+      "rawWeightBlocks": "token-59-q5k-block-1.bin",
+      "rawWeightBlocksSha256": "7c182f716a42c9505bd3bba87d98a7b8a8b1dcfb294419b8ddc0bd083127f52a",
+      "predictedDeltaFile": "token-59-predicted-delta.f64"
+    },
+    {
+      "token": 75,
+      "inputColumn": 253,
+      "globalBlock": 300,
+      "separateQ": -20,
+      "fusedQ": -19,
+      "input": 0.6783612966537476,
+      "inverseScale": -28.745742797851562,
+      "activationScale": -0.03478775918483734,
+      "changedIntegers": 1,
+      "maxObservedOutputDifference": 0.0030193328857421875,
+      "maxErrorAfterAccountingForSingleQuantizerInteger": 1.2197632486277143e-06,
+      "worstRow": 6053,
+      "worstObserved": 0.0030193328857421875,
+      "worstPredicted": 0.003018502694771996,
+      "rawWeightBlocks": "token-75-q5k-block-0.bin",
+      "rawWeightBlocksSha256": "8e54d9e30579be3880eedd2340ec4bb694cb756b3e8299bc50276367f5c56671",
+      "predictedDeltaFile": "token-75-predicted-delta.f64"
+    },
+    {
+      "token": 112,
+      "inputColumn": 497,
+      "globalBlock": 449,
+      "separateQ": 64,
+      "fusedQ": 63,
+      "input": 1.724079966545105,
+      "inverseScale": 36.83123779296875,
+      "activationScale": 0.027150865644216537,
+      "changedIntegers": -1,
+      "maxObservedOutputDifference": 0.002681732177734375,
+      "maxErrorAfterAccountingForSingleQuantizerInteger": 1.08962325606754e-06,
+      "worstRow": 988,
+      "worstObserved": 0.002681732177734375,
+      "worstPredicted": 0.002681798416617198,
+      "rawWeightBlocks": "token-112-q5k-block-1.bin",
+      "rawWeightBlocksSha256": "7c182f716a42c9505bd3bba87d98a7b8a8b1dcfb294419b8ddc0bd083127f52a",
+      "predictedDeltaFile": "token-112-predicted-delta.f64"
+    }
+  ],
+  "maxOutputDifferenceOnOtherTokens": 2.86102294921875e-06
+}

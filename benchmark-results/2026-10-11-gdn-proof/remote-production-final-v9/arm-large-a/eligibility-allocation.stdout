@@ -1,0 +1,5 @@
+{"kind":"eligibilityAllocation","cachedBytes":0,"sample":0,"snapshotBytes":11203952,"calls":100000,"nativeExpected":true}
+{"kind":"eligibilityAllocation","cachedBytes":0,"sample":1,"snapshotBytes":11200000,"calls":100000,"nativeExpected":true}
+{"kind":"eligibilityAllocation","cachedBytes":0,"sample":2,"snapshotBytes":11200000,"calls":100000,"nativeExpected":true}
+{"kind":"eligibilityAllocation","cachedBytes":0,"sample":3,"snapshotBytes":11200000,"calls":100000,"nativeExpected":true}
+{"kind":"eligibilityAllocation","cachedBytes":0,"sample":4,"snapshotBytes":11200000,"calls":100000,"nativeExpected":true}

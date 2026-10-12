@@ -1,0 +1,970 @@
+{
+  "cohort": 148,
+  "model": "Qwen3.5-0.8B Q4_K_M",
+  "host": "m6a.xlarge, shipping four-worker defaults",
+  "interpretation": "Descriptive causal diagnostic, not production performance or a relaxed task-quality gate. Projection arm includes the already documented projection/ownership corrected Java artifact; combined uses final Java recurrence ablation.",
+  "summary": {
+    "published": {
+      "correct": 89,
+      "total": 148,
+      "perDataset": {
+        "jevbench": {
+          "correct": 75,
+          "total": 120
+        },
+        "snips": {
+          "correct": 14,
+          "total": 28
+        }
+      }
+    },
+    "activation": {
+      "correct": 88,
+      "total": 148,
+      "perDataset": {
+        "jevbench": {
+          "correct": 73,
+          "total": 120
+        },
+        "snips": {
+          "correct": 15,
+          "total": 28
+        }
+      }
+    },
+    "projection": {
+      "correct": 88,
+      "total": 148,
+      "perDataset": {
+        "jevbench": {
+          "correct": 74,
+          "total": 120
+        },
+        "snips": {
+          "correct": 14,
+          "total": 28
+        }
+      }
+    },
+    "combined": {
+      "correct": 86,
+      "total": 148,
+      "perDataset": {
+        "jevbench": {
+          "correct": 72,
+          "total": 120
+        },
+        "snips": {
+          "correct": 14,
+          "total": 28
+        }
+      }
+    }
+  },
+  "comparisons": [
+    {
+      "candidate": "activation",
+      "reference": "published",
+      "changedLabels": 8,
+      "changedFullLogits": 148,
+      "correctToWrong": 4,
+      "wrongToCorrect": 3
+    },
+    {
+      "candidate": "projection",
+      "reference": "published",
+      "changedLabels": 9,
+      "changedFullLogits": 148,
+      "correctToWrong": 5,
+      "wrongToCorrect": 4
+    },
+    {
+      "candidate": "combined",
+      "reference": "projection",
+      "changedLabels": 10,
+      "changedFullLogits": 148,
+      "correctToWrong": 5,
+      "wrongToCorrect": 3
+    },
+    {
+      "candidate": "combined",
+      "reference": "activation",
+      "changedLabels": 9,
+      "changedFullLogits": 148,
+      "correctToWrong": 5,
+      "wrongToCorrect": 3
+    },
+    {
+      "candidate": "combined",
+      "reference": "published",
+      "changedLabels": 13,
+      "changedFullLogits": 148,
+      "correctToWrong": 7,
+      "wrongToCorrect": 4
+    }
+  ],
+  "changedLabelCases": [
+    {
+      "id": "easy-intent-02",
+      "expected": "change_address",
+      "arms": {
+        "published": {
+          "prediction": "change_address",
+          "scores": {
+            "track_order": 17.814104,
+            "cancel_order": 17.49141,
+            "change_address": 17.876556,
+            "report_damage": 15.866886,
+            "billing_question": 14.568945
+          },
+          "topTwoMargin": 0.062452000000000396,
+          "correct": true
+        },
+        "activation": {
+          "prediction": "track_order",
+          "scores": {
+            "track_order": 17.904428,
+            "cancel_order": 17.609425,
+            "change_address": 17.707333,
+            "report_damage": 15.957873,
+            "billing_question": 14.690605
+          },
+          "topTwoMargin": 0.1970950000000009,
+          "correct": false
+        },
+        "projection": {
+          "prediction": "track_order",
+          "scores": {
+            "track_order": 17.911755,
+            "cancel_order": 17.42519,
+            "change_address": 17.440388,
+            "report_damage": 15.58053,
+            "billing_question": 14.427435
+          },
+          "topTwoMargin": 0.47136700000000076,
+          "correct": false
+        },
+        "combined": {
+          "prediction": "track_order",
+          "scores": {
+            "track_order": 17.852589,
+            "cancel_order": 17.502563,
+            "change_address": 17.479298,
+            "report_damage": 15.922432,
+            "billing_question": 14.395395
+          },
+          "topTwoMargin": 0.3500259999999997,
+          "correct": false
+        }
+      }
+    },
+    {
+      "id": "easy-intent-10",
+      "expected": "turn_off_lights",
+      "arms": {
+        "published": {
+          "prediction": "turn_off_lights",
+          "scores": {
+            "set_alarm": 16.78107,
+            "play_music": 14.203554,
+            "weather": 12.703762,
+            "send_message": 13.902156,
+            "turn_off_lights": 17.04432
+          },
+          "topTwoMargin": 0.2632499999999993,
+          "correct": true
+        },
+        "activation": {
+          "prediction": "turn_off_lights",
+          "scores": {
+            "set_alarm": 16.823097,
+            "play_music": 14.298112,
+            "weather": 12.760284,
+            "send_message": 13.45749,
+            "turn_off_lights": 16.966698
+          },
+          "topTwoMargin": 0.1436010000000003,
+          "correct": true
+        },
+        "projection": {
+          "prediction": "set_alarm",
+          "scores": {
+            "set_alarm": 17.020641,
+            "play_music": 14.286833,
+            "weather": 12.396345,
+            "send_message": 13.510151,
+            "turn_off_lights": 16.896648
+          },
+          "topTwoMargin": 0.12399300000000224,
+          "correct": false
+        },
+        "combined": {
+          "prediction": "set_alarm",
+          "scores": {
+            "set_alarm": 17.013123,
+            "play_music": 14.299864,
+            "weather": 12.714955,
+            "send_message": 13.735791,
+            "turn_off_lights": 16.798344
+          },
+          "topTwoMargin": 0.21477900000000005,
+          "correct": false
+        }
+      }
+    },
+    {
+      "id": "easy-fact-00",
+      "expected": "yes",
+      "arms": {
+        "published": {
+          "prediction": "yes",
+          "scores": {
+            "no": 17.84252,
+            "yes": 18.313519
+          },
+          "topTwoMargin": 0.47099899999999906,
+          "correct": true
+        },
+        "activation": {
+          "prediction": "yes",
+          "scores": {
+            "no": 17.758472,
+            "yes": 18.424404
+          },
+          "topTwoMargin": 0.665931999999998,
+          "correct": true
+        },
+        "projection": {
+          "prediction": "no",
+          "scores": {
+            "no": 18.18421,
+            "yes": 18.178406
+          },
+          "topTwoMargin": 0.005804000000001253,
+          "correct": false
+        },
+        "combined": {
+          "prediction": "yes",
+          "scores": {
+            "no": 17.975647,
+            "yes": 18.3992
+          },
+          "topTwoMargin": 0.42355300000000184,
+          "correct": true
+        }
+      }
+    },
+    {
+      "id": "easy-fact-01",
+      "expected": "no",
+      "arms": {
+        "published": {
+          "prediction": "no",
+          "scores": {
+            "no": 18.668076,
+            "yes": 18.55112
+          },
+          "topTwoMargin": 0.11695599999999828,
+          "correct": true
+        },
+        "activation": {
+          "prediction": "yes",
+          "scores": {
+            "no": 18.694632,
+            "yes": 18.779575
+          },
+          "topTwoMargin": 0.08494300000000266,
+          "correct": false
+        },
+        "projection": {
+          "prediction": "no",
+          "scores": {
+            "no": 18.800308,
+            "yes": 18.609547
+          },
+          "topTwoMargin": 0.19076100000000196,
+          "correct": true
+        },
+        "combined": {
+          "prediction": "no",
+          "scores": {
+            "no": 18.684206,
+            "yes": 18.596134
+          },
+          "topTwoMargin": 0.08807200000000037,
+          "correct": true
+        }
+      }
+    },
+    {
+      "id": "easy-tool_selection-01",
+      "expected": "send_email",
+      "arms": {
+        "published": {
+          "prediction": "get_weather",
+          "scores": {
+            "get_weather": 17.399097,
+            "send_email": 17.301508,
+            "create_calendar_event": 14.131262,
+            "convert_currency": 14.9399605,
+            "translate_text": 14.964714
+          },
+          "topTwoMargin": 0.09758900000000281,
+          "correct": false
+        },
+        "activation": {
+          "prediction": "send_email",
+          "scores": {
+            "get_weather": 17.434761,
+            "send_email": 17.748714,
+            "create_calendar_event": 14.657302,
+            "convert_currency": 15.238661,
+            "translate_text": 15.406254
+          },
+          "topTwoMargin": 0.31395299999999793,
+          "correct": true
+        },
+        "projection": {
+          "prediction": "send_email",
+          "scores": {
+            "get_weather": 17.148182,
+            "send_email": 17.253714,
+            "create_calendar_event": 14.095375,
+            "convert_currency": 14.955538,
+            "translate_text": 15.085788
+          },
+          "topTwoMargin": 0.10553200000000018,
+          "correct": true
+        },
+        "combined": {
+          "prediction": "get_weather",
+          "scores": {
+            "get_weather": 17.276249,
+            "send_email": 17.220993,
+            "create_calendar_event": 14.302912,
+            "convert_currency": 15.056095,
+            "translate_text": 15.268887
+          },
+          "topTwoMargin": 0.05525599999999997,
+          "correct": false
+        }
+      }
+    },
+    {
+      "id": "easy-tool_selection-05",
+      "expected": "create_calendar_event",
+      "arms": {
+        "published": {
+          "prediction": "create_calendar_event",
+          "scores": {
+            "get_weather": 17.47848,
+            "send_email": 16.753485,
+            "create_calendar_event": 17.609694,
+            "convert_currency": 15.348749,
+            "translate_text": 14.643725
+          },
+          "topTwoMargin": 0.13121399999999994,
+          "correct": true
+        },
+        "activation": {
+          "prediction": "create_calendar_event",
+          "scores": {
+            "get_weather": 17.539917,
+            "send_email": 16.798353,
+            "create_calendar_event": 17.579754,
+            "convert_currency": 15.379278,
+            "translate_text": 14.564114
+          },
+          "topTwoMargin": 0.03983700000000212,
+          "correct": true
+        },
+        "projection": {
+          "prediction": "create_calendar_event",
+          "scores": {
+            "get_weather": 17.585876,
+            "send_email": 16.811733,
+            "create_calendar_event": 17.631382,
+            "convert_currency": 15.397331,
+            "translate_text": 14.488775
+          },
+          "topTwoMargin": 0.0455059999999996,
+          "correct": true
+        },
+        "combined": {
+          "prediction": "get_weather",
+          "scores": {
+            "get_weather": 17.694984,
+            "send_email": 16.9864,
+            "create_calendar_event": 17.678202,
+            "convert_currency": 15.617733,
+            "translate_text": 14.863149
+          },
+          "topTwoMargin": 0.01678200000000274,
+          "correct": false
+        }
+      }
+    },
+    {
+      "id": "original-policy-02-0",
+      "expected": "yes",
+      "arms": {
+        "published": {
+          "prediction": "no",
+          "scores": {
+            "no": 17.964216,
+            "yes": 17.888397
+          },
+          "topTwoMargin": 0.07581899999999919,
+          "correct": false
+        },
+        "activation": {
+          "prediction": "no",
+          "scores": {
+            "no": 17.954107,
+            "yes": 17.87978
+          },
+          "topTwoMargin": 0.07432700000000025,
+          "correct": false
+        },
+        "projection": {
+          "prediction": "yes",
+          "scores": {
+            "no": 17.772133,
+            "yes": 17.772732
+          },
+          "topTwoMargin": 0.0005990000000011264,
+          "correct": true
+        },
+        "combined": {
+          "prediction": "yes",
+          "scores": {
+            "no": 17.737236,
+            "yes": 17.8559
+          },
+          "topTwoMargin": 0.11866399999999899,
+          "correct": true
+        }
+      }
+    },
+    {
+      "id": "original-policy-02-1",
+      "expected": "yes",
+      "arms": {
+        "published": {
+          "prediction": "no",
+          "scores": {
+            "no": 18.459164,
+            "yes": 18.394726
+          },
+          "topTwoMargin": 0.06443800000000266,
+          "correct": false
+        },
+        "activation": {
+          "prediction": "yes",
+          "scores": {
+            "no": 18.373646,
+            "yes": 18.468988
+          },
+          "topTwoMargin": 0.0953419999999987,
+          "correct": true
+        },
+        "projection": {
+          "prediction": "yes",
+          "scores": {
+            "no": 18.481964,
+            "yes": 18.49186
+          },
+          "topTwoMargin": 0.009895999999997684,
+          "correct": true
+        },
+        "combined": {
+          "prediction": "yes",
+          "scores": {
+            "no": 18.50515,
+            "yes": 18.522694
+          },
+          "topTwoMargin": 0.017544000000000892,
+          "correct": true
+        }
+      }
+    },
+    {
+      "id": "original-policy-03-1",
+      "expected": "yes",
+      "arms": {
+        "published": {
+          "prediction": "yes",
+          "scores": {
+            "no": 17.442429,
+            "yes": 17.553808
+          },
+          "topTwoMargin": 0.11137899999999945,
+          "correct": true
+        },
+        "activation": {
+          "prediction": "no",
+          "scores": {
+            "no": 17.500587,
+            "yes": 17.289503
+          },
+          "topTwoMargin": 0.2110839999999996,
+          "correct": false
+        },
+        "projection": {
+          "prediction": "yes",
+          "scores": {
+            "no": 17.242924,
+            "yes": 17.266987
+          },
+          "topTwoMargin": 0.024063000000001722,
+          "correct": true
+        },
+        "combined": {
+          "prediction": "no",
+          "scores": {
+            "no": 17.478388,
+            "yes": 16.907377
+          },
+          "topTwoMargin": 0.5710109999999986,
+          "correct": false
+        }
+      }
+    },
+    {
+      "id": "original-policy-05-1",
+      "expected": "no",
+      "arms": {
+        "published": {
+          "prediction": "no",
+          "scores": {
+            "no": 17.967083,
+            "yes": 17.913122
+          },
+          "topTwoMargin": 0.05396099999999748,
+          "correct": true
+        },
+        "activation": {
+          "prediction": "no",
+          "scores": {
+            "no": 17.915527,
+            "yes": 17.715399
+          },
+          "topTwoMargin": 0.20012799999999942,
+          "correct": true
+        },
+        "projection": {
+          "prediction": "yes",
+          "scores": {
+            "no": 17.885813,
+            "yes": 17.97156
+          },
+          "topTwoMargin": 0.08574700000000135,
+          "correct": false
+        },
+        "combined": {
+          "prediction": "yes",
+          "scores": {
+            "no": 17.750694,
+            "yes": 17.823853
+          },
+          "topTwoMargin": 0.07315900000000042,
+          "correct": false
+        }
+      }
+    },
+    {
+      "id": "original-intent-06-1",
+      "expected": "status",
+      "arms": {
+        "published": {
+          "prediction": "status",
+          "scores": {
+            "cancel": 17.58545,
+            "refund": 16.81703,
+            "status": 17.669022,
+            "change_address": 17.019531,
+            "other": 17.216434
+          },
+          "topTwoMargin": 0.08357199999999665,
+          "correct": true
+        },
+        "activation": {
+          "prediction": "cancel",
+          "scores": {
+            "cancel": 17.524624,
+            "refund": 16.811848,
+            "status": 17.266846,
+            "change_address": 16.679817,
+            "other": 16.95362
+          },
+          "topTwoMargin": 0.2577779999999983,
+          "correct": false
+        },
+        "projection": {
+          "prediction": "status",
+          "scores": {
+            "cancel": 17.644014,
+            "refund": 17.0646,
+            "status": 17.772072,
+            "change_address": 16.904207,
+            "other": 17.0922
+          },
+          "topTwoMargin": 0.1280580000000029,
+          "correct": true
+        },
+        "combined": {
+          "prediction": "cancel",
+          "scores": {
+            "cancel": 17.86343,
+            "refund": 17.252934,
+            "status": 17.759268,
+            "change_address": 17.143196,
+            "other": 17.491903
+          },
+          "topTwoMargin": 0.10416200000000231,
+          "correct": false
+        }
+      }
+    },
+    {
+      "id": "original-ordinal-04-0",
+      "expected": "3",
+      "arms": {
+        "published": {
+          "prediction": "1",
+          "scores": {
+            "0": 16.975758,
+            "1": 17.675789,
+            "2": 17.604572,
+            "3": 16.808973
+          },
+          "topTwoMargin": 0.07121700000000075,
+          "correct": false
+        },
+        "activation": {
+          "prediction": "2",
+          "scores": {
+            "0": 17.122437,
+            "1": 17.897392,
+            "2": 17.960285,
+            "3": 17.40244
+          },
+          "topTwoMargin": 0.06289299999999898,
+          "correct": false
+        },
+        "projection": {
+          "prediction": "1",
+          "scores": {
+            "0": 16.89176,
+            "1": 17.731228,
+            "2": 17.708775,
+            "3": 16.977043
+          },
+          "topTwoMargin": 0.022453000000002277,
+          "correct": false
+        },
+        "combined": {
+          "prediction": "2",
+          "scores": {
+            "0": 16.960264,
+            "1": 17.712645,
+            "2": 17.72205,
+            "3": 17.078802
+          },
+          "topTwoMargin": 0.009405000000000996,
+          "correct": false
+        }
+      }
+    },
+    {
+      "id": "original-extraction-03-0",
+      "expected": "courier",
+      "arms": {
+        "published": {
+          "prediction": "courier",
+          "scores": {
+            "courier": 16.444643,
+            "pickup": 14.090593,
+            "post": 14.910973,
+            "unknown": 16.330433
+          },
+          "topTwoMargin": 0.11420999999999992,
+          "correct": true
+        },
+        "activation": {
+          "prediction": "courier",
+          "scores": {
+            "courier": 16.5404,
+            "pickup": 14.054466,
+            "post": 14.716005,
+            "unknown": 16.385014
+          },
+          "topTwoMargin": 0.15538600000000002,
+          "correct": true
+        },
+        "projection": {
+          "prediction": "unknown",
+          "scores": {
+            "courier": 16.372078,
+            "pickup": 13.92458,
+            "post": 14.800966,
+            "unknown": 16.616312
+          },
+          "topTwoMargin": 0.24423400000000228,
+          "correct": false
+        },
+        "combined": {
+          "prediction": "courier",
+          "scores": {
+            "courier": 16.48324,
+            "pickup": 14.106001,
+            "post": 14.937645,
+            "unknown": 16.48099
+          },
+          "topTwoMargin": 0.0022500000000000853,
+          "correct": true
+        }
+      }
+    },
+    {
+      "id": "original-routing-03-1",
+      "expected": "coding_agent",
+      "arms": {
+        "published": {
+          "prediction": "coding",
+          "scores": {
+            "math": 16.426754,
+            "coding": 17.891514,
+            "coding_agent": 17.505146,
+            "document": 14.593128,
+            "tools": 15.033192,
+            "general": 13.955979
+          },
+          "topTwoMargin": 0.38636800000000093,
+          "correct": false
+        },
+        "activation": {
+          "prediction": "coding",
+          "scores": {
+            "math": 16.29457,
+            "coding": 17.952547,
+            "coding_agent": 17.755392,
+            "document": 14.610637,
+            "tools": 15.107718,
+            "general": 14.32643
+          },
+          "topTwoMargin": 0.19715499999999864,
+          "correct": false
+        },
+        "projection": {
+          "prediction": "coding_agent",
+          "scores": {
+            "math": 16.236397,
+            "coding": 17.854126,
+            "coding_agent": 18.070131,
+            "document": 14.6495695,
+            "tools": 15.118711,
+            "general": 14.293228
+          },
+          "topTwoMargin": 0.21600499999999911,
+          "correct": true
+        },
+        "combined": {
+          "prediction": "coding_agent",
+          "scores": {
+            "math": 16.169289,
+            "coding": 17.776005,
+            "coding_agent": 18.0359,
+            "document": 14.553663,
+            "tools": 15.3158455,
+            "general": 14.188311
+          },
+          "topTwoMargin": 0.2598950000000002,
+          "correct": true
+        }
+      }
+    },
+    {
+      "id": "original-routing-06-0",
+      "expected": "general",
+      "arms": {
+        "published": {
+          "prediction": "coding_agent",
+          "scores": {
+            "math": 17.276585,
+            "coding": 17.285202,
+            "coding_agent": 17.35812,
+            "document": 14.486549,
+            "tools": 15.350437,
+            "general": 14.206107
+          },
+          "topTwoMargin": 0.07291799999999782,
+          "correct": false
+        },
+        "activation": {
+          "prediction": "coding_agent",
+          "scores": {
+            "math": 17.169605,
+            "coding": 17.255066,
+            "coding_agent": 17.312822,
+            "document": 14.723172,
+            "tools": 15.429499,
+            "general": 13.970842
+          },
+          "topTwoMargin": 0.05775600000000125,
+          "correct": false
+        },
+        "projection": {
+          "prediction": "coding_agent",
+          "scores": {
+            "math": 17.35006,
+            "coding": 17.309597,
+            "coding_agent": 17.409681,
+            "document": 14.464783,
+            "tools": 15.1766205,
+            "general": 13.5289
+          },
+          "topTwoMargin": 0.059620999999999924,
+          "correct": false
+        },
+        "combined": {
+          "prediction": "math",
+          "scores": {
+            "math": 17.440544,
+            "coding": 17.32457,
+            "coding_agent": 17.385107,
+            "document": 14.576604,
+            "tools": 15.10846,
+            "general": 13.67769
+          },
+          "topTwoMargin": 0.05543699999999774,
+          "correct": false
+        }
+      }
+    },
+    {
+      "id": "snips-AddToPlaylist-1",
+      "expected": "AddToPlaylist",
+      "arms": {
+        "published": {
+          "prediction": "AddToPlaylist",
+          "scores": {
+            "AddToPlaylist": 17.893654,
+            "BookRestaurant": 15.952533,
+            "GetWeather": 15.786162,
+            "PlayMusic": 17.541328,
+            "RateBook": 15.984674,
+            "SearchCreativeWork": 12.595519,
+            "SearchScreeningEvent": 15.297089
+          },
+          "topTwoMargin": 0.35232600000000147,
+          "correct": true
+        },
+        "activation": {
+          "prediction": "AddToPlaylist",
+          "scores": {
+            "AddToPlaylist": 17.945206,
+            "BookRestaurant": 16.003002,
+            "GetWeather": 15.746096,
+            "PlayMusic": 17.302883,
+            "RateBook": 15.759354,
+            "SearchCreativeWork": 12.293245,
+            "SearchScreeningEvent": 15.46871
+          },
+          "topTwoMargin": 0.6423229999999975,
+          "correct": true
+        },
+        "projection": {
+          "prediction": "AddToPlaylist",
+          "scores": {
+            "AddToPlaylist": 17.791973,
+            "BookRestaurant": 16.21073,
+            "GetWeather": 15.959381,
+            "PlayMusic": 17.784374,
+            "RateBook": 15.965665,
+            "SearchCreativeWork": 12.645965,
+            "SearchScreeningEvent": 15.6737385
+          },
+          "topTwoMargin": 0.007598999999999023,
+          "correct": true
+        },
+        "combined": {
+          "prediction": "PlayMusic",
+          "scores": {
+            "AddToPlaylist": 17.643541,
+            "BookRestaurant": 15.965648,
+            "GetWeather": 16.018127,
+            "PlayMusic": 17.65386,
+            "RateBook": 15.955588,
+            "SearchCreativeWork": 12.986417,
+            "SearchScreeningEvent": 15.484192
+          },
+          "topTwoMargin": 0.010319000000002632,
+          "correct": false
+        }
+      }
+    },
+    {
+      "id": "snips-BookRestaurant-3",
+      "expected": "BookRestaurant",
+      "arms": {
+        "published": {
+          "prediction": "AddToPlaylist",
+          "scores": {
+            "AddToPlaylist": 17.43076,
+            "BookRestaurant": 17.389732,
+            "GetWeather": 16.949276,
+            "PlayMusic": 15.958482,
+            "RateBook": 17.426758,
+            "SearchCreativeWork": 14.7260065,
+            "SearchScreeningEvent": 16.638784
+          },
+          "topTwoMargin": 0.004001999999999839,
+          "correct": false
+        },
+        "activation": {
+          "prediction": "BookRestaurant",
+          "scores": {
+            "AddToPlaylist": 17.44454,
+            "BookRestaurant": 17.611017,
+            "GetWeather": 17.0259,
+            "PlayMusic": 15.921971,
+            "RateBook": 17.223324,
+            "SearchCreativeWork": 14.710008,
+            "SearchScreeningEvent": 16.371296
+          },
+          "topTwoMargin": 0.16647700000000043,
+          "correct": true
+        },
+        "projection": {
+          "prediction": "AddToPlaylist",
+          "scores": {
+            "AddToPlaylist": 17.57959,
+            "BookRestaurant": 17.516842,
+            "GetWeather": 17.060545,
+            "PlayMusic": 15.831999,
+            "RateBook": 17.350843,
+            "SearchCreativeWork": 14.509643,
+            "SearchScreeningEvent": 16.450138
+          },
+          "topTwoMargin": 0.06274799999999914,
+          "correct": false
+        },
+        "combined": {
+          "prediction": "BookRestaurant",
+          "scores": {
+            "AddToPlaylist": 17.566067,
+            "BookRestaurant": 17.612043,
+            "GetWeather": 17.018137,
+            "PlayMusic": 15.898017,
+            "RateBook": 17.263042,
+            "SearchCreativeWork": 14.412092,
+            "SearchScreeningEvent": 16.424473
+          },
+          "topTwoMargin": 0.04597599999999957,
+          "correct": true
+        }
+      }
+    }
+  ]
+}
