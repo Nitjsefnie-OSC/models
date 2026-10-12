@@ -1,12 +1,16 @@
 """Launch only missing shards while capacity remains; immutable payload and owned receipts."""
-import datetime,hashlib,json,pathlib,subprocess
+import datetime,hashlib,json,pathlib,subprocess,sys
+mode=sys.argv[1] if len(sys.argv)>1 else 'ondemand'
+assert mode in ('spot','west','ondemand')
+region='us-west-2' if mode=='west' else 'us-east-1'
+indices={'spot':[0,2],'west':[1],'ondemand':[3,4,5,6,7]}[mode]
 out=pathlib.Path(__file__).resolve().parent
 root=out.parents[1]
 meta=json.loads((out/'payload.json').read_text());receipt=out/'fleet.json'
 old=json.loads((root/'benchmark-results/2026-10-11-bonsai-production/public-qa-fleet-v2.json').read_text())
 def aws(*a):return json.loads(subprocess.check_output(['aws',*a,'--output','json']))
-quota=aws('service-quotas','get-service-quota','--region','us-east-1','--service-code','ec2','--quota-code','L-1216C47A')['Quota']['Value']
-filters=[{'Type':'TERM_MATCH','Field':k,'Value':v} for k,v in {'instanceType':'m6a.4xlarge','location':'US East (N. Virginia)','operatingSystem':'Linux','tenancy':'Shared','preInstalledSw':'NA','capacitystatus':'Used'}.items()]
+quota=aws('service-quotas','get-service-quota','--region',region,'--service-code','ec2','--quota-code',('L-34B43A08' if mode=='spot' else 'L-1216C47A'))['Quota']['Value']
+filters=[{'Type':'TERM_MATCH','Field':k,'Value':v} for k,v in {'instanceType':'m6a.4xlarge','location':('US West (Oregon)' if mode=='west' else 'US East (N. Virginia)'),'operatingSystem':'Linux','tenancy':'Shared','preInstalledSw':'NA','capacitystatus':'Used'}.items()]
 prices=aws('pricing','get-products','--region','us-east-1','--service-code','AmazonEC2','--filters',json.dumps(filters))['PriceList']
 rates={float(d['pricePerUnit']['USD']) for p in prices for t in json.loads(p)['terms']['OnDemand'].values() for d in t['priceDimensions'].values() if d['unit']=='Hrs'}
 assert len(rates)==1;rate=rates.pop();assert rate*8*1.5+.5<=10
@@ -27,20 +31,29 @@ sh /tmp/rustup.sh -y --profile minimal --default-toolchain 1.96.0
 /root/.cargo/bin/cargo build --locked --release --manifest-path /work/rust/Cargo.toml >out/native-build.log 2>&1
 cp /work/rust/target/release/libjmodels_kernels.so /work/qa/libjmodels_kernels.so
 /root/.cargo/bin/rustc --version >out/rust-version.txt''')
-for shard in range(8):
+for shard in indices:
  if any(s['shard']==shard for s in fleet['shards']):continue
- active=aws('ec2','describe-instances','--region','us-east-1','--filters','Name=instance-state-name,Values=running,pending,shutting-down,stopping')['Reservations']
- instances=[i for r in active for i in r['Instances']];types=sorted({i['InstanceType'] for i in instances})
- cores={t['InstanceType']:t['VCpuInfo']['DefaultVCpus'] for t in aws('ec2','describe-instance-types','--region','us-east-1','--instance-types',*types)['InstanceTypes']} if types else {}
+ active=aws('ec2','describe-instances','--region',region,'--filters','Name=instance-state-name,Values=running,pending,shutting-down,stopping')['Reservations']
+ instances=[i for r in active for i in r['Instances'] if (i.get('InstanceLifecycle')=='spot')==(mode=='spot')];types=sorted({i['InstanceType'] for i in instances})
+ cores={t['InstanceType']:t['VCpuInfo']['DefaultVCpus'] for t in aws('ec2','describe-instance-types','--region',region,'--instance-types',*types)['InstanceTypes']} if types else {}
  used=sum(cores[i['InstanceType']] for i in instances)
  if used+16>min(quota,192):print('Capacity occupied:',used,flush=True);break
  deadline=datetime.datetime.now(datetime.timezone.utc)+datetime.timedelta(seconds=5400)
  assert deadline<=datetime.datetime(2026,10,12,22,32,tzinfo=datetime.timezone.utc), 'no shard beyond user window'
  uri=f"s3://models-qual-077051030817/results/{meta['runName']}/shard-{shard}/"
- body='#!/bin/bash\n'+f"PAYLOAD_URI={meta['payloadUri']}\nPAYLOAD_SHA256={meta['payloadSha256']}\nRESULT_URI={uri}\nFIRST_CASE={shard*25}\nCASE_COUNT=25\n"+base.split('\n',1)[1]
+ worker=base.replace('sleep 5400; shutdown -h now',f'sleep $(( {int(deadline.timestamp())} - $(date +%s) )); shutdown -h now')
+ body='#!/bin/bash\n'+f"PAYLOAD_URI={meta['payloadUri']}\nPAYLOAD_SHA256={meta['payloadSha256']}\nRESULT_URI={uri}\nFIRST_CASE={shard*25}\nCASE_COUNT=25\n"+worker.split('\n',1)[1]
  userdata=out/f'shard-{shard}.sh';userdata.write_text(body);assert len(body.encode())<16384
  command=list(old['shards'][shard]['launchCommand']);command[command.index('--user-data')+1]='file://'+str(userdata)
  command[command.index('--tag-specifications')+1]=f"ResourceType=instance,Tags=[{{Key=Name,Value={meta['runName']}-{shard}}},{{Key=project,Value=models-qualification}},{{Key=delete-after,Value={deadline.isoformat()}}}]"
+ if mode=='spot':
+  command += ['--instance-market-options',json.dumps({'MarketType':'spot','SpotOptions':{'SpotInstanceType':'one-time','InstanceInterruptionBehavior':'terminate','MaxPrice':str(rate)}})]
+ if mode=='west':
+  command[command.index('--region')+1]=region
+  command[command.index('--image-id')+1]='ami-03d70b8354a16a8bc'
+  command[command.index('--subnet-id')+1]=sys.argv[2]
+  command[command.index('--security-group-ids')+1]=sys.argv[3]
+  key=command.index('--key-name');del command[key:key+2]
  instance=json.loads(subprocess.check_output(command))['Instances'][0]
- fleet['shards'].append({'shard':shard,'first':shard*25,'count':25,'resultUri':uri,'instanceId':instance['InstanceId'],'deadline':deadline.isoformat(),'launchCommand':command,'userDataSha256':hashlib.sha256(body.encode()).hexdigest(),'usedVcpusBeforeLaunch':used})
+ fleet['shards'].append({'shard':shard,'region':region,'market':mode,'first':shard*25,'count':25,'resultUri':uri,'instanceId':instance['InstanceId'],'deadline':deadline.isoformat(),'launchCommand':command,'userDataSha256':hashlib.sha256(body.encode()).hexdigest(),'usedVcpusBeforeLaunch':used})
  receipt.write_text(json.dumps(fleet,indent=2)+'\n');print(shard,instance['InstanceId'],flush=True)
