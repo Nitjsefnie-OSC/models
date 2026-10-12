@@ -1,0 +1,11 @@
+{
+  "pairs": 100,
+  "ratio": 1.0007442114151333,
+  "ci95": [
+    0.9964885482215866,
+    1.005192545650488
+  ],
+  "metric": "modelLoadNanos",
+  "candidate": "lazy",
+  "baseline": "eager"
+}

@@ -1,0 +1,8 @@
+{
+  "instanceId": "i-0d24a39b751909740",
+  "region": "us-west-2",
+  "state": "terminated",
+  "loadProcesses": 200,
+  "diagnosticProcesses": 2,
+  "allExitCodes": 0
+}
