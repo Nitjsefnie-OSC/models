@@ -453,10 +453,10 @@ public final class RustFfmBackend
         new OptimizationDecision(
             "rust-q5-0-grouped-matmul",
             OptimizationStatus.DISABLED,
-            "Q5_0 projections run independently: grouping them decoded slower on the controlled"
-                + " Qwen2.5-0.5B x86-64 profile, 37.33 against 38.94 tokens/s. Not a setting --"
-                + " the slower route is simply not taken",
-            Map.of("evidence", "backend-native/README.md", "raw-artifact", "none-committed")));
+            "Q5_0 grouped projections use Java; the unqualified native grouped capability was"
+                + " removed after supported-host whole-model comparisons",
+            Map.of("evidence", "benchmark-results/2026-10-12-q5-production/")));
+
     optimizations.add(
         new OptimizationDecision(
             "rust-quantized-decode",

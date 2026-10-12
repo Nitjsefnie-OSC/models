@@ -23,27 +23,28 @@ loading or losing the native capability does not select it. Bonsai's signed
 Hadamard transforms and recurrent state remain in Java. Qualification evidence
 for an earlier arithmetic contract does not transfer automatically.
 
-Q5_1 was added at ABI 6 and is the one format that dots against **F32**
-activations rather than quantized ones. Every other kernel here dots in Q8_0 or
-Q8_K integers, which is what lets a shim and the Java kernel agree bit for bit:
-integer accumulation is exact, so partitioning rows across workers cannot move a
-result. Q5_1 carries a per-block minimum instead of centring its quants, and
-that minimum term needs the activation block sums a Q8_1 activation would carry
-and nothing on the Java side does. Rather than give one format a second
-arithmetic -- which would make a published vector depend on whether a host
-loaded the shim -- the Q5_1 kernel reproduces the Java one: it dequantizes the
-row and folds in F32 along `PinnedReduction.dot`'s pinned order, with `q * d + m`
-left unfused because Java writes it unfused. There is deliberately no grouped
-Q5_1 kernel, since grouping exists to share one quantized activation and this
-format has none; a group containing it is refused with `STATUS_INVALID_SHAPE`.
-Parity is asserted as equality rather than a tolerance, in the Rust tests
-(scalar against AVX2) and in `NativeKernelLibraryTest` (shim against
-`TensorOps.ggufExactBatchedMatmul`). Measured 1.4-2.2x against the Java kernel
-at the shapes the artifacts use, with **no observable end-to-end effect** on
-short-probe embedding; see
-`benchmark-results/2026-10-08-q5-1-rust-shim/NOTES.md`, which publishes that
-null alongside the kernel figures.
-Its x86-64 path uses format-specialized AVX2/FMA integer dots, vectorized Q8_0
+Q5_1 consumes **F32** activations and preserves the exact Java
+`PinnedReduction.dot` order. Its dequantization leaves `q * d + m` unfused.
+Other quantized projection formats consume Q8_0 or Q8_K activations; their
+floating-point scale accumulation and reduction order still need explicit
+parity tests. Exact integer partial sums alone do not prove that two complete
+projection routes agree. There is no grouped Q5_1 kernel, because it does not
+share quantized activations.
+
+The historical short embedding comparison did not execute the native kernel:
+BERT used Java in both arms. That evidence is corrected, not treated as a native
+qualification. A new experiment injected the provider, counted actual calls,
+and checked 82 real SciFact/NFCorpus embeddings on x86 and ARM. Outputs were
+bit-identical. Java SIMD block expansion, decoded-row reuse, and the existing
+worker pool then outperformed Rust for those BERT workloads, so production BERT
+retains the improved Java route. Native single-token causal-model projections
+use a different Java fallback and require their own actual-model comparison.
+No JVM limitation has been established for Q5_1. See
+`benchmark-results/2026-10-12-q5-production/` for current raw-evidence indexes
+and the preserved correction in
+`benchmark-results/2026-10-08-q5-1-rust-shim/NOTES.md`.
+
+The other x86-64 quantized paths use format-specialized AVX2/FMA integer dots, vectorized Q8_0
 activation preparation, batched weight reuse, reusable activation scratch, and
 an explicitly owned persistent worker context. Scalar kernels remain available
 as cross-platform conformance fallbacks.
@@ -118,13 +119,15 @@ USABLE. Meanwhile every certified qualification run forced the setting on, so th
 published tiers described a route users did not get. Setting a removed property
 now fails with a message saying it is gone, rather than being ignored.
 
-Q5_0 grouping is another explicit routing decision rather than a setting: Q5_0
-projections always run independently. On the controlled Qwen2.5-0.5B x86-64
-profile, fused grouping recovered worker-barrier overhead and still decoded at
-37.33 tokens/second against 38.94 for independent projections, so the grouped
-route is simply not taken. Those figures have no committed raw artifact and are
-due a re-run under protocol, after which the grouped Q5_0 kernel is either
-adopted or deleted.
+Q5_0 grouped projections remain on the Java path. The previously advertised
+native grouped capability had no production caller and has been removed; bit13
+is reserved and will not be reassigned. Single Q5_0 native projections remain
+supported. Controlled whole-model comparisons rejected combined grouping and
+separate dual/triple candidates: neither configuration established an
+application-level performance benefit on both hosts, and the isolated x86
+candidates changed greedy outputs. The older 37.33/38.94 tokens/s claim remains
+historical evidence without a raw artifact; the removal decision uses the new
+recorded comparisons in `benchmark-results/2026-10-12-q5-production/`.
 
 ## CI artifacts and private packages
 
