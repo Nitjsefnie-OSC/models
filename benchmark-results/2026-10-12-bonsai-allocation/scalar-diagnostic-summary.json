@@ -1,0 +1,15 @@
+{
+  "bonsai-jfr-candidate": {
+    "coldAllocationBytes": 2401347864,
+    "warmAllocationBytes": 1243271744,
+    "warmModelNanos": 40670454613,
+    "peakRssKiB": 8706764
+  },
+  "bonsai-scalar-control": {
+    "coldAllocationBytes": 856644392,
+    "warmAllocationBytes": 487703842.6666667,
+    "warmModelNanos": 42492381525,
+    "peakRssKiB": 8128348
+  },
+  "warning": "Vector arm instrumented with JFR; scalar arm uninstrumented. Single process each. Diagnostic timing only, not qualification."
+}
