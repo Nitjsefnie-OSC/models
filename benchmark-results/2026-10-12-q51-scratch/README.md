@@ -7,3 +7,7 @@ On the local ARM JDK, a confined single-row projection with 16,384 columns alloc
 The focused unit run passed 75 tests with no failures/skips, including shared versus confined Q5_1 exact output, growing/shrinking scratch dimensions, repeated changed inputs, public single and batched dispatch, and unchanged Q4_1 results. The probe warms 1,000 calls and measures 100 calls using ThreadMXBean; source is retained. Its first temporary assertion used a threshold below the unrelated remaining allocation and failed; the retained reporting probe makes no arbitrary acceptance claim.
 
 The final cloud qualification already in progress uses the prior artifact and remains identified as such. Source-level numeric parity tests do not silently transfer whole-model resource results to this amended artifact.
+
+## Convenience API follow-up
+
+The remaining 36,928-byte single-token allocation was the convenience overload's four Q8 scratch arrays, although Q5_1 never quantizes its activation to Q8. Removing Q5_1 from that allocation branch and omitting its unused correction buffer in the second convenience overload reduces both measured single-token and two-query allocation to zero after 4,096 warm calls. The existing 75 focused tests and a final three-test exact-route rerun pass. Tests cover both convenience overloads for Q4_1 and Q5_1. Qwen's explicit caller-scratch overload does not take either changed convenience branch.
