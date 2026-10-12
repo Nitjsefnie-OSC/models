@@ -38,7 +38,10 @@ public final class GgufTensorValues {
 
   // Stateless decoders can be shared. A per-row allocation depends on caller-specific
   // escape analysis and survived compilation in the parallel Q5_1 worker path.
-  private static final Q5_1Dequantizer Q5_1_DECODER = new Q5_1Dequantizer();
+  // Initialize its SIMD constants only when this format is actually decoded.
+  private static final class Q51DecoderHolder {
+    private static final Q5_1Dequantizer INSTANCE = new Q5_1Dequantizer();
+  }
 
   private GgufTensorValues() {}
 
@@ -94,7 +97,7 @@ public final class GgufTensorValues {
       case Q4_0 -> new Q4_0Dequantizer().dequantize(source, sourceOffset, output, 0, count);
       case Q5_0 -> VectorUtil.ggufQ5_0Dequantize(source, sourceOffset, output, 0, count);
       case Q4_1 -> new Q4_1Dequantizer().dequantize(source, sourceOffset, output, 0, count);
-      case Q5_1 -> Q5_1_DECODER.dequantize(source, sourceOffset, output, 0, count);
+      case Q5_1 -> Q51DecoderHolder.INSTANCE.dequantize(source, sourceOffset, output, 0, count);
       case Q8_0 -> new Q8_0Dequantizer().dequantize(source, sourceOffset, output, 0, count);
       case Q4_K -> VectorUtil.ggufQ4_KDequantize(source, sourceOffset, output, 0, count);
       case Q5_K -> VectorUtil.ggufQ5_KDequantize(source, sourceOffset, output, 0, count);
