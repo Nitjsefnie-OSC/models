@@ -14,7 +14,6 @@
     "Q5_K_F32_BATCHED_MATMUL": 1024,
     "Q5_K_F32_GROUPED_BATCHED_MATMUL": 2048,
     "Q5_0_F32_BATCHED_MATMUL": 4096,
-    "Q5_0_F32_GROUPED_BATCHED_MATMUL": 8192,
     "K_QUANT_BATCH_WEIGHT_REUSE": 16384,
     "Q4_K_BATCH_VECTOR_ACCUMULATION": 32768,
     "MANY_GROUPED_BATCHED_MATMUL": 65536,
@@ -114,10 +113,9 @@
     {
       "id": "q5_0-projection",
       "status": "UNPROVEN",
-      "summary": "Q5_0 packed-weight projections; speed measurements alone do not prove a JVM limitation. Grouped calls are excluded by the current dispatcher; measured advantages require investigation before deletion.",
+      "summary": "Active single Q5_0 projections remain. Dormant grouped dispatch and capability are retired after measured whole-model regression and divergent isolated-group continuations; bit 13 is reserved.",
       "capabilities": [
-        "Q5_0_F32_BATCHED_MATMUL",
-        "Q5_0_F32_GROUPED_BATCHED_MATMUL"
+        "Q5_0_F32_BATCHED_MATMUL"
       ],
       "exports": {
         "cpu": [
@@ -324,8 +322,13 @@
       ],
       "evidence": [
         {
-          "path": "benchmark-results/2026-10-08-q5-1-rust-shim/NOTES.md",
+          "path": "benchmark-results/2026-10-12-runtime-cleanup/q51-historical-notes-before-correction.md",
           "sha256": "8a445a3297db345acac43a7d81099830c0040154ca67b279e03bbf130be83c1d",
+          "kind": "historical"
+        },
+        {
+          "path": "benchmark-results/2026-10-08-q5-1-rust-shim/NOTES.md",
+          "sha256": "99ebb2d9f4c75536d15af7abacbb125acd19b1c94e40621435148ee097bbcdf6",
           "kind": "historical"
         }
       ],
@@ -483,8 +486,8 @@
       ],
       "evidence": [],
       "remaining": [
-        "Resolve full-model numeric and performance gates before selecting a default.",
-        "Remove unused chunked recurrence and rejected alternatives after the selection."
+        "Complete final model numeric, quality and performance qualification of the corrected sequential route.",
+        "Identify a causal JVM limitation or qualify a Java replacement; kernel and whole-model winners differ."
       ],
       "sourceScope": "cpu"
     },
@@ -1028,5 +1031,8 @@
       "build.gradle.kts",
       "gradle.properties"
     ]
+  },
+  "retiredCapabilityBits": {
+    "Q5_0_F32_GROUPED_BATCHED_MATMUL": 8192
   }
 }

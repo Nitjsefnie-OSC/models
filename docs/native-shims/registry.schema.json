@@ -9,7 +9,8 @@
     "exports",
     "migrationChecklist",
     "operations",
-    "sourceScopes"
+    "sourceScopes",
+    "retiredCapabilityBits"
   ],
   "properties": {
     "schemaVersion": {
@@ -87,6 +88,13 @@
         }
       },
       "additionalProperties": false
+    },
+    "retiredCapabilityBits": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "integer",
+        "minimum": 1
+      }
     }
   },
   "additionalProperties": false,

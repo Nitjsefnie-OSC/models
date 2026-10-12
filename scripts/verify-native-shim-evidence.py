@@ -58,6 +58,9 @@ def verify(root, registry):
     capabilities, exports = inventory(root)
     require(registry['capabilities'] == capabilities, 'Unregistered or stale capability')
     require(registry['exports'] == exports, 'Unregistered or stale exported symbol')
+    retired = registry['retiredCapabilityBits']
+    require(not (set(retired.values()) & set(capabilities.values())), 'Retired capability bit reused')
+    require(not (set(retired) & set(capabilities)), 'Retired capability name reused')
     operations = registry['operations']
     ids = [operation['id'] for operation in operations]
     require(len(ids) == len(set(ids)) and ids, 'Duplicate or empty operation IDs')

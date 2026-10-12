@@ -7,7 +7,7 @@ are not certificates that a JVM limitation requires Rust.
 
 Run `./gradlew verifyNativeShimEvidence` (also part of `complianceCheck`). The check detects:
 
-- changed Java/Rust capability masks or unregistered exports;
+- changed Java/Rust capability masks, reuse of a retired bit, or unregistered exports;
 - missing dispatch anchors, operation ownership, or historical evidence;
 - a new unproven entry outside the explicit migration checklist;
 - a claimed proof without all five gates, exact source/dependency hashes, all declared host

@@ -69,6 +69,15 @@ class EvidenceGateTest(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'masks differ'):
             self.verify()
 
+    def test_retired_capability_bit_cannot_be_reassigned(self):
+        path = self.root / V.CAPABILITIES
+        path.write_text(path.read_text().replace('Q4_0_F32_BATCHED_MATMUL(1L)', 'Q4_0_F32_BATCHED_MATMUL(1L << 13)'))
+        path = self.root / V.RUST / 'lib.rs'
+        path.write_text(path.read_text().replace('CAPABILITY_Q4_0_F32_BATCHED_MATMUL: u64 = 1;', 'CAPABILITY_Q4_0_F32_BATCHED_MATMUL: u64 = 1 << 13;'))
+        self.registry['capabilities']['Q4_0_F32_BATCHED_MATMUL'] = 1 << 13
+        with self.assertRaisesRegex(ValueError, 'Retired capability bit reused'):
+            self.verify()
+
     def test_dispatch_anchor_drift_is_rejected(self):
         self.registry['operations'][0]['dispatch'][0]['anchor'] = 'no such dispatch method'
         with self.assertRaisesRegex(ValueError, 'dispatch anchor'):
