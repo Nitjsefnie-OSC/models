@@ -1,0 +1,1032 @@
+{
+  "schemaVersion": 1,
+  "capabilities": {
+    "Q4_0_F32_BATCHED_MATMUL": 1,
+    "Q4_0_F32_GROUPED_BATCHED_MATMUL": 2,
+    "PERSISTENT_WORKER_CONTEXT": 4,
+    "Q8_0_F32_BATCHED_MATMUL": 8,
+    "Q8_0_F32_GROUPED_BATCHED_MATMUL": 16,
+    "Q4_K_F32_BATCHED_MATMUL": 32,
+    "Q4_K_F32_GROUPED_BATCHED_MATMUL": 64,
+    "Q6_K_F32_BATCHED_MATMUL": 128,
+    "Q6_K_F32_GROUPED_BATCHED_MATMUL": 256,
+    "MIXED_K_F32_GROUPED_BATCHED_MATMUL": 512,
+    "Q5_K_F32_BATCHED_MATMUL": 1024,
+    "Q5_K_F32_GROUPED_BATCHED_MATMUL": 2048,
+    "Q5_0_F32_BATCHED_MATMUL": 4096,
+    "Q5_0_F32_GROUPED_BATCHED_MATMUL": 8192,
+    "K_QUANT_BATCH_WEIGHT_REUSE": 16384,
+    "Q4_K_BATCH_VECTOR_ACCUMULATION": 32768,
+    "MANY_GROUPED_BATCHED_MATMUL": 65536,
+    "INDEPENDENT_BATCHED_MATMUL": 131072,
+    "GATED_DELTA_NET_F32": 262144,
+    "ACTIVE_THREADS": 524288,
+    "GROUPED_ATTENTION_F32": 1048576,
+    "POLL_BUDGET": 2097152,
+    "GROUPED_GATED_DELTA_NET_F32": 4194304,
+    "Q5_1_F32_BATCHED_MATMUL": 8388608,
+    "PTQ1_0_Q8_0_BATCHED_MATMUL": 16777216
+  },
+  "exports": {
+    "cpu": [
+      "jmodels_gated_delta_net_f32_with_context",
+      "jmodels_gated_delta_net_group_f32_with_context",
+      "jmodels_grouped_attention_f32_with_context",
+      "jmodels_kernels_abi_version",
+      "jmodels_kernels_capabilities",
+      "jmodels_kernels_context_create",
+      "jmodels_kernels_context_destroy",
+      "jmodels_kernels_context_set_active_threads",
+      "jmodels_kernels_context_set_poll_nanos",
+      "jmodels_q4_0_f32_batched_matmul",
+      "jmodels_q4_0_f32_batched_matmul_with_context",
+      "jmodels_q4_0_f32_grouped_batched_matmul",
+      "jmodels_q4_0_f32_grouped_batched_matmul_with_context",
+      "jmodels_q8_0_f32_batched_matmul",
+      "jmodels_q8_0_f32_batched_matmul_with_context",
+      "jmodels_q8_0_f32_grouped_batched_matmul",
+      "jmodels_q8_0_f32_grouped_batched_matmul_with_context",
+      "jmodels_quantized_f32_batched_matmul_with_context",
+      "jmodels_quantized_f32_grouped_batched_matmul_with_context",
+      "jmodels_quantized_f32_independent_batched_matmul_with_context"
+    ],
+    "cuda": [
+      "models_gqa_decode_attention",
+      "models_q4k_decode_projection",
+      "models_q6k_decode_projection"
+    ]
+  },
+  "migrationChecklist": [
+    "q4_0-projection",
+    "q5_0-projection",
+    "q8_0-projection",
+    "q4_k-projection",
+    "q5_k-projection",
+    "q6_k-projection",
+    "q5_1-projection",
+    "ptq1-projection",
+    "projection-grouping",
+    "worker-context",
+    "gated-delta-net",
+    "cpu-attention",
+    "gqa-decode-attention",
+    "q4k-decode-projection",
+    "q6k-decode-projection"
+  ],
+  "operations": [
+    {
+      "id": "q4_0-projection",
+      "status": "UNPROVEN",
+      "summary": "Q4_0 packed-weight projections; speed measurements alone do not prove a JVM limitation.",
+      "capabilities": [
+        "Q4_0_F32_BATCHED_MATMUL",
+        "Q4_0_F32_GROUPED_BATCHED_MATMUL"
+      ],
+      "exports": {
+        "cpu": [
+          "jmodels_q4_0_f32_batched_matmul",
+          "jmodels_q4_0_f32_batched_matmul_with_context",
+          "jmodels_q4_0_f32_grouped_batched_matmul",
+          "jmodels_q4_0_f32_grouped_batched_matmul_with_context"
+        ]
+      },
+      "dispatch": [
+        {
+          "path": "backend-native/src/main/java/com/integrallis/models/backend/nativekernel/RustGgufBatchedMatrixKernel.java",
+          "anchor": "case Q4_0 ->"
+        }
+      ],
+      "requiredProfiles": [
+        "linux-x86_64",
+        "linux-aarch64",
+        "macos-x86_64",
+        "macos-aarch64",
+        "windows-x86_64",
+        "windows-aarch64"
+      ],
+      "evidence": [],
+      "remaining": [
+        "Reproduce the best exact Java alternative and native route with matched scheduling and actual model calls.",
+        "Identify a controlled JVM cause, qualify whole-model cost and resources on every retained profile, then adopt or remove."
+      ],
+      "sourceScope": "cpu"
+    },
+    {
+      "id": "q5_0-projection",
+      "status": "UNPROVEN",
+      "summary": "Q5_0 packed-weight projections; speed measurements alone do not prove a JVM limitation. Grouped calls are excluded by the current dispatcher; measured advantages require investigation before deletion.",
+      "capabilities": [
+        "Q5_0_F32_BATCHED_MATMUL",
+        "Q5_0_F32_GROUPED_BATCHED_MATMUL"
+      ],
+      "exports": {
+        "cpu": [
+          "jmodels_quantized_f32_batched_matmul_with_context",
+          "jmodels_quantized_f32_grouped_batched_matmul_with_context",
+          "jmodels_quantized_f32_independent_batched_matmul_with_context"
+        ]
+      },
+      "dispatch": [
+        {
+          "path": "backend-native/src/main/java/com/integrallis/models/backend/nativekernel/RustGgufBatchedMatrixKernel.java",
+          "anchor": "case Q5_0 ->"
+        }
+      ],
+      "requiredProfiles": [
+        "linux-x86_64",
+        "linux-aarch64",
+        "macos-x86_64",
+        "macos-aarch64",
+        "windows-x86_64",
+        "windows-aarch64"
+      ],
+      "evidence": [],
+      "remaining": [
+        "Reproduce the best exact Java alternative and native route with matched scheduling and actual model calls.",
+        "Identify a controlled JVM cause, qualify whole-model cost and resources on every retained profile, then adopt or remove."
+      ],
+      "sourceScope": "cpu"
+    },
+    {
+      "id": "q8_0-projection",
+      "status": "UNPROVEN",
+      "summary": "Q8_0 packed-weight projections; speed measurements alone do not prove a JVM limitation.",
+      "capabilities": [
+        "Q8_0_F32_BATCHED_MATMUL",
+        "Q8_0_F32_GROUPED_BATCHED_MATMUL"
+      ],
+      "exports": {
+        "cpu": [
+          "jmodels_q8_0_f32_batched_matmul",
+          "jmodels_q8_0_f32_batched_matmul_with_context",
+          "jmodels_q8_0_f32_grouped_batched_matmul",
+          "jmodels_q8_0_f32_grouped_batched_matmul_with_context"
+        ]
+      },
+      "dispatch": [
+        {
+          "path": "backend-native/src/main/java/com/integrallis/models/backend/nativekernel/RustGgufBatchedMatrixKernel.java",
+          "anchor": "case Q8_0 ->"
+        }
+      ],
+      "requiredProfiles": [
+        "linux-x86_64",
+        "linux-aarch64",
+        "macos-x86_64",
+        "macos-aarch64",
+        "windows-x86_64",
+        "windows-aarch64"
+      ],
+      "evidence": [],
+      "remaining": [
+        "Reproduce the best exact Java alternative and native route with matched scheduling and actual model calls.",
+        "Identify a controlled JVM cause, qualify whole-model cost and resources on every retained profile, then adopt or remove."
+      ],
+      "sourceScope": "cpu"
+    },
+    {
+      "id": "q4_k-projection",
+      "status": "UNPROVEN",
+      "summary": "Q4_K packed-weight projections; speed measurements alone do not prove a JVM limitation.",
+      "capabilities": [
+        "Q4_K_F32_BATCHED_MATMUL",
+        "Q4_K_F32_GROUPED_BATCHED_MATMUL",
+        "Q4_K_BATCH_VECTOR_ACCUMULATION",
+        "K_QUANT_BATCH_WEIGHT_REUSE"
+      ],
+      "exports": {
+        "cpu": [
+          "jmodels_quantized_f32_batched_matmul_with_context",
+          "jmodels_quantized_f32_grouped_batched_matmul_with_context",
+          "jmodels_quantized_f32_independent_batched_matmul_with_context"
+        ]
+      },
+      "dispatch": [
+        {
+          "path": "backend-native/src/main/java/com/integrallis/models/backend/nativekernel/RustGgufBatchedMatrixKernel.java",
+          "anchor": "case Q4_K ->"
+        }
+      ],
+      "requiredProfiles": [
+        "linux-x86_64",
+        "linux-aarch64",
+        "macos-x86_64",
+        "macos-aarch64",
+        "windows-x86_64",
+        "windows-aarch64"
+      ],
+      "evidence": [],
+      "remaining": [
+        "Reproduce the best exact Java alternative and native route with matched scheduling and actual model calls.",
+        "Identify a controlled JVM cause, qualify whole-model cost and resources on every retained profile, then adopt or remove."
+      ],
+      "sourceScope": "cpu"
+    },
+    {
+      "id": "q5_k-projection",
+      "status": "UNPROVEN",
+      "summary": "Q5_K packed-weight projections; speed measurements alone do not prove a JVM limitation.",
+      "capabilities": [
+        "Q5_K_F32_BATCHED_MATMUL",
+        "Q5_K_F32_GROUPED_BATCHED_MATMUL"
+      ],
+      "exports": {
+        "cpu": [
+          "jmodels_quantized_f32_batched_matmul_with_context",
+          "jmodels_quantized_f32_grouped_batched_matmul_with_context",
+          "jmodels_quantized_f32_independent_batched_matmul_with_context"
+        ]
+      },
+      "dispatch": [
+        {
+          "path": "backend-native/src/main/java/com/integrallis/models/backend/nativekernel/RustGgufBatchedMatrixKernel.java",
+          "anchor": "case Q5_K ->"
+        }
+      ],
+      "requiredProfiles": [
+        "linux-x86_64",
+        "linux-aarch64",
+        "macos-x86_64",
+        "macos-aarch64",
+        "windows-x86_64",
+        "windows-aarch64"
+      ],
+      "evidence": [],
+      "remaining": [
+        "Reproduce the best exact Java alternative and native route with matched scheduling and actual model calls.",
+        "Identify a controlled JVM cause, qualify whole-model cost and resources on every retained profile, then adopt or remove."
+      ],
+      "sourceScope": "cpu"
+    },
+    {
+      "id": "q6_k-projection",
+      "status": "UNPROVEN",
+      "summary": "Q6_K packed-weight projections; speed measurements alone do not prove a JVM limitation.",
+      "capabilities": [
+        "Q6_K_F32_BATCHED_MATMUL",
+        "Q6_K_F32_GROUPED_BATCHED_MATMUL"
+      ],
+      "exports": {
+        "cpu": [
+          "jmodels_quantized_f32_batched_matmul_with_context",
+          "jmodels_quantized_f32_grouped_batched_matmul_with_context",
+          "jmodels_quantized_f32_independent_batched_matmul_with_context"
+        ]
+      },
+      "dispatch": [
+        {
+          "path": "backend-native/src/main/java/com/integrallis/models/backend/nativekernel/RustGgufBatchedMatrixKernel.java",
+          "anchor": "case Q6_K ->"
+        }
+      ],
+      "requiredProfiles": [
+        "linux-x86_64",
+        "linux-aarch64",
+        "macos-x86_64",
+        "macos-aarch64",
+        "windows-x86_64",
+        "windows-aarch64"
+      ],
+      "evidence": [],
+      "remaining": [
+        "Reproduce the best exact Java alternative and native route with matched scheduling and actual model calls.",
+        "Identify a controlled JVM cause, qualify whole-model cost and resources on every retained profile, then adopt or remove."
+      ],
+      "sourceScope": "cpu"
+    },
+    {
+      "id": "q5_1-projection",
+      "status": "UNPROVEN",
+      "summary": "Q5_1 packed-weight projections; speed measurements alone do not prove a JVM limitation. Historical embedding comparison did not execute Rust; corrected routing and allocation reuse are under qualification.",
+      "capabilities": [
+        "Q5_1_F32_BATCHED_MATMUL"
+      ],
+      "exports": {
+        "cpu": [
+          "jmodels_quantized_f32_batched_matmul_with_context",
+          "jmodels_quantized_f32_grouped_batched_matmul_with_context",
+          "jmodels_quantized_f32_independent_batched_matmul_with_context"
+        ]
+      },
+      "dispatch": [
+        {
+          "path": "backend-native/src/main/java/com/integrallis/models/backend/nativekernel/RustGgufBatchedMatrixKernel.java",
+          "anchor": "case Q5_1 ->"
+        }
+      ],
+      "requiredProfiles": [
+        "linux-x86_64",
+        "linux-aarch64",
+        "macos-x86_64",
+        "macos-aarch64",
+        "windows-x86_64",
+        "windows-aarch64"
+      ],
+      "evidence": [
+        {
+          "path": "benchmark-results/2026-10-08-q5-1-rust-shim/NOTES.md",
+          "sha256": "8a445a3297db345acac43a7d81099830c0040154ca67b279e03bbf130be83c1d",
+          "kind": "historical"
+        }
+      ],
+      "remaining": [
+        "Reproduce the best exact Java alternative and native route with matched scheduling and actual model calls.",
+        "Identify a controlled JVM cause, qualify whole-model cost and resources on every retained profile, then adopt or remove."
+      ],
+      "sourceScope": "cpu"
+    },
+    {
+      "id": "ptq1-projection",
+      "status": "UNPROVEN",
+      "summary": "Bonsai ternary projection has Java SIMD and Rust implementations; source ARM speedups do not establish a JVM limitation.",
+      "capabilities": [
+        "PTQ1_0_Q8_0_BATCHED_MATMUL"
+      ],
+      "exports": {
+        "cpu": [
+          "jmodels_quantized_f32_batched_matmul_with_context",
+          "jmodels_quantized_f32_grouped_batched_matmul_with_context",
+          "jmodels_quantized_f32_independent_batched_matmul_with_context"
+        ]
+      },
+      "dispatch": [
+        {
+          "path": "backend-native/src/main/java/com/integrallis/models/backend/nativekernel/RustGgufBatchedMatrixKernel.java",
+          "anchor": "case PTQ1_0 ->"
+        }
+      ],
+      "requiredProfiles": [
+        "linux-x86_64",
+        "linux-aarch64",
+        "macos-x86_64",
+        "macos-aarch64",
+        "windows-x86_64",
+        "windows-aarch64"
+      ],
+      "evidence": [
+        {
+          "path": "benchmark-results/2026-10-11-bonsai-production/README.md",
+          "sha256": "8d773fdc7ab540bd4dafeecd1a20bd41de17c5098cd70cc3df76227716b5d99d",
+          "kind": "historical"
+        }
+      ],
+      "remaining": [
+        "Finish BF16 correction, real-weight parity and final Bonsai application qualification.",
+        "Isolate unpacking, conversion, accumulation and scheduling against the best Java implementation."
+      ],
+      "sourceScope": "cpu"
+    },
+    {
+      "id": "projection-grouping",
+      "status": "UNPROVEN",
+      "summary": "Grouping and independent batching share activation preparation and worker dispatch.",
+      "capabilities": [
+        "MIXED_K_F32_GROUPED_BATCHED_MATMUL",
+        "MANY_GROUPED_BATCHED_MATMUL",
+        "INDEPENDENT_BATCHED_MATMUL"
+      ],
+      "exports": {
+        "cpu": [
+          "jmodels_quantized_f32_batched_matmul_with_context",
+          "jmodels_quantized_f32_grouped_batched_matmul_with_context",
+          "jmodels_quantized_f32_independent_batched_matmul_with_context"
+        ]
+      },
+      "dispatch": [
+        {
+          "path": "backend-native/src/main/java/com/integrallis/models/backend/nativekernel/RustGgufBatchedMatrixKernel.java",
+          "anchor": "supportsGrouped"
+        }
+      ],
+      "requiredProfiles": [
+        "linux-x86_64",
+        "linux-aarch64",
+        "macos-x86_64",
+        "macos-aarch64",
+        "windows-x86_64",
+        "windows-aarch64"
+      ],
+      "evidence": [],
+      "remaining": [
+        "Measure per-format and shape crossovers at kernel and model boundaries.",
+        "Retain supporting code only for qualified compute routes."
+      ],
+      "sourceScope": "cpu"
+    },
+    {
+      "id": "worker-context",
+      "status": "UNPROVEN",
+      "summary": "Context ownership, ABI identity and worker control support native compute; they are not separate proof of a JVM limitation.",
+      "capabilities": [
+        "PERSISTENT_WORKER_CONTEXT",
+        "ACTIVE_THREADS",
+        "POLL_BUDGET"
+      ],
+      "exports": {
+        "cpu": [
+          "jmodels_kernels_abi_version",
+          "jmodels_kernels_capabilities",
+          "jmodels_kernels_context_create",
+          "jmodels_kernels_context_destroy",
+          "jmodels_kernels_context_set_active_threads",
+          "jmodels_kernels_context_set_poll_nanos"
+        ]
+      },
+      "dispatch": [
+        {
+          "path": "backend-native/src/main/java/com/integrallis/models/backend/nativekernel/NativeKernelLibrary.java",
+          "anchor": "jmodels_kernels_context_create"
+        }
+      ],
+      "requiredProfiles": [
+        "linux-x86_64",
+        "linux-aarch64",
+        "macos-x86_64",
+        "macos-aarch64",
+        "windows-x86_64",
+        "windows-aarch64"
+      ],
+      "evidence": [],
+      "remaining": [
+        "Tie each retained support operation to a qualified compute caller.",
+        "Compare scheduling and reentrancy with the existing Java executor."
+      ],
+      "sourceScope": "cpu"
+    },
+    {
+      "id": "gated-delta-net",
+      "status": "INACTIVE_EXPERIMENT",
+      "summary": "Production dispatcher currently declines native recurrence; sequential/grouped correction and Java alternatives are being measured.",
+      "capabilities": [
+        "GATED_DELTA_NET_F32",
+        "GROUPED_GATED_DELTA_NET_F32"
+      ],
+      "exports": {
+        "cpu": [
+          "jmodels_gated_delta_net_f32_with_context",
+          "jmodels_gated_delta_net_group_f32_with_context"
+        ]
+      },
+      "dispatch": [
+        {
+          "path": "backend-native/src/main/java/com/integrallis/models/backend/nativekernel/RustGgufBatchedMatrixKernel.java",
+          "anchor": "supportsGatedDeltaNet"
+        }
+      ],
+      "requiredProfiles": [
+        "linux-x86_64",
+        "linux-aarch64",
+        "macos-x86_64",
+        "macos-aarch64",
+        "windows-x86_64",
+        "windows-aarch64"
+      ],
+      "evidence": [],
+      "remaining": [
+        "Resolve full-model numeric and performance gates before selecting a default.",
+        "Remove unused chunked recurrence and rejected alternatives after the selection."
+      ],
+      "sourceScope": "cpu"
+    },
+    {
+      "id": "cpu-attention",
+      "status": "UNPROVEN",
+      "summary": "Attention ownership defect is repaired; historical throughput gain does not establish a current JVM cause.",
+      "capabilities": [
+        "GROUPED_ATTENTION_F32"
+      ],
+      "exports": {
+        "cpu": [
+          "jmodels_grouped_attention_f32_with_context"
+        ]
+      },
+      "dispatch": [
+        {
+          "path": "backend-native/src/main/java/com/integrallis/models/backend/nativekernel/RustGgufBatchedMatrixKernel.java",
+          "anchor": "GROUPED_ATTENTION_F32"
+        }
+      ],
+      "requiredProfiles": [
+        "linux-x86_64",
+        "linux-aarch64",
+        "macos-x86_64",
+        "macos-aarch64",
+        "windows-x86_64",
+        "windows-aarch64"
+      ],
+      "evidence": [
+        {
+          "path": "benchmark-results/2026-09-15-granite-4.1-3b-alora-hybrid/preflight.md",
+          "sha256": "98ce15ec320529f79f99dff698a2c9d2648c91d793698389adb228e74281abe1",
+          "kind": "historical"
+        }
+      ],
+      "remaining": [
+        "Repeat matched current Java/Rust full-model attention measurements across contexts and head layouts.",
+        "Isolate compilation, arithmetic organization, memory reuse and dispatch."
+      ],
+      "sourceScope": "cpu"
+    },
+    {
+      "id": "gqa-decode-attention",
+      "status": "UNPROVEN",
+      "summary": "GPU execution benefit is measured; this is not proof that Rust is required as the device source language.",
+      "capabilities": [],
+      "exports": {
+        "cuda": [
+          "models_gqa_decode_attention"
+        ]
+      },
+      "dispatch": [
+        {
+          "path": "backend-cuda/src/main/java/com/integrallis/models/backend/cuda/CudaKernelAbi.java",
+          "anchor": "models_gqa_decode_attention"
+        }
+      ],
+      "requiredProfiles": [
+        "nvidia-sm80-or-newer"
+      ],
+      "evidence": [
+        {
+          "path": "benchmark-results/2026-10-07-g4-dualpath/README.md",
+          "sha256": "bcb91a341a8b37b2cdef35193d9c4cb522ec1674688efe798ce0618461d87bac",
+          "kind": "historical"
+        }
+      ],
+      "remaining": [
+        "Compare an equivalent Java-authored GPU route with identical device and model contracts.",
+        "Record device compiler/runtime limitation separately from CPU Vector API comparisons."
+      ],
+      "sourceScope": "cuda"
+    },
+    {
+      "id": "q4k-decode-projection",
+      "status": "UNPROVEN",
+      "summary": "GPU execution benefit is measured; this is not proof that Rust is required as the device source language.",
+      "capabilities": [],
+      "exports": {
+        "cuda": [
+          "models_q4k_decode_projection"
+        ]
+      },
+      "dispatch": [
+        {
+          "path": "backend-cuda/src/main/java/com/integrallis/models/backend/cuda/CudaKernelAbi.java",
+          "anchor": "models_q4k_decode_projection"
+        }
+      ],
+      "requiredProfiles": [
+        "nvidia-sm80-or-newer"
+      ],
+      "evidence": [
+        {
+          "path": "benchmark-results/2026-10-07-g4-dualpath/README.md",
+          "sha256": "bcb91a341a8b37b2cdef35193d9c4cb522ec1674688efe798ce0618461d87bac",
+          "kind": "historical"
+        }
+      ],
+      "remaining": [
+        "Compare an equivalent Java-authored GPU route with identical device and model contracts.",
+        "Record device compiler/runtime limitation separately from CPU Vector API comparisons."
+      ],
+      "sourceScope": "cuda"
+    },
+    {
+      "id": "q6k-decode-projection",
+      "status": "UNPROVEN",
+      "summary": "GPU execution benefit is measured; this is not proof that Rust is required as the device source language.",
+      "capabilities": [],
+      "exports": {
+        "cuda": [
+          "models_q6k_decode_projection"
+        ]
+      },
+      "dispatch": [
+        {
+          "path": "backend-cuda/src/main/java/com/integrallis/models/backend/cuda/CudaKernelAbi.java",
+          "anchor": "models_q6k_decode_projection"
+        }
+      ],
+      "requiredProfiles": [
+        "nvidia-sm80-or-newer"
+      ],
+      "evidence": [
+        {
+          "path": "benchmark-results/2026-10-07-g4-dualpath/README.md",
+          "sha256": "bcb91a341a8b37b2cdef35193d9c4cb522ec1674688efe798ce0618461d87bac",
+          "kind": "historical"
+        }
+      ],
+      "remaining": [
+        "Compare an equivalent Java-authored GPU route with identical device and model contracts.",
+        "Record device compiler/runtime limitation separately from CPU Vector API comparisons."
+      ],
+      "sourceScope": "cuda"
+    }
+  ],
+  "sourceScopes": {
+    "cpu": [
+      "backend-java/gradle.lockfile",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/Deepseek2DecoderAdapter.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/EncoderDecoderAdapter.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/Gemma3nDecoderAdapter.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/Gemma4DecoderAdapter.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/GgufEmbeddingBackend.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/GgufRerankingModel.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/GptOssDecoderAdapter.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/JvmLaunchSupport.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/Lfm2DecoderAdapter.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/LlamaDecoder.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/MobileMoeDecoderAdapter.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/Needle2DecoderAdapter.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/PureJavaBackend.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/PureJavaDecoder.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/Qwen35DecoderAdapter.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/SafetensorsRerankingModel.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/SequenceEncoder.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/audio/Radix2Fft.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/bert/BertClassificationHead.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/bert/BertConfig.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/bert/BertForwardPass.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/bert/BertWeights.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/cache/KvCache.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/cache/LayeredKvCache.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/cact/CactCqMatrix.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/cact/CactFile.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/cact/CactFp16Tensor.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/cact/CactHeader.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/cact/CactNeedle2Layout.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/cact/CactParser.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/cact/CactTensorData.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/cact/CactTensorInfo.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/cact/CactTensorType.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/cact/CactTokenizer.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/cact/MalformedCactException.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/cact/Needle2AttentionWindow.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/cact/Needle2ForwardPass.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/cact/Needle2Math.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/cact/Needle2ProbeHead.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/cact/Needle2Weights.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/deberta/DebertaV2Config.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/deberta/DebertaV2Engine.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/deberta/DebertaV2ForwardPass.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/deberta/DebertaV2Weights.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/deepseek2/Deepseek2Config.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/deepseek2/Deepseek2ForwardPass.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/deepseek2/Deepseek2Weights.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/diagnostics/PerformanceCliff.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/diagnostics/PerformanceCliffEvent.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/diagnostics/PerformanceCliffs.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/diagnostics/package-info.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/gemma3n/Gemma3nAltUp.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/gemma3n/Gemma3nConfig.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/gemma3n/Gemma3nForwardPass.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/gemma3n/Gemma3nKvCache.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/gemma3n/Gemma3nWeights.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/gemma4/Gemma4Config.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/gemma4/Gemma4Decoder.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/gemma4/Gemma4ExpertCache.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/gemma4/Gemma4ExpertLoader.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/gemma4/Gemma4Experts.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/gemma4/Gemma4ForwardPass.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/gemma4/Gemma4KvCache.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/gemma4/Gemma4MappedExperts.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/gemma4/Gemma4Math.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/gemma4/Gemma4TensorLayout.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/gemma4/Gemma4Weights.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/gemmaembedding2/EmbeddingGemma2Config.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/gemmaembedding2/EmbeddingGemma2Encoder.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/gguf/GgufConstants.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/gguf/GgufEmbeddedFiles.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/gguf/GgufFile.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/gguf/GgufHeader.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/gguf/GgufHeaderParser.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/gguf/GgufHugePages.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/gguf/GgufMetadata.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/gguf/GgufMetadataValue.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/gguf/GgufParser.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/gguf/GgufReader.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/gguf/GgufTensorData.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/gguf/GgufTensorInfo.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/gguf/GgufTensorType.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/gguf/GgufTensorValues.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/gguf/GgufValueType.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/gguf/MalformedGgufException.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/gptoss/GptOssConfig.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/gptoss/GptOssForwardPass.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/gptoss/GptOssMath.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/gptoss/GptOssMxfp4ExpertWeights.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/gptoss/GptOssMxfp4Moe.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/gptoss/GptOssProjection.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/gptoss/GptOssWeights.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/huggingface/HuggingFaceEndOfGeneration.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/huggingface/Qwen2HuggingFaceConfig.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/internal/ModelMemoryArena.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/lfm2/Lfm2Config.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/lfm2/Lfm2ForwardPass.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/lfm2/Lfm2SequenceEncoder.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/lfm2/Lfm2ShortConv.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/lfm2/Lfm2Weights.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/llama/DecoderArchitecture.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/llama/DenseProjectionHead.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/llama/EncoderForwardPass.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/llama/LlamaConfig.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/llama/LlamaForwardPass.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/llama/LlamaWeights.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/llama/QuantizedBatchedLayerPlan.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/lora/ActivatedLoraAdapter.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/lora/LoraProjection.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/mobilemoe/MobileMoeExperts.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/mobilemoe/MobileMoeFloat32Matrix.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/mobilemoe/MobileMoeForwardPass.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/mobilemoe/MobileMoeHuggingFaceConfig.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/mobilemoe/MobileMoeMath.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/mobilemoe/MobileMoePackedInt4Matrix.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/mobilemoe/MobileMoePackedInt4RightMatrix.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/mobilemoe/MobileMoeQ8RightMatrix.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/mobilemoe/MobileMoeRightMatrix.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/mobilemoe/MobileMoeRouting.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/mobilemoe/MobileMoeWeights.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/ops/ExpertRouting.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/ops/GroupedQueryAttentionKernel.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/ops/PinnedReduction.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/ops/RotaryTable.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/ops/TensorOps.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/package-info.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/plan/ExecutionPlanner.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/plan/ModelTopology.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/plan/PureJavaExecutionPlan.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/plan/PureJavaPlanConfiguration.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/plan/RuntimeFingerprint.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/quant/DequantizationChecks.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/quant/Dequantizer.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/quant/F16Dequantizer.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/quant/Float16.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/quant/Mxfp4Dequantizer.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/quant/Q4_0Dequantizer.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/quant/Q4_1Dequantizer.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/quant/Q5_1Dequantizer.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/quant/Q8_0Dequantizer.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/quant/TernaryDequantizer.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/qwen35/GatedDeltaNetRecurrence.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/qwen35/PrismHadamard.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/qwen35/Qwen35Config.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/qwen35/Qwen35ForwardPass.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/qwen35/Qwen35GroupedDecision.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/qwen35/Qwen35Weights.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/safetensors/MalformedSafetensorsException.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/safetensors/SafetensorsBundle.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/safetensors/SafetensorsDtype.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/safetensors/SafetensorsFile.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/safetensors/SafetensorsParser.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/safetensors/SafetensorsTensor.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/safetensors/SafetensorsTensorInfo.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/safetensors/package-info.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/soprano/SopranoBackend.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/soprano/SopranoConfig.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/soprano/SopranoIstft.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/soprano/SopranoTokenizer.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/soprano/SopranoVocoder.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/soprano/SopranoVocoderMath.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/soprano/SopranoVocoderWeights.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/spi/BatchedCausalAttentionKernel.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/spi/GgufBatchedMatrixKernel.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/spi/PureJavaBackendProvider.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/spi/package-info.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/tensor/GgufTensorSource.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/tensor/SafetensorsTensorSource.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/tensor/TensorSource.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/tensor/TensorStorage.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/tensor/TensorView.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/tensor/package-info.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/tokenizer/BpePreTokenizer.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/tokenizer/ChatTemplateEndOfTurn.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/tokenizer/DebertaV2Tokenizer.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/tokenizer/GgufTokenizer.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/tokenizer/HuggingFaceTokenizer.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/tokenizer/UnigramTokenizer.java",
+      "backend-native/build.gradle.kts",
+      "backend-native/gradle.lockfile",
+      "backend-native/src/main/java/com/integrallis/models/backend/nativekernel/BundledNativeKernelLibrary.java",
+      "backend-native/src/main/java/com/integrallis/models/backend/nativekernel/NativeKernelCapability.java",
+      "backend-native/src/main/java/com/integrallis/models/backend/nativekernel/NativeKernelLibrary.java",
+      "backend-native/src/main/java/com/integrallis/models/backend/nativekernel/NativeKernelPlatform.java",
+      "backend-native/src/main/java/com/integrallis/models/backend/nativekernel/NativeKernelSettings.java",
+      "backend-native/src/main/java/com/integrallis/models/backend/nativekernel/RustFfmBackend.java",
+      "backend-native/src/main/java/com/integrallis/models/backend/nativekernel/RustGgufBatchedMatrixKernel.java",
+      "backend-native/src/main/java/com/integrallis/models/backend/nativekernel/package-info.java",
+      "backend-native/src/main/rust/model-kernels/Cargo.lock",
+      "backend-native/src/main/rust/model-kernels/Cargo.toml",
+      "backend-native/src/main/rust/model-kernels/src/lib.rs",
+      "backend-native/src/main/rust/model-kernels/src/neon.rs",
+      "backend-native/src/main/rust/model-kernels/src/ptq.rs",
+      "build.gradle.kts",
+      "gradle.properties"
+    ],
+    "cuda": [
+      "backend-cuda/build.gradle.kts",
+      "backend-cuda/gradle.lockfile",
+      "backend-cuda/src/main/java/com/integrallis/models/backend/cuda/BundledPtxModule.java",
+      "backend-cuda/src/main/java/com/integrallis/models/backend/cuda/CudaDriver.java",
+      "backend-cuda/src/main/java/com/integrallis/models/backend/cuda/CudaGgufBatchedMatrixKernel.java",
+      "backend-cuda/src/main/java/com/integrallis/models/backend/cuda/CudaKernelAbi.java",
+      "backend-cuda/src/main/java/com/integrallis/models/backend/cuda/CudaRoutingCounters.java",
+      "backend-cuda/src/main/java/com/integrallis/models/backend/cuda/CudaStage.java",
+      "backend-cuda/src/main/java/com/integrallis/models/backend/cuda/Q8KActivations.java",
+      "backend-cuda/src/main/java/com/integrallis/models/backend/cuda/package-info.java",
+      "backend-cuda/src/main/rust/models-cuda-kernels/Cargo.lock",
+      "backend-cuda/src/main/rust/models-cuda-kernels/Cargo.toml",
+      "backend-cuda/src/main/rust/models-cuda-kernels/rust-toolchain.toml",
+      "backend-cuda/src/main/rust/models-cuda-kernels/src/attention.rs",
+      "backend-cuda/src/main/rust/models-cuda-kernels/src/device.rs",
+      "backend-cuda/src/main/rust/models-cuda-kernels/src/float.rs",
+      "backend-cuda/src/main/rust/models-cuda-kernels/src/kquant.rs",
+      "backend-cuda/src/main/rust/models-cuda-kernels/src/lib.rs",
+      "backend-cuda/src/main/rust/models-cuda-kernels/tests/attention_parity.rs",
+      "backend-cuda/src/main/rust/models-cuda-kernels/tests/kquant_parity.rs",
+      "backend-java/gradle.lockfile",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/Deepseek2DecoderAdapter.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/EncoderDecoderAdapter.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/Gemma3nDecoderAdapter.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/Gemma4DecoderAdapter.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/GgufEmbeddingBackend.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/GgufRerankingModel.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/GptOssDecoderAdapter.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/JvmLaunchSupport.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/Lfm2DecoderAdapter.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/LlamaDecoder.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/MobileMoeDecoderAdapter.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/Needle2DecoderAdapter.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/PureJavaBackend.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/PureJavaDecoder.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/Qwen35DecoderAdapter.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/SafetensorsRerankingModel.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/SequenceEncoder.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/audio/Radix2Fft.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/bert/BertClassificationHead.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/bert/BertConfig.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/bert/BertForwardPass.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/bert/BertWeights.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/cache/KvCache.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/cache/LayeredKvCache.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/cact/CactCqMatrix.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/cact/CactFile.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/cact/CactFp16Tensor.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/cact/CactHeader.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/cact/CactNeedle2Layout.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/cact/CactParser.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/cact/CactTensorData.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/cact/CactTensorInfo.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/cact/CactTensorType.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/cact/CactTokenizer.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/cact/MalformedCactException.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/cact/Needle2AttentionWindow.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/cact/Needle2ForwardPass.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/cact/Needle2Math.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/cact/Needle2ProbeHead.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/cact/Needle2Weights.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/deberta/DebertaV2Config.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/deberta/DebertaV2Engine.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/deberta/DebertaV2ForwardPass.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/deberta/DebertaV2Weights.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/deepseek2/Deepseek2Config.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/deepseek2/Deepseek2ForwardPass.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/deepseek2/Deepseek2Weights.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/diagnostics/PerformanceCliff.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/diagnostics/PerformanceCliffEvent.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/diagnostics/PerformanceCliffs.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/diagnostics/package-info.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/gemma3n/Gemma3nAltUp.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/gemma3n/Gemma3nConfig.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/gemma3n/Gemma3nForwardPass.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/gemma3n/Gemma3nKvCache.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/gemma3n/Gemma3nWeights.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/gemma4/Gemma4Config.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/gemma4/Gemma4Decoder.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/gemma4/Gemma4ExpertCache.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/gemma4/Gemma4ExpertLoader.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/gemma4/Gemma4Experts.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/gemma4/Gemma4ForwardPass.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/gemma4/Gemma4KvCache.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/gemma4/Gemma4MappedExperts.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/gemma4/Gemma4Math.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/gemma4/Gemma4TensorLayout.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/gemma4/Gemma4Weights.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/gemmaembedding2/EmbeddingGemma2Config.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/gemmaembedding2/EmbeddingGemma2Encoder.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/gguf/GgufConstants.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/gguf/GgufEmbeddedFiles.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/gguf/GgufFile.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/gguf/GgufHeader.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/gguf/GgufHeaderParser.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/gguf/GgufHugePages.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/gguf/GgufMetadata.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/gguf/GgufMetadataValue.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/gguf/GgufParser.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/gguf/GgufReader.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/gguf/GgufTensorData.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/gguf/GgufTensorInfo.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/gguf/GgufTensorType.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/gguf/GgufTensorValues.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/gguf/GgufValueType.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/gguf/MalformedGgufException.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/gptoss/GptOssConfig.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/gptoss/GptOssForwardPass.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/gptoss/GptOssMath.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/gptoss/GptOssMxfp4ExpertWeights.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/gptoss/GptOssMxfp4Moe.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/gptoss/GptOssProjection.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/gptoss/GptOssWeights.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/huggingface/HuggingFaceEndOfGeneration.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/huggingface/Qwen2HuggingFaceConfig.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/internal/ModelMemoryArena.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/lfm2/Lfm2Config.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/lfm2/Lfm2ForwardPass.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/lfm2/Lfm2SequenceEncoder.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/lfm2/Lfm2ShortConv.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/lfm2/Lfm2Weights.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/llama/DecoderArchitecture.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/llama/DenseProjectionHead.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/llama/EncoderForwardPass.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/llama/LlamaConfig.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/llama/LlamaForwardPass.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/llama/LlamaWeights.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/llama/QuantizedBatchedLayerPlan.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/lora/ActivatedLoraAdapter.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/lora/LoraProjection.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/mobilemoe/MobileMoeExperts.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/mobilemoe/MobileMoeFloat32Matrix.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/mobilemoe/MobileMoeForwardPass.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/mobilemoe/MobileMoeHuggingFaceConfig.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/mobilemoe/MobileMoeMath.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/mobilemoe/MobileMoePackedInt4Matrix.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/mobilemoe/MobileMoePackedInt4RightMatrix.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/mobilemoe/MobileMoeQ8RightMatrix.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/mobilemoe/MobileMoeRightMatrix.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/mobilemoe/MobileMoeRouting.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/mobilemoe/MobileMoeWeights.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/ops/ExpertRouting.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/ops/GroupedQueryAttentionKernel.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/ops/PinnedReduction.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/ops/RotaryTable.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/ops/TensorOps.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/package-info.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/plan/ExecutionPlanner.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/plan/ModelTopology.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/plan/PureJavaExecutionPlan.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/plan/PureJavaPlanConfiguration.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/plan/RuntimeFingerprint.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/quant/DequantizationChecks.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/quant/Dequantizer.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/quant/F16Dequantizer.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/quant/Float16.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/quant/Mxfp4Dequantizer.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/quant/Q4_0Dequantizer.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/quant/Q4_1Dequantizer.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/quant/Q5_1Dequantizer.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/quant/Q8_0Dequantizer.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/quant/TernaryDequantizer.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/qwen35/GatedDeltaNetRecurrence.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/qwen35/PrismHadamard.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/qwen35/Qwen35Config.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/qwen35/Qwen35ForwardPass.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/qwen35/Qwen35GroupedDecision.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/qwen35/Qwen35Weights.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/safetensors/MalformedSafetensorsException.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/safetensors/SafetensorsBundle.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/safetensors/SafetensorsDtype.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/safetensors/SafetensorsFile.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/safetensors/SafetensorsParser.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/safetensors/SafetensorsTensor.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/safetensors/SafetensorsTensorInfo.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/safetensors/package-info.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/soprano/SopranoBackend.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/soprano/SopranoConfig.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/soprano/SopranoIstft.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/soprano/SopranoTokenizer.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/soprano/SopranoVocoder.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/soprano/SopranoVocoderMath.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/soprano/SopranoVocoderWeights.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/spi/BatchedCausalAttentionKernel.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/spi/GgufBatchedMatrixKernel.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/spi/PureJavaBackendProvider.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/spi/package-info.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/tensor/GgufTensorSource.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/tensor/SafetensorsTensorSource.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/tensor/TensorSource.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/tensor/TensorStorage.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/tensor/TensorView.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/tensor/package-info.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/tokenizer/BpePreTokenizer.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/tokenizer/ChatTemplateEndOfTurn.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/tokenizer/DebertaV2Tokenizer.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/tokenizer/GgufTokenizer.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/tokenizer/HuggingFaceTokenizer.java",
+      "backend-java/src/main/java/com/integrallis/models/backend/purejava/tokenizer/UnigramTokenizer.java",
+      "backend-native/build.gradle.kts",
+      "backend-native/gradle.lockfile",
+      "build.gradle.kts",
+      "gradle.properties"
+    ]
+  }
+}

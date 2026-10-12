@@ -1947,3 +1947,23 @@ tasks.register<Exec>("verifyPublishedConsumerGraph") {
     commandLine("python3", "scripts/verify-maven-runtime.py", "--repository", "build/staging-deploy")
 }
 tasks.named("complianceCheck") { dependsOn("verifyPublishedConsumerGraph") }
+
+// Structural checks preserve the distinction between registered shims and demonstrated necessity.
+tasks.register<Exec>("testNativeShimEvidence") {
+    group = "verification"
+    description = "Reject missing, stale, or unexecuted native shim proof records"
+    commandLine("python3", "scripts/test-native-shim-evidence.py")
+}
+tasks.register<Exec>("verifyNativeShimEvidence") {
+    group = "verification"
+    description = "Check native capability/export coverage and retain the outstanding proof checklist"
+    dependsOn("testNativeShimEvidence")
+    commandLine("python3", "scripts/verify-native-shim-evidence.py", "--output", "build/reports/native-shims/inventory.json")
+}
+tasks.register<Exec>("verifyNativeShimCampaignComplete") {
+    group = "verification"
+    description = "Require every registered operation to have completed its proof or retirement"
+    dependsOn("verifyNativeShimEvidence")
+    commandLine("python3", "scripts/verify-native-shim-evidence.py", "--require-complete")
+}
+tasks.named("complianceCheck") { dependsOn("verifyNativeShimEvidence") }
