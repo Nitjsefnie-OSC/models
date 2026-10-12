@@ -1,0 +1,42 @@
+WARNING: Using incubator modules: jdk.incubator.vector
+Oct 12, 2026 9:59:19 PM com.integrallis.vectors.core.PanamaVectorUtilSupportProvider create
+INFO: vectors-core: Using Panama Vector API SIMD provider (vector bits: 256)
+Oct 12, 2026 9:59:19 PM com.integrallis.vectors.core.VectorizationProvider logActiveToggles
+INFO: vectors-core: provider=PanamaVectorUtilSupport panama=true maxBits=256 preferredBits=256 fastVectorFMA=true fastScalarFMA=true sve=false ggufParallel=true ggufParallelThreshold=1048576 ggufExecutor=persistent ggufThreads=16 ggufChunksPerThread=2 mappedKQuantLongOffsets=auto(q4=true,q5=false,q6=false) q4ShortPairwiseSupported=true q4UnsignedPairwiseSupported=true toggles=[(defaults — no -Dvectors.* overrides)]
+
+Test run finished after 17985 ms
+[         2 containers found      ]
+[         0 containers skipped    ]
+[         2 containers started    ]
+[         0 containers aborted    ]
+[         2 containers successful ]
+[         0 containers failed     ]
+[         1 tests found           ]
+[         0 tests skipped         ]
+[         1 tests started         ]
+[         0 tests aborted         ]
+[         0 tests successful      ]
+[         1 tests failed          ]
+
+
+Failures (1):
+  JUnit Jupiter:Qwen3ActivatedSpringAiToolCallingIntegrationTest:invokesOneToolNarratesItsResultAndAbstainsOnOrdinaryChat()
+    MethodSource [className = 'com.integrallis.models.spring.ai.Qwen3ActivatedSpringAiToolCallingIntegrationTest', methodName = 'invokesOneToolNarratesItsResultAndAbstainsOnOrdinaryChat', methodParameterTypes = '']
+    => org.springframework.ai.tool.execution.ToolExecutionException: [the fixture must execute exactly one weather tool call] 
+expected: 1
+ but was: 2
+       org.springframework.ai.tool.method.MethodToolCallback.callMethod(MethodToolCallback.java:192)
+       org.springframework.ai.tool.method.MethodToolCallback.call(MethodToolCallback.java:114)
+       org.springframework.ai.model.tool.DefaultToolCallingManager.lambda$executeToolCall$4(DefaultToolCallingManager.java:234)
+       io.micrometer.observation.Observation.observe(Observation.java:634)
+       org.springframework.ai.model.tool.DefaultToolCallingManager.executeToolCall(DefaultToolCallingManager.java:231)
+       [...]
+     Caused by: org.opentest4j.AssertionFailedError: [the fixture must execute exactly one weather tool call] 
+expected: 1
+ but was: 2
+       com.integrallis.models.spring.ai.Qwen3ActivatedSpringAiToolCallingIntegrationTest$WeatherTools.getWeatherForZipcode(Qwen3ActivatedSpringAiToolCallingIntegrationTest.java:51)
+       java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+       java.base/java.lang.reflect.Method.invoke(Method.java:565)
+       org.springframework.ai.tool.method.MethodToolCallback.callMethod(MethodToolCallback.java:186)
+       [...]
+elapsedSeconds=18.179917187

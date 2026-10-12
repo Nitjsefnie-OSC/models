@@ -1,0 +1,29 @@
+build	Check no workflow duplicates a shared setup step	﻿2026-10-12T16:33:20.6452109Z ##[group]Run python3 scripts/integrity/check-workflow-duplication.py
+build	Check no workflow duplicates a shared setup step	2026-10-12T16:33:20.6452712Z ^[[36;1mpython3 scripts/integrity/check-workflow-duplication.py^[[0m
+build	Check no workflow duplicates a shared setup step	2026-10-12T16:33:20.6513236Z shell: /usr/bin/bash -e {0}
+build	Check no workflow duplicates a shared setup step	2026-10-12T16:33:20.6513541Z env:
+build	Check no workflow duplicates a shared setup step	2026-10-12T16:33:20.6513899Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+build	Check no workflow duplicates a shared setup step	2026-10-12T16:33:20.6514461Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+build	Check no workflow duplicates a shared setup step	2026-10-12T16:33:20.6514900Z   MAVEN_ARGS: -ntp
+build	Check no workflow duplicates a shared setup step	2026-10-12T16:33:20.6515191Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+build	Check no workflow duplicates a shared setup step	2026-10-12T16:33:20.6515544Z   GRADLE_USER_HOME: /home/runner/.gradle
+build	Check no workflow duplicates a shared setup step	2026-10-12T16:33:20.6515875Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+build	Check no workflow duplicates a shared setup step	2026-10-12T16:33:20.6516372Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+build	Check no workflow duplicates a shared setup step	2026-10-12T16:33:20.6516893Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+build	Check no workflow duplicates a shared setup step	2026-10-12T16:33:20.6517271Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+build	Check no workflow duplicates a shared setup step	2026-10-12T16:33:20.6517711Z   UV_PYTHON_INSTALL_DIR: /home/runner/work/_temp/uv-python-dir
+build	Check no workflow duplicates a shared setup step	2026-10-12T16:33:20.6518139Z   UV_CACHE_DIR: /home/runner/work/_temp/setup-uv-cache
+build	Check no workflow duplicates a shared setup step	2026-10-12T16:33:20.6518481Z ##[endgroup]
+build	Check no workflow duplicates a shared setup step	2026-10-12T16:33:20.6821248Z workflows using the shared PTX toolchain action: 6
+build	Check no workflow duplicates a shared setup step	2026-10-12T16:33:20.6822174Z   ci.yml
+build	Check no workflow duplicates a shared setup step	2026-10-12T16:33:20.6822591Z   codeql.yml
+build	Check no workflow duplicates a shared setup step	2026-10-12T16:33:20.6823003Z   docs.yml
+build	Check no workflow duplicates a shared setup step	2026-10-12T16:33:20.6823440Z   model-determinism.yml
+build	Check no workflow duplicates a shared setup step	2026-10-12T16:33:20.6823962Z   model-integration.yml
+build	Check no workflow duplicates a shared setup step	2026-10-12T16:33:20.6824437Z   release.yml
+build	Check no workflow duplicates a shared setup step	2026-10-12T16:33:20.6824686Z 
+build	Check no workflow duplicates a shared setup step	2026-10-12T16:33:20.6825147Z FAIL: 1 workflow(s) duplicate what the shared action owns.
+build	Check no workflow duplicates a shared setup step	2026-10-12T16:33:20.6826236Z A step copied into N places gets fixed in N-1 of them -- that is how Deploy Docs
+build	Check no workflow duplicates a shared setup step	2026-10-12T16:33:20.6827324Z became the one workflow without rust-src while four others had it.
+build	Check no workflow duplicates a shared setup step	2026-10-12T16:33:20.6828555Z   native-kernels.yml: installs the pinned nightly itself; use the shared action at .github/actions/ptx-toolchain instead
+build	Check no workflow duplicates a shared setup step	2026-10-12T16:33:20.6871625Z ##[error]Process completed with exit code 1.

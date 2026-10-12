@@ -1,0 +1,388 @@
+Native macos-aarch64	Compile, test, and package native kernels	﻿2026-10-12T19:44:33.8760850Z ##[group]Run ./gradlew :backend-native:check :backend-native:nativePlatformJar "-Pversion=0.3.59-ci.598.1.86bee8d54573" "-PmodelsNativePlatform=macos-aarch64" --no-daemon --stacktrace
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:44:33.8761940Z ^[[36;1m./gradlew :backend-native:check :backend-native:nativePlatformJar "-Pversion=0.3.59-ci.598.1.86bee8d54573" "-PmodelsNativePlatform=macos-aarch64" --no-daemon --stacktrace^[[0m
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:44:33.8816430Z shell: /bin/bash -e {0}
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:44:33.8816730Z env:
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:44:33.8817110Z   JAVA_HOME: /Users/runner/hostedtoolcache/Java_Zulu_jdk/25.0.4-7/arm64/Contents/Home
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:44:33.8817680Z   JAVA_HOME_25_ARM64: /Users/runner/hostedtoolcache/Java_Zulu_jdk/25.0.4-7/arm64/Contents/Home
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:44:33.8818080Z   MAVEN_ARGS: -ntp
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:44:33.8818280Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:44:33.8818550Z   GRADLE_USER_HOME: /Users/runner/.gradle
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:44:33.8818790Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:44:33.8819220Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:44:33.8820350Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:44:33.8820640Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:44:33.8820850Z ##[endgroup]
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:44:34.0794780Z Downloading https://services.gradle.org/distributions/gradle-9.4.1-all.zip
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:44:36.7161740Z ......................10%.......................20%.......................30%......................40%.......................50%.......................60%......................70%.......................80%.......................90%.......................100%
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:44:50.7395290Z WARNING: A restricted method in java.lang.System has been called
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:44:50.7398210Z WARNING: java.lang.System::load has been called by net.rubygrapefruit.platform.internal.NativeLibraryLoader in an unnamed module (file:/Users/runner/.gradle/wrapper/dists/gradle-9.4.1-all/eckclv9s5vi9exbmnyvpg2a3h/gradle-9.4.1/lib/native-platform-0.22-milestone-29.jar)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:44:50.7401590Z WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:44:50.7405460Z WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:44:50.7406460Z 
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:44:50.9610850Z 
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:44:50.9618160Z Welcome to Gradle 9.4.1!
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:44:50.9618620Z 
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:44:50.9618950Z Here are the highlights of this release:
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:44:50.9622070Z  - Java 26 support
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:44:50.9622970Z  - Non-class-based JVM tests
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:44:50.9624190Z  - Enhanced console progress bar
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:44:50.9624700Z 
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:44:50.9625510Z For more details see https://docs.gradle.org/9.4.1/release-notes.html
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:44:50.9626330Z 
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:44:51.1163820Z To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/9.4.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:44:52.4524400Z Daemon will be stopped at the end of the build 
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:46:35.5511460Z 
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:46:35.5514430Z     Checking jmodels-kernels v0.3.59 (/Users/runner/work/models/models/models/backend-native/src/main/rust/model-kernels)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:46:35.5527690Z > Task :backend-native:cargoClippy
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:46:35.9173140Z     Finished `release` profile [optimized] target(s) in 1.79s
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:46:38.0089530Z    Compiling jmodels-kernels v0.3.59 (/Users/runner/work/models/models/models/backend-native/src/main/rust/model-kernels)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:46:38.0090290Z 
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:46:38.0090830Z > Task :backend-native:cargoTest
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:46:49.7072990Z     Finished `release` profile [optimized] target(s) in 13.66s
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:46:49.7074360Z 
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:46:49.7176640Z      Running unittests src/lib.rs (build/rust-target/release/deps/jmodels_kernels-1abfb1ddc52762a8)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:46:49.7177950Z running 32 tests
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:46:49.7284380Z test neon::tests::q4_k_matches_scalar_bit_for_bit ... ok
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:46:49.7385870Z test neon::tests::q4_0_matches_scalar_bit_for_bit ... ok
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:46:49.7487050Z test neon::tests::q5_0_matches_scalar_bit_for_bit ... ok
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:46:49.7588920Z test neon::tests::q6_k_matches_scalar_bit_for_bit ... ok
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:46:49.7690820Z test neon::tests::q8_0_matches_scalar_bit_for_bit ... ok
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:46:49.7792870Z test ptq::tests::packed_scalar_and_vector_q8_reductions_are_bit_identical ... ok
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:46:49.7895130Z test tests::batch_scratch_uses_stack_capacity_and_heap_fallback ... ok
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:46:49.7996610Z test tests::batched_k_quantized_rows_decode_each_weight_block_once ... ok
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:46:49.8098880Z test tests::a_published_job_partitions_across_the_active_pool_and_leaves_the_gate_alone ... ok
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:46:49.8201820Z test tests::completion_poll_observes_finished_workers_without_parking ... ok
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:46:49.8304350Z test tests::creates_and_joins_persistent_worker_context ... ok
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:46:49.8406300Z test tests::exports_stable_abi_and_capabilities ... ok
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:46:49.8507790Z test tests::active_count_changes_keep_every_generation_completing ... ok
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:46:49.8609880Z test tests::gated_delta_net_matches_pinned_freetoken_recurrence ... ok
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:46:49.8712940Z test tests::grouped_attention_matches_a_naive_reference_across_two_spans_and_workers ... ok
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:46:49.8815940Z test tests::grouped_gated_delta_net_rejects_an_out_of_range_slot ... ok
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:46:49.8921920Z test tests::grouped_projection_uses_one_worker_generation ... ok
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:46:49.9022810Z test tests::half_conversion_preserves_subnormal_boundaries ... ok
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:46:49.9124920Z test tests::half_round_trip_matches_known_values ... ok
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:46:49.9224390Z test tests::independent_projections_use_one_worker_generation ... ok
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:46:49.9325350Z test tests::partition_count_bounds_the_rows_a_worker_takes ... ok
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:46:49.9426020Z test tests::persistent_context_reuses_activation_workspace ... ok
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:46:49.9527640Z test tests::grouped_gated_delta_net_matches_each_row_stepped_alone ... ok
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:46:49.9631040Z test tests::prefill_budget ... ignored
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:46:49.9728860Z test tests::q5_1_grouping_is_refused_rather_than_given_empty_activations ... ok
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:46:49.9831010Z test tests::q5_1_scalar_and_avx2_rows_agree_exactly ... ok
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:46:49.9932500Z test tests::q5_1_unpack_matches_the_block_layout ... ok
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:46:50.0035970Z test tests::rejects_invalid_dimensions_without_dereferencing_buffers ... ok
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:46:50.0135770Z test tests::worker_accounts_for_a_published_generation_without_a_job ... ok
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:46:50.0237410Z test tests::worker_poll_observes_a_published_generation_without_parking ... ok
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:46:50.0339780Z test tests::gated_delta_net_prefix_matches_token_steps_exactly ... ok
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:46:50.5147340Z test tests::persistent_workers_complete_repeated_generations ... ok
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:46:50.5152540Z 
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:46:50.5153370Z test result: ok. 31 passed; 0 failed; 1 ignored; 0 measured; 0 filtered out; finished in 0.82s
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:46:50.5153900Z 
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:46:52.3942870Z 
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:46:52.3947700Z > Task :models-api:compileJava
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:46:56.8990950Z > Task :backend-java:compileJava
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:46:57.0290490Z > Task :writeReleaseDependencyManifest
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:46:57.0308250Z > Task :backend-java:processResources
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:46:57.0311000Z > Task :backend-java:classes
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:46:57.1654630Z > Task :backend-java:jar
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:46:59.2214080Z 
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:46:59.2215540Z > Task :backend-native:cargoBuildRelease
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:46:59.2238960Z    Compiling jmodels-kernels v0.3.59 (/Users/runner/work/models/models/models/backend-native/src/main/rust/model-kernels)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:03.7204920Z     Finished `release` profile [optimized] target(s) in 6.43s
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:04.1587400Z 
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:04.1588480Z > Task :backend-native:compileJava
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:04.1590770Z > Task :backend-native:processResources
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:04.1591170Z > Task :backend-native:classes
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:04.9019960Z > Task :models-runtime:compileJava
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:08.7258510Z > Task :backend-native:compileTestJava
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:08.7260420Z > Task :backend-native:verifyNativeBuildPlatform
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:08.7261580Z > Task :backend-native:prepareNativePlatformResources
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:08.7262870Z > Task :backend-native:nativePlatformJar
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:08.7265200Z > Task :backend-native:processTestResources NO-SOURCE
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:08.7266270Z > Task :backend-native:testClasses
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:08.7267000Z > Task :models-api:processResources
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:08.7267890Z > Task :models-api:classes
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:08.7268600Z > Task :models-api:jar
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:08.7269170Z > Task :models-runtime:processResources
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:08.7270040Z > Task :models-runtime:classes
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:08.7986130Z > Task :models-runtime:jar
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:10.7316280Z WARNING: Using incubator modules: jdk.incubator.vector
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:10.7316840Z 
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:10.7417040Z > Task :backend-native:test
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:11.8260490Z 
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:11.8267630Z BundledNativeKernelLibraryTest > packagedHostArtifactCanBeExtractedAndOpened() PASSED
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:11.8269330Z 
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:11.8270230Z BundledNativeKernelLibraryTest > rejectsMetadataForAnotherPlatform() PASSED
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:11.8274820Z 
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:11.8275950Z BundledNativeKernelLibraryTest > verifiesAndExtractsTheCurrentPlatformLibraryOnce() PASSED
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:11.8278830Z 
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:11.8279580Z BundledNativeKernelLibraryTest > rejectsAnArtifactWhoseLibraryDoesNotMatchItsDigest() PASSED
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:12.0320510Z 
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:12.0437340Z NativeKernelLibraryTest > groupedKernelSharesInputAcrossTwoQ8ProjectionsWithinReductionTolerance() PASSED
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:12.0450300Z 
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:12.0454640Z NativeKernelLibraryTest > groupedKernelSharesOneQ8KActivationAcrossEightQ4KProjections() PASSED
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:12.0456390Z 
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:12.0457340Z NativeKernelLibraryTest > reusableGgufKernelComputesQ5_1SingleTokenProjectionExactly() PASSED
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:12.0458320Z 
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:12.0459380Z NativeKernelLibraryTest > reusableGgufKernelComputesQ5_0BatchedMatrixMultiplicationWithinReductionTolerance() PASSED
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:12.1316050Z 
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:12.1417620Z NativeKernelLibraryTest > groupedRecurrenceRejectsDuplicateSlotsBeforeMutatingState() PASSED
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:12.1518880Z 
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:12.1620800Z NativeKernelLibraryTest > groupedKernelSharesInputAcrossThreeQ5_0ProjectionsWithinReductionTolerance() PASSED
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:12.1757920Z 
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:12.1758470Z NativeKernelLibraryTest > profiledSettingsConfigureTheWorkerCount() FAILED
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:12.1759080Z     org.opentest4j.AssertionFailedError: 
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:12.1759440Z     Expecting value to be true but was false
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:12.1760250Z         at app//com.integrallis.models.backend.nativekernel.NativeKernelLibraryTest.profiledSettingsConfigureTheWorkerCount(NativeKernelLibraryTest.java:781)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:12.1760890Z 
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:12.1761170Z NativeKernelLibraryTest > groupedKernelMatchesVectorSemanticsForMixedQ4_KQ5_KQ6_KProjections() PASSED
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:12.1761680Z 
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:12.1762050Z NativeKernelLibraryTest > reusableGgufKernelComputesQ5_0SingleTokenProjectionWithinQuantizedTolerance() PASSED
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:12.1762430Z 
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:12.1762840Z NativeKernelLibraryTest > reusableGgufKernelComputesQ8_0BatchedMatrixMultiplicationWithinReductionTolerance() PASSED
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:12.1763310Z 
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:12.1763600Z NativeKernelLibraryTest > reusableGgufKernelComputesAcrossWorkspaceGrowth() PASSED
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:12.1763940Z 
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:12.1764180Z NativeKernelLibraryTest > groupedGatedDeltaNetTreatsANullSlotTableAsTheIdentity() PASSED
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:12.2133910Z 
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:12.2235070Z NativeKernelLibraryTest > computesQ4_0BatchedMatrixMultiplication() PASSED
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:12.2254130Z 
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:12.2254720Z NativeKernelLibraryTest > raggedIndependentKernelPreservesEachProjectionBatchSize() PASSED
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:12.2255310Z 
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:12.2255610Z NativeKernelLibraryTest > groupedKernelSharesInputAcrossThreeExactQ4Projections() PASSED
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:12.2267830Z 
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:12.2268430Z NativeKernelLibraryTest > singleTokenProjectionsAreAlwaysEligible() PASSED
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:12.2268830Z 
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:12.2269240Z NativeKernelLibraryTest > groupedGatedDeltaNetMatchesEachRowAdvancedAlone() PASSED
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:12.2647090Z 
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:12.2693670Z NativeKernelLibraryTest > decodeThreadCountLimitsSingleTokenWorkersWithoutChangingResults() PASSED
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:12.2694760Z 
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:12.2695060Z NativeKernelLibraryTest > decodeThreadCountMustFitThePool() PASSED
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:12.2695460Z 
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:12.2695920Z NativeKernelLibraryTest > reusableGgufKernelComputesQ5_1BatchedMatrixMultiplicationExactly() PASSED
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:12.2696400Z 
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:12.2696770Z NativeKernelLibraryTest > groupedKernelSharesInputAcrossTwoExactQ4Projections() PASSED
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:12.2697140Z 
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:12.2697400Z NativeKernelLibraryTest > q5_0ProjectionsAreNeverGrouped() PASSED
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:12.4380080Z 
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:12.4381230Z NativeKernelLibraryTest > independentKernelExecutesEightQ4KProjectionsInOneDispatch() PASSED
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:12.4381780Z 
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:12.4382800Z NativeKernelLibraryTest > gatedDeltaNetMatchesThePinnedFreeTokenRecurrence() PASSED
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:12.4383190Z 
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:12.4383580Z NativeKernelLibraryTest > rejectsInvalidShapesBeforeCrossingTheNativeBoundary() PASSED
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:12.4384140Z 
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:12.4384840Z NativeKernelLibraryTest > groupedAttentionMatchesTheJavaKernelAcrossTwoSpans() PASSED
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:12.4409120Z 
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:12.4410450Z NativeKernelLibraryTest > groupedGatedDeltaNetRejectsASlotOutsideTheState() PASSED
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:12.4411590Z 
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:12.4438430Z NativeKernelLibraryTest > groupedGatedDeltaNetRejectsArgumentsItCannotServe() PASSED
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:12.4439890Z 
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:12.4440930Z NativeKernelLibraryTest > reusableGgufKernelMatchesVectorSemanticsForKQuantizedBatchedMultiplication() PASSED
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:12.4442180Z 
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:12.4442720Z NativeKernelLibraryTest > exposesVersionedQuantizedKernelCapabilities() PASSED
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:12.4443590Z 
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:12.4444280Z NativeKernelLibraryTest > recurrentWritesCannotAliasInputsOrEachOther() PASSED
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:12.4447100Z 
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:12.4447830Z NativeKernelPlatformTest > normalizesEveryCiTarget() PASSED
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:12.4449290Z 
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:12.4449970Z NativeKernelPlatformTest > rejectsUnsupportedOperatingSystemsAndArchitectures() PASSED
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:12.4450860Z 
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:12.4451820Z NativeKernelSettingsTest > thread count is the only native setting, and it follows the host when unset PASSED
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:12.4452890Z 
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:12.4453550Z NativeKernelSettingsTest > a deployment property overrides a profile recommendation PASSED
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:12.4454950Z 
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:12.4455310Z NativeKernelSettingsTest > a setting that never existed is still an error PASSED
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:12.4455660Z 
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:12.4456120Z NativeKernelSettingsTest > a published profile naming a removed setting still loads, and says it was ignored PASSED
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:12.4456490Z 
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:12.4456750Z NativeKernelSettingsTest > an out-of-range thread count is rejected PASSED
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:12.4457070Z 
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:12.4457520Z NativeKernelSettingsTest > no removed setting means nothing is recorded PASSED
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:12.8346920Z OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:12.8347640Z 
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:14.2852670Z 
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:14.2853340Z > Task :backend-native:test
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:14.2857580Z 
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:14.2857910Z NativePerformanceCliffTest > rustFfmDiagnosticsIncludeCliffsTakenAfterLoad() PASSED
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:14.2858220Z 
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:14.2858620Z NativePerformanceCliffTest > libraryWithoutPollBudgetCapabilityReportsTheCliffOnce() PASSED
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:14.2859160Z 
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:14.2859490Z NativePerformanceCliffTest > bundledLibraryAppliesThePollBudgetAndReportsNothing() PASSED
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:24.0864570Z 
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:24.0867360Z PtqNativeKernelTest > packedProjectionMatchesJavaBitwiseAcrossBatchesAndWorkerTransitions() PASSED
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:24.1820320Z 
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:24.1835370Z RustFfmBackendTest > deploymentPropertiesOverrideModelProfileRecommendations() PASSED
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:24.1836830Z 
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:24.1837680Z RustFfmBackendTest > resolvesTheWorkerCountFromModelProfileRecommendations() PASSED
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:24.3349240Z 
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:24.3351080Z RustFfmBackendTest > exposesTheJavaTransformersIndependentSessionBatchingContract() PASSED
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:24.5376820Z 
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:24.5397550Z RustFfmBackendTest > no optimization decision mentions a removed setting PASSED
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:24.5398330Z 
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:24.5398890Z RustFfmBackendTest > routes not taken are reported with their reason, not as a missing capability PASSED
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:24.5399420Z 
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:24.5399690Z RustFfmBackendTest > enrichesJavaDiagnosticsWithEnabledNativeKernelControls() PASSED
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:24.6224070Z 
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:24.6259600Z RustFfmBackendTest > delegatesTheCompleteInferenceContractToTheJavaTransformer() PASSED
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:24.6278520Z 
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:24.6281680Z RustFfmBackendTest > versionsAutomaticNativeProfileSelection() PASSED
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:24.6282300Z 
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:24.6282690Z RustFfmBackendTest > rejectsMissingLoadInputsBeforeOpeningTheNativeLibrary() PASSED
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:24.7149860Z 
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:24.7157100Z 56 tests completed, 1 failed
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0029090Z 
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0029220Z 
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0120030Z FAILURE: Build failed with an exception.
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0121310Z > Task :backend-native:test FAILED
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0121870Z 
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0122300Z gradle/actions: Writing build results to /Users/runner/work/_temp/.gradle-actions/build-results/__run_2-1791834296891.json
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0132950Z * What went wrong:
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0133170Z 20 actionable tasks: 20 executed
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0133980Z Execution failed for task ':backend-native:test'.
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0134870Z > There were failing tests. See the report at: file:///Users/runner/work/models/models/models/backend-native/build/reports/tests/test/index.html
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0135480Z 
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0316510Z * Try:
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0325790Z > Run with --scan to get full insights from a Build Scan (powered by Develocity).
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0326170Z 
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0326340Z * Exception is:
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0326770Z org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':backend-native:test'.
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0328300Z 	at org.gradle.api.internal.tasks.execution.ExecuteActionsTaskExecuter.lambda$executeIfValid$1(ExecuteActionsTaskExecuter.java:135)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0329000Z 	at org.gradle.internal.Try$Failure.ifSuccessfulOrElse(Try.java:288)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0329780Z 	at org.gradle.api.internal.tasks.execution.ExecuteActionsTaskExecuter.executeIfValid(ExecuteActionsTaskExecuter.java:133)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0330690Z 	at org.gradle.api.internal.tasks.execution.ExecuteActionsTaskExecuter.execute(ExecuteActionsTaskExecuter.java:121)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0331740Z 	at org.gradle.api.internal.tasks.execution.ProblemsTaskPathTrackingTaskExecuter.execute(ProblemsTaskPathTrackingTaskExecuter.java:41)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0332660Z 	at org.gradle.api.internal.tasks.execution.ResolveTaskExecutionModeExecuter.execute(ResolveTaskExecutionModeExecuter.java:51)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0333590Z 	at org.gradle.api.internal.tasks.execution.FinalizePropertiesTaskExecuter.execute(FinalizePropertiesTaskExecuter.java:46)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0343690Z 	at org.gradle.api.internal.tasks.execution.SkipTaskWithNoActionsExecuter.execute(SkipTaskWithNoActionsExecuter.java:57)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0346490Z 	at org.gradle.api.internal.tasks.execution.SkipOnlyIfTaskExecuter.execute(SkipOnlyIfTaskExecuter.java:74)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0389020Z 	at org.gradle.api.internal.tasks.execution.CatchExceptionTaskExecuter.execute(CatchExceptionTaskExecuter.java:36)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0393740Z 	at org.gradle.api.internal.tasks.execution.EventFiringTaskExecuter$1.executeTask(EventFiringTaskExecuter.java:77)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0396180Z 	at org.gradle.api.internal.tasks.execution.EventFiringTaskExecuter$1.call(EventFiringTaskExecuter.java:55)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0401230Z 	at org.gradle.api.internal.tasks.execution.EventFiringTaskExecuter$1.call(EventFiringTaskExecuter.java:52)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0403600Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:210)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0406380Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:205)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0427600Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:67)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0428480Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:60)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0429440Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:167)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0431840Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:60)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0432620Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner.call(DefaultBuildOperationRunner.java:54)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0433530Z 	at org.gradle.api.internal.tasks.execution.EventFiringTaskExecuter.execute(EventFiringTaskExecuter.java:52)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0434250Z 	at org.gradle.execution.plan.DefaultNodeExecutor.executeLocalTaskNode(DefaultNodeExecutor.java:55)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0435000Z 	at org.gradle.execution.plan.DefaultNodeExecutor.execute(DefaultNodeExecutor.java:34)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0438000Z 	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph$InvokeNodeExecutorsAction.execute(DefaultTaskExecutionGraph.java:355)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0440410Z 	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph$InvokeNodeExecutorsAction.execute(DefaultTaskExecutionGraph.java:343)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0441470Z 	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph$BuildOperationAwareExecutionAction.lambda$execute$0(DefaultTaskExecutionGraph.java:339)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0442320Z 	at org.gradle.internal.operations.CurrentBuildOperationRef.with(CurrentBuildOperationRef.java:84)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0443240Z 	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph$BuildOperationAwareExecutionAction.execute(DefaultTaskExecutionGraph.java:339)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0444240Z 	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph$BuildOperationAwareExecutionAction.execute(DefaultTaskExecutionGraph.java:328)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0445370Z 	at org.gradle.execution.plan.DefaultPlanExecutor$ExecutorWorker.execute(DefaultPlanExecutor.java:459)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0458310Z 	at org.gradle.execution.plan.DefaultPlanExecutor$ExecutorWorker.run(DefaultPlanExecutor.java:376)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0459610Z 	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:64)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0460440Z 	at org.gradle.internal.concurrent.AbstractManagedExecutor$1.run(AbstractManagedExecutor.java:47)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0461490Z Caused by: org.gradle.api.internal.exceptions.MarkedVerificationException: There were failing tests. See the report at: file:///Users/runner/work/models/models/models/backend-native/build/reports/tests/test/index.html
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0462530Z 	at org.gradle.api.tasks.testing.AbstractTestTask.executeTests(AbstractTestTask.java:615)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0466430Z 	at org.gradle.api.tasks.testing.Test.executeTests(Test.java:760)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0467110Z 	at org.gradle.internal.reflect.JavaMethod.invoke(JavaMethod.java:125)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0467890Z 	at org.gradle.api.internal.project.taskfactory.StandardTaskAction.doExecute(StandardTaskAction.java:58)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0468670Z 	at org.gradle.api.internal.project.taskfactory.StandardTaskAction.execute(StandardTaskAction.java:51)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0469450Z 	at org.gradle.api.internal.project.taskfactory.StandardTaskAction.execute(StandardTaskAction.java:29)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0470140Z 	at org.gradle.api.internal.tasks.execution.TaskExecution$3.run(TaskExecution.java:259)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0471070Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner$1.execute(DefaultBuildOperationRunner.java:30)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0473640Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner$1.execute(DefaultBuildOperationRunner.java:27)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0474500Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:67)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0475280Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:60)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0476050Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:167)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0476890Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:60)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0478060Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner.run(DefaultBuildOperationRunner.java:48)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0478850Z 	at org.gradle.api.internal.tasks.execution.TaskExecution.executeAction(TaskExecution.java:244)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0479590Z 	at org.gradle.api.internal.tasks.execution.TaskExecution.executeActions(TaskExecution.java:227)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0480410Z 	at org.gradle.api.internal.tasks.execution.TaskExecution.executeWithPreviousOutputFiles(TaskExecution.java:210)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0502910Z 	at org.gradle.api.internal.tasks.execution.TaskExecution.execute(TaskExecution.java:176)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0503910Z 	at org.gradle.internal.execution.steps.ExecuteStep.executeInternal(ExecuteStep.java:167)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0565730Z 	at org.gradle.internal.execution.steps.ExecuteStep.access$000(ExecuteStep.java:47)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0578350Z 	at org.gradle.internal.execution.steps.ExecuteStep$1.call(ExecuteStep.java:137)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0583010Z 	at org.gradle.internal.execution.steps.ExecuteStep$1.call(ExecuteStep.java:134)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0592450Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:210)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0595270Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:205)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0597640Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:67)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0599890Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:60)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0602130Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:167)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0604540Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:60)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0606790Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner.call(DefaultBuildOperationRunner.java:54)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0608510Z 	at org.gradle.internal.execution.steps.ExecuteStep.execute(ExecuteStep.java:134)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0609850Z 	at org.gradle.internal.execution.steps.ExecuteStep$Mutable.execute(ExecuteStep.java:80)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0611500Z 	at org.gradle.internal.execution.steps.CancelExecutionStep.execute(CancelExecutionStep.java:42)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0613350Z 	at org.gradle.internal.execution.steps.TimeoutStep.executeWithoutTimeout(TimeoutStep.java:75)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0616180Z 	at org.gradle.internal.execution.steps.TimeoutStep.execute(TimeoutStep.java:55)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0617950Z 	at org.gradle.internal.execution.steps.PreCreateOutputParentsStep.execute(PreCreateOutputParentsStep.java:51)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0619960Z 	at org.gradle.internal.execution.steps.PreCreateOutputParentsStep.execute(PreCreateOutputParentsStep.java:29)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0626590Z 	at org.gradle.internal.execution.steps.RemovePreviousOutputsStep.executeMutable(RemovePreviousOutputsStep.java:67)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0629630Z 	at org.gradle.internal.execution.steps.RemovePreviousOutputsStep.executeMutable(RemovePreviousOutputsStep.java:39)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0631270Z 	at org.gradle.internal.execution.steps.MutableStep.execute(MutableStep.java:26)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0632000Z 	at org.gradle.internal.execution.steps.BroadcastChangingOutputsStep.execute(BroadcastChangingOutputsStep.java:42)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0633050Z 	at org.gradle.internal.execution.steps.BroadcastChangingOutputsStep.execute(BroadcastChangingOutputsStep.java:24)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0634020Z 	at org.gradle.internal.execution.steps.CaptureOutputsAfterExecutionStep.execute(CaptureOutputsAfterExecutionStep.java:69)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0634910Z 	at org.gradle.internal.execution.steps.CaptureOutputsAfterExecutionStep.execute(CaptureOutputsAfterExecutionStep.java:46)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0635980Z 	at org.gradle.internal.execution.steps.ResolveInputChangesStep.executeMutable(ResolveInputChangesStep.java:39)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0637480Z 	at org.gradle.internal.execution.steps.ResolveInputChangesStep.executeMutable(ResolveInputChangesStep.java:28)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0638200Z 	at org.gradle.internal.execution.steps.MutableStep.execute(MutableStep.java:26)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0638900Z 	at org.gradle.internal.execution.steps.BuildCacheStep.executeWithoutCache(BuildCacheStep.java:189)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0639610Z 	at org.gradle.internal.execution.steps.BuildCacheStep.lambda$execute$1(BuildCacheStep.java:76)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0640220Z 	at org.gradle.internal.Either$Right.fold(Either.java:176)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0640670Z 	at org.gradle.internal.execution.caching.CachingState.fold(CachingState.java:62)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0641280Z 	at org.gradle.internal.execution.steps.BuildCacheStep.execute(BuildCacheStep.java:74)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0641850Z 	at org.gradle.internal.execution.steps.BuildCacheStep.execute(BuildCacheStep.java:49)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0642630Z 	at org.gradle.internal.execution.steps.StoreExecutionStateStep.executeMutable(StoreExecutionStateStep.java:46)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0643470Z 	at org.gradle.internal.execution.steps.StoreExecutionStateStep.executeMutable(StoreExecutionStateStep.java:35)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0644120Z 	at org.gradle.internal.execution.steps.MutableStep.execute(MutableStep.java:26)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0644820Z 	at org.gradle.internal.execution.steps.SkipUpToDateStep.executeBecause(SkipUpToDateStep.java:75)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0645500Z 	at org.gradle.internal.execution.steps.SkipUpToDateStep.lambda$execute$2(SkipUpToDateStep.java:53)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0646210Z 	at org.gradle.internal.execution.steps.SkipUpToDateStep.execute(SkipUpToDateStep.java:53)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0646830Z 	at org.gradle.internal.execution.steps.SkipUpToDateStep.execute(SkipUpToDateStep.java:35)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0647700Z 	at org.gradle.internal.execution.steps.legacy.MarkSnapshottingInputsFinishedStep.execute(MarkSnapshottingInputsFinishedStep.java:37)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0648720Z 	at org.gradle.internal.execution.steps.legacy.MarkSnapshottingInputsFinishedStep.execute(MarkSnapshottingInputsFinishedStep.java:27)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0649670Z 	at org.gradle.internal.execution.steps.ResolveMutableCachingStateStep.executeDelegate(ResolveMutableCachingStateStep.java:70)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0650610Z 	at org.gradle.internal.execution.steps.ResolveMutableCachingStateStep.executeDelegate(ResolveMutableCachingStateStep.java:32)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0652050Z 	at org.gradle.internal.execution.steps.AbstractResolveCachingStateStep.execute(AbstractResolveCachingStateStep.java:69)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0652980Z 	at org.gradle.internal.execution.steps.AbstractResolveCachingStateStep.execute(AbstractResolveCachingStateStep.java:37)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0653840Z 	at org.gradle.internal.execution.steps.ResolveChangesStep.executeMutable(ResolveChangesStep.java:63)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0654470Z 	at org.gradle.internal.execution.steps.ResolveChangesStep.executeMutable(ResolveChangesStep.java:34)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0655160Z 	at org.gradle.internal.execution.steps.MutableStep.execute(MutableStep.java:26)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0655780Z 	at org.gradle.internal.execution.steps.ValidateStep$Mutable.executeDelegate(ValidateStep.java:79)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0656520Z 	at org.gradle.internal.execution.steps.ValidateStep$Mutable.executeDelegate(ValidateStep.java:65)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0657180Z 	at org.gradle.internal.execution.steps.ValidateStep.execute(ValidateStep.java:99)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0657750Z 	at org.gradle.internal.execution.steps.ValidateStep$Mutable.execute(ValidateStep.java:65)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0658580Z 	at org.gradle.internal.execution.steps.CaptureMutableStateBeforeExecutionStep.executeMutable(CaptureMutableStateBeforeExecutionStep.java:86)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0659600Z 	at org.gradle.internal.execution.steps.CaptureMutableStateBeforeExecutionStep.execute(CaptureMutableStateBeforeExecutionStep.java:65)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0660540Z 	at org.gradle.internal.execution.steps.CaptureMutableStateBeforeExecutionStep.execute(CaptureMutableStateBeforeExecutionStep.java:45)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0661710Z 	at org.gradle.internal.execution.steps.SkipEmptyMutableWorkStep.executeWithNonEmptySources(SkipEmptyMutableWorkStep.java:210)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0662660Z 	at org.gradle.internal.execution.steps.SkipEmptyMutableWorkStep.executeMutable(SkipEmptyMutableWorkStep.java:90)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0663550Z 	at org.gradle.internal.execution.steps.SkipEmptyMutableWorkStep.executeMutable(SkipEmptyMutableWorkStep.java:53)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0664160Z 	at org.gradle.internal.execution.steps.MutableStep.execute(MutableStep.java:26)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0664980Z 	at org.gradle.internal.execution.steps.legacy.MarkSnapshottingInputsStartedStep.execute(MarkSnapshottingInputsStartedStep.java:38)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0665910Z 	at org.gradle.internal.execution.steps.LoadPreviousExecutionStateStep.executeMutable(LoadPreviousExecutionStateStep.java:36)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0670360Z 	at org.gradle.internal.execution.steps.LoadPreviousExecutionStateStep.executeMutable(LoadPreviousExecutionStateStep.java:23)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0673070Z 	at org.gradle.internal.execution.steps.MutableStep.execute(MutableStep.java:26)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0675120Z 	at org.gradle.internal.execution.steps.HandleStaleOutputsStep.executeMutable(HandleStaleOutputsStep.java:77)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0677280Z 	at org.gradle.internal.execution.steps.HandleStaleOutputsStep.executeMutable(HandleStaleOutputsStep.java:43)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0679000Z 	at org.gradle.internal.execution.steps.MutableStep.execute(MutableStep.java:26)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0680920Z 	at org.gradle.internal.execution.steps.AssignMutableWorkspaceStep.lambda$executeMutable$0(AssignMutableWorkspaceStep.java:34)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0682920Z 	at org.gradle.api.internal.tasks.execution.TaskExecution$4.withWorkspace(TaskExecution.java:305)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0684930Z 	at org.gradle.internal.execution.steps.AssignMutableWorkspaceStep.executeMutable(AssignMutableWorkspaceStep.java:30)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0687230Z 	at org.gradle.internal.execution.steps.AssignMutableWorkspaceStep.executeMutable(AssignMutableWorkspaceStep.java:21)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0689010Z 	at org.gradle.internal.execution.steps.MutableStep.execute(MutableStep.java:26)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0690530Z 	at org.gradle.internal.execution.steps.ChoosePipelineStep.execute(ChoosePipelineStep.java:40)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0692220Z 	at org.gradle.internal.execution.steps.ChoosePipelineStep.execute(ChoosePipelineStep.java:23)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0695960Z 	at org.gradle.internal.execution.steps.ExecuteWorkBuildOperationFiringStep.lambda$execute$2(ExecuteWorkBuildOperationFiringStep.java:67)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0699190Z 	at org.gradle.internal.execution.steps.ExecuteWorkBuildOperationFiringStep.execute(ExecuteWorkBuildOperationFiringStep.java:67)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0701750Z 	at org.gradle.internal.execution.steps.ExecuteWorkBuildOperationFiringStep.execute(ExecuteWorkBuildOperationFiringStep.java:39)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0703940Z 	at org.gradle.internal.execution.steps.IdentityCacheStep.execute(IdentityCacheStep.java:46)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0705590Z 	at org.gradle.internal.execution.steps.IdentityCacheStep.execute(IdentityCacheStep.java:34)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0707230Z 	at org.gradle.internal.execution.steps.IdentifyStep.execute(IdentifyStep.java:56)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0712160Z 	at org.gradle.internal.execution.steps.IdentifyStep.execute(IdentifyStep.java:38)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0713820Z 	at org.gradle.internal.execution.impl.DefaultExecutionEngine$1.execute(DefaultExecutionEngine.java:68)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0715860Z 	at org.gradle.api.internal.tasks.execution.ExecuteActionsTaskExecuter.executeIfValid(ExecuteActionsTaskExecuter.java:132)
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0717330Z 	... 30 more
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0717680Z 
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0717700Z 
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.0718000Z BUILD FAILED in 2m 50s
+Native macos-aarch64	Compile, test, and package native kernels	2026-10-12T19:47:25.4064200Z ##[error]Process completed with exit code 1.

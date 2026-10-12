@@ -1,0 +1,50 @@
+site:
+  title: Vectors Documentation
+  start_page: vectors::index.adoc
+  keys:
+    repo_url: https://github.com/integrallis/vectors
+
+content:
+  sources:
+    - url: /Users/briansam-bodden/Code/java-ai/projects/vectors
+      branches: fix/runtime-qualification
+      worktrees: true
+      start_path: docs/content
+
+runtime:
+  fetch: true
+  cache_dir: ./.cache/antora
+
+ui:
+  bundle:
+    url: https://gitlab.com/antora/antora-ui-default/-/jobs/artifacts/HEAD/raw/build/ui-bundle.zip?job=bundle-stable
+    snapshot: true
+  supplemental_files:
+    - path: partials/header-content.hbs
+      contents: ./supplemental-ui/partials/header-content.hbs
+    - path: partials/head-meta.hbs
+      contents: ./supplemental-ui/partials/head-meta.hbs
+    - path: css/vectors-theme.css
+      contents: ./supplemental-ui/css/vectors-theme.css
+    - path: js/vectors-theme.js
+      contents: ./supplemental-ui/js/vectors-theme.js
+    - path: img/integrallis-logo.png
+      contents: ./supplemental-ui/img/integrallis-logo.png
+    - path: img/java-vectors-logo.png
+      contents: ./supplemental-ui/img/java-vectors-logo.png
+    - path: img/favicon.ico
+      contents: ./supplemental-ui/img/favicon.ico
+    - path: img/favicon-32x32.png
+      contents: ./supplemental-ui/img/favicon-32x32.png
+
+asciidoc:
+  attributes:
+    experimental: ''
+    idprefix: ''
+    idseparator: '-'
+    page-pagination: ''
+    toc: ~
+    xrefstyle: short
+    source-language: java
+    javadoc-base-url: '_attachments/javadoc'
+    javadoc-aggregate-url: '{javadoc-base-url}/aggregate'

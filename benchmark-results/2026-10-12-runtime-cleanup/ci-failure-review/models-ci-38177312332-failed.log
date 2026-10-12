@@ -1,0 +1,1287 @@
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	﻿2026-10-11T21:40:12.3475382Z Current runner version: '2.337.0'
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:12.3504842Z ##[group]Runner Image Provisioner
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:12.3505799Z Hosted Compute Agent
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:12.3506407Z Version: 20261002.596
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:12.3507185Z Commit: c3d12f3313a95f25162a1503be624f3b0617f8c0
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:12.3507886Z Build Date: 2026-10-02T22:28:27Z
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:12.3508600Z Worker ID: {d2aa179f-1a36-4ccb-bbbf-4bc7ab655d91}
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:12.3509443Z Region: northcentralus
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:12.3510073Z Cloud: Azure
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:12.3510683Z ##[endgroup]
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:12.3513132Z ##[group]Operating System
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:12.3513775Z Ubuntu
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:12.3514473Z 24.04.5
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:12.3514990Z LTS
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:12.3515611Z ##[endgroup]
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:12.3516194Z ##[group]Runner Image
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:12.3516786Z Image: ubuntu-24.04-arm
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:12.3517457Z Version: 20261004.142.1
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:12.3518809Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24-arm64/20261004.142/images/ubuntu/Ubuntu2404-Arm64-Readme.md
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:12.3520473Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24-arm64%2F20261004.142
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:12.3521676Z ##[endgroup]
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:12.3522913Z ##[group]GITHUB_TOKEN Permissions
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:12.3525589Z Contents: read
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:12.3526354Z Metadata: read
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:12.3526922Z ##[endgroup]
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:12.3529755Z Secret source: Actions
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:12.3530732Z Cache mode: write
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:12.3532604Z Prepare workflow directory
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:12.3895795Z Prepare all required actions
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:12.3944595Z Getting action download info
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:12.6248854Z Download action repository 'actions/checkout@v5' (SHA:fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:13.1170701Z Download action repository 'actions/setup-java@v5' (SHA:b6effb05e454b25005698d916606bdc6ffcbf961)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:13.6046904Z Download action repository 'gradle/actions@v6' (SHA:3f5f9adaf7d9fecd50b5935e54106014257a94e6)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:14.5393205Z Download action repository 'actions/cache@v5' (SHA:caa296126883cff596d87d8935842f9db880ef25)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:14.6644492Z Download action repository 'actions/upload-artifact@v7' (SHA:cf430e030ddbb5b0abf93d22962f4752f3646cd9)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:15.1583562Z Complete job name: Bonsai native real weights (ubuntu-24.04-arm)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:15.2326077Z ##[group]Run actions/checkout@v5
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:15.2327143Z with:
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:15.2327436Z   repository: integrallis/models
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:15.2330059Z   token: ***
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:15.2330403Z   ssh-strict: true
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:15.2330666Z   ssh-user: git
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:15.2330960Z   persist-credentials: true
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:15.2331337Z   clean: true
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:15.2331910Z   sparse-checkout-cone-mode: true
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:15.2332275Z   fetch-depth: 1
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:15.2332539Z   fetch-tags: false
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:15.2332823Z   show-progress: true
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:15.2333155Z   lfs: false
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:15.2333426Z   submodules: false
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:15.2333725Z   set-safe-directory: true
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:15.2334019Z   allow-unsafe-pr-checkout: false
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:15.2334829Z ##[endgroup]
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:15.3179496Z Syncing repository: integrallis/models
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:15.3181284Z ##[group]Getting Git version info
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:15.3182142Z Working directory is '/home/runner/work/models/models'
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:15.3183093Z [command]/usr/bin/git version
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:15.4598789Z git version 2.55.0
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:15.4617570Z ##[endgroup]
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:15.4631258Z Temporarily overriding HOME='/home/runner/work/_temp/67e4ab2d-4991-4eff-ada9-b668882d96f8' before making global git config changes
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:15.4632627Z Adding repository directory to the temporary git global config as a safe directory
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:15.4636561Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/models/models
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:15.4667576Z Deleting the contents of '/home/runner/work/models/models'
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:15.4672038Z ##[group]Initializing the repository
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:15.4676731Z [command]/usr/bin/git init /home/runner/work/models/models
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:15.5176907Z hint: Using 'master' as the name for the initial branch. This default branch name
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:15.5177933Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:15.5178778Z hint: to use in all of your new repositories, which will suppress this warning,
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:15.5179710Z hint: call:
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:15.5180183Z hint:
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:15.5180954Z hint: 	git config --global init.defaultBranch <name>
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:15.5181878Z hint:
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:15.5182526Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:15.5183229Z hint: 'development'. The just-created branch can be renamed via this command:
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:15.5183901Z hint:
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:15.5184560Z hint: 	git branch -m <name>
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:15.5185177Z hint:
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:15.5185778Z hint: Disable this message with "git config set advice.defaultBranchName false"
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:15.5186528Z Initialized empty Git repository in /home/runner/work/models/models/.git/
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:15.5189984Z [command]/usr/bin/git remote add origin https://github.com/integrallis/models
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:15.5328378Z ##[endgroup]
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:15.5329037Z ##[group]Disabling automatic garbage collection
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:15.5331722Z [command]/usr/bin/git config --local gc.auto 0
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:15.5359237Z ##[endgroup]
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:15.5359743Z ##[group]Setting up auth
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:15.5365912Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:15.5393195Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:15.7473409Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:15.7499556Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:15.7675661Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:15.7701536Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:15.7883787Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:15.7917340Z ##[endgroup]
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:15.7925198Z ##[group]Fetching the repository
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:15.7926142Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +9a06d8bb0c8392b387c30b5de4d702a2f9a45210:refs/remotes/pull/266/merge
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:16.8537511Z From https://github.com/integrallis/models
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:16.8538194Z  * [new ref]         9a06d8bb0c8392b387c30b5de4d702a2f9a45210 -> pull/266/merge
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:16.8542338Z ##[endgroup]
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:16.8543048Z ##[group]Determining the checkout info
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:16.8543545Z ##[endgroup]
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:16.8549155Z [command]/usr/bin/git sparse-checkout disable
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:16.8642003Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:16.8686430Z ##[group]Checking out the ref
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:16.8689635Z [command]/usr/bin/git checkout --progress --force refs/remotes/pull/266/merge
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:17.1709229Z Note: switching to 'refs/remotes/pull/266/merge'.
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:17.1709678Z 
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:17.1710409Z You are in 'detached HEAD' state. You can look around, make experimental
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:17.1711861Z changes and commit them, and you can discard any commits you make in this
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:17.1712574Z state without impacting any branches by switching back to a branch.
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:17.1713403Z 
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:17.1726712Z If you want to create a new branch to retain commits you create, you may
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:17.1727589Z do so (now or later) by using -c with the switch command. Example:
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:17.1728012Z 
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:17.1728492Z   git switch -c <new-branch-name>
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:17.1728775Z 
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:17.1728954Z Or undo this operation with:
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:17.1729350Z 
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:17.1729580Z   git switch -
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:17.1729976Z 
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:17.1732892Z Turn off this advice by setting config variable advice.detachedHead to false
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:17.1733703Z 
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:17.1734345Z HEAD is now at 9a06d8b Merge b85cd653a3549b1f468be95409a46fc68bae3a8c into 3490dff4b848eb6221b47cbf5a81d247709c05aa
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:17.1735970Z ##[endgroup]
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:17.1810778Z [command]/usr/bin/git log -1 --format=%H
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:17.1831562Z 9a06d8bb0c8392b387c30b5de4d702a2f9a45210
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:17.2169577Z ##[group]Run actions/setup-java@v5
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:17.2169952Z with:
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:17.2170173Z   distribution: temurin
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:17.2170506Z   java-version: 25
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:17.2170758Z   java-package: jdk
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:17.2171021Z   check-latest: false
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:17.2171257Z   set-default: true
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:17.2171755Z   verify-signature: false
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:17.2172097Z   server-id: github
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:17.2172348Z   server-username: GITHUB_ACTOR
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:17.2172675Z   server-password: GITHUB_TOKEN
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:17.2172950Z   overwrite-settings: true
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:17.2173190Z   job-status: success
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:17.2175722Z   token: ***
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:17.2176001Z   show-download-progress: false
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:17.2176319Z ##[endgroup]
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:17.3457749Z ##[group]Installed distributions
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:17.3691072Z Trying to resolve the latest version from remote
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:17.5948834Z Resolved latest version as 25.0.4+101.0.LTS
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:17.5949265Z Trying to download...
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:17.5950140Z Downloading Java 25.0.4+101.0.LTS (Temurin-Hotspot) from https://github.com/adoptium/temurin25-binaries/releases/download/jdk-25.0.4.1%2B1/OpenJDK25U-jdk_aarch64_linux_hotspot_25.0.4.1_1.tar.gz ...
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:18.5432347Z Extracting Java archive...
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:18.5537973Z [command]/usr/bin/tar xz --warning=no-unknown-keyword --overwrite -C /home/runner/work/_temp/c373cd1f-6c5b-4fb8-9611-0840bf6652fd -f /home/runner/work/_temp/f4e3d04a-986f-4db8-a1af-a350b2ea1117
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:20.7923517Z Java 25.0.4+101.0.LTS was downloaded
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:20.7923843Z Setting Java 25.0.4+101.0.LTS as the default
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:20.7931199Z Creating toolchains.xml for JDK version 25 from temurin
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:20.7993514Z Writing to /home/runner/.m2/toolchains.xml
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:20.7993969Z 
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:20.7994454Z Java configuration:
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:20.7994712Z   Distribution: temurin
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:20.7994997Z   Version: 25.0.4+101.0.LTS
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:20.7995433Z   Path: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-101.0.LTS/arm64
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:20.7995746Z 
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:20.7996132Z ##[endgroup]
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:20.8023999Z Creating settings.xml with server-id: github
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:20.8024488Z Writing to /home/runner/.m2/settings.xml
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:20.8025168Z Configured MAVEN_ARGS to include -ntp to suppress Maven transfer progress logs. Set 'show-download-progress: true' to keep the download progress output.
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:20.9566146Z ##[group]Run gradle/actions/setup-gradle@v6
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:20.9566500Z with:
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:20.9566778Z   cache-provider: enhanced
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:20.9567036Z   cache-disabled: false
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:20.9567267Z   cache-read-only: true
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:20.9567559Z   cache-write-only: false
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:20.9567810Z   cache-overwrite-existing: false
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:20.9568121Z   cache-cleanup: on-success
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:20.9568651Z   gradle-home-cache-includes: caches
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	notifications
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:20.9568977Z   add-job-summary: always
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:20.9569310Z   add-job-summary-as-pr-comment: never
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:20.9569600Z   dependency-graph: disabled
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:20.9569900Z   dependency-graph-report-dir: dependency-graph-reports
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:20.9570314Z   dependency-graph-continue-on-failure: true
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:20.9570623Z   build-scan-publish: false
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:20.9570928Z   validate-wrappers: true
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:20.9571282Z   allow-snapshot-wrappers: false
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:20.9571982Z   gradle-home-cache-strict-match: false
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:20.9572354Z   workflow-job-context: {
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	  "runner": "ubuntu-24.04-arm"
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	}
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:20.9574997Z   github-token: ***
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:20.9575316Z env:
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:20.9575633Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-101.0.LTS/arm64
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:20.9576215Z   JAVA_HOME_25_ARM64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-101.0.LTS/arm64
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:20.9576694Z   MAVEN_ARGS: -ntp
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:20.9576923Z ##[endgroup]
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:21.2509176Z Merged default JDK locations into /home/runner/.m2/toolchains.xml
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:21.2514467Z Enhanced Caching: This build is using the proprietary 'gradle-actions-caching' provider for optimized caching support. See https://github.com/gradle/actions/blob/main/DISTRIBUTION.md for terms of use and opt-out instructions.
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:21.3236561Z ##[group]Restore Gradle state from cache
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:21.4538051Z Gradle User Home cache not found. Will initialize empty.
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:21.4538894Z ##[endgroup]
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:21.5173542Z ##[group]All Gradle Wrapper jars are valid
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:21.5174824Z ✓ Found known Gradle Wrapper JAR files:
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:21.5175397Z   2db75c40782f5e8ba1fc278a5574bab070adccb2d21ca5a6e5ed840888448046 gradle/wrapper/gradle-wrapper.jar
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:21.5176197Z ##[endgroup]
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:21.5290339Z ##[group]Run rustup toolchain install 1.96.0 --profile minimal --no-self-update
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:21.5291053Z ^[[36;1mrustup toolchain install 1.96.0 --profile minimal --no-self-update^[[0m
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:21.5292142Z ^[[36;1mrustup component add --toolchain 1.96.0 clippy rustfmt^[[0m
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:21.5563974Z shell: /usr/bin/bash -e {0}
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:21.5564482Z env:
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:21.5564836Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-101.0.LTS/arm64
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:21.5565433Z   JAVA_HOME_25_ARM64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-101.0.LTS/arm64
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:21.5565917Z   MAVEN_ARGS: -ntp
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:21.5566198Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:21.5566567Z   GRADLE_USER_HOME: /home/runner/.gradle
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:21.5566878Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:21.5567374Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:21.5567952Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:21.5568402Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:21.5568681Z ##[endgroup]
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:22.0823504Z info: syncing channel updates for 1.96.0-aarch64-unknown-linux-gnu
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:22.3158903Z info: latest update on 2026-05-28 for version 1.96.0 (ac68faa20 2026-05-25)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:22.3159584Z info: downloading 3 components
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:27.0436092Z 
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:27.0496580Z   1.96.0-aarch64-unknown-linux-gnu installed - rustc 1.96.0 (ac68faa20 2026-05-25)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:27.0496982Z 
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:27.1231165Z info: downloading 2 components
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:27.6668079Z ##[group]Run actions/cache@v5
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:27.6668415Z with:
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:27.6668789Z   path: ~/.jvllm/models/Ternary-Bonsai-2-27B-PTQ1_0.gguf
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:27.6669159Z   key: bonsai2-27b-ptq1_0-fixture-v1
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:27.6669429Z   enableCrossOsArchive: false
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:27.6669746Z   fail-on-cache-miss: false
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:27.6669990Z   lookup-only: false
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:27.6670483Z   save-always: false
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:27.6670737Z env:
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:27.6671069Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-101.0.LTS/arm64
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:27.6672097Z   JAVA_HOME_25_ARM64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-101.0.LTS/arm64
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:27.6672531Z   MAVEN_ARGS: -ntp
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:27.6672819Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:27.6673173Z   GRADLE_USER_HOME: /home/runner/.gradle
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:27.6673465Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:27.6674175Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:27.6674673Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:27.6675064Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:27.6675357Z ##[endgroup]
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:27.8681305Z Cache hit for: bonsai2-27b-ptq1_0-fixture-v1
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:29.0035762Z Received 134217728 of 5923957232 (2.3%), 127.1 MBs/sec
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:30.0023789Z Received 268435456 of 5923957232 (4.5%), 127.5 MBs/sec
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:31.0058414Z Received 507510784 of 5923957232 (8.6%), 160.7 MBs/sec
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:32.0059979Z Received 717225984 of 5923957232 (12.1%), 170.5 MBs/sec
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:33.0063048Z Received 939524096 of 5923957232 (15.9%), 178.8 MBs/sec
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:34.0066186Z Received 1161822208 of 5923957232 (19.6%), 184.3 MBs/sec
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:35.0076921Z Received 1392508928 of 5923957232 (23.5%), 189.4 MBs/sec
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:36.0079453Z Received 1610612736 of 5923957232 (27.2%), 191.7 MBs/sec
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:37.0122865Z Received 1874853888 of 5923957232 (31.6%), 198.4 MBs/sec
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:38.0088591Z Received 2118123520 of 5923957232 (35.8%), 201.7 MBs/sec
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:39.0088777Z Received 2319450112 of 5923957232 (39.2%), 200.8 MBs/sec
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:40.0272579Z Received 2550136832 of 5923957232 (43.0%), 202.1 MBs/sec
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:41.0302856Z Received 2768240640 of 5923957232 (46.7%), 202.6 MBs/sec
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:42.0278983Z Received 2986344448 of 5923957232 (50.4%), 203.0 MBs/sec
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:43.0290523Z Received 3221225472 of 5923957232 (54.4%), 204.3 MBs/sec
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:44.0294715Z Received 3443523584 of 5923957232 (58.1%), 204.8 MBs/sec
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:45.0345804Z Received 3661627392 of 5923957232 (61.8%), 204.9 MBs/sec
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:46.0348576Z Received 3888119808 of 5923957232 (65.6%), 205.5 MBs/sec
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:47.0365487Z Received 4110417920 of 5923957232 (69.4%), 205.9 MBs/sec
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:48.0403050Z Received 4315938816 of 5923957232 (72.9%), 205.4 MBs/sec
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:49.0370000Z Received 4559208448 of 5923957232 (77.0%), 206.6 MBs/sec
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:50.0378420Z Received 4764729344 of 5923957232 (80.4%), 206.1 MBs/sec
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:51.0406643Z Received 4970250240 of 5923957232 (83.9%), 205.7 MBs/sec
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:52.0431771Z Received 5184159744 of 5923957232 (87.5%), 205.6 MBs/sec
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:53.0430061Z Received 5393874944 of 5923957232 (91.1%), 205.4 MBs/sec
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:54.0435790Z Received 5628755968 of 5923957232 (95.0%), 206.1 MBs/sec
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:55.0439428Z Received 5842665472 of 5923957232 (98.6%), 206.0 MBs/sec
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:55.5520808Z Received 5923957232 of 5923957232 (100.0%), 205.0 MBs/sec
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:55.5522434Z Cache Size: ~5650 MB (5923957232 B)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:40:55.5618327Z [command]/usr/bin/tar -xf /home/runner/work/_temp/50b560ef-54e3-4733-8285-fdfa2a2d2938/cache.tzst -P -C /home/runner/work/models/models --use-compress-program unzstd
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:41:11.0651207Z Cache restored successfully
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:41:11.4636669Z Cache restored from key: bonsai2-27b-ptq1_0-fixture-v1
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:41:12.6697114Z ##[group]Run ./gradlew :backend-native:bonsai2NativeSlowTest --no-daemon --stacktrace
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:41:12.6697868Z ^[[36;1m./gradlew :backend-native:bonsai2NativeSlowTest --no-daemon --stacktrace^[[0m
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:41:12.6899652Z shell: /usr/bin/bash -e {0}
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:41:12.6900154Z env:
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:41:12.6900838Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-101.0.LTS/arm64
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:41:12.6901394Z   JAVA_HOME_25_ARM64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-101.0.LTS/arm64
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:41:12.6902225Z   MAVEN_ARGS: -ntp
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:41:12.6902486Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:41:12.6902857Z   GRADLE_USER_HOME: /home/runner/.gradle
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:41:12.6903197Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:41:12.6903632Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:41:12.6904173Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:41:12.6904610Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:41:12.6904920Z ##[endgroup]
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:41:12.7611531Z Downloading https://services.gradle.org/distributions/gradle-9.4.1-all.zip
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:41:14.3779932Z ......................10%.......................20%.......................30%......................40%.......................50%.......................60%......................70%.......................80%.......................90%.......................100%
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:41:17.1993651Z WARNING: A restricted method in java.lang.System has been called
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:41:17.1995793Z WARNING: java.lang.System::load has been called by net.rubygrapefruit.platform.internal.NativeLibraryLoader in an unnamed module (file:/home/runner/.gradle/wrapper/dists/gradle-9.4.1-all/eckclv9s5vi9exbmnyvpg2a3h/gradle-9.4.1/lib/native-platform-0.22-milestone-29.jar)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:41:17.1997200Z WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:41:17.1998067Z WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:41:17.1998443Z 
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:41:17.3293449Z 
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:41:17.3294877Z Welcome to Gradle 9.4.1!
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:41:17.3295732Z 
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:41:17.3295935Z Here are the highlights of this release:
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:41:17.3301644Z  - Java 26 support
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:41:17.3302173Z  - Non-class-based JVM tests
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:41:17.3302486Z  - Enhanced console progress bar
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:41:17.3302685Z 
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:41:17.3302948Z For more details see https://docs.gradle.org/9.4.1/release-notes.html
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:41:17.3303242Z 
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:41:17.4288664Z To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/9.4.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:41:18.3313780Z Daemon will be stopped at the end of the build 
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:42:33.7320371Z > Task :models-api:compileJava
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:42:37.4287080Z > Task :backend-java:compileJava
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:42:37.4294911Z > Task :writeReleaseDependencyManifest
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:42:37.5315367Z > Task :backend-java:processResources
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:42:37.5316241Z > Task :backend-java:classes
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:42:38.1286260Z > Task :models-runtime:compileJava
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:42:44.7292675Z > Task :backend-java:compileTestJava
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:42:44.7322626Z > Task :backend-java:processTestResources
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:42:44.7342199Z > Task :backend-java:testClasses
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:42:44.7352166Z > Task :models-api:processResources
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:42:44.7352890Z > Task :models-api:classes
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:42:44.7363655Z > Task :models-api:jar
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:42:44.7364346Z > Task :models-runtime:processResources
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:42:44.7392342Z > Task :models-runtime:classes
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:42:44.8289750Z > Task :models-runtime:jar
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:42:49.2291751Z 
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:42:49.2292779Z > Task :backend-java:downloadBonsai2Ptq10Model
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:42:49.2293882Z /home/runner/.jvllm/models/Ternary-Bonsai-2-27B-PTQ1_0.gguf
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:42:49.3285781Z 
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:42:49.3286439Z > Task :backend-java:jar
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:42:51.3291644Z    Compiling jmodels-kernels v0.3.59 (/home/runner/work/models/models/backend-native/src/main/rust/model-kernels)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:42:51.3292761Z 
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:42:51.3292914Z > Task :backend-native:cargoBuildRelease
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:42:54.9296201Z     Finished `release` profile [optimized] target(s) in 5.56s
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:42:55.1285559Z 
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:42:55.1286834Z > Task :backend-native:compileJava
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:42:55.1287553Z > Task :backend-native:processResources
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:42:55.1288088Z > Task :backend-native:classes
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:42:55.5286248Z > Task :backend-native:compileTestJava
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:42:55.5286897Z > Task :backend-native:verifyNativeBuildPlatform
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:42:55.5287698Z > Task :backend-native:prepareNativePlatformResources
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:42:55.5288228Z > Task :backend-native:nativePlatformJar
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:42:55.6286570Z > Task :backend-native:processTestResources NO-SOURCE
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:42:55.6287453Z > Task :backend-native:testClasses
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:42:57.5286701Z WARNING: Using incubator modules: jdk.incubator.vector
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:42:57.5287040Z 
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:42:57.5287878Z > Task :backend-native:bonsai2NativeSlowTest
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:43:24.7302562Z 
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:43:24.7305484Z Bonsai2NativeModelFixtureSlowTest > releasedArtifactOracleAndFreshSessionSurviveNativeProjectionRouting() PASSED
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.0285719Z 
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.0290846Z Bonsai2NativeModelFixtureSlowTest > transformedBatchesMatchSequentialRealWeightLogitsAcrossChunkBoundaries() FAILED
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.0292412Z     org.opentest4j.AssertionFailedError: [full-vocabulary parity at continuation 0] 
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.0293123Z     expected: 0.0
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.0293796Z      but was: 0.12840604782104492
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.0295067Z         at app//com.integrallis.models.backend.nativekernel.Bonsai2NativeModelFixtureSlowTest.transformedBatchesMatchSequentialRealWeightLogitsAcrossChunkBoundaries(Bonsai2NativeModelFixtureSlowTest.java:139)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.0299935Z 
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.0300089Z 2 tests completed, 1 failed
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.1286827Z 
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.1287921Z > Task :backend-native:bonsai2NativeSlowTest FAILED
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.1288766Z gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/__run_2-1791754881386.json
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2285217Z 
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2286015Z FAILURE: Build failed with an exception.
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2286400Z 
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2286736Z * What went wrong:
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2287322Z Execution failed for task ':backend-native:bonsai2NativeSlowTest'.
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2288106Z > There were failing tests. See the report at: file:///home/runner/work/models/models/backend-native/build/reports/tests/bonsai2NativeSlowTest/index.html
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2288716Z 
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2288852Z * Try:
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2289395Z > Run with --scan to get full insights from a Build Scan (powered by Develocity).
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2289803Z 
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2290079Z * Exception is:
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2290578Z org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':backend-native:bonsai2NativeSlowTest'.
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2291896Z 	at org.gradle.api.internal.tasks.execution.ExecuteActionsTaskExecuter.lambda$executeIfValid$1(ExecuteActionsTaskExecuter.java:135)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2292793Z 	at org.gradle.internal.Try$Failure.ifSuccessfulOrElse(Try.java:288)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2293569Z 	at org.gradle.api.internal.tasks.execution.ExecuteActionsTaskExecuter.executeIfValid(ExecuteActionsTaskExecuter.java:133)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2294497Z 	at org.gradle.api.internal.tasks.execution.ExecuteActionsTaskExecuter.execute(ExecuteActionsTaskExecuter.java:121)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2295592Z 	at org.gradle.api.internal.tasks.execution.ProblemsTaskPathTrackingTaskExecuter.execute(ProblemsTaskPathTrackingTaskExecuter.java:41)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2297159Z 	at org.gradle.api.internal.tasks.execution.ResolveTaskExecutionModeExecuter.execute(ResolveTaskExecutionModeExecuter.java:51)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2298174Z 	at org.gradle.api.internal.tasks.execution.FinalizePropertiesTaskExecuter.execute(FinalizePropertiesTaskExecuter.java:46)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2299216Z 	at org.gradle.api.internal.tasks.execution.SkipTaskWithNoActionsExecuter.execute(SkipTaskWithNoActionsExecuter.java:57)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2300300Z 	at org.gradle.api.internal.tasks.execution.SkipOnlyIfTaskExecuter.execute(SkipOnlyIfTaskExecuter.java:74)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2301202Z 	at org.gradle.api.internal.tasks.execution.CatchExceptionTaskExecuter.execute(CatchExceptionTaskExecuter.java:36)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2302480Z 	at org.gradle.api.internal.tasks.execution.EventFiringTaskExecuter$1.executeTask(EventFiringTaskExecuter.java:77)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2303375Z 	at org.gradle.api.internal.tasks.execution.EventFiringTaskExecuter$1.call(EventFiringTaskExecuter.java:55)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2304198Z 	at org.gradle.api.internal.tasks.execution.EventFiringTaskExecuter$1.call(EventFiringTaskExecuter.java:52)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2305147Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:210)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2306307Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:205)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2307263Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:67)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2308149Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:60)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2308983Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:167)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2313835Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:60)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2323906Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner.call(DefaultBuildOperationRunner.java:54)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2324824Z 	at org.gradle.api.internal.tasks.execution.EventFiringTaskExecuter.execute(EventFiringTaskExecuter.java:52)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2347886Z 	at org.gradle.execution.plan.DefaultNodeExecutor.executeLocalTaskNode(DefaultNodeExecutor.java:55)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2349078Z 	at org.gradle.execution.plan.DefaultNodeExecutor.execute(DefaultNodeExecutor.java:34)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2350106Z 	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph$InvokeNodeExecutorsAction.execute(DefaultTaskExecutionGraph.java:355)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2351189Z 	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph$InvokeNodeExecutorsAction.execute(DefaultTaskExecutionGraph.java:343)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2353054Z 	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph$BuildOperationAwareExecutionAction.lambda$execute$0(DefaultTaskExecutionGraph.java:339)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2354114Z 	at org.gradle.internal.operations.CurrentBuildOperationRef.with(CurrentBuildOperationRef.java:84)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2355027Z 	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph$BuildOperationAwareExecutionAction.execute(DefaultTaskExecutionGraph.java:339)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2356235Z 	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph$BuildOperationAwareExecutionAction.execute(DefaultTaskExecutionGraph.java:328)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2363193Z 21 actionable tasks: 21 executed
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2382507Z 	at org.gradle.execution.plan.DefaultPlanExecutor$ExecutorWorker.execute(DefaultPlanExecutor.java:459)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2383299Z 	at org.gradle.execution.plan.DefaultPlanExecutor$ExecutorWorker.run(DefaultPlanExecutor.java:376)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2384173Z 	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:64)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2384995Z 	at org.gradle.internal.concurrent.AbstractManagedExecutor$1.run(AbstractManagedExecutor.java:47)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2386459Z Caused by: org.gradle.api.internal.exceptions.MarkedVerificationException: There were failing tests. See the report at: file:///home/runner/work/models/models/backend-native/build/reports/tests/bonsai2NativeSlowTest/index.html
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2387670Z 	at org.gradle.api.tasks.testing.AbstractTestTask.executeTests(AbstractTestTask.java:615)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2388413Z 	at org.gradle.api.tasks.testing.Test.executeTests(Test.java:760)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2388969Z 	at org.gradle.internal.reflect.JavaMethod.invoke(JavaMethod.java:125)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2389631Z 	at org.gradle.api.internal.project.taskfactory.StandardTaskAction.doExecute(StandardTaskAction.java:58)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2390460Z 	at org.gradle.api.internal.project.taskfactory.StandardTaskAction.execute(StandardTaskAction.java:51)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2391286Z 	at org.gradle.api.internal.project.taskfactory.StandardTaskAction.execute(StandardTaskAction.java:29)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2392228Z 	at org.gradle.api.internal.tasks.execution.TaskExecution$3.run(TaskExecution.java:259)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2393079Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner$1.execute(DefaultBuildOperationRunner.java:30)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2393911Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner$1.execute(DefaultBuildOperationRunner.java:27)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2394776Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:67)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2395631Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:60)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2396448Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:167)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2397383Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:60)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2398196Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner.run(DefaultBuildOperationRunner.java:48)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2399010Z 	at org.gradle.api.internal.tasks.execution.TaskExecution.executeAction(TaskExecution.java:244)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2399735Z 	at org.gradle.api.internal.tasks.execution.TaskExecution.executeActions(TaskExecution.java:227)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2400530Z 	at org.gradle.api.internal.tasks.execution.TaskExecution.executeWithPreviousOutputFiles(TaskExecution.java:210)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2401385Z 	at org.gradle.api.internal.tasks.execution.TaskExecution.execute(TaskExecution.java:176)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2402805Z 	at org.gradle.internal.execution.steps.ExecuteStep.executeInternal(ExecuteStep.java:167)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2403461Z 	at org.gradle.internal.execution.steps.ExecuteStep.access$000(ExecuteStep.java:47)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2404162Z 	at org.gradle.internal.execution.steps.ExecuteStep$1.call(ExecuteStep.java:137)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2404845Z 	at org.gradle.internal.execution.steps.ExecuteStep$1.call(ExecuteStep.java:134)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2405664Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:210)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2406785Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:205)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2407721Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:67)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2408582Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:60)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2409467Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:167)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2410292Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:60)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2411149Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner.call(DefaultBuildOperationRunner.java:54)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2412475Z 	at org.gradle.internal.execution.steps.ExecuteStep.execute(ExecuteStep.java:134)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2413224Z 	at org.gradle.internal.execution.steps.ExecuteStep$Mutable.execute(ExecuteStep.java:80)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2413914Z 	at org.gradle.internal.execution.steps.CancelExecutionStep.execute(CancelExecutionStep.java:42)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2414697Z 	at org.gradle.internal.execution.steps.TimeoutStep.executeWithoutTimeout(TimeoutStep.java:75)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2415531Z 	at org.gradle.internal.execution.steps.TimeoutStep.execute(TimeoutStep.java:55)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2416267Z 	at org.gradle.internal.execution.steps.PreCreateOutputParentsStep.execute(PreCreateOutputParentsStep.java:51)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2417208Z 	at org.gradle.internal.execution.steps.PreCreateOutputParentsStep.execute(PreCreateOutputParentsStep.java:29)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2418099Z 	at org.gradle.internal.execution.steps.RemovePreviousOutputsStep.executeMutable(RemovePreviousOutputsStep.java:67)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2419029Z 	at org.gradle.internal.execution.steps.RemovePreviousOutputsStep.executeMutable(RemovePreviousOutputsStep.java:39)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2419787Z 	at org.gradle.internal.execution.steps.MutableStep.execute(MutableStep.java:26)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2420564Z 	at org.gradle.internal.execution.steps.BroadcastChangingOutputsStep.execute(BroadcastChangingOutputsStep.java:42)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2421700Z 	at org.gradle.internal.execution.steps.BroadcastChangingOutputsStep.execute(BroadcastChangingOutputsStep.java:24)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2422639Z 	at org.gradle.internal.execution.steps.CaptureOutputsAfterExecutionStep.execute(CaptureOutputsAfterExecutionStep.java:69)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2423671Z 	at org.gradle.internal.execution.steps.CaptureOutputsAfterExecutionStep.execute(CaptureOutputsAfterExecutionStep.java:46)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2424604Z 	at org.gradle.internal.execution.steps.ResolveInputChangesStep.executeMutable(ResolveInputChangesStep.java:39)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2425488Z 	at org.gradle.internal.execution.steps.ResolveInputChangesStep.executeMutable(ResolveInputChangesStep.java:28)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2426278Z 	at org.gradle.internal.execution.steps.MutableStep.execute(MutableStep.java:26)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2426955Z 	at org.gradle.internal.execution.steps.BuildCacheStep.executeWithoutCache(BuildCacheStep.java:189)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2427713Z 	at org.gradle.internal.execution.steps.BuildCacheStep.lambda$execute$1(BuildCacheStep.java:76)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2428299Z 	at org.gradle.internal.Either$Right.fold(Either.java:176)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2428839Z 	at org.gradle.internal.execution.caching.CachingState.fold(CachingState.java:62)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2429466Z 	at org.gradle.internal.execution.steps.BuildCacheStep.execute(BuildCacheStep.java:74)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2430102Z 	at org.gradle.internal.execution.steps.BuildCacheStep.execute(BuildCacheStep.java:49)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2430912Z 	at org.gradle.internal.execution.steps.StoreExecutionStateStep.executeMutable(StoreExecutionStateStep.java:46)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2431991Z 	at org.gradle.internal.execution.steps.StoreExecutionStateStep.executeMutable(StoreExecutionStateStep.java:35)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2432855Z 	at org.gradle.internal.execution.steps.MutableStep.execute(MutableStep.java:26)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2433535Z 	at org.gradle.internal.execution.steps.SkipUpToDateStep.executeBecause(SkipUpToDateStep.java:75)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2434332Z 	at org.gradle.internal.execution.steps.SkipUpToDateStep.lambda$execute$2(SkipUpToDateStep.java:53)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2435099Z 	at org.gradle.internal.execution.steps.SkipUpToDateStep.execute(SkipUpToDateStep.java:53)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2435794Z 	at org.gradle.internal.execution.steps.SkipUpToDateStep.execute(SkipUpToDateStep.java:35)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2436699Z 	at org.gradle.internal.execution.steps.legacy.MarkSnapshottingInputsFinishedStep.execute(MarkSnapshottingInputsFinishedStep.java:37)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2437794Z 	at org.gradle.internal.execution.steps.legacy.MarkSnapshottingInputsFinishedStep.execute(MarkSnapshottingInputsFinishedStep.java:27)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2439199Z 	at org.gradle.internal.execution.steps.ResolveMutableCachingStateStep.executeDelegate(ResolveMutableCachingStateStep.java:70)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2440307Z 	at org.gradle.internal.execution.steps.ResolveMutableCachingStateStep.executeDelegate(ResolveMutableCachingStateStep.java:32)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2441693Z 	at org.gradle.internal.execution.steps.AbstractResolveCachingStateStep.execute(AbstractResolveCachingStateStep.java:69)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2442779Z 	at org.gradle.internal.execution.steps.AbstractResolveCachingStateStep.execute(AbstractResolveCachingStateStep.java:37)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2443644Z 	at org.gradle.internal.execution.steps.ResolveChangesStep.executeMutable(ResolveChangesStep.java:63)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2444461Z 	at org.gradle.internal.execution.steps.ResolveChangesStep.executeMutable(ResolveChangesStep.java:34)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2445208Z 	at org.gradle.internal.execution.steps.MutableStep.execute(MutableStep.java:26)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2445859Z 	at org.gradle.internal.execution.steps.ValidateStep$Mutable.executeDelegate(ValidateStep.java:79)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2446628Z 	at org.gradle.internal.execution.steps.ValidateStep$Mutable.executeDelegate(ValidateStep.java:65)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2447310Z 	at org.gradle.internal.execution.steps.ValidateStep.execute(ValidateStep.java:99)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2448005Z 	at org.gradle.internal.execution.steps.ValidateStep$Mutable.execute(ValidateStep.java:65)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2448912Z 	at org.gradle.internal.execution.steps.CaptureMutableStateBeforeExecutionStep.executeMutable(CaptureMutableStateBeforeExecutionStep.java:86)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2450068Z 	at org.gradle.internal.execution.steps.CaptureMutableStateBeforeExecutionStep.execute(CaptureMutableStateBeforeExecutionStep.java:65)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2451156Z 	at org.gradle.internal.execution.steps.CaptureMutableStateBeforeExecutionStep.execute(CaptureMutableStateBeforeExecutionStep.java:45)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2452364Z 	at org.gradle.internal.execution.steps.SkipEmptyMutableWorkStep.executeWithNonEmptySources(SkipEmptyMutableWorkStep.java:210)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2453403Z 	at org.gradle.internal.execution.steps.SkipEmptyMutableWorkStep.executeMutable(SkipEmptyMutableWorkStep.java:90)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2454290Z 	at org.gradle.internal.execution.steps.SkipEmptyMutableWorkStep.executeMutable(SkipEmptyMutableWorkStep.java:53)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2455067Z 	at org.gradle.internal.execution.steps.MutableStep.execute(MutableStep.java:26)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2455931Z 	at org.gradle.internal.execution.steps.legacy.MarkSnapshottingInputsStartedStep.execute(MarkSnapshottingInputsStartedStep.java:38)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2456952Z 	at org.gradle.internal.execution.steps.LoadPreviousExecutionStateStep.executeMutable(LoadPreviousExecutionStateStep.java:36)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2458007Z 	at org.gradle.internal.execution.steps.LoadPreviousExecutionStateStep.executeMutable(LoadPreviousExecutionStateStep.java:23)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2458830Z 	at org.gradle.internal.execution.steps.MutableStep.execute(MutableStep.java:26)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2459590Z 	at org.gradle.internal.execution.steps.HandleStaleOutputsStep.executeMutable(HandleStaleOutputsStep.java:77)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2460447Z 	at org.gradle.internal.execution.steps.HandleStaleOutputsStep.executeMutable(HandleStaleOutputsStep.java:43)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2461192Z 	at org.gradle.internal.execution.steps.MutableStep.execute(MutableStep.java:26)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2462219Z 	at org.gradle.internal.execution.steps.AssignMutableWorkspaceStep.lambda$executeMutable$0(AssignMutableWorkspaceStep.java:34)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2463062Z 	at org.gradle.api.internal.tasks.execution.TaskExecution$4.withWorkspace(TaskExecution.java:305)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2463936Z 	at org.gradle.internal.execution.steps.AssignMutableWorkspaceStep.executeMutable(AssignMutableWorkspaceStep.java:30)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2464884Z 	at org.gradle.internal.execution.steps.AssignMutableWorkspaceStep.executeMutable(AssignMutableWorkspaceStep.java:21)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2466003Z 	at org.gradle.internal.execution.steps.MutableStep.execute(MutableStep.java:26)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2466692Z 	at org.gradle.internal.execution.steps.ChoosePipelineStep.execute(ChoosePipelineStep.java:40)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2467430Z 	at org.gradle.internal.execution.steps.ChoosePipelineStep.execute(ChoosePipelineStep.java:23)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2468514Z 	at org.gradle.internal.execution.steps.ExecuteWorkBuildOperationFiringStep.lambda$execute$2(ExecuteWorkBuildOperationFiringStep.java:67)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2469594Z 	at org.gradle.internal.execution.steps.ExecuteWorkBuildOperationFiringStep.execute(ExecuteWorkBuildOperationFiringStep.java:67)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2470675Z 	at org.gradle.internal.execution.steps.ExecuteWorkBuildOperationFiringStep.execute(ExecuteWorkBuildOperationFiringStep.java:39)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2471727Z 	at org.gradle.internal.execution.steps.IdentityCacheStep.execute(IdentityCacheStep.java:46)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2472437Z 	at org.gradle.internal.execution.steps.IdentityCacheStep.execute(IdentityCacheStep.java:34)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2473166Z 	at org.gradle.internal.execution.steps.IdentifyStep.execute(IdentifyStep.java:56)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2473985Z 	at org.gradle.internal.execution.steps.IdentifyStep.execute(IdentifyStep.java:38)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2474724Z 	at org.gradle.internal.execution.impl.DefaultExecutionEngine$1.execute(DefaultExecutionEngine.java:68)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2475607Z 	at org.gradle.api.internal.tasks.execution.ExecuteActionsTaskExecuter.executeIfValid(ExecuteActionsTaskExecuter.java:132)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2476259Z 	... 30 more
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2476381Z 
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2476387Z 
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.2476516Z BUILD FAILED in 3m 20s
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.3723907Z ##[error]Process completed with exit code 1.
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.3821855Z ##[group]Run actions/upload-artifact@v7
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.3822241Z with:
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.3822595Z   name: bonsai-native-real-weights-ubuntu-24.04-arm
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.3823237Z   path: backend-native/build/test-results/bonsai2NativeSlowTest/
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	backend-native/build/reports/tests/bonsai2NativeSlowTest/
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.3823891Z   retention-days: 30
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.3824131Z   if-no-files-found: warn
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.3824377Z   compression-level: 6
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.3824642Z   overwrite: false
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.3824893Z   include-hidden-files: false
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.3825215Z   archive: true
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.3825425Z env:
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.3825750Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-101.0.LTS/arm64
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.3826350Z   JAVA_HOME_25_ARM64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-101.0.LTS/arm64
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.3826781Z   MAVEN_ARGS: -ntp
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.3827163Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.3827489Z   GRADLE_USER_HOME: /home/runner/.gradle
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.3827818Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.3828300Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.3828800Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.3829179Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.3829482Z ##[endgroup]
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.5027857Z Multiple search paths detected. Calculating the least common ancestor of all paths
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.5029869Z The least common ancestor is /home/runner/work/models/models/backend-native/build. This will be the root directory of the artifact
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.5030569Z With the provided path, there will be 10 files uploaded
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.5034301Z Artifact name is valid!
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.5034781Z Root directory input is valid!
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.7454098Z Uploading artifact: bonsai-native-real-weights-ubuntu-24.04-arm.zip
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.7488488Z Beginning upload of artifact content to blob storage
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.8863371Z Uploaded bytes 11569
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.9248116Z Finished uploading artifact content to blob storage!
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.9248798Z SHA256 digest of uploaded artifact is 3330ddd00d18ce7e1e7fad16914157db3b9fa1d11b4374480f0edb2ad12007c8
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:33.9249489Z Finalizing artifact upload
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:34.1782204Z Artifact bonsai-native-real-weights-ubuntu-24.04-arm successfully finalized. Artifact ID 11716935535
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:34.1783244Z Artifact bonsai-native-real-weights-ubuntu-24.04-arm has been successfully uploaded! Final size is 11569 bytes. Artifact ID is 11716935535
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:34.1784851Z Artifact download URL: https://github.com/integrallis/models/actions/runs/38177312332/artifacts/11716935535
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:34.2006862Z Post job cleanup.
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:34.4176766Z In post-action step
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:34.4184293Z Enhanced Caching: This build is using the proprietary 'gradle-actions-caching' provider for optimized caching support. See https://github.com/gradle/actions/blob/main/DISTRIBUTION.md for terms of use and opt-out instructions.
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:34.4829848Z Cache is read-only: will not save state for use in subsequent builds.
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:34.4833921Z ##[group]Generating Job Summary
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:34.4838838Z 
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:34.4838917Z 
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:34.4839224Z <table>
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:34.4839525Z     <tr>
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:34.4839867Z         <th>Gradle Root Project</th>
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:34.4840179Z         <th>Requested Tasks</th>
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:34.4840484Z         <th>Gradle Version</th>
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:34.4840864Z         <th>Build Outcome</th>
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:34.4841663Z         <th>Build&nbsp;Scan®</th>
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:34.4842088Z     </tr>
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:34.4842386Z     <tr>
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:34.4842665Z         <td>models</td>
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:34.4843012Z         <td>:backend-native:bonsai2NativeSlowTest</td>
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:34.4843583Z         <td align='center'>9.4.1 :information_source:</td>
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:34.4843933Z         <td align='center'>:x:</td>
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:34.4844718Z         <td><a href="https://scans.gradle.com" rel="nofollow" target="_blank"><img src="https://img.shields.io/badge/Not%20published-lightgrey" alt="Build Scan not published" /></a></td>
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:34.4845474Z     </tr>
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:34.4845686Z </table>
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:34.4845848Z 
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:34.4846904Z <p>:information_source: Gradle version is out of date — consider upgrading. See <a href="https://docs.gradle.org/current/userguide/feature_lifecycle.html#eol_support">Gradle release lifecycle</a></p>
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:34.4847660Z 
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:34.4847779Z ============================
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:34.4848293Z <h4>Gradle State Caching - ⚡ Enhanced (read-only)</h4>
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:34.4848590Z 
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:34.4849543Z **[Enhanced Caching](https://github.com/gradle/actions/blob/main/docs/setup-gradle.md#enhanced-caching)** uses the proprietary `gradle-actions-caching` provider. See [DISTRIBUTION.md](https://github.com/gradle/actions/blob/main/DISTRIBUTION.md) for terms of use and opt-out instructions.
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:34.4850595Z 
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:34.4850725Z <details>
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:34.4851079Z <summary>Entries: 0 restored, 0 saved - Expand for more details</summary>
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:34.4851367Z 
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:34.4852592Z [Cache was read-only](https://github.com/gradle/actions/blob/main/docs/setup-gradle.md#using-the-cache-read-only) — by default, the action only writes to the cache for jobs running on the default branch.
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:34.4853431Z 
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:34.4853565Z <pre>
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:34.4853786Z Entry: Gradle User Home
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:34.4854485Z     Requested Key : gradle-home-v2|Linux-ARM64|bonsai-native-real-weights[d208ae106a8ebed3f33bcdc784a676c7]-9a06d8bb0c8392b387c30b5de4d702a2f9a45210
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:34.4855139Z     Restored  Key : 
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:34.4855392Z               Size: 
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:34.4855785Z               Time: 
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:34.4856038Z               (Entry not restored: no match found)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:34.4856406Z     Saved     Key : 
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:34.4856631Z               Size: 
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:34.4856918Z               Time: 
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:34.4857190Z               (Entry not saved: cache is read-only)
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:34.4857509Z </pre>
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:34.4857732Z </details>
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:34.4857842Z 
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:34.4858264Z ##[endgroup]
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:34.4873835Z ##[notice]Gradle 9.4.1 is out of date: consider updating to the latest Gradle version. See https://docs.gradle.org/current/userguide/feature_lifecycle.html#eol_support
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:34.4875750Z Completed post-action step
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:34.5264363Z Post job cleanup.
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:34.6410103Z Post job cleanup.
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:34.7117085Z [command]/usr/bin/git version
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:34.7152134Z git version 2.55.0
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:34.7184995Z Temporarily overriding HOME='/home/runner/work/_temp/a00ddd07-a88e-46d1-a8b4-08cbbacb881c' before making global git config changes
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:34.7185843Z Adding repository directory to the temporary git global config as a safe directory
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:34.7190024Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/models/models
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:34.7223255Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:34.7253574Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:34.7437955Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:34.7457058Z http.https://github.com/.extraheader
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:34.7466410Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:34.7496232Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:34.7683390Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:34.7711036Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+Bonsai native real weights (ubuntu-24.04-arm)	UNKNOWN STEP	2026-10-11T21:44:34.8028452Z Cleaning up orphan processes
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	﻿2026-10-11T21:40:09.5859073Z Current runner version: '2.337.0'
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:09.5886303Z ##[group]Runner Image Provisioner
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:09.5887285Z Hosted Compute Agent
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:09.5887898Z Version: 20261002.596
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:09.5888615Z Commit: c3d12f3313a95f25162a1503be624f3b0617f8c0
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:09.5889356Z Build Date: 2026-10-02T22:28:27Z
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:09.5890075Z Worker ID: {1766b6c9-5292-42e6-a58c-40f9aa83942c}
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:09.5890879Z Region: westus
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:09.5891482Z Cloud: Azure
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:09.5892453Z ##[endgroup]
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:09.5894062Z ##[group]Operating System
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:09.5894753Z Ubuntu
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:09.5895413Z 24.04.5
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:09.5895970Z LTS
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:09.5896582Z ##[endgroup]
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:09.5897220Z ##[group]Runner Image
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:09.5897917Z Image: ubuntu-24.04
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:09.5898625Z Version: 20261004.327.1
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:09.5899966Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261004.327/images/ubuntu/Ubuntu2404-Readme.md
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:09.5901670Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261004.327
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:09.5903061Z ##[endgroup]
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:09.5904376Z ##[group]GITHUB_TOKEN Permissions
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:09.5906351Z Contents: read
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:09.5907082Z Metadata: read
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:09.5907692Z ##[endgroup]
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:09.5910367Z Secret source: Actions
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:09.5911358Z Cache mode: write
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:09.5912511Z Prepare workflow directory
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:09.6262321Z Prepare all required actions
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:09.6311958Z Getting action download info
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:10.0039842Z Download action repository 'actions/checkout@v5' (SHA:fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:10.0930303Z Download action repository 'actions/setup-java@v5' (SHA:b6effb05e454b25005698d916606bdc6ffcbf961)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:10.7351620Z Download action repository 'gradle/actions@v6' (SHA:3f5f9adaf7d9fecd50b5935e54106014257a94e6)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:11.7847365Z Download action repository 'actions/cache@v5' (SHA:caa296126883cff596d87d8935842f9db880ef25)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:11.8854773Z Download action repository 'actions/upload-artifact@v7' (SHA:cf430e030ddbb5b0abf93d22962f4752f3646cd9)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:12.4658869Z Complete job name: Bonsai native real weights (ubuntu-24.04)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:12.5640274Z ##[group]Run actions/checkout@v5
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:12.5641167Z with:
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:12.5641589Z   repository: integrallis/models
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:12.5647426Z   token: ***
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:12.5647851Z   ssh-strict: true
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:12.5648227Z   ssh-user: git
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:12.5648637Z   persist-credentials: true
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:12.5649100Z   clean: true
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:12.5649518Z   sparse-checkout-cone-mode: true
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:12.5649997Z   fetch-depth: 1
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:12.5650368Z   fetch-tags: false
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:12.5650732Z   show-progress: true
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:12.5651079Z   lfs: false
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:12.5651456Z   submodules: false
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:12.5651829Z   set-safe-directory: true
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:12.5652515Z   allow-unsafe-pr-checkout: false
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:12.5653244Z ##[endgroup]
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:12.6716705Z Syncing repository: integrallis/models
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:12.6719130Z ##[group]Getting Git version info
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:12.6719887Z Working directory is '/home/runner/work/models/models'
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:12.6720877Z [command]/usr/bin/git version
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:12.6755546Z git version 2.55.0
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:12.6779200Z ##[endgroup]
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:12.6795057Z Temporarily overriding HOME='/home/runner/work/_temp/d0ca061d-a883-4433-b73f-ce29858720d7' before making global git config changes
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:12.6796530Z Adding repository directory to the temporary git global config as a safe directory
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:12.6801200Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/models/models
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:12.6856649Z Deleting the contents of '/home/runner/work/models/models'
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:12.6861315Z ##[group]Initializing the repository
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:12.6867333Z [command]/usr/bin/git init /home/runner/work/models/models
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:12.6975519Z hint: Using 'master' as the name for the initial branch. This default branch name
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:12.6976738Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:12.6980886Z hint: to use in all of your new repositories, which will suppress this warning,
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:12.6982434Z hint: call:
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:12.6982838Z hint:
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:12.6983396Z hint: 	git config --global init.defaultBranch <name>
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:12.6983969Z hint:
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:12.6984530Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:12.6985564Z hint: 'development'. The just-created branch can be renamed via this command:
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:12.6986334Z hint:
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:12.6986732Z hint: 	git branch -m <name>
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:12.6987139Z hint:
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:12.6987658Z hint: Disable this message with "git config set advice.defaultBranchName false"
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:12.6988547Z Initialized empty Git repository in /home/runner/work/models/models/.git/
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:12.6996231Z [command]/usr/bin/git remote add origin https://github.com/integrallis/models
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:12.7049511Z ##[endgroup]
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:12.7050407Z ##[group]Disabling automatic garbage collection
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:12.7057036Z [command]/usr/bin/git config --local gc.auto 0
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:12.7090051Z ##[endgroup]
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:12.7090731Z ##[group]Setting up auth
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:12.7098185Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:12.7129559Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:12.7498819Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:12.7529350Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:12.7752618Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:12.7782781Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:12.8005362Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:12.8042990Z ##[endgroup]
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:12.8043533Z ##[group]Fetching the repository
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:12.8051836Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +9a06d8bb0c8392b387c30b5de4d702a2f9a45210:refs/remotes/pull/266/merge
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:14.8285498Z From https://github.com/integrallis/models
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:14.8286829Z  * [new ref]         9a06d8bb0c8392b387c30b5de4d702a2f9a45210 -> pull/266/merge
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:14.8308958Z ##[endgroup]
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:14.8309993Z ##[group]Determining the checkout info
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:14.8310908Z ##[endgroup]
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:14.8311550Z [command]/usr/bin/git sparse-checkout disable
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:14.8352827Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:14.8395325Z ##[group]Checking out the ref
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:14.8396269Z [command]/usr/bin/git checkout --progress --force refs/remotes/pull/266/merge
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:15.2739129Z Note: switching to 'refs/remotes/pull/266/merge'.
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:15.2739494Z 
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:15.2739753Z You are in 'detached HEAD' state. You can look around, make experimental
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:15.2740297Z changes and commit them, and you can discard any commits you make in this
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:15.2740816Z state without impacting any branches by switching back to a branch.
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:15.2741405Z 
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:15.2741660Z If you want to create a new branch to retain commits you create, you may
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:15.2742544Z do so (now or later) by using -c with the switch command. Example:
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:15.2743020Z 
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:15.2743210Z   git switch -c <new-branch-name>
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:15.2743536Z 
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:15.2743706Z Or undo this operation with:
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:15.2743956Z 
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:15.2744054Z   git switch -
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:15.2744214Z 
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:15.2744489Z Turn off this advice by setting config variable advice.detachedHead to false
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:15.2744823Z 
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:15.2745246Z HEAD is now at 9a06d8b Merge b85cd653a3549b1f468be95409a46fc68bae3a8c into 3490dff4b848eb6221b47cbf5a81d247709c05aa
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:15.2768721Z ##[endgroup]
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:15.2814615Z [command]/usr/bin/git log -1 --format=%H
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:15.2840107Z 9a06d8bb0c8392b387c30b5de4d702a2f9a45210
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:15.3162806Z ##[group]Run actions/setup-java@v5
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:15.3163149Z with:
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:15.3163383Z   distribution: temurin
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:15.3163636Z   java-version: 25
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:15.3163877Z   java-package: jdk
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:15.3164121Z   check-latest: false
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:15.3164361Z   set-default: true
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:15.3164622Z   verify-signature: false
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:15.3164880Z   server-id: github
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:15.3165121Z   server-username: GITHUB_ACTOR
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:15.3165412Z   server-password: GITHUB_TOKEN
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:15.3165698Z   overwrite-settings: true
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:15.3165957Z   job-status: success
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:15.3169041Z   token: ***
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:15.3169285Z   show-download-progress: false
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:15.3169567Z ##[endgroup]
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:15.4713658Z ##[group]Installed distributions
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:15.4781162Z Resolved Java 25.0.4+1 from tool-cache
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:15.4781761Z Setting Java 25.0.4+1 as the default
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:15.4794384Z Creating toolchains.xml for JDK version 25 from temurin
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:15.4875828Z Writing to /home/runner/.m2/toolchains.xml
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:15.4901451Z 
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:15.4901803Z Java configuration:
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:15.4902727Z   Distribution: temurin
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:15.4903416Z   Version: 25.0.4+1
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:15.4904334Z   Path: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:15.4905195Z 
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:15.4905929Z ##[endgroup]
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:15.4937468Z Creating settings.xml with server-id: github
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:15.4937963Z Writing to /home/runner/.m2/settings.xml
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:15.4938833Z Configured MAVEN_ARGS to include -ntp to suppress Maven transfer progress logs. Set 'show-download-progress: true' to keep the download progress output.
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:15.5198037Z ##[group]Run gradle/actions/setup-gradle@v6
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:15.5198541Z with:
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:15.5198883Z   cache-provider: enhanced
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:15.5199250Z   cache-disabled: false
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:15.5199688Z   cache-read-only: true
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:15.5200033Z   cache-write-only: false
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:15.5200382Z   cache-overwrite-existing: false
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:15.5200863Z   cache-cleanup: on-success
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:15.5201278Z   gradle-home-cache-includes: caches
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	notifications
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:15.5201802Z   add-job-summary: always
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:15.5202424Z   add-job-summary-as-pr-comment: never
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:15.5202837Z   dependency-graph: disabled
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:15.5203346Z   dependency-graph-report-dir: dependency-graph-reports
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:15.5203848Z   dependency-graph-continue-on-failure: true
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:15.5204505Z   build-scan-publish: false
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:15.5204924Z   validate-wrappers: true
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:15.5205373Z   allow-snapshot-wrappers: false
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:15.5205827Z   gradle-home-cache-strict-match: false
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:15.5206269Z   workflow-job-context: {
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	  "runner": "ubuntu-24.04"
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	}
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:15.5209681Z   github-token: ***
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:15.5210184Z env:
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:15.5210640Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:15.5211336Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:15.5211890Z   MAVEN_ARGS: -ntp
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:15.5212438Z ##[endgroup]
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:16.2035262Z Merged default JDK locations into /home/runner/.m2/toolchains.xml
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:16.2041358Z Enhanced Caching: This build is using the proprietary 'gradle-actions-caching' provider for optimized caching support. See https://github.com/gradle/actions/blob/main/DISTRIBUTION.md for terms of use and opt-out instructions.
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:16.2922921Z ##[group]Restore Gradle state from cache
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:16.5567680Z Gradle User Home cache not found. Will initialize empty.
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:16.5568800Z ##[endgroup]
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:16.6393401Z ##[group]All Gradle Wrapper jars are valid
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:16.6394756Z ✓ Found known Gradle Wrapper JAR files:
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:16.6395846Z   2db75c40782f5e8ba1fc278a5574bab070adccb2d21ca5a6e5ed840888448046 gradle/wrapper/gradle-wrapper.jar
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:16.6397048Z ##[endgroup]
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:16.6544592Z ##[group]Run rustup toolchain install 1.96.0 --profile minimal --no-self-update
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:16.6545302Z ^[[36;1mrustup toolchain install 1.96.0 --profile minimal --no-self-update^[[0m
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:16.6545862Z ^[[36;1mrustup component add --toolchain 1.96.0 clippy rustfmt^[[0m
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:16.6800445Z shell: /usr/bin/bash -e {0}
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:16.6800909Z env:
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:16.6801465Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:16.6802639Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:16.6803382Z   MAVEN_ARGS: -ntp
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:16.6803830Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:16.6804399Z   GRADLE_USER_HOME: /home/runner/.gradle
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:16.6804930Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:16.6805767Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:16.6806713Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:16.6807262Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:16.6807637Z ##[endgroup]
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:16.7350082Z info: syncing channel updates for 1.96.0-x86_64-unknown-linux-gnu
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:16.8410813Z info: latest update on 2026-05-28 for version 1.96.0 (ac68faa20 2026-05-25)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:16.8411730Z info: downloading 3 components
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:24.2870874Z 
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:24.2945381Z   1.96.0-x86_64-unknown-linux-gnu installed - rustc 1.96.0 (ac68faa20 2026-05-25)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:24.2946206Z 
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:24.3797354Z info: downloading 2 components
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:25.1085463Z ##[group]Run actions/cache@v5
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:25.1085740Z with:
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:25.1085998Z   path: ~/.jvllm/models/Ternary-Bonsai-2-27B-PTQ1_0.gguf
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:25.1086362Z   key: bonsai2-27b-ptq1_0-fixture-v1
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:25.1086651Z   enableCrossOsArchive: false
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:25.1086917Z   fail-on-cache-miss: false
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:25.1087158Z   lookup-only: false
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:25.1087373Z   save-always: false
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:25.1087579Z env:
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:25.1087877Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:25.1088385Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:25.1088789Z   MAVEN_ARGS: -ntp
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:25.1089039Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:25.1089360Z   GRADLE_USER_HOME: /home/runner/.gradle
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:25.1089663Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:25.1090167Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:25.1090674Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:25.1091010Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:25.1091449Z ##[endgroup]
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:25.4913845Z Cache hit for: bonsai2-27b-ptq1_0-fixture-v1
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:26.8175608Z Received 0 of 5923957232 (0.0%), 0.0 MBs/sec
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:27.8176926Z Received 104857600 of 5923957232 (1.8%), 50.0 MBs/sec
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:28.8223533Z Received 251658240 of 5923957232 (4.2%), 79.9 MBs/sec
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:29.8233569Z Received 398458880 of 5923957232 (6.7%), 94.9 MBs/sec
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:30.8227976Z Received 536870912 of 5923957232 (9.1%), 102.3 MBs/sec
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:31.8238944Z Received 662700032 of 5923957232 (11.2%), 105.2 MBs/sec
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:32.8263409Z Received 721420288 of 5923957232 (12.2%), 98.2 MBs/sec
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:33.8283323Z Received 847249408 of 5923957232 (14.3%), 100.9 MBs/sec
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:34.8259081Z Received 977272832 of 5923957232 (16.5%), 103.5 MBs/sec
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:35.8323416Z Received 1086324736 of 5923957232 (18.3%), 103.5 MBs/sec
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:36.8278897Z Received 1207959552 of 5923957232 (20.4%), 104.6 MBs/sec
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:37.8290046Z Received 1342177280 of 5923957232 (22.7%), 106.6 MBs/sec
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:38.8291857Z Received 1463812096 of 5923957232 (24.7%), 107.3 MBs/sec
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:39.8299154Z Received 1564475392 of 5923957232 (26.4%), 106.5 MBs/sec
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:40.8298061Z Received 1669332992 of 5923957232 (28.2%), 106.0 MBs/sec
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:41.8306904Z Received 1757413376 of 5923957232 (29.7%), 104.7 MBs/sec
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:42.8459007Z Received 1879048192 of 5923957232 (31.7%), 105.2 MBs/sec
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:43.8478168Z Received 1979711488 of 5923957232 (33.4%), 104.7 MBs/sec
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:44.8491457Z Received 2080374784 of 5923957232 (35.1%), 104.2 MBs/sec
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:45.8496634Z Received 2164260864 of 5923957232 (36.5%), 103.0 MBs/sec
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:46.8502420Z Received 2281701376 of 5923957232 (38.5%), 103.5 MBs/sec
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:47.8509281Z Received 2411724800 of 5923957232 (40.7%), 104.4 MBs/sec
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:48.8525580Z Received 2516582400 of 5923957232 (42.5%), 104.2 MBs/sec
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:49.8531299Z Received 2625634304 of 5923957232 (44.3%), 104.2 MBs/sec
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:50.8542317Z Received 2734686208 of 5923957232 (46.2%), 104.2 MBs/sec
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:51.8573276Z Received 2843738112 of 5923957232 (48.0%), 104.2 MBs/sec
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:52.8583217Z Received 2965372928 of 5923957232 (50.1%), 104.6 MBs/sec
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:53.8585793Z Received 3087007744 of 5923957232 (52.1%), 105.0 MBs/sec
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:54.8589071Z Received 3196059648 of 5923957232 (54.0%), 105.0 MBs/sec
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:55.8596330Z Received 3284140032 of 5923957232 (55.4%), 104.3 MBs/sec
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:56.8598443Z Received 3355443200 of 5923957232 (56.6%), 103.1 MBs/sec
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:57.8606084Z Received 3485466624 of 5923957232 (58.8%), 103.7 MBs/sec
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:58.8613659Z Received 3573547008 of 5923957232 (60.3%), 103.1 MBs/sec
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:40:59.8635645Z Received 3657433088 of 5923957232 (61.7%), 102.4 MBs/sec
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:41:00.8643617Z Received 3758096384 of 5923957232 (63.4%), 102.3 MBs/sec
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:41:01.8636919Z Received 3871342592 of 5923957232 (65.4%), 102.4 MBs/sec
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:41:02.8642783Z Received 3959422976 of 5923957232 (66.8%), 101.9 MBs/sec
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:41:03.8673374Z Received 4055891968 of 5923957232 (68.5%), 101.7 MBs/sec
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:41:04.8669108Z Received 4160749568 of 5923957232 (70.2%), 101.6 MBs/sec
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:41:05.8670601Z Received 4290772992 of 5923957232 (72.4%), 102.2 MBs/sec
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:41:06.8667888Z Received 4391436288 of 5923957232 (74.1%), 102.0 MBs/sec
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:41:07.8663617Z Received 4492099584 of 5923957232 (75.8%), 101.9 MBs/sec
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:41:08.8682446Z Received 4575985664 of 5923957232 (77.2%), 101.4 MBs/sec
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:41:09.8693133Z Received 4697620480 of 5923957232 (79.3%), 101.7 MBs/sec
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:41:10.8676753Z Received 4810866688 of 5923957232 (81.2%), 101.8 MBs/sec
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:41:11.8682937Z Received 4924112896 of 5923957232 (83.1%), 102.0 MBs/sec
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:41:12.8692554Z Received 5037359104 of 5923957232 (85.0%), 102.1 MBs/sec
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:41:13.8684321Z Received 5104467968 of 5923957232 (86.2%), 101.3 MBs/sec
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:41:14.8686830Z Received 5230297088 of 5923957232 (88.3%), 101.7 MBs/sec
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:41:15.8695192Z Received 5339348992 of 5923957232 (90.1%), 101.7 MBs/sec
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:41:16.8699060Z Received 5440012288 of 5923957232 (91.8%), 101.6 MBs/sec
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:41:17.8696600Z Received 5532286976 of 5923957232 (93.4%), 101.4 MBs/sec
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:41:18.8700263Z Received 5637144576 of 5923957232 (95.2%), 101.3 MBs/sec
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:41:19.8763516Z Received 5767168000 of 5923957232 (97.4%), 101.7 MBs/sec
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:41:20.8722540Z Received 5867831296 of 5923957232 (99.1%), 101.6 MBs/sec
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:41:21.7850252Z Received 5923957232 of 5923957232 (100.0%), 100.9 MBs/sec
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:41:21.7852786Z Cache Size: ~5650 MB (5923957232 B)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:41:21.7900158Z [command]/usr/bin/tar -xf /home/runner/work/_temp/5719ed00-c1fd-432f-a1df-d7c4ad54f509/cache.tzst -P -C /home/runner/work/models/models --use-compress-program unzstd
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:41:33.7657958Z Cache restored successfully
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:41:34.0255605Z Cache restored from key: bonsai2-27b-ptq1_0-fixture-v1
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:41:34.4628352Z ##[group]Run ./gradlew :backend-native:bonsai2NativeSlowTest --no-daemon --stacktrace
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:41:34.4629781Z ^[[36;1m./gradlew :backend-native:bonsai2NativeSlowTest --no-daemon --stacktrace^[[0m
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:41:35.0140161Z shell: /usr/bin/bash -e {0}
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:41:35.0140497Z env:
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:41:35.0140881Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:41:35.0141500Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:41:35.0142188Z   MAVEN_ARGS: -ntp
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:41:35.0142494Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:41:35.0142875Z   GRADLE_USER_HOME: /home/runner/.gradle
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:41:35.0143229Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:41:35.0143805Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:41:35.0144391Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:41:35.0144844Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:41:35.0145177Z ##[endgroup]
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:41:36.5028610Z Downloading https://services.gradle.org/distributions/gradle-9.4.1-all.zip
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:41:38.4355383Z ......................10%.......................20%.......................30%......................40%.......................50%.......................60%......................70%.......................80%.......................90%.......................100%
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:41:41.8885918Z WARNING: A restricted method in java.lang.System has been called
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:41:41.8892918Z WARNING: java.lang.System::load has been called by net.rubygrapefruit.platform.internal.NativeLibraryLoader in an unnamed module (file:/home/runner/.gradle/wrapper/dists/gradle-9.4.1-all/eckclv9s5vi9exbmnyvpg2a3h/gradle-9.4.1/lib/native-platform-0.22-milestone-29.jar)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:41:41.8895783Z WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:41:41.8897492Z WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:41:41.8898633Z 
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:41:42.0267218Z 
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:41:42.0267937Z Welcome to Gradle 9.4.1!
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:41:42.0268576Z 
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:41:42.0268983Z Here are the highlights of this release:
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:41:42.0269527Z  - Java 26 support
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:41:42.0269939Z  - Non-class-based JVM tests
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:41:42.0270407Z  - Enhanced console progress bar
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:41:42.0270709Z 
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:41:42.0274905Z For more details see https://docs.gradle.org/9.4.1/release-notes.html
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:41:42.0275504Z 
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:41:42.1255246Z To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/9.4.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:41:43.1250310Z Daemon will be stopped at the end of the build 
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:43:02.2274056Z > Task :models-api:compileJava
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:43:07.3244071Z > Task :backend-java:compileJava
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:43:07.3283589Z > Task :writeReleaseDependencyManifest
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:43:07.4242749Z > Task :backend-java:processResources
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:43:07.4264070Z > Task :backend-java:classes
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:43:08.1242476Z > Task :models-runtime:compileJava
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:43:15.7253521Z > Task :backend-java:compileTestJava
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:43:15.8253379Z > Task :backend-java:processTestResources
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:43:15.8290814Z > Task :backend-java:testClasses
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:43:15.8291659Z > Task :models-api:processResources
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:43:15.8319437Z > Task :models-api:classes
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:43:15.8320152Z > Task :models-api:jar
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:43:15.8320819Z > Task :models-runtime:processResources
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:43:15.8321602Z > Task :models-runtime:classes
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:43:15.9242421Z > Task :models-runtime:jar
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:43:23.2245497Z 
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:43:23.2246239Z > Task :backend-java:downloadBonsai2Ptq10Model
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:43:23.2248511Z /home/runner/.jvllm/models/Ternary-Bonsai-2-27B-PTQ1_0.gguf
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:43:23.4241997Z 
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:43:23.4243299Z > Task :backend-java:jar
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:43:25.4242075Z 
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:43:25.4243928Z    Compiling jmodels-kernels v0.3.59 (/home/runner/work/models/models/backend-native/src/main/rust/model-kernels)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:43:25.4244734Z > Task :backend-native:cargoBuildRelease
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:43:29.2243630Z     Finished `release` profile [optimized] target(s) in 5.78s
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:43:29.4241042Z 
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:43:29.4244203Z > Task :backend-native:compileJava
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:43:29.4245239Z > Task :backend-native:processResources
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:43:29.4245974Z > Task :backend-native:classes
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:43:29.9244533Z > Task :backend-native:compileTestJava
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:43:29.9255639Z > Task :backend-native:verifyNativeBuildPlatform
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:43:30.0243027Z > Task :backend-native:prepareNativePlatformResources
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:43:30.0246323Z > Task :backend-native:nativePlatformJar
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:43:30.0247344Z > Task :backend-native:processTestResources NO-SOURCE
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:43:30.0248144Z > Task :backend-native:testClasses
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:43:32.0241668Z 
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:43:32.0242995Z > Task :backend-native:bonsai2NativeSlowTest
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:43:32.0243791Z WARNING: Using incubator modules: jdk.incubator.vector
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:44:08.0250237Z 
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:44:08.0252323Z Bonsai2NativeModelFixtureSlowTest > releasedArtifactOracleAndFreshSessionSurviveNativeProjectionRouting() PASSED
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.4240442Z 
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.4241883Z Bonsai2NativeModelFixtureSlowTest > transformedBatchesMatchSequentialRealWeightLogitsAcrossChunkBoundaries() FAILED
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.4243686Z     org.opentest4j.AssertionFailedError: [full-vocabulary parity at continuation 0] 
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.4244542Z     expected: 0.0
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.4256989Z      but was: 0.12134552001953125
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.4258187Z         at app//com.integrallis.models.backend.nativekernel.Bonsai2NativeModelFixtureSlowTest.transformedBatchesMatchSequentialRealWeightLogitsAcrossChunkBoundaries(Bonsai2NativeModelFixtureSlowTest.java:139)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.5246467Z 
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.5246496Z 
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.5247530Z 2 tests completed, 1 failed
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.5248183Z > Task :backend-native:bonsai2NativeSlowTest FAILED
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6258664Z gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/__run_2-1791754907073.json
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6312416Z 
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6393272Z FAILURE: Build failed with an exception.
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6432669Z 
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6446227Z 21 actionable tasks: 21 executed
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6462967Z * What went wrong:
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6476583Z Execution failed for task ':backend-native:bonsai2NativeSlowTest'.
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6478187Z > There were failing tests. See the report at: file:///home/runner/work/models/models/backend-native/build/reports/tests/bonsai2NativeSlowTest/index.html
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6512624Z 
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6513088Z * Try:
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6513796Z > Run with --scan to get full insights from a Build Scan (powered by Develocity).
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6514399Z 
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6514559Z * Exception is:
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6515466Z org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':backend-native:bonsai2NativeSlowTest'.
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6517256Z 	at org.gradle.api.internal.tasks.execution.ExecuteActionsTaskExecuter.lambda$executeIfValid$1(ExecuteActionsTaskExecuter.java:135)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6518700Z 	at org.gradle.internal.Try$Failure.ifSuccessfulOrElse(Try.java:288)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6520085Z 	at org.gradle.api.internal.tasks.execution.ExecuteActionsTaskExecuter.executeIfValid(ExecuteActionsTaskExecuter.java:133)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6521893Z 	at org.gradle.api.internal.tasks.execution.ExecuteActionsTaskExecuter.execute(ExecuteActionsTaskExecuter.java:121)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6524757Z 	at org.gradle.api.internal.tasks.execution.ProblemsTaskPathTrackingTaskExecuter.execute(ProblemsTaskPathTrackingTaskExecuter.java:41)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6526798Z 	at org.gradle.api.internal.tasks.execution.ResolveTaskExecutionModeExecuter.execute(ResolveTaskExecutionModeExecuter.java:51)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6528756Z 	at org.gradle.api.internal.tasks.execution.FinalizePropertiesTaskExecuter.execute(FinalizePropertiesTaskExecuter.java:46)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6530662Z 	at org.gradle.api.internal.tasks.execution.SkipTaskWithNoActionsExecuter.execute(SkipTaskWithNoActionsExecuter.java:57)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6532689Z 	at org.gradle.api.internal.tasks.execution.SkipOnlyIfTaskExecuter.execute(SkipOnlyIfTaskExecuter.java:74)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6534383Z 	at org.gradle.api.internal.tasks.execution.CatchExceptionTaskExecuter.execute(CatchExceptionTaskExecuter.java:36)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6536050Z 	at org.gradle.api.internal.tasks.execution.EventFiringTaskExecuter$1.executeTask(EventFiringTaskExecuter.java:77)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6537676Z 	at org.gradle.api.internal.tasks.execution.EventFiringTaskExecuter$1.call(EventFiringTaskExecuter.java:55)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6539317Z 	at org.gradle.api.internal.tasks.execution.EventFiringTaskExecuter$1.call(EventFiringTaskExecuter.java:52)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6541112Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:210)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6584392Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:205)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6586234Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:67)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6587625Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:60)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6588523Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:167)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6589420Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:60)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6590287Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner.call(DefaultBuildOperationRunner.java:54)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6591120Z 	at org.gradle.api.internal.tasks.execution.EventFiringTaskExecuter.execute(EventFiringTaskExecuter.java:52)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6591920Z 	at org.gradle.execution.plan.DefaultNodeExecutor.executeLocalTaskNode(DefaultNodeExecutor.java:55)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6593137Z 	at org.gradle.execution.plan.DefaultNodeExecutor.execute(DefaultNodeExecutor.java:34)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6593969Z 	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph$InvokeNodeExecutorsAction.execute(DefaultTaskExecutionGraph.java:355)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6594999Z 	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph$InvokeNodeExecutorsAction.execute(DefaultTaskExecutionGraph.java:343)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6596462Z 	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph$BuildOperationAwareExecutionAction.lambda$execute$0(DefaultTaskExecutionGraph.java:339)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6597433Z 	at org.gradle.internal.operations.CurrentBuildOperationRef.with(CurrentBuildOperationRef.java:84)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6598352Z 	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph$BuildOperationAwareExecutionAction.execute(DefaultTaskExecutionGraph.java:339)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6599507Z 	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph$BuildOperationAwareExecutionAction.execute(DefaultTaskExecutionGraph.java:328)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6600437Z 	at org.gradle.execution.plan.DefaultPlanExecutor$ExecutorWorker.execute(DefaultPlanExecutor.java:459)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6601175Z 	at org.gradle.execution.plan.DefaultPlanExecutor$ExecutorWorker.run(DefaultPlanExecutor.java:376)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6601853Z 	at org.gradle.execution.plan.DefaultPlanExecutor.process(DefaultPlanExecutor.java:111)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6603093Z 	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph.executeWithServices(DefaultTaskExecutionGraph.java:146)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6604163Z 	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph.execute(DefaultTaskExecutionGraph.java:131)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6604973Z 	at org.gradle.execution.SelectedTaskExecutionAction.execute(SelectedTaskExecutionAction.java:35)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6605866Z 	at org.gradle.execution.BuildOperationFiringBuildWorkerExecutor$ExecuteTasks.call(BuildOperationFiringBuildWorkerExecutor.java:54)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6606909Z 	at org.gradle.execution.BuildOperationFiringBuildWorkerExecutor$ExecuteTasks.call(BuildOperationFiringBuildWorkerExecutor.java:43)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6624023Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:210)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6626025Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:205)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6627892Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:67)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6629503Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:60)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6630974Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:167)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6632682Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:60)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6634160Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner.call(DefaultBuildOperationRunner.java:54)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6635861Z 	at org.gradle.execution.BuildOperationFiringBuildWorkerExecutor.execute(BuildOperationFiringBuildWorkerExecutor.java:40)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6637646Z 	at org.gradle.internal.build.DefaultBuildLifecycleController.lambda$executeTasks$11(DefaultBuildLifecycleController.java:323)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6639310Z 	at org.gradle.internal.model.StateTransitionController.doTransition(StateTransitionController.java:304)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6640784Z 	at org.gradle.internal.model.StateTransitionController.lambda$tryTransition$9(StateTransitionController.java:215)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6642392Z 	at org.gradle.internal.work.DefaultSynchronizer.withLock(DefaultSynchronizer.java:45)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6643866Z 	at org.gradle.internal.model.StateTransitionController.tryTransition(StateTransitionController.java:215)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6645589Z 	at org.gradle.internal.build.DefaultBuildLifecycleController.executeTasks(DefaultBuildLifecycleController.java:314)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6647311Z 	at org.gradle.internal.build.DefaultBuildWorkGraphController$DefaultBuildWorkGraph.runWork(DefaultBuildWorkGraphController.java:220)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6648960Z 	at org.gradle.internal.work.DefaultWorkerLeaseService.lambda$withLocksAcquired$0(DefaultWorkerLeaseService.java:275)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6650802Z 	at org.gradle.internal.work.ResourceLockStatistics$1.measure(ResourceLockStatistics.java:43)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6682832Z 	at org.gradle.internal.work.DefaultWorkerLeaseService.withLocksAcquired(DefaultWorkerLeaseService.java:273)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6684498Z 	at org.gradle.internal.work.DefaultWorkerLeaseService.withLocks(DefaultWorkerLeaseService.java:265)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6686025Z 	at org.gradle.internal.work.DefaultWorkerLeaseService.runAsWorkerThread(DefaultWorkerLeaseService.java:128)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6687525Z 	at org.gradle.composite.internal.DefaultBuildController.doRun(DefaultBuildController.java:182)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6688858Z 	at org.gradle.composite.internal.DefaultBuildController.access$000(DefaultBuildController.java:50)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6690345Z 	at org.gradle.composite.internal.DefaultBuildController$BuildOpRunnable.lambda$run$0(DefaultBuildController.java:199)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6691835Z 	at org.gradle.internal.operations.CurrentBuildOperationRef.with(CurrentBuildOperationRef.java:84)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6693845Z 	at org.gradle.composite.internal.DefaultBuildController$BuildOpRunnable.run(DefaultBuildController.java:199)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6695699Z 	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:64)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6697181Z 	at org.gradle.internal.concurrent.AbstractManagedExecutor$1.run(AbstractManagedExecutor.java:47)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6699421Z Caused by: org.gradle.api.internal.exceptions.MarkedVerificationException: There were failing tests. See the report at: file:///home/runner/work/models/models/backend-native/build/reports/tests/bonsai2NativeSlowTest/index.html
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6701652Z 	at org.gradle.api.tasks.testing.AbstractTestTask.executeTests(AbstractTestTask.java:615)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6702959Z 	at org.gradle.api.tasks.testing.Test.executeTests(Test.java:760)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6703834Z 	at org.gradle.internal.reflect.JavaMethod.invoke(JavaMethod.java:125)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6705322Z 	at org.gradle.api.internal.project.taskfactory.StandardTaskAction.doExecute(StandardTaskAction.java:58)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6706854Z 	at org.gradle.api.internal.project.taskfactory.StandardTaskAction.execute(StandardTaskAction.java:51)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6708296Z 	at org.gradle.api.internal.project.taskfactory.StandardTaskAction.execute(StandardTaskAction.java:29)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6753572Z 	at org.gradle.api.internal.tasks.execution.TaskExecution$3.run(TaskExecution.java:259)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6755012Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner$1.execute(DefaultBuildOperationRunner.java:30)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6756619Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner$1.execute(DefaultBuildOperationRunner.java:27)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6758148Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:67)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6759698Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:60)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6761301Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:167)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6763194Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:60)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6764762Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner.run(DefaultBuildOperationRunner.java:48)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6766200Z 	at org.gradle.api.internal.tasks.execution.TaskExecution.executeAction(TaskExecution.java:244)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6767544Z 	at org.gradle.api.internal.tasks.execution.TaskExecution.executeActions(TaskExecution.java:227)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6769028Z 	at org.gradle.api.internal.tasks.execution.TaskExecution.executeWithPreviousOutputFiles(TaskExecution.java:210)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6770419Z 	at org.gradle.api.internal.tasks.execution.TaskExecution.execute(TaskExecution.java:176)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6771625Z 	at org.gradle.internal.execution.steps.ExecuteStep.executeInternal(ExecuteStep.java:167)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6773590Z 	at org.gradle.internal.execution.steps.ExecuteStep.access$000(ExecuteStep.java:47)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6774693Z 	at org.gradle.internal.execution.steps.ExecuteStep$1.call(ExecuteStep.java:137)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6775729Z 	at org.gradle.internal.execution.steps.ExecuteStep$1.call(ExecuteStep.java:134)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6777219Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:210)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6779129Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:205)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6780800Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:67)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6814590Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:60)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6816300Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:167)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6818376Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:60)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6820025Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner.call(DefaultBuildOperationRunner.java:54)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6821296Z 	at org.gradle.internal.execution.steps.ExecuteStep.execute(ExecuteStep.java:134)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6822722Z 	at org.gradle.internal.execution.steps.ExecuteStep$Mutable.execute(ExecuteStep.java:80)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6824050Z 	at org.gradle.internal.execution.steps.CancelExecutionStep.execute(CancelExecutionStep.java:42)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6825425Z 	at org.gradle.internal.execution.steps.TimeoutStep.executeWithoutTimeout(TimeoutStep.java:75)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6826620Z 	at org.gradle.internal.execution.steps.TimeoutStep.execute(TimeoutStep.java:55)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6827961Z 	at org.gradle.internal.execution.steps.PreCreateOutputParentsStep.execute(PreCreateOutputParentsStep.java:51)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6829509Z 	at org.gradle.internal.execution.steps.PreCreateOutputParentsStep.execute(PreCreateOutputParentsStep.java:29)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6831166Z 	at org.gradle.internal.execution.steps.RemovePreviousOutputsStep.executeMutable(RemovePreviousOutputsStep.java:67)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6833213Z 	at org.gradle.internal.execution.steps.RemovePreviousOutputsStep.executeMutable(RemovePreviousOutputsStep.java:39)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6834656Z 	at org.gradle.internal.execution.steps.MutableStep.execute(MutableStep.java:26)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6836101Z 	at org.gradle.internal.execution.steps.BroadcastChangingOutputsStep.execute(BroadcastChangingOutputsStep.java:42)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6837789Z 	at org.gradle.internal.execution.steps.BroadcastChangingOutputsStep.execute(BroadcastChangingOutputsStep.java:24)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6839519Z 	at org.gradle.internal.execution.steps.CaptureOutputsAfterExecutionStep.execute(CaptureOutputsAfterExecutionStep.java:69)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6841354Z 	at org.gradle.internal.execution.steps.CaptureOutputsAfterExecutionStep.execute(CaptureOutputsAfterExecutionStep.java:46)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6847152Z 	at org.gradle.internal.execution.steps.ResolveInputChangesStep.executeMutable(ResolveInputChangesStep.java:39)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6848836Z 	at org.gradle.internal.execution.steps.ResolveInputChangesStep.executeMutable(ResolveInputChangesStep.java:28)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6850274Z 	at org.gradle.internal.execution.steps.MutableStep.execute(MutableStep.java:26)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6851521Z 	at org.gradle.internal.execution.steps.BuildCacheStep.executeWithoutCache(BuildCacheStep.java:189)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6853160Z 	at org.gradle.internal.execution.steps.BuildCacheStep.lambda$execute$1(BuildCacheStep.java:76)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6854223Z 	at org.gradle.internal.Either$Right.fold(Either.java:176)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6855161Z 	at org.gradle.internal.execution.caching.CachingState.fold(CachingState.java:62)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6857184Z 	at org.gradle.internal.execution.steps.BuildCacheStep.execute(BuildCacheStep.java:74)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6858367Z 	at org.gradle.internal.execution.steps.BuildCacheStep.execute(BuildCacheStep.java:49)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6859565Z 	at org.gradle.internal.execution.steps.StoreExecutionStateStep.executeMutable(StoreExecutionStateStep.java:46)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6861113Z 	at org.gradle.internal.execution.steps.StoreExecutionStateStep.executeMutable(StoreExecutionStateStep.java:35)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6862734Z 	at org.gradle.internal.execution.steps.MutableStep.execute(MutableStep.java:26)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6863921Z 	at org.gradle.internal.execution.steps.SkipUpToDateStep.executeBecause(SkipUpToDateStep.java:75)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6865213Z 	at org.gradle.internal.execution.steps.SkipUpToDateStep.lambda$execute$2(SkipUpToDateStep.java:53)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6866455Z 	at org.gradle.internal.execution.steps.SkipUpToDateStep.execute(SkipUpToDateStep.java:53)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6867641Z 	at org.gradle.internal.execution.steps.SkipUpToDateStep.execute(SkipUpToDateStep.java:35)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6869445Z 	at org.gradle.internal.execution.steps.legacy.MarkSnapshottingInputsFinishedStep.execute(MarkSnapshottingInputsFinishedStep.java:37)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6913041Z 	at org.gradle.internal.execution.steps.legacy.MarkSnapshottingInputsFinishedStep.execute(MarkSnapshottingInputsFinishedStep.java:27)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6915109Z 	at org.gradle.internal.execution.steps.ResolveMutableCachingStateStep.executeDelegate(ResolveMutableCachingStateStep.java:70)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6916929Z 	at org.gradle.internal.execution.steps.ResolveMutableCachingStateStep.executeDelegate(ResolveMutableCachingStateStep.java:32)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6918627Z 	at org.gradle.internal.execution.steps.AbstractResolveCachingStateStep.execute(AbstractResolveCachingStateStep.java:69)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6920409Z 	at org.gradle.internal.execution.steps.AbstractResolveCachingStateStep.execute(AbstractResolveCachingStateStep.java:37)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6922238Z 	at org.gradle.internal.execution.steps.ResolveChangesStep.executeMutable(ResolveChangesStep.java:63)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6923723Z 	at org.gradle.internal.execution.steps.ResolveChangesStep.executeMutable(ResolveChangesStep.java:34)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6924986Z 	at org.gradle.internal.execution.steps.MutableStep.execute(MutableStep.java:26)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6926187Z 	at org.gradle.internal.execution.steps.ValidateStep$Mutable.executeDelegate(ValidateStep.java:79)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6927494Z 	at org.gradle.internal.execution.steps.ValidateStep$Mutable.executeDelegate(ValidateStep.java:65)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6928715Z 	at org.gradle.internal.execution.steps.ValidateStep.execute(ValidateStep.java:99)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6929864Z 	at org.gradle.internal.execution.steps.ValidateStep$Mutable.execute(ValidateStep.java:65)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6931541Z 	at org.gradle.internal.execution.steps.CaptureMutableStateBeforeExecutionStep.executeMutable(CaptureMutableStateBeforeExecutionStep.java:86)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6937289Z 	at org.gradle.internal.execution.steps.CaptureMutableStateBeforeExecutionStep.execute(CaptureMutableStateBeforeExecutionStep.java:65)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6939391Z 	at org.gradle.internal.execution.steps.CaptureMutableStateBeforeExecutionStep.execute(CaptureMutableStateBeforeExecutionStep.java:45)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6941402Z 	at org.gradle.internal.execution.steps.SkipEmptyMutableWorkStep.executeWithNonEmptySources(SkipEmptyMutableWorkStep.java:210)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6943720Z 	at org.gradle.internal.execution.steps.SkipEmptyMutableWorkStep.executeMutable(SkipEmptyMutableWorkStep.java:90)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6946076Z 	at org.gradle.internal.execution.steps.SkipEmptyMutableWorkStep.executeMutable(SkipEmptyMutableWorkStep.java:53)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6947668Z 	at org.gradle.internal.execution.steps.MutableStep.execute(MutableStep.java:26)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6949531Z 	at org.gradle.internal.execution.steps.legacy.MarkSnapshottingInputsStartedStep.execute(MarkSnapshottingInputsStartedStep.java:38)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6951998Z 	at org.gradle.internal.execution.steps.LoadPreviousExecutionStateStep.executeMutable(LoadPreviousExecutionStateStep.java:36)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6954178Z 	at org.gradle.internal.execution.steps.LoadPreviousExecutionStateStep.executeMutable(LoadPreviousExecutionStateStep.java:23)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6955636Z 	at org.gradle.internal.execution.steps.MutableStep.execute(MutableStep.java:26)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6956993Z 	at org.gradle.internal.execution.steps.HandleStaleOutputsStep.executeMutable(HandleStaleOutputsStep.java:77)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6958604Z 	at org.gradle.internal.execution.steps.HandleStaleOutputsStep.executeMutable(HandleStaleOutputsStep.java:43)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6959946Z 	at org.gradle.internal.execution.steps.MutableStep.execute(MutableStep.java:26)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6961444Z 	at org.gradle.internal.execution.steps.AssignMutableWorkspaceStep.lambda$executeMutable$0(AssignMutableWorkspaceStep.java:34)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6963377Z 	at org.gradle.api.internal.tasks.execution.TaskExecution$4.withWorkspace(TaskExecution.java:305)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6965643Z 	at org.gradle.internal.execution.steps.AssignMutableWorkspaceStep.executeMutable(AssignMutableWorkspaceStep.java:30)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6967483Z 	at org.gradle.internal.execution.steps.AssignMutableWorkspaceStep.executeMutable(AssignMutableWorkspaceStep.java:21)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6968984Z 	at org.gradle.internal.execution.steps.MutableStep.execute(MutableStep.java:26)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6970228Z 	at org.gradle.internal.execution.steps.ChoosePipelineStep.execute(ChoosePipelineStep.java:40)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6971558Z 	at org.gradle.internal.execution.steps.ChoosePipelineStep.execute(ChoosePipelineStep.java:23)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6973694Z 	at org.gradle.internal.execution.steps.ExecuteWorkBuildOperationFiringStep.lambda$execute$2(ExecuteWorkBuildOperationFiringStep.java:67)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6975736Z 	at org.gradle.internal.execution.steps.ExecuteWorkBuildOperationFiringStep.execute(ExecuteWorkBuildOperationFiringStep.java:67)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6977715Z 	at org.gradle.internal.execution.steps.ExecuteWorkBuildOperationFiringStep.execute(ExecuteWorkBuildOperationFiringStep.java:39)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6979412Z 	at org.gradle.internal.execution.steps.IdentityCacheStep.execute(IdentityCacheStep.java:46)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6980758Z 	at org.gradle.internal.execution.steps.IdentityCacheStep.execute(IdentityCacheStep.java:34)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6982283Z 	at org.gradle.internal.execution.steps.IdentifyStep.execute(IdentifyStep.java:56)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6983418Z 	at org.gradle.internal.execution.steps.IdentifyStep.execute(IdentifyStep.java:38)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6985088Z 	at org.gradle.internal.execution.impl.DefaultExecutionEngine$1.execute(DefaultExecutionEngine.java:68)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6986590Z 	at org.gradle.api.internal.tasks.execution.ExecuteActionsTaskExecuter.executeIfValid(ExecuteActionsTaskExecuter.java:132)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6987660Z 	... 61 more
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6987890Z 
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6987898Z 
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.6988057Z BUILD FAILED in 4m
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.8450116Z ##[error]Process completed with exit code 1.
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.8542990Z ##[group]Run actions/upload-artifact@v7
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.8543338Z with:
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.8543599Z   name: bonsai-native-real-weights-ubuntu-24.04
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.8544256Z   path: backend-native/build/test-results/bonsai2NativeSlowTest/
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	backend-native/build/reports/tests/bonsai2NativeSlowTest/
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.8544851Z   retention-days: 30
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.8545080Z   if-no-files-found: warn
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.8545312Z   compression-level: 6
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.8545527Z   overwrite: false
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.8545746Z   include-hidden-files: false
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.8545982Z   archive: true
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.8546171Z env:
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.8546504Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.8547019Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.8547614Z   MAVEN_ARGS: -ntp
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.8547862Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.8548206Z   GRADLE_USER_HOME: /home/runner/.gradle
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.8548497Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.8548944Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.8549423Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.8549747Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:35.8550009Z ##[endgroup]
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:36.0048569Z Multiple search paths detected. Calculating the least common ancestor of all paths
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:36.0051071Z The least common ancestor is /home/runner/work/models/models/backend-native/build. This will be the root directory of the artifact
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:36.0052452Z With the provided path, there will be 10 files uploaded
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:36.0056838Z Artifact name is valid!
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:36.0057368Z Root directory input is valid!
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:36.4005085Z Uploading artifact: bonsai-native-real-weights-ubuntu-24.04.zip
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:36.4051310Z Beginning upload of artifact content to blob storage
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:36.7390831Z Uploaded bytes 11583
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:36.8135557Z Finished uploading artifact content to blob storage!
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:36.8136899Z SHA256 digest of uploaded artifact is c09fdfcd7058316019cbbb0fa45dc543f2f0e1e04fa3365df57c1bef4e3963ce
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:36.8137821Z Finalizing artifact upload
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:37.3066800Z Artifact bonsai-native-real-weights-ubuntu-24.04 successfully finalized. Artifact ID 11716271700
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:37.3068029Z Artifact bonsai-native-real-weights-ubuntu-24.04 has been successfully uploaded! Final size is 11583 bytes. Artifact ID is 11716271700
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:37.3070987Z Artifact download URL: https://github.com/integrallis/models/actions/runs/38177312332/artifacts/11716271700
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:37.3315667Z Post job cleanup.
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:37.6042278Z In post-action step
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:37.6052481Z Enhanced Caching: This build is using the proprietary 'gradle-actions-caching' provider for optimized caching support. See https://github.com/gradle/actions/blob/main/DISTRIBUTION.md for terms of use and opt-out instructions.
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:37.6847463Z Cache is read-only: will not save state for use in subsequent builds.
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:37.6852744Z ##[group]Generating Job Summary
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:37.6859947Z 
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:37.6860259Z 
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:37.6860457Z <table>
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:37.6860855Z     <tr>
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:37.6861306Z         <th>Gradle Root Project</th>
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:37.6861864Z         <th>Requested Tasks</th>
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:37.6862631Z         <th>Gradle Version</th>
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:37.6863124Z         <th>Build Outcome</th>
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:37.6863926Z         <th>Build&nbsp;Scan®</th>
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:37.6864378Z     </tr>
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:37.6864781Z     <tr>
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:37.6865139Z         <td>models</td>
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:37.6865691Z         <td>:backend-native:bonsai2NativeSlowTest</td>
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:37.6866434Z         <td align='center'>9.4.1 :information_source:</td>
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:37.6867075Z         <td align='center'>:x:</td>
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:37.6868436Z         <td><a href="https://scans.gradle.com" rel="nofollow" target="_blank"><img src="https://img.shields.io/badge/Not%20published-lightgrey" alt="Build Scan not published" /></a></td>
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:37.6869803Z     </tr>
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:37.6870168Z </table>
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:37.6870376Z 
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:37.6872320Z <p>:information_source: Gradle version is out of date — consider upgrading. See <a href="https://docs.gradle.org/current/userguide/feature_lifecycle.html#eol_support">Gradle release lifecycle</a></p>
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:37.6873676Z 
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:37.6873876Z ============================
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:37.6874601Z <h4>Gradle State Caching - ⚡ Enhanced (read-only)</h4>
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:37.6875032Z 
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:37.6877295Z **[Enhanced Caching](https://github.com/gradle/actions/blob/main/docs/setup-gradle.md#enhanced-caching)** uses the proprietary `gradle-actions-caching` provider. See [DISTRIBUTION.md](https://github.com/gradle/actions/blob/main/DISTRIBUTION.md) for terms of use and opt-out instructions.
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:37.6879383Z 
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:37.6879568Z <details>
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:37.6880190Z <summary>Entries: 0 restored, 0 saved - Expand for more details</summary>
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:37.6880747Z 
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:37.6882611Z [Cache was read-only](https://github.com/gradle/actions/blob/main/docs/setup-gradle.md#using-the-cache-read-only) — by default, the action only writes to the cache for jobs running on the default branch.
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:37.6884087Z 
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:37.6884259Z <pre>
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:37.6884647Z Entry: Gradle User Home
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:37.6885841Z     Requested Key : gradle-home-v2|Linux-X64|bonsai-native-real-weights[01b628b2d93092e1625b117c946f5c78]-9a06d8bb0c8392b387c30b5de4d702a2f9a45210
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:37.6887122Z     Restored  Key : 
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:37.6887537Z               Size: 
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:37.6887925Z               Time: 
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:37.6888395Z               (Entry not restored: no match found)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:37.6888938Z     Saved     Key : 
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:37.6889348Z               Size: 
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:37.6889750Z               Time: 
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:37.6890225Z               (Entry not saved: cache is read-only)
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:37.6890775Z </pre>
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:37.6891130Z </details>
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:37.6891343Z 
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:37.6891852Z ##[endgroup]
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:37.6907012Z ##[notice]Gradle 9.4.1 is out of date: consider updating to the latest Gradle version. See https://docs.gradle.org/current/userguide/feature_lifecycle.html#eol_support
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:37.6909176Z Completed post-action step
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:37.7087269Z Post job cleanup.
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:37.8514811Z Post job cleanup.
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:37.9421235Z [command]/usr/bin/git version
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:37.9460555Z git version 2.55.0
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:37.9501192Z Temporarily overriding HOME='/home/runner/work/_temp/7113b602-5d70-48b1-925a-e4b4cba412be' before making global git config changes
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:37.9503031Z Adding repository directory to the temporary git global config as a safe directory
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:37.9507021Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/models/models
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:37.9544785Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:37.9578887Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:37.9814909Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:37.9846179Z http.https://github.com/.extraheader
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:37.9856851Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:37.9891134Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:38.0142253Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:38.0176376Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+Bonsai native real weights (ubuntu-24.04)	UNKNOWN STEP	2026-10-11T21:45:38.0548610Z Cleaning up orphan processes

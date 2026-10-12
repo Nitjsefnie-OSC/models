@@ -1,0 +1,444 @@
+17753:
+2026-10-12 14:38:42
+Full thread dump OpenJDK 64-Bit Server VM (25.0.3+9-LTS mixed mode):
+
+Threads class SMR info:
+_java_thread_list=0x00007f8dc1bf8880, length=25, elements={
+0x00007f8dc3008200, 0x00007f8dc304ec00, 0x00007f8da180fa00, 0x00007f8dc200b000,
+0x00007f8dc100ee00, 0x00007f8da1825000, 0x00007f8dc2022000, 0x00007f8dc2814200,
+0x00007f8dc2032a00, 0x00007f8dc222e800, 0x00007f8dc33ac200, 0x00007f8dc2a76c00,
+0x00007f8da12efc00, 0x00007f8da2829400, 0x00007f8d82989800, 0x00007f8d823ede00,
+0x00007f8d8315b600, 0x00007f8d83140c00, 0x00007f8d82095800, 0x00007f8d82096000,
+0x00007f8da194d200, 0x00007f8da18c4c00, 0x00007f8dc308f400, 0x00007f8da194c400,
+0x00007f8da115b600
+}
+
+"Test worker" #3 [8451] prio=5 os_prio=31 cpu=663157.71ms elapsed=2340.13s tid=0x00007f8dc3008200 nid=8451 runnable  [0x0000700003498000]
+   java.lang.Thread.State: RUNNABLE
+	at com.integrallis.vectors.core.PanamaVectorUtilSupport.q8_0Q8_0RowDot(PanamaVectorUtilSupport.java:6100)
+	at com.integrallis.vectors.core.PanamaVectorUtilSupport.lambda$ggufQ8_0Q8_0MatVecDot$0(PanamaVectorUtilSupport.java:5474)
+	at com.integrallis.vectors.core.PanamaVectorUtilSupport$$Lambda/0x00000001353cf770.accept(Unknown Source)
+	at com.integrallis.vectors.core.GgufPersistentRowExecutor.executePublishedOperation(GgufPersistentRowExecutor.java:209)
+	at com.integrallis.vectors.core.GgufPersistentRowExecutor.forEach(GgufPersistentRowExecutor.java:100)
+	at com.integrallis.vectors.core.GgufParallelSupport.forEachRow(GgufParallelSupport.java:125)
+	at com.integrallis.vectors.core.GgufParallelSupport.forEachRow(GgufParallelSupport.java:52)
+	at com.integrallis.vectors.core.PanamaVectorUtilSupport.ggufQ8_0Q8_0MatVecDot(PanamaVectorUtilSupport.java:5469)
+	at com.integrallis.vectors.core.VectorUtil.ggufQ8_0Q8_0BatchDotProduct(VectorUtil.java:2353)
+	at com.integrallis.models.backend.purejava.ops.TensorOps.ggufMatmul(TensorOps.java:541)
+	at com.integrallis.models.backend.purejava.llama.LlamaForwardPass.matmulDispatch(LlamaForwardPass.java:3050)
+	at com.integrallis.models.backend.purejava.llama.LlamaForwardPass.forwardSequenceInternal(LlamaForwardPass.java:1949)
+	at com.integrallis.models.backend.purejava.llama.LlamaForwardPass.forwardSessionInternal(LlamaForwardPass.java:1736)
+	at com.integrallis.models.backend.purejava.llama.LlamaForwardPass.forwardTransient(LlamaForwardPass.java:849)
+	at com.integrallis.models.backend.purejava.LlamaDecoder.forwardTransient(LlamaDecoder.java:154)
+	at com.integrallis.models.backend.purejava.PureJavaBackend.forwardTransient(PureJavaBackend.java:1311)
+	at com.integrallis.models.runtime.TextGenerationSession$SessionBackend.forwardTransient(TextGenerationSession.java:474)
+	at com.integrallis.models.runtime.GenerationLoop.generateSequentially(GenerationLoop.java:560)
+	at com.integrallis.models.runtime.GenerationLoop.generate(GenerationLoop.java:425)
+	- locked <0x000000070cf74798> (a com.integrallis.models.backend.purejava.PureJavaBackend)
+	at com.integrallis.models.runtime.TextGenerationSession.generateScheduledOrSequential(TextGenerationSession.java:400)
+	- locked <0x000000070cf74798> (a com.integrallis.models.backend.purejava.PureJavaBackend)
+	at com.integrallis.models.runtime.TextGenerationSession.generate(TextGenerationSession.java:369)
+	- locked <0x0000000720a00048> (a java.lang.Object)
+	at com.integrallis.models.runtime.ConstrainedTextGenerationModel.lambda$generate$0(ConstrainedTextGenerationModel.java:38)
+	at com.integrallis.models.runtime.ConstrainedTextGenerationModel$$Lambda/0x00000001353dc458.accept(Unknown Source)
+	at com.integrallis.models.runtime.ConstrainedTextGenerationModel.collect(ConstrainedTextGenerationModel.java:48)
+	at com.integrallis.models.runtime.ConstrainedTextGenerationModel.generate(ConstrainedTextGenerationModel.java:38)
+	at com.integrallis.models.runtime.ActivatedToolTurn.generateToolCall(ActivatedToolTurn.java:76)
+	- locked <0x0000000720a00000> (a com.integrallis.models.runtime.ActivatedToolTurn)
+	at com.integrallis.models.langchain4j.ModelsChatModel.selectActivatedTurn(ModelsChatModel.java:185)
+	at com.integrallis.models.langchain4j.ModelsChatModel.continueActivatedTurn(ModelsChatModel.java:177)
+	at com.integrallis.models.langchain4j.ModelsChatModel.doChat(ModelsChatModel.java:118)
+	at dev.langchain4j.model.chat.ChatModel.chat(ChatModel.java:61)
+	at dev.langchain4j.model.chat.ChatModel.chat(ChatModel.java:36)
+	at dev.langchain4j.service.DefaultAiServices$1$$Lambda/0x00000001353e4ba0.apply(Unknown Source)
+	at dev.langchain4j.service.tool.ToolService.executeInferenceAndToolsLoop(ToolService.java:656)
+	at dev.langchain4j.service.DefaultAiServices$1.invoke(DefaultAiServices.java:345)
+	at dev.langchain4j.service.DefaultAiServices$1.invoke(DefaultAiServices.java:162)
+	at com.integrallis.models.langchain4j.$Proxy29.chat(Unknown Source)
+	at com.integrallis.models.langchain4j.Qwen3ActivatedLangChain4jToolCallingIntegrationTest.invokesOneToolNarratesItsResultAndAbstainsOnOrdinaryChat(Qwen3ActivatedLangChain4jToolCallingIntegrationTest.java:73)
+	at java.lang.invoke.LambdaForm$DMH/0x0000000135274000.invokeVirtual(java.base@25.0.3/LambdaForm$DMH)
+	at java.lang.invoke.LambdaForm$MH/0x000000013519c800.invoke(java.base@25.0.3/LambdaForm$MH)
+	at java.lang.invoke.Invokers$Holder.invokeExact_MT(java.base@25.0.3/Invokers$Holder)
+	at jdk.internal.reflect.DirectMethodHandleAccessor.invokeImpl(java.base@25.0.3/DirectMethodHandleAccessor.java:154)
+	at jdk.internal.reflect.DirectMethodHandleAccessor.invoke(java.base@25.0.3/DirectMethodHandleAccessor.java:104)
+	at java.lang.reflect.Method.invoke(java.base@25.0.3/Method.java:565)
+	at org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:787)
+	at org.junit.platform.commons.support.ReflectionSupport.invokeMethod(ReflectionSupport.java:478)
+	at org.junit.jupiter.engine.execution.MethodInvocation.proceed(MethodInvocation.java:60)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$ValidatingInvocation.proceed(InvocationInterceptorChain.java:131)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.intercept(TimeoutExtension.java:161)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestableMethod(TimeoutExtension.java:152)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestMethod(TimeoutExtension.java:91)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor$$Lambda/0x0000000135232f38.apply(Unknown Source)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker$ReflectiveInterceptorCall.lambda$ofVoidMethod$0(InterceptingExecutableInvoker.java:112)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker$ReflectiveInterceptorCall$$Lambda/0x0000000135233368.apply(Unknown Source)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.lambda$invoke$0(InterceptingExecutableInvoker.java:94)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker$$Lambda/0x000000013526bcf8.apply(Unknown Source)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$InterceptedInvocation.proceed(InvocationInterceptorChain.java:106)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.proceed(InvocationInterceptorChain.java:64)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.chainAndInvoke(InvocationInterceptorChain.java:45)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.invoke(InvocationInterceptorChain.java:37)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:93)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:87)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeTestMethod$4(TestMethodTestDescriptor.java:221)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor$$Lambda/0x000000013526b3b0.execute(Unknown Source)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeTestMethod(TestMethodTestDescriptor.java:217)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:159)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:70)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:157)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask$$Lambda/0x0000000135255438.execute(Unknown Source)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:147)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask$$Lambda/0x0000000135255208.invoke(Unknown Source)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:145)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask$$Lambda/0x0000000135257cc8.execute(Unknown Source)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:144)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:101)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService$$Lambda/0x0000000135254800.accept(Unknown Source)
+	at java.util.ArrayList.forEach(java.base@25.0.3/ArrayList.java:1604)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:161)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask$$Lambda/0x0000000135255438.execute(Unknown Source)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:147)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask$$Lambda/0x0000000135255208.invoke(Unknown Source)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:145)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask$$Lambda/0x0000000135257cc8.execute(Unknown Source)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:144)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:101)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService$$Lambda/0x0000000135254800.accept(Unknown Source)
+	at java.util.ArrayList.forEach(java.base@25.0.3/ArrayList.java:1604)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:161)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask$$Lambda/0x0000000135255438.execute(Unknown Source)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:147)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask$$Lambda/0x0000000135255208.invoke(Unknown Source)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:145)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask$$Lambda/0x0000000135257cc8.execute(Unknown Source)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:144)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:101)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:35)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:54)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.executeEngine(EngineExecutionOrchestrator.java:230)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.failOrExecuteEngine(EngineExecutionOrchestrator.java:204)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:172)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:101)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:64)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator$$Lambda/0x00000001352458d0.accept(Unknown Source)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:150)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:63)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:109)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:91)
+	at org.junit.platform.launcher.core.DelegatingLauncher.execute(DelegatingLauncher.java:47)
+	at org.junit.platform.launcher.core.InterceptingLauncher.lambda$execute$1(InterceptingLauncher.java:39)
+	at org.junit.platform.launcher.core.InterceptingLauncher$$Lambda/0x00000001351bc808.proceed(Unknown Source)
+	at org.junit.platform.launcher.core.ClasspathAlignmentCheckingLauncherInterceptor.intercept(ClasspathAlignmentCheckingLauncherInterceptor.java:25)
+	at org.junit.platform.launcher.core.InterceptingLauncher.execute(InterceptingLauncher.java:38)
+	at org.junit.platform.launcher.core.DelegatingLauncher.execute(DelegatingLauncher.java:47)
+	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestDefinitionProcessor$CollectThenExecuteTestDefinitionConsumer.processAllTestDefinitions(JUnitPlatformTestDefinitionProcessor.java:179)
+	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestDefinitionProcessor$CollectThenExecuteTestDefinitionConsumer.access$000(JUnitPlatformTestDefinitionProcessor.java:122)
+	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestDefinitionProcessor.stop(JUnitPlatformTestDefinitionProcessor.java:116)
+	at org.gradle.api.internal.tasks.testing.SuiteTestDefinitionProcessor.stop(SuiteTestDefinitionProcessor.java:63)
+	at java.lang.invoke.LambdaForm$DMH/0x000000013519c000.invokeInterface(java.base@25.0.3/LambdaForm$DMH)
+	at java.lang.invoke.LambdaForm$MH/0x000000013519c800.invoke(java.base@25.0.3/LambdaForm$MH)
+	at java.lang.invoke.Invokers$Holder.invokeExact_MT(java.base@25.0.3/Invokers$Holder)
+	at jdk.internal.reflect.DirectMethodHandleAccessor.invokeImpl(java.base@25.0.3/DirectMethodHandleAccessor.java:154)
+	at jdk.internal.reflect.DirectMethodHandleAccessor.invoke(java.base@25.0.3/DirectMethodHandleAccessor.java:104)
+	at java.lang.reflect.Method.invoke(java.base@25.0.3/Method.java:565)
+	at org.gradle.internal.dispatch.MethodInvocation.invokeOn(MethodInvocation.java:77)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:28)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:19)
+	at org.gradle.internal.dispatch.ContextClassLoaderDispatch.dispatch(ContextClassLoaderDispatch.java:33)
+	at org.gradle.internal.dispatch.ProxyDispatchAdapter$DispatchingInvocationHandler.invoke(ProxyDispatchAdapter.java:88)
+	at jdk.proxy2.$Proxy6.stop(jdk.proxy2/Unknown Source)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker$3.run(TestWorker.java:195)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.executeAndMaintainThreadName(TestWorker.java:126)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.execute(TestWorker.java:103)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.execute(TestWorker.java:63)
+	at org.gradle.process.internal.worker.child.ActionExecutionWorker.execute(ActionExecutionWorker.java:56)
+	at org.gradle.process.internal.worker.child.SystemApplicationClassLoaderWorker.call(SystemApplicationClassLoaderWorker.java:122)
+	at org.gradle.process.internal.worker.child.SystemApplicationClassLoaderWorker.call(SystemApplicationClassLoaderWorker.java:72)
+	at worker.org.gradle.process.internal.worker.GradleWorkerMain.run(GradleWorkerMain.java:69)
+	at worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
+
+"Reference Handler" #11 [24323] daemon prio=10 os_prio=31 cpu=1.34ms elapsed=2340.07s tid=0x00007f8dc304ec00 nid=24323 waiting on condition  [0x0000700003dbb000]
+   java.lang.Thread.State: RUNNABLE
+	at java.lang.ref.Reference.waitForReferencePendingList(java.base@25.0.3/Native Method)
+	at java.lang.ref.Reference.processPendingReferences(java.base@25.0.3/Reference.java:246)
+	at java.lang.ref.Reference$ReferenceHandler.run(java.base@25.0.3/Reference.java:208)
+
+"Finalizer" #12 [24835] daemon prio=8 os_prio=31 cpu=0.18ms elapsed=2340.07s tid=0x00007f8da180fa00 nid=24835 in Object.wait()  [0x0000700003ebe000]
+   java.lang.Thread.State: WAITING (on object monitor)
+	at java.lang.Object.wait0(java.base@25.0.3/Native Method)
+	- waiting on <0x0000000700000888> (a java.lang.ref.ReferenceQueue$Lock)
+	at java.lang.Object.wait(java.base@25.0.3/Object.java:389)
+	at java.lang.Object.wait(java.base@25.0.3/Object.java:351)
+	at java.lang.ref.ReferenceQueue.remove0(java.base@25.0.3/ReferenceQueue.java:137)
+	at java.lang.ref.ReferenceQueue.remove(java.base@25.0.3/ReferenceQueue.java:215)
+	- locked <0x0000000700000888> (a java.lang.ref.ReferenceQueue$Lock)
+	at java.lang.ref.Finalizer$FinalizerThread.run(java.base@25.0.3/Finalizer.java:165)
+
+"Signal Dispatcher" #13 [28675] daemon prio=9 os_prio=31 cpu=0.30ms elapsed=2340.07s tid=0x00007f8dc200b000 nid=28675 waiting on condition  [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+"Service Thread" #14 [25603] daemon prio=9 os_prio=31 cpu=42.30ms elapsed=2340.07s tid=0x00007f8dc100ee00 nid=25603 runnable  [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+"Monitor Deflation Thread" #15 [26115] daemon prio=9 os_prio=31 cpu=134.60ms elapsed=2340.07s tid=0x00007f8da1825000 nid=26115 runnable  [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+"C2 CompilerThread0" #16 [26371] daemon prio=9 os_prio=31 cpu=8924.31ms elapsed=2340.07s tid=0x00007f8dc2022000 nid=26371 waiting on condition  [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+   No compile task
+
+"C1 CompilerThread0" #19 [27907] daemon prio=9 os_prio=31 cpu=1932.38ms elapsed=2340.06s tid=0x00007f8dc2814200 nid=27907 waiting on condition  [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+   No compile task
+
+"Common-Cleaner" #20 [27395] daemon prio=8 os_prio=31 cpu=2.44ms elapsed=2339.93s tid=0x00007f8dc2032a00 nid=27395 in Object.wait()  [0x00007000044d0000]
+   java.lang.Thread.State: TIMED_WAITING (on object monitor)
+	at java.lang.Object.wait0(java.base@25.0.3/Native Method)
+	- waiting on <0x00000007000020b8> (a java.lang.ref.ReferenceQueue$Lock)
+	at java.lang.Object.wait(java.base@25.0.3/Object.java:389)
+	at java.lang.ref.ReferenceQueue.remove0(java.base@25.0.3/ReferenceQueue.java:123)
+	at java.lang.ref.ReferenceQueue.remove(java.base@25.0.3/ReferenceQueue.java:201)
+	- locked <0x00000007000020b8> (a java.lang.ref.ReferenceQueue$Lock)
+	at jdk.internal.ref.CleanerImpl.run(java.base@25.0.3/CleanerImpl.java:146)
+	at java.lang.Thread.runWith(java.base@25.0.3/Thread.java:1487)
+	at java.lang.Thread.run(java.base@25.0.3/Thread.java:1474)
+	at jdk.internal.misc.InnocuousThread.run(java.base@25.0.3/InnocuousThread.java:148)
+
+"Notification Thread" #22 [32771] daemon prio=9 os_prio=31 cpu=0.10ms elapsed=2339.59s tid=0x00007f8dc222e800 nid=32771 runnable  [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+"/127.0.0.1:63475 to /127.0.0.1:63471 workers" #33 [34307] prio=5 os_prio=31 cpu=7.47ms elapsed=2338.23s tid=0x00007f8dc33ac200 nid=34307 waiting on condition  [0x00007000051f7000]
+   java.lang.Thread.State: WAITING (parking)
+	at jdk.internal.misc.Unsafe.park(java.base@25.0.3/Native Method)
+	- parking to wait for  <0x0000000700004208> (a java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject)
+	at java.util.concurrent.locks.LockSupport.park(java.base@25.0.3/LockSupport.java:369)
+	at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionNode.block(java.base@25.0.3/AbstractQueuedSynchronizer.java:520)
+	at java.util.concurrent.ForkJoinPool.unmanagedBlock(java.base@25.0.3/ForkJoinPool.java:4364)
+	at java.util.concurrent.ForkJoinPool.managedBlock(java.base@25.0.3/ForkJoinPool.java:4310)
+	at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(java.base@25.0.3/AbstractQueuedSynchronizer.java:1752)
+	at org.gradle.internal.remote.internal.hub.queue.EndPointQueue.take(EndPointQueue.java:49)
+	at org.gradle.internal.remote.internal.hub.MessageHub$Handler.run(MessageHub.java:403)
+	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:64)
+	at org.gradle.internal.concurrent.AbstractManagedExecutor$1.run(AbstractManagedExecutor.java:47)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(java.base@25.0.3/ThreadPoolExecutor.java:1090)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(java.base@25.0.3/ThreadPoolExecutor.java:614)
+	at java.lang.Thread.runWith(java.base@25.0.3/Thread.java:1487)
+	at java.lang.Thread.run(java.base@25.0.3/Thread.java:1474)
+
+"/127.0.0.1:63475 to /127.0.0.1:63471 workers Thread 2" #34 [34819] prio=5 os_prio=31 cpu=3.43ms elapsed=2338.19s tid=0x00007f8dc2a76c00 nid=34819 waiting on condition  [0x00007000052fa000]
+   java.lang.Thread.State: WAITING (parking)
+	at jdk.internal.misc.Unsafe.park(java.base@25.0.3/Native Method)
+	- parking to wait for  <0x000000070e0c1c60> (a java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject)
+	at java.util.concurrent.locks.LockSupport.park(java.base@25.0.3/LockSupport.java:369)
+	at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionNode.block(java.base@25.0.3/AbstractQueuedSynchronizer.java:520)
+	at java.util.concurrent.ForkJoinPool.unmanagedBlock(java.base@25.0.3/ForkJoinPool.java:4364)
+	at java.util.concurrent.ForkJoinPool.managedBlock(java.base@25.0.3/ForkJoinPool.java:4310)
+	at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(java.base@25.0.3/AbstractQueuedSynchronizer.java:1752)
+	at org.gradle.internal.remote.internal.hub.queue.EndPointQueue.take(EndPointQueue.java:49)
+	at org.gradle.internal.remote.internal.hub.MessageHub$ConnectionDispatch.run(MessageHub.java:322)
+	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:64)
+	at org.gradle.internal.concurrent.AbstractManagedExecutor$1.run(AbstractManagedExecutor.java:47)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(java.base@25.0.3/ThreadPoolExecutor.java:1090)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(java.base@25.0.3/ThreadPoolExecutor.java:614)
+	at java.lang.Thread.runWith(java.base@25.0.3/Thread.java:1487)
+	at java.lang.Thread.run(java.base@25.0.3/Thread.java:1474)
+
+"/127.0.0.1:63475 to /127.0.0.1:63471 workers Thread 3" #35 [38915] prio=5 os_prio=31 cpu=25.99ms elapsed=2338.19s tid=0x00007f8da12efc00 nid=38915 runnable  [0x00007000053fd000]
+   java.lang.Thread.State: RUNNABLE
+	at sun.nio.ch.KQueue.poll(java.base@25.0.3/Native Method)
+	at sun.nio.ch.KQueueSelectorImpl.doSelect(java.base@25.0.3/KQueueSelectorImpl.java:121)
+	at sun.nio.ch.SelectorImpl.lockAndDoSelect(java.base@25.0.3/SelectorImpl.java:130)
+	- locked <0x0000000701c000c8> (a sun.nio.ch.Util$2)
+	- locked <0x0000000701c00070> (a sun.nio.ch.KQueueSelectorImpl)
+	at sun.nio.ch.SelectorImpl.select(java.base@25.0.3/SelectorImpl.java:147)
+	at org.gradle.internal.remote.internal.inet.SocketConnection$SocketInputStream.read(SocketConnection.java:187)
+	at com.esotericsoftware.kryo.io.Input.fill(Input.java:146)
+	at com.esotericsoftware.kryo.io.Input.require(Input.java:178)
+	at com.esotericsoftware.kryo.io.Input.readByte(Input.java:295)
+	at org.gradle.internal.serialize.kryo.KryoBackedDecoder.readByte(KryoBackedDecoder.java:88)
+	at org.gradle.internal.remote.internal.hub.InterHubMessageSerializer$MessageReader.read(InterHubMessageSerializer.java:64)
+	at org.gradle.internal.remote.internal.hub.InterHubMessageSerializer$MessageReader.read(InterHubMessageSerializer.java:52)
+	at org.gradle.internal.remote.internal.inet.SocketConnection.receive(SocketConnection.java:83)
+	at org.gradle.internal.remote.internal.hub.MessageHub$ConnectionReceive.run(MessageHub.java:270)
+	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:64)
+	at org.gradle.internal.concurrent.AbstractManagedExecutor$1.run(AbstractManagedExecutor.java:47)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(java.base@25.0.3/ThreadPoolExecutor.java:1090)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(java.base@25.0.3/ThreadPoolExecutor.java:614)
+	at java.lang.Thread.runWith(java.base@25.0.3/Thread.java:1487)
+	at java.lang.Thread.run(java.base@25.0.3/Thread.java:1474)
+
+"vectors-gguf-0" #41 [29711] daemon prio=5 os_prio=31 cpu=613026.30ms elapsed=2316.06s tid=0x00007f8da2829400 nid=29711 runnable  [0x0000700005705000]
+   java.lang.Thread.State: RUNNABLE
+	at com.integrallis.vectors.core.PanamaVectorUtilSupport.q8_0Q8_0RowDot(PanamaVectorUtilSupport.java:6100)
+	at com.integrallis.vectors.core.PanamaVectorUtilSupport.lambda$ggufQ8_0Q8_0MatVecDot$0(PanamaVectorUtilSupport.java:5474)
+	at com.integrallis.vectors.core.PanamaVectorUtilSupport$$Lambda/0x00000001353cf770.accept(Unknown Source)
+	at com.integrallis.vectors.core.GgufPersistentRowExecutor.executePublishedOperation(GgufPersistentRowExecutor.java:209)
+	at com.integrallis.vectors.core.GgufPersistentRowExecutor.workerLoop(GgufPersistentRowExecutor.java:153)
+	at com.integrallis.vectors.core.GgufPersistentRowExecutor$$Lambda/0x00000001353cecf0.run(Unknown Source)
+	at java.lang.Thread.runWith(java.base@25.0.3/Thread.java:1487)
+	at java.lang.Thread.run(java.base@25.0.3/Thread.java:1474)
+
+"vectors-gguf-1" #42 [35331] daemon prio=5 os_prio=31 cpu=612553.96ms elapsed=2316.06s tid=0x00007f8d82989800 nid=35331 runnable  [0x0000700005808000]
+   java.lang.Thread.State: RUNNABLE
+	at com.integrallis.vectors.core.PanamaVectorUtilSupport.q8_0Q8_0RowDot(PanamaVectorUtilSupport.java:6100)
+	at com.integrallis.vectors.core.PanamaVectorUtilSupport.lambda$ggufQ8_0Q8_0MatVecDot$0(PanamaVectorUtilSupport.java:5474)
+	at com.integrallis.vectors.core.PanamaVectorUtilSupport$$Lambda/0x00000001353cf770.accept(Unknown Source)
+	at com.integrallis.vectors.core.GgufPersistentRowExecutor.executePublishedOperation(GgufPersistentRowExecutor.java:209)
+	at com.integrallis.vectors.core.GgufPersistentRowExecutor.workerLoop(GgufPersistentRowExecutor.java:153)
+	at com.integrallis.vectors.core.GgufPersistentRowExecutor$$Lambda/0x00000001353cecf0.run(Unknown Source)
+	at java.lang.Thread.runWith(java.base@25.0.3/Thread.java:1487)
+	at java.lang.Thread.run(java.base@25.0.3/Thread.java:1474)
+
+"vectors-gguf-2" #43 [37123] daemon prio=5 os_prio=31 cpu=612973.31ms elapsed=2316.06s tid=0x00007f8d823ede00 nid=37123 runnable  [0x000070000590b000]
+   java.lang.Thread.State: RUNNABLE
+	at com.integrallis.vectors.core.PanamaVectorUtilSupport.q8_0Q8_0RowDot(PanamaVectorUtilSupport.java:6100)
+	at com.integrallis.vectors.core.PanamaVectorUtilSupport.lambda$ggufQ8_0Q8_0MatVecDot$0(PanamaVectorUtilSupport.java:5474)
+	at com.integrallis.vectors.core.PanamaVectorUtilSupport$$Lambda/0x00000001353cf770.accept(Unknown Source)
+	at com.integrallis.vectors.core.GgufPersistentRowExecutor.executePublishedOperation(GgufPersistentRowExecutor.java:209)
+	at com.integrallis.vectors.core.GgufPersistentRowExecutor.workerLoop(GgufPersistentRowExecutor.java:153)
+	at com.integrallis.vectors.core.GgufPersistentRowExecutor$$Lambda/0x00000001353cecf0.run(Unknown Source)
+	at java.lang.Thread.runWith(java.base@25.0.3/Thread.java:1487)
+	at java.lang.Thread.run(java.base@25.0.3/Thread.java:1474)
+
+"vectors-gguf-3" #44 [36867] daemon prio=5 os_prio=31 cpu=613048.15ms elapsed=2316.06s tid=0x00007f8d8315b600 nid=36867 runnable  [0x0000700005a0e000]
+   java.lang.Thread.State: RUNNABLE
+	at com.integrallis.vectors.core.PanamaVectorUtilSupport.q8_0Q8_0RowDot(PanamaVectorUtilSupport.java:6100)
+	at com.integrallis.vectors.core.PanamaVectorUtilSupport.lambda$ggufQ8_0Q8_0MatVecDot$0(PanamaVectorUtilSupport.java:5474)
+	at com.integrallis.vectors.core.PanamaVectorUtilSupport$$Lambda/0x00000001353cf770.accept(Unknown Source)
+	at com.integrallis.vectors.core.GgufPersistentRowExecutor.executePublishedOperation(GgufPersistentRowExecutor.java:209)
+	at com.integrallis.vectors.core.GgufPersistentRowExecutor.workerLoop(GgufPersistentRowExecutor.java:153)
+	at com.integrallis.vectors.core.GgufPersistentRowExecutor$$Lambda/0x00000001353cecf0.run(Unknown Source)
+	at java.lang.Thread.runWith(java.base@25.0.3/Thread.java:1487)
+	at java.lang.Thread.run(java.base@25.0.3/Thread.java:1474)
+
+"vectors-gguf-4" #45 [36611] daemon prio=5 os_prio=31 cpu=613306.60ms elapsed=2316.06s tid=0x00007f8d83140c00 nid=36611 runnable  [0x0000700005b11000]
+   java.lang.Thread.State: RUNNABLE
+	at com.integrallis.vectors.core.PanamaVectorUtilSupport.q8_0Q8_0RowDot(PanamaVectorUtilSupport.java:6100)
+	at com.integrallis.vectors.core.PanamaVectorUtilSupport.lambda$ggufQ8_0Q8_0MatVecDot$0(PanamaVectorUtilSupport.java:5474)
+	at com.integrallis.vectors.core.PanamaVectorUtilSupport$$Lambda/0x00000001353cf770.accept(Unknown Source)
+	at com.integrallis.vectors.core.GgufPersistentRowExecutor.executePublishedOperation(GgufPersistentRowExecutor.java:209)
+	at com.integrallis.vectors.core.GgufPersistentRowExecutor.workerLoop(GgufPersistentRowExecutor.java:153)
+	at com.integrallis.vectors.core.GgufPersistentRowExecutor$$Lambda/0x00000001353cecf0.run(Unknown Source)
+	at java.lang.Thread.runWith(java.base@25.0.3/Thread.java:1487)
+	at java.lang.Thread.run(java.base@25.0.3/Thread.java:1474)
+
+"vectors-gguf-5" #46 [36355] daemon prio=5 os_prio=31 cpu=612437.05ms elapsed=2316.06s tid=0x00007f8d82095800 nid=36355 runnable  [0x0000700005c14000]
+   java.lang.Thread.State: RUNNABLE
+	at com.integrallis.vectors.core.PanamaVectorUtilSupport.q8_0Q8_0RowDot(PanamaVectorUtilSupport.java:6100)
+	at com.integrallis.vectors.core.PanamaVectorUtilSupport.lambda$ggufQ8_0Q8_0MatVecDot$0(PanamaVectorUtilSupport.java:5474)
+	at com.integrallis.vectors.core.PanamaVectorUtilSupport$$Lambda/0x00000001353cf770.accept(Unknown Source)
+	at com.integrallis.vectors.core.GgufPersistentRowExecutor.executePublishedOperation(GgufPersistentRowExecutor.java:209)
+	at com.integrallis.vectors.core.GgufPersistentRowExecutor.workerLoop(GgufPersistentRowExecutor.java:153)
+	at com.integrallis.vectors.core.GgufPersistentRowExecutor$$Lambda/0x00000001353cecf0.run(Unknown Source)
+	at java.lang.Thread.runWith(java.base@25.0.3/Thread.java:1487)
+	at java.lang.Thread.run(java.base@25.0.3/Thread.java:1474)
+
+"vectors-gguf-6" #47 [43779] daemon prio=5 os_prio=31 cpu=613740.92ms elapsed=2316.06s tid=0x00007f8d82096000 nid=43779 runnable  [0x0000700005d17000]
+   java.lang.Thread.State: RUNNABLE
+	at com.integrallis.vectors.core.PanamaVectorUtilSupport.q8_0Q8_0RowDot(PanamaVectorUtilSupport.java:6100)
+	at com.integrallis.vectors.core.PanamaVectorUtilSupport.lambda$ggufQ8_0Q8_0MatVecDot$0(PanamaVectorUtilSupport.java:5474)
+	at com.integrallis.vectors.core.PanamaVectorUtilSupport$$Lambda/0x00000001353cf770.accept(Unknown Source)
+	at com.integrallis.vectors.core.GgufPersistentRowExecutor.executePublishedOperation(GgufPersistentRowExecutor.java:209)
+	at com.integrallis.vectors.core.GgufPersistentRowExecutor.workerLoop(GgufPersistentRowExecutor.java:153)
+	at com.integrallis.vectors.core.GgufPersistentRowExecutor$$Lambda/0x00000001353cecf0.run(Unknown Source)
+	at java.lang.Thread.runWith(java.base@25.0.3/Thread.java:1487)
+	at java.lang.Thread.run(java.base@25.0.3/Thread.java:1474)
+
+"vectors-gguf-7" #48 [44291] daemon prio=5 os_prio=31 cpu=612578.27ms elapsed=2316.06s tid=0x00007f8da194d200 nid=44291 runnable  [0x0000700005e1a000]
+   java.lang.Thread.State: RUNNABLE
+	at com.integrallis.vectors.core.PanamaVectorUtilSupport.q8_0Q8_0RowDot(PanamaVectorUtilSupport.java:6100)
+	at com.integrallis.vectors.core.PanamaVectorUtilSupport.lambda$ggufQ8_0Q8_0MatVecDot$0(PanamaVectorUtilSupport.java:5474)
+	at com.integrallis.vectors.core.PanamaVectorUtilSupport$$Lambda/0x00000001353cf770.accept(Unknown Source)
+	at com.integrallis.vectors.core.GgufPersistentRowExecutor.executePublishedOperation(GgufPersistentRowExecutor.java:209)
+	at com.integrallis.vectors.core.GgufPersistentRowExecutor.workerLoop(GgufPersistentRowExecutor.java:153)
+	at com.integrallis.vectors.core.GgufPersistentRowExecutor$$Lambda/0x00000001353cecf0.run(Unknown Source)
+	at java.lang.Thread.runWith(java.base@25.0.3/Thread.java:1487)
+	at java.lang.Thread.run(java.base@25.0.3/Thread.java:1474)
+
+"vectors-gguf-8" #49 [44803] daemon prio=5 os_prio=31 cpu=613177.33ms elapsed=2316.06s tid=0x00007f8da18c4c00 nid=44803 runnable  [0x0000700005f1d000]
+   java.lang.Thread.State: RUNNABLE
+	at com.integrallis.vectors.core.PanamaVectorUtilSupport.q8_0Q8_0RowDot(PanamaVectorUtilSupport.java:6100)
+	at com.integrallis.vectors.core.PanamaVectorUtilSupport.lambda$ggufQ8_0Q8_0MatVecDot$0(PanamaVectorUtilSupport.java:5474)
+	at com.integrallis.vectors.core.PanamaVectorUtilSupport$$Lambda/0x00000001353cf770.accept(Unknown Source)
+	at com.integrallis.vectors.core.GgufPersistentRowExecutor.executePublishedOperation(GgufPersistentRowExecutor.java:209)
+	at com.integrallis.vectors.core.GgufPersistentRowExecutor.workerLoop(GgufPersistentRowExecutor.java:153)
+	at com.integrallis.vectors.core.GgufPersistentRowExecutor$$Lambda/0x00000001353cecf0.run(Unknown Source)
+	at java.lang.Thread.runWith(java.base@25.0.3/Thread.java:1487)
+	at java.lang.Thread.run(java.base@25.0.3/Thread.java:1474)
+
+"vectors-gguf-9" #50 [65283] daemon prio=5 os_prio=31 cpu=613247.91ms elapsed=2316.06s tid=0x00007f8dc308f400 nid=65283 runnable  [0x0000700006020000]
+   java.lang.Thread.State: RUNNABLE
+	at com.integrallis.vectors.core.PanamaVectorUtilSupport.q8_0Q8_0RowDot(PanamaVectorUtilSupport.java:6100)
+	at com.integrallis.vectors.core.PanamaVectorUtilSupport.lambda$ggufQ8_0Q8_0MatVecDot$0(PanamaVectorUtilSupport.java:5474)
+	at com.integrallis.vectors.core.PanamaVectorUtilSupport$$Lambda/0x00000001353cf770.accept(Unknown Source)
+	at com.integrallis.vectors.core.GgufPersistentRowExecutor.executePublishedOperation(GgufPersistentRowExecutor.java:209)
+	at com.integrallis.vectors.core.GgufPersistentRowExecutor.workerLoop(GgufPersistentRowExecutor.java:153)
+	at com.integrallis.vectors.core.GgufPersistentRowExecutor$$Lambda/0x00000001353cecf0.run(Unknown Source)
+	at java.lang.Thread.runWith(java.base@25.0.3/Thread.java:1487)
+	at java.lang.Thread.run(java.base@25.0.3/Thread.java:1474)
+
+"vectors-gguf-10" #51 [65027] daemon prio=5 os_prio=31 cpu=612422.71ms elapsed=2316.06s tid=0x00007f8da194c400 nid=65027 runnable  [0x0000700006123000]
+   java.lang.Thread.State: RUNNABLE
+	at com.integrallis.vectors.core.PanamaVectorUtilSupport.q8_0Q8_0RowDot(PanamaVectorUtilSupport.java:6100)
+	at com.integrallis.vectors.core.PanamaVectorUtilSupport.lambda$ggufQ8_0Q8_0MatVecDot$0(PanamaVectorUtilSupport.java:5474)
+	at com.integrallis.vectors.core.PanamaVectorUtilSupport$$Lambda/0x00000001353cf770.accept(Unknown Source)
+	at com.integrallis.vectors.core.GgufPersistentRowExecutor.executePublishedOperation(GgufPersistentRowExecutor.java:209)
+	at com.integrallis.vectors.core.GgufPersistentRowExecutor.workerLoop(GgufPersistentRowExecutor.java:153)
+	at com.integrallis.vectors.core.GgufPersistentRowExecutor$$Lambda/0x00000001353cecf0.run(Unknown Source)
+	at java.lang.Thread.runWith(java.base@25.0.3/Thread.java:1487)
+	at java.lang.Thread.run(java.base@25.0.3/Thread.java:1474)
+
+"Attach Listener" #52 [27151] daemon prio=9 os_prio=31 cpu=25.93ms elapsed=2158.62s tid=0x00007f8da115b600 nid=27151 waiting on condition  [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+"G1 Conc#2" os_prio=31 cpu=1482.79ms elapsed=2336.79s tid=0x00007f8dc129fe00 nid=37891 runnable  
+
+"G1 Conc#1" os_prio=31 cpu=1486.54ms elapsed=2336.79s tid=0x00007f8dc11e3400 nid=38403 runnable  
+
+"GC Thread#9" os_prio=31 cpu=159.15ms elapsed=2338.25s tid=0x00007f8dc2a9fe00 nid=34051 runnable  
+
+"GC Thread#8" os_prio=31 cpu=173.06ms elapsed=2338.25s tid=0x00007f8dc2a9f800 nid=33795 runnable  
+
+"GC Thread#7" os_prio=31 cpu=176.10ms elapsed=2338.25s tid=0x00007f8dc33ae600 nid=40195 runnable  
+
+"GC Thread#6" os_prio=31 cpu=145.15ms elapsed=2338.25s tid=0x00007f8dc33ae000 nid=40707 runnable  
+
+"GC Thread#5" os_prio=31 cpu=156.48ms elapsed=2338.25s tid=0x00007f8dc33ada00 nid=41219 runnable  
+
+"GC Thread#4" os_prio=31 cpu=167.71ms elapsed=2338.25s tid=0x00007f8dc33ad400 nid=41731 runnable  
+
+"GC Thread#3" os_prio=31 cpu=152.18ms elapsed=2338.25s tid=0x00007f8dc31dfe00 nid=41987 runnable  
+
+"GC Thread#2" os_prio=31 cpu=157.08ms elapsed=2338.25s tid=0x00007f8dc1191400 nid=42499 runnable  
+
+"GC Thread#1" os_prio=31 cpu=167.96ms elapsed=2338.25s tid=0x00007f8dc1190e00 nid=43011 runnable  
+
+"VM Thread" os_prio=31 cpu=130.58ms elapsed=2340.12s tid=0x00007f8da2808200 nid=19715 runnable  
+
+"VM Periodic Task Thread" os_prio=31 cpu=12.61ms elapsed=2340.14s tid=0x00007f8dc1b1c7b0 nid=17667 waiting on condition  
+
+"G1 Service" os_prio=31 cpu=73.54ms elapsed=2340.14s tid=0x00007f8da1008800 nid=16899 runnable  
+
+"G1 Refine#0" os_prio=31 cpu=863.85ms elapsed=2340.14s tid=0x00007f8da1008200 nid=21251 runnable  
+
+"G1 Conc#0" os_prio=31 cpu=1491.55ms elapsed=2340.15s tid=0x00007f8da1011400 nid=16387 runnable  
+
+"G1 Main Marker" os_prio=31 cpu=8.99ms elapsed=2340.15s tid=0x00007f8dc100e800 nid=13059 runnable  
+
+"GC Thread#0" os_prio=31 cpu=189.38ms elapsed=2340.15s tid=0x00007f8dc3039000 nid=12803 runnable  
+
+JNI global refs: 36, weak refs: 0
+

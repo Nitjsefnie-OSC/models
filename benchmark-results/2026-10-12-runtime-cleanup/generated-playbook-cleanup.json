@@ -1,0 +1,12 @@
+[
+  {
+    "source": "projects/models-final-integration/docs/antora-playbook.worktree.yml",
+    "preserved": "projects/models-final-integration/benchmark-results/2026-10-12-runtime-cleanup/models-final-integration-antora-playbook.worktree.yml",
+    "sha256": "27b13a30ebb3f6e06677d88ff92e4dc3a9125c2cc32db67017ce107aec6189f2"
+  },
+  {
+    "source": "projects/vectors-final-integration/docs/antora-playbook.worktree.yml",
+    "preserved": "projects/models-final-integration/benchmark-results/2026-10-12-runtime-cleanup/vectors-final-integration-antora-playbook.worktree.yml",
+    "sha256": "10f8ca586c36267b86306031fec47d43027433a9c4ab241ea657cbcadef8dd60"
+  }
+]

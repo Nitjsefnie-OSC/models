@@ -1,0 +1,50 @@
+{
+  "sourceRevision": "d2d0fb4f9832bcba62ffd3c9fa2a2d1ceaa1cdde",
+  "build": "13 tasks, BUILD SUCCESSFUL in1m12s",
+  "artifacts": {
+    "models-api": {
+      "path": "/Users/briansam-bodden/Code/java-ai/projects/models/models-api/build/libs/models-api-0.3.59.jar",
+      "sha256": "9b06e481274a694418bfebfcfc480f7c0dcb09fbde77f32ee8d352fea2389d9c",
+      "classDeltaVs0bc5de31": {
+        "added": [],
+        "removed": [],
+        "changed": []
+      }
+    },
+    "models-runtime": {
+      "path": "/Users/briansam-bodden/Code/java-ai/projects/models/models-runtime/build/libs/models-runtime-0.3.59.jar",
+      "sha256": "011d70e6df8a1f71441e93a3e05c77e390f5c0d1f4ff254df4556606422a325d",
+      "classDeltaVs0bc5de31": {
+        "added": [],
+        "removed": [],
+        "changed": []
+      }
+    },
+    "backend-java": {
+      "path": "/Users/briansam-bodden/Code/java-ai/projects/models/backend-java/build/libs/backend-java-0.3.59.jar",
+      "sha256": "8268cf010a9c7ac8c1cb3da2d1f237d004d84fb53f377482e3c9c84c1556317d",
+      "classDeltaVs0bc5de31": {
+        "added": [
+          "com/integrallis/models/backend/purejava/bert/BertQ51Projection.class",
+          "com/integrallis/models/backend/purejava/gguf/GgufTensorValues$Q51DecoderHolder.class",
+          "com/integrallis/models/backend/purejava/quant/Q5_1ScalarDequantizer.class"
+        ],
+        "removed": [],
+        "changed": [
+          "com/integrallis/models/backend/purejava/bert/BertForwardPass.class",
+          "com/integrallis/models/backend/purejava/gguf/GgufTensorValues$1.class",
+          "com/integrallis/models/backend/purejava/gguf/GgufTensorValues.class"
+        ]
+      }
+    },
+    "backend-native": {
+      "path": "/Users/briansam-bodden/Code/java-ai/projects/models/backend-native/build/libs/backend-native-0.3.59.jar",
+      "sha256": "5174ed677965742a9d936c0b09c3ca9f1460fa91d2ccb0b076f175bb2bf400a0",
+      "classDeltaVs0bc5de31": {
+        "added": [],
+        "removed": [],
+        "changed": []
+      }
+    }
+  }
+}

@@ -8,7 +8,7 @@ component test does not certify a whole model or establish that Rust is necessar
 
 | Finding | Correction | Evidence and remaining gate |
 | --- | --- | --- |
-| BF16 reductions depend on batch layout and compiled execution, breaking real Qwen/Bonsai parity. | Fixed reduction order, two-query weight reuse, bounded existing worker dispatch, and a measured SVE-specific reduction layout. | Final Vectors candidate `d92aceb`; local exactness and allocation checks pass. Qwen and Bonsai fixture gates pass on x86/ARM; final corrected-harness timing remains in progress. |
+| BF16 reductions depend on batch layout and compiled execution, breaking real Qwen/Bonsai parity. | Fixed reduction order, two-query weight reuse, bounded existing worker dispatch, and a measured SVE-specific reduction layout. | Earlier Vectors candidate `d92aceb`; local exactness and allocation checks pass for that revision. Qwen and Bonsai fixture gates pass on x86/ARM; final corrected-harness timing remains in progress. |
 | Nested callbacks can republish the same persistent worker pool; separate pools can form an A → B → A wait cycle. | Shared callback context executes nested submissions inline; failure paths restore the context. | Same-pool and cross-pool regression checks, pool reuse and failure propagation tests. |
 | Native Q4_K batching changes floating-point rounding. | Preserve the scalar block correction and accumulation contract in batched execution. | Models `98093147`; native tests and primary CI pass. |
 | Rust attention creates overlapping exclusive slices across workers. | Give each worker exclusive views of only its assigned heads. | Retained failing Miri control, passing corrected Miri test, tensor cases and real Granite continuations; native CI passes. |
@@ -141,10 +141,13 @@ At Models revision b99ac282, CI 38308197103 and all native platform jobs in 3830
 Model integration 38308197116 first failed to resolve a Maven POM; both exact repository URLs
 subsequently returned identical valid content, and an unchanged rerun passed all integration
 steps. The initial failure and resolution receipt are retained. Large-model CI 38308197041 passes nine jobs but fails native Bonsai's transformed-batch
-full-logit parity on x86 and ARM with published Vectors 0.1.29. Candidate Vectors fixtures
-pass; the literal CI method is being checked against the candidate to distinguish a
-dependency defect from a test-coverage gap. This is not a green release chain. The local
-activated-adapter real-weight tests are still running.
+full-logit parity on x86 and ARM with published Vectors 0.1.29. The unchanged literal CI method and complete Qwen/Bonsai fixtures pass with Models
+`d2d0fb4f` and overflow-corrected Vectors core SHA
+`79f536b453c5ad6d7339b30e41d8c8c440da3ff613caf5d1bea6f83e40ade1c7`.
+This is not a green released dependency chain. The real activated-adapter fixtures fail:
+both call the weather tool twice; LangChain4j catches the assertion and loops until the
+900-second bound, while Spring AI propagates the error after 18 seconds. The follow-up
+LangChain4j fixture caps sequential tool calls at one; it does not repair model behavior.
 
 The lazy shared Q5 decoder avoids initializing its Vector API constants for unrelated
 formats. Its 32 decoder tests pass; 100 paired loads remain within one percent of the eager
@@ -155,3 +158,33 @@ arms for each missing case on the replacement host; no cross-host latency pairin
 The source and dataset remain frozen, and missing cases are selected solely by interrupted
 coverage, before scoring. The resulting record remains a qualification of that frozen
 revision, not a renewal for subsequent runtime changes.
+
+## Final evidence collected after that snapshot
+
+The complete Vectors activation-boundary build (`ae337eeb`) passes all 846 tasks in
+54m54s, including consumer resolution and compliance. Its on-disk XML inventory contains
+4,368 tests, no failures/errors and 24 separately declared S3 skips. The later overflow
+change has its own 21-test reproduction and successful GitHub release dry-run.
+
+The [CI failure review](ci-failure-review-2026-10-12.md) identifies the distinct shared
+toolchain, expectation and real-logit failures. HuatuoGPT passes locally with both the
+published and candidate core, with identical hashes, so those runs cannot explain its
+scheduled CI failure. The full GitHub determinism matrix is running on the updated branch.
+
+[Restored BERT](../../benchmark-results/2026-10-12-bert-restored-final/README.md) retains
+all 82 independent embeddings exactly on both hosts. Ten paired process measurements per
+host remove the earlier large RSS regression, but confidence intervals do not prove the
+strict memory/startup gate. No completed qualification is claimed from those intervals.
+
+The Q5_1 public convenience calls allocated an ignored row plus unused Q8 scratch. Both
+allocations are removed without changing Q4_1; exact shape/lifetime tests pass. The causal
+Qwen caller already supplies owned scratch, so its frozen measurements are separately
+identified rather than relabeled as measurements of the changed artifact.
+
+Bonsai allocation profiling identifies BF16 vector helper call stacks, and a separately
+identified scalar-activation control changes their observed allocation behavior while
+retaining complete logits. This is caller/compiler sensitivity; sampled allocation
+stacks alone do not identify one exclusive cause. The fixed-scalar ARM DeltaNet control
+retains all 148×9 snapshots but is rejected: five paired processes reduce cold allocation
+by 79.46% and RSS by 14.83%, while increasing warm request time by 25.31%. An isolated
+BF16 code-structure experiment is being measured; it has not been selected for production.
