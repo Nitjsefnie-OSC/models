@@ -245,7 +245,7 @@ class RustFfmBackendTest {
         .hasValueSatisfying(
             decision -> {
               assertThat(decision.status()).isEqualTo(OptimizationStatus.DISABLED);
-              assertThat(decision.reason()).contains("run independently");
+              assertThat(decision.reason()).contains("use Java", "capability was removed");
             });
     assertThat(diagnostics.optimization("rust-gated-delta-net"))
         .hasValueSatisfying(

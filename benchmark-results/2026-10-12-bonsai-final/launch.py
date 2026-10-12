@@ -47,6 +47,7 @@ for shard in indices:
  command=list(old['shards'][shard]['launchCommand']);command[command.index('--user-data')+1]='file://'+str(userdata)
  command[command.index('--tag-specifications')+1]=f"ResourceType=instance,Tags=[{{Key=Name,Value={meta['runName']}-{shard}}},{{Key=project,Value=models-qualification}},{{Key=delete-after,Value={deadline.isoformat()}}}]"
  if mode=='spot':
+  command[command.index('--subnet-id')+1]='subnet-01f39c58c12cba0b3'
   command += ['--instance-market-options',json.dumps({'MarketType':'spot','SpotOptions':{'SpotInstanceType':'one-time','InstanceInterruptionBehavior':'terminate','MaxPrice':str(rate)}})]
  if mode=='west':
   command[command.index('--region')+1]=region
