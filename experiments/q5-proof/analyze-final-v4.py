@@ -2,7 +2,7 @@ import pathlib,json,math,statistics,random,re,sys
 root=pathlib.Path(sys.argv[1]);out=[]
 def rows(f):return [json.loads(s) for s in f.read_text().splitlines() if s.startswith('{')]
 def ci(values):
- rng=random.Random(724);means=[math.log(v) for v in values];boot=sorted(math.exp(statistics.mean(rng.choices(means,k=len(means)))) for _ in range(10000));return {'pairs':len(values),'ratio':math.exp(statistics.mean(means)),'ci95':[boot[250],boot[9750]]}
+ rng=random.Random(724);means=[math.log(v) for v in values];boot=sorted(math.exp(statistics.mean(rng.choices(means,k=len(means)))) for _ in range(10000));return {'pairs':len(values),'ratio':math.exp(statistics.mean(means)),'ci95':[boot[250],boot[9750]] if len(values)>1 else None,'complete':len(values)==10}
 for arch in ('x86','arm'):
  for phase,kind,baseline,candidate,metrics in [('bert','embedding','baseline','candidate',['nanos','allocatedBytes']),('causal','request','prior','candidate',['prefillNanos','decodeNanos','modelNanos','javaAllocatedBytes'])]:
   vals={m:[] for m in metrics+['loadNanos','peakRssKb']}

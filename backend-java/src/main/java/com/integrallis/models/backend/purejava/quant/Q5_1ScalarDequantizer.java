@@ -22,9 +22,9 @@ import java.nio.ByteOrder;
 /**
  * Scalar Q5_1 unpacking for BERT projections.
  *
- * <p>The SIMD decoder remains useful for causal projections. Whole-BERT comparisons found that its
- * cold Vector API allocations increased peak resident memory; scalar unpacking keeps the identical
- * unfused scale/minimum arithmetic while avoiding that measured cost.
+ * <p>The SIMD decoder remains useful for causal projections. Whole-BERT comparisons measured higher
+ * peak resident memory with the SIMD decoder; scalar unpacking keeps the identical unfused
+ * scale/minimum arithmetic while avoiding that measured cost.
  */
 public final class Q5_1ScalarDequantizer implements Dequantizer {
   /** Weights per block, which a row length must be a multiple of. */
