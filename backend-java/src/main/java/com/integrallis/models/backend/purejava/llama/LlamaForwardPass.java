@@ -1510,7 +1510,8 @@ public final class LlamaForwardPass {
         refuseFfnAdapter(layer, sessions[batch].adapterActive);
         routedFfn(batchFfnProjected, batch * dim, batchXNorm, batch * dim, lw.moe());
       }
-    } else if (!hasActivatedAdapter(sessions, batchSize)
+    } else if (batchSize > 1
+        && !hasActivatedAdapter(sessions, batchSize)
         && stagedQuantizedFfn
         && stagedQuantizedPlan != null
         && stagedQuantizedPlan.supportsFfn(lw)) {

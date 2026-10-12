@@ -1378,6 +1378,80 @@ class LlamaForwardPassTest {
     }
 
     @Test
+    void stagedQuantizedSessionPrefillHandlesSingleRowTailAfterSharedPrefix() {
+      for (boolean q8 : new boolean[] {false, true}) {
+        try (Arena arena = Arena.ofShared()) {
+          GgufFile file =
+              copyToSharedArena(
+                  q8 ? buildQ8NanoModel(new Random(42)) : buildQ4NanoModel(new Random(42)), arena);
+          LlamaConfig config = LlamaConfig.fromMetadata(file.metadata());
+          LlamaWeights weights = LlamaWeights.fromGgufFile(file, config);
+          int[] prefix = {5, 7};
+          int[] extension = new int[33];
+          for (int index = 0; index < extension.length; index++) {
+            extension[index] = (index * 7 + 11) % VOCAB_SIZE;
+          }
+          LlamaForwardPass baseline =
+              new LlamaForwardPass(
+                  config,
+                  weights,
+                  new KvCache(
+                      config.numLayers(),
+                      config.contextLength(),
+                      config.keyDim(),
+                      config.valueDim()),
+                  executionPlan(config, weights, 32, false));
+          LlamaForwardPass.Session expectedSession = baseline.openSession();
+          baseline.prefill(expectedSession, prefix, 0);
+          float[] expected = baseline.prefill(expectedSession, extension, prefix.length).clone();
+          PureJavaPlanConfiguration configuration =
+              new PureJavaPlanConfiguration(
+                  true,
+                  true,
+                  GgufQ4Kernel.WIDENED,
+                  GgufQ6BatchedKernel.ONE_QUERY_BLOCK,
+                  32,
+                  false,
+                  false,
+                  false,
+                  false,
+                  false,
+                  true,
+                  false,
+                  false,
+                  GgufQ8BlockMajorKernel.SCATTERED,
+                  false,
+                  PureJavaPlanConfiguration.MODEL_MAXIMUM_CONTEXT);
+          LlamaForwardPass staged =
+              new LlamaForwardPass(
+                  config,
+                  weights,
+                  new KvCache(
+                      config.numLayers(),
+                      config.contextLength(),
+                      config.keyDim(),
+                      config.valueDim()),
+                  ExecutionPlanner.plan(
+                      RuntimeFingerprint.capture(),
+                      ModelTopology.from("llama", config, weights),
+                      configuration));
+          LlamaForwardPass.Session source = staged.openSession();
+          staged.prefill(source, prefix, 0);
+          LlamaForwardPass.Session fork = staged.freezePrefix(source).fork();
+          float[] actual = staged.prefill(fork, extension, prefix.length).clone();
+          assertThat(staged.usesStagedQuantizedFfn()).isTrue();
+          assertThat(actual).containsExactly(expected, within(SIMD_REDUCTION_TOLERANCE));
+          assertThat(fork.checkpoint()).isEqualTo(prefix.length + extension.length);
+          int next = argmax(expected);
+          assertThat(staged.forward(fork, next, fork.checkpoint()))
+              .containsExactly(
+                  baseline.forward(expectedSession, next, expectedSession.checkpoint()),
+                  within(SIMD_REDUCTION_TOLERANCE));
+        }
+      }
+    }
+
+    @Test
     void stagedQ4LayerPreservesPrefillCacheAndAutoregressiveStateExactly() {
       try (Arena arena = Arena.ofShared()) {
         GgufFile file = copyToSharedArena(buildQ4NanoModel(new Random(42)), arena);

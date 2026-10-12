@@ -775,13 +775,16 @@ class NativeKernelLibraryTest {
   @Test
   void profiledSettingsConfigureTheWorkerCount() {
     NativeKernelSettings settings = new NativeKernelSettings(4);
+    var capabilities = VectorUtil.runtimeCapabilities();
+    boolean recurrenceEligible =
+        capabilities.fastScalarFma() && (!capabilities.vectorApi() || capabilities.fastVectorFma());
 
     try (RustGgufBatchedMatrixKernel kernel =
         RustGgufBatchedMatrixKernel.open(libraryPath(), settings)) {
       assertThat(kernel.threadCount()).isEqualTo(4);
-      assertThat(kernel.supportsGatedDeltaNet()).isTrue();
-      assertThat(kernel.supportsGroupedGatedDeltaNet()).isTrue();
-      assertThat(kernel.supportsGatedDeltaNet(128, 128)).isTrue();
+      assertThat(kernel.supportsGatedDeltaNet()).isEqualTo(recurrenceEligible);
+      assertThat(kernel.supportsGroupedGatedDeltaNet()).isEqualTo(recurrenceEligible);
+      assertThat(kernel.supportsGatedDeltaNet(128, 128)).isEqualTo(recurrenceEligible);
       assertThat(kernel.supportsGatedDeltaNet(257, 128)).isFalse();
       assertThat(kernel.supportsGatedDeltaNet(128, 257)).isFalse();
     }
