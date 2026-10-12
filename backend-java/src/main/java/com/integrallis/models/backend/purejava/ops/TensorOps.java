@@ -391,7 +391,7 @@ public final class TensorOps {
       throw new IllegalArgumentException(
           type + " row length must be a multiple of " + blockSize + ", but was " + cols);
     }
-    ggufExactBatchedMatmul(out, x, qWeight, type, 1, rows, cols, new float[cols]);
+    ggufExactBatchedMatmul(out, x, qWeight, type, 1, rows, cols, exactCallerScratch(type, cols));
   }
 
   /**
@@ -1548,11 +1548,7 @@ public final class TensorOps {
               GgufStagePlan.stage(
                   rows,
                   (from, to) -> {
-                    float[] local = EXACT_WEIGHT_ROW.get();
-                    if (local.length < columns) {
-                      local = new float[columns];
-                      EXACT_WEIGHT_ROW.set(local);
-                    }
+                    float[] local = exactQ51Scratch(columns);
                     exactRows(
                         output, input, weights, type, batchSize, rows, columns, local, from, to);
                   }))
@@ -1560,6 +1556,21 @@ public final class TensorOps {
       return;
     }
     exactRows(output, input, weights, type, batchSize, rows, columns, decodedWeightRow, 0, rows);
+  }
+
+  private static float[] exactCallerScratch(GgufTensorType type, int columns) {
+    // Q4_1 retains its existing lifetime. Q5_1 shares the same per-thread scratch policy
+    // for serial calls and executor callbacks; exactRows invokes no nested projections.
+    return type == GgufTensorType.Q5_1 ? exactQ51Scratch(columns) : new float[columns];
+  }
+
+  private static float[] exactQ51Scratch(int columns) {
+    float[] local = EXACT_WEIGHT_ROW.get();
+    if (local.length < columns) {
+      local = new float[columns];
+      EXACT_WEIGHT_ROW.set(local);
+    }
+    return local;
   }
 
   private static void exactRows(
@@ -1708,11 +1719,12 @@ public final class TensorOps {
       // Q5_1 carries a per-block minimum rather than a centred quant, so it has no Qx-by-Q8
       // kernel: the Q8 activation path folds a bias it cannot express. It therefore takes the
       // exact mapped-weight route, dequantizing one weight row at a time against F32 activations.
-      // Correct and allocation-free, and it is what makes the mixed-quantization embedding
+      // Reuses Q5_1 row scratch after its first allocation, and makes mixed-quantization embedding
       // artifacts loadable at all -- all-MiniLM-L6-v2 and granite-embedding-107m carry Q5_1
       // attention tensors at Q4_K_S, Q5_K_S and Q5_K_M.
       case Q4_1, Q5_1 ->
-          ggufExactBatchedMatmul(out, x, qWeight, type, batchSize, rows, cols, new float[cols]);
+          ggufExactBatchedMatmul(
+              out, x, qWeight, type, batchSize, rows, cols, exactCallerScratch(type, cols));
       default -> throw new AssertionError("unhandled batched matmul type: " + type);
     }
   }

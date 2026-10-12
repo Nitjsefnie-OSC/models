@@ -78,4 +78,52 @@ class ExactQ51ParallelTest {
       }
     }
   }
+
+  @Test
+  void publicSingleAndBatchRoutesKeepQ41AndQ51BitsWhenScratchGrowsAndShrinks() {
+    for (GgufTensorType type : new GgufTensorType[] {GgufTensorType.Q4_1, GgufTensorType.Q5_1}) {
+      for (int columns : new int[] {32, 256, 64, 512, 32}) {
+        int rowCount = 3;
+        int blockBytes = type == GgufTensorType.Q5_1 ? 24 : 20;
+        byte[] packed = new byte[rowCount * columns / 32 * blockBytes];
+        var random = new java.util.SplittableRandom(columns + type.ordinal());
+        for (int n = 0; n < packed.length; n++) packed[n] = (byte) random.nextInt();
+        var bytes = java.nio.ByteBuffer.wrap(packed).order(ByteOrder.LITTLE_ENDIAN);
+        for (int block = 0; block < packed.length / blockBytes; block++) {
+          bytes.putShort(block * blockBytes, (short) 0x3000);
+          bytes.putShort(block * blockBytes + 2, (short) 0xb400);
+        }
+        float[] input = new float[2 * columns];
+        for (int n = 0; n < input.length; n++) input[n] = (float) random.nextDouble(-2, 2);
+        try (Arena arena = Arena.ofConfined()) {
+          MemorySegment weights = arena.allocateFrom(ValueLayout.JAVA_BYTE, packed);
+          float[] expected = new float[2 * rowCount];
+          float[] actual = new float[expected.length];
+          for (int repeat = 0; repeat < 3; repeat++) {
+            input[repeat] += 0.125f;
+            TensorOps.ggufExactBatchedMatmul(
+                expected, input, weights, type, 2, rowCount, columns, new float[columns]);
+            TensorOps.ggufBatchedMatmul(
+                actual,
+                input,
+                weights,
+                type,
+                2,
+                rowCount,
+                columns,
+                null,
+                null,
+                null,
+                null,
+                null,
+                com.integrallis.vectors.core.GgufQ4Kernel.SHORT_PAIRWISE);
+            assertThat(actual).containsExactly(expected);
+            float[] single = new float[rowCount];
+            TensorOps.ggufMatmul(single, input, weights, type, rowCount, columns);
+            assertThat(single).containsExactly(java.util.Arrays.copyOf(expected, rowCount));
+          }
+        }
+      }
+    }
+  }
 }
