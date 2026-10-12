@@ -461,8 +461,9 @@ public final class RustFfmBackend
         new OptimizationDecision(
             "rust-quantized-decode",
             OptimizationStatus.ENABLED,
-            "single-token projections execute in the Models Rust kernel for every tensor type it"
-                + " supports; the per-type decisions above report any type it does not",
+            "eligible single-token projections execute in the Models Rust kernel; the per-type"
+                + " decisions above report hardware and operation eligibility, with Java handling"
+                + " the remaining projections",
             Map.of("transformer", "java")));
     return new BackendDiagnostics("rust-ffm", PLAN_VERSION, environment, optimizations);
   }
