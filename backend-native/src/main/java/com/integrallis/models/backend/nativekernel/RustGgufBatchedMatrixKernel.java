@@ -29,6 +29,7 @@ import java.util.Objects;
 /** Reusable off-heap workspace for Models-owned Rust quantized projection kernels. */
 public final class RustGgufBatchedMatrixKernel implements GgufBatchedMatrixKernel {
   private static final int MAX_GROUPED_MATRICES = 16;
+  private static final boolean X86 = NativeKernelPlatform.current().id().endsWith("x86_64");
 
   private static final Map<String, String> PLAN_RECOMMENDATIONS =
       Map.of(
@@ -320,7 +321,9 @@ public final class RustGgufBatchedMatrixKernel implements GgufBatchedMatrixKerne
 
   @Override
   public boolean isEligible(GgufTensorType type, int batchSize, int rows, int cols) {
-    return supports(type);
+    // Same-host Q5_1 model measurements retain native decode only on x86. Java
+    // batching wins prefill on both architectures; Java also wins ARM decode.
+    return supports(type) && (type != GgufTensorType.Q5_1 || (X86 && batchSize == 1));
   }
 
   @Override

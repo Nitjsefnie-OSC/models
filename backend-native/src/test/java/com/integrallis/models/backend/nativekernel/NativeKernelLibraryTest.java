@@ -753,6 +753,17 @@ class NativeKernelLibraryTest {
   }
 
   @Test
+  void q51EligibilitySelectsTheMeasuredHardwareAndBatchRoute() {
+    try (RustGgufBatchedMatrixKernel kernel = RustGgufBatchedMatrixKernel.open(libraryPath())) {
+      boolean x86 = NativeKernelPlatform.current().id().endsWith("x86_64");
+      assertThat(kernel.supports(GgufTensorType.Q5_1)).isTrue();
+      assertThat(kernel.isEligible(GgufTensorType.Q5_1, 1, 896, 4864)).isEqualTo(x86);
+      assertThat(kernel.isEligible(GgufTensorType.Q5_1, 2, 896, 4864)).isFalse();
+      assertThat(kernel.isEligible(GgufTensorType.Q5_1, 64, 4864, 896)).isFalse();
+    }
+  }
+
+  @Test
   void singleTokenProjectionsAreAlwaysEligible() {
     try (RustGgufBatchedMatrixKernel kernel = RustGgufBatchedMatrixKernel.open(libraryPath())) {
       assertThat(kernel.isEligible(GgufTensorType.Q4_0, 1, 128, 64)).isTrue();
