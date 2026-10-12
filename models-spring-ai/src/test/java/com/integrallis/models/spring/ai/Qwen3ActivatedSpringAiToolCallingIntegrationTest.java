@@ -46,7 +46,9 @@ class Qwen3ActivatedSpringAiToolCallingIntegrationTest {
     @Tool(name = "get-weather-for-zipcode", description = "Gets weather for a given zipcode")
     Weather getWeatherForZipcode(
         @ToolParam(description = "The zipcode to get weather for") String zipcode) {
-      invocations.incrementAndGet();
+      assertThat(invocations.incrementAndGet())
+          .as("the fixture must execute exactly one weather tool call")
+          .isEqualTo(1);
       lastZipcode.set(zipcode);
       return new Weather(zipcode, "Raining cats and dogs", 78);
     }

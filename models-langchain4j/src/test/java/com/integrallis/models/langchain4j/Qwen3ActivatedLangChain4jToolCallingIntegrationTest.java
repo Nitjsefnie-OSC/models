@@ -48,7 +48,9 @@ class Qwen3ActivatedLangChain4jToolCallingIntegrationTest {
 
     @Tool(name = "get-weather-for-zipcode", value = "Gets weather for a given zipcode")
     Weather getWeatherForZipcode(@P("The zipcode to get weather for") String zipcode) {
-      invocations.incrementAndGet();
+      assertThat(invocations.incrementAndGet())
+          .as("the fixture must execute exactly one weather tool call")
+          .isEqualTo(1);
       lastZipcode.set(zipcode);
       return new Weather(zipcode, "Raining cats and dogs", 78);
     }
