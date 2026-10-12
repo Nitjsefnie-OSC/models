@@ -8,6 +8,22 @@ All notable changes to models are documented here.
 
 ### Added and fixed
 
+- Correct native Q4_K batch rounding, disjoint attention/recurrence worker views, and the
+  shrinking-group DeltaNet state slot. Stage the corrected sequential recurrence on compatible
+  FMA hosts and dimensions; remove the approximate chunked implementation and revise the native
+  ABI. Whole-model release qualification remains pending.
+- Remove the unreachable grouped Q5_0 capability and dispatch after reproducing slowdown and
+  divergent x86 continuations. Reserve the retired capability bit; preserve single Q5_0 kernels.
+- Route Q5_1 prefill and ARM execution through improved Java arithmetic; retain native x86
+  single-token execution as the measured candidate. Share the stateless Java decoder rather
+  than relying on escape analysis to remove per-row allocations.
+- Avoid recurrence eligibility diagnostics on every call and adapt array arguments inside the
+  native method handle. Component checks preserve full recurrent state and output while
+  eliminating measured call allocations; final whole-model resource gates remain pending.
+- Correct shared-prefix FFN dispatch for single-row tails. Real adapter fixture tasks now use
+  JUnit Platform and reject repeated tool calls immediately; missing adapters remain explicit.
+- Add a native-shim dispatch/evidence inventory and mutation checks. Unresolved JVM-cause proof
+  remains labelled unproven rather than inferred from historical native speedups.
 - Native PTQ1_0 projections for Bonsai, with independent Java/Rust scalar/SIMD conformance tests.
   Both production backends now use Q8_0 activations with binary16-rounded scales and a pinned FMA
   order. This changes the earlier float-activation arithmetic; loading a native library preserves

@@ -1,0 +1,15 @@
+{
+  "runtimeRevision": "aa103fb5",
+  "documentationHeadAtCompletion": "7b909d6f",
+  "tasks": 393,
+  "duration": "8m26s",
+  "result": "PASS",
+  "xmlAggregate": {
+    "tests": 2595,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 34
+  },
+  "xmlScope": "ordinary test task outputs, includes cached task outputs; dedicated real-fixture tasks separate",
+  "logSha256": "ab950ac29a0716c6f27ee4ae156864fa9297a5d16239ccf153bb8f7969064be2"
+}

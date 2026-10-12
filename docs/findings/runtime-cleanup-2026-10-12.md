@@ -28,7 +28,7 @@ logits, and the next generated token.
   independent Maven/Gradle consumer graphs. Its XML inventory contains 4,367 tests, zero failures
   or errors, and 24 S3 skips; the 24 S3 tests were independently run against a live bucket.
   Later activation and executor changes require their own final validation.
-- Models integration build: 366 tasks; 2,588 tests, no failures or errors, 34 explicitly
+- Earlier Models integration build: 366 tasks; 2,588 tests, no failures or errors, 34 explicitly
   reported environment/fixture skips. This count is the ordinary build, not the subsequent
   configured fixture suites.
 - All 24 live-S3 tests passed with a dedicated temporary bucket; cleanup receipts are retained.
@@ -44,6 +44,11 @@ The [native-shim registry](../native-shims/registry.json) deliberately retains u
 statuses. Its structural validator cannot prove a causal JVM limitation.
 `verifyNativeShimCampaignComplete` must continue to fail until all required proof is present
 or the corresponding implementation has been qualified for retirement.
+
+The subsequent Q5-integrated Models build passes all 393 tasks in its completed task graph,
+including compliance and independent consumer checks. Its ordinary test inventory contains
+2,595 tests, zero failures/errors and 34 declared skips. The subsequent FFM allocation patch
+is validated separately before another final release check.
 
 ## Independent comparator findings
 
