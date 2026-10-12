@@ -1,0 +1,28 @@
+{
+  "modelsBase": "4f3d3e9a",
+  "testCommit": "6b4c85bacec6ea37f71496625f5781a66c5ac894",
+  "jdk": "Temurin25.0.3+9 macOS x86_64",
+  "visibleProcessors": 4,
+  "maxContextLength": 64,
+  "otherRuntimeSettings": "Defaults; same recommendations as Bf16ModelProof Bonsai fixture. No prefill batch override.",
+  "fixtureSha256": "53107f530aa52eb00912263ab1ee29bd199261c87cd7b4ad4ca1318c1fe33ee3",
+  "publishedVectors": {
+    "version": "0.1.29",
+    "sha256": "21eeae4fcaa56fa26ed45d99610142f794cdec0e1d852894e637263f5bd0b40c",
+    "result": "FAIL: fresh session1 step0 token0 raw bits40c2c464 vs40c34ca7; publisher tokens matched"
+  },
+  "combinedVectors": {
+    "sha256": "e3e7b0ab79d0630bcad65c4cbe9fd356cf589dd159eba8e6c0aa402db24bd33c",
+    "sourceReference": "6893a587d7f1d8fd2cd58e85310ef87579b42b25",
+    "result": "PASS: three8-step fresh sessions, implicit/reset exact; all publisher tokens matched"
+  },
+  "nativeLibrarySha256": "5a71c03ed5af8972b66a33da68f135006ebc055f7271e9ceb46d2468da4a9e7d",
+  "scope": "Local regression red/green. Linux architecture and JDK-version matrix required separately. Not model performance qualification.",
+  "finalTaskValidation": "PASS after restricting class-file scan to the two Bonsai fixtures; exactly two worker JVM starts; only new class selected for local run",
+  "testSourceSha256": "26a676795341d36fafbcbbe2c2c62c248548d78d8e55f0a14c768dcc404f07c6",
+  "taskBuildFileSha256": "0a6131a949b211f699c055284aeed473c4af9e13af6efb727a5504130ec508c4",
+  "commands": {
+    "published": "./gradlew :backend-native:bonsai2NativeSlowTest --tests *Bonsai2NativeFreshSessionSlowTest --max-workers=2",
+    "combined": "./gradlew -I /tmp/bonsai-fresh-regression-candidate.init.gradle :backend-native:bonsai2NativeSlowTest --tests *Bonsai2NativeFreshSessionSlowTest --max-workers=2"
+  }
+}

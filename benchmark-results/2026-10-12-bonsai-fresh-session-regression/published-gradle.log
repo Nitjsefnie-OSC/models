@@ -1,0 +1,77 @@
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by net.rubygrapefruit.platform.internal.NativeLibraryLoader in an unnamed module (file:/Users/briansam-bodden/.gradle/wrapper/dists/gradle-9.4.1-all/eckclv9s5vi9exbmnyvpg2a3h/gradle-9.4.1/lib/native-platform-0.22-milestone-29.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+> Task :models-api:compileJava UP-TO-DATE
+> Task :backend-java:compileJava UP-TO-DATE
+> Task :writeReleaseDependencyManifest UP-TO-DATE
+> Task :backend-java:processResources
+> Task :backend-java:classes
+> Task :models-runtime:compileJava UP-TO-DATE
+> Task :backend-java:compileTestJava
+> Task :backend-java:processTestResources
+> Task :backend-java:testClasses
+> Task :models-api:processResources
+> Task :models-api:classes
+> Task :models-api:jar
+> Task :models-runtime:processResources
+> Task :models-runtime:classes
+> Task :models-runtime:jar
+
+> Task :backend-java:downloadBonsai2Ptq10Model
+/Users/briansam-bodden/.jvllm/models/Ternary-Bonsai-2-27B-PTQ1_0.gguf
+
+> Task :backend-java:jar
+
+> Task :backend-native:cargoBuildRelease
+   Compiling jmodels-kernels v0.3.59 (/Users/briansam-bodden/Code/java-ai/projects/models-bonsai-fresh-regression/backend-native/src/main/rust/model-kernels)
+    Finished `release` profile [optimized] target(s) in 13.77s
+
+> Task :backend-native:compileJava UP-TO-DATE
+> Task :backend-native:processResources UP-TO-DATE
+> Task :backend-native:classes UP-TO-DATE
+> Task :backend-native:compileTestJava UP-TO-DATE
+> Task :backend-native:verifyNativeBuildPlatform
+> Task :backend-native:prepareNativePlatformResources
+> Task :backend-native:nativePlatformJar
+> Task :backend-native:processTestResources NO-SOURCE
+> Task :backend-native:testClasses UP-TO-DATE
+
+> Task :backend-native:bonsai2NativeSlowTest
+WARNING: Using incubator modules: jdk.incubator.vector
+
+Bonsai2NativeFreshSessionSlowTest > freshSessionsAndResetPreserveEveryLogitFromTheFirstColdSession() FAILED
+    java.lang.AssertionError: fresh session 1 step 0 token 0: expected=6.0864735, actual=6.103107, expectedBits=40c2c464, actualBits=40c34ca7
+        at com.integrallis.models.backend.nativekernel.Bonsai2NativeFreshSessionSlowTest.assertBits(Bonsai2NativeFreshSessionSlowTest.java:155)
+        at com.integrallis.models.backend.nativekernel.Bonsai2NativeFreshSessionSlowTest.freshSessionsAndResetPreserveEveryLogitFromTheFirstColdSession(Bonsai2NativeFreshSessionSlowTest.java:94)
+WARNING: Using incubator modules: jdk.incubator.vector
+WARNING: Using incubator modules: jdk.incubator.vector
+WARNING: Using incubator modules: jdk.incubator.vector
+WARNING: Using incubator modules: jdk.incubator.vector
+WARNING: Using incubator modules: jdk.incubator.vector
+WARNING: Using incubator modules: jdk.incubator.vector
+WARNING: Using incubator modules: jdk.incubator.vector
+WARNING: Using incubator modules: jdk.incubator.vector
+WARNING: Using incubator modules: jdk.incubator.vector
+WARNING: Using incubator modules: jdk.incubator.vector
+WARNING: Using incubator modules: jdk.incubator.vector
+WARNING: Using incubator modules: jdk.incubator.vector
+WARNING: Using incubator modules: jdk.incubator.vector
+WARNING: Using incubator modules: jdk.incubator.vector
+
+1 test completed, 1 failed
+
+> Task :backend-native:bonsai2NativeSlowTest FAILED
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':backend-native:bonsai2NativeSlowTest'.
+> There were failing tests. See the report at: file:///Users/briansam-bodden/Code/java-ai/projects/models-bonsai-fresh-regression/backend-native/build/reports/tests/bonsai2NativeSlowTest/index.html
+
+* Try:
+> Run with --scan to get full insights from a Build Scan (powered by Develocity).
+
+BUILD FAILED in 1m 55s
+21 actionable tasks: 14 executed, 7 up-to-date

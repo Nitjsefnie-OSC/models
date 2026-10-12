@@ -592,6 +592,10 @@ if (githubPackagesEnabled) {
         includeTestsMatching("*Bonsai2NativeModelFixtureSlowTest")
         includeTestsMatching("*Bonsai2NativeFreshSessionSlowTest")
     }
+    include(
+        "**/Bonsai2NativeModelFixtureSlowTest.class",
+        "**/Bonsai2NativeFreshSessionSlowTest.class",
+    )
     // A new JVM per class preserves the first-session baseline before any other fixture warms it.
     forkEvery = 1
     jvmArgs("-XX:ActiveProcessorCount=4")
