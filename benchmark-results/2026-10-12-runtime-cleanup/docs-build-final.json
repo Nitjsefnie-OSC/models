@@ -1,0 +1,12 @@
+{
+  "exitCode": 0,
+  "command": "node node_modules/@antora/cli/bin/antora --fetch --stacktrace --log-format=pretty antora-playbook.worktree.yml --to-dir=build/site",
+  "sourceRevision": "3c86e16dd5ce5a139099f64f147f8622866a222a",
+  "checkedAt": "2026-10-12T21:25:27.673877+00:00",
+  "fileSha256": {
+    "docs/content/modules/ROOT/pages/architecture.adoc": "42cda8518f6380fb2add1d05a4153ec4239a3e80372bbe813d62f7b401d03b03",
+    "docs/content/modules/ROOT/pages/gpu-acceleration.adoc": "a86945ffab5ad95a94742cdfdc273fe19b7bb323e559a0849d3618cfb158b1fc",
+    "docs/antora-playbook.worktree.yml": "27b13a30ebb3f6e06677d88ff92e4dc3a9125c2cc32db67017ce107aec6189f2"
+  },
+  "note": "Direct invocation after fullbuild; linked-worktree playbook uses primary gitdir. Fullbuild already validated generated Javadoc attachments."
+}

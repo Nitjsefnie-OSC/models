@@ -121,3 +121,37 @@ metadata was pruned. Dirty original checkouts and detached experiment worktrees 
 failed evidence and have not been discarded. Integration work is collected in the existing
 Vectors, Models, and ModelJars PR branches; proof branches remain until their evidence is
 integrated and their unique changes can be accounted for.
+
+## Subsequent corrections and verification
+
+The activation method-boundary correction keeps the exact arithmetic while reducing measured
+small-model allocation to 0.458 of the previous deterministic implementation (paired interval
+0.403–0.554). The native DeltaNet call now prebinds array-to-segment argument conversion;
+component measurements fell from 504 bytes per invocation to zero, with matching state and
+output hashes. Whole-model allocation and RSS remain separate gates; early final large-model
+measurements remove the allocation delta but still show higher RSS. The earlier failed runs
+above remain evidence of the rejected revisions.
+
+A further executor range check reproduced negative row indices and skipped stage work at
+Integer.MAX_VALUE. The isolated overflow correction passes 21 focused tests, four bounded
+artifact probes, and preserves partition hashes across 70 ordinary configurations. Its
+qualification scope is range correctness, not a fresh whole-model timing result.
+
+At Models revision b99ac282, CI 38308197103 and all native platform jobs in 38308197090 passed.
+Model integration 38308197116 first failed to resolve a Maven POM; both exact repository URLs
+subsequently returned identical valid content, and an unchanged rerun passed all integration
+steps. The initial failure and resolution receipt are retained. Large-model CI 38308197041 passes nine jobs but fails native Bonsai's transformed-batch
+full-logit parity on x86 and ARM with published Vectors 0.1.29. Candidate Vectors fixtures
+pass; the literal CI method is being checked against the candidate to distinguish a
+dependency defect from a test-coverage gap. This is not a green release chain. The local
+activated-adapter real-weight tests are still running.
+
+The lazy shared Q5 decoder avoids initializing its Vector API constants for unrelated
+formats. Its 32 decoder tests pass; 100 paired loads remain within one percent of the eager
+candidate, but do not remove the measured published-runtime startup gap.
+
+Both interrupted Bonsai Spot hosts retain their raw partial results. Recovery repeats both
+arms for each missing case on the replacement host; no cross-host latency pairing is used.
+The source and dataset remain frozen, and missing cases are selected solely by interrupted
+coverage, before scoring. The resulting record remains a qualification of that frozen
+revision, not a renewal for subsequent runtime changes.

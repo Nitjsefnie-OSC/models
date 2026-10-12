@@ -481,5 +481,6 @@
       "sha256": "9b843a885b86d3cb22c259b9d4fea5332d647cb3ea4dc066822942af811eefdd"
     }
   ],
-  "reason": "Superseded unpublished experiment; retained before updating primary checkout to the integrated candidate. Original untracked evidence remains in place."
+  "reason": "Superseded unpublished experiment; retained before updating primary checkout to the integrated candidate. Original untracked evidence remains in place.",
+  "checkoutUpdateOutcome": "Archived dirty patch verified unchanged, four superseded tracked edits restored, and original branch fast-forwarded to a40bcb71 after preserving both unique evidence commits by merge. Untracked evidence retained."
 }
