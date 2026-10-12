@@ -455,8 +455,8 @@
     },
     {
       "id": "gated-delta-net",
-      "status": "INACTIVE_EXPERIMENT",
-      "summary": "Production dispatcher currently declines native recurrence; sequential/grouped correction and Java alternatives are being measured.",
+      "status": "UNPROVEN",
+      "summary": "Corrected sequential recurrence selected on compatible FMA hosts and supported dimensions; current whole-model qualification is pending and JVM necessity remains unproven.",
       "capabilities": [
         "GATED_DELTA_NET_F32",
         "GROUPED_GATED_DELTA_NET_F32"

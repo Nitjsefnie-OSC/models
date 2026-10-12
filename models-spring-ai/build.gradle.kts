@@ -77,6 +77,9 @@ tasks.register<Test>("qwen3ActivatedSpringAiToolCallingIntegrationTest") {
     group = "verification"
     testClassesDirs = sourceSets["test"].output.classesDirs
     classpath = sourceSets["test"].runtimeClasspath
+    useJUnitPlatform {
+        includeTags("activated-integration")
+    }
     filter {
         includeTestsMatching(
             "com.integrallis.models.spring.ai.Qwen3ActivatedSpringAiToolCallingIntegrationTest",
