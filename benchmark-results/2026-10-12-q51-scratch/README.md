@@ -11,3 +11,7 @@ The final cloud qualification already in progress uses the prior artifact and re
 ## Convenience API follow-up
 
 The remaining 36,928-byte single-token allocation was the convenience overload's four Q8 scratch arrays, although Q5_1 never quantizes its activation to Q8. Removing Q5_1 from that allocation branch and omitting its unused correction buffer in the second convenience overload reduces both measured single-token and two-query allocation to zero after 4,096 warm calls. The existing 75 focused tests and a final three-test exact-route rerun pass. Tests cover both convenience overloads for Q4_1 and Q5_1. Qwen's explicit caller-scratch overload does not take either changed convenience branch.
+
+## Observable-output confirmation
+
+The original zero-weight probe had a weak observability contract. The strengthened probe uses nonzero valid Q5_1 weights, changes an input element on every call, and stores the computed output into a volatile checksum on every call. Old and amended implementations produce identical checksum bits for both batches (`c20bdbac` and `c221bab0`). Allocated bytes/call remain 102,480 → 0 for single-token dispatch and 65,552 → 0 for two-query dispatch. Both the original and strengthened probes are retained.
