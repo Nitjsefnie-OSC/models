@@ -1,0 +1,10 @@
+case=0 dataset=squad2 stop=EOS error=None millis=67612
+case=1 dataset=boolq stop=EOS error=None millis=75616
+case=2 dataset=boolq stop=EOS error=None millis=50741
+case=3 dataset=squad2 stop=EOS error=None millis=75306
+case=4 dataset=squad2 stop=EOS error=None millis=73429
+case=5 dataset=squad2 stop=EOS error=None millis=72346
+case=6 dataset=boolq stop=EOS error=None millis=58705
+case=7 dataset=squad2 stop=EOS error=None millis=120717
+case=8 dataset=squad2 stop=EOS error=None millis=67218
+case=9 dataset=squad2 stop=EOS error=None millis=99189

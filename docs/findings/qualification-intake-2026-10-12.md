@@ -7,8 +7,9 @@ runtime revision, and host; this inventory does not renew it on today's candidat
 
 ## Active priorities
 
-- **Bonsai 2:** all eight shards of the frozen candidate's 200-case public QA comparison are
-  launched. Real numerical fixtures pass on x86 and ARM. Whole-model allocation regressions
+- **Bonsai 2:** the frozen candidate's 200-case public QA comparison is complete after two
+  interrupted shards were recovered. All 200 answers match the pinned publisher: 77%
+  SQuAD2 exact match, 80.03% token F1 and 90% BoolQ accuracy, with no failures or truncations. Real numerical fixtures pass on x86 and ARM. Whole-model allocation regressions
   remain release blockers; no production qualification or marker publication is claimed.
 - **EmbeddingGemma 2:** released-runtime text embedding equivalence passes eight independent
   probes, minimum cosine 0.9998087, with 768-dimensional outputs. This does not qualify image,

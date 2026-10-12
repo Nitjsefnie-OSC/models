@@ -16,7 +16,18 @@
       "catalogIds": [
         "prism_ml_ternary_bonsai_2_27b_gguf_ptq1_0"
       ],
-      "qualificationEntries": []
+      "qualificationEntries": [],
+      "currentCampaignEvidence": {
+        "status": "quality-check-passed; production qualification incomplete",
+        "modelsRevision": "2163f9eb",
+        "vectorsRevision": "d92aceb",
+        "report": "benchmark-results/2026-10-12-bonsai-final/summary.json",
+        "cases": 200,
+        "identicalRawAnswers": 200,
+        "failures": 0,
+        "truncations": 0,
+        "scope": "Frozen runtime; subsequent artifacts remain separately qualified"
+      }
     },
     {
       "name": "EmbeddingGemma 2 Q8_0",

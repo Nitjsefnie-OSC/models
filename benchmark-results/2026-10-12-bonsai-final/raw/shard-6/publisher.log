@@ -1,0 +1,48 @@
+case=150 dataset=boolq stop=EOS error=None millis=22780
+case=151 dataset=boolq stop=EOS error=None millis=77192
+case=152 dataset=boolq stop=EOS error=None millis=42687
+case=153 dataset=boolq stop=EOS error=None millis=42795
+case=154 dataset=boolq stop=EOS error=None millis=42625
+case=155 dataset=boolq stop=EOS error=None millis=44408
+case=156 dataset=boolq stop=EOS error=None millis=79652
+case=157 dataset=boolq stop=EOS error=None millis=50402
+case=158 dataset=boolq stop=EOS error=None millis=38402
+case=159 dataset=boolq stop=EOS error=None millis=51917
+case=160 dataset=boolq stop=EOS error=None millis=21944
+case=161 dataset=boolq stop=EOS error=None millis=41133
+case=162 dataset=boolq stop=EOS error=None millis=28834
+case=163 dataset=boolq stop=EOS error=None millis=25491
+case=164 dataset=boolq stop=EOS error=None millis=45302
+case=165 dataset=boolq stop=EOS error=None millis=64192
+case=166 dataset=boolq stop=EOS error=None millis=40632
+case=167 dataset=boolq stop=EOS error=None millis=56493
+case=168 dataset=boolq stop=EOS error=None millis=33666
+case=169 dataset=boolq stop=EOS error=None millis=73389
+case=170 dataset=boolq stop=EOS error=None millis=77129
+case=171 dataset=boolq stop=EOS error=None millis=30073
+case=172 dataset=boolq stop=EOS error=None millis=31356
+case=173 dataset=boolq stop=EOS error=None millis=53639
+case=174 dataset=boolq stop=EOS error=None millis=69382
+	Command being timed: "python3 /work/qa/run-public-reference.py /work/qa/public-qa-cases.json /work/out/publisher.jsonl http://127.0.0.1:8080 150 25"
+	User time (seconds): 0.08
+	System time (seconds): 0.01
+	Percent of CPU this job got: 0%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 19:45.57
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 24540
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 3717
+	Voluntary context switches: 47
+	Involuntary context switches: 46
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 520
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

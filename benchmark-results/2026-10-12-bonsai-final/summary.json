@@ -1,0 +1,77 @@
+{
+  "inputReports": {
+    "models": {
+      "file": "models.jsonl",
+      "sha256": "9fee4d3caa909b276ffddf1df97ec56df6309dd3706c8f78867e9bdbb1401b86"
+    },
+    "publisher": {
+      "file": "publisher.jsonl",
+      "sha256": "4d4b3d3eee40e829aa5582af3d696a6678ad2face4f32e0bd70cc06c135b5871"
+    }
+  },
+  "protocol": "bonsai-production-public-qa-v1",
+  "caseSha256": "e1616ea8765a15bd569c38ab8a4367cefac9fa98756e976040fbbe0874270a7b",
+  "complete": true,
+  "datasets": {
+    "squad2": {
+      "models": {
+        "count": 100,
+        "present": 100,
+        "exactMatch": 0.77,
+        "tokenF1": 0.800297619047619,
+        "exactMatchWilson95": [
+          0.6784561697712622,
+          0.8415673411969654
+        ],
+        "failures": 0,
+        "truncations": 0,
+        "unanswerableAccuracy": 0.74
+      },
+      "publisher": {
+        "count": 100,
+        "present": 100,
+        "exactMatch": 0.77,
+        "tokenF1": 0.800297619047619,
+        "exactMatchWilson95": [
+          0.6784561697712622,
+          0.8415673411969654
+        ],
+        "failures": 0,
+        "truncations": 0,
+        "unanswerableAccuracy": 0.74
+      },
+      "modelsMinusPublisher": 0.0,
+      "descriptiveRegressionRulePassed": true
+    },
+    "boolq": {
+      "models": {
+        "count": 100,
+        "present": 100,
+        "exactMatch": 0.9,
+        "tokenF1": 0.9,
+        "exactMatchWilson95": [
+          0.8256343384950865,
+          0.9447708629393249
+        ],
+        "failures": 0,
+        "truncations": 0
+      },
+      "publisher": {
+        "count": 100,
+        "present": 100,
+        "exactMatch": 0.9,
+        "tokenF1": 0.9,
+        "exactMatchWilson95": [
+          0.8256343384950865,
+          0.9447708629393249
+        ],
+        "failures": 0,
+        "truncations": 0
+      },
+      "modelsMinusPublisher": 0.0,
+      "descriptiveRegressionRulePassed": true
+    }
+  },
+  "disagreements": [],
+  "descriptiveRegressionRulePassed": true
+}
