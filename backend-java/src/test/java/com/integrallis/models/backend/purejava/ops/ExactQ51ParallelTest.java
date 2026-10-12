@@ -121,6 +121,8 @@ class ExactQ51ParallelTest {
             float[] single = new float[rowCount];
             TensorOps.ggufMatmul(single, input, weights, type, rowCount, columns);
             assertThat(single).containsExactly(java.util.Arrays.copyOf(expected, rowCount));
+            TensorOps.ggufMatmul(single, input, weights, type, rowCount, columns, null, null);
+            assertThat(single).containsExactly(java.util.Arrays.copyOf(expected, rowCount));
           }
         }
       }

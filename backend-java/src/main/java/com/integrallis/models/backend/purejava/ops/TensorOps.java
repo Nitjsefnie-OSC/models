@@ -186,7 +186,6 @@ public final class TensorOps {
       float[] out, float[] x, MemorySegment qWeight, GgufTensorType type, int rows, int cols) {
     if (type == GgufTensorType.Q4_0
         || type == GgufTensorType.Q5_0
-        || type == GgufTensorType.Q5_1
         || type == GgufTensorType.Q8_0
         || type == GgufTensorType.Q4_K
         || type == GgufTensorType.Q5_K
@@ -233,7 +232,7 @@ public final class TensorOps {
         cols,
         quantizedActivation,
         quantizedActivationScales,
-        new int[(cols + 3) / 4],
+        type == GgufTensorType.Q5_1 ? null : new int[(cols + 3) / 4],
         type == GgufTensorType.Q4_K || type == GgufTensorType.Q5_K
             ? new short[(cols + 15) / 16]
             : null,
