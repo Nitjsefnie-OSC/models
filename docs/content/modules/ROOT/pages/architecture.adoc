@@ -53,10 +53,10 @@ planning.
 
 The default downloadable-model path executes on the CPU through Java's Vector
 API, with optional Models-owned Rust kernels on qualified bottlenecks. The
-optional xref:gpu-acceleration.adoc[Java GPU backend] offloads qualified Q4_0
-projections to NVIDIA PTX after a bounded readiness pass and a device-memory
-capacity check. AMD, Intel, Apple Metal, and non-Q4_0 artifacts currently stay
-on the CPU path because they have not passed the corresponding hardware gate.
+optional xref:gpu-acceleration.adoc[NVIDIA GPU backend] offloads eligible Q4_K/Q6_K
+projections and grouped-query decode attention through Models-owned PTX kernels.
+Other formats and unsupported devices retain CPU execution. Device availability,
+memory capacity, and the exact artifact's numerical and performance gates are separate checks.
 Apple Silicon's unified memory avoids physically separate CPU and GPU memory,
 but unified memory alone does not schedule work on the GPU. Models does not yet
 execute arbitrary MLX models or dispatch its downloaded-model graph to Metal.
@@ -69,15 +69,16 @@ image::models-0001.png[Models runtime architecture,align=center]
 
 == Why A Native Path Exists
 
-The release gate is based on observed correctness and user-facing
-latency. Current Java 25 Vector API and HotSpot code generation cannot
-express or consistently lower every quantized inference kernel close
-enough to mature native runtimes. Releasing those artifacts on the
-slower path would make them unsuitable for their qualified workloads.
+Rust accelerates selected numerical operations while Java owns the model pipeline.
+Historical measurements show advantages for particular native implementations and workloads.
+Those results do not by themselves prove a missing JVM capability: improved Java arithmetic,
+weight reuse, scheduling, and call boundaries can change the result on the same JDK.
 
-For affected model profiles, `backend-native` supplies the missing
-throughput with a small Rust binary. This is a temporary
-performance compatibility layer, not a second model runtime.
+The current evidence inventory distinguishes demonstrated implementation gains from unresolved
+compiler or API hypotheses. Several native routes still lack complete causal proof. Correctness
+repairs and passing CI do not fill that gap; the corresponding evidence records remain unproven.
+Retention requires measured whole-model benefit and a demonstrated limitation after testing
+credible Java alternatives. The backend module name does not describe a second model runtime.
 
 Each native route must have:
 
@@ -86,7 +87,9 @@ Each native route must have:
 . Deterministic output comparison against that implementation.
 . A benchmark on the exact model artifact and runtime selector.
 . Diagnostics identifying that the route was selected.
-. A pure-Java fallback.
+. Java implementations for operations outside the native capability contract.
+. Whole-model latency, throughput, startup, allocation, resident-memory, and task-quality checks.
+. A reproducible JVM limitation after testing Java implementation alternatives.
 
 This boundary also applies to future artifact formats. Supporting an ONNX
 file, for example, means parsing and executing its supported operations in
@@ -94,23 +97,22 @@ the Models Java graph. It does not mean embedding or invoking ONNX Runtime.
 
 == Retirement Policy
 
-Models strives to become fully pure Java. A native kernel can be retired
-when a released supported JDK provides the required memory, SIMD,
-compiler, or device capability and the Java implementation clears the
-same correctness and performance gate.
+A native operation can be retired when a Java implementation passes the same numerical,
+task-quality, whole-model performance, and resource gates on the supported hosts. That may
+follow an implementation improvement on the current JDK or a new JVM/compiler capability.
+A future JDK release is not automatically necessary, and no retirement date is implied.
 
-Retirement is evidence-driven and model-specific:
+Retirement is evidence-driven and operation-specific:
 
 [arabic]
-. Implement the Java route against the newer JDK capability.
-. Run deterministic token and tensor comparisons.
-. Re-run controlled same-host benchmarks.
-. Update the model's measured runtime profile.
-. Stop selecting the native kernel for matching JDKs.
-. Remove the native implementation when no supported profile needs it.
+. Implement and measure credible Java alternatives.
+. Run deterministic tensor, token, and state comparisons.
+. Re-run paired same-host whole-model measurements, including startup and memory.
+. Select the best validated route, varying it only for demonstrated hardware/input requirements.
+. Remove native code and support routines once no supported route needs them.
 
-This lets one artifact prefer pure Java on a newer JDK while another
-continues to use the FFM path.
+An inactive implementation with a recorded speedup receives a correctness and performance
+investigation before deletion. An active implementation with incomplete proof is not dead code.
 
 == GGUF Data Flow
 
@@ -151,10 +153,11 @@ activation workspaces belong to each Java session and are reused across prefill
 and decode. The execution planner derives batch and quantized-kernel choices
 from the tensors actually loaded rather than assuming a Llama-shaped graph.
 Java Vector API kernels fuse the causal depthwise convolution with SiLU and
-vectorize the gate transforms and SwiGLU. On an exact qualified artifact, the
-planner may additionally move the measured Gated DeltaNet recurrence hot loop
-through the small Models-owned FFM kernel; that option does not move the model
-graph or session state out of Java.
+vectorize the gate transforms and SwiGLU. The corrected integration candidate selects
+sequential native DeltaNet on compatible FMA hosts and dimensions, and Java otherwise.
+The approximate chunked implementation is removed. Final whole-model resource and quality
+gates remain unresolved; this candidate selection is not a published qualification.
+The model graph and session state remain owned by Java.
 The implementation does not invoke a FreeToken, Python, or external inference
 runtime; FreeToken and llama.cpp are test references.
 

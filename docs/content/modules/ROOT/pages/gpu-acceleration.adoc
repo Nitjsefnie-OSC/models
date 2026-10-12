@@ -6,11 +6,12 @@ compiled to PTX. The model parser, tokenizer, transformer graph, KV cache,
 sampling and generation loop remain inside Models. There is no external
 inference server, no vendor math library and no handwritten CUDA C++.
 
-Models ships *one* GPU implementation. A TornadoVM-based arm existed until
-0.3.53 and was removed: on the same RTX 4090 and the same model it reached
-6.49 tok/s decode over 36 failed `cuLaunchKernel` calls, against 31.26 tok/s
-for this path, and it required a separately installed device runtime that a
-Maven artifact cannot carry. The measurement is retained in
+Models ships *one* GPU implementation. The removed TornadoVM attempt recorded
+36 failed `cuLaunchKernel` calls and never reached its exact-token gate. Its reported
+6.49 tok/s is therefore not valid throughput for working inference. The Models CUDA
+path recorded 31.26 tok/s and exact token parity on that RTX 4090/model experiment.
+These results reject the tested replacement; they do not prove that Java-authored
+GPU kernels cannot match it. The failed experiment remains in
 `benchmark-results/2026-10-07-tornado-removal`.
 
 == Nothing activates it by accident

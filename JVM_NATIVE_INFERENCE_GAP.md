@@ -1,6 +1,12 @@
 # Experiment-backed requests for JVM-native AI inference
 
-Status: working research brief, 2026-09-02.
+Status: historical research brief begun 2026-09-02; current-boundary correction 2026-10-12.
+
+The current investigation found that several explanations below remain hypotheses, not completed
+causal proofs. Historical observations retain their exact runtime scope. The
+[native-shim registry](docs/native-shims/README.md) and
+[cleanup findings](docs/findings/runtime-cleanup-2026-10-12.md) are the current status; all
+unresolved proof records remain unproven. A measured native advantage is not itself a JVM limitation.
 
 This document is the evidence base for a future public set of requests to JVM, JDK-distribution,
 compiler, and Java accelerator leaders. The eventual article or paper should be derived from this
@@ -36,12 +42,14 @@ one is independently reproducible, attributable to the right layer, and closable
 ## The current native boundary
 
 Models does not embed llama.cpp, Ollama, FreeToken, Needle, or another inference engine. The
-Models-owned ABI 5 crate exposes a persistent worker context and these compute operations:
+Models-owned CPU crate exposes a persistent worker context and selected compute operations.
+Its current candidate revises the ABI after removing the failed approximate chunked recurrence.
 
-| Native operation | Formats or graph | Java ownership outside the call | Current reason to keep it |
-| --- | --- | --- | --- |
-| Batched, grouped, and independent quantized matrix projection | Q4_0, Q5_0, Q8_0, Q4_K, Q5_K, Q6_K, and mixed K-quant groups | Artifact mapping, activation lifetime, graph scheduling, attention, KV cache, sampling, and generation | Exact x86 profiles can use AVX2/FMA integer dots, weight reuse, and a persistent worker pool more predictably than the current portable lowering. |
-| Gated DeltaNet recurrence | F32 recurrent state used by Qwen3.5 | Convolution, projections, state ownership, attention, tokenizer, and generation | The Java recurrence is correct and vectorized, but the exact Qwen3.5 0.8B production profile needs the narrow FFM recurrence to meet its TTFT policy. |
+| Native operation | Implemented scope | Current evidence boundary |
+| --- | --- | --- |
+| Quantized projections | Q4_0, Q5_0, Q5_1, Q8_0, K-quants and PTQ1_0; eligible batch/group combinations | Format-specific measured gains exist. Q5_1 now has a narrower candidate route; generalized JVM-cause claims remain unproven. Dormant grouped Q5_0 was removed after actual-model regression evidence. |
+| CPU grouped-query attention | Supported head/cache shapes | Historical whole-model gain and repaired memory ownership; current isolated JVM-cause proof remains incomplete. |
+| Gated DeltaNet recurrence | Corrected sequential recurrence on compatible FMA hosts/dimensions | Staged candidate after Java/native alternatives were measured. Resource and published-runtime quality differences remain unresolved; the old blanket necessity claim was not justified. |
 
 The [backend contract](backend-native/README.md) is versioned, checksum-verified, optional, and
 replaceable. Every native-selected model also runs a library-default Java correctness smoke. This
@@ -300,9 +308,9 @@ qualification.
 
 ## Native-removal experiment order
 
-1. **Qwen3.5 recurrence:** compare current Java SIMD and ABI 5 recurrence in counterbalanced
-   full-model runs on x86 and Apple Silicon; inspect generated code before adding another Java
-   formulation. Remove the native recommendation if Java clears the existing 0.8B policy.
+1. **Qwen3.5 recurrence:** complete the corrected candidate's whole-model resource and quality
+   gates after measuring the Java alternatives. Keep the recorded kernel and model results
+   distinct; a kernel win does not establish the best whole-model route.
 2. **Qwen2.5 3B quantized decode:** isolate the selected Q4_K/Q5_K/Q6_K projection shapes, test
    current HotSpot and Graal builds, then rerun the 27-case workload. The goal is the current
    Rust/FFM tier with identical output hashes, not a synthetic microbenchmark win.
