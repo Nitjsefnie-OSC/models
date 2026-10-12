@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - ".github/workflows/native-kernels.yml"
+      - ".github/actions/ptx-toolchain/**"
       - "build.gradle.kts"
       - "settings.gradle.kts"
       - "gradle.properties"
@@ -19,6 +20,7 @@ on:
     branches: [main]
     paths:
       - ".github/workflows/native-kernels.yml"
+      - ".github/actions/ptx-toolchain/**"
       - "build.gradle.kts"
       - "settings.gradle.kts"
       - "gradle.properties"
@@ -48,8 +50,11 @@ jobs:
       - name: Checkout models
         uses: actions/checkout@v5
 
-      - name: Install pinned Miri
-        run: rustup toolchain install nightly-2026-09-17 --profile minimal --component miri
+      - name: Install shared pinned Rust nightly
+        uses: ./.github/actions/ptx-toolchain
+
+      - name: Add Miri to the pinned nightly
+        run: rustup component add --toolchain nightly-2026-09-17 miri
 
       - name: Check concurrent attention memory access
         env:
