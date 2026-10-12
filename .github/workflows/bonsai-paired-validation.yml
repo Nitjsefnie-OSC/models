@@ -1,0 +1,102 @@
+name: Bonsai narrow-core paired validation
+
+on:
+  push:
+    branches: [fix/bonsai-paired-validation]
+    paths:
+      - '.github/workflows/bonsai-paired-validation.yml'
+      - 'scripts/bonsai-paired/**'
+  workflow_dispatch:
+  workflow_call:
+
+permissions:
+  contents: read
+
+jobs:
+  paired:
+    name: ${{ matrix.arch }} ${{ matrix.model }} pairs shard ${{ matrix.shard }}
+    runs-on: ${{ matrix.arch == 'arm' && 'ubuntu-24.04-arm' || 'ubuntu-24.04' }}
+    timeout-minutes: 330
+    strategy:
+      fail-fast: false
+      matrix:
+        model: [qwen-bf16, bonsai2]
+        shard: ['0', '1']
+        arch: [x86, arm]
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          path: harness
+      - name: Read immutable protocol
+        id: protocol
+        run: |
+          python3 - <<'PY'
+          import json, os
+          p=json.load(open('harness/scripts/bonsai-paired/protocol.json'))
+          with open(os.environ['GITHUB_OUTPUT'],'a') as f:
+              f.write('models='+p['modelsRevision']+'\n')
+              f.write('vectors='+p['vectorsRevision']+'\n')
+          PY
+      - uses: actions/checkout@v5
+        with:
+          ref: ${{ steps.protocol.outputs.models }}
+          path: models
+      - uses: actions/checkout@v5
+        with:
+          repository: integrallis/vectors
+          ref: ${{ steps.protocol.outputs.vectors }}
+          path: vectors
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '25.0.3'
+      - uses: gradle/actions/setup-gradle@v6
+      - name: Install pinned Rust toolchain
+        run: rustup toolchain install 1.96.0 --profile minimal --no-self-update
+      - name: Build immutable actual artifacts
+        run: |
+          set -euo pipefail
+          test "$(git -C models rev-parse HEAD)" = '${{ steps.protocol.outputs.models }}'
+          test "$(git -C vectors rev-parse HEAD)" = '${{ steps.protocol.outputs.vectors }}'
+          (cd vectors && ./gradlew :vectors-core:jar --no-daemon --max-workers=2)
+          (cd models && ./gradlew :backend-native:cargoBuildRelease :backend-native:copyPairedRuntime --init-script ../harness/scripts/bonsai-paired/runtime.init.gradle --no-daemon --max-workers=2)
+      - name: Execute fixtures and fixed paired blocks
+        env:
+          MODEL: ${{ matrix.model }}
+          SHARD: ${{ matrix.shard }}
+          ARCH: ${{ matrix.arch }}
+        run: |
+          set -euo pipefail
+          mapfile -t jars < <(find vectors/vectors-core/build/libs -maxdepth 1 -name 'vectors-core-*.jar' ! -name '*-sources.jar' ! -name '*-javadoc.jar')
+          test "${#jars[@]}" -eq 1
+          python3 harness/scripts/bonsai-paired/run.py --model "$MODEL" --shard "$SHARD" --models models --candidate-core "${jars[0]}" --output "out/paired-$ARCH-$MODEL-$SHARD"
+      - name: Retain all observations, failures and provenance
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: paired-${{ matrix.arch }}-${{ matrix.model }}-${{ matrix.shard }}
+          path: |
+            out/paired-${{ matrix.arch }}-${{ matrix.model }}-${{ matrix.shard }}/*.json
+            out/paired-${{ matrix.arch }}-${{ matrix.model }}-${{ matrix.shard }}/*.stdout
+            out/paired-${{ matrix.arch }}-${{ matrix.model }}-${{ matrix.shard }}/*.stderr
+            out/paired-${{ matrix.arch }}-${{ matrix.model }}-${{ matrix.shard }}/STATUS
+          if-no-files-found: warn
+          retention-days: 30
+  analyze:
+    if: always()
+    needs: paired
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/download-artifact@v8
+        with:
+          pattern: paired-*
+          path: evidence
+      - name: Enforce declared numerical, quality and performance gates
+        run: python3 scripts/bonsai-paired/analyze.py evidence paired-summary.json
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: paired-summary
+          path: paired-summary.json
+          retention-days: 30
