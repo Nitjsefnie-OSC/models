@@ -1,0 +1,116 @@
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by net.rubygrapefruit.platform.internal.NativeLibraryLoader in an unnamed module (file:/Users/briansam-bodden/.gradle/wrapper/dists/gradle-9.4.1-all/eckclv9s5vi9exbmnyvpg2a3h/gradle-9.4.1/lib/native-platform-0.22-milestone-29.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/9.4.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+
+> Task :testNativeShimEvidence
+.............
+----------------------------------------------------------------------
+Ran 13 tests in 38.032s
+
+OK
+
+> Task :verifyNativeShimEvidence
+{
+  "operations": 15,
+  "capabilities": 25,
+  "exports": {
+    "cpu": 20,
+    "cuda": 3
+  },
+  "unresolved": [
+    "q4_0-projection",
+    "q5_0-projection",
+    "q8_0-projection",
+    "q4_k-projection",
+    "q5_k-projection",
+    "q6_k-projection",
+    "q5_1-projection",
+    "ptq1-projection",
+    "projection-grouping",
+    "worker-context",
+    "gated-delta-net",
+    "cpu-attention",
+    "gqa-decode-attention",
+    "q4k-decode-projection",
+    "q6k-decode-projection"
+  ]
+}
+
+> Task :spotlessInternalRegisterDependencies
+> Task :backend-apple:spotlessJava
+> Task :backend-apple:spotlessJavaCheck
+> Task :backend-apple:spotlessCheck
+> Task :backend-cuda:spotlessJava
+> Task :backend-cuda:spotlessJavaCheck
+> Task :backend-cuda:spotlessCheck
+> Task :backend-java:spotlessJava
+> Task :backend-java:spotlessJavaCheck
+> Task :backend-java:spotlessCheck
+> Task :backend-native:spotlessJava
+> Task :backend-native:spotlessJavaCheck
+> Task :backend-native:spotlessCheck
+> Task :models:spotlessJava
+> Task :models:spotlessJavaCheck
+> Task :models:spotlessCheck
+> Task :models-accelerator-bench:spotlessJava
+> Task :models-accelerator-bench:spotlessJavaCheck
+> Task :models-accelerator-bench:spotlessCheck
+> Task :models-api:spotlessJava
+> Task :models-api:spotlessJavaCheck
+> Task :models-api:spotlessCheck
+> Task :models-audio:spotlessJava
+> Task :models-audio:spotlessJavaCheck
+> Task :models-audio:spotlessCheck
+> Task :models-backend-onnx:spotlessJava
+> Task :models-backend-onnx:spotlessJavaCheck
+> Task :models-backend-onnx:spotlessCheck
+> Task :models-bench:spotlessJava
+> Task :models-bench:spotlessJavaCheck
+> Task :models-bench:spotlessCheck
+> Task :models-decisions:spotlessJava
+> Task :models-decisions:spotlessJavaCheck
+> Task :models-decisions:spotlessCheck
+> Task :models-embedding:spotlessJava
+> Task :models-embedding:spotlessJavaCheck
+> Task :models-embedding:spotlessCheck
+> Task :models-langchain4j:spotlessJava
+> Task :models-langchain4j:spotlessJavaCheck
+> Task :models-langchain4j:spotlessCheck
+> Task :models-quarkus:spotlessJava
+> Task :models-quarkus:spotlessJavaCheck
+> Task :models-quarkus:spotlessCheck
+> Task :models-rag:spotlessJava
+> Task :models-rag:spotlessJavaCheck
+> Task :models-rag:spotlessCheck
+> Task :models-rag-bench:spotlessJava
+> Task :models-rag-bench:spotlessJavaCheck
+> Task :models-rag-bench:spotlessCheck
+> Task :models-router:spotlessJava
+> Task :models-router:spotlessJavaCheck
+> Task :models-router:spotlessCheck
+> Task :models-runtime:spotlessJava
+> Task :models-runtime:spotlessJavaCheck
+> Task :models-runtime:spotlessCheck
+> Task :models-semantic-kernel:spotlessJava
+> Task :models-semantic-kernel:spotlessJavaCheck
+> Task :models-semantic-kernel:spotlessCheck
+> Task :models-semantic-order:spotlessJava
+> Task :models-semantic-order:spotlessJavaCheck
+> Task :models-semantic-order:spotlessCheck
+> Task :models-spring-ai:spotlessJava
+> Task :models-spring-ai:spotlessJavaCheck
+> Task :models-spring-ai:spotlessCheck
+> Task :models-spring-boot-starter:spotlessJava
+> Task :models-spring-boot-starter:spotlessJavaCheck
+> Task :models-spring-boot-starter:spotlessCheck
+> Task :models-test:spotlessJava
+> Task :models-test:spotlessJavaCheck
+> Task :models-test:spotlessCheck
+
+BUILD SUCCESSFUL in 4m 22s
+49 actionable tasks: 49 executed
+Consider enabling configuration cache to speed up this build: https://docs.gradle.org/9.4.1/userguide/configuration_cache_enabling.html

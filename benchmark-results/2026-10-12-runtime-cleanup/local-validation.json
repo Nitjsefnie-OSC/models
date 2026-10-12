@@ -1,0 +1,33 @@
+{
+  "build": {
+    "revision": "9809314730e4d8c1ef2127df3f3b2ea99c3324a8",
+    "command": "./gradlew spotlessCheck build complianceCheck -x :docs:build --no-daemon",
+    "tasksExecuted": 366,
+    "testCases": 2588,
+    "failures": 0,
+    "errors": 0,
+    "skips": 34,
+    "note": "Fixture and alternate-runtime skips are tracked separately, not counted as passed."
+  },
+  "springAiCompatibility": {
+    "revision": "fe9ba2c7",
+    "command": "./gradlew :models-spring-ai:test --tests '*ModelsSpringAiToolCallingTest*' -PspringAiVersion=1.1.4 --write-locks --no-daemon",
+    "tests": 35,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "legacyToolLoopExecuted": true
+  },
+  "evidenceGuard": {
+    "revision": "fe9ba2c7",
+    "mutationTests": 13,
+    "failures": 0,
+    "schemaValidator": "jsonschema 4.26.0"
+  },
+  "files": {
+    "spring-ai-1.1.4-compat.log": "423d30ab2629410c85dd84dd55ffbc6bfbe138d9b68370d7f2805669bae4b52d",
+    "models-build-98093147.log": "c93931139432c0349aac6a1e9882ea53ae771e19aac5ad63bf0b41b7aa3212b6",
+    "spring-ai-1.1.4.gradle.lockfile": "6db81cd80d40d4a538cd21d6203029379ed94ae17d089dd306d02f5c9026cf71",
+    "shim-evidence-validation.log": "3a98f106c12984c5bfe9fb9574782a151d9dabf91bc7fc954a82d4b14df52f50"
+  }
+}

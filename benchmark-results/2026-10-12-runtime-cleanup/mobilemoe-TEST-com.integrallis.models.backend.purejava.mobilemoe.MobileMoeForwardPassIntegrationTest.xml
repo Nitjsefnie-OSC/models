@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.integrallis.models.backend.purejava.mobilemoe.MobileMoeForwardPassIntegrationTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-10-12T19:42:56.653Z" hostname="runnervmmprz5" time="50.613">
+  <properties/>
+  <testcase name="batchedPrefillMatchesSequentialExecutionAndLeavesEquivalentKvState()" classname="com.integrallis.models.backend.purejava.mobilemoe.MobileMoeForwardPassIntegrationTest" time="17.409"/>
+  <testcase name="executesTheRealQatGraphWithIsolatedRewindableSessions()" classname="com.integrallis.models.backend.purejava.mobilemoe.MobileMoeForwardPassIntegrationTest" time="16.697"/>
+  <testcase name="matchesTheOfficialPytorchOracleAtPositionZeroAndWithKvHistory()" classname="com.integrallis.models.backend.purejava.mobilemoe.MobileMoeForwardPassIntegrationTest" time="16.506"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
