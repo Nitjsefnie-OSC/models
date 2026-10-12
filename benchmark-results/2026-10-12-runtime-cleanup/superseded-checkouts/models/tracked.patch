@@ -1,0 +1,3001 @@
+diff --git a/CHANGELOG.md b/CHANGELOG.md
+index 1ae6002f..155db089 100644
+--- a/CHANGELOG.md
++++ b/CHANGELOG.md
+@@ -4,6 +4,15 @@ All notable changes to models are documented here.
+ 
+ ## [Unreleased]
+ 
++### Removed
++
++- Remove unused Rust Gated DeltaNet recurrence kernels, FFM bindings, and recurrence hooks from
++  `GgufBatchedMatrixKernel`. Qwen recurrence continues to execute in Java, including grouped
++  decisions. Remove the misleading missing-native-recurrence performance diagnostic.
++- Advance the CPU native ABI to 7 because the unused recurrence exports were removed; reserve
++  capability bits 18 and 22. Java bindings and native platform artifacts must be upgraded together.
++  Custom implementations using the removed recurrence SPI methods must remove those overrides.
++
+ ## [0.3.59] - 2026-10-11
+ 
+ ### Added and fixed
+diff --git a/JVM_NATIVE_INFERENCE_GAP.md b/JVM_NATIVE_INFERENCE_GAP.md
+index 33ca9d14..447c0862 100644
+--- a/JVM_NATIVE_INFERENCE_GAP.md
++++ b/JVM_NATIVE_INFERENCE_GAP.md
+@@ -36,12 +36,14 @@ one is independently reproducible, attributable to the right layer, and closable
+ ## The current native boundary
+ 
+ Models does not embed llama.cpp, Ollama, FreeToken, Needle, or another inference engine. The
+-Models-owned ABI 5 crate exposes a persistent worker context and these compute operations:
++Models-owned CPU crate exposes a persistent worker context and selected compute operations.
++The earlier description of native Gated DeltaNet as necessary was incorrect: production used
++Java recurrence, and the inactive Rust implementation and its bindings have now been removed.
++Historical measurements elsewhere in this brief retain their original runtime scope.
+ 
+ | Native operation | Formats or graph | Java ownership outside the call | Current reason to keep it |
+ | --- | --- | --- | --- |
+ | Batched, grouped, and independent quantized matrix projection | Q4_0, Q5_0, Q8_0, Q4_K, Q5_K, Q6_K, and mixed K-quant groups | Artifact mapping, activation lifetime, graph scheduling, attention, KV cache, sampling, and generation | Exact x86 profiles can use AVX2/FMA integer dots, weight reuse, and a persistent worker pool more predictably than the current portable lowering. |
+-| Gated DeltaNet recurrence | F32 recurrent state used by Qwen3.5 | Convolution, projections, state ownership, attention, tokenizer, and generation | The Java recurrence is correct and vectorized, but the exact Qwen3.5 0.8B production profile needs the narrow FFM recurrence to meet its TTFT policy. |
+ 
+ The [backend contract](backend-native/README.md) is versioned, checksum-verified, optional, and
+ replaceable. Every native-selected model also runs a library-default Java correctness smoke. This
+@@ -300,9 +302,8 @@ qualification.
+ 
+ ## Native-removal experiment order
+ 
+-1. **Qwen3.5 recurrence:** compare current Java SIMD and ABI 5 recurrence in counterbalanced
+-   full-model runs on x86 and Apple Silicon; inspect generated code before adding another Java
+-   formulation. Remove the native recommendation if Java clears the existing 0.8B policy.
++1. **Qwen3.5 recurrence:** completed native removal. Recurrence executes in Java; the unused Rust
++   implementation and native injection hooks were deleted. Preserve the existing Java model gates.
+ 2. **Qwen2.5 3B quantized decode:** isolate the selected Q4_K/Q5_K/Q6_K projection shapes, test
+    current HotSpot and Graal builds, then rerun the 27-case workload. The goal is the current
+    Rust/FFM tier with identical output hashes, not a synthetic microbenchmark win.
+diff --git a/backend-java/src/main/java/com/integrallis/models/backend/purejava/diagnostics/PerformanceCliff.java b/backend-java/src/main/java/com/integrallis/models/backend/purejava/diagnostics/PerformanceCliff.java
+index 48a339f3..4bc60d41 100644
+--- a/backend-java/src/main/java/com/integrallis/models/backend/purejava/diagnostics/PerformanceCliff.java
++++ b/backend-java/src/main/java/com/integrallis/models/backend/purejava/diagnostics/PerformanceCliff.java
+@@ -96,12 +96,6 @@ public enum PerformanceCliff {
+   NATIVE_GROUPED_ATTENTION_SPAN_LIMIT(
+       "native-grouped-attention-span-limit",
+       "the KV cache view has more than two spans; native grouped attention falls back to Java"),
+-  /**
+-   * An injected native kernel does not provide the Gated DeltaNet recurrence, so it runs in Java.
+-   */
+-  NATIVE_GATED_DELTA_NET_UNAVAILABLE(
+-      "native-gated-delta-net-unavailable",
+-      "the injected kernel has no Gated DeltaNet recurrence; it runs in Java"),
+   /**
+    * The loaded native kernel library lacks the poll-budget capability, so its workers keep the
+    * library's built-in poll-before-park behaviour instead of the configured budget.
+diff --git a/backend-java/src/main/java/com/integrallis/models/backend/purejava/qwen35/Qwen35ForwardPass.java b/backend-java/src/main/java/com/integrallis/models/backend/purejava/qwen35/Qwen35ForwardPass.java
+index dd18cdf3..7e7a5398 100644
+--- a/backend-java/src/main/java/com/integrallis/models/backend/purejava/qwen35/Qwen35ForwardPass.java
++++ b/backend-java/src/main/java/com/integrallis/models/backend/purejava/qwen35/Qwen35ForwardPass.java
+@@ -802,17 +802,8 @@ public final class Qwen35ForwardPass {
+   }
+ 
+   /**
+-   * Advances every active branch's recurrent state by one token.
+-   *
+-   * <p>Issued as one call rather than one per branch. A kernel asked to advance a single sequence
+-   * by a single token has nothing to spread across its threads and deliberately stays on the
+-   * caller, so asking N times in a row answered N questions on one core while every projection
+-   * around it used the whole machine. MEASURED 2026-09-24 on a Hetzner CCX33: twenty questions cost
+-   * 12.39 s grouped that way, and 10.79 s once the whole group went in one call. Handed the whole
+-   * group, the kernel has rows x heads independent recurrences.
+-   *
+-   * <p>{@code active} is also the row-to-slot table: questions of unequal length drop out as they
+-   * finish, so the rows still advancing are a scattered subset of the group's state slots.
++   * Advances each active branch in Java. The active row-to-slot table preserves each branch's
++   * recurrent state when shorter questions finish before their neighbors.
+    */
+   private void groupedRecurrence(
+       int layer, int rows, int[] active, Qwen35GroupedDecision group, BatchScratch batch) {
+@@ -821,26 +812,6 @@ public final class Qwen35ForwardPass {
+     int valueHeads = config.gdnValueHeads();
+     int headDimension = config.gdnHeadDim();
+     float[] groupState = group.recurrentState(layer);
+-    if (batchedMatrixKernel.supportsGroupedGatedDeltaNet()) {
+-      batchedMatrixKernel.groupedGatedDeltaNet(
+-          batch.gdnQuery,
+-          batch.gdnKey,
+-          batch.gdnValue,
+-          batch.logDecay,
+-          batch.beta,
+-          groupState,
+-          batch.recurrent,
+-          active,
+-          rows,
+-          group.groupSize(),
+-          config.gdnKeyHeads(),
+-          valueHeads,
+-          headDimension,
+-          headDimension);
+-      return;
+-    }
+-    // No grouped kernel: step each row into its own slot of the same array the kernel would have
+-    // written, so both paths address state identically and the parity test covers both.
+     int elements = group.recurrentStateElements();
+     float[] rowOutput = batch.rowRecurrent;
+     for (int row = 0; row < rows; row++) {
+@@ -1630,27 +1601,6 @@ public final class Qwen35ForwardPass {
+       int valueHeadCount,
+       int keyDimension,
+       int valueDimension) {
+-    if (batchedMatrixKernel.supportsGatedDeltaNet()) {
+-      batchedMatrixKernel.gatedDeltaNet(
+-          query,
+-          key,
+-          value,
+-          logDecay,
+-          beta,
+-          state,
+-          output,
+-          tokenCount,
+-          keyHeadCount,
+-          valueHeadCount,
+-          keyDimension,
+-          valueDimension);
+-      return;
+-    }
+-    if (batchedMatrixKernel != GgufBatchedMatrixKernel.none()) {
+-      PerformanceCliffs.report(
+-          PerformanceCliff.NATIVE_GATED_DELTA_NET_UNAVAILABLE,
+-          "architecture=qwen35, kernel=" + batchedMatrixKernel.implementation());
+-    }
+     if (tokenCount == 1) {
+       GatedDeltaNetRecurrence.forwardInPlace(
+           query,
+diff --git a/backend-java/src/main/java/com/integrallis/models/backend/purejava/spi/GgufBatchedMatrixKernel.java b/backend-java/src/main/java/com/integrallis/models/backend/purejava/spi/GgufBatchedMatrixKernel.java
+index f1956fff..5c9ac707 100644
+--- a/backend-java/src/main/java/com/integrallis/models/backend/purejava/spi/GgufBatchedMatrixKernel.java
++++ b/backend-java/src/main/java/com/integrallis/models/backend/purejava/spi/GgufBatchedMatrixKernel.java
+@@ -32,66 +32,6 @@ public interface GgufBatchedMatrixKernel extends AutoCloseable {
+     return Map.of();
+   }
+ 
+-  /** Returns whether this kernel can execute the Qwen 3.5 float32 Gated DeltaNet recurrence. */
+-  default boolean supportsGatedDeltaNet() {
+-    return false;
+-  }
+-
+-  /** Applies a Gated DeltaNet token prefix while retaining caller-owned recurrent state. */
+-  default void gatedDeltaNet(
+-      float[] query,
+-      float[] key,
+-      float[] value,
+-      float[] logDecay,
+-      float[] beta,
+-      float[] state,
+-      float[] output,
+-      int tokenCount,
+-      int keyHeadCount,
+-      int valueHeadCount,
+-      int keyDimension,
+-      int valueDimension) {
+-    throw new UnsupportedOperationException("injected kernel does not support Gated DeltaNet");
+-  }
+-
+-  /**
+-   * Returns whether this kernel can advance a group of independent sequences in one launch.
+-   *
+-   * <p>Answering N questions about one piece of evidence is N independent recurrences that share
+-   * nothing. Issuing them one at a time leaves each on the calling thread; issuing them together is
+-   * what lets a kernel spread them across its pool.
+-   */
+-  default boolean supportsGroupedGatedDeltaNet() {
+-    return false;
+-  }
+-
+-  /**
+-   * Advances {@code rowCount} sequences by one token each against one recurrent state apiece.
+-   *
+-   * <p>{@code state} is addressed by slot and {@code rowStateSlot} maps row to slot, because a
+-   * group whose questions differ in length stops feeding the short ones first and the rows still
+-   * advancing are then a scattered subset of the slots. Null means row {@code i} owns slot {@code
+-   * i}.
+-   */
+-  default void groupedGatedDeltaNet(
+-      float[] query,
+-      float[] key,
+-      float[] value,
+-      float[] logDecay,
+-      float[] beta,
+-      float[] state,
+-      float[] output,
+-      int[] rowStateSlot,
+-      int rowCount,
+-      int stateSlotCount,
+-      int keyHeadCount,
+-      int valueHeadCount,
+-      int keyDimension,
+-      int valueDimension) {
+-    throw new UnsupportedOperationException(
+-        "injected kernel does not support grouped Gated DeltaNet");
+-  }
+-
+   /** Returns whether this implementation supports the given GGUF weight format. */
+   boolean supports(GgufTensorType type);
+ 
+diff --git a/backend-java/src/test/java/com/integrallis/models/backend/purejava/diagnostics/PerformanceCliffsTest.java b/backend-java/src/test/java/com/integrallis/models/backend/purejava/diagnostics/PerformanceCliffsTest.java
+index 2b3fcd86..25ab4fce 100644
+--- a/backend-java/src/test/java/com/integrallis/models/backend/purejava/diagnostics/PerformanceCliffsTest.java
++++ b/backend-java/src/test/java/com/integrallis/models/backend/purejava/diagnostics/PerformanceCliffsTest.java
+@@ -87,7 +87,7 @@ class PerformanceCliffsTest {
+                               () -> {
+                                 for (int call = 0; call < 1_000; call++) {
+                                   PerformanceCliffs.report(
+-                                      PerformanceCliff.NATIVE_GATED_DELTA_NET_UNAVAILABLE,
++                                      PerformanceCliff.NATIVE_GROUPED_ATTENTION_UNAVAILABLE,
+                                       "thread " + thread);
+                                 }
+                               }))
+@@ -96,7 +96,8 @@ class PerformanceCliffsTest {
+         thread.join();
+       }
+ 
+-      assertThat(recording.count(PerformanceCliff.NATIVE_GATED_DELTA_NET_UNAVAILABLE)).isEqualTo(1);
++      assertThat(recording.count(PerformanceCliff.NATIVE_GROUPED_ATTENTION_UNAVAILABLE))
++          .isEqualTo(1);
+     }
+   }
+ 
+diff --git a/backend-java/src/test/java/com/integrallis/models/backend/purejava/qwen35/Qwen35ForwardPassTest.java b/backend-java/src/test/java/com/integrallis/models/backend/purejava/qwen35/Qwen35ForwardPassTest.java
+index 69320083..9807c7a4 100644
+--- a/backend-java/src/test/java/com/integrallis/models/backend/purejava/qwen35/Qwen35ForwardPassTest.java
++++ b/backend-java/src/test/java/com/integrallis/models/backend/purejava/qwen35/Qwen35ForwardPassTest.java
+@@ -353,7 +353,6 @@ class Qwen35ForwardPassTest {
+     Path model = writeToyModel(directory);
+ 
+     AtomicInteger invocations = new AtomicInteger();
+-    AtomicInteger gatedDeltaNetInvocations = new AtomicInteger();
+     AtomicInteger maximumBatchSize = new AtomicInteger();
+     GgufBatchedMatrixKernel kernel =
+         new GgufBatchedMatrixKernel() {
+@@ -362,45 +361,6 @@ class Qwen35ForwardPassTest {
+             return type == GgufTensorType.F32;
+           }
+ 
+-          @Override
+-          public boolean supportsGatedDeltaNet() {
+-            return true;
+-          }
+-
+-          @Override
+-          public void gatedDeltaNet(
+-              float[] query,
+-              float[] key,
+-              float[] value,
+-              float[] logDecay,
+-              float[] beta,
+-              float[] state,
+-              float[] output,
+-              int tokenCount,
+-              int keyHeadCount,
+-              int valueHeadCount,
+-              int keyDimension,
+-              int valueDimension) {
+-            gatedDeltaNetInvocations.incrementAndGet();
+-            GatedDeltaNetRecurrence.forwardPrefixInPlace(
+-                query,
+-                key,
+-                value,
+-                logDecay,
+-                beta,
+-                state,
+-                output,
+-                new float[keyDimension],
+-                new float[keyDimension],
+-                new float[valueDimension],
+-                new float[valueDimension],
+-                tokenCount,
+-                keyHeadCount,
+-                valueHeadCount,
+-                keyDimension,
+-                valueDimension);
+-          }
+-
+           @Override
+           public void multiply(
+               float[] output,
+@@ -428,45 +388,24 @@ class Qwen35ForwardPassTest {
+       float[] actual = accelerated.prefill(new int[] {1, 2, 3, 4}, 0);
+ 
+       assertThat(invocations).hasValueGreaterThan(0);
+-      assertThat(gatedDeltaNetInvocations).hasValueGreaterThan(0);
+       assertThat(maximumBatchSize).hasValueGreaterThanOrEqualTo(1);
+       assertThat(actual).containsExactly(expected);
+     }
+   }
+ 
+   @Test
+-  void injectedKernelWithoutGatedDeltaNetReportsTheCliffOncePerProcess(@TempDir Path directory)
++  void injectedBatchedProjectionsKeepRecurrenceInJavaWithoutReportingACliff(@TempDir Path directory)
+       throws Exception {
+     Path model = writeToyModel(directory);
+-    GgufBatchedMatrixKernel kernel = f32Kernel(false);
+ 
+     try (PerformanceCliffRecording recording = PerformanceCliffRecording.start();
+-        PureJavaBackend accelerated = PureJavaBackend.load(model, kernel)) {
+-      for (int request = 0; request < 3; request++) {
+-        accelerated.prefill(new int[] {1, 2, 3, 4}, 0);
+-        accelerated.forward(5, 4);
+-        accelerated.reset();
+-      }
+-
+-      assertThat(recording.count(PerformanceCliff.NATIVE_GATED_DELTA_NET_UNAVAILABLE)).isEqualTo(1);
+-      assertThat(recording.count(PerformanceCliff.ROW_BY_ROW_PROJECTION)).isZero();
+-      assertThat(accelerated.diagnostics().environment())
+-          .containsKey("performance-cliff.native-gated-delta-net-unavailable");
+-    }
+-  }
+-
+-  @Test
+-  void injectedKernelWithGatedDeltaNetAndBatchedProjectionsReportsNeitherCliff(
+-      @TempDir Path directory) throws Exception {
+-    Path model = writeToyModel(directory);
+-
+-    try (PerformanceCliffRecording recording = PerformanceCliffRecording.start();
+-        PureJavaBackend accelerated = PureJavaBackend.load(model, f32Kernel(true))) {
++        PureJavaBackend accelerated = PureJavaBackend.load(model, f32Kernel())) {
+       accelerated.prefill(new int[] {1, 2, 3, 4}, 0);
+       accelerated.forward(5, 4);
+ 
+-      assertThat(recording.count(PerformanceCliff.NATIVE_GATED_DELTA_NET_UNAVAILABLE)).isZero();
+       assertThat(recording.count(PerformanceCliff.ROW_BY_ROW_PROJECTION)).isZero();
++      assertThat(accelerated.diagnostics().environment())
++          .doesNotContainKey("performance-cliff.native-gated-delta-net-unavailable");
+     }
+   }
+ 
+@@ -488,8 +427,6 @@ class Qwen35ForwardPassTest {
+ 
+       assertThat(recording.count(PerformanceCliff.BATCHED_PREFILL_UNSUPPORTED_TENSOR_TYPE))
+           .isEqualTo(1);
+-      // No kernel was injected, so the Java recurrence is the chosen path, not a fallback.
+-      assertThat(recording.count(PerformanceCliff.NATIVE_GATED_DELTA_NET_UNAVAILABLE)).isZero();
+     }
+   }
+ 
+@@ -525,51 +462,13 @@ class Qwen35ForwardPassTest {
+     }
+   }
+ 
+-  private static GgufBatchedMatrixKernel f32Kernel(boolean gatedDeltaNet) {
++  private static GgufBatchedMatrixKernel f32Kernel() {
+     return new GgufBatchedMatrixKernel() {
+       @Override
+       public boolean supports(GgufTensorType type) {
+         return type == GgufTensorType.F32;
+       }
+ 
+-      @Override
+-      public boolean supportsGatedDeltaNet() {
+-        return gatedDeltaNet;
+-      }
+-
+-      @Override
+-      public void gatedDeltaNet(
+-          float[] query,
+-          float[] key,
+-          float[] value,
+-          float[] logDecay,
+-          float[] beta,
+-          float[] state,
+-          float[] output,
+-          int tokenCount,
+-          int keyHeadCount,
+-          int valueHeadCount,
+-          int keyDimension,
+-          int valueDimension) {
+-        GatedDeltaNetRecurrence.forwardPrefixInPlace(
+-            query,
+-            key,
+-            value,
+-            logDecay,
+-            beta,
+-            state,
+-            output,
+-            new float[keyDimension],
+-            new float[keyDimension],
+-            new float[valueDimension],
+-            new float[valueDimension],
+-            tokenCount,
+-            keyHeadCount,
+-            valueHeadCount,
+-            keyDimension,
+-            valueDimension);
+-      }
+-
+       @Override
+       public void multiply(
+           float[] output,
+diff --git a/backend-native/README.md b/backend-native/README.md
+index 87dba9d2..b48ce7c7 100644
+--- a/backend-native/README.md
++++ b/backend-native/README.md
+@@ -8,11 +8,12 @@ the transformer graph, KV-cache ownership, sampling, and generation remain in Ja
+ The native boundary is a versioned C ABI implemented by the Models-owned
+ `jmodels-kernels` Rust crate.
+ 
+-ABI 6 exposes Q4_0, Q5_0, Q5_1, Q8_0, Q4_K, Q5_K, Q6_K, and PTQ1_0 projections,
+-grouped dispatch, attention, and experimental float32 Gated DeltaNet recurrence
+-kernels. The production dispatcher leaves recurrence in Java; exported capabilities
+-do not imply that every native route is enabled. Mixed Q4_K/Q5_K/Q6_K groups
+-share one Q8_K activation quantization.
++ABI 7 exposes Q4_0, Q5_0, Q5_1, Q8_0, Q4_K, Q5_K, Q6_K, and PTQ1_0 projections,
++grouped dispatch, and attention. The unused Gated DeltaNet exports, bindings, and
++injection hooks have been removed. Capability bits 18 and 22 remain reserved.
++Older native binaries are rejected by the ABI check; update the Java binding and
++platform artifact together. Mixed Q4_K/Q5_K/Q6_K groups share one Q8_K activation
++quantization.
+ 
+ PTQ1_0 uses Q8_0 activations in both Java and Rust: nearest-even integer rounding,
+ 32-value activation blocks with binary16-rounded scales, and a pinned FMA fold.
+@@ -70,7 +71,7 @@ Gradle builds the host library with Cargo under
+ 
+ When the matching platform artifact is present on the runtime classpath,
+ `RustFfmBackend` verifies its ABI/platform metadata and SHA-256, extracts it to
+-`~/.models/native-kernels/abi-6/<platform>/<sha256>/`, and opens it through Java
++`~/.models/native-kernels/abi-7/<platform>/<sha256>/`, and opens it through Java
+ 25 FFM:
+ 
+ ```java
+@@ -100,12 +101,9 @@ the JVM-reported processor count.
+ There is one native route and no switch to choose it. The shim serves supported quantized
+ projections at every batch size including single-token decode. The dispatcher
+ chooses which grouped routes to use; a capability bit alone does not decide routing.
+-Qwen3.5's recurrence currently stays in Java: `supportsGatedDeltaNet()` and
+-`supportsGroupedGatedDeltaNet()` both return `false`. The native recurrence kernels
+-remain available for experiments, but their tolerance-level parity does not establish
+-greedy token identity or preservation of published qualification records. Routing them
+-requires new oracle and performance qualification. The graph, convolution, state
+-ownership, tokenizer, and generation loop remain in Java.
++Qwen3.5's recurrence runs in Java. The unused Rust recurrence experiment has been
++removed; its historical implementation and measurements remain in version history.
++The graph, convolution, state ownership, tokenizer, and generation loop remain in Java.
+ 
+ `models.native.quantizedDecode`, `models.native.gatedDeltaNet`,
+ `models.native.q5_0.grouped` and `models.native.loadWarmup` were removed. Each
+diff --git a/backend-native/build.gradle.kts b/backend-native/build.gradle.kts
+index 21ea4970..1a42a0b1 100644
+--- a/backend-native/build.gradle.kts
++++ b/backend-native/build.gradle.kts
+@@ -12,7 +12,7 @@ import org.gradle.jvm.tasks.Jar
+ 
+ apply(plugin = "maven-publish")
+ 
+-val nativeAbi = 6
++val nativeAbi = 7
+ 
+ dependencies {
+     api(project(":models-api"))
+diff --git a/backend-native/src/main/java/com/integrallis/models/backend/nativekernel/NativeKernelCapability.java b/backend-native/src/main/java/com/integrallis/models/backend/nativekernel/NativeKernelCapability.java
+index 29cdea51..84b40c42 100644
+--- a/backend-native/src/main/java/com/integrallis/models/backend/nativekernel/NativeKernelCapability.java
++++ b/backend-native/src/main/java/com/integrallis/models/backend/nativekernel/NativeKernelCapability.java
+@@ -35,13 +35,12 @@ public enum NativeKernelCapability {
+   Q4_K_BATCH_VECTOR_ACCUMULATION(1L << 15),
+   MANY_GROUPED_BATCHED_MATMUL(1L << 16),
+   INDEPENDENT_BATCHED_MATMUL(1L << 17),
+-  GATED_DELTA_NET_F32(1L << 18),
++  // Bit 18 is retired; do not reuse it.
+   ACTIVE_THREADS(1L << 19),
+   GROUPED_ATTENTION_F32(1L << 20),
+   /** The worker pool's poll budget before parking is settable per context. */
+   POLL_BUDGET(1L << 21),
+-  /** Several sequences advance one token each in one launch, against one recurrent state apiece. */
+-  GROUPED_GATED_DELTA_NET_F32(1L << 22),
++  // Bit 22 is retired; do not reuse it.
+   /**
+    * Q5_1 rows against F32 activations rather than quantized ones.
+    *
+diff --git a/backend-native/src/main/java/com/integrallis/models/backend/nativekernel/NativeKernelLibrary.java b/backend-native/src/main/java/com/integrallis/models/backend/nativekernel/NativeKernelLibrary.java
+index 9cec4299..0ad1232b 100644
+--- a/backend-native/src/main/java/com/integrallis/models/backend/nativekernel/NativeKernelLibrary.java
++++ b/backend-native/src/main/java/com/integrallis/models/backend/nativekernel/NativeKernelLibrary.java
+@@ -31,7 +31,7 @@ import java.util.Objects;
+ /** Versioned FFM access to Models-owned native inference kernels. */
+ @SuppressWarnings("restricted")
+ public final class NativeKernelLibrary implements AutoCloseable {
+-  public static final int ABI_VERSION = 6;
++  public static final int ABI_VERSION = 7;
+   public static final String THREAD_COUNT_PROPERTY = "models.native.kernels.threads";
+ 
+   /**
+@@ -153,49 +153,6 @@ public final class NativeKernelLibrary implements AutoCloseable {
+           ValueLayout.ADDRESS,
+           ValueLayout.JAVA_LONG,
+           ValueLayout.JAVA_INT);
+-  private static final FunctionDescriptor GATED_DELTA_NET_WITH_CONTEXT_DESCRIPTOR =
+-      FunctionDescriptor.of(
+-          ValueLayout.JAVA_INT,
+-          ValueLayout.ADDRESS,
+-          ValueLayout.ADDRESS,
+-          ValueLayout.JAVA_LONG,
+-          ValueLayout.ADDRESS,
+-          ValueLayout.JAVA_LONG,
+-          ValueLayout.ADDRESS,
+-          ValueLayout.JAVA_LONG,
+-          ValueLayout.ADDRESS,
+-          ValueLayout.JAVA_LONG,
+-          ValueLayout.ADDRESS,
+-          ValueLayout.JAVA_LONG,
+-          ValueLayout.ADDRESS,
+-          ValueLayout.JAVA_LONG,
+-          ValueLayout.ADDRESS,
+-          ValueLayout.JAVA_LONG,
+-          ValueLayout.JAVA_INT,
+-          ValueLayout.JAVA_INT,
+-          ValueLayout.JAVA_INT,
+-          ValueLayout.JAVA_INT,
+-          ValueLayout.JAVA_INT);
+-  private static final FunctionDescriptor GROUPED_GATED_DELTA_NET_WITH_CONTEXT_DESCRIPTOR =
+-      FunctionDescriptor.of(
+-          ValueLayout.JAVA_INT,
+-          ValueLayout.ADDRESS,
+-          ValueLayout.ADDRESS,
+-          ValueLayout.ADDRESS,
+-          ValueLayout.ADDRESS,
+-          ValueLayout.ADDRESS,
+-          ValueLayout.ADDRESS,
+-          ValueLayout.ADDRESS,
+-          ValueLayout.JAVA_LONG,
+-          ValueLayout.ADDRESS,
+-          ValueLayout.ADDRESS,
+-          ValueLayout.JAVA_INT,
+-          ValueLayout.JAVA_INT,
+-          ValueLayout.JAVA_INT,
+-          ValueLayout.JAVA_INT,
+-          ValueLayout.JAVA_INT,
+-          ValueLayout.JAVA_INT);
+-
+   private final Arena libraryArena;
+   private final long capabilities;
+   private final MemorySegment context;
+@@ -203,8 +160,6 @@ public final class NativeKernelLibrary implements AutoCloseable {
+   private final MethodHandle quantizedBatchedHandle;
+   private final MethodHandle quantizedGroupedBatchedHandle;
+   private final MethodHandle quantizedIndependentBatchedHandle;
+-  private final MethodHandle gatedDeltaNetHandle;
+-  private final MethodHandle groupedGatedDeltaNetHandle;
+   private final MethodHandle setActiveThreadsHandle;
+   private final MethodHandle groupedAttentionHandle;
+   private final int threadCount;
+@@ -221,8 +176,6 @@ public final class NativeKernelLibrary implements AutoCloseable {
+       MethodHandle quantizedBatchedHandle,
+       MethodHandle quantizedGroupedBatchedHandle,
+       MethodHandle quantizedIndependentBatchedHandle,
+-      MethodHandle gatedDeltaNetHandle,
+-      MethodHandle groupedGatedDeltaNetHandle,
+       MethodHandle setActiveThreadsHandle,
+       MethodHandle groupedAttentionHandle,
+       int threadCount,
+@@ -235,8 +188,6 @@ public final class NativeKernelLibrary implements AutoCloseable {
+     this.quantizedBatchedHandle = quantizedBatchedHandle;
+     this.quantizedGroupedBatchedHandle = quantizedGroupedBatchedHandle;
+     this.quantizedIndependentBatchedHandle = quantizedIndependentBatchedHandle;
+-    this.gatedDeltaNetHandle = gatedDeltaNetHandle;
+-    this.groupedGatedDeltaNetHandle = groupedGatedDeltaNetHandle;
+     this.setActiveThreadsHandle = setActiveThreadsHandle;
+     this.groupedAttentionHandle = groupedAttentionHandle;
+     this.pollMillis = pollMillis;
+@@ -294,18 +245,6 @@ public final class NativeKernelLibrary implements AutoCloseable {
+               lookup,
+               "jmodels_quantized_f32_independent_batched_matmul_with_context",
+               QUANTIZED_INDEPENDENT_BATCHED_WITH_CONTEXT_DESCRIPTOR);
+-      MethodHandle gatedDeltaNet =
+-          downcallCritical(
+-              lookup,
+-              "jmodels_gated_delta_net_f32_with_context",
+-              GATED_DELTA_NET_WITH_CONTEXT_DESCRIPTOR);
+-      MethodHandle groupedGatedDeltaNet =
+-          (capabilityMask & NativeKernelCapability.GROUPED_GATED_DELTA_NET_F32.mask()) != 0
+-              ? downcallCritical(
+-                  lookup,
+-                  "jmodels_gated_delta_net_group_f32_with_context",
+-                  GROUPED_GATED_DELTA_NET_WITH_CONTEXT_DESCRIPTOR)
+-              : null;
+       MethodHandle setActiveThreads =
+           (capabilityMask & NativeKernelCapability.ACTIVE_THREADS.mask()) != 0
+               ? downcall(
+@@ -340,8 +279,6 @@ public final class NativeKernelLibrary implements AutoCloseable {
+           quantizedBatched,
+           quantizedGroupedBatched,
+           quantizedIndependentBatched,
+-          gatedDeltaNet,
+-          groupedGatedDeltaNet,
+           setActiveThreads,
+           groupedAttention,
+           threadCount,
+@@ -368,202 +305,6 @@ public final class NativeKernelLibrary implements AutoCloseable {
+     return (capabilities & capability.mask()) != 0;
+   }
+ 
+-  /** Applies the Qwen 3.5 float32 Gated DeltaNet recurrence in caller-owned arrays. */
+-  public void gatedDeltaNetF32(
+-      float[] query,
+-      float[] key,
+-      float[] value,
+-      float[] logDecay,
+-      float[] beta,
+-      float[] state,
+-      float[] output,
+-      int tokenCount,
+-      int keyHeadCount,
+-      int valueHeadCount,
+-      int keyDimension,
+-      int valueDimension) {
+-    Objects.requireNonNull(query, "query");
+-    Objects.requireNonNull(key, "key");
+-    Objects.requireNonNull(value, "value");
+-    Objects.requireNonNull(logDecay, "logDecay");
+-    Objects.requireNonNull(beta, "beta");
+-    Objects.requireNonNull(state, "state");
+-    Objects.requireNonNull(output, "output");
+-    requirePositive(tokenCount, "tokenCount");
+-    requirePositive(keyHeadCount, "keyHeadCount");
+-    requirePositive(valueHeadCount, "valueHeadCount");
+-    requirePositive(keyDimension, "keyDimension");
+-    requirePositive(valueDimension, "valueDimension");
+-    if (valueHeadCount % keyHeadCount != 0) {
+-      throw new IllegalArgumentException("valueHeadCount must be divisible by keyHeadCount");
+-    }
+-    if (keyDimension > 256 || valueDimension > 256) {
+-      throw new IllegalArgumentException("Gated DeltaNet dimensions must not exceed 256");
+-    }
+-    int requiredQuery =
+-        Math.multiplyExact(Math.multiplyExact(tokenCount, keyHeadCount), keyDimension);
+-    int requiredValue =
+-        Math.multiplyExact(Math.multiplyExact(tokenCount, valueHeadCount), valueDimension);
+-    int requiredGates = Math.multiplyExact(tokenCount, valueHeadCount);
+-    int requiredState =
+-        Math.multiplyExact(Math.multiplyExact(valueHeadCount, keyDimension), valueDimension);
+-    requireCapacity(query, requiredQuery, "query");
+-    requireCapacity(key, requiredQuery, "key");
+-    requireCapacity(value, requiredValue, "value");
+-    requireCapacity(logDecay, requiredGates, "logDecay");
+-    requireCapacity(beta, requiredGates, "beta");
+-    requireCapacity(state, requiredState, "state");
+-    requireCapacity(output, requiredValue, "output");
+-    if (!supports(NativeKernelCapability.GATED_DELTA_NET_F32)) {
+-      throw new UnsupportedOperationException("loaded native library has no Gated DeltaNet kernel");
+-    }
+-
+-    try {
+-      int status =
+-          (int)
+-              gatedDeltaNetHandle.invokeExact(
+-                  context,
+-                  MemorySegment.ofArray(query),
+-                  (long) query.length,
+-                  MemorySegment.ofArray(key),
+-                  (long) key.length,
+-                  MemorySegment.ofArray(value),
+-                  (long) value.length,
+-                  MemorySegment.ofArray(logDecay),
+-                  (long) logDecay.length,
+-                  MemorySegment.ofArray(beta),
+-                  (long) beta.length,
+-                  MemorySegment.ofArray(state),
+-                  (long) state.length,
+-                  MemorySegment.ofArray(output),
+-                  (long) output.length,
+-                  tokenCount,
+-                  keyHeadCount,
+-                  valueHeadCount,
+-                  keyDimension,
+-                  valueDimension);
+-      if (status != STATUS_OK) {
+-        throw new IllegalStateException(
+-            "native Gated DeltaNet kernel failed: " + statusName(status));
+-      }
+-    } catch (RuntimeException failure) {
+-      throw failure;
+-    } catch (Throwable failure) {
+-      throw bridgeFailure("Gated DeltaNet recurrence", failure);
+-    }
+-  }
+-
+-  /** Returns whether the loaded library can advance a group of sequences in one launch. */
+-  public boolean supportsGroupedGatedDeltaNet() {
+-    return groupedGatedDeltaNetHandle != null;
+-  }
+-
+-  /**
+-   * Advances {@code rowCount} independent sequences by one token each, one recurrent state apiece.
+-   *
+-   * <p>{@code state} is addressed by slot rather than by row, and {@code rowStateSlot} maps row to
+-   * slot. A group of questions whose lengths differ stops feeding the short ones first, so the rows
+-   * still advancing are a scattered subset of the slots. Null means row {@code i} owns slot {@code
+-   * i}.
+-   */
+-  public void groupedGatedDeltaNetF32(
+-      float[] query,
+-      float[] key,
+-      float[] value,
+-      float[] logDecay,
+-      float[] beta,
+-      float[] state,
+-      float[] output,
+-      int[] rowStateSlot,
+-      int rowCount,
+-      int stateSlotCount,
+-      int keyHeadCount,
+-      int valueHeadCount,
+-      int keyDimension,
+-      int valueDimension) {
+-    Objects.requireNonNull(query, "query");
+-    Objects.requireNonNull(key, "key");
+-    Objects.requireNonNull(value, "value");
+-    Objects.requireNonNull(logDecay, "logDecay");
+-    Objects.requireNonNull(beta, "beta");
+-    Objects.requireNonNull(state, "state");
+-    Objects.requireNonNull(output, "output");
+-    requirePositive(rowCount, "rowCount");
+-    requirePositive(stateSlotCount, "stateSlotCount");
+-    requirePositive(keyHeadCount, "keyHeadCount");
+-    requirePositive(valueHeadCount, "valueHeadCount");
+-    requirePositive(keyDimension, "keyDimension");
+-    requirePositive(valueDimension, "valueDimension");
+-    if (stateSlotCount < rowCount) {
+-      throw new IllegalArgumentException(
+-          "stateSlotCount must be at least rowCount: " + stateSlotCount + " < " + rowCount);
+-    }
+-    if (valueHeadCount % keyHeadCount != 0) {
+-      throw new IllegalArgumentException("valueHeadCount must be divisible by keyHeadCount");
+-    }
+-    if (keyDimension > 256 || valueDimension > 256) {
+-      throw new IllegalArgumentException("Gated DeltaNet dimensions must not exceed 256");
+-    }
+-    if (rowStateSlot != null && rowStateSlot.length < rowCount) {
+-      throw new IllegalArgumentException(
+-          "rowStateSlot holds " + rowStateSlot.length + " entries for " + rowCount + " rows");
+-    }
+-    int requiredQuery =
+-        Math.multiplyExact(Math.multiplyExact(rowCount, keyHeadCount), keyDimension);
+-    int requiredValue =
+-        Math.multiplyExact(Math.multiplyExact(rowCount, valueHeadCount), valueDimension);
+-    int requiredGates = Math.multiplyExact(rowCount, valueHeadCount);
+-    int requiredState =
+-        Math.multiplyExact(
+-            Math.multiplyExact(Math.multiplyExact(stateSlotCount, valueHeadCount), keyDimension),
+-            valueDimension);
+-    requireCapacity(query, requiredQuery, "query");
+-    requireCapacity(key, requiredQuery, "key");
+-    requireCapacity(value, requiredValue, "value");
+-    requireCapacity(logDecay, requiredGates, "logDecay");
+-    requireCapacity(beta, requiredGates, "beta");
+-    requireCapacity(state, requiredState, "state");
+-    requireCapacity(output, requiredValue, "output");
+-    if (groupedGatedDeltaNetHandle == null) {
+-      throw new UnsupportedOperationException(
+-          "loaded native library has no grouped Gated DeltaNet kernel");
+-    }
+-
+-    // invokeExact is typed on the static types at the call site, so the slot table has to be a
+-    // MemorySegment local rather than a ternary that widens to Object.
+-    MemorySegment slots =
+-        rowStateSlot == null ? MemorySegment.NULL : MemorySegment.ofArray(rowStateSlot);
+-    try {
+-      int status =
+-          (int)
+-              groupedGatedDeltaNetHandle.invokeExact(
+-                  context,
+-                  MemorySegment.ofArray(query),
+-                  MemorySegment.ofArray(key),
+-                  MemorySegment.ofArray(value),
+-                  MemorySegment.ofArray(logDecay),
+-                  MemorySegment.ofArray(beta),
+-                  MemorySegment.ofArray(state),
+-                  (long) state.length,
+-                  MemorySegment.ofArray(output),
+-                  slots,
+-                  rowCount,
+-                  stateSlotCount,
+-                  keyHeadCount,
+-                  valueHeadCount,
+-                  keyDimension,
+-                  valueDimension);
+-      if (status != STATUS_OK) {
+-        throw new IllegalStateException(
+-            "native grouped Gated DeltaNet kernel failed: " + statusName(status));
+-      }
+-    } catch (RuntimeException failure) {
+-      throw failure;
+-    } catch (Throwable failure) {
+-      throw bridgeFailure("grouped Gated DeltaNet recurrence", failure);
+-    }
+-  }
+-
+   /** Computes a batch-major {@code input[batch, cols] * weights[rows, cols]} Q4_0 projection. */
+   public void q4_0F32BatchedMatmul(
+       MemorySegment weights, float[] input, int batchSize, int rows, int cols, float[] output) {
+diff --git a/backend-native/src/main/java/com/integrallis/models/backend/nativekernel/RustFfmBackend.java b/backend-native/src/main/java/com/integrallis/models/backend/nativekernel/RustFfmBackend.java
+index 20cc6bcf..21af4c81 100644
+--- a/backend-native/src/main/java/com/integrallis/models/backend/nativekernel/RustFfmBackend.java
++++ b/backend-native/src/main/java/com/integrallis/models/backend/nativekernel/RustFfmBackend.java
+@@ -375,7 +375,6 @@ public final class RustFfmBackend
+     environment.put(
+         "native-grouped-attention", Boolean.toString(kernel.supportsGroupedAttention()));
+     environment.put("native-q5-0-grouped", "false");
+-    environment.put("native-gated-delta-net", Boolean.toString(kernel.supportsGatedDeltaNet()));
+     List<OptimizationDecision> optimizations = new ArrayList<>(javaDiagnostics.optimizations());
+     boolean ptq =
+         kernel.supports(com.integrallis.models.backend.purejava.gguf.GgufTensorType.PTQ1_0);
+diff --git a/backend-native/src/main/java/com/integrallis/models/backend/nativekernel/RustGgufBatchedMatrixKernel.java b/backend-native/src/main/java/com/integrallis/models/backend/nativekernel/RustGgufBatchedMatrixKernel.java
+index 325a8023..29f885f8 100644
+--- a/backend-native/src/main/java/com/integrallis/models/backend/nativekernel/RustGgufBatchedMatrixKernel.java
++++ b/backend-native/src/main/java/com/integrallis/models/backend/nativekernel/RustGgufBatchedMatrixKernel.java
+@@ -107,9 +107,6 @@ public final class RustGgufBatchedMatrixKernel implements GgufBatchedMatrixKerne
+     if (library.supports(NativeKernelCapability.PTQ1_0_Q8_0_BATCHED_MATMUL)) {
+       return "rust-ffm-quantized-v14";
+     }
+-    if (library.supports(NativeKernelCapability.GATED_DELTA_NET_F32)) {
+-      return "rust-ffm-quantized-v13";
+-    }
+     if (library.supports(NativeKernelCapability.INDEPENDENT_BATCHED_MATMUL)) {
+       return "rust-ffm-quantized-v12";
+     }
+@@ -126,113 +123,11 @@ public final class RustGgufBatchedMatrixKernel implements GgufBatchedMatrixKerne
+     return PLAN_RECOMMENDATIONS;
+   }
+ 
+-  /**
+-   * Whether the Qwen 3.5 recurrence runs in the shim. It does not, and that is a decision rather
+-   * than a setting.
+-   *
+-   * <p>This was {@code models.native.gatedDeltaNet}, default off. Removing the veto would have made
+-   * the shim recurrence unconditional, and that is an epoch change, not a speed-up:
+-   *
+-   * <ul>
+-   *   <li>Every certified Qwen 3.5 record — {@code qwen3.5-0.8b}, {@code qwen3.5-2b} — was produced
+-   *       with {@code native-gated-delta-net = false}, so the published bytes come from the Java
+-   *       recurrence.
+-   *   <li>The shim's chunked recurrence is validated to a <em>2.0e-4 relative</em> tolerance, not
+-   *       bit-identically. Greedy decoding is a discrete argmax, and a perturbation of 1.4e-6 was
+-   *       already measured to change 2 of 9 generated answers for grouped attention. 2.0e-4 is a
+-   *       hundred times larger.
+-   *   <li>Whether it is even faster than the Java recurrence is <em>unmeasured</em>. The one
+-   *       committed comparison (2026-09-23) times the shim's sequential against its own chunked
+-   *       variant, 3.920 against 3.585 ms, and never against Java.
+-   * </ul>
+-   *
+-   * <p>So: an unmeasured benefit against a known byte-level divergence in published records. It
+-   * stays unrouted until someone re-runs every pinned greedy oracle and re-derives the tier bands
+-   * on it, which is a deliberate epoch change and not a default to flip. The kernel and its parity
+-   * tests are kept because that decision needs them.
+-   */
+-  @Override
+-  public boolean supportsGatedDeltaNet() {
+-    return false;
+-  }
+-
+   /** Whether the loaded shim can share one activation quantization across grouped Q5_0 rows. */
+   boolean supportsQ5_0Grouped() {
+     return library.supports(NativeKernelCapability.Q5_0_F32_GROUPED_BATCHED_MATMUL);
+   }
+ 
+-  @Override
+-  public synchronized void gatedDeltaNet(
+-      float[] query,
+-      float[] key,
+-      float[] value,
+-      float[] logDecay,
+-      float[] beta,
+-      float[] state,
+-      float[] output,
+-      int tokenCount,
+-      int keyHeadCount,
+-      int valueHeadCount,
+-      int keyDimension,
+-      int valueDimension) {
+-    requireOpen();
+-    library.gatedDeltaNetF32(
+-        query,
+-        key,
+-        value,
+-        logDecay,
+-        beta,
+-        state,
+-        output,
+-        tokenCount,
+-        keyHeadCount,
+-        valueHeadCount,
+-        keyDimension,
+-        valueDimension);
+-  }
+-
+-  /**
+-   * False for the same reason as {@link #supportsGatedDeltaNet()}: it would change published bytes.
+-   */
+-  @Override
+-  public boolean supportsGroupedGatedDeltaNet() {
+-    return false;
+-  }
+-
+-  @Override
+-  public synchronized void groupedGatedDeltaNet(
+-      float[] query,
+-      float[] key,
+-      float[] value,
+-      float[] logDecay,
+-      float[] beta,
+-      float[] state,
+-      float[] output,
+-      int[] rowStateSlot,
+-      int rowCount,
+-      int stateSlotCount,
+-      int keyHeadCount,
+-      int valueHeadCount,
+-      int keyDimension,
+-      int valueDimension) {
+-    requireOpen();
+-    library.groupedGatedDeltaNetF32(
+-        query,
+-        key,
+-        value,
+-        logDecay,
+-        beta,
+-        state,
+-        output,
+-        rowStateSlot,
+-        rowCount,
+-        stateSlotCount,
+-        keyHeadCount,
+-        valueHeadCount,
+-        keyDimension,
+-        valueDimension);
+-  }
+-
+   int threadCount() {
+     return library.threadCount();
+   }
+diff --git a/backend-native/src/main/rust/model-kernels/src/lib.rs b/backend-native/src/main/rust/model-kernels/src/lib.rs
+index 15113503..0c79a1e4 100644
+--- a/backend-native/src/main/rust/model-kernels/src/lib.rs
++++ b/backend-native/src/main/rust/model-kernels/src/lib.rs
+@@ -10,13 +10,6 @@ use std::thread::{self, JoinHandle};
+ #[cfg(test)]
+ use std::cell::Cell;
+ 
+-#[cfg(test)]
+-static GATED_DELTA_NET_PARALLEL_PARTITIONS: AtomicUsize = AtomicUsize::new(0);
+-/// Counted separately from the single-sequence one: the two live in one process under `cargo test`
+-/// and a shared counter let whichever test reset it last erase the other's evidence.
+-#[cfg(test)]
+-static GROUPED_GATED_DELTA_NET_PARALLEL_PARTITIONS: AtomicUsize = AtomicUsize::new(0);
+-
+ #[cfg(target_arch = "x86_64")]
+ use std::arch::x86_64::*;
+ 
+@@ -62,7 +55,7 @@ fn record_q6_k_single_horizontal_reduction() {
+     Q6_K_SINGLE_HORIZONTAL_REDUCTIONS.with(|count| count.set(count.get() + 1));
+ }
+ 
+-const ABI_VERSION: u32 = 6;
++const ABI_VERSION: u32 = 7;
+ const CAPABILITY_Q4_0_F32_BATCHED_MATMUL: u64 = 1;
+ const CAPABILITY_Q4_0_F32_GROUPED_BATCHED_MATMUL: u64 = 1 << 1;
+ const CAPABILITY_PERSISTENT_WORKER_CONTEXT: u64 = 1 << 2;
+@@ -81,14 +74,12 @@ const CAPABILITY_K_QUANT_BATCH_WEIGHT_REUSE: u64 = 1 << 14;
+ const CAPABILITY_Q4_K_BATCH_VECTOR_ACCUMULATION: u64 = 1 << 15;
+ const CAPABILITY_MANY_GROUPED_BATCHED_MATMUL: u64 = 1 << 16;
+ const CAPABILITY_INDEPENDENT_BATCHED_MATMUL: u64 = 1 << 17;
+-const CAPABILITY_GATED_DELTA_NET_F32: u64 = 1 << 18;
++// Capability bit 18 is retired; do not reuse it.
+ const CAPABILITY_ACTIVE_THREADS: u64 = 1 << 19;
+ const CAPABILITY_GROUPED_ATTENTION_F32: u64 = 1 << 20;
+ /// The worker pool's poll budget before parking is settable per context.
+ const CAPABILITY_POLL_BUDGET: u64 = 1 << 21;
+-/// Several independent sequences advance one token each in one launch, against one recurrent
+-/// state apiece. This is what lets a group of questions about one piece of evidence use the pool.
+-const CAPABILITY_GROUPED_GATED_DELTA_NET_F32: u64 = 1 << 22;
++// Capability bit 22 is retired; do not reuse it.
+ /// Q5_1 rows against **F32** activations, not quantized ones.
+ ///
+ /// Every other quantized format here dots against a Q8_0 or Q8_K activation, because integer
+@@ -163,7 +154,6 @@ fn job_partitions(word: u64) -> usize {
+ const COMPLETION_SPIN_ITERS: usize = 4_000;
+ const MAX_GROUPED_MATRICES: usize = 16;
+ const STACK_BATCH_CAPACITY: usize = 128;
+-const MAX_GATED_DELTA_NET_DIMENSION: usize = 256;
+ 
+ macro_rules! batch_scratch {
+     ($name:ident, $batch_size:expr, $initial:expr, $element:ty) => {
+@@ -367,12 +357,10 @@ struct WorkerState {
+ }
+ 
+ #[derive(Clone, Copy)]
+-// The matrix job was already stored inline before Gated DeltaNet joined this pool. Boxing it would
+-// add an allocation to every projection dispatch, so retain the bounded inline representation.
++// Keep matrix jobs inline to avoid an allocation on every projection dispatch.
+ #[allow(clippy::large_enum_variant)]
+ enum WorkerJob {
+     Matrix(ParallelJob),
+-    GatedDeltaNet(GatedDeltaNetJob),
+     Attention(AttentionJob),
+ }
+ 
+@@ -430,32 +418,6 @@ struct AttentionJob {
+     scale: f32,
+ }
+ 
+-#[derive(Clone, Copy)]
+-struct GatedDeltaNetJob {
+-    query: usize,
+-    key: usize,
+-    value: usize,
+-    log_decay: usize,
+-    beta: usize,
+-    state: usize,
+-    output: usize,
+-    token_count: usize,
+-    key_head_count: usize,
+-    value_head_count: usize,
+-    key_dimension: usize,
+-    value_dimension: usize,
+-    /// Independent sequences sharing this launch, each with its own state. One is a single
+-    /// sequence and behaves exactly as before.
+-    branch_count: usize,
+-    /// Optional `*const i32` of `branch_count` entries giving each branch's slot in `state`. Null
+-    /// means branch `i` owns slot `i`. A group whose questions have unequal length stops feeding
+-    /// some branches before others, so the rows still running are not slots `0..rows`.
+-    state_index: usize,
+-    /// Slots present in `state`, which is at least `branch_count` and is larger whenever some
+-    /// branches have already finished.
+-    state_slot_count: usize,
+-}
+-
+ impl WorkerPool {
+     fn new(requested_threads: usize) -> Result<Self, ()> {
+         let total_threads = requested_threads.max(1);
+@@ -561,67 +523,10 @@ impl WorkerPool {
+         self.await_workers(caller_succeeded)
+     }
+ 
+-    fn execute_gated_delta_net(&self, job: GatedDeltaNetJob) -> bool {
+-        // One token of one sequence is decode, and waking the pool once per layer for it costs
+-        // more than it saves. One token of MANY sequences is not decode: a group of questions
+-        // answered together is branch_count x value_head_count independent recurrences, which is
+-        // exactly the shape the pool exists for. Measured before this: a grouped answer ran the
+-        // recurrence on one core and twenty questions took 13.3 s against 9.1 s asked one at a
+-        // time, so grouping was slower than not grouping.
+-        let units = job.branch_count * job.value_head_count;
+-        if self.workers.is_empty() || (job.token_count == 1 && job.branch_count == 1) || units < 2 {
+-            return catch_unwind(AssertUnwindSafe(|| {
+-                // SAFETY: the caller owns all recurrence buffers for this synchronous execution.
+-                unsafe { execute_gated_delta_net_partition(job, 0, 1) }
+-            }))
+-            .is_ok();
+-        }
+-
+-        let partitions = self
+-            .active_threads
+-            .load(Ordering::Acquire)
+-            .clamp(1, self.total_threads);
+-        if partitions == 1 {
+-            return catch_unwind(AssertUnwindSafe(|| {
+-                // SAFETY: the caller owns all recurrence buffers for this synchronous execution.
+-                unsafe { execute_gated_delta_net_partition(job, 0, 1) }
+-            }))
+-            .is_ok();
+-        }
+-        let _execution = lock(&self.execution);
+-        {
+-            let mut state = lock(&self.shared.state);
+-            state.job = Some(WorkerJob::GatedDeltaNet(job));
+-            state.failed = false;
+-            self.shared
+-                .partitions
+-                .0
+-                .store(partitions, Ordering::Release);
+-            self.shared
+-                .remaining
+-                .0
+-                .store(partitions - 1, Ordering::Relaxed);
+-            let current = self.shared.generation.0.load(Ordering::Acquire);
+-            self.shared.generation.0.store(
+-                job_word(job_generation(current) + 1, partitions),
+-                Ordering::Release,
+-            );
+-            self.shared.work_available.notify_all();
+-        }
+-
+-        let caller_succeeded = catch_unwind(AssertUnwindSafe(|| {
+-            // SAFETY: each worker owns disjoint recurrent heads and output rows.
+-            unsafe { execute_gated_delta_net_partition(job, 0, partitions) }
+-        }))
+-        .is_ok();
+-
+-        self.await_workers(caller_succeeded)
+-    }
+-
+     fn execute_attention(&self, job: AttentionJob) -> bool {
+         if self.workers.is_empty() || job.num_kv_heads == 1 {
+             return catch_unwind(AssertUnwindSafe(|| {
+-                // SAFETY: the caller owns all recurrence buffers for this synchronous execution.
++                // SAFETY: the caller owns all attention buffers for this synchronous execution.
+                 // A single KV head has nothing to partition.
+                 unsafe { execute_attention_partition(job, 0, 1) }
+             }))
+@@ -634,7 +539,7 @@ impl WorkerPool {
+             .clamp(1, self.total_threads);
+         if partitions == 1 {
+             return catch_unwind(AssertUnwindSafe(|| {
+-                // SAFETY: the caller owns all recurrence buffers for this synchronous execution.
++                // SAFETY: the caller owns all attention buffers for this synchronous execution.
+                 unsafe { execute_attention_partition(job, 0, 1) }
+             }))
+             .is_ok();
+@@ -753,11 +658,6 @@ fn worker_loop(shared: Arc<WorkerShared>, worker_index: usize, _total_threads: u
+                 unsafe { execute_matrix_job_partition(job, worker_index, partitions) }
+             }))
+             .is_ok(),
+-            Some(WorkerJob::GatedDeltaNet(job)) => catch_unwind(AssertUnwindSafe(|| {
+-                // SAFETY: every worker receives disjoint recurrent heads and output rows.
+-                unsafe { execute_gated_delta_net_partition(job, worker_index, partitions) }
+-            }))
+-            .is_ok(),
+             Some(WorkerJob::Attention(job)) => catch_unwind(AssertUnwindSafe(|| {
+                 // SAFETY: every worker receives disjoint KV-head groups, hence disjoint output
+                 // heads and score rows; the caller validated every buffer length.
+@@ -921,7 +821,7 @@ unsafe fn execute_attention_partition(
+             owned_heads * total_positions,
+         )
+     };
+-    let vectorized = gated_delta_net_avx2_available();
++    let vectorized = attention_avx2_available();
+     for kv in start_kv..end_kv {
+         for head in kv * group..(kv + 1) * group {
+             let q = &query[head * job.key_length..(head + 1) * job.key_length];
+@@ -977,7 +877,7 @@ unsafe fn execute_attention_partition(
+ fn attention_dot(a: &[f32], b: &[f32], vectorized: bool) -> f32 {
+     #[cfg(target_arch = "x86_64")]
+     if vectorized && a.len() >= 16 {
+-        // SAFETY: gated_delta_net_avx2_available() checked AVX2 and FMA.
++        // SAFETY: attention_avx2_available() checked AVX2 and FMA.
+         return unsafe { attention_dot_avx2(a, b) };
+     }
+     let _ = vectorized;
+@@ -1044,8 +944,8 @@ fn attention_softmax(scores: &mut [f32]) {
+ fn attention_axpy(out: &mut [f32], v: &[f32], weight: f32, vectorized: bool) {
+     #[cfg(target_arch = "x86_64")]
+     if vectorized && out.len() >= 8 {
+-        // SAFETY: gated_delta_net_avx2_available() checked AVX2 and FMA.
+-        unsafe { gated_delta_net_add_scaled_avx2(out, v, weight) };
++        // SAFETY: attention_avx2_available() checked AVX2 and FMA.
++        unsafe { attention_add_scaled_avx2(out, v, weight) };
+         return;
+     }
+     let _ = vectorized;
+@@ -1054,537 +954,7 @@ fn attention_axpy(out: &mut [f32], v: &[f32], weight: f32, vectorized: bool) {
+     }
+ }
+ 
+-unsafe fn execute_gated_delta_net_partition(
+-    job: GatedDeltaNetJob,
+-    worker_index: usize,
+-    total_threads: usize,
+-) {
+-    let branches = job.branch_count.max(1);
+-    let query_elements = branches * job.token_count * job.key_head_count * job.key_dimension;
+-    let value_elements = branches * job.token_count * job.value_head_count * job.value_dimension;
+-    let gate_elements = branches * job.token_count * job.value_head_count;
+-    let state_slots = job.state_slot_count.max(branches);
+-    let state_elements =
+-        state_slots * job.value_head_count * job.key_dimension * job.value_dimension;
+-    // SAFETY: the exported entry point validates every buffer length before publishing the job.
+-    let query = unsafe { slice::from_raw_parts(job.query as *const f32, query_elements) };
+-    let key = unsafe { slice::from_raw_parts(job.key as *const f32, query_elements) };
+-    let value = unsafe { slice::from_raw_parts(job.value as *const f32, value_elements) };
+-    let log_decay = unsafe { slice::from_raw_parts(job.log_decay as *const f32, gate_elements) };
+-    let beta = unsafe { slice::from_raw_parts(job.beta as *const f32, gate_elements) };
+-    let state = unsafe { slice::from_raw_parts_mut(job.state as *mut f32, state_elements) };
+-    let output = unsafe { slice::from_raw_parts_mut(job.output as *mut f32, value_elements) };
+-    // Work is one recurrence per branch per head, so a group of questions partitions across the
+-    // pool even though each branch carries a single token.
+-    let units = branches * job.value_head_count;
+-    let start_unit = units * worker_index / total_threads;
+-    let end_unit = units * (worker_index + 1) / total_threads;
+-    #[cfg(test)]
+-    if total_threads > 1 && start_unit < end_unit {
+-        GATED_DELTA_NET_PARALLEL_PARTITIONS.fetch_add(1, Ordering::Relaxed);
+-    }
+-    let query_scale = 1.0_f32 / (job.key_dimension as f32).sqrt();
+-    let mut normalized_query = [0.0_f32; MAX_GATED_DELTA_NET_DIMENSION];
+-    let mut normalized_key = [0.0_f32; MAX_GATED_DELTA_NET_DIMENSION];
+-    let mut memory = [0.0_f32; MAX_GATED_DELTA_NET_DIMENSION];
+-    let mut delta = [0.0_f32; MAX_GATED_DELTA_NET_DIMENSION];
+-    let vectorized = gated_delta_net_avx2_available();
+-
+-    let branch_query = job.token_count * job.key_head_count * job.key_dimension;
+-    let branch_value = job.token_count * job.value_head_count * job.value_dimension;
+-    let branch_gate = job.token_count * job.value_head_count;
+-    let branch_state = job.value_head_count * job.key_dimension * job.value_dimension;
+-
+-    if branches > 1 {
+-        #[cfg(test)]
+-        if total_threads > 1 && start_unit < end_unit {
+-            GROUPED_GATED_DELTA_NET_PARALLEL_PARTITIONS.fetch_add(1, Ordering::Relaxed);
+-        }
+-        // A group: every branch carries the same small number of tokens, and each unit owns one
+-        // head of one branch. Nothing is shared between branches, which is the whole contract.
+-        // SAFETY: the exported entry validated this table's length against branch_count.
+-        let slots = if job.state_index == 0 {
+-            None
+-        } else {
+-            Some(unsafe { slice::from_raw_parts(job.state_index as *const i32, branches) })
+-        };
+-        for unit in start_unit..end_unit {
+-            let branch = unit / job.value_head_count;
+-            let head = unit % job.value_head_count;
+-            let key_head = head % job.key_head_count;
+-            let slot = match slots {
+-                None => branch,
+-                Some(table) => table[branch] as usize,
+-            };
+-            let state_offset = slot * branch_state + head * job.key_dimension * job.value_dimension;
+-            let head_state =
+-                &mut state[state_offset..state_offset + job.key_dimension * job.value_dimension];
+-            for token in 0..job.token_count {
+-                let token_head = branch * branch_gate + token * job.value_head_count + head;
+-                let query_offset = branch * branch_query
+-                    + (token * job.key_head_count + key_head) * job.key_dimension;
+-                let value_offset = branch * branch_value
+-                    + (token * job.value_head_count + head) * job.value_dimension;
+-                gated_delta_net_step(
+-                    &query[query_offset..query_offset + job.key_dimension],
+-                    &key[query_offset..query_offset + job.key_dimension],
+-                    &value[value_offset..value_offset + job.value_dimension],
+-                    log_decay[token_head],
+-                    beta[token_head],
+-                    head_state,
+-                    &mut output[value_offset..value_offset + job.value_dimension],
+-                    &mut normalized_query[..job.key_dimension],
+-                    &mut normalized_key[..job.key_dimension],
+-                    &mut memory[..job.value_dimension],
+-                    &mut delta[..job.value_dimension],
+-                    query_scale,
+-                    job.key_dimension,
+-                    job.value_dimension,
+-                    vectorized,
+-                );
+-            }
+-        }
+-        return;
+-    }
+-
+-    let start_head = start_unit;
+-    let end_head = end_unit;
+-
+-    if job.token_count >= GATED_DELTA_NET_CHUNK_MINIMUM {
+-        // The chunked scan reads the recurrent state twice and writes it once per chunk rather
+-        // than four times per token, which is the whole cost of a long prefill at this shape.
+-        gated_delta_net_chunked_partition(
+-            job,
+-            start_head,
+-            end_head,
+-            query_scale,
+-            query,
+-            key,
+-            value,
+-            log_decay,
+-            beta,
+-            state,
+-            output,
+-            vectorized,
+-        );
+-        return;
+-    }
+-
+-    for head in start_head..end_head {
+-        let key_head = head % job.key_head_count;
+-        let state_offset = head * job.key_dimension * job.value_dimension;
+-        for token in 0..job.token_count {
+-            let token_head = token * job.value_head_count + head;
+-            let query_offset = (token * job.key_head_count + key_head) * job.key_dimension;
+-            normalize_gated_delta_net(
+-                &query[query_offset..query_offset + job.key_dimension],
+-                &mut normalized_query[..job.key_dimension],
+-            );
+-            normalize_gated_delta_net(
+-                &key[query_offset..query_offset + job.key_dimension],
+-                &mut normalized_key[..job.key_dimension],
+-            );
+-            for query_value in &mut normalized_query[..job.key_dimension] {
+-                *query_value *= query_scale;
+-            }
+-
+-            let decay = log_decay[token_head].exp();
+-            let head_state =
+-                &mut state[state_offset..state_offset + job.key_dimension * job.value_dimension];
+-            gated_delta_net_scale(head_state, decay, vectorized);
+-
+-            memory[..job.value_dimension].fill(0.0);
+-            for (row, &key_value) in normalized_key[..job.key_dimension].iter().enumerate() {
+-                let row_offset = row * job.value_dimension;
+-                gated_delta_net_add_scaled(
+-                    &mut memory[..job.value_dimension],
+-                    &head_state[row_offset..row_offset + job.value_dimension],
+-                    key_value,
+-                    vectorized,
+-                );
+-            }
+-            let value_offset = token_head * job.value_dimension;
+-            gated_delta_net_delta(
+-                &mut delta[..job.value_dimension],
+-                &value[value_offset..value_offset + job.value_dimension],
+-                &memory[..job.value_dimension],
+-                beta[token_head],
+-                vectorized,
+-            );
+-            for (row, &key_value) in normalized_key[..job.key_dimension].iter().enumerate() {
+-                let row_offset = row * job.value_dimension;
+-                gated_delta_net_add_scaled(
+-                    &mut head_state[row_offset..row_offset + job.value_dimension],
+-                    &delta[..job.value_dimension],
+-                    key_value,
+-                    vectorized,
+-                );
+-            }
+-
+-            output[value_offset..value_offset + job.value_dimension].fill(0.0);
+-            for (row, &query_value) in normalized_query[..job.key_dimension].iter().enumerate() {
+-                let row_offset = row * job.value_dimension;
+-                gated_delta_net_add_scaled(
+-                    &mut output[value_offset..value_offset + job.value_dimension],
+-                    &head_state[row_offset..row_offset + job.value_dimension],
+-                    query_value,
+-                    vectorized,
+-                );
+-            }
+-        }
+-    }
+-}
+-
+-/// Tokens folded into one associative scan step. The chunk boundary is where the recurrent state
+-/// is read and written; everything inside the chunk is expressed as dense blocked products.
+-const GATED_DELTA_NET_CHUNK: usize = 64;
+-/// Below this token count the sequential recurrence wins: chunking only pays once the state
+-/// traffic it removes exceeds the intra-chunk triangular work it adds.
+-const GATED_DELTA_NET_CHUNK_MINIMUM: usize = 8;
+-/// Tokens whose projection and readout accumulators are held resident while a state row streams.
+-const GATED_DELTA_NET_TOKEN_BLOCK: usize = 8;
+-/// State rows held resident while the chunk's update rows stream past them.
+-const GATED_DELTA_NET_ROW_BLOCK: usize = 16;
+-
+-/// Chunked (associative-scan) Gated DeltaNet prefill.
+-///
+-/// The sequential recurrence touches the whole `key_dimension x value_dimension` state four times
+-/// per token. At Qwen3.5-4B's shape that state is 256 KiB per head, so a thousand-token prefill
+-/// moves hundreds of gigabytes through the cache hierarchy for a few tens of GFLOP of arithmetic.
+-///
+-/// Unrolling the recurrence over a chunk of `C` tokens gives, with `g_t = exp(sum_{j<=t} logdecay_j)`:
+-///
+-/// ```text
+-///   u_t = beta_t (v_t - g_t (S_0^T k_t)) - sum_{i<t} beta_t (g_t/g_i)(k_i . k_t) u_i
+-///   o_t = g_t (S_0^T q_t) + sum_{i<=t} (g_t/g_i)(k_i . q_t) u_i
+-///   S_C = g_C S_0 + sum_i (g_C/g_i) k_i (x) u_i
+-/// ```
+-///
+-/// which reads the state twice and writes it once per chunk instead of per token. Decay ratios are
+-/// formed from cumulative log-decays so no product of decays is ever reconstructed by division.
+-///
+-/// This reassociates the arithmetic, so it is not bit-identical to the sequential path; it is held
+-/// to a relative tolerance against it by `chunked_gated_delta_net_matches_the_sequential_recurrence`.
+-#[allow(clippy::too_many_arguments)]
+-fn gated_delta_net_chunked_partition(
+-    job: GatedDeltaNetJob,
+-    start_head: usize,
+-    end_head: usize,
+-    query_scale: f32,
+-    query: &[f32],
+-    key: &[f32],
+-    value: &[f32],
+-    log_decay: &[f32],
+-    beta: &[f32],
+-    state: &mut [f32],
+-    output: &mut [f32],
+-    vectorized: bool,
+-) {
+-    let key_dimension = job.key_dimension;
+-    let value_dimension = job.value_dimension;
+-    let chunk = GATED_DELTA_NET_CHUNK.min(job.token_count);
+-
+-    let mut normalized_key = vec![0.0_f32; chunk * key_dimension];
+-    let mut normalized_query = vec![0.0_f32; chunk * key_dimension];
+-    let mut decayed_key = vec![0.0_f32; chunk * key_dimension];
+-    let mut decayed_query = vec![0.0_f32; chunk * key_dimension];
+-    let mut carried_key = vec![0.0_f32; chunk * key_dimension];
+-    let mut projection = vec![0.0_f32; chunk * value_dimension];
+-    let mut readout = vec![0.0_f32; chunk * value_dimension];
+-    let mut update = vec![0.0_f32; chunk * value_dimension];
+-    let mut inner_key = vec![0.0_f32; chunk * chunk];
+-    let mut inner_query = vec![0.0_f32; chunk * chunk];
+-    let mut cumulative = vec![0.0_f32; chunk];
+-
+-    for head in start_head..end_head {
+-        let key_head = head % job.key_head_count;
+-        let state_offset = head * key_dimension * value_dimension;
+-        let head_state = &mut state[state_offset..state_offset + key_dimension * value_dimension];
+-        let mut base = 0;
+-        while base < job.token_count {
+-            let span = chunk.min(job.token_count - base);
+-
+-            let mut running = 0.0_f32;
+-            for (local, decayed) in cumulative[..span].iter_mut().enumerate() {
+-                let token = base + local;
+-                let token_head = token * job.value_head_count + head;
+-                let source = (token * job.key_head_count + key_head) * key_dimension;
+-                let row = local * key_dimension;
+-                normalize_gated_delta_net(
+-                    &key[source..source + key_dimension],
+-                    &mut normalized_key[row..row + key_dimension],
+-                );
+-                normalize_gated_delta_net(
+-                    &query[source..source + key_dimension],
+-                    &mut normalized_query[row..row + key_dimension],
+-                );
+-                for entry in &mut normalized_query[row..row + key_dimension] {
+-                    *entry *= query_scale;
+-                }
+-                running += log_decay[token_head];
+-                *decayed = running;
+-            }
+-            let tail = cumulative[span - 1];
+-            for (local, &log_sum) in cumulative[..span].iter().enumerate() {
+-                let row = local * key_dimension;
+-                let decay = log_sum.exp();
+-                let carry = (tail - log_sum).exp();
+-                for index in 0..key_dimension {
+-                    decayed_key[row + index] = normalized_key[row + index] * decay;
+-                    decayed_query[row + index] = normalized_query[row + index] * decay;
+-                    carried_key[row + index] = normalized_key[row + index] * carry;
+-                }
+-            }
+-
+-            // Both cross-chunk products read the same state row, so they share one streaming pass.
+-            projection[..span * value_dimension].fill(0.0);
+-            readout[..span * value_dimension].fill(0.0);
+-            let mut block = 0;
+-            while block < span {
+-                let width = GATED_DELTA_NET_TOKEN_BLOCK.min(span - block);
+-                for row in 0..key_dimension {
+-                    let state_row = &head_state[row * value_dimension..(row + 1) * value_dimension];
+-                    for local in block..block + width {
+-                        let key_weight = decayed_key[local * key_dimension + row];
+-                        if key_weight != 0.0 {
+-                            gated_delta_net_add_scaled(
+-                                &mut projection
+-                                    [local * value_dimension..(local + 1) * value_dimension],
+-                                state_row,
+-                                key_weight,
+-                                vectorized,
+-                            );
+-                        }
+-                        let query_weight = decayed_query[local * key_dimension + row];
+-                        if query_weight != 0.0 {
+-                            gated_delta_net_add_scaled(
+-                                &mut readout
+-                                    [local * value_dimension..(local + 1) * value_dimension],
+-                                state_row,
+-                                query_weight,
+-                                vectorized,
+-                            );
+-                        }
+-                    }
+-                }
+-                block += width;
+-            }
+-
+-            for target in 0..span {
+-                let target_row = target * key_dimension;
+-                let target_log = cumulative[target];
+-                let gate = beta[(base + target) * job.value_head_count + head];
+-                for source in 0..=target {
+-                    let source_row = source * key_dimension;
+-                    let scale = (target_log - cumulative[source]).exp();
+-                    inner_query[target * chunk + source] = scale
+-                        * gated_delta_net_dot(
+-                            &normalized_query[target_row..target_row + key_dimension],
+-                            &normalized_key[source_row..source_row + key_dimension],
+-                            vectorized,
+-                        );
+-                    if source < target {
+-                        inner_key[target * chunk + source] = gate
+-                            * scale
+-                            * gated_delta_net_dot(
+-                                &normalized_key[target_row..target_row + key_dimension],
+-                                &normalized_key[source_row..source_row + key_dimension],
+-                                vectorized,
+-                            );
+-                    }
+-                }
+-            }
+-
+-            for target in 0..span {
+-                let token_head = (base + target) * job.value_head_count + head;
+-                let gate = beta[token_head];
+-                let value_offset = token_head * value_dimension;
+-                let target_row = target * value_dimension;
+-                for index in 0..value_dimension {
+-                    update[target_row + index] =
+-                        (value[value_offset + index] - projection[target_row + index]) * gate;
+-                }
+-                let (earlier, current) = update.split_at_mut(target_row);
+-                for source in 0..target {
+-                    let weight = inner_key[target * chunk + source];
+-                    if weight != 0.0 {
+-                        gated_delta_net_add_scaled(
+-                            &mut current[..value_dimension],
+-                            &earlier[source * value_dimension..(source + 1) * value_dimension],
+-                            -weight,
+-                            vectorized,
+-                        );
+-                    }
+-                }
+-            }
+-
+-            for target in 0..span {
+-                let target_row = target * value_dimension;
+-                for source in 0..=target {
+-                    let weight = inner_query[target * chunk + source];
+-                    if weight != 0.0 {
+-                        gated_delta_net_add_scaled(
+-                            &mut readout[target_row..target_row + value_dimension],
+-                            &update[source * value_dimension..(source + 1) * value_dimension],
+-                            weight,
+-                            vectorized,
+-                        );
+-                    }
+-                }
+-                let token_head = (base + target) * job.value_head_count + head;
+-                let value_offset = token_head * value_dimension;
+-                output[value_offset..value_offset + value_dimension]
+-                    .copy_from_slice(&readout[target_row..target_row + value_dimension]);
+-            }
+-
+-            let tail_decay = tail.exp();
+-            let mut row_block = 0;
+-            while row_block < key_dimension {
+-                let rows = GATED_DELTA_NET_ROW_BLOCK.min(key_dimension - row_block);
+-                for row in row_block..row_block + rows {
+-                    gated_delta_net_scale(
+-                        &mut head_state[row * value_dimension..(row + 1) * value_dimension],
+-                        tail_decay,
+-                        vectorized,
+-                    );
+-                }
+-                for source in 0..span {
+-                    let update_row =
+-                        &update[source * value_dimension..(source + 1) * value_dimension];
+-                    for row in row_block..row_block + rows {
+-                        let weight = carried_key[source * key_dimension + row];
+-                        if weight != 0.0 {
+-                            gated_delta_net_add_scaled(
+-                                &mut head_state[row * value_dimension..(row + 1) * value_dimension],
+-                                update_row,
+-                                weight,
+-                                vectorized,
+-                            );
+-                        }
+-                    }
+-                }
+-                row_block += rows;
+-            }
+-
+-            base += span;
+-        }
+-    }
+-}
+-
+-#[inline(always)]
+-fn gated_delta_net_dot(left: &[f32], right: &[f32], vectorized: bool) -> f32 {
+-    debug_assert_eq!(left.len(), right.len());
+-    #[cfg(not(target_arch = "x86_64"))]
+-    let _ = vectorized;
+-    #[cfg(target_arch = "x86_64")]
+-    if vectorized {
+-        // SAFETY: runtime feature detection selected AVX2/FMA and both slices have equal lengths.
+-        return unsafe { gated_delta_net_dot_avx2(left, right) };
+-    }
+-    let mut total = 0.0_f32;
+-    for (&first, &second) in left.iter().zip(right) {
+-        total = first.mul_add(second, total);
+-    }
+-    total
+-}
+-
+-#[cfg(target_arch = "x86_64")]
+-#[target_feature(enable = "avx2,fma")]
+-unsafe fn gated_delta_net_dot_avx2(left: &[f32], right: &[f32]) -> f32 {
+-    let mut first = _mm256_setzero_ps();
+-    let mut second = _mm256_setzero_ps();
+-    let vector_end = left.len() / 16 * 16;
+-    for index in (0..vector_end).step_by(16) {
+-        // SAFETY: equal slice lengths and vector_end reserve sixteen complete lanes in both slices.
+-        unsafe {
+-            first = _mm256_fmadd_ps(
+-                _mm256_loadu_ps(left.as_ptr().add(index)),
+-                _mm256_loadu_ps(right.as_ptr().add(index)),
+-                first,
+-            );
+-            second = _mm256_fmadd_ps(
+-                _mm256_loadu_ps(left.as_ptr().add(index + 8)),
+-                _mm256_loadu_ps(right.as_ptr().add(index + 8)),
+-                second,
+-            );
+-        }
+-    }
+-    let lanes = _mm256_add_ps(first, second);
+-    let mut buffer = [0.0_f32; 8];
+-    // SAFETY: the destination is an eight-lane f32 array matching the register width.
+-    unsafe { _mm256_storeu_ps(buffer.as_mut_ptr(), lanes) };
+-    let mut total = buffer.iter().sum::<f32>();
+-    for (&one, &other) in left[vector_end..].iter().zip(&right[vector_end..]) {
+-        total = one.mul_add(other, total);
+-    }
+-    total
+-}
+-
+-/// One token of one head's recurrence, shared by the sequential and the grouped paths so a
+-/// grouped answer runs the same arithmetic as the same question asked alone.
+-#[allow(clippy::too_many_arguments)]
+-#[inline]
+-fn gated_delta_net_step(
+-    query: &[f32],
+-    key: &[f32],
+-    value: &[f32],
+-    log_decay: f32,
+-    beta: f32,
+-    head_state: &mut [f32],
+-    output: &mut [f32],
+-    normalized_query: &mut [f32],
+-    normalized_key: &mut [f32],
+-    memory: &mut [f32],
+-    delta: &mut [f32],
+-    query_scale: f32,
+-    key_dimension: usize,
+-    value_dimension: usize,
+-    vectorized: bool,
+-) {
+-    normalize_gated_delta_net(query, normalized_query);
+-    normalize_gated_delta_net(key, normalized_key);
+-    for entry in normalized_query.iter_mut() {
+-        *entry *= query_scale;
+-    }
+-
+-    gated_delta_net_scale(head_state, log_decay.exp(), vectorized);
+-
+-    memory.fill(0.0);
+-    for (row, &key_value) in normalized_key.iter().enumerate() {
+-        let offset = row * value_dimension;
+-        gated_delta_net_add_scaled(
+-            memory,
+-            &head_state[offset..offset + value_dimension],
+-            key_value,
+-            vectorized,
+-        );
+-    }
+-    gated_delta_net_delta(delta, value, memory, beta, vectorized);
+-    for (row, &key_value) in normalized_key.iter().enumerate() {
+-        let offset = row * value_dimension;
+-        gated_delta_net_add_scaled(
+-            &mut head_state[offset..offset + value_dimension],
+-            delta,
+-            key_value,
+-            vectorized,
+-        );
+-    }
+-
+-    output.fill(0.0);
+-    for (row, &query_value) in normalized_query.iter().enumerate() {
+-        let offset = row * value_dimension;
+-        gated_delta_net_add_scaled(
+-            output,
+-            &head_state[offset..offset + value_dimension],
+-            query_value,
+-            vectorized,
+-        );
+-    }
+-    let _ = key_dimension;
+-}
+-
+-#[inline(always)]
+-fn gated_delta_net_avx2_available() -> bool {
++fn attention_avx2_available() -> bool {
+     #[cfg(target_arch = "x86_64")]
+     {
+         std::arch::is_x86_feature_detected!("avx2") && std::arch::is_x86_feature_detected!("fma")
+@@ -1593,89 +963,9 @@ fn gated_delta_net_avx2_available() -> bool {
+     false
+ }
+ 
+-#[inline(always)]
+-fn gated_delta_net_scale(values: &mut [f32], scale: f32, vectorized: bool) {
+-    #[cfg(not(target_arch = "x86_64"))]
+-    let _ = vectorized;
+-    #[cfg(target_arch = "x86_64")]
+-    if vectorized {
+-        // SAFETY: runtime feature detection selected AVX2 and the slice bounds each unaligned load.
+-        unsafe { gated_delta_net_scale_avx2(values, scale) };
+-        return;
+-    }
+-    for value in values {
+-        *value *= scale;
+-    }
+-}
+-
+-#[inline(always)]
+-fn gated_delta_net_add_scaled(
+-    destination: &mut [f32],
+-    source: &[f32],
+-    scale: f32,
+-    vectorized: bool,
+-) {
+-    debug_assert_eq!(destination.len(), source.len());
+-    #[cfg(not(target_arch = "x86_64"))]
+-    let _ = vectorized;
+-    #[cfg(target_arch = "x86_64")]
+-    if vectorized {
+-        // SAFETY: runtime feature detection selected AVX2/FMA and both slices have equal lengths.
+-        unsafe { gated_delta_net_add_scaled_avx2(destination, source, scale) };
+-        return;
+-    }
+-    for (output, &value) in destination.iter_mut().zip(source) {
+-        *output = value.mul_add(scale, *output);
+-    }
+-}
+-
+-#[inline(always)]
+-fn gated_delta_net_delta(
+-    destination: &mut [f32],
+-    value: &[f32],
+-    memory: &[f32],
+-    beta: f32,
+-    vectorized: bool,
+-) {
+-    debug_assert_eq!(destination.len(), value.len());
+-    debug_assert_eq!(destination.len(), memory.len());
+-    #[cfg(not(target_arch = "x86_64"))]
+-    let _ = vectorized;
+-    #[cfg(target_arch = "x86_64")]
+-    if vectorized {
+-        // SAFETY: runtime feature detection selected AVX2 and all slices have equal lengths.
+-        unsafe { gated_delta_net_delta_avx2(destination, value, memory, beta) };
+-        return;
+-    }
+-    for ((output, &value), &memory) in destination.iter_mut().zip(value).zip(memory) {
+-        *output = (value - memory) * beta;
+-    }
+-}
+-
+-#[cfg(target_arch = "x86_64")]
+-#[target_feature(enable = "avx2")]
+-unsafe fn gated_delta_net_scale_avx2(values: &mut [f32], scale: f32) {
+-    let scale_lanes = _mm256_set1_ps(scale);
+-    let vector_end = values.len() / 8 * 8;
+-    for index in (0..vector_end).step_by(8) {
+-        // SAFETY: index is within vector_end, which reserves eight complete f32 lanes.
+-        let lanes = unsafe { _mm256_loadu_ps(values.as_ptr().add(index)) };
+-        // SAFETY: the destination covers the same eight validated lanes.
+-        unsafe {
+-            _mm256_storeu_ps(
+-                values.as_mut_ptr().add(index),
+-                _mm256_mul_ps(lanes, scale_lanes),
+-            )
+-        };
+-    }
+-    for value in &mut values[vector_end..] {
+-        *value *= scale;
+-    }
+-}
+-
+ #[cfg(target_arch = "x86_64")]
+ #[target_feature(enable = "avx2,fma")]
+-unsafe fn gated_delta_net_add_scaled_avx2(destination: &mut [f32], source: &[f32], scale: f32) {
++unsafe fn attention_add_scaled_avx2(destination: &mut [f32], source: &[f32], scale: f32) {
+     let scale_lanes = _mm256_set1_ps(scale);
+     let vector_end = destination.len() / 8 * 8;
+     for index in (0..vector_end).step_by(8) {
+@@ -1694,44 +984,6 @@ unsafe fn gated_delta_net_add_scaled_avx2(destination: &mut [f32], source: &[f32
+     }
+ }
+ 
+-#[cfg(target_arch = "x86_64")]
+-#[target_feature(enable = "avx2")]
+-unsafe fn gated_delta_net_delta_avx2(
+-    destination: &mut [f32],
+-    value: &[f32],
+-    memory: &[f32],
+-    beta: f32,
+-) {
+-    let beta_lanes = _mm256_set1_ps(beta);
+-    let vector_end = destination.len() / 8 * 8;
+-    for index in (0..vector_end).step_by(8) {
+-        // SAFETY: equal slice lengths and vector_end reserve eight complete lanes in every slice.
+-        let value_lanes = unsafe { _mm256_loadu_ps(value.as_ptr().add(index)) };
+-        let memory_lanes = unsafe { _mm256_loadu_ps(memory.as_ptr().add(index)) };
+-        let result = _mm256_mul_ps(_mm256_sub_ps(value_lanes, memory_lanes), beta_lanes);
+-        // SAFETY: the destination covers the same eight validated lanes.
+-        unsafe { _mm256_storeu_ps(destination.as_mut_ptr().add(index), result) };
+-    }
+-    for ((output, &value), &memory) in destination[vector_end..]
+-        .iter_mut()
+-        .zip(&value[vector_end..])
+-        .zip(&memory[vector_end..])
+-    {
+-        *output = (value - memory) * beta;
+-    }
+-}
+-
+-fn normalize_gated_delta_net(source: &[f32], destination: &mut [f32]) {
+-    let mut squared_norm = 0.0_f32;
+-    for &value in source {
+-        squared_norm += value * value;
+-    }
+-    let inverse_norm = 1.0_f32 / (squared_norm + 1.0e-6_f32).sqrt();
+-    for (output, &value) in destination.iter_mut().zip(source) {
+-        *output = value * inverse_norm;
+-    }
+-}
+-
+ fn lock<T>(mutex: &Mutex<T>) -> MutexGuard<'_, T> {
+     mutex
+         .lock()
+@@ -1771,11 +1023,9 @@ pub extern "C" fn jmodels_kernels_capabilities() -> u64 {
+         | CAPABILITY_Q4_K_BATCH_VECTOR_ACCUMULATION
+         | CAPABILITY_MANY_GROUPED_BATCHED_MATMUL
+         | CAPABILITY_INDEPENDENT_BATCHED_MATMUL
+-        | CAPABILITY_GATED_DELTA_NET_F32
+         | CAPABILITY_ACTIVE_THREADS
+         | CAPABILITY_GROUPED_ATTENTION_F32
+         | CAPABILITY_POLL_BUDGET
+-        | CAPABILITY_GROUPED_GATED_DELTA_NET_F32
+ }
+ 
+ #[unsafe(no_mangle)]
+@@ -1995,233 +1245,6 @@ pub unsafe extern "C" fn jmodels_kernels_context_destroy(context: *mut KernelCon
+     }
+ }
+ 
+-#[unsafe(no_mangle)]
+-/// # Safety
+-///
+-/// `context` must be live. Every data pointer must remain valid for its advertised length for the
+-/// synchronous call. State and output must be writable and must not alias any read-only input.
+-#[allow(clippy::too_many_arguments)]
+-pub unsafe extern "C" fn jmodels_gated_delta_net_f32_with_context(
+-    context: *const KernelContext,
+-    query: *const f32,
+-    query_elements: u64,
+-    key: *const f32,
+-    key_elements: u64,
+-    value: *const f32,
+-    value_elements: u64,
+-    log_decay: *const f32,
+-    log_decay_elements: u64,
+-    beta: *const f32,
+-    beta_elements: u64,
+-    state: *mut f32,
+-    state_elements: u64,
+-    output: *mut f32,
+-    output_elements: u64,
+-    token_count: u32,
+-    key_head_count: u32,
+-    value_head_count: u32,
+-    key_dimension: u32,
+-    value_dimension: u32,
+-) -> i32 {
+-    if context.is_null()
+-        || query.is_null()
+-        || key.is_null()
+-        || value.is_null()
+-        || log_decay.is_null()
+-        || beta.is_null()
+-        || state.is_null()
+-        || output.is_null()
+-    {
+-        return STATUS_NULL_POINTER;
+-    }
+-    let token_count = token_count as usize;
+-    let key_head_count = key_head_count as usize;
+-    let value_head_count = value_head_count as usize;
+-    let key_dimension = key_dimension as usize;
+-    let value_dimension = value_dimension as usize;
+-    if token_count == 0
+-        || key_head_count == 0
+-        || value_head_count == 0
+-        || key_dimension == 0
+-        || value_dimension == 0
+-        || key_dimension > MAX_GATED_DELTA_NET_DIMENSION
+-        || value_dimension > MAX_GATED_DELTA_NET_DIMENSION
+-        || !value_head_count.is_multiple_of(key_head_count)
+-    {
+-        return STATUS_INVALID_SHAPE;
+-    }
+-    let Some(required_query) = token_count
+-        .checked_mul(key_head_count)
+-        .and_then(|elements| elements.checked_mul(key_dimension))
+-    else {
+-        return STATUS_INVALID_SHAPE;
+-    };
+-    let Some(required_value) = token_count
+-        .checked_mul(value_head_count)
+-        .and_then(|elements| elements.checked_mul(value_dimension))
+-    else {
+-        return STATUS_INVALID_SHAPE;
+-    };
+-    let Some(required_gates) = token_count.checked_mul(value_head_count) else {
+-        return STATUS_INVALID_SHAPE;
+-    };
+-    let Some(required_state) = value_head_count
+-        .checked_mul(key_dimension)
+-        .and_then(|elements| elements.checked_mul(value_dimension))
+-    else {
+-        return STATUS_INVALID_SHAPE;
+-    };
+-    if query_elements < required_query as u64
+-        || key_elements < required_query as u64
+-        || value_elements < required_value as u64
+-        || log_decay_elements < required_gates as u64
+-        || beta_elements < required_gates as u64
+-        || state_elements < required_state as u64
+-        || output_elements < required_value as u64
+-    {
+-        return STATUS_BUFFER_TOO_SMALL;
+-    }
+-
+-    match catch_unwind(AssertUnwindSafe(|| {
+-        // SAFETY: Java pins every validated array for the duration of this synchronous call.
+-        let context = unsafe { &*context };
+-        context.workers.execute_gated_delta_net(GatedDeltaNetJob {
+-            query: query as usize,
+-            key: key as usize,
+-            value: value as usize,
+-            log_decay: log_decay as usize,
+-            beta: beta as usize,
+-            state: state as usize,
+-            output: output as usize,
+-            token_count,
+-            key_head_count,
+-            value_head_count,
+-            key_dimension,
+-            value_dimension,
+-            branch_count: 1,
+-            state_index: 0,
+-            state_slot_count: 1,
+-        })
+-    })) {
+-        Ok(true) => STATUS_OK,
+-        Ok(false) | Err(_) => STATUS_PANIC,
+-    }
+-}
+-
+-#[unsafe(no_mangle)]
+-/// Advances several independent sequences by one token each, against one recurrent state apiece.
+-///
+-/// This is the shape a group of questions about one piece of evidence has: the questions share the
+-/// weights and share nothing else, so the recurrence is `row_count x value_head_count` independent
+-/// units of work. Calling the single-sequence entry once per question instead leaves every one of
+-/// them on the calling thread, because one token of one sequence is decode and decode deliberately
+-/// does not wake the pool.
+-///
+-/// `state` is addressed by slot, not by row. A group whose questions have unequal length stops
+-/// feeding the short ones first, so the rows still advancing are some subset of the slots and
+-/// `row_state_slot` carries the mapping. Null means row `i` owns slot `i`.
+-///
+-/// # Safety
+-///
+-/// `context` must be live. Every data pointer must remain valid for its advertised length for the
+-/// synchronous call. State and output must be writable and must not alias any read-only input.
+-#[allow(clippy::too_many_arguments)]
+-pub unsafe extern "C" fn jmodels_gated_delta_net_group_f32_with_context(
+-    context: *const KernelContext,
+-    query: *const f32,
+-    key: *const f32,
+-    value: *const f32,
+-    log_decay: *const f32,
+-    beta: *const f32,
+-    state: *mut f32,
+-    state_elements: u64,
+-    output: *mut f32,
+-    row_state_slot: *const i32,
+-    row_count: u32,
+-    state_slot_count: u32,
+-    key_head_count: u32,
+-    value_head_count: u32,
+-    key_dimension: u32,
+-    value_dimension: u32,
+-) -> i32 {
+-    if context.is_null()
+-        || query.is_null()
+-        || key.is_null()
+-        || value.is_null()
+-        || log_decay.is_null()
+-        || beta.is_null()
+-        || state.is_null()
+-        || output.is_null()
+-    {
+-        return STATUS_NULL_POINTER;
+-    }
+-    let row_count = row_count as usize;
+-    let state_slot_count = state_slot_count as usize;
+-    let key_head_count = key_head_count as usize;
+-    let value_head_count = value_head_count as usize;
+-    let key_dimension = key_dimension as usize;
+-    let value_dimension = value_dimension as usize;
+-    if row_count == 0
+-        || state_slot_count < row_count
+-        || key_head_count == 0
+-        || value_head_count == 0
+-        || key_dimension == 0
+-        || value_dimension == 0
+-        || key_dimension > MAX_GATED_DELTA_NET_DIMENSION
+-        || value_dimension > MAX_GATED_DELTA_NET_DIMENSION
+-        || !value_head_count.is_multiple_of(key_head_count)
+-    {
+-        return STATUS_INVALID_SHAPE;
+-    }
+-    let Some(required_state) = state_slot_count
+-        .checked_mul(value_head_count)
+-        .and_then(|elements| elements.checked_mul(key_dimension))
+-        .and_then(|elements| elements.checked_mul(value_dimension))
+-    else {
+-        return STATUS_INVALID_SHAPE;
+-    };
+-    if state_elements < required_state as u64 {
+-        return STATUS_BUFFER_TOO_SMALL;
+-    }
+-    if !row_state_slot.is_null() {
+-        // A slot outside the state buffer would be an out-of-bounds write on a worker thread, so
+-        // the table is checked here where the length is known rather than trusted in the loop.
+-        // SAFETY: the caller advertises row_count entries and Java pins the array for the call.
+-        let slots = unsafe { slice::from_raw_parts(row_state_slot, row_count) };
+-        if slots
+-            .iter()
+-            .any(|&slot| slot < 0 || slot as usize >= state_slot_count)
+-        {
+-            return STATUS_INVALID_SHAPE;
+-        }
+-    }
+-
+-    match catch_unwind(AssertUnwindSafe(|| {
+-        // SAFETY: Java pins every validated array for the duration of this synchronous call.
+-        let context = unsafe { &*context };
+-        context.workers.execute_gated_delta_net(GatedDeltaNetJob {
+-            query: query as usize,
+-            key: key as usize,
+-            value: value as usize,
+-            log_decay: log_decay as usize,
+-            beta: beta as usize,
+-            state: state as usize,
+-            output: output as usize,
+-            token_count: 1,
+-            key_head_count,
+-            value_head_count,
+-            key_dimension,
+-            value_dimension,
+-            branch_count: row_count,
+-            state_index: row_state_slot as usize,
+-            state_slot_count,
+-        })
+-    })) {
+-        Ok(true) => STATUS_OK,
+-        Ok(false) | Err(_) => STATUS_PANIC,
+-    }
+-}
+-
+ #[unsafe(no_mangle)]
+ /// # Safety
+ ///
+@@ -6450,7 +5473,8 @@ mod tests {
+ 
+     #[test]
+     fn exports_stable_abi_and_capabilities() {
+-        assert_eq!(jmodels_kernels_abi_version(), 6);
++        assert_eq!(jmodels_kernels_abi_version(), 7);
++        assert_eq!(jmodels_kernels_capabilities() & ((1 << 18) | (1 << 22)), 0);
+         assert_eq!(
+             jmodels_kernels_capabilities(),
+             CAPABILITY_Q4_0_F32_BATCHED_MATMUL
+@@ -6473,100 +5497,9 @@ mod tests {
+                 | CAPABILITY_Q4_K_BATCH_VECTOR_ACCUMULATION
+                 | CAPABILITY_MANY_GROUPED_BATCHED_MATMUL
+                 | CAPABILITY_INDEPENDENT_BATCHED_MATMUL
+-                | CAPABILITY_GATED_DELTA_NET_F32
+                 | CAPABILITY_ACTIVE_THREADS
+                 | CAPABILITY_GROUPED_ATTENTION_F32
+                 | CAPABILITY_POLL_BUDGET
+-                | CAPABILITY_GROUPED_GATED_DELTA_NET_F32
+-        );
+-    }
+-
+-    #[test]
+-    fn gated_delta_net_matches_pinned_freetoken_recurrence() {
+-        GATED_DELTA_NET_PARALLEL_PARTITIONS.store(0, Ordering::Relaxed);
+-        let context = jmodels_kernels_context_create(2);
+-        assert!(!context.is_null());
+-        let query = [
+-            0.5, -1.0, 1.5, 0.25, -0.75, 0.5, 0.1, -0.4, 1.25, 0.75, -0.3, 0.9,
+-        ];
+-        let key = [
+-            0.2, 0.8, -0.6, 0.9, 1.0, -0.5, 0.7, 0.2, -0.4, 0.3, 0.25, -0.75,
+-        ];
+-        let value = [
+-            0.3, -0.7, 1.1, 0.4, -0.2, 0.9, 0.5, -1.2, 0.8, 0.1, -0.6, 0.7,
+-        ];
+-        let log_decay = [-0.1, -0.3, -0.5, -0.2, -0.05, -0.7];
+-        let beta = [0.7, 0.2, 0.4, 0.9, 1.0, 0.6];
+-        let mut state = [0.1, -0.2, 0.3, 0.4, -0.5, 0.2, 0.1, -0.3];
+-        let mut output = [0.0_f32; 12];
+-
+-        // SAFETY: the context and all fixture arrays remain live and non-aliasing for the call.
+-        assert_eq!(
+-            unsafe {
+-                jmodels_gated_delta_net_f32_with_context(
+-                    context,
+-                    query.as_ptr(),
+-                    query.len() as u64,
+-                    key.as_ptr(),
+-                    key.len() as u64,
+-                    value.as_ptr(),
+-                    value.len() as u64,
+-                    log_decay.as_ptr(),
+-                    log_decay.len() as u64,
+-                    beta.as_ptr(),
+-                    beta.len() as u64,
+-                    state.as_mut_ptr(),
+-                    state.len() as u64,
+-                    output.as_mut_ptr(),
+-                    output.len() as u64,
+-                    3,
+-                    2,
+-                    2,
+-                    2,
+-                    2,
+-                )
+-            },
+-            STATUS_OK
+-        );
+-
+-        let expected_output = [
+-            -0.148_594_89,
+-            0.092_397_61,
+-            -0.298_079_6,
+-            0.038_791_496,
+-            0.082_637_474,
+-            -0.232_684_52,
+-            -0.201_746_79,
+-            0.099_033_94,
+-            -0.115_048_05,
+-            -0.159_083_43,
+-            0.290_107_3,
+-            -0.305_043_64,
+-        ];
+-        let expected_state = [
+-            -0.549_856_1,
+-            -0.20131427,
+-            0.600_19,
+-            -0.101754844,
+-            0.072_715_454,
+-            -0.372_453_1,
+-            0.456_705_2,
+-            -0.578_883_47,
+-        ];
+-        for (actual, expected) in output.into_iter().zip(expected_output) {
+-            assert!((actual - expected).abs() <= 2.0e-6);
+-        }
+-        for (actual, expected) in state.into_iter().zip(expected_state) {
+-            assert!((actual - expected).abs() <= 2.0e-6);
+-        }
+-        assert!(
+-            GATED_DELTA_NET_PARALLEL_PARTITIONS.load(Ordering::Relaxed) >= 2,
+-            "multi-token Gated DeltaNet prefill must use persistent worker partitions"
+-        );
+-        // SAFETY: the test consumes the unique context pointer exactly once.
+-        assert_eq!(
+-            unsafe { jmodels_kernels_context_destroy(context) },
+-            STATUS_OK
+         );
+     }
+ 
+@@ -7815,412 +6748,6 @@ mod tests {
+         }
+     }
+ 
+-    fn gated_delta_net_fixture(seed: u64, count: usize) -> Vec<f32> {
+-        let mut state = seed | 1;
+-        (0..count)
+-            .map(|_| {
+-                state ^= state << 13;
+-                state ^= state >> 7;
+-                state ^= state << 17;
+-                ((state >> 40) as f32 / 8_388_608.0) - 1.0
+-            })
+-            .collect()
+-    }
+-
+-    /// A grouped step must equal each row stepped alone, and must actually use the pool.
+-    ///
+-    /// The slot table is deliberately not the identity: a group whose questions have unequal
+-    /// length drops the short ones first, so the rows still advancing address scattered slots.
+-    /// An identity-only test would pass while every ragged group read the wrong state.
+-    #[test]
+-    fn grouped_gated_delta_net_matches_each_row_stepped_alone() {
+-        const ROWS: usize = 5;
+-        const SLOTS: usize = 8;
+-        const KEY_HEADS: usize = 2;
+-        const VALUE_HEADS: usize = 4;
+-        const DIMENSION: usize = 4;
+-        const STATE_PER_SLOT: usize = VALUE_HEADS * DIMENSION * DIMENSION;
+-
+-        let slots: [i32; ROWS] = [7, 0, 3, 1, 6];
+-        let query = gated_delta_net_fixture(11, ROWS * KEY_HEADS * DIMENSION);
+-        let key = gated_delta_net_fixture(12, ROWS * KEY_HEADS * DIMENSION);
+-        let value = gated_delta_net_fixture(13, ROWS * VALUE_HEADS * DIMENSION);
+-        let beta = gated_delta_net_fixture(14, ROWS * VALUE_HEADS);
+-        let log_decay: Vec<f32> = gated_delta_net_fixture(15, ROWS * VALUE_HEADS)
+-            .iter()
+-            .map(|value| -value.abs())
+-            .collect();
+-        let initial = gated_delta_net_fixture(16, SLOTS * STATE_PER_SLOT);
+-
+-        GROUPED_GATED_DELTA_NET_PARALLEL_PARTITIONS.store(0, Ordering::Relaxed);
+-        let context = jmodels_kernels_context_create(4);
+-        assert!(!context.is_null());
+-
+-        let mut grouped_state = initial.clone();
+-        let mut grouped_output = vec![0.0_f32; ROWS * VALUE_HEADS * DIMENSION];
+-        // SAFETY: every fixture outlives the synchronous call and none of them alias.
+-        assert_eq!(
+-            unsafe {
+-                jmodels_gated_delta_net_group_f32_with_context(
+-                    context,
+-                    query.as_ptr(),
+-                    key.as_ptr(),
+-                    value.as_ptr(),
+-                    log_decay.as_ptr(),
+-                    beta.as_ptr(),
+-                    grouped_state.as_mut_ptr(),
+-                    grouped_state.len() as u64,
+-                    grouped_output.as_mut_ptr(),
+-                    slots.as_ptr(),
+-                    ROWS as u32,
+-                    SLOTS as u32,
+-                    KEY_HEADS as u32,
+-                    VALUE_HEADS as u32,
+-                    DIMENSION as u32,
+-                    DIMENSION as u32,
+-                )
+-            },
+-            STATUS_OK
+-        );
+-        assert!(
+-            GROUPED_GATED_DELTA_NET_PARALLEL_PARTITIONS.load(Ordering::Relaxed) > 0,
+-            "a group of rows must reach the worker pool, not run on the caller alone"
+-        );
+-
+-        let mut expected_state = initial.clone();
+-        for row in 0..ROWS {
+-            let slot = slots[row] as usize;
+-            let mut row_state =
+-                expected_state[slot * STATE_PER_SLOT..(slot + 1) * STATE_PER_SLOT].to_vec();
+-            let mut row_output = vec![0.0_f32; VALUE_HEADS * DIMENSION];
+-            let query_span = KEY_HEADS * DIMENSION;
+-            let value_span = VALUE_HEADS * DIMENSION;
+-            // SAFETY: the row slices are live for this synchronous call and do not alias.
+-            assert_eq!(
+-                unsafe {
+-                    jmodels_gated_delta_net_f32_with_context(
+-                        context,
+-                        query[row * query_span..].as_ptr(),
+-                        query_span as u64,
+-                        key[row * query_span..].as_ptr(),
+-                        query_span as u64,
+-                        value[row * value_span..].as_ptr(),
+-                        value_span as u64,
+-                        log_decay[row * VALUE_HEADS..].as_ptr(),
+-                        VALUE_HEADS as u64,
+-                        beta[row * VALUE_HEADS..].as_ptr(),
+-                        VALUE_HEADS as u64,
+-                        row_state.as_mut_ptr(),
+-                        row_state.len() as u64,
+-                        row_output.as_mut_ptr(),
+-                        row_output.len() as u64,
+-                        1,
+-                        KEY_HEADS as u32,
+-                        VALUE_HEADS as u32,
+-                        DIMENSION as u32,
+-                        DIMENSION as u32,
+-                    )
+-                },
+-                STATUS_OK
+-            );
+-            assert_eq!(
+-                &grouped_output[row * value_span..(row + 1) * value_span],
+-                row_output.as_slice(),
+-                "grouped row {row} disagreed with the same row stepped alone"
+-            );
+-            expected_state[slot * STATE_PER_SLOT..(slot + 1) * STATE_PER_SLOT]
+-                .copy_from_slice(&row_state);
+-        }
+-        assert_eq!(
+-            grouped_state, expected_state,
+-            "grouped recurrent state diverged from stepping each row alone"
+-        );
+-
+-        // Untouched slots must be untouched: slots 2, 4 and 5 are in no row.
+-        for slot in [2_usize, 4, 5] {
+-            assert_eq!(
+-                &grouped_state[slot * STATE_PER_SLOT..(slot + 1) * STATE_PER_SLOT],
+-                &initial[slot * STATE_PER_SLOT..(slot + 1) * STATE_PER_SLOT],
+-                "slot {slot} belongs to no row and must not have been written"
+-            );
+-        }
+-
+-        // SAFETY: the context was created above and is not used after this call.
+-        assert_eq!(
+-            unsafe { jmodels_kernels_context_destroy(context) },
+-            STATUS_OK
+-        );
+-    }
+-
+-    /// A slot outside the state buffer is rejected rather than written on a worker thread.
+-    #[test]
+-    fn grouped_gated_delta_net_rejects_an_out_of_range_slot() {
+-        let slots: [i32; 2] = [0, 4];
+-        let query = gated_delta_net_fixture(21, 2 * 2);
+-        let value = gated_delta_net_fixture(22, 2 * 2);
+-        let gates = gated_delta_net_fixture(23, 2);
+-        let mut state = vec![0.0_f32; 2 * 2 * 2];
+-        let mut output = vec![0.0_f32; 4];
+-        let context = jmodels_kernels_context_create(2);
+-        // SAFETY: every fixture outlives the call; the call is expected to reject before reading.
+-        assert_eq!(
+-            unsafe {
+-                jmodels_gated_delta_net_group_f32_with_context(
+-                    context,
+-                    query.as_ptr(),
+-                    query.as_ptr(),
+-                    value.as_ptr(),
+-                    gates.as_ptr(),
+-                    gates.as_ptr(),
+-                    state.as_mut_ptr(),
+-                    state.len() as u64,
+-                    output.as_mut_ptr(),
+-                    slots.as_ptr(),
+-                    2,
+-                    2,
+-                    1,
+-                    1,
+-                    2,
+-                    2,
+-                )
+-            },
+-            STATUS_INVALID_SHAPE
+-        );
+-        // SAFETY: the context was created above and is not used after this call.
+-        assert_eq!(
+-            unsafe { jmodels_kernels_context_destroy(context) },
+-            STATUS_OK
+-        );
+-    }
+-
+-    #[test]
+-    fn chunked_gated_delta_net_matches_the_sequential_recurrence() {
+-        let context = jmodels_kernels_context_create(3);
+-        assert!(!context.is_null());
+-        let tokens = 40;
+-        let key_heads = 2;
+-        let value_heads = 4;
+-        let key_dimension = 16;
+-        let value_dimension = 16;
+-
+-        let query = gated_delta_net_fixture(1, tokens * key_heads * key_dimension);
+-        let key = gated_delta_net_fixture(2, tokens * key_heads * key_dimension);
+-        let value = gated_delta_net_fixture(3, tokens * value_heads * value_dimension);
+-        let beta = gated_delta_net_fixture(4, tokens * value_heads)
+-            .iter()
+-            .map(|entry| 0.5 + 0.4 * entry)
+-            .collect::<Vec<_>>();
+-        let log_decay = gated_delta_net_fixture(5, tokens * value_heads)
+-            .iter()
+-            .map(|entry| -0.05 - 0.15 * entry.abs())
+-            .collect::<Vec<_>>();
+-        let initial = gated_delta_net_fixture(6, value_heads * key_dimension * value_dimension);
+-
+-        let mut chunked_state = initial.clone();
+-        let mut chunked_output = vec![0.0_f32; tokens * value_heads * value_dimension];
+-        // SAFETY: every fixture outlives the call and none of the buffers alias one another.
+-        assert_eq!(
+-            unsafe {
+-                jmodels_gated_delta_net_f32_with_context(
+-                    context,
+-                    query.as_ptr(),
+-                    query.len() as u64,
+-                    key.as_ptr(),
+-                    key.len() as u64,
+-                    value.as_ptr(),
+-                    value.len() as u64,
+-                    log_decay.as_ptr(),
+-                    log_decay.len() as u64,
+-                    beta.as_ptr(),
+-                    beta.len() as u64,
+-                    chunked_state.as_mut_ptr(),
+-                    chunked_state.len() as u64,
+-                    chunked_output.as_mut_ptr(),
+-                    chunked_output.len() as u64,
+-                    tokens as u32,
+-                    key_heads as u32,
+-                    value_heads as u32,
+-                    key_dimension as u32,
+-                    value_dimension as u32,
+-                )
+-            },
+-            STATUS_OK
+-        );
+-
+-        let mut sequential_state = initial;
+-        let mut sequential_output = vec![0.0_f32; tokens * value_heads * value_dimension];
+-        for token in 0..tokens {
+-            let query_base = token * key_heads * key_dimension;
+-            let value_base = token * value_heads * value_dimension;
+-            let gate_base = token * value_heads;
+-            // SAFETY: each slice is a distinct in-bounds window over the same live fixtures.
+-            assert_eq!(
+-                unsafe {
+-                    jmodels_gated_delta_net_f32_with_context(
+-                        context,
+-                        query[query_base..].as_ptr(),
+-                        (key_heads * key_dimension) as u64,
+-                        key[query_base..].as_ptr(),
+-                        (key_heads * key_dimension) as u64,
+-                        value[value_base..].as_ptr(),
+-                        (value_heads * value_dimension) as u64,
+-                        log_decay[gate_base..].as_ptr(),
+-                        value_heads as u64,
+-                        beta[gate_base..].as_ptr(),
+-                        value_heads as u64,
+-                        sequential_state.as_mut_ptr(),
+-                        sequential_state.len() as u64,
+-                        sequential_output[value_base..].as_mut_ptr(),
+-                        (value_heads * value_dimension) as u64,
+-                        1,
+-                        key_heads as u32,
+-                        value_heads as u32,
+-                        key_dimension as u32,
+-                        value_dimension as u32,
+-                    )
+-                },
+-                STATUS_OK
+-            );
+-        }
+-
+-        let tolerance = 2.0e-4_f32;
+-        for (index, (actual, expected)) in chunked_output.iter().zip(&sequential_output).enumerate()
+-        {
+-            assert!(
+-                (actual - expected).abs() <= tolerance * expected.abs().max(1.0),
+-                "output[{index}] chunked {actual} vs sequential {expected}"
+-            );
+-        }
+-        for (index, (actual, expected)) in chunked_state.iter().zip(&sequential_state).enumerate() {
+-            assert!(
+-                (actual - expected).abs() <= tolerance * expected.abs().max(1.0),
+-                "state[{index}] chunked {actual} vs sequential {expected}"
+-            );
+-        }
+-        // SAFETY: the test consumes the unique context pointer exactly once.
+-        assert_eq!(
+-            unsafe { jmodels_kernels_context_destroy(context) },
+-            STATUS_OK
+-        );
+-    }
+-
+-    /// Prints where a Qwen3.5-4B prefill step actually spends its time. Ignored by default because
+-    /// it is a measurement, not an assertion; run with
+-    /// `cargo test --release -- --ignored --nocapture prefill_budget`.
+-    #[test]
+-    #[ignore]
+-    fn prefill_budget() {
+-        use std::time::Instant;
+-        let threads: usize = std::env::var("JMODELS_BENCH_THREADS")
+-            .ok()
+-            .and_then(|value| value.parse().ok())
+-            .unwrap_or(8);
+-        let repeats: usize = std::env::var("JMODELS_BENCH_REPEATS")
+-            .ok()
+-            .and_then(|value| value.parse().ok())
+-            .unwrap_or(20);
+-        let context = jmodels_kernels_context_create(threads as u32);
+-        assert!(!context.is_null());
+-
+-        let tokens = 64;
+-        let heads = 16;
+-        let dimension = 256;
+-        let query = gated_delta_net_fixture(11, tokens * heads * dimension);
+-        let key = gated_delta_net_fixture(12, tokens * heads * dimension);
+-        let value = gated_delta_net_fixture(13, tokens * heads * dimension);
+-        let beta = gated_delta_net_fixture(14, tokens * heads)
+-            .iter()
+-            .map(|entry| 0.5 + 0.4 * entry)
+-            .collect::<Vec<_>>();
+-        let log_decay = gated_delta_net_fixture(15, tokens * heads)
+-            .iter()
+-            .map(|entry| -0.05 - 0.15 * entry.abs())
+-            .collect::<Vec<_>>();
+-        let mut recurrent = gated_delta_net_fixture(16, heads * dimension * dimension);
+-        let mut recurrent_output = vec![0.0_f32; tokens * heads * dimension];
+-
+-        let mut best = f64::INFINITY;
+-        for _ in 0..repeats {
+-            let started = Instant::now();
+-            // SAFETY: every fixture outlives the call and none of the buffers alias one another.
+-            assert_eq!(
+-                unsafe {
+-                    jmodels_gated_delta_net_f32_with_context(
+-                        context,
+-                        query.as_ptr(),
+-                        query.len() as u64,
+-                        key.as_ptr(),
+-                        key.len() as u64,
+-                        value.as_ptr(),
+-                        value.len() as u64,
+-                        log_decay.as_ptr(),
+-                        log_decay.len() as u64,
+-                        beta.as_ptr(),
+-                        beta.len() as u64,
+-                        recurrent.as_mut_ptr(),
+-                        recurrent.len() as u64,
+-                        recurrent_output.as_mut_ptr(),
+-                        recurrent_output.len() as u64,
+-                        tokens as u32,
+-                        heads as u32,
+-                        heads as u32,
+-                        dimension as u32,
+-                        dimension as u32,
+-                    )
+-                },
+-                STATUS_OK
+-            );
+-            best = best.min(started.elapsed().as_secs_f64());
+-        }
+-        println!(
+-            "gated-delta-net: {:.3} ms per {tokens}-token layer step ({:.3} ms per token)",
+-            best * 1000.0,
+-            best * 1000.0 / tokens as f64
+-        );
+-
+-        let rows = 12288;
+-        let cols = 2560;
+-        let weight_bytes = rows * cols / 256 * Q4_K_BLOCK_BYTES;
+-        let weights = vec![0x42_u8; weight_bytes];
+-        let input = gated_delta_net_fixture(17, tokens * cols);
+-        let mut projected = vec![0.0_f32; tokens * rows];
+-        let mut matmul_best = f64::INFINITY;
+-        for _ in 0..repeats {
+-            let started = Instant::now();
+-            // SAFETY: the weight buffer covers rows*cols Q4_K blocks and the shapes match it.
+-            assert_eq!(
+-                unsafe {
+-                    jmodels_quantized_f32_batched_matmul_with_context(
+-                        context,
+-                        2,
+-                        weights.as_ptr(),
+-                        weights.len() as u64,
+-                        input.as_ptr(),
+-                        input.len() as u64,
+-                        projected.as_mut_ptr(),
+-                        projected.len() as u64,
+-                        tokens as u32,
+-                        rows as u32,
+-                        cols as u32,
+-                    )
+-                },
+-                STATUS_OK
+-            );
+-            matmul_best = matmul_best.min(started.elapsed().as_secs_f64());
+-        }
+-        let gflop = 2.0 * tokens as f64 * rows as f64 * cols as f64 / 1.0e9;
+-        println!(
+-            "q4_k matmul {rows}x{cols} batch {tokens}: {:.3} ms ({:.1} GFLOP/s)",
+-            matmul_best * 1000.0,
+-            gflop / matmul_best
+-        );
+-        // SAFETY: the test consumes the unique context pointer exactly once.
+-        assert_eq!(
+-            unsafe { jmodels_kernels_context_destroy(context) },
+-            STATUS_OK
+-        );
+-    }
+-
+     /// A pseudo-random Q5_1 weight block set, varied on every axis the kernel reads.
+     ///
+     /// Varied deliberately: a fixture with one scale, a zero minimum or an empty bit plane cannot
+diff --git a/backend-native/src/test/java/com/integrallis/models/backend/nativekernel/NativeKernelLibraryTest.java b/backend-native/src/test/java/com/integrallis/models/backend/nativekernel/NativeKernelLibraryTest.java
+index 1f400b2f..65d4640d 100644
+--- a/backend-native/src/test/java/com/integrallis/models/backend/nativekernel/NativeKernelLibraryTest.java
++++ b/backend-native/src/test/java/com/integrallis/models/backend/nativekernel/NativeKernelLibraryTest.java
+@@ -39,6 +39,17 @@ class NativeKernelLibraryTest {
+   private static final ValueLayout.OfShort LE_SHORT =
+       ValueLayout.JAVA_SHORT_UNALIGNED.withOrder(ByteOrder.LITTLE_ENDIAN);
+ 
++  @Test
++  @SuppressWarnings("restricted") // Inspect the built library's exported symbols in a scoped arena.
++  void retiredRecurrenceIsAbsentFromTheNativeBinary() {
++    try (Arena arena = Arena.ofConfined()) {
++      var symbols = java.lang.foreign.SymbolLookup.libraryLookup(libraryPath(), arena);
++      assertThat(symbols.find("jmodels_gated_delta_net_f32_with_context")).isEmpty();
++      assertThat(symbols.find("jmodels_gated_delta_net_group_f32_with_context")).isEmpty();
++    }
++    assertThat(NativeKernelLibrary.ABI_VERSION).isEqualTo(7);
++  }
++
+   @Test
+   void exposesVersionedQuantizedKernelCapabilities() {
+     try (NativeKernelLibrary kernels = NativeKernelLibrary.open(libraryPath())) {
+@@ -62,225 +73,7 @@ class NativeKernelLibraryTest {
+       assertThat(kernels.supports(NativeKernelCapability.Q4_K_BATCH_VECTOR_ACCUMULATION)).isTrue();
+       assertThat(kernels.supports(NativeKernelCapability.MANY_GROUPED_BATCHED_MATMUL)).isTrue();
+       assertThat(kernels.supports(NativeKernelCapability.INDEPENDENT_BATCHED_MATMUL)).isTrue();
+-      assertThat(kernels.supports(NativeKernelCapability.GATED_DELTA_NET_F32)).isTrue();
+-      assertThat(kernels.supports(NativeKernelCapability.GROUPED_GATED_DELTA_NET_F32)).isTrue();
+-      assertThat(kernels.supportsGroupedGatedDeltaNet()).isTrue();
+-    }
+-  }
+-
+-  /**
+-   * A grouped launch must equal each row advanced on its own.
+-   *
+-   * <p>The slot table is deliberately scattered rather than the identity: questions of unequal
+-   * length drop out as they finish, so the rows still advancing address slots out of order. An
+-   * identity-only test would pass while every ragged group read another question's state.
+-   */
+-  @Test
+-  void groupedGatedDeltaNetMatchesEachRowAdvancedAlone() {
+-    int rows = 3;
+-    int slots = 5;
+-    int heads = 2;
+-    int dimension = 2;
+-    int statePerSlot = heads * dimension * dimension;
+-    int[] rowSlot = {4, 0, 2};
+-
+-    float[] query = fixture(11, rows * heads * dimension);
+-    float[] key = fixture(12, rows * heads * dimension);
+-    float[] value = fixture(13, rows * heads * dimension);
+-    float[] beta = fixture(14, rows * heads);
+-    float[] logDecay = fixture(15, rows * heads);
+-    for (int index = 0; index < logDecay.length; index++) {
+-      logDecay[index] = -Math.abs(logDecay[index]);
+-    }
+-    float[] initial = fixture(16, slots * statePerSlot);
+-
+-    float[] groupedState = initial.clone();
+-    float[] groupedOutput = new float[rows * heads * dimension];
+-    float[] expectedState = initial.clone();
+-    float[] expectedOutput = new float[rows * heads * dimension];
+-
+-    try (NativeKernelLibrary kernels = NativeKernelLibrary.open(libraryPath(), 4)) {
+-      kernels.groupedGatedDeltaNetF32(
+-          query,
+-          key,
+-          value,
+-          logDecay,
+-          beta,
+-          groupedState,
+-          groupedOutput,
+-          rowSlot,
+-          rows,
+-          slots,
+-          heads,
+-          heads,
+-          dimension,
+-          dimension);
+-
+-      for (int row = 0; row < rows; row++) {
+-        int span = heads * dimension;
+-        float[] rowState =
+-            Arrays.copyOfRange(
+-                expectedState, rowSlot[row] * statePerSlot, (rowSlot[row] + 1) * statePerSlot);
+-        float[] rowOutput = new float[span];
+-        kernels.gatedDeltaNetF32(
+-            Arrays.copyOfRange(query, row * span, (row + 1) * span),
+-            Arrays.copyOfRange(key, row * span, (row + 1) * span),
+-            Arrays.copyOfRange(value, row * span, (row + 1) * span),
+-            Arrays.copyOfRange(logDecay, row * heads, (row + 1) * heads),
+-            Arrays.copyOfRange(beta, row * heads, (row + 1) * heads),
+-            rowState,
+-            rowOutput,
+-            1,
+-            heads,
+-            heads,
+-            dimension,
+-            dimension);
+-        System.arraycopy(rowOutput, 0, expectedOutput, row * span, span);
+-        System.arraycopy(rowState, 0, expectedState, rowSlot[row] * statePerSlot, statePerSlot);
+-      }
+-    }
+-
+-    assertThat(groupedOutput).containsExactly(expectedOutput);
+-    assertThat(groupedState).containsExactly(expectedState);
+-  }
+-
+-  /** A slot outside the state buffer must be rejected, not written on a worker thread. */
+-  @Test
+-  void groupedGatedDeltaNetRejectsASlotOutsideTheState() {
+-    try (NativeKernelLibrary kernels = NativeKernelLibrary.open(libraryPath(), 2)) {
+-      assertThatThrownBy(
+-              () ->
+-                  kernels.groupedGatedDeltaNetF32(
+-                      new float[4],
+-                      new float[4],
+-                      new float[4],
+-                      new float[2],
+-                      new float[2],
+-                      new float[2 * 4],
+-                      new float[4],
+-                      new int[] {0, 7},
+-                      2,
+-                      2,
+-                      1,
+-                      1,
+-                      2,
+-                      2))
+-          .isInstanceOf(IllegalStateException.class)
+-          .hasMessageContaining("invalid shape");
+-    }
+-  }
+-
+-  /**
+-   * Every argument the grouped entry rejects, rejected in Java before the boundary.
+-   *
+-   * <p>A slot table or a length the native side cannot serve becomes an out-of-bounds write on a
+-   * worker thread, which is not a failure that reports itself. These are cheap checks guarding an
+-   * expensive mistake, so each one is pinned.
+-   */
+-  @Test
+-  void groupedGatedDeltaNetRejectsArgumentsItCannotServe() {
+-    try (NativeKernelLibrary kernels = NativeKernelLibrary.open(libraryPath(), 2)) {
+-      assertThatThrownBy(() -> call(kernels, null, new int[] {0, 1}, 2, 2, 1, 1, 2, 2))
+-          .isInstanceOf(NullPointerException.class);
+-      assertThatThrownBy(() -> call(kernels, new float[8], new int[] {0, 1}, 0, 2, 1, 1, 2, 2))
+-          .isInstanceOf(IllegalArgumentException.class)
+-          .hasMessageContaining("rowCount");
+-      assertThatThrownBy(() -> call(kernels, new float[8], new int[] {0, 1}, 2, 1, 1, 1, 2, 2))
+-          .isInstanceOf(IllegalArgumentException.class)
+-          .hasMessageContaining("stateSlotCount must be at least rowCount");
+-      assertThatThrownBy(() -> call(kernels, new float[8], new int[] {0, 1}, 2, 2, 2, 3, 2, 2))
+-          .isInstanceOf(IllegalArgumentException.class)
+-          .hasMessageContaining("divisible");
+-      assertThatThrownBy(() -> call(kernels, new float[8], new int[] {0, 1}, 2, 2, 1, 1, 257, 2))
+-          .isInstanceOf(IllegalArgumentException.class)
+-          .hasMessageContaining("256");
+-      assertThatThrownBy(() -> call(kernels, new float[8], new int[] {0}, 2, 2, 1, 1, 2, 2))
+-          .isInstanceOf(IllegalArgumentException.class)
+-          .hasMessageContaining("rowStateSlot holds");
+-      assertThatThrownBy(() -> call(kernels, new float[4], new int[] {0, 1}, 2, 2, 1, 1, 2, 2))
+-          .isInstanceOf(IllegalArgumentException.class)
+-          .hasMessageContaining("state");
+-    }
+-  }
+-
+-  /** A null slot table means row i owns slot i, which must agree with spelling that out. */
+-  @Test
+-  void groupedGatedDeltaNetTreatsANullSlotTableAsTheIdentity() {
+-    int rows = 2;
+-    int heads = 1;
+-    int dimension = 2;
+-    float[] query = fixture(31, rows * heads * dimension);
+-    float[] value = fixture(32, rows * heads * dimension);
+-    float[] gates = fixture(33, rows * heads);
+-    float[] initial = fixture(34, rows * heads * dimension * dimension);
+-
+-    float[] implicitState = initial.clone();
+-    float[] implicitOutput = new float[rows * heads * dimension];
+-    float[] explicitState = initial.clone();
+-    float[] explicitOutput = new float[rows * heads * dimension];
+-
+-    try (NativeKernelLibrary kernels = NativeKernelLibrary.open(libraryPath(), 2)) {
+-      kernels.groupedGatedDeltaNetF32(
+-          query,
+-          query,
+-          value,
+-          gates,
+-          gates,
+-          implicitState,
+-          implicitOutput,
+-          null,
+-          rows,
+-          rows,
+-          heads,
+-          heads,
+-          dimension,
+-          dimension);
+-      kernels.groupedGatedDeltaNetF32(
+-          query,
+-          query,
+-          value,
+-          gates,
+-          gates,
+-          explicitState,
+-          explicitOutput,
+-          new int[] {0, 1},
+-          rows,
+-          rows,
+-          heads,
+-          heads,
+-          dimension,
+-          dimension);
+     }
+-
+-    assertThat(implicitOutput).containsExactly(explicitOutput);
+-    assertThat(implicitState).containsExactly(explicitState);
+-  }
+-
+-  private static void call(
+-      NativeKernelLibrary kernels,
+-      float[] state,
+-      int[] slots,
+-      int rowCount,
+-      int stateSlotCount,
+-      int keyHeads,
+-      int valueHeads,
+-      int keyDimension,
+-      int valueDimension) {
+-    kernels.groupedGatedDeltaNetF32(
+-        new float[64],
+-        new float[64],
+-        new float[64],
+-        new float[64],
+-        new float[64],
+-        state,
+-        new float[64],
+-        slots,
+-        rowCount,
+-        stateSlotCount,
+-        keyHeads,
+-        valueHeads,
+-        keyDimension,
+-        valueDimension);
+   }
+ 
+   private static float[] fixture(int seed, int count) {
+@@ -292,64 +85,6 @@ class NativeKernelLibraryTest {
+     return values;
+   }
+ 
+-  @Test
+-  void gatedDeltaNetMatchesThePinnedFreeTokenRecurrence() {
+-    float[] query = {
+-      0.5f, -1.0f, 1.5f, 0.25f,
+-      -0.75f, 0.5f, 0.1f, -0.4f,
+-      1.25f, 0.75f, -0.3f, 0.9f
+-    };
+-    float[] key = {
+-      0.2f, 0.8f, -0.6f, 0.9f,
+-      1.0f, -0.5f, 0.7f, 0.2f,
+-      -0.4f, 0.3f, 0.25f, -0.75f
+-    };
+-    float[] value = {
+-      0.3f, -0.7f, 1.1f, 0.4f,
+-      -0.2f, 0.9f, 0.5f, -1.2f,
+-      0.8f, 0.1f, -0.6f, 0.7f
+-    };
+-    float[] logDecay = {-0.1f, -0.3f, -0.5f, -0.2f, -0.05f, -0.7f};
+-    float[] beta = {0.7f, 0.2f, 0.4f, 0.9f, 1.0f, 0.6f};
+-    float[] state = {0.1f, -0.2f, 0.3f, 0.4f, -0.5f, 0.2f, 0.1f, -0.3f};
+-    float[] output = new float[value.length];
+-
+-    try (NativeKernelLibrary kernels = NativeKernelLibrary.open(libraryPath(), 2)) {
+-      kernels.gatedDeltaNetF32(query, key, value, logDecay, beta, state, output, 3, 2, 2, 2, 2);
+-    }
+-
+-    assertThat(output)
+-        .containsExactly(
+-            new float[] {
+-              -0.148594886f,
+-              0.0923976079f,
+-              -0.29807961f,
+-              0.0387914963f,
+-              0.0826374739f,
+-              -0.232684523f,
+-              -0.201746792f,
+-              0.0990339369f,
+-              -0.115048051f,
+-              -0.159083426f,
+-              0.29010731f,
+-              -0.305043638f
+-            },
+-            within(2.0e-6f));
+-    assertThat(state)
+-        .containsExactly(
+-            new float[] {
+-              -0.549856126f,
+-              -0.20131427f,
+-              0.600189984f,
+-              -0.101754844f,
+-              0.0727154538f,
+-              -0.372453094f,
+-              0.456705213f,
+-              -0.578883469f
+-            },
+-            within(2.0e-6f));
+-  }
+-
+   @Test
+   void computesQ4_0BatchedMatrixMultiplication() {
+     int batchSize = 2;
+@@ -494,7 +229,10 @@ class NativeKernelLibraryTest {
+     }
+     float[] actual = new float[2 + numHeads * valueLength];
+     float[] scores = new float[numHeads * total];
+-    try (NativeKernelLibrary kernels = NativeKernelLibrary.open(libraryPath(), 4)) {
++    try (NativeKernelLibrary kernels = NativeKernelLibrary.open(libraryPath(), 4);
++        RustGgufBatchedMatrixKernel dispatcher =
++            RustGgufBatchedMatrixKernel.open(libraryPath(), new NativeKernelSettings(4))) {
++      assertThat(dispatcher.supportsGroupedAttention()).isTrue();
+       assertThat(kernels.supports(NativeKernelCapability.GROUPED_ATTENTION_F32)).isTrue();
+       kernels.groupedAttentionF32(
+           query,
+@@ -562,7 +300,7 @@ class NativeKernelLibraryTest {
+             0,
+             positionsA);
+       }
+-      kernels.groupedAttentionF32(
++      dispatcher.groupedAttention(
+           query,
+           3,
+           keysA,
+@@ -679,11 +417,8 @@ class NativeKernelLibraryTest {
+     try (RustGgufBatchedMatrixKernel kernel =
+         RustGgufBatchedMatrixKernel.open(libraryPath(), settings)) {
+       assertThat(kernel.threadCount()).isEqualTo(4);
+-      // Capability, not configuration, decides what the shim serves -- with two routes deliberately
+-      // not taken: the recurrence, because adopting it would change bytes published records claim,
+-      // and grouped Q5_0, because it measured slower. Both are decisions in code, not settings.
++      // Grouped Q5_0 is excluded by routing because it measured slower.
+       assertThat(kernel.supportsQ5_0Grouped()).as("the shim has the kernel").isTrue();
+-      assertThat(kernel.supportsGatedDeltaNet()).as("but it is not routed to").isFalse();
+     }
+   }
+ 
+diff --git a/backend-native/src/test/java/com/integrallis/models/backend/nativekernel/NativePerformanceCliffTest.java b/backend-native/src/test/java/com/integrallis/models/backend/nativekernel/NativePerformanceCliffTest.java
+index c6c6de36..654cda8b 100644
+--- a/backend-native/src/test/java/com/integrallis/models/backend/nativekernel/NativePerformanceCliffTest.java
++++ b/backend-native/src/test/java/com/integrallis/models/backend/nativekernel/NativePerformanceCliffTest.java
+@@ -75,12 +75,12 @@ class NativePerformanceCliffTest {
+ 
+     assertThat(backend.diagnostics()).isEqualTo(loaded);
+ 
+-    PerformanceCliffs.report(PerformanceCliff.NATIVE_GATED_DELTA_NET_UNAVAILABLE, "kernel=rust");
++    PerformanceCliffs.report(PerformanceCliff.NATIVE_GROUPED_ATTENTION_UNAVAILABLE, "kernel=rust");
+ 
+     assertThat(backend.diagnostics().environment())
+         .containsEntry("a", "b")
+-        .containsEntry("performance-cliff.native-gated-delta-net-unavailable", "kernel=rust")
+-        .containsEntry("performance-cliffs", "native-gated-delta-net-unavailable");
++        .containsEntry("performance-cliff.native-grouped-attention-unavailable", "kernel=rust")
++        .containsEntry("performance-cliffs", "native-grouped-attention-unavailable");
+     PerformanceCliffs.reset();
+   }
+ 
+diff --git a/docs/content/modules/ROOT/pages/architecture.adoc b/docs/content/modules/ROOT/pages/architecture.adoc
+index a05069c4..054e6390 100644
+--- a/docs/content/modules/ROOT/pages/architecture.adoc
++++ b/docs/content/modules/ROOT/pages/architecture.adoc
+@@ -151,10 +151,8 @@ activation workspaces belong to each Java session and are reused across prefill
+ and decode. The execution planner derives batch and quantized-kernel choices
+ from the tensors actually loaded rather than assuming a Llama-shaped graph.
+ Java Vector API kernels fuse the causal depthwise convolution with SiLU and
+-vectorize the gate transforms and SwiGLU. On an exact qualified artifact, the
+-planner may additionally move the measured Gated DeltaNet recurrence hot loop
+-through the small Models-owned FFM kernel; that option does not move the model
+-graph or session state out of Java.
++vectorize the gate transforms and SwiGLU. Gated DeltaNet recurrence runs in Java;
++the unused native recurrence experiment and its dispatch hooks have been removed.
+ The implementation does not invoke a FreeToken, Python, or external inference
+ runtime; FreeToken and llama.cpp are test references.
+ 

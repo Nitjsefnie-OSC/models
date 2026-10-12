@@ -1,0 +1,9 @@
+{
+  "modelsCheckout": "8d1bcc914459ba2a3b13627a893f269138626bc1",
+  "vectorsBase": "7e77a63",
+  "vectorsVersion": "0.1.30 (unpublished source build)",
+  "vectorsJarSha256": "1ab158dbee881fd79c50d052033b703e34d7b051bab2f44dbedda9f5f79d712e",
+  "classpathOverride": "native-bf16-local-test.init.gradle",
+  "verification": "Both native Bonsai fixture tests; four active processors; full-vocabulary equality unchanged",
+  "releasedArtifacts": false
+}

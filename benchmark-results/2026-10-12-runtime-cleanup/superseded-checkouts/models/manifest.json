@@ -1,0 +1,48 @@
+{
+  "baseCommit": "20833f4128b3da5ea1da268cd4f63f92135f8bfe",
+  "branch": "qualification/bonsai2-production",
+  "targetCommit": "7b909d6f38c168eac88a2bc778929249ba7e0158",
+  "trackedPaths": [
+    "CHANGELOG.md",
+    "JVM_NATIVE_INFERENCE_GAP.md",
+    "backend-java/src/main/java/com/integrallis/models/backend/purejava/diagnostics/PerformanceCliff.java",
+    "backend-java/src/main/java/com/integrallis/models/backend/purejava/qwen35/Qwen35ForwardPass.java",
+    "backend-java/src/main/java/com/integrallis/models/backend/purejava/spi/GgufBatchedMatrixKernel.java",
+    "backend-java/src/test/java/com/integrallis/models/backend/purejava/diagnostics/PerformanceCliffsTest.java",
+    "backend-java/src/test/java/com/integrallis/models/backend/purejava/qwen35/Qwen35ForwardPassTest.java",
+    "backend-native/README.md",
+    "backend-native/build.gradle.kts",
+    "backend-native/src/main/java/com/integrallis/models/backend/nativekernel/NativeKernelCapability.java",
+    "backend-native/src/main/java/com/integrallis/models/backend/nativekernel/NativeKernelLibrary.java",
+    "backend-native/src/main/java/com/integrallis/models/backend/nativekernel/RustFfmBackend.java",
+    "backend-native/src/main/java/com/integrallis/models/backend/nativekernel/RustGgufBatchedMatrixKernel.java",
+    "backend-native/src/main/rust/model-kernels/src/lib.rs",
+    "backend-native/src/test/java/com/integrallis/models/backend/nativekernel/NativeKernelLibraryTest.java",
+    "backend-native/src/test/java/com/integrallis/models/backend/nativekernel/NativePerformanceCliffTest.java",
+    "docs/content/modules/ROOT/pages/architecture.adoc"
+  ],
+  "trackedPatchSha256": "e436cd932212a4d6427d182369d5742f345d2f1936b625bd5dd6ec76e7b0c251",
+  "untrackedFiles": [
+    {
+      "path": "benchmark-results/2026-10-11-bonsai-production/native-bf16-final-source-green.log",
+      "bytes": 2855,
+      "sha256": "01ed76f4e10200bb9d2a75e31d619e5f51e713c795a5873b74cde84452c7cc3d"
+    },
+    {
+      "path": "benchmark-results/2026-10-11-bonsai-production/native-bf16-final-source-green.xml",
+      "bytes": 1665,
+      "sha256": "4ba84f5720add4ca58efbd2932f8af04391e478741f9a976da9610390965f6b7"
+    },
+    {
+      "path": "benchmark-results/2026-10-11-bonsai-production/native-bf16-final-source-provenance.json",
+      "bytes": 447,
+      "sha256": "9b71eda8f976e7b70ed16bd071765584ef05bd2c8e34c75e0729362b52b0b65a"
+    },
+    {
+      "path": "docs/findings/native-gdn-removal.md",
+      "bytes": 3328,
+      "sha256": "17ddb3292ced84e10188b0b56e36df1084f8c830f05b0708ae29bfdb5c80a662"
+    }
+  ],
+  "reason": "Superseded unpublished experiment; retained before updating primary checkout to the integrated candidate. Original untracked evidence remains in place."
+}

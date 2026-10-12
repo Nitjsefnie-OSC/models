@@ -1,0 +1,21 @@
+{
+  "runtimeSource": "0bc5de31",
+  "jars": {
+    "models-api": {
+      "path": "/Users/briansam-bodden/Code/java-ai/projects/models-final-integration/models-api/build/libs/models-api-0.3.59.jar",
+      "sha256": "9b06e481274a694418bfebfcfc480f7c0dcb09fbde77f32ee8d352fea2389d9c"
+    },
+    "models-runtime": {
+      "path": "/Users/briansam-bodden/Code/java-ai/projects/models-final-integration/models-runtime/build/libs/models-runtime-0.3.59.jar",
+      "sha256": "011d70e6df8a1f71441e93a3e05c77e390f5c0d1f4ff254df4556606422a325d"
+    },
+    "backend-java": {
+      "path": "/Users/briansam-bodden/Code/java-ai/projects/models-final-integration/backend-java/build/libs/backend-java-0.3.59.jar",
+      "sha256": "32e23a3018b8df004a305d77376e0678984e508a04a03f2a085324e09c472e8b"
+    },
+    "backend-native": {
+      "path": "/Users/briansam-bodden/Code/java-ai/projects/models-final-integration/backend-native/build/libs/backend-native-0.3.59.jar",
+      "sha256": "5174ed677965742a9d936c0b09c3ca9f1460fa91d2ccb0b076f175bb2bf400a0"
+    }
+  }
+}

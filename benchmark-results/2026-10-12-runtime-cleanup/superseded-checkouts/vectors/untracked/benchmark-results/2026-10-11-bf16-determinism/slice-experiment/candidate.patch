@@ -1,0 +1,66 @@
+diff --git a/vectors-core/src/main/java/com/integrallis/vectors/core/BFloat16Matrix.java b/vectors-core/src/main/java/com/integrallis/vectors/core/BFloat16Matrix.java
+index aa00e68..5f2409e 100644
+--- a/vectors-core/src/main/java/com/integrallis/vectors/core/BFloat16Matrix.java
++++ b/vectors-core/src/main/java/com/integrallis/vectors/core/BFloat16Matrix.java
+@@ -280,14 +280,10 @@ public final class BFloat16Matrix {
+     // finishRow: passing the vector to another helper prevents escape analysis in the batched
+     // loop and allocates a boxed vector for each row/token pair. See the BF16 JMH/GC evidence.
+     int lanes = vectorSum.length();
+-    if (lanes == 16)
+-      vectorSum = vectorSum.add(vectorSum.rearrange(PanamaVectorUtilSupport.REDUCE_ROTATE_8));
+-    if (lanes >= 8)
+-      vectorSum = vectorSum.add(vectorSum.rearrange(PanamaVectorUtilSupport.REDUCE_ROTATE_4));
+-    if (lanes >= 4)
+-      vectorSum = vectorSum.add(vectorSum.rearrange(PanamaVectorUtilSupport.REDUCE_ROTATE_2));
+-    if (lanes >= 2)
+-      vectorSum = vectorSum.add(vectorSum.rearrange(PanamaVectorUtilSupport.REDUCE_ROTATE_1));
++    if (lanes == 16) vectorSum = vectorSum.add(vectorSum.slice(8, vectorSum));
++    if (lanes >= 8) vectorSum = vectorSum.add(vectorSum.slice(4, vectorSum));
++    if (lanes >= 4) vectorSum = vectorSum.add(vectorSum.slice(2, vectorSum));
++    if (lanes >= 2) vectorSum = vectorSum.add(vectorSum.slice(1, vectorSum));
+     float sum = vectorSum.lane(0);
+     for (int column = vectorBound; column < columns; column++) {
+       float value = decode(weight.get(LE_SHORT, rowOffset + (long) column * Short.BYTES));
+diff --git a/vectors-core/src/main/java/com/integrallis/vectors/core/PanamaVectorUtilSupport.java b/vectors-core/src/main/java/com/integrallis/vectors/core/PanamaVectorUtilSupport.java
+index d328b94..d9b5107 100644
+--- a/vectors-core/src/main/java/com/integrallis/vectors/core/PanamaVectorUtilSupport.java
++++ b/vectors-core/src/main/java/com/integrallis/vectors/core/PanamaVectorUtilSupport.java
+@@ -65,10 +65,10 @@ final class PanamaVectorUtilSupport implements VectorUtilSupport {
+   static final VectorSpecies<Long> LONG_SPECIES =
+       PanamaConstants.preferredSpecies(LongVector.SPECIES_PREFERRED);
+   // Shared with kernels that keep the fixed reduction inside their row loop for escape analysis.
+-  static final VectorShuffle<Float> REDUCE_ROTATE_1 = reductionRotation(1);
+-  static final VectorShuffle<Float> REDUCE_ROTATE_2 = reductionRotation(2);
+-  static final VectorShuffle<Float> REDUCE_ROTATE_4 = reductionRotation(4);
+-  static final VectorShuffle<Float> REDUCE_ROTATE_8 = reductionRotation(8);
++  private static final VectorShuffle<Float> REDUCE_ROTATE_1 = reductionRotation(1);
++  private static final VectorShuffle<Float> REDUCE_ROTATE_2 = reductionRotation(2);
++  private static final VectorShuffle<Float> REDUCE_ROTATE_4 = reductionRotation(4);
++  private static final VectorShuffle<Float> REDUCE_ROTATE_8 = reductionRotation(8);
+   static final int VECTOR_BITSIZE = FLOAT_SPECIES.vectorBitSize();
+   private static final boolean Q4_K_FOUR_QUERY_TILE_SUPPORTED =
+       useQ4KFourQueryTile(System.getProperty("os.arch", ""), VECTOR_BITSIZE, 4);
+diff --git a/vectors-core/src/test/java/com/integrallis/vectors/core/BFloat16MatrixColdHotProbe.java b/vectors-core/src/test/java/com/integrallis/vectors/core/BFloat16MatrixColdHotProbe.java
+index 2fd99fa..8ab0f55 100644
+--- a/vectors-core/src/test/java/com/integrallis/vectors/core/BFloat16MatrixColdHotProbe.java
++++ b/vectors-core/src/test/java/com/integrallis/vectors/core/BFloat16MatrixColdHotProbe.java
+@@ -46,13 +46,18 @@ final class BFloat16MatrixColdHotProbe {
+       System.arraycopy(input, 0, batchInput, 1, columns);
+       System.arraycopy(input, 0, batchInput, 1 + columns, columns);
+       matrix.multiply(input, first);
+-      for (int iteration = 0; iteration < 256; iteration++) {
++      // The large shapes already cross compilation thresholds within a few calls. Bound their
++      // repeated work so the fresh-JVM probe also finishes during the concurrent full build.
++      int iterations = rows >= 512 ? 32 : 256;
++      for (int iteration = 0; iteration < iterations; iteration++) {
+         matrix.multiply(input, hot);
+         assertBits(first, hot, 0, "matvec iteration " + iteration);
+         matrix.multiplyBatch(batchInput, 1, 2, batchOutput, 1);
+         assertBits(first, batchOutput, 1, "batch first token iteration " + iteration);
+         assertBits(first, batchOutput, 1 + rows, "batch second token iteration " + iteration);
+       }
++      System.out.printf(
++          "BF16_STABLE rows=%d columns=%d iterations=%d%n", rows, columns, iterations);
+     }
+   }
+ 

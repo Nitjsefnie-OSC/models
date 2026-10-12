@@ -1,0 +1,485 @@
+{
+  "baseCommit": "a14ec65faf6265bf72f046fcb599ed514ea76934",
+  "branch": "fix/bf16-cold-hot-determinism",
+  "targetCommit": "ae337eebccbbae50e750b68babcd58788aeefbf8",
+  "trackedPaths": [
+    "benchmark-results/2026-10-11-bf16-determinism/README.md",
+    "vectors-core/src/main/java/com/integrallis/vectors/core/BFloat16Matrix.java",
+    "vectors-core/src/main/java/com/integrallis/vectors/core/PanamaVectorUtilSupport.java",
+    "vectors-core/src/test/java/com/integrallis/vectors/core/BFloat16MatrixColdHotProbe.java"
+  ],
+  "trackedPatchSha256": "047419f688e91d90dc4161f6749e3d86f40446d0410f3a458b66932fb398b351",
+  "untrackedFiles": [
+    {
+      "path": "benchmark-results/2026-10-11-bf16-determinism/inline-row/analyze.py",
+      "bytes": 2527,
+      "sha256": "e8cad9d12e35db2662c7b4c856f0de273fc2bb60846b5ba3855eaa8abc9f62ba"
+    },
+    {
+      "path": "benchmark-results/2026-10-11-bf16-determinism/inline-row/arm-analysis.json",
+      "bytes": 18556,
+      "sha256": "72433ac79c48237eb2d04077f45718e4124ddb97426730caf8f87fa8aabb0920"
+    },
+    {
+      "path": "benchmark-results/2026-10-11-bf16-determinism/inline-row/x86-analysis.json",
+      "bytes": 18813,
+      "sha256": "a6a05774e371a063ce130c7c5e07ded15ade211984cfaf129c4e2eeea1693be2"
+    },
+    {
+      "path": "benchmark-results/2026-10-11-bf16-determinism/isolated-arm-worker.sh",
+      "bytes": 2311,
+      "sha256": "4eb0771468e4250302f2f33218876ae1b93098a96ddfdce5d603ccc3aab326bb"
+    },
+    {
+      "path": "benchmark-results/2026-10-11-bf16-determinism/isolated-hosts.json",
+      "bytes": 4597,
+      "sha256": "0d8b0a629c80f9a9ebc244be02c12adddb5951b9d585d5d903edf740e1cb4dd7"
+    },
+    {
+      "path": "benchmark-results/2026-10-11-bf16-determinism/isolated-payload.json",
+      "bytes": 1142,
+      "sha256": "a2c3c4101504dc5d47a2615b0ac50fb07a7c830594bb69b906315da9deefbf4d"
+    },
+    {
+      "path": "benchmark-results/2026-10-11-bf16-determinism/isolated-x86-worker.sh",
+      "bytes": 2306,
+      "sha256": "fa69d5a6ecffea91ac03e6ba57f98ffd4446a72e654398124e24a4d4470ce0df"
+    },
+    {
+      "path": "benchmark-results/2026-10-11-bf16-determinism/isolated/arm/STATUS",
+      "bytes": 21,
+      "sha256": "4097b5f88d689e8b5aab9f8f722036a4f9743f86be70551d0086dffbcfb76441"
+    },
+    {
+      "path": "benchmark-results/2026-10-11-bf16-determinism/isolated/arm/commands.json",
+      "bytes": 6329,
+      "sha256": "7acb7ab4618db36069d059c6e1b89df77d3d2c04995e09608579d94901da1a6f"
+    },
+    {
+      "path": "benchmark-results/2026-10-11-bf16-determinism/isolated/arm/hostname.txt",
+      "bytes": 14,
+      "sha256": "66caca5e57587db950035de622d81cb52703448fa9652af558370d36b1822ed6"
+    },
+    {
+      "path": "benchmark-results/2026-10-11-bf16-determinism/isolated/arm/inputs.sha256",
+      "bytes": 556,
+      "sha256": "8e40e1f48372862728745e2d5cf3c811d7105be6765e27fbdeda4d9f7efbf7fd"
+    },
+    {
+      "path": "benchmark-results/2026-10-11-bf16-determinism/isolated/arm/java-version.txt",
+      "bytes": 200,
+      "sha256": "26355c87ae9a607a1852964702be1846ff2c75a313f8bcbfb5f2e039a1a543c1"
+    },
+    {
+      "path": "benchmark-results/2026-10-11-bf16-determinism/isolated/arm/jdk-release.json",
+      "bytes": 1828,
+      "sha256": "d971786701c4d03fdb3912a945a87c5e9f5f6add81cff7fc0ad639facf7e1949"
+    },
+    {
+      "path": "benchmark-results/2026-10-11-bf16-determinism/isolated/arm/jdk.sha256",
+      "bytes": 79,
+      "sha256": "7c56806b32f396117b2e74ec5f9600e95008443d2a600ac92e3f87f5bf9a8fc8"
+    },
+    {
+      "path": "benchmark-results/2026-10-11-bf16-determinism/isolated/arm/lscpu.txt",
+      "bytes": 2160,
+      "sha256": "b7d3f5302f1c6bc83dfdc075094641502afd5dc6c6c982678694c9aa4a393278"
+    },
+    {
+      "path": "benchmark-results/2026-10-11-bf16-determinism/isolated/arm/paired/0-baseline.json",
+      "bytes": 32606,
+      "sha256": "9e2831572cffad7781813cee6bd34c551795244920159c0bd23893af9e7ba99e"
+    },
+    {
+      "path": "benchmark-results/2026-10-11-bf16-determinism/isolated/arm/paired/1-fixed.json",
+      "bytes": 32752,
+      "sha256": "db356c1af0b2bc29ac0b408beb4b5571de59947628761f86b2f9649e5c673215"
+    },
+    {
+      "path": "benchmark-results/2026-10-11-bf16-determinism/isolated/arm/paired/2-fixed.json",
+      "bytes": 32808,
+      "sha256": "48b22c6a07b56bed62c79cf2b9c21e073b061b64d7dacf3cef812daf6bbf47a0"
+    },
+    {
+      "path": "benchmark-results/2026-10-11-bf16-determinism/isolated/arm/paired/3-baseline.json",
+      "bytes": 32879,
+      "sha256": "cdf9abbd601e269f2eb259b390b37a04c5b29abe4c2f655b185e8191946fa4ad"
+    },
+    {
+      "path": "benchmark-results/2026-10-11-bf16-determinism/isolated/arm/paired/provenance.json",
+      "bytes": 3138,
+      "sha256": "78924240ecad764eec4cb654945e1e916288c5e8a2d5def12c8d537fed4aa2d9"
+    },
+    {
+      "path": "benchmark-results/2026-10-11-bf16-determinism/isolated/arm/processes-before.txt",
+      "bytes": 24398,
+      "sha256": "23ea1ef3afcb42bbd20255c1ce56ac8d161e55cf77c3dc15ce7deba16070a00c"
+    },
+    {
+      "path": "benchmark-results/2026-10-11-bf16-determinism/isolated/arm/provenance.json",
+      "bytes": 967,
+      "sha256": "4f647e6445a7d57d962cadb75314c5603ff75ba7be6a598e29f70200bc44c66e"
+    },
+    {
+      "path": "benchmark-results/2026-10-11-bf16-determinism/isolated/arm/summary.json",
+      "bytes": 1996,
+      "sha256": "e49aa6a65124f028242e57911eddd2b14cea13c55d288d53933fa829be9c0421"
+    },
+    {
+      "path": "benchmark-results/2026-10-11-bf16-determinism/isolated/arm/uname.txt",
+      "bytes": 121,
+      "sha256": "c6d5d0b20391b0d0c33c76747c36ae9c37aa01544eca3784b4fd849e40d636f9"
+    },
+    {
+      "path": "benchmark-results/2026-10-11-bf16-determinism/isolated/termination.json",
+      "bytes": 243,
+      "sha256": "13d63aa8fe072c2765feb637552b64dce62684b3005bc8379c37fc77b9d4122b"
+    },
+    {
+      "path": "benchmark-results/2026-10-11-bf16-determinism/isolated/x86/STATUS",
+      "bytes": 21,
+      "sha256": "4097b5f88d689e8b5aab9f8f722036a4f9743f86be70551d0086dffbcfb76441"
+    },
+    {
+      "path": "benchmark-results/2026-10-11-bf16-determinism/isolated/x86/commands.json",
+      "bytes": 6329,
+      "sha256": "968d5a86ac26234fb0d0f7331916ecd121898b4cd032b5cde71cb21c32bc1f97"
+    },
+    {
+      "path": "benchmark-results/2026-10-11-bf16-determinism/isolated/x86/hostname.txt",
+      "bytes": 16,
+      "sha256": "5f12265adeaea44ee1356a1cae1b927df02efa8d97a59ff438d9bef10ca76772"
+    },
+    {
+      "path": "benchmark-results/2026-10-11-bf16-determinism/isolated/x86/inputs.sha256",
+      "bytes": 556,
+      "sha256": "8e40e1f48372862728745e2d5cf3c811d7105be6765e27fbdeda4d9f7efbf7fd"
+    },
+    {
+      "path": "benchmark-results/2026-10-11-bf16-determinism/isolated/x86/java-version.txt",
+      "bytes": 200,
+      "sha256": "26355c87ae9a607a1852964702be1846ff2c75a313f8bcbfb5f2e039a1a543c1"
+    },
+    {
+      "path": "benchmark-results/2026-10-11-bf16-determinism/isolated/x86/jdk-release.json",
+      "bytes": 1806,
+      "sha256": "87abee9692cbe2426b101c186bdd3611b428e11f8143b19b7692438ce0941f11"
+    },
+    {
+      "path": "benchmark-results/2026-10-11-bf16-determinism/isolated/x86/jdk.sha256",
+      "bytes": 79,
+      "sha256": "e840c1609065f471d40eb6808c3a91b4fbd4414c516848bdb3d1c4dd39d3aacb"
+    },
+    {
+      "path": "benchmark-results/2026-10-11-bf16-determinism/isolated/x86/lscpu.txt",
+      "bytes": 3296,
+      "sha256": "3ff7ba4c5604a746e7fdf3b6c6d3a6aa94c13e98f41e0fe8c11e1362ab44495e"
+    },
+    {
+      "path": "benchmark-results/2026-10-11-bf16-determinism/isolated/x86/paired/0-baseline.json",
+      "bytes": 32025,
+      "sha256": "603195abac7bf3f851d94fc46b14a68d7802c58baf57a54591b1d8bf8c06826d"
+    },
+    {
+      "path": "benchmark-results/2026-10-11-bf16-determinism/isolated/x86/paired/1-fixed.json",
+      "bytes": 32039,
+      "sha256": "4f0b51ccf52c958dcb171047cfc0c5f4da5abed0c899f4d72a862f5bc7733954"
+    },
+    {
+      "path": "benchmark-results/2026-10-11-bf16-determinism/isolated/x86/paired/2-fixed.json",
+      "bytes": 32750,
+      "sha256": "cb37b56806779b16e26b4414fb7efd3b74249930df04db5cc221dd31a7dd349a"
+    },
+    {
+      "path": "benchmark-results/2026-10-11-bf16-determinism/isolated/x86/paired/3-baseline.json",
+      "bytes": 32052,
+      "sha256": "37df16305b018896e21cac2818bdce28ae894fa416c72955896f93735f3bb8f9"
+    },
+    {
+      "path": "benchmark-results/2026-10-11-bf16-determinism/isolated/x86/paired/provenance.json",
+      "bytes": 3137,
+      "sha256": "1a54f1f0e52c2858ddb1a48098eb6fbd3d1e433b8862874c3454346414858924"
+    },
+    {
+      "path": "benchmark-results/2026-10-11-bf16-determinism/isolated/x86/processes-before.txt",
+      "bytes": 22598,
+      "sha256": "48af7071006739362df605c891d123939844ff0ddb2a44623b738e5ecaded719"
+    },
+    {
+      "path": "benchmark-results/2026-10-11-bf16-determinism/isolated/x86/provenance.json",
+      "bytes": 967,
+      "sha256": "4f647e6445a7d57d962cadb75314c5603ff75ba7be6a598e29f70200bc44c66e"
+    },
+    {
+      "path": "benchmark-results/2026-10-11-bf16-determinism/isolated/x86/summary.json",
+      "bytes": 1968,
+      "sha256": "28ff04fc84667157f1e3df207ec272ac0093ac84480d1035b01c0e940d5fcfe9"
+    },
+    {
+      "path": "benchmark-results/2026-10-11-bf16-determinism/isolated/x86/uname.txt",
+      "bytes": 128,
+      "sha256": "c026dacc757e654604a1f1bc8b171856f31b58bb0a3e8be6b1d61ef2bf28c5d5"
+    },
+    {
+      "path": "benchmark-results/2026-10-11-bf16-determinism/launch-isolated-hosts.py",
+      "bytes": 6028,
+      "sha256": "a17cae2e9db3cd78286def2fad65d04b48b20c1492bf22be24a9b9f321b3958a"
+    },
+    {
+      "path": "benchmark-results/2026-10-11-bf16-determinism/run-isolated-host.py",
+      "bytes": 1883,
+      "sha256": "95d23c8fe79929db7b7231ea0693ac4f3a7bf4ba9b119d4d7ccaf4b67d59fa01"
+    },
+    {
+      "path": "benchmark-results/2026-10-11-bf16-determinism/slice-experiment/TEST-com.integrallis.vectors.core.BFloat16MatrixAllocationTest.xml",
+      "bytes": 515,
+      "sha256": "fa29432fae771910dafaadd1d9fd676d3dd38e10ecf66b8d8fc1a3d4f8f4c4e6"
+    },
+    {
+      "path": "benchmark-results/2026-10-11-bf16-determinism/slice-experiment/TEST-com.integrallis.vectors.core.BFloat16MatrixColdHotTest.xml",
+      "bytes": 2028,
+      "sha256": "57da1e9d1dab54391e9f626c46f60517402cb67b2eabd1bf92198b2e2e9557e4"
+    },
+    {
+      "path": "benchmark-results/2026-10-11-bf16-determinism/slice-experiment/TEST-com.integrallis.vectors.core.BFloat16MatrixTest.xml",
+      "bytes": 2318,
+      "sha256": "90f19f64d9eda7dc55e07404a2dd69b5c935c93cf3dfabc8fa60781c282d9d55"
+    },
+    {
+      "path": "benchmark-results/2026-10-11-bf16-determinism/slice-experiment/arm-console.json",
+      "bytes": 102,
+      "sha256": "6b7164bccbfbeda99156ef6dc729b8bc3cb371a5fbbe91312e6e2f2d17f1f9fc"
+    },
+    {
+      "path": "benchmark-results/2026-10-11-bf16-determinism/slice-experiment/baseline-short-probes.json",
+      "bytes": 1698,
+      "sha256": "20eb2b9db7b3487dac5681921ba2ce88f0d1f8bf44b3a222793e9f0d8544a18a"
+    },
+    {
+      "path": "benchmark-results/2026-10-11-bf16-determinism/slice-experiment/candidate.patch",
+      "bytes": 4699,
+      "sha256": "0f88eb13c9d9032bc8a6b34830dd50d7ff4e2339241f067b862443411bfed372"
+    },
+    {
+      "path": "benchmark-results/2026-10-11-bf16-determinism/slice-experiment/isolated-arm-worker.sh",
+      "bytes": 2307,
+      "sha256": "aa5e3e1cd29e82b02547c9ac5704f3cf4fa255dc5a364c6120eb5d6b4b1471cc"
+    },
+    {
+      "path": "benchmark-results/2026-10-11-bf16-determinism/slice-experiment/isolated-hosts.json",
+      "bytes": 4814,
+      "sha256": "c0493ce0b0060f4286e3c6c939796d8a018cb5a62e74ebe744da395cc2a860c1"
+    },
+    {
+      "path": "benchmark-results/2026-10-11-bf16-determinism/slice-experiment/isolated-payload.json",
+      "bytes": 1329,
+      "sha256": "8b1ad0e9f82cdb71104e44cecc9a47539ea295dbad23fd26d8e0250a85af7c0c"
+    },
+    {
+      "path": "benchmark-results/2026-10-11-bf16-determinism/slice-experiment/isolated-x86-worker.sh",
+      "bytes": 2302,
+      "sha256": "0a5fec462fdb4f267ce87c688008dd55f4ebdd6f2089440e372bbe81eb5c0df1"
+    },
+    {
+      "path": "benchmark-results/2026-10-11-bf16-determinism/slice-experiment/isolated/arm/STATUS",
+      "bytes": 21,
+      "sha256": "4097b5f88d689e8b5aab9f8f722036a4f9743f86be70551d0086dffbcfb76441"
+    },
+    {
+      "path": "benchmark-results/2026-10-11-bf16-determinism/slice-experiment/isolated/arm/commands.json",
+      "bytes": 6329,
+      "sha256": "7acb7ab4618db36069d059c6e1b89df77d3d2c04995e09608579d94901da1a6f"
+    },
+    {
+      "path": "benchmark-results/2026-10-11-bf16-determinism/slice-experiment/isolated/arm/hostname.txt",
+      "bytes": 15,
+      "sha256": "fdd51238e84543fbb42ad646e43f4bf7331cdf65961eb60484198ebcef7b8a04"
+    },
+    {
+      "path": "benchmark-results/2026-10-11-bf16-determinism/slice-experiment/isolated/arm/inputs.sha256",
+      "bytes": 638,
+      "sha256": "27b4243cda96acfa87c6e35aebb3b94cf273202ab38088d5c89830ceb5582db4"
+    },
+    {
+      "path": "benchmark-results/2026-10-11-bf16-determinism/slice-experiment/isolated/arm/java-version.txt",
+      "bytes": 200,
+      "sha256": "26355c87ae9a607a1852964702be1846ff2c75a313f8bcbfb5f2e039a1a543c1"
+    },
+    {
+      "path": "benchmark-results/2026-10-11-bf16-determinism/slice-experiment/isolated/arm/jdk-release.json",
+      "bytes": 1828,
+      "sha256": "d971786701c4d03fdb3912a945a87c5e9f5f6add81cff7fc0ad639facf7e1949"
+    },
+    {
+      "path": "benchmark-results/2026-10-11-bf16-determinism/slice-experiment/isolated/arm/jdk.sha256",
+      "bytes": 79,
+      "sha256": "7c56806b32f396117b2e74ec5f9600e95008443d2a600ac92e3f87f5bf9a8fc8"
+    },
+    {
+      "path": "benchmark-results/2026-10-11-bf16-determinism/slice-experiment/isolated/arm/lscpu.txt",
+      "bytes": 2160,
+      "sha256": "b7d3f5302f1c6bc83dfdc075094641502afd5dc6c6c982678694c9aa4a393278"
+    },
+    {
+      "path": "benchmark-results/2026-10-11-bf16-determinism/slice-experiment/isolated/arm/paired/0-baseline.json",
+      "bytes": 32857,
+      "sha256": "5de337c0d832b9bfda54c9257ec108a5b647ef290b98c2a46e03e215b99d766d"
+    },
+    {
+      "path": "benchmark-results/2026-10-11-bf16-determinism/slice-experiment/isolated/arm/paired/1-fixed.json",
+      "bytes": 32529,
+      "sha256": "0c50058c653661eeac33a908350c24fa9784186b07d5f437fbec3304fbc9236b"
+    },
+    {
+      "path": "benchmark-results/2026-10-11-bf16-determinism/slice-experiment/isolated/arm/paired/2-fixed.json",
+      "bytes": 32741,
+      "sha256": "03b89aa7a997d89f43f8b8990393ddf67fb09a8c710780a7e5cbd81cbf32e072"
+    },
+    {
+      "path": "benchmark-results/2026-10-11-bf16-determinism/slice-experiment/isolated/arm/paired/3-baseline.json",
+      "bytes": 32761,
+      "sha256": "78a436541c50f55ae496de0546d30e817421803c1058636ff945e6e65d5b0351"
+    },
+    {
+      "path": "benchmark-results/2026-10-11-bf16-determinism/slice-experiment/isolated/arm/paired/provenance.json",
+      "bytes": 3138,
+      "sha256": "cdc50ef64afc05f4c603d7bcdd3e9f580dd3a6dd2564d2359388fb2749b6d0b7"
+    },
+    {
+      "path": "benchmark-results/2026-10-11-bf16-determinism/slice-experiment/isolated/arm/processes-before.txt",
+      "bytes": 24524,
+      "sha256": "ca7b5622750821c177916c812d1c07b7e7422217a1ab090983a2ee8d5905be5b"
+    },
+    {
+      "path": "benchmark-results/2026-10-11-bf16-determinism/slice-experiment/isolated/arm/provenance.json",
+      "bytes": 1156,
+      "sha256": "580917cc4de32870ee701bc897f51ec11f81d11a2666f8c3e4cd5f80a5096668"
+    },
+    {
+      "path": "benchmark-results/2026-10-11-bf16-determinism/slice-experiment/isolated/arm/summary.json",
+      "bytes": 3158,
+      "sha256": "20399dc474b6b7fdbcc9be341c06b23d3008147ddfbc4c3011c978e603670133"
+    },
+    {
+      "path": "benchmark-results/2026-10-11-bf16-determinism/slice-experiment/isolated/arm/uname.txt",
+      "bytes": 122,
+      "sha256": "57fe75fbcd8ff70bcca7572daebb09cc95a60f97b6375621c379755a8e1385fa"
+    },
+    {
+      "path": "benchmark-results/2026-10-11-bf16-determinism/slice-experiment/isolated/termination.json",
+      "bytes": 243,
+      "sha256": "bbdde0a7bef323c89397a449721a211745085382ebb916f46da53dcef5df4262"
+    },
+    {
+      "path": "benchmark-results/2026-10-11-bf16-determinism/slice-experiment/isolated/x86/STATUS",
+      "bytes": 21,
+      "sha256": "4097b5f88d689e8b5aab9f8f722036a4f9743f86be70551d0086dffbcfb76441"
+    },
+    {
+      "path": "benchmark-results/2026-10-11-bf16-determinism/slice-experiment/isolated/x86/commands.json",
+      "bytes": 6329,
+      "sha256": "968d5a86ac26234fb0d0f7331916ecd121898b4cd032b5cde71cb21c32bc1f97"
+    },
+    {
+      "path": "benchmark-results/2026-10-11-bf16-determinism/slice-experiment/isolated/x86/hostname.txt",
+      "bytes": 15,
+      "sha256": "63a6e2e010f90a1220cbbf32f566679ef65902358e94bcf0e609f3a8b8f28749"
+    },
+    {
+      "path": "benchmark-results/2026-10-11-bf16-determinism/slice-experiment/isolated/x86/inputs.sha256",
+      "bytes": 638,
+      "sha256": "27b4243cda96acfa87c6e35aebb3b94cf273202ab38088d5c89830ceb5582db4"
+    },
+    {
+      "path": "benchmark-results/2026-10-11-bf16-determinism/slice-experiment/isolated/x86/java-version.txt",
+      "bytes": 200,
+      "sha256": "26355c87ae9a607a1852964702be1846ff2c75a313f8bcbfb5f2e039a1a543c1"
+    },
+    {
+      "path": "benchmark-results/2026-10-11-bf16-determinism/slice-experiment/isolated/x86/jdk-release.json",
+      "bytes": 1806,
+      "sha256": "87abee9692cbe2426b101c186bdd3611b428e11f8143b19b7692438ce0941f11"
+    },
+    {
+      "path": "benchmark-results/2026-10-11-bf16-determinism/slice-experiment/isolated/x86/jdk.sha256",
+      "bytes": 79,
+      "sha256": "e840c1609065f471d40eb6808c3a91b4fbd4414c516848bdb3d1c4dd39d3aacb"
+    },
+    {
+      "path": "benchmark-results/2026-10-11-bf16-determinism/slice-experiment/isolated/x86/lscpu.txt",
+      "bytes": 3296,
+      "sha256": "3ff7ba4c5604a746e7fdf3b6c6d3a6aa94c13e98f41e0fe8c11e1362ab44495e"
+    },
+    {
+      "path": "benchmark-results/2026-10-11-bf16-determinism/slice-experiment/isolated/x86/paired/0-baseline.json",
+      "bytes": 32006,
+      "sha256": "2b0068966cf142b2ef2bcae0f62096667f0ecf001cc63b95d07f211a4eb2346d"
+    },
+    {
+      "path": "benchmark-results/2026-10-11-bf16-determinism/slice-experiment/isolated/x86/paired/1-fixed.json",
+      "bytes": 31974,
+      "sha256": "bc0fd0d172aa2295dff3673b31ce08f1672495b09c456a4fa835b450c2e03060"
+    },
+    {
+      "path": "benchmark-results/2026-10-11-bf16-determinism/slice-experiment/isolated/x86/paired/2-fixed.json",
+      "bytes": 32018,
+      "sha256": "b69c1830782223fe24cfb4374f73fa37ec43ef8e0addf4da41675f362176e8eb"
+    },
+    {
+      "path": "benchmark-results/2026-10-11-bf16-determinism/slice-experiment/isolated/x86/paired/3-baseline.json",
+      "bytes": 32007,
+      "sha256": "83f1c7c8196c0e51a46295ae990a555569939a07d25a0bae2e2425e43ae3453d"
+    },
+    {
+      "path": "benchmark-results/2026-10-11-bf16-determinism/slice-experiment/isolated/x86/paired/provenance.json",
+      "bytes": 3137,
+      "sha256": "ff32c17de0b2e4bd0623ae8ab16a2433c9b488c1fd6e9ec42bcd4fd008450ba8"
+    },
+    {
+      "path": "benchmark-results/2026-10-11-bf16-determinism/slice-experiment/isolated/x86/processes-before.txt",
+      "bytes": 22443,
+      "sha256": "ab26ad3c4e8d0a3b92bd800c0d0593ed9c45f0a3dbdeb39eb16f03b37a439c84"
+    },
+    {
+      "path": "benchmark-results/2026-10-11-bf16-determinism/slice-experiment/isolated/x86/provenance.json",
+      "bytes": 1156,
+      "sha256": "580917cc4de32870ee701bc897f51ec11f81d11a2666f8c3e4cd5f80a5096668"
+    },
+    {
+      "path": "benchmark-results/2026-10-11-bf16-determinism/slice-experiment/isolated/x86/summary.json",
+      "bytes": 3128,
+      "sha256": "519d1a27034b847d60015495c58931973dd5984fba6b77784461f1e6ee5bf894"
+    },
+    {
+      "path": "benchmark-results/2026-10-11-bf16-determinism/slice-experiment/isolated/x86/uname.txt",
+      "bytes": 127,
+      "sha256": "5979940f3e929f461a683f3101b3457cb6b6e06097aa2c4a3ea664eac954b9ab"
+    },
+    {
+      "path": "benchmark-results/2026-10-11-bf16-determinism/slice-experiment/launch-isolated-hosts.py",
+      "bytes": 6039,
+      "sha256": "7dc1d38b4a66c0265236a3d1b52e3cd805419d2745311444f8d268061d001f5d"
+    },
+    {
+      "path": "benchmark-results/2026-10-11-bf16-determinism/slice-experiment/run-host.py",
+      "bytes": 1883,
+      "sha256": "95d23c8fe79929db7b7231ea0693ac4f3a7bf4ba9b119d4d7ccaf4b67d59fa01"
+    },
+    {
+      "path": "benchmark-results/2026-10-11-bf16-determinism/slice-experiment/run-paired-jmh.py",
+      "bytes": 1956,
+      "sha256": "5d4c52b5d8b60680419c33b9c8bc6244f16c5d0075a1e17417efe7ca59f5cee1"
+    },
+    {
+      "path": "benchmark-results/2026-10-11-bf16-determinism/slice-experiment/x86-console.json",
+      "bytes": 102,
+      "sha256": "a76e9a9c9ad0bba0e535fc89bfbd96a0e4505f3b19d17d49cbb735db8cdbbab6"
+    },
+    {
+      "path": "benchmark-results/2026-10-11-bf16-determinism/summarize-paired.py",
+      "bytes": 1759,
+      "sha256": "9b843a885b86d3cb22c259b9d4fea5332d647cb3ea4dc066822942af811eefdd"
+    }
+  ],
+  "reason": "Superseded unpublished experiment; retained before updating primary checkout to the integrated candidate. Original untracked evidence remains in place."
+}

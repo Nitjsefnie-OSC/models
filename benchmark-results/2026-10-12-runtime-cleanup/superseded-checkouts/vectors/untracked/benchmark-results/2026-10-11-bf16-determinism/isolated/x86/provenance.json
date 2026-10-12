@@ -1,0 +1,18 @@
+{
+  "vectorsSourceRevision": "292c889bf3b0a8da17df8ff61cb8283604867401",
+  "baseline": "Central com.integrallis:vectors-core:0.1.29 (sha1 verified)",
+  "fixed": "Unpublished Vectors 0.1.30 source candidate",
+  "processors": 4,
+  "maximumCombinedUsd": 2,
+  "maximumSecondsPerHost": 3600,
+  "purpose": "Isolate BF16 correctness, allocation and paired kernel latency on x86 and ARM",
+  "investigateLatencyRatioAbove": 1.05,
+  "files": {
+    "run-paired-jmh.py": "5d4c52b5d8b60680419c33b9c8bc6244f16c5d0075a1e17417efe7ca59f5cee1",
+    "baseline.jar": "21eeae4fcaa56fa26ed45d99610142f794cdec0e1d852894e637263f5bd0b40c",
+    "probes.jar": "133c2fc9691bfaaba224897b5ea77eb09ad740ec7baa73a3da97f5bc086da2ec",
+    "benchmark.jar": "fc79846fc6103f5e5d5c6f5fe887dd65c5d2b8493d5968df08cf7eb37958c67c",
+    "fixed.jar": "1ab158dbee881fd79c50d052033b703e34d7b051bab2f44dbedda9f5f79d712e",
+    "run-host.py": "95d23c8fe79929db7b7231ea0693ac4f3a7bf4ba9b119d4d7ccaf4b67d59fa01"
+  }
+}
