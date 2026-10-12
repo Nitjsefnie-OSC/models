@@ -1,9 +1,17 @@
 # CI failure review — 12 October 2026
 
-Earlier snapshot at 21:55 UTC: Models PR 266 is **not green**. Its latest build, model integration,
-all six native platforms, framework matrix, ownership check and Apple bridge pass.
-Both native Bonsai real-weight jobs still fail. Vectors PR 98 and ModelJars PR 217
-have no failed current checks at this snapshot; some Vectors checks remain pending.
+The candidate upstream correction now passes all five Huatuo determinism configurations and
+all four expanded Bonsai configurations. **Ordinary dependency-pinned Models CI remains red:**
+run [38319088829](https://github.com/integrallis/models/actions/runs/38319088829) at
+`4f3d3e9a548bf3781ab3d002ff37df0875760e49` passes all nine pure-Java large-model jobs,
+including Fin-R1, but fails both native Bonsai jobs. It still resolves published Vectors 0.1.29.
+The green candidate runs below use an explicitly recorded unpublished core; they do not establish
+that a corrected dependency has shipped or that the remaining performance/resource gates pass.
+
+The following table preserves the earlier failure findings and their evidence. The 21:55 UTC
+snapshot had passing Models build, model integration, six native-platform jobs, framework matrix,
+ownership and Apple bridge checks, with both Bonsai jobs failing. Subsequent results are recorded
+separately below; earlier failures have not been relabeled.
 
 | Failure | Finding | Resolution / remaining work |
 | --- | --- | --- |
@@ -23,18 +31,67 @@ The audit script change was checked with both a fully passing stub matrix and a 
 failure: all five configurations execute, with exit codes 0 and 1 respectively. This checks
 failure collection only; it does not replace real inference validation.
 
-## GitHub rerun result
+## Huatuo: published-core failure and completed candidate correction
 
 [38314297480](https://github.com/integrallis/models/actions/runs/38314297480) completed
 with failures in default Panama, serial Panama, disabled-FMA Panama and 128-bit Panama.
-Scalar passed. All five reports are retained. Both local default-core variants passed,
-so that local control does not reproduce the GitHub environment's defect. The four failed
-vector variants remain a release blocker. The manual diagnostic [38316803282](https://github.com/integrallis/models/actions/runs/38316803282)
-is running five independent jobs using Models `91d5fa07` and exact Vectors
-`6893a587d7f1d8fd2cd58e85310ef87579b42b25`. It builds that core and puts it first on
-the diagnostic classpath, recording source and JAR hashes. Published dependency pins and
-exact-logit assertions are unchanged. Pending jobs are not passing evidence.
+Scalar passed. All five original reports remain retained. Both local default-core variants
+passed, so that local control does not reproduce the GitHub environment's defect.
 
-The latest ordinary Models checks at source `18e16118` include 31 passes, two Bonsai failures
-and one pending Fin-R1 job. Both Bonsai jobs retain precisely the earlier maximum errors:
-0.12134552001953125 on x86 and 0.09154176712036133 on ARM. This is not an overall green PR.
+The subsequent manual diagnostic
+[38316803282](https://github.com/integrallis/models/actions/runs/38316803282) **completed all
+five independent jobs successfully**: default Panama, serial Panama, disabled-FMA Panama,
+128-bit Panama and scalar. The raw reports independently verify identical full-logit hashes
+at each of four generated steps across three trials within each configuration. The pinned
+Huatuo GGUF SHA-256 is `4643521a184cb26df0f7c57da9aead0c632b286a9aff103c9f9dca4dc059abd7`.
+This is repeatability for the recorded prompt/configurations, not a task-quality result or
+an assertion that different vector widths/FMA settings produce identical logits. These jobs
+ran on different recorded x86 hosts with Temurin 25.0.4.1; they are not paired performance data.
+
+The diagnostic used Models `91d5fa0787b99bf12831fb97da40d9c91e296da5` and Vectors source
+`6893a587d7f1d8fd2cd58e85310ef87579b42b25`. Every job records the same built core SHA-256:
+`e3e7b0ab79d0630bcad65c4cbe9fd356cf589dd159eba8e6c0aa402db24bd33c`.
+That JAR came first on the diagnostic classpath; the distribution's published 0.1.29 JAR,
+SHA-256 `21eeae4fcaa56fa26ed45d99610142f794cdec0e1d852894e637263f5bd0b40c`, remained later.
+The release pin and exact-logit assertions were unchanged.
+
+The retained local `huatuo-matrix-results.json` and `huatuo-scalar/` receipts describe different,
+earlier attempts. Published-control and disabled-FMA attempts exited successfully; serial,
+128-bit and scalar attempts hit their 600-second limit with exit 124. Those timed-out attempts
+have no completed determinism verdict and are not evidence against the completed GitHub runs.
+
+## Bonsai: ordinary failure and expanded candidate success
+
+The examined ordinary large-model workflow
+[38319088829](https://github.com/integrallis/models/actions/runs/38319088829) has nine successful
+pure-Java jobs and two failed native Bonsai jobs at Models `4f3d3e9a`. Its conditional upstream
+correction job was skipped, as expected for this ordinary dependency-pinned run. Passing the
+pure-Java Bonsai fixture does not replace its native batch/session assertions.
+
+The expanded upstream diagnostic
+[38323006687](https://github.com/integrallis/models/actions/runs/38323006687), Models
+`6b372df631f3ea3b2da3d86409231e86026cb253`, completed all four configurations successfully:
+Ubuntu x86 and ARM, each with pinned JDK 25.0.3 and the workflow's JDK 25 selection. Each
+configuration's retained JUnit XML records **three tests, zero failures, zero errors and zero
+skips**: the two existing native fixture tests and the fresh-session test. The workflow's
+unselected ordinary jobs are skipped; those skips are distinct from the zero skipped tests
+inside the four executed candidate configurations.
+
+All four provenance records identify Vectors source
+`4e8d1374e71788adef07be395560771c12d10f73` and the same `e3e7b0ab…` core SHA-256 shown above.
+The original published-core JAR was explicitly replaced for these diagnostic test classpaths.
+The fixture checks now pass on the candidate; ordinary CI is not repaired until the qualified
+upstream release is published, Models' pin and locks are updated, and the unchanged ordinary
+jobs pass using normal dependency resolution. These correctness results do not waive the
+candidate's remaining performance, allocation, RSS, startup or model-qualification requirements.
+
+## Retained and checked evidence
+
+The scoped Huatuo import retains the five raw reports and five dependency provenance files,
+the local attempt exit summary, and the scalar command/log/timeout receipt. They contain no
+model weights, binaries or credential material found during the scoped inspection.
+[verification-summary.json](../../benchmark-results/2026-10-12-runtime-cleanup/ci-failure-review/huatuo-candidate-github-38316803282/verification-summary.json)
+records SHA-256 hashes and sizes for the original files, the verified repeated-logit checks,
+and fetched GitHub job conclusions/source revisions. It also records hashes and parsed counts
+for the already retained [expanded Bonsai artifacts](../../benchmark-results/2026-10-12-bonsai-native-hotfix/combined-expanded-github-38323006687/).
+Raw reports and prior failed/timed-out receipts remain unchanged.

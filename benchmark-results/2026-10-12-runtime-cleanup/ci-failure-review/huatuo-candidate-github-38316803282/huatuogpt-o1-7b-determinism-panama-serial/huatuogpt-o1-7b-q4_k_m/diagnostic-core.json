@@ -1,0 +1,15 @@
+{
+  "scope": "Diagnostic classpath overlay; released dependency pins are unchanged",
+  "vectorsCoreRevision": "6893a587d7f1d8fd2cd58e85310ef87579b42b25",
+  "vectorsCoreJar": "/home/runner/work/models/models/vectors-audit/vectors-core/build/libs/vectors-core-0.1.30.jar",
+  "vectorsCoreSha256": "e3e7b0ab79d0630bcad65c4cbe9fd356cf589dd159eba8e6c0aa402db24bd33c",
+  "modelsRevision": "91d5fa0787b99bf12831fb97da40d9c91e296da5",
+  "variant": "panama-serial",
+  "classpath": "/home/runner/work/models/models/vectors-audit/vectors-core/build/libs/vectors-core-0.1.30.jar:/home/runner/work/models/models/models/models-bench/build/install/models-bench/lib/*",
+  "distributionCoreJars": [
+    {
+      "path": "/home/runner/work/models/models/models/models-bench/build/install/models-bench/lib/vectors-core-0.1.29.jar",
+      "sha256": "21eeae4fcaa56fa26ed45d99610142f794cdec0e1d852894e637263f5bd0b40c"
+    }
+  ]
+}

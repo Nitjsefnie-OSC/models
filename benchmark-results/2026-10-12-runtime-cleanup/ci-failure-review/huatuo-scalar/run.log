@@ -1,0 +1,5 @@
+WARNING: Using incubator modules: jdk.incubator.vector
+Oct 12, 2026 3:28:03 PM com.integrallis.vectors.core.VectorizationProvider selectProvider
+INFO: vectors-core: Forced scalar mode via -Dvectors.forceScalar=true
+Oct 12, 2026 3:28:04 PM com.integrallis.vectors.core.VectorizationProvider logActiveToggles
+INFO: vectors-core: provider=ScalarVectorUtilSupport panama=false maxBits=256 preferredBits=256 fastVectorFMA=true fastScalarFMA=true sve=false ggufParallel=false ggufParallelThreshold=1048576 ggufExecutor=persistent ggufThreads=12 ggufChunksPerThread=2 mappedKQuantLongOffsets=auto(q4=true,q5=false,q6=false) q4ShortPairwiseSupported=false q4UnsignedPairwiseSupported=false toggles=[vectors.forceScalar=true, vectors.gguf.parallel=false]

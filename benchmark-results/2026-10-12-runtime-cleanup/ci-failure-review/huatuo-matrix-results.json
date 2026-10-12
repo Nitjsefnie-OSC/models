@@ -1,0 +1,27 @@
+[
+  {
+    "configuration": "published-core-control",
+    "exitCode": 0,
+    "elapsedSeconds": 300.7977240085602
+  },
+  {
+    "configuration": "panama-serial",
+    "exitCode": 124,
+    "elapsedSeconds": 600.3059570789337
+  },
+  {
+    "configuration": "panama-no-fma",
+    "exitCode": 0,
+    "elapsedSeconds": 402.95966696739197
+  },
+  {
+    "configuration": "panama-128",
+    "exitCode": 124,
+    "elapsedSeconds": 600.2166519165039
+  },
+  {
+    "configuration": "scalar",
+    "exitCode": 124,
+    "elapsedSeconds": 600.1477119922638
+  }
+]
