@@ -1,0 +1,33 @@
+{
+  "cohortCases": 148,
+  "fullLogitVectorsPerCase": 9,
+  "matchedAcross": [
+    "x86-java",
+    "x86-native",
+    "arm-java",
+    "arm-native"
+  ],
+  "bertEmbeddingCases": 82,
+  "bertDatasets": [
+    "SciFact",
+    "NFCorpus"
+  ],
+  "nativeQ51ObservedCalls": {
+    "x86": 1353,
+    "arm": 0
+  },
+  "nativeQ51ObservedBatchSizes": {
+    "x86": [
+      1
+    ],
+    "arm": []
+  },
+  "activationForcedBits": [
+    64,
+    128,
+    256
+  ],
+  "activationExhaustiveValuesTotal": 3485466624,
+  "activationRandomValuesTotal": 60000000,
+  "verdict": "BERT peak RSS regression; causal native-vs-Java resource costs measured, not established release regressions"
+}

@@ -101,16 +101,17 @@ public final class Q51CausalProof {
   }
 
   static void routing(Path model, Path nativePath, JsonNode tasks, boolean expectedGrouped) throws Exception {
-    long[] calls=new long[2];
+    long[] calls=new long[2]; Map<Integer,Long> batches=new TreeMap<>();
     try(var provider=RustGgufBatchedMatrixKernel.open(nativePath)) {
       GgufBatchedMatrixKernel observer=(GgufBatchedMatrixKernel) Proxy.newProxyInstance(Q51CausalProof.class.getClassLoader(),new Class<?>[]{GgufBatchedMatrixKernel.class},(proxy,method,args)->{
-        if(method.getName().equals("multiply") && args[3] == com.integrallis.models.backend.purejava.gguf.GgufTensorType.Q5_1) calls[0]++;
+        if(method.getName().equals("multiply") && args[3] == com.integrallis.models.backend.purejava.gguf.GgufTensorType.Q5_1) {calls[0]++;batches.merge((Integer)args[4],1L,Long::sum);}
         
         try{return method.invoke(provider,args);}catch(InvocationTargetException failure){throw failure.getCause();}
       });
       try(var backend=PureJavaBackend.load(model,WORKLOAD,observer)){
         request(backend,tasks.get(0),0,8);
-        emit(Map.of("kind","routing","q51Calls",calls[0]));
+        emit(Map.of("kind","routing","q51Calls",calls[0],"batches",batches));
+        if (batches.keySet().stream().anyMatch(batch -> batch != 1)) throw new AssertionError("native prefill still active");
         if((calls[0]+calls[1]>0)!=expectedGrouped)throw new AssertionError("actual Q5_1 single projection route was not exercised");
       }
     }
@@ -141,8 +142,7 @@ public final class Q51CausalProof {
         }
         List<JsonNode> timed = new ArrayList<>();
         for (int n = 0; n < 15; n++) { timed.add(jevbench.get(n)); timed.add(snips.get(n)); }
-        request(backend, tasks.get(0), -4, 8);
-        for (int n = 0; n < 3; n++) request(backend, timed.get(n), -3 + n, 8);
+        for (int n = 0; n < 32; n++) request(backend, timed.get(n % timed.size()), n-32, 8);
         for (int n = 0; n < 3; n++) request(backend, timed.get((pair * 3 + n) % timed.size()), n, 8);
       } else throw new IllegalArgumentException(phase);
     }
