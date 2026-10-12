@@ -18,13 +18,14 @@ permissions:
 
 jobs:
   bonsai:
-    name: Unchanged Bonsai fixtures (${{ matrix.runner }})
+    name: Bonsai fixtures (${{ matrix.runner }}, JDK ${{ matrix.java }})
     runs-on: ${{ matrix.runner }}
     timeout-minutes: 120
     strategy:
       fail-fast: false
       matrix:
         runner: [ubuntu-24.04, ubuntu-24.04-arm]
+        java: ["25.0.3", "25"]
     steps:
       - uses: actions/checkout@v5
         with:
@@ -41,7 +42,7 @@ jobs:
       - uses: actions/setup-java@v5
         with:
           distribution: temurin
-          java-version: 25
+          java-version: ${{ matrix.java }}
       - uses: gradle/actions/setup-gradle@v6
       - name: Build the upstream correction
         working-directory: vectors
@@ -71,7 +72,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v7
         with:
-          name: bonsai-upstream-${{ matrix.runner }}
+          name: bonsai-upstream-${{ matrix.runner }}-jdk-${{ matrix.java }}
           path: |
             models/backend-native/build/test-results/bonsai2NativeSlowTest/
             models/backend-native/build/reports/tests/bonsai2NativeSlowTest/
