@@ -1,0 +1,10 @@
+{
+  "phase": "q51-rss-controls-v2",
+  "verifiedTerminated": [
+    "i-010c5192292472c29",
+    "i-0e7201060b78c1df5"
+  ],
+  "all5PairedBlocksComplete": true,
+  "all82EmbeddingsExact": true,
+  "phaseVerdict": "diagnostic selection, not final candidate qualification"
+}
