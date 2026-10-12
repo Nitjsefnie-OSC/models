@@ -9,5 +9,6 @@
     "requests": 148,
     "fullLogitSnapshotsPerRequest": 9
   },
-  "crossHostExact": true
+  "crossHostExact": true,
+  "exactWarmAndTimedRequestsPerHost": 350
 }

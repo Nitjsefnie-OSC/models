@@ -1,0 +1,146 @@
+[
+  {
+    "arch": "x86",
+    "phase": "causal",
+    "metric": "prefillNanos",
+    "pairs": 10,
+    "ratio": 1.0062989498776709,
+    "ci95": [
+      0.9492936202937927,
+      1.0732364113282096
+    ],
+    "complete": true
+  },
+  {
+    "arch": "x86",
+    "phase": "causal",
+    "metric": "decodeNanos",
+    "pairs": 10,
+    "ratio": 1.04160294540815,
+    "ci95": [
+      0.8734442331708285,
+      1.243730148524619
+    ],
+    "complete": true
+  },
+  {
+    "arch": "x86",
+    "phase": "causal",
+    "metric": "modelNanos",
+    "pairs": 10,
+    "ratio": 1.0061387096702483,
+    "ci95": [
+      0.8992002670030138,
+      1.1222541748381578
+    ],
+    "complete": true
+  },
+  {
+    "arch": "x86",
+    "phase": "causal",
+    "metric": "javaAllocatedBytes",
+    "pairs": 10,
+    "ratio": 0.8606963360931993,
+    "ci95": [
+      0.8499437331741702,
+      0.8706161053603058
+    ],
+    "complete": true
+  },
+  {
+    "arch": "x86",
+    "phase": "causal",
+    "metric": "loadNanos",
+    "pairs": 10,
+    "ratio": 1.0071545516037355,
+    "ci95": [
+      0.9965110821695485,
+      1.0194985440802353
+    ],
+    "complete": true
+  },
+  {
+    "arch": "x86",
+    "phase": "causal",
+    "metric": "peakRssKb",
+    "pairs": 10,
+    "ratio": 0.9870168210961348,
+    "ci95": [
+      0.9398740459209561,
+      1.018147304182395
+    ],
+    "complete": true
+  },
+  {
+    "arch": "arm",
+    "phase": "causal",
+    "metric": "prefillNanos",
+    "pairs": 10,
+    "ratio": 1.036299452481315,
+    "ci95": [
+      1.0107230122667772,
+      1.0654365728479205
+    ],
+    "complete": true
+  },
+  {
+    "arch": "arm",
+    "phase": "causal",
+    "metric": "decodeNanos",
+    "pairs": 10,
+    "ratio": 1.0103194044667578,
+    "ci95": [
+      0.9877831134928776,
+      1.0410726011115277
+    ],
+    "complete": true
+  },
+  {
+    "arch": "arm",
+    "phase": "causal",
+    "metric": "modelNanos",
+    "pairs": 10,
+    "ratio": 1.0257265242058968,
+    "ci95": [
+      1.0028147700323913,
+      1.0538511084838664
+    ],
+    "complete": true
+  },
+  {
+    "arch": "arm",
+    "phase": "causal",
+    "metric": "javaAllocatedBytes",
+    "pairs": 10,
+    "ratio": 0.6236403088631655,
+    "ci95": [
+      0.6165753313570017,
+      0.6322977917165193
+    ],
+    "complete": true
+  },
+  {
+    "arch": "arm",
+    "phase": "causal",
+    "metric": "loadNanos",
+    "pairs": 10,
+    "ratio": 0.9963700211164643,
+    "ci95": [
+      0.9877783636500104,
+      1.0063186122076848
+    ],
+    "complete": true
+  },
+  {
+    "arch": "arm",
+    "phase": "causal",
+    "metric": "peakRssKb",
+    "pairs": 10,
+    "ratio": 1.014535480084497,
+    "ci95": [
+      1.0016402099797335,
+      1.0269433904889367
+    ],
+    "complete": true
+  }
+]

@@ -1,0 +1,15 @@
+{
+  "x86": {
+    "cohortRequests": 148,
+    "snapshotsPerRequest": 9,
+    "exactWarmAndTimedRequests": 350,
+    "pairs": 10
+  },
+  "arm": {
+    "cohortRequests": 148,
+    "snapshotsPerRequest": 9,
+    "exactWarmAndTimedRequests": 350,
+    "pairs": 10
+  },
+  "allCohortsCrossHostExact": true
+}

@@ -1,0 +1,30 @@
+WARNING: Using incubator modules: jdk.incubator.vector
+Oct 12, 2026 10:16:21 PM com.integrallis.vectors.core.PanamaVectorUtilSupportProvider create
+INFO: vectors-core: Using Panama Vector API SIMD provider (vector bits: 256)
+Oct 12, 2026 10:16:21 PM com.integrallis.vectors.core.VectorizationProvider logActiveToggles
+INFO: vectors-core: provider=PanamaVectorUtilSupport panama=true maxBits=256 preferredBits=256 fastVectorFMA=true fastScalarFMA=true sve=false ggufParallel=true ggufParallelThreshold=1048576 ggufExecutor=persistent ggufThreads=16 ggufChunksPerThread=2 mappedKQuantLongOffsets=auto(q4=true,q5=false,q6=false) q4ShortPairwiseSupported=true q4UnsignedPairwiseSupported=true toggles=[vectors.gguf.threads=16]
+{"kind":"request","id":"easy-intent-00","dataset":"jevbench","repeat":0,"promptTokens":119,"inputTokens":[9064,374,847,6328,30,358,11457,432,1537,2003,323,432,2058,12492,944,11465,624,3798,510,12,3754,7869,25,77478,311,1414,1380,458,1973,374,476,979,432,29682,198,12,9121,7869,25,77478,311,9121,458,1973,198,12,2297,6744,25,77478,311,2297,279,9691,2621,198,12,1895,40895,25,38417,458,1509,429,374,10865,476,20123,198,12,33531,28915,25,1634,2787,911,264,6757,11,24615,476,8160,198,23085,7385,1558,279,1196,594,1943,3158,5267,32,25,3754,7869,198,33,25,9121,7869,198,34,25,2297,6744,198,35,25,1895,40895,198,36,25,33531,28915,198,16141,25],"prefillNanos":1516096309,"decodeNanos":306130040,"javaAllocatedBytes":2066409432,"modelNanos":1822226349,"requestNanos":1829048381,"greedyTokens":[362,25,3754,7869,198,69769,25,576],"fullLogitSha256":["4af7332f1545363aa821c12fd0a1bb7ca8b6ecc7f1501690686b3a31904f2f38","984c4c3bb2863a76c78b4c6405978d4ec3bd96e81d907048a8c850c940dcd51d","6f6b4ecdf80b79fe734e2b7057ec8a47f69a0345f084e1a621865170d621a85b","e2588a6b8e269fc7d9ae8f0f59bcc875aaf36667ddce050428f4d51d4b3034ab","28a82aca4facfe18ebc9fc6a7456587bc33f4592fd00cd41a2f2968d8bb1046a","87dab54c7fb89960a7ce98061cfb5aecf08b3b563d0d21aca2c69c7933c89704","f6fdf76396fce31a24efca6a331e62335ea3f1d4b764adf0fd064cc68325183f","d7a0745d2b95bddb28f032604d78d9bd84fe90b967b54fa48d19266f699faada","73ae84a41b77503c8ae7d9ceb62fa177c05307c6dacab5901ee0bdc40926ec63"],"prediction":"track_order","expected":"track_order"}
+{"kind":"routing","q51Calls":1353,"batches":{"1":1353}}
+	Command being timed: "/opt/jdk/bin/java --add-modules jdk.incubator.vector --enable-native-access=ALL-UNNAMED -Xmx4g -Dmodels.native.kernels.threads=16 -Dvectors.gguf.threads=16 -cp prior-hybrid.jar:probe.jar:lib/* experiments.q5.Q51CausalProof routing causal-q51.gguf rust/target/release/libjmodels_kernels.so tasks.json true native"
+	User time (seconds): 22.51
+	System time (seconds): 0.81
+	Percent of CPU this job got: 866%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:02.69
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 1206780
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 198015
+	Voluntary context switches: 38600
+	Involuntary context switches: 1526
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 72
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
