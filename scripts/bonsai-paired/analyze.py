@@ -55,6 +55,8 @@ def analyze(root, arch, model):
         assert (directory / 'STATUS').read_text().strip() == 'COMPLETE'
         provenance = json.loads((directory / 'provenance.json').read_text())
         assert provenance['protocol'] == CONFIG
+        assert provenance['harnessSha256'] == CONFIG['harnessSha256']
+        assert provenance['model'] == model and provenance['shard'] == shard
         artifact_identities.append(provenance['jarEntries'])
         fixture = json.loads((directory / 'fixtures.json').read_text())
         assert fixture['candidate'] == 0
