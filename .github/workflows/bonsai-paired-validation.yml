@@ -1,4 +1,4 @@
-name: Bonsai narrow-core paired validation
+name: Bonsai combined-core paired validation
 
 on:
   push:

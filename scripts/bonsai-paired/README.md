@@ -1,7 +1,7 @@
-# Isolated SwiGLU correction: whole-model paired validation
+# Combined BF16 and activation correction: whole-model paired validation
 
 This protocol is frozen before execution in `protocol.json`. It compares the same actual
-Models commit and native library with released Vectors core against the exact isolated SwiGLU
+Models commit and native library with released Vectors core against the exact combined BF16 and all-activation
 correction. Only the core JAR differs; every file and runtime origin is recorded. This is
 pre-publication evidence, never permission to publish.
 
@@ -31,3 +31,5 @@ oracle fixtures, and unchanged-or-better classification counts on each dataset a
 GitHub hosted x86 and ARM runners are the supported hosts tested by this workflow. Their CPU,
 JDK, native library, artifact hashes, commands, exit status, and elapsed time are retained.
 No compiler flags, warmup-dependent routes, or native-selection properties are added.
+
+The launched candidate is broad revision `6893a587`, whose unchanged Bonsai fixtures passed on both architectures. Bonsai 2 is `qwen35`, verified directly from the SHA-pinned GGUF header; it exercises GDN sigmoid/softplus and causal convolution as well as SwiGLU. Earlier candidate-only SwiGLU and BF16 ablations failed and are not represented as qualified. Any narrower final runtime requires new matching qualification.

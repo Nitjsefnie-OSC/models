@@ -44,11 +44,12 @@
           "sha256": "53107f530aa52eb00912263ab1ee29bd199261c87cd7b4ad4ca1318c1fe33ee3",
           "sizeBytes": 5946648928
         }
-      ]
+      ],
+      "architecture": "qwen35"
     }
   ],
   "modelsRevision": "4f3d3e9a548bf3781ab3d002ff37df0875760e49",
-  "vectorsRevision": "3f4db6c80c59bdb228c82b7dfb2cddf103fa91da",
+  "vectorsRevision": "6893a587d7f1d8fd2cd58e85310ef87579b42b25",
   "baselineCore": "0.1.29",
   "pairs": [
     0,
@@ -98,5 +99,5 @@
   },
   "baselineCoreSha256": "21eeae4fcaa56fa26ed45d99610142f794cdec0e1d852894e637263f5bd0b40c",
   "harnessSha256": "0a325a6d37aebd949653773c10cbf5ef6232a7d293c388e6fa9aa7b1290873a8",
-  "scope": "SwiGLU-only correction; no BF16 or GDN activation changes"
+  "scope": "Combined BF16 and all-activation correction; actual Bonsai2 architecture qwen35"
 }
