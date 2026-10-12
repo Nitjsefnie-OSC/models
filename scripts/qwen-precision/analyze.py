@@ -10,6 +10,7 @@ spec = importlib.util.spec_from_file_location('paired', HERE.parent / 'bonsai-pa
 paired = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(paired)
 CONFIG = json.loads((HERE / 'protocol.json').read_text())
+paired.CONFIG = CONFIG
 
 
 def compare_records(before, after, history):
@@ -34,7 +35,7 @@ def analyze(root, arch):
         directory = root / f'precision-{arch}-{shard}'
         assert (directory / 'STATUS').read_text().strip() == 'COMPLETE'
         provenance = json.loads((directory / 'provenance.json').read_text())
-        assert provenance['precisionProtocol'] == CONFIG
+        assert provenance['precisionProtocol'] == CONFIG and provenance['protocol'] == CONFIG
         assert provenance['jarEntries'] == expected['jarEntries']
         assert provenance['nativeSha256'] == expected['nativeSha256']
         assert provenance['model'] == 'qwen-bf16' and provenance['shard'] == shard

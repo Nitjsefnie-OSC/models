@@ -10,6 +10,7 @@ spec = importlib.util.spec_from_file_location('paired', PAIRED / 'run.py')
 paired = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(paired)
 CONFIG = json.loads((HERE / 'protocol.json').read_text())
+paired.CONFIG = CONFIG
 
 
 def main():
