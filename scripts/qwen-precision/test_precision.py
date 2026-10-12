@@ -1,4 +1,5 @@
 import copy
+import json
 from pathlib import Path
 import tempfile
 import unittest
@@ -7,7 +8,9 @@ import analyze
 
 class PrecisionTest(unittest.TestCase):
     def test_counts_and_limits_fixed(self):
-        self.assertEqual(analyze.paired.CONFIG['limits'], analyze.CONFIG['limits'])
+        original = json.loads((Path(__file__).parent.parent / 'bonsai-paired/protocol.json').read_text())
+        self.assertEqual(original['limits'], analyze.CONFIG['limits'])
+        self.assertEqual(original['maximumIntervalWidth'], analyze.CONFIG['maximumIntervalWidth'])
         for arch, count in [('x86',320),('arm',160)]:
             groups=analyze.CONFIG['shardsByArchitecture'][arch]
             self.assertEqual(list(range(count)),[p for g in groups.values() for p in g])
