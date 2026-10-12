@@ -14,6 +14,7 @@ fleet=json.loads(receipt.read_text()) if receipt.exists() else {'payload':meta['
 assert fleet['payloadSha256']==meta['payloadSha256']
 base=(root/'benchmark-results/2026-10-11-bonsai-production/public-qa-worker.sh').read_text()
 base=base.replace("sleep 9000; shutdown -h now", "sleep 5400; shutdown -h now")
+base=base.replace('mkdir -p /work/out /opt/jdk', 'export RESULT_URI FIRST_CASE CASE_COUNT\nmkdir -p /work/out /opt/jdk')
 base=base.replace('unzip python3 libgomp1','unzip python3 libgomp1 build-essential curl ca-certificates time')
 jdk=json.loads((root.parent/'models-gdn-proof/experiments/gdn/generated/payload-production-final-v8/provenance.json').read_text())['jdk']['x64']
 base=base.replace('https://api.adoptium.net/v3/binary/latest/25/ga/linux/x64/jdk/hotspot/normal/eclipse',jdk['url'])
