@@ -48,7 +48,7 @@
     }
   ],
   "modelsRevision": "4f3d3e9a548bf3781ab3d002ff37df0875760e49",
-  "vectorsRevision": "cb3dab3dd35c7f3209b41d833c878a744620e77c",
+  "vectorsRevision": "3f4db6c80c59bdb228c82b7dfb2cddf103fa91da",
   "baselineCore": "0.1.29",
   "pairs": [
     0,
@@ -97,5 +97,6 @@
     "JEVBENCH-LICENSE": "3e5beed774bb0bcbfb2fcf24ba9554212c6ae112937d308040989465ab0c5784"
   },
   "baselineCoreSha256": "21eeae4fcaa56fa26ed45d99610142f794cdec0e1d852894e637263f5bd0b40c",
-  "harnessSha256": "0a325a6d37aebd949653773c10cbf5ef6232a7d293c388e6fa9aa7b1290873a8"
+  "harnessSha256": "0a325a6d37aebd949653773c10cbf5ef6232a7d293c388e6fa9aa7b1290873a8",
+  "scope": "SwiGLU-only correction; no BF16 or GDN activation changes"
 }

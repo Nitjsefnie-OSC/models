@@ -1,13 +1,13 @@
-# Narrow BF16 correction: whole-model paired validation
+# Isolated SwiGLU correction: whole-model paired validation
 
 This protocol is frozen before execution in `protocol.json`. It compares the same actual
-Models commit and native library with released Vectors core against the exact narrow BF16
+Models commit and native library with released Vectors core against the exact isolated SwiGLU
 correction. Only the core JAR differs; every file and runtime origin is recorded. This is
 pre-publication evidence, never permission to publish.
 
 The copied `Bf16ModelProof.java` removes only the obsolete hardware-layout description from its runtime-origin metadata and preserves the existing Qwen Transformers logits/tolerance,
 Bonsai oracle continuation, tokenizer, native-route, repeated-session, implicit-reset and
-whole-vocabulary batch-parity assertions. A candidate fixture failure blocks timing. A
+whole-vocabulary batch-parity assertions. A candidate fixture failure blocks timing for that model only. Bonsai and Qwen run in separate jobs, so the independently known Qwen BF16 failure cannot prevent Bonsai timing; neither failure is hidden. A
 released-baseline failure is retained without blocking comparative measurements. The root
 workflow separately runs the unchanged repository JUnit fixtures.
 
