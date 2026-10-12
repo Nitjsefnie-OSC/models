@@ -64,13 +64,25 @@ run_audit() {
     --output "$OUTPUT_DIR/$name.json"
 }
 
-run_audit panama-default ""
-run_audit panama-serial "-Dvectors.gguf.parallel=false"
-run_audit panama-no-fma \
+failed_audits=0
+check_audit() {
+  if ! run_audit "$@"; then
+    echo "determinism audit failed: $1" >&2
+    failed_audits=$((failed_audits + 1))
+  fi
+}
+
+check_audit panama-default ""
+check_audit panama-serial "-Dvectors.gguf.parallel=false"
+check_audit panama-no-fma \
   "-Dvectors.gguf.parallel=false -Dvectors.useVectorFMA=false -Dvectors.useScalarFMA=false"
-run_audit panama-128 \
+check_audit panama-128 \
   "-Dvectors.gguf.parallel=false -Dvectors.maxBits=128"
-run_audit scalar \
+check_audit scalar \
   "-Dvectors.forceScalar=true -Dvectors.gguf.parallel=false"
 
 echo "determinism evidence: $OUTPUT_DIR"
+if ((failed_audits > 0)); then
+  echo "$failed_audits determinism audit(s) failed" >&2
+  exit 1
+fi
