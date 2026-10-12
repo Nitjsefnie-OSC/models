@@ -588,7 +588,13 @@ if (githubPackagesEnabled) {
     testClassesDirs = sourceSets["test"].output.classesDirs
     classpath = sourceSets["test"].runtimeClasspath
     useJUnitPlatform { includeTags("slow") }
-    filter { includeTestsMatching("*Bonsai2NativeModelFixtureSlowTest") }
+    filter {
+        includeTestsMatching("*Bonsai2NativeModelFixtureSlowTest")
+        includeTestsMatching("*Bonsai2NativeFreshSessionSlowTest")
+    }
+    // A new JVM per class preserves the first-session baseline before any other fixture warms it.
+    forkEvery = 1
+    jvmArgs("-XX:ActiveProcessorCount=4")
     dependsOn(project(":backend-java").tasks.named("downloadBonsai2Ptq10Model"))
     outputs.upToDateWhen { false }
     maxParallelForks = 1
