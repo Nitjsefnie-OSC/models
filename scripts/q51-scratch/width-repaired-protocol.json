@@ -1,0 +1,56 @@
+{
+  "scope": "Scratch-only prospective comparison with identical verified native-width dot/decoder repairs in all three controls. Not a comparison against the old unsupported-width runtime and not final release qualification.",
+  "payloadSha256": "06adff0d10bf5986fa2d532d4134201989293b573c45ab000238bf48c59f84b5",
+  "variants": [
+    {
+      "name": "prior",
+      "revision": "d2d0fb4f9832bcba62ffd3c9fa2a2d1ceaa1cdde",
+      "sourceSha256": "97d6a4f158f3f72d47ebc8baeb0f5ef398304f5faca2160e4f01912f06fc95bb"
+    },
+    {
+      "name": "row-reuse",
+      "revision": "e800899ba0cd9477adac3aa6d9aaf873a801e7fc",
+      "sourceSha256": "f78fc64b59a4b89b110858037c51086685f6cf70422e49d49f7a30576702203f"
+    },
+    {
+      "name": "full",
+      "revision": "38d0d2aaa2f3f1a583633910caaea338ec7af595",
+      "sourceSha256": "6147c5515d618610c16e226290782f726711c0aa73d7255b70004cec4e3ed165"
+    }
+  ],
+  "jdk": "25.0.3",
+  "threads": 4,
+  "triplets": 12,
+  "warmRequests": 32,
+  "measuredRequests": 3,
+  "requestsInNumericalCohort": 148,
+  "snapshotsPerRequest": 9,
+  "vectorsSha256": "79f536b453c5ad6d7339b30e41d8c8c440da3ff613caf5d1bea6f83e40ade1c7",
+  "priorJarSha256": "8268cf010a9c7ac8c1cb3da2d1f237d004d84fb53f377482e3c9c84c1556317d",
+  "oldFullJarSha256": "7d359243919c639b7c2e176b81982b76f7ad3bcd75658fc0658bbb76cb7b0261",
+  "derivedFixtureSha256": "2381b9c9db9f2eb07049ed124280f6a8cfd18c0aef96ca317134115d870e23d1",
+  "perProcessSeconds": 900,
+  "bootstrapSeed": 903271,
+  "bootstrapResamples": 20000,
+  "maximumIntervalWidth": 0.02,
+  "limits": {
+    "prefillNanos": 1.0,
+    "decodeNanos": 1.0,
+    "modelNanos": 1.0,
+    "javaAllocatedBytes": 1.01,
+    "loadNanos": 1.01,
+    "peakRssKb": 1.01
+  },
+  "sharedKernelRepairs": [
+    {
+      "revision": "440557495d7ddabf607956654554d13a1034023b",
+      "path": "backend-java/src/main/java/com/integrallis/models/backend/purejava/ops/PinnedReduction.java",
+      "sha256": "50008871b4970c0d5a9944bfced9f59880e5142ecd59985a103275ad93306732"
+    },
+    {
+      "revision": "9d57f248c99ee14d0ffb96a82106c76d3fd60b10",
+      "path": "backend-java/src/main/java/com/integrallis/models/backend/purejava/quant/Q5_1Dequantizer.java",
+      "sha256": "7e08f943b800dc8852a58e87478d09e5e3de6fea31db73d50b45c3b3a4a2a1e2"
+    }
+  ]
+}

@@ -9,3 +9,14 @@ The GitHub hosts use four threads on both arms, explicitly different from the ea
 The reference payload is fetched through the repository secret `Q51_SCRATCH_REFERENCE_URL` and checked against its frozen SHA-256. All extracted historical experiments and measured output live under RUNNER_TEMP, never in the repository. GitHub workflow dispatch is separate from committing this reusable tool. The derived Q5_1 fixture comes from the pinned publisher Q5_0 file and the original checksum-bound quantizer source; its complete resulting hash must match before any inference.
 
 Local validation is limited to source compilation, actionlint, and analysis mutation tests. Model inference and downloads run remotely per the campaign runbook.
+
+The separate `q51-width-repaired.yml` campaign selects
+`width-repaired-protocol.json`. All three arms receive the same reviewed native
+128-bit reduction and Q5 decoder repairs before comparing scratch variants.
+The old unsupported-width ARM timeout remains a failed historical control; it
+is not pooled with this new campaign. The full numerical cohort, twelve
+triplets, metric limits, warmup and timing settings remain unchanged. Fresh
+JAR preflight verifies the new decoder nested class, every preserved entry and
+identical shared class hashes; only TensorOps differs across these three arms.
+This comparison isolates scratch changes and does not qualify the final
+composed Models/Vectors release runtime.

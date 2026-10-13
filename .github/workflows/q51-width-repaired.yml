@@ -1,0 +1,213 @@
+name: Q51 scratch comparison with common native-width repairs
+on:
+  push:
+    branches: [fix/qwen-precision-proof]
+    paths: ['.github/workflows/q51-width-repaired.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  diagnosis:
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 150
+    env:
+      Q51_PROTOCOL: width-repaired-protocol.json
+    strategy:
+      fail-fast: false
+      matrix:
+        runner: [ubuntu-24.04, ubuntu-24.04-arm]
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '25.0.3'
+      - name: Install frozen Rust toolchain
+        run: rustup toolchain install 1.96.0 --profile minimal --no-self-update
+      - name: Prepare exact historical controls and commonly rebuilt variants
+        env:
+          Q51_SCRATCH_REFERENCE_URL: ${{ secrets.Q51_SCRATCH_REFERENCE_URL }}
+        run: python3 scripts/q51-scratch/run.py prepare --out "$RUNNER_TEMP/q51" --models .
+      - name: Retain provenance
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: q51-${{ matrix.runner }}-prepared
+          path: |
+            ${{ runner.temp }}/q51/*.json
+            ${{ runner.temp }}/q51/*.stdout
+            ${{ runner.temp }}/q51/*.stderr
+      - name: Verify148 cases and observed routes
+        run: python3 scripts/q51-scratch/run.py correctness --out "$RUNNER_TEMP/q51"
+      - name: Retain correctness
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: q51-${{ matrix.runner }}-correctness
+          path: |
+            ${{ runner.temp }}/q51/*.json
+            ${{ runner.temp }}/q51/*.stdout
+            ${{ runner.temp }}/q51/*.stderr
+            ${{ runner.temp }}/q51/CORRECT
+      - name: Matched triplet 0
+        run: python3 scripts/q51-scratch/run.py timing --pair 0 --out "$RUNNER_TEMP/q51"
+      - name: Retain triplet 0
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: q51-${{ matrix.runner }}-triplet-0
+          path: |
+            ${{ runner.temp }}/q51/timing-0-*.stdout
+            ${{ runner.temp }}/q51/timing-0-*.stderr
+            ${{ runner.temp }}/q51/timing-0-*.json
+            ${{ runner.temp }}/q51/triplet-0.complete.json
+      - name: Matched triplet 1
+        run: python3 scripts/q51-scratch/run.py timing --pair 1 --out "$RUNNER_TEMP/q51"
+      - name: Retain triplet 1
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: q51-${{ matrix.runner }}-triplet-1
+          path: |
+            ${{ runner.temp }}/q51/timing-1-*.stdout
+            ${{ runner.temp }}/q51/timing-1-*.stderr
+            ${{ runner.temp }}/q51/timing-1-*.json
+            ${{ runner.temp }}/q51/triplet-1.complete.json
+      - name: Matched triplet 2
+        run: python3 scripts/q51-scratch/run.py timing --pair 2 --out "$RUNNER_TEMP/q51"
+      - name: Retain triplet 2
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: q51-${{ matrix.runner }}-triplet-2
+          path: |
+            ${{ runner.temp }}/q51/timing-2-*.stdout
+            ${{ runner.temp }}/q51/timing-2-*.stderr
+            ${{ runner.temp }}/q51/timing-2-*.json
+            ${{ runner.temp }}/q51/triplet-2.complete.json
+      - name: Matched triplet 3
+        run: python3 scripts/q51-scratch/run.py timing --pair 3 --out "$RUNNER_TEMP/q51"
+      - name: Retain triplet 3
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: q51-${{ matrix.runner }}-triplet-3
+          path: |
+            ${{ runner.temp }}/q51/timing-3-*.stdout
+            ${{ runner.temp }}/q51/timing-3-*.stderr
+            ${{ runner.temp }}/q51/timing-3-*.json
+            ${{ runner.temp }}/q51/triplet-3.complete.json
+      - name: Matched triplet 4
+        run: python3 scripts/q51-scratch/run.py timing --pair 4 --out "$RUNNER_TEMP/q51"
+      - name: Retain triplet 4
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: q51-${{ matrix.runner }}-triplet-4
+          path: |
+            ${{ runner.temp }}/q51/timing-4-*.stdout
+            ${{ runner.temp }}/q51/timing-4-*.stderr
+            ${{ runner.temp }}/q51/timing-4-*.json
+            ${{ runner.temp }}/q51/triplet-4.complete.json
+      - name: Matched triplet 5
+        run: python3 scripts/q51-scratch/run.py timing --pair 5 --out "$RUNNER_TEMP/q51"
+      - name: Retain triplet 5
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: q51-${{ matrix.runner }}-triplet-5
+          path: |
+            ${{ runner.temp }}/q51/timing-5-*.stdout
+            ${{ runner.temp }}/q51/timing-5-*.stderr
+            ${{ runner.temp }}/q51/timing-5-*.json
+            ${{ runner.temp }}/q51/triplet-5.complete.json
+      - name: Matched triplet 6
+        run: python3 scripts/q51-scratch/run.py timing --pair 6 --out "$RUNNER_TEMP/q51"
+      - name: Retain triplet 6
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: q51-${{ matrix.runner }}-triplet-6
+          path: |
+            ${{ runner.temp }}/q51/timing-6-*.stdout
+            ${{ runner.temp }}/q51/timing-6-*.stderr
+            ${{ runner.temp }}/q51/timing-6-*.json
+            ${{ runner.temp }}/q51/triplet-6.complete.json
+      - name: Matched triplet 7
+        run: python3 scripts/q51-scratch/run.py timing --pair 7 --out "$RUNNER_TEMP/q51"
+      - name: Retain triplet 7
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: q51-${{ matrix.runner }}-triplet-7
+          path: |
+            ${{ runner.temp }}/q51/timing-7-*.stdout
+            ${{ runner.temp }}/q51/timing-7-*.stderr
+            ${{ runner.temp }}/q51/timing-7-*.json
+            ${{ runner.temp }}/q51/triplet-7.complete.json
+      - name: Matched triplet 8
+        run: python3 scripts/q51-scratch/run.py timing --pair 8 --out "$RUNNER_TEMP/q51"
+      - name: Retain triplet 8
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: q51-${{ matrix.runner }}-triplet-8
+          path: |
+            ${{ runner.temp }}/q51/timing-8-*.stdout
+            ${{ runner.temp }}/q51/timing-8-*.stderr
+            ${{ runner.temp }}/q51/timing-8-*.json
+            ${{ runner.temp }}/q51/triplet-8.complete.json
+      - name: Matched triplet 9
+        run: python3 scripts/q51-scratch/run.py timing --pair 9 --out "$RUNNER_TEMP/q51"
+      - name: Retain triplet 9
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: q51-${{ matrix.runner }}-triplet-9
+          path: |
+            ${{ runner.temp }}/q51/timing-9-*.stdout
+            ${{ runner.temp }}/q51/timing-9-*.stderr
+            ${{ runner.temp }}/q51/timing-9-*.json
+            ${{ runner.temp }}/q51/triplet-9.complete.json
+      - name: Matched triplet 10
+        run: python3 scripts/q51-scratch/run.py timing --pair 10 --out "$RUNNER_TEMP/q51"
+      - name: Retain triplet 10
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: q51-${{ matrix.runner }}-triplet-10
+          path: |
+            ${{ runner.temp }}/q51/timing-10-*.stdout
+            ${{ runner.temp }}/q51/timing-10-*.stderr
+            ${{ runner.temp }}/q51/timing-10-*.json
+            ${{ runner.temp }}/q51/triplet-10.complete.json
+      - name: Matched triplet 11
+        run: python3 scripts/q51-scratch/run.py timing --pair 11 --out "$RUNNER_TEMP/q51"
+      - name: Retain triplet 11
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: q51-${{ matrix.runner }}-triplet-11
+          path: |
+            ${{ runner.temp }}/q51/timing-11-*.stdout
+            ${{ runner.temp }}/q51/timing-11-*.stderr
+            ${{ runner.temp }}/q51/timing-11-*.json
+            ${{ runner.temp }}/q51/triplet-11.complete.json
+      - name: Separate untimed allocation and compilation diagnosis
+        run: python3 scripts/q51-scratch/run.py diagnostic --out "$RUNNER_TEMP/q51"
+      - name: Retain untimed diagnostic records
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: q51-${{ matrix.runner }}-diagnostic
+          path: |
+            ${{ runner.temp }}/q51/diagnostic-*
+      - name: Analyze every declared triplet
+        run: python3 scripts/q51-scratch/analyze.py "$RUNNER_TEMP/q51" "$RUNNER_TEMP/q51/summary.json"
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: q51-${{ matrix.runner }}-summary
+          path: ${{ runner.temp }}/q51/summary.json

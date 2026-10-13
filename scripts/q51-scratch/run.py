@@ -15,7 +15,7 @@ import urllib.request
 import zipfile
 
 HERE = Path(__file__).resolve().parent
-CONFIG = json.loads((HERE / 'protocol.json').read_text())
+CONFIG = json.loads((HERE / os.environ.get('Q51_PROTOCOL','protocol.json')).read_text())
 
 
 def sha(path):
@@ -32,12 +32,23 @@ def save(path, value):
 
 def run(out, name, command, timeout=900):
     start = time.monotonic()
+    capped = False
     with (out / (name + '.stdout')).open('w') as stdout, (out / (name + '.stderr')).open('w') as stderr:
-        result = subprocess.run(command, stdout=stdout, stderr=stderr, timeout=timeout)
-    save(out / (name + '.execution.json'), {'command':command, 'exitCode':result.returncode,
-         'wallSeconds':time.monotonic()-start})
-    if result.returncode:
-        raise RuntimeError(f'{name} failed: {result.returncode}')
+        process = subprocess.Popen(command, stdout=stdout, stderr=stderr, start_new_session=True)
+        try:
+            code = process.wait(timeout=timeout)
+        except subprocess.TimeoutExpired:
+            capped = True
+            os.killpg(process.pid, signal.SIGTERM)
+            try:
+                code = process.wait(timeout=20)
+            except subprocess.TimeoutExpired:
+                os.killpg(process.pid, signal.SIGKILL)
+                code = process.wait()
+    save(out / (name + '.execution.json'), {'command':command, 'exitCode':code,
+         'wallSeconds':time.monotonic()-start, 'timedOut':capped, 'timeoutSeconds':timeout})
+    if code or capped:
+        raise RuntimeError(f'{name} failed: {code}, timeout={capped}')
 
 
 def prepare(out, models):
@@ -72,6 +83,18 @@ def prepare(out, models):
     model=out/'causal-q51.gguf'
     run(out,'convert-q51',[str(oracle/'bin/llama-quantize'),'--allow-requantize','--pure','--output-tensor-type','q5_1','--token-embedding-type','q5_1',str(source),str(model),'Q5_1','8'])
     assert sha(model)==CONFIG['derivedFixtureSha256']
+    shared_classes=out/'shared-width-classes'
+    shared_sources=[]
+    for repair in CONFIG.get('sharedKernelRepairs',[]):
+        source_file=out/Path(repair['path']).name
+        source_file.write_bytes(subprocess.check_output(['git','-C',str(models),'show',repair['revision']+':'+repair['path']]))
+        assert sha(source_file)==repair['sha256']
+        shared_sources.append(str(source_file))
+    if shared_sources:
+        shared_classes.mkdir()
+        run(out,'compile-shared-width-repairs',['javac','--release','25','-g:none','--add-modules','jdk.incubator.vector','-cp',f'{runtime}/prior-hybrid.jar:{runtime}/lib/*','-d',str(shared_classes),*shared_sources])
+        allowed={'PinnedReduction.class','Q5_1Dequantizer.class','Q5_1Dequantizer$Narrow.class'}
+        assert {p.name for p in shared_classes.rglob('*.class')}==allowed
     variants=[]
     for variant in CONFIG['variants']:
         directory=out/variant['name'];directory.mkdir()
@@ -82,12 +105,18 @@ def prepare(out, models):
         run(out,'compile-'+variant['name'],['javac','--release','25','-g:none','-parameters','--add-modules','jdk.incubator.vector','-cp',f'{runtime}/prior-hybrid.jar:{runtime}/lib/*','-d',str(classes),str(source_file)])
         compiled=list(classes.rglob('*.class'))
         assert compiled and all(p.name.startswith('TensorOps') for p in compiled)
+        if shared_sources:
+            shutil.copytree(shared_classes,classes,dirs_exist_ok=True)
+            compiled=list(classes.rglob('*.class'))
         compiled_hashes={str(p.relative_to(classes)):sha(p) for p in compiled}
         target=directory/'backend-java.jar'
         with zipfile.ZipFile(runtime/'prior-hybrid.jar') as old, zipfile.ZipFile(target,'w') as new:
             for entry in old.infolist():
                 replacement=classes/entry.filename
                 new.writestr(entry,replacement.read_bytes() if replacement.is_file() else old.read(entry))
+            for replacement in compiled:
+                name=str(replacement.relative_to(classes))
+                if name not in old.namelist():new.write(replacement,name)
         variants.append({**variant,'jarSha256':sha(target),'classHashes':compiled_hashes})
     for variant in variants[1:]:
         assert variant['classHashes'].keys()==variants[0]['classHashes'].keys()

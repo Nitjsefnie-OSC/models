@@ -3,13 +3,14 @@ import importlib.util
 import itertools
 import json
 import math
+import os
 from pathlib import Path
 import re
 import statistics
 import sys
 
 HERE=Path(__file__).resolve().parent
-CONFIG=json.loads((HERE/'protocol.json').read_text())
+CONFIG=json.loads((HERE/os.environ.get('Q51_PROTOCOL','protocol.json')).read_text())
 spec=importlib.util.spec_from_file_location('paired',HERE.parent/'bonsai-paired/analyze.py')
 paired=importlib.util.module_from_spec(spec);spec.loader.exec_module(paired)
 paired.CONFIG=CONFIG
