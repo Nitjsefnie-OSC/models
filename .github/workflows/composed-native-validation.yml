@@ -1,10 +1,14 @@
 name: Composed native functional validation
 run-name: Composed native validation (1dae97f4)
 on:
-  push:
-    branches: [fix/qwen-precision-proof]
-    paths: [.github/workflows/composed-native-validation.yml]
   workflow_dispatch:
+    inputs:
+      targets:
+        description: Supported platforms to validate
+        type: choice
+        options: [all, windows]
+        default: all
+        required: true
 permissions:
   contents: read
 jobs:
@@ -15,13 +19,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        include:
-          - { runner: ubuntu-24.04, platform: linux-x86_64, distribution: temurin }
-          - { runner: ubuntu-24.04-arm, platform: linux-aarch64, distribution: temurin }
-          - { runner: macos-15-intel, platform: macos-x86_64, distribution: temurin }
-          - { runner: macos-15, platform: macos-aarch64, distribution: temurin }
-          - { runner: windows-2025, platform: windows-x86_64, distribution: temurin }
-          - { runner: windows-11-arm, platform: windows-aarch64, distribution: zulu }
+        include: ${{ fromJSON(inputs.targets == 'windows' && '[{"runner":"windows-2025","platform":"windows-x86_64","distribution":"temurin"},{"runner":"windows-11-arm","platform":"windows-aarch64","distribution":"zulu"}]' || '[{"runner":"ubuntu-24.04","platform":"linux-x86_64","distribution":"temurin"},{"runner":"ubuntu-24.04-arm","platform":"linux-aarch64","distribution":"temurin"},{"runner":"macos-15-intel","platform":"macos-x86_64","distribution":"temurin"},{"runner":"macos-15","platform":"macos-aarch64","distribution":"temurin"},{"runner":"windows-2025","platform":"windows-x86_64","distribution":"temurin"},{"runner":"windows-11-arm","platform":"windows-aarch64","distribution":"zulu"}]') }}
     defaults:
       run:
         shell: bash
@@ -39,6 +37,12 @@ jobs:
           repository: integrallis/vectors
           ref: b0aadc8d972f3504426f6e38fcb0a4b4a97a0333
           path: vectors
+          # Only these two unrelated demo fixture names are invalid on NTFS.
+          # Core sources/build inputs remain complete and hash-verified.
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /*
+            !/demos/vcr-e2e/src/test/resources/vcr-data/
       - uses: actions/setup-python@v6
         with:
           python-version: '3.13'
@@ -84,3 +88,4 @@ jobs:
             models/backend-native/build/reports/tests/test/
             models/backend-native/build/reports/spotbugs/
             models/backend-native/build/libs/
+            models/backend-native/build/native-artifacts/
