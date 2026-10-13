@@ -1,29 +1,36 @@
-# Convolution cold-allocation regression
+# Convolution activation regressions
 
-The unreleased exact-activation candidate has a **confirmed regression**: approximately 22 MB allocated on the first convolution call versus 5 MB by published Vectors. Warm allocation being zero does not remove this cold cost. This remains a release blocker. The first production replacement was rejected for a separate warm-latency regression; a deterministic vector replacement is being investigated.
+**Release is blocked.** Fixing cold/hot activation drift introduced a first-call allocation regression. Replacements have removed that allocation increase but have not yet preserved Linux x86 throughput. No candidate described here is qualified for release.
 
-## Rejected scalar replacement
+## Contract and measurement boundary
 
-Vectors runtime source `e710f2bdf074b244d0b8f2b424bb5411f03c8874` produces core SHA256 `925460aebba2767b9f215600fafb1d0e2ad21e6f88391e23d8a0a1ae568de69d`. It restores published-width vector convolution accumulation and applies an exact scalar exponential to each completed vector group. The helper uses Math.exp only where a complete float-domain catalogue proves its float cast equals StrictMath.exp. All ambiguous buckets and inputs outside the certified interval use StrictMath directly. This is a fixed numerical implementation; it does not select a path from benchmark outcomes or warmup state.
+The published convolution API does not promise exact float casts of `StrictMath.exp`. Its tests require bounded activation error (the support suite permits `2e-6`) and exact history. Exact cold/hot output stability and the unchanged real-model full-logit/reference assertions remain mandatory. A later exact-exponential oracle was an unreleased implementation constraint; revising that oracle requires independently proving the published contract, not relaxing model quality.
 
-The isolated hardened prototype measured about 4.18 MB first-call allocation, versus 5.10 MB published and 22 MB regressed, and zero warmed bytes per call. Those local diagnostic counters excluded basic Panama initialization. The new supported-host gate includes first VectorUtil/Panama/helper initialization. Prototype timing was variable and is not a passing latency verdict.
+Local attribution excluding common Panama initialization measured about 22 MB on the first call for the exact-vector correction versus 5 MB published. The subsequent fresh-process harness includes all first VectorUtil/Panama/helper initialization, reports warmed allocations separately, counterbalances candidate/control order, and keeps identical numerical, latency and resource limits.
 
-The production helper, generated catalogue and meaningful alias/special-value tests were independently reviewed. Focused numerical tests passed, including 12 fresh-process width/FMA/scalar persistent-history configurations. Actual production-JAR exhaustive proof and local allocation receipts are being retained separately. No prototype result is relabeled as a production measurement.
+## Candidate decisions
 
-## Check outcomes
+| Runtime / core SHA prefix | Measured result | Decision |
+| --- | --- | --- |
+| Exact-vector correction / `13f0bd51` | Cold allocation approximately 22 MB versus 5 MB published, excluding common initialization. | Rejected resource regression. |
+| Certified scalar exact exponential, source `e710f2bd` / `925460ae` | Lower cold allocation, but Linux ARM warm latency 180–182 µs versus about 44 µs; x86 101–102 µs versus 14.7–15.7 µs. | Rejected latency regression; incomplete cohort canceled. |
+| Scalar float polynomial, source `825c912e` / `279e006d` | Independent numerical proof passes; all four real Bonsai configurations and affected dense Qwen tests pass. Linux screening setup used an incorrect FMA switch and was canceled before timing. | No supported-host performance verdict. Superseded by vectorizable formulation. |
+| Bounded-scratch polynomial, source `8761a8ed` / `e526731b` | First Linux x86 pair: 24.223 µs versus 12.279 µs; cold allocation 6,486,480 versus 7,492,032 bytes. First ARM pair: 40.256 µs versus 42.414 µs; cold 6,916,832 versus 8,081,088 bytes. Both warm allocations zero. | Rejected x86 latency regression; lower allocation and an ARM improvement cannot qualify all supported hosts. |
 
-- **Canceled and rejected for measured slowdown.** [Supported-host component allocation and latency](https://github.com/integrallis/vectors/actions/runs/38332030050): source `118c0637495042c7187cfe787ba9499b4c88eafd`; eight hosts covering Linux x86/ARM and pinned/current JDK25; 32 matched published/regressed/candidate process cohorts per host. All artifacts build with pinned compiler 25.0.3 before selecting measurement runtime. No result-dependent sampling or exclusions. Cold allocation must be no greater than published in every pair; warmed latency retains the upper-ratio-one and confidence width 0.02 gates.
-- **All four jobs passed; correctness only.** [Actual Bonsai weights and fresh-session logits](https://github.com/integrallis/models/actions/runs/38332084523): unchanged three-test suite across both architectures and both JDK versions, exact production source above.
-- [Normal Vectors CI](https://github.com/integrallis/vectors/actions/runs/38332036587): the new production source and complete repository checks.
+The last implementation separates raw float-bit exponent construction from polynomial arithmetic using two bounded 256-float arrays per thread. Local generated code confirms packed arithmetic, but that mechanism alone does not establish acceptable Linux speed. Its independent actual-JAR checks pass both 580,911,106-input FMA-mode sweeps and 80 million random inputs, including cold/hot, exceptional values and multi-tile inputs. Local alias/history and existing public tests pass. These findings do not erase the x86 regression.
 
-Affected Bonsai whole-model paired measurements and the complete 200-case public QA rerun remain required. The preceding QA run 38328345931 was incomplete because the harness allowed only 35 minutes for a five-case paired block; it did not establish a quality verdict. Its outputs and explicit timeout log are retained in `benchmark-results/2026-10-13-bonsai-final-public-qa/`.
+## Immutable run receipts
 
-No new release has been published. Ordinary Models CI still resolves the published dependency until the upstream fix is qualified and published in dependency order.
+- [Rejected scalar component cohort](https://github.com/integrallis/vectors/actions/runs/38332030050). All 2,451 retained files, artifact identities and descriptive partial observations are archived outside repositories at `audit-artifacts/2026-10-13-rejected-experiments/vectors/convolution-925460-run-38332030050`.
+- [Scalar exact candidate Bonsai correctness](https://github.com/integrallis/models/actions/runs/38332084523): all four jobs pass. Correctness only.
+- [Float-polynomial Bonsai correctness](https://github.com/integrallis/models/actions/runs/38334850182): 12 tests, zero failures, errors or skips across all four configurations. External archive `audit-artifacts/2026-10-13-bonsai-correctness-38334850182` has raw XML and SHA manifests.
+- [Affected Qwen correctness](https://github.com/integrallis/models/actions/runs/38334801060): 120 tests, zero failures or skips. Real Qwen3.5 0.8B/4B fixtures; synthetic MoE/Next coverage is explicitly narrower than real-weight qualification.
+- [Bounded-scratch Linux screen](https://github.com/integrallis/vectors/actions/runs/38335490960): x86 fails its predeclared first-pair screen; ARM completes its diagnostic observations. External receipts at `audit-artifacts/convolution-screen-38335490960`. Four diagnostic pairs cannot replace the full release confidence protocol.
 
-## Rejection and external preservation
+The canceled screening setup used `-XX:-UseFMA`, which disables the intrinsic while the library still selects fused arithmetic, inducing software `Math.fma`. That is not the library's unfused mode. The harness now uses its actual `vectors.useVectorFMA=false` and `vectors.useScalarFMA=false` properties. No timing result was taken from the invalid setup.
 
-The first completed ARM checkpoints measured 180–182 µs warm convolution versus about 44 µs published, a roughly 4.1-fold slowdown. Retained x86 observations measured 101–102 µs versus 14.7–15.7 µs, roughly 6.5–6.9-fold slower. Cold allocation decreased, but this candidate cannot ship. The cohort was canceled after the regression was clear; no complete confidence-bound verdict is claimed. The affected whole-model cohort was also canceled before complete timing pairs.
+## Remaining release gates
 
-All 2,451 component receipts are preserved outside the project repositories under `audit-artifacts/2026-10-13-rejected-experiments/vectors/convolution-925460-run-38332030050`, with a SHA256 manifest. Failed experimental source/result payloads have been removed from the final project trees; concise decision and provenance notes remain.
+Qualify a replacement on supported hosts, then run affected whole-model numerical, latency, throughput, startup, allocation and resident-memory checks. Bonsai requires the unchanged 200-case public-QA comparison. The previous QA run timed out before completion; its partial outputs are preserved outside repositories and do not establish a quality verdict.
 
-The published convolution API does not promise exact float casts of StrictMath.exp. Published tests require bounded activation error and exact history; cold/hot full-logit stability is still mandatory. The canonical exponential requirement was an unreleased implementation choice. A deterministic vector alternative must preserve the published numerical contract, unchanged model reference tests, and every performance/resource gate; newer exact-oracle assertions may only be revised with explicit numerical justification, never silently.
+Publish only after the final exact source passes normal CI and release validation, then update the Models dependency through the dependency-ordered release plan. No new release has been published, and no failed control, canceled cohort or later source change is represented as qualified.
