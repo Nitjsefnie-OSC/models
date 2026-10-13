@@ -68,6 +68,8 @@ public final class RealMoeFixture {
           if(first!=null&&!first.equals(hashes)) throw new AssertionError("Fresh session changed after compilation"); first=hashes;
         }
         expected.add(first);
+        // Explicit sessions do not clear the separate implicit session left by the prior prompt.
+        backend.reset();
         String implicit=hash(backend.prefill(tokens,0)); backend.reset(); String reset=hash(backend.prefill(tokens,0));
         if(!first.getFirst().equals(implicit)||!implicit.equals(reset)) throw new AssertionError("Implicit reset changed logits");
         emit(Map.of("kind","implicit-reset","task",taskIndex,"hash",reset));

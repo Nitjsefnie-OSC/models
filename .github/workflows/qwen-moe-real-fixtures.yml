@@ -1,4 +1,4 @@
-name: Affected real MoE and Next consistency proof
+name: Affected real MoE and Next reset and consistency proof
 on:
   push:
     branches: [fix/qwen-precision-proof]
