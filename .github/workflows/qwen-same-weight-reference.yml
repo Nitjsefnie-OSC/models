@@ -1,0 +1,44 @@
+name: Pinned Qwen same-weight official reference
+on:
+  push:
+    branches: [fix/qwen-precision-proof]
+    paths: [.github/workflows/qwen-same-weight-reference.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  reference:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - name: Fetch immutable source, adapters and original tensor inventory
+        env:
+          PAYLOAD_URL: ${{ secrets.QWEN_SAME_WEIGHT_REFERENCE_URL }}
+        run: |
+          set -euo pipefail
+          mkdir -p evidence
+          curl --fail --silent --show-error --location "$PAYLOAD_URL" -o payload.tar.gz
+          echo '8e997e9c8ae25bc73af0dd979285c54746a4423e052cec7536db9d741bf19846  payload.tar.gz' | sha256sum -c -
+          tar -xzf payload.tar.gz
+          python payload/prepare.py 2>&1 | tee evidence/prepare.log
+      - name: Install pinned CPU reference dependencies
+        run: |
+          set -euo pipefail
+          python -m pip install torch==2.8.0 --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install numpy==2.2.6 huggingface-hub==1.31.0 tokenizers==0.23.1 safetensors==0.8.0 PyYAML==6.0.3
+          python -m pip install ./payload/transformers-812a950d7037ba93bb624b154030e9068afdce4d
+          python -m pip freeze > evidence/python-packages.txt
+          lscpu > evidence/cpu.txt
+          free -b > evidence/memory.txt
+      - name: Run two frozen requests through the official same-weight graph
+        run: |
+          set -euo pipefail
+          timeout 1800s python -u payload/reference.py 2>&1 | tee evidence/reference.log
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: qwen-same-weight-reference
+          path: evidence/
