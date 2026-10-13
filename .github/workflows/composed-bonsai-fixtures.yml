@@ -1,6 +1,9 @@
 name: Composed Bonsai real-weight fixtures
 run-name: Composed Bonsai fixtures (b5a302c5 + 9fc500f9)
 on:
+  push:
+    branches: [fix/qwen-precision-proof]
+    paths: [.github/workflows/composed-bonsai-fixtures.yml]
   workflow_dispatch:
 permissions:
   contents: read
