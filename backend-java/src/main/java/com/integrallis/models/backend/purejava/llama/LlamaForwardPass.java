@@ -188,6 +188,8 @@ public final class LlamaForwardPass {
   private final ThreadLocal<float[]> attentionScratch;
   private final boolean nativeGroupedAttention;
 
+  private final boolean attentionTemperatureScaling;
+
   /**
    * Whether attention runs through the fused {@link GroupedQueryAttentionKernel} (grouped score
    * pass, vector softmax, paired-head value pass). The fused kernel is qualified for Granite only:
@@ -196,8 +198,6 @@ public final class LlamaForwardPass {
    * 0.6B on the Rust arm, measured 2026-09-16). Every other architecture keeps the head-by-head
    * path its oracles were recorded on.
    */
-  private final boolean attentionTemperatureScaling;
-
   private final boolean fusedGroupedAttention;
 
   private float[] nativeAttentionScores;
@@ -2702,15 +2702,15 @@ public final class LlamaForwardPass {
   }
 
   /**
-   * One grouped-query group. Fused ({@link #fusedGroupedAttention}, the default for every model
-   * whose group size exceeds one): scores for every head sharing {@code kvHead} in one pass over
-   * the cached keys, a vector softmax per head, then one pass over the cached values, so the K and
-   * V rows are read once instead of {@code groupSize} times. That is the whole point on a decode
-   * step, which is bound by how many bytes of cache it touches rather than by arithmetic.
+   * One grouped-query group. With {@link #fusedGroupedAttention}, scores for every head sharing
+   * {@code kvHead} use one pass over the cached keys, vector softmax per head, then one pass over
+   * the cached values. The K and V rows are read once instead of {@code groupSize} times. Automatic
+   * selection enables this route for Granite; other architectures retain the head-by-head route on
+   * which their numerical and model-output contracts were established.
    *
-   * <p>With the knob off: the head-by-head loop -- per-head scores, scalar softmax, per-head
-   * values. It is kept as the reference the fused path is measured against, not as a fallback for
-   * architectures the fused path cannot serve; there are none.
+   * <p>When fused attention is disabled, each head computes its own scores, scalar softmax and
+   * weighted values. This remains an active production route, including Qwen. Changing its
+   * selection requires numerical and whole-model validation for the affected architecture.
    */
   private void attendGroup(
       AttentionView view,

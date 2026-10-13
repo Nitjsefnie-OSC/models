@@ -1,8 +1,8 @@
 # Native shim evidence
 
 `registry.json` inventories every CPU capability bit and exported CPU/CUDA function, links the
-Java dispatch sites, and records the evidence status of each operation. Current entries are
-**unproven** or **inactive experiments**. Historical speedups and repaired correctness defects
+Java dispatch sites, and records the evidence status of each operation. All fifteen current
+operation groups are **unproven**. Historical speedups and repaired correctness defects
 are not certificates that a JVM limitation requires Rust.
 
 Run `./gradlew verifyNativeShimEvidence` (also part of `complianceCheck`). The check detects:
