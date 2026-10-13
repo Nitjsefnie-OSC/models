@@ -1,0 +1,1296 @@
+{
+  "schemaVersion": 1,
+  "capturedAtUtc": "2026-10-13T00:02:48.113776+00:00",
+  "productionReference": "5046f5f1018da9f3c44c5ba8ad682301d251d88c",
+  "scope": "Historical preservation only. No production integration, new measurements, active workflow edits, full model files, or released artifacts.",
+  "archiveHeads": [
+    {
+      "worktree": "vectors-bonsai-combined",
+      "sourceCommit": "561109f5dfe224800960511b852370f980e85915",
+      "branch": "fix/bonsai-combined-correction",
+      "archiveTag": "audit/2026-10-12/bonsai-combined-superseded",
+      "status": "SUPERSEDED scratch; incomplete activation family"
+    },
+    {
+      "worktree": "vectors-bonsai-all-activation",
+      "sourceCommit": "de8d58ef350581e95d99fba27e43e4d0e0fb7d24",
+      "branch": "fix/bonsai-all-activation",
+      "archiveTag": "audit/2026-10-12/bonsai-all-activation-control",
+      "status": "CONTROL only; activation correction included in PR100"
+    },
+    {
+      "worktree": "vectors-activation-contract-tests",
+      "sourceCommit": "5d8a272a879d31575617ace423e1c10f1c50bbf0",
+      "branch": "(detached)",
+      "archiveTag": "audit/2026-10-12/activation-contract-tests",
+      "status": "INCORPORATED in PR100; later scalar cases added there"
+    },
+    {
+      "worktree": "vectors-convolution-boundary",
+      "sourceCommit": "944ae2c2492dd572f477e15acd213fcd2ae88da7",
+      "branch": "(detached)",
+      "archiveTag": "audit/2026-10-12/convolution-boundary-rejected",
+      "status": "REJECTED: no reliable cold allocation or latency improvement; never integrate runtime"
+    },
+    {
+      "worktree": "vectors-bf16-hotfix",
+      "sourceCommit": "405639cb9e8dff8e9453618ca58a46cdbe8c3c78",
+      "branch": "fix/bf16-correctness-hotfix",
+      "archiveTag": "audit/2026-10-12/bf16-hotfix-control",
+      "status": "SUPERSEDED BF16-only control; combined correction in PR100"
+    }
+  ],
+  "files": [
+    {
+      "path": "bonsai-all-activation-control/vectors-core/build/reports/bonsai-activation-sequence/128-no-fma.log",
+      "sourceWorktree": "vectors-bonsai-all-activation",
+      "sourceCommit": "de8d58ef350581e95d99fba27e43e4d0e0fb7d24",
+      "sourcePath": "vectors-core/build/reports/bonsai-activation-sequence/128-no-fma.log",
+      "bytes": 1024,
+      "sha256": "5c5d2f99b385bb46a233f7265b998afc9599939ebbdab466f6b6165bcfd43510",
+      "scope": "historical ignored report; not a new test run"
+    },
+    {
+      "path": "bonsai-all-activation-control/vectors-core/build/reports/bonsai-activation-sequence/128.log",
+      "sourceWorktree": "vectors-bonsai-all-activation",
+      "sourceCommit": "de8d58ef350581e95d99fba27e43e4d0e0fb7d24",
+      "sourcePath": "vectors-core/build/reports/bonsai-activation-sequence/128.log",
+      "bytes": 964,
+      "sha256": "b7ec1699fa5dda5ccce4b1e30ca43d3e987cc763634d47a35d9038a226689c58",
+      "scope": "historical ignored report; not a new test run"
+    },
+    {
+      "path": "bonsai-all-activation-control/vectors-core/build/reports/bonsai-activation-sequence/256-no-fma.log",
+      "sourceWorktree": "vectors-bonsai-all-activation",
+      "sourceCommit": "de8d58ef350581e95d99fba27e43e4d0e0fb7d24",
+      "sourcePath": "vectors-core/build/reports/bonsai-activation-sequence/256-no-fma.log",
+      "bytes": 955,
+      "sha256": "4d1eb42a3fd28eaf0a5a45e8d4fbb96e9302b851ba48de804b73dff040fa74f0",
+      "scope": "historical ignored report; not a new test run"
+    },
+    {
+      "path": "bonsai-all-activation-control/vectors-core/build/reports/bonsai-activation-sequence/256.log",
+      "sourceWorktree": "vectors-bonsai-all-activation",
+      "sourceCommit": "de8d58ef350581e95d99fba27e43e4d0e0fb7d24",
+      "sourcePath": "vectors-core/build/reports/bonsai-activation-sequence/256.log",
+      "bytes": 895,
+      "sha256": "9fff956292ce6ea22b3440d404533092ce2091d321532b194311846d9ab31e58",
+      "scope": "historical ignored report; not a new test run"
+    },
+    {
+      "path": "bonsai-all-activation-control/vectors-core/build/reports/bonsai-activation-sequence/512-no-fma.log",
+      "sourceWorktree": "vectors-bonsai-all-activation",
+      "sourceCommit": "de8d58ef350581e95d99fba27e43e4d0e0fb7d24",
+      "sourcePath": "vectors-core/build/reports/bonsai-activation-sequence/512-no-fma.log",
+      "bytes": 955,
+      "sha256": "5df6a390c3f2cc58f1814ab8cb251a29436a020814963f0940ffcbd7e544a00d",
+      "scope": "historical ignored report; not a new test run"
+    },
+    {
+      "path": "bonsai-all-activation-control/vectors-core/build/reports/bonsai-activation-sequence/512.log",
+      "sourceWorktree": "vectors-bonsai-all-activation",
+      "sourceCommit": "de8d58ef350581e95d99fba27e43e4d0e0fb7d24",
+      "sourcePath": "vectors-core/build/reports/bonsai-activation-sequence/512.log",
+      "bytes": 895,
+      "sha256": "795965df38d195b3f07fb590deb6b76e5941b94f6ef3014eff04baff7cd3d3a1",
+      "scope": "historical ignored report; not a new test run"
+    },
+    {
+      "path": "bonsai-all-activation-control/vectors-core/build/reports/bonsai-activation-sequence/64-no-fma.log",
+      "sourceWorktree": "vectors-bonsai-all-activation",
+      "sourceCommit": "de8d58ef350581e95d99fba27e43e4d0e0fb7d24",
+      "sourcePath": "vectors-core/build/reports/bonsai-activation-sequence/64-no-fma.log",
+      "bytes": 1019,
+      "sha256": "843209f321bf00a461f4067f0c088ffea25d3922500ef5545f753773093873bb",
+      "scope": "historical ignored report; not a new test run"
+    },
+    {
+      "path": "bonsai-all-activation-control/vectors-core/build/reports/bonsai-activation-sequence/64.log",
+      "sourceWorktree": "vectors-bonsai-all-activation",
+      "sourceCommit": "de8d58ef350581e95d99fba27e43e4d0e0fb7d24",
+      "sourcePath": "vectors-core/build/reports/bonsai-activation-sequence/64.log",
+      "bytes": 959,
+      "sha256": "463efbc8f14a53861fa3715fc37301f6b5e19bf3b3c88958cf1c161102b1d2af",
+      "scope": "historical ignored report; not a new test run"
+    },
+    {
+      "path": "bonsai-all-activation-control/vectors-core/build/reports/bonsai-activation-sequence/default-no-fma.log",
+      "sourceWorktree": "vectors-bonsai-all-activation",
+      "sourceCommit": "de8d58ef350581e95d99fba27e43e4d0e0fb7d24",
+      "sourcePath": "vectors-core/build/reports/bonsai-activation-sequence/default-no-fma.log",
+      "bytes": 938,
+      "sha256": "58dc3300955a78d8957e831cc6ce49e995272442b4c97b657ed6216ea9ddc49e",
+      "scope": "historical ignored report; not a new test run"
+    },
+    {
+      "path": "bonsai-all-activation-control/vectors-core/build/reports/bonsai-activation-sequence/default.log",
+      "sourceWorktree": "vectors-bonsai-all-activation",
+      "sourceCommit": "de8d58ef350581e95d99fba27e43e4d0e0fb7d24",
+      "sourcePath": "vectors-core/build/reports/bonsai-activation-sequence/default.log",
+      "bytes": 919,
+      "sha256": "18b1970ba3025b65db1d7f079edc3d8671799cfbd0e0174e70ceaff95ed814af",
+      "scope": "historical ignored report; not a new test run"
+    },
+    {
+      "path": "bonsai-all-activation-control/vectors-core/build/reports/tests/test/css/base-style.css",
+      "sourceWorktree": "vectors-bonsai-all-activation",
+      "sourceCommit": "de8d58ef350581e95d99fba27e43e4d0e0fb7d24",
+      "sourcePath": "vectors-core/build/reports/tests/test/css/base-style.css",
+      "bytes": 2449,
+      "sha256": "ae3edaf7d2e0cdfbd9919e0c89fcabbc6c593118515e82a13567005dc10bbf08",
+      "scope": "historical ignored report; not a new test run"
+    },
+    {
+      "path": "bonsai-all-activation-control/vectors-core/build/reports/tests/test/css/style.css",
+      "sourceWorktree": "vectors-bonsai-all-activation",
+      "sourceCommit": "de8d58ef350581e95d99fba27e43e4d0e0fb7d24",
+      "sourcePath": "vectors-core/build/reports/tests/test/css/style.css",
+      "bytes": 2201,
+      "sha256": "7e5a63bb31295a4a5627ca9d8f8bd463bd91c035577fa2b4d020713936083a08",
+      "scope": "historical ignored report; not a new test run"
+    },
+    {
+      "path": "bonsai-all-activation-control/vectors-core/build/reports/tests/test/index.html",
+      "sourceWorktree": "vectors-bonsai-all-activation",
+      "sourceCommit": "de8d58ef350581e95d99fba27e43e4d0e0fb7d24",
+      "sourcePath": "vectors-core/build/reports/tests/test/index.html",
+      "bytes": 2240,
+      "sha256": "c03cae232816e23e19de96a87b627333f911ca3966d53682e7b319f36d2b8eeb",
+      "scope": "historical ignored report; not a new test run"
+    },
+    {
+      "path": "bonsai-all-activation-control/vectors-core/build/reports/tests/test/js/report.js",
+      "sourceWorktree": "vectors-bonsai-all-activation",
+      "sourceCommit": "de8d58ef350581e95d99fba27e43e4d0e0fb7d24",
+      "sourcePath": "vectors-core/build/reports/tests/test/js/report.js",
+      "bytes": 6718,
+      "sha256": "3aadca4fcf721dca618b54c0e93c93c37884c8d25aa2c9cb92782a3db9ffa605",
+      "scope": "historical ignored report; not a new test run"
+    },
+    {
+      "path": "bonsai-all-activation-control/vectors-core/build/reports/tests/test/jz_ARbjC2w4/04a47Jqi38k/index.html",
+      "sourceWorktree": "vectors-bonsai-all-activation",
+      "sourceCommit": "de8d58ef350581e95d99fba27e43e4d0e0fb7d24",
+      "sourcePath": "vectors-core/build/reports/tests/test/jz_ARbjC2w4/04a47Jqi38k/index.html",
+      "bytes": 4895,
+      "sha256": "af7f7927855469463cddd41ff3948b4b32413f7d81973f66ce6c31eb7921f2bb",
+      "scope": "historical ignored report; not a new test run"
+    },
+    {
+      "path": "bonsai-all-activation-control/vectors-core/build/reports/tests/test/jz_ARbjC2w4/index.html",
+      "sourceWorktree": "vectors-bonsai-all-activation",
+      "sourceCommit": "de8d58ef350581e95d99fba27e43e4d0e0fb7d24",
+      "sourcePath": "vectors-core/build/reports/tests/test/jz_ARbjC2w4/index.html",
+      "bytes": 2529,
+      "sha256": "01d9b20c7a05ce1178682d445a57127d473e7eb8a1977c2a8304f807d843be59",
+      "scope": "historical ignored report; not a new test run"
+    },
+    {
+      "path": "bonsai-all-activation-control/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.BonsaiActivationSequenceTest.xml",
+      "sourceWorktree": "vectors-bonsai-all-activation",
+      "sourceCommit": "de8d58ef350581e95d99fba27e43e4d0e0fb7d24",
+      "sourcePath": "vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.BonsaiActivationSequenceTest.xml",
+      "bytes": 1770,
+      "sha256": "bcbfb9db187cc7ef974397d862dbeeed99358ca0a6c2dfd038a42ca2631c97ab",
+      "scope": "historical ignored report; not a new test run"
+    },
+    {
+      "path": "bonsai-all-activation-control/vectors-core/build/test-results/test/binary/output-events.bin",
+      "sourceWorktree": "vectors-bonsai-all-activation",
+      "sourceCommit": "de8d58ef350581e95d99fba27e43e4d0e0fb7d24",
+      "sourcePath": "vectors-core/build/test-results/test/binary/output-events.bin",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "scope": "historical ignored report; not a new test run"
+    },
+    {
+      "path": "bonsai-all-activation-control/vectors-core/build/test-results/test/binary/results-generic.bin",
+      "sourceWorktree": "vectors-bonsai-all-activation",
+      "sourceCommit": "de8d58ef350581e95d99fba27e43e4d0e0fb7d24",
+      "sourcePath": "vectors-core/build/test-results/test/binary/results-generic.bin",
+      "bytes": 2388,
+      "sha256": "e7e94005355fac3e66d93e32cd4772a75f70bccf1eb231fdb3cf560a5d1bc913",
+      "scope": "historical ignored report; not a new test run"
+    },
+    {
+      "path": "activation-contract-tests/vectors-core/build/reports/bonsai-activation-sequence/128-no-fma.log",
+      "sourceWorktree": "vectors-activation-contract-tests",
+      "sourceCommit": "5d8a272a879d31575617ace423e1c10f1c50bbf0",
+      "sourcePath": "vectors-core/build/reports/bonsai-activation-sequence/128-no-fma.log",
+      "bytes": 1024,
+      "sha256": "732ea1c6237750b39013562ec9dde111320b2b8c9d9bdc32c339caa8c8ab22e1",
+      "scope": "historical ignored report; not a new test run"
+    },
+    {
+      "path": "activation-contract-tests/vectors-core/build/reports/bonsai-activation-sequence/128.log",
+      "sourceWorktree": "vectors-activation-contract-tests",
+      "sourceCommit": "5d8a272a879d31575617ace423e1c10f1c50bbf0",
+      "sourcePath": "vectors-core/build/reports/bonsai-activation-sequence/128.log",
+      "bytes": 964,
+      "sha256": "6eb8d934e263ed309de3ec0d5ea79fbe72ebc4757f8bbf7be79fb6f1407b8c80",
+      "scope": "historical ignored report; not a new test run"
+    },
+    {
+      "path": "activation-contract-tests/vectors-core/build/reports/bonsai-activation-sequence/256-no-fma.log",
+      "sourceWorktree": "vectors-activation-contract-tests",
+      "sourceCommit": "5d8a272a879d31575617ace423e1c10f1c50bbf0",
+      "sourcePath": "vectors-core/build/reports/bonsai-activation-sequence/256-no-fma.log",
+      "bytes": 955,
+      "sha256": "31a3cea092319182750f63acfe80ecb7306c8014a85d1ea9cb23445661b19e79",
+      "scope": "historical ignored report; not a new test run"
+    },
+    {
+      "path": "activation-contract-tests/vectors-core/build/reports/bonsai-activation-sequence/256.log",
+      "sourceWorktree": "vectors-activation-contract-tests",
+      "sourceCommit": "5d8a272a879d31575617ace423e1c10f1c50bbf0",
+      "sourcePath": "vectors-core/build/reports/bonsai-activation-sequence/256.log",
+      "bytes": 895,
+      "sha256": "7d9ca73b7c938b23d5c74bdd20a00fb4820d258f770c44507ff4a20f03ccb87d",
+      "scope": "historical ignored report; not a new test run"
+    },
+    {
+      "path": "activation-contract-tests/vectors-core/build/reports/bonsai-activation-sequence/512-no-fma.log",
+      "sourceWorktree": "vectors-activation-contract-tests",
+      "sourceCommit": "5d8a272a879d31575617ace423e1c10f1c50bbf0",
+      "sourcePath": "vectors-core/build/reports/bonsai-activation-sequence/512-no-fma.log",
+      "bytes": 955,
+      "sha256": "16a002c1c3bc033b4dff2e919324592f2851fe9e4da6f597e3c9f8b8dcf2e92c",
+      "scope": "historical ignored report; not a new test run"
+    },
+    {
+      "path": "activation-contract-tests/vectors-core/build/reports/bonsai-activation-sequence/512.log",
+      "sourceWorktree": "vectors-activation-contract-tests",
+      "sourceCommit": "5d8a272a879d31575617ace423e1c10f1c50bbf0",
+      "sourcePath": "vectors-core/build/reports/bonsai-activation-sequence/512.log",
+      "bytes": 895,
+      "sha256": "69c6dffa58ef0a1811782fd5b9c04f943e1d6a2f8507f214d6a99043bbb3402c",
+      "scope": "historical ignored report; not a new test run"
+    },
+    {
+      "path": "activation-contract-tests/vectors-core/build/reports/bonsai-activation-sequence/64-no-fma.log",
+      "sourceWorktree": "vectors-activation-contract-tests",
+      "sourceCommit": "5d8a272a879d31575617ace423e1c10f1c50bbf0",
+      "sourcePath": "vectors-core/build/reports/bonsai-activation-sequence/64-no-fma.log",
+      "bytes": 1019,
+      "sha256": "472ebb46a5e939ac10f719d9afcce54aecdb422216f0897b9c111eb705b2b672",
+      "scope": "historical ignored report; not a new test run"
+    },
+    {
+      "path": "activation-contract-tests/vectors-core/build/reports/bonsai-activation-sequence/64.log",
+      "sourceWorktree": "vectors-activation-contract-tests",
+      "sourceCommit": "5d8a272a879d31575617ace423e1c10f1c50bbf0",
+      "sourcePath": "vectors-core/build/reports/bonsai-activation-sequence/64.log",
+      "bytes": 959,
+      "sha256": "a9adb7047ec06516380ac71e07c9bfabab7918b409aa5f9c70924fb39eebe087",
+      "scope": "historical ignored report; not a new test run"
+    },
+    {
+      "path": "activation-contract-tests/vectors-core/build/reports/bonsai-activation-sequence/default-no-fma.log",
+      "sourceWorktree": "vectors-activation-contract-tests",
+      "sourceCommit": "5d8a272a879d31575617ace423e1c10f1c50bbf0",
+      "sourcePath": "vectors-core/build/reports/bonsai-activation-sequence/default-no-fma.log",
+      "bytes": 938,
+      "sha256": "9660281ef05783959f5b61236fe896f8b88c1f546b408dc1bdfb6df82d0421a7",
+      "scope": "historical ignored report; not a new test run"
+    },
+    {
+      "path": "activation-contract-tests/vectors-core/build/reports/bonsai-activation-sequence/default.log",
+      "sourceWorktree": "vectors-activation-contract-tests",
+      "sourceCommit": "5d8a272a879d31575617ace423e1c10f1c50bbf0",
+      "sourcePath": "vectors-core/build/reports/bonsai-activation-sequence/default.log",
+      "bytes": 919,
+      "sha256": "b1e36230c47d2f0b711250efa25049f62cb024216046a83846f8b6ca76944cdc",
+      "scope": "historical ignored report; not a new test run"
+    },
+    {
+      "path": "activation-contract-tests/vectors-core/build/reports/tests/test/css/base-style.css",
+      "sourceWorktree": "vectors-activation-contract-tests",
+      "sourceCommit": "5d8a272a879d31575617ace423e1c10f1c50bbf0",
+      "sourcePath": "vectors-core/build/reports/tests/test/css/base-style.css",
+      "bytes": 2449,
+      "sha256": "ae3edaf7d2e0cdfbd9919e0c89fcabbc6c593118515e82a13567005dc10bbf08",
+      "scope": "historical ignored report; not a new test run"
+    },
+    {
+      "path": "activation-contract-tests/vectors-core/build/reports/tests/test/css/style.css",
+      "sourceWorktree": "vectors-activation-contract-tests",
+      "sourceCommit": "5d8a272a879d31575617ace423e1c10f1c50bbf0",
+      "sourcePath": "vectors-core/build/reports/tests/test/css/style.css",
+      "bytes": 2201,
+      "sha256": "7e5a63bb31295a4a5627ca9d8f8bd463bd91c035577fa2b4d020713936083a08",
+      "scope": "historical ignored report; not a new test run"
+    },
+    {
+      "path": "activation-contract-tests/vectors-core/build/reports/tests/test/index.html",
+      "sourceWorktree": "vectors-activation-contract-tests",
+      "sourceCommit": "5d8a272a879d31575617ace423e1c10f1c50bbf0",
+      "sourcePath": "vectors-core/build/reports/tests/test/index.html",
+      "bytes": 2240,
+      "sha256": "eac9b3a0bff6b9860d038cffad3cb0570d350894fd2ad286efdd831fbcbec829",
+      "scope": "historical ignored report; not a new test run"
+    },
+    {
+      "path": "activation-contract-tests/vectors-core/build/reports/tests/test/js/report.js",
+      "sourceWorktree": "vectors-activation-contract-tests",
+      "sourceCommit": "5d8a272a879d31575617ace423e1c10f1c50bbf0",
+      "sourcePath": "vectors-core/build/reports/tests/test/js/report.js",
+      "bytes": 6718,
+      "sha256": "3aadca4fcf721dca618b54c0e93c93c37884c8d25aa2c9cb92782a3db9ffa605",
+      "scope": "historical ignored report; not a new test run"
+    },
+    {
+      "path": "activation-contract-tests/vectors-core/build/reports/tests/test/jz_ARbjC2w4/04a47Jqi38k/index.html",
+      "sourceWorktree": "vectors-activation-contract-tests",
+      "sourceCommit": "5d8a272a879d31575617ace423e1c10f1c50bbf0",
+      "sourcePath": "vectors-core/build/reports/tests/test/jz_ARbjC2w4/04a47Jqi38k/index.html",
+      "bytes": 4895,
+      "sha256": "a27a2666d1d61c256a85d6798914e640b28f48b4ce89f1dfe2cfc386d4a4e540",
+      "scope": "historical ignored report; not a new test run"
+    },
+    {
+      "path": "activation-contract-tests/vectors-core/build/reports/tests/test/jz_ARbjC2w4/index.html",
+      "sourceWorktree": "vectors-activation-contract-tests",
+      "sourceCommit": "5d8a272a879d31575617ace423e1c10f1c50bbf0",
+      "sourcePath": "vectors-core/build/reports/tests/test/jz_ARbjC2w4/index.html",
+      "bytes": 2529,
+      "sha256": "9b0a6034941cefbf643e4fbe7bf30d66dcbe3bde475b0e6db3b561ff09b59b20",
+      "scope": "historical ignored report; not a new test run"
+    },
+    {
+      "path": "activation-contract-tests/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.BonsaiActivationSequenceTest.xml",
+      "sourceWorktree": "vectors-activation-contract-tests",
+      "sourceCommit": "5d8a272a879d31575617ace423e1c10f1c50bbf0",
+      "sourcePath": "vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.BonsaiActivationSequenceTest.xml",
+      "bytes": 1770,
+      "sha256": "8212ea95b6f0a695a174697c57b52e20a87d4211ccafdfbb4d93bb9c620ae255",
+      "scope": "historical ignored report; not a new test run"
+    },
+    {
+      "path": "activation-contract-tests/vectors-core/build/test-results/test/binary/output-events.bin",
+      "sourceWorktree": "vectors-activation-contract-tests",
+      "sourceCommit": "5d8a272a879d31575617ace423e1c10f1c50bbf0",
+      "sourcePath": "vectors-core/build/test-results/test/binary/output-events.bin",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "scope": "historical ignored report; not a new test run"
+    },
+    {
+      "path": "activation-contract-tests/vectors-core/build/test-results/test/binary/results-generic.bin",
+      "sourceWorktree": "vectors-activation-contract-tests",
+      "sourceCommit": "5d8a272a879d31575617ace423e1c10f1c50bbf0",
+      "sourcePath": "vectors-core/build/test-results/test/binary/results-generic.bin",
+      "bytes": 2388,
+      "sha256": "cda91514004177f155b23010e76a31931cf655c2896be4cf3fd29fe083b2afeb",
+      "scope": "historical ignored report; not a new test run"
+    },
+    {
+      "path": "convolution-boundary-rejected/benchmark-results/2026-10-12-convolution-boundary/README.md",
+      "sourceWorktree": "vectors-convolution-boundary",
+      "sourceCommit": "944ae2c2492dd572f477e15acd213fcd2ae88da7",
+      "sourcePath": "benchmark-results/2026-10-12-convolution-boundary/README.md",
+      "bytes": 2260,
+      "sha256": "4f9da2cc460b69f3d9e04e1e3398891df37777aacfe2f270da6c7edb7bcdd65a",
+      "scope": "REJECTED experiment evidence/harness; no production runtime copied"
+    },
+    {
+      "path": "convolution-boundary-rejected/benchmark-results/2026-10-12-convolution-boundary/SHA256SUMS.json",
+      "sourceWorktree": "vectors-convolution-boundary",
+      "sourceCommit": "944ae2c2492dd572f477e15acd213fcd2ae88da7",
+      "sourcePath": "benchmark-results/2026-10-12-convolution-boundary/SHA256SUMS.json",
+      "bytes": 3709,
+      "sha256": "480a0e0e0c54fb6476d2fc8c29ac2c9229d1b6cc57cbbdb305d2b958d00bf984",
+      "scope": "REJECTED experiment evidence/harness; no production runtime copied"
+    },
+    {
+      "path": "convolution-boundary-rejected/benchmark-results/2026-10-12-convolution-boundary/analysis.json",
+      "sourceWorktree": "vectors-convolution-boundary",
+      "sourceCommit": "944ae2c2492dd572f477e15acd213fcd2ae88da7",
+      "sourcePath": "benchmark-results/2026-10-12-convolution-boundary/analysis.json",
+      "bytes": 1503,
+      "sha256": "b7b3bc6da3507dbd510bb546750b8303131ac182c4d870bd079847fc6abcb8e2",
+      "scope": "REJECTED experiment evidence/harness; no production runtime copied"
+    },
+    {
+      "path": "convolution-boundary-rejected/benchmark-results/2026-10-12-convolution-boundary/block0-broad.log",
+      "sourceWorktree": "vectors-convolution-boundary",
+      "sourceCommit": "944ae2c2492dd572f477e15acd213fcd2ae88da7",
+      "sourcePath": "benchmark-results/2026-10-12-convolution-boundary/block0-broad.log",
+      "bytes": 1050,
+      "sha256": "f71c7f33173f5ba55967e97996b54743dcceddcdccbe8f64ced2d3dd4bce0037",
+      "scope": "REJECTED experiment evidence/harness; no production runtime copied"
+    },
+    {
+      "path": "convolution-boundary-rejected/benchmark-results/2026-10-12-convolution-boundary/block0-candidate.log",
+      "sourceWorktree": "vectors-convolution-boundary",
+      "sourceCommit": "944ae2c2492dd572f477e15acd213fcd2ae88da7",
+      "sourcePath": "benchmark-results/2026-10-12-convolution-boundary/block0-candidate.log",
+      "bytes": 1049,
+      "sha256": "b4e317cce90f7e351c746a7b1085a982f667e4da72e632b8cc4060a53ed86000",
+      "scope": "REJECTED experiment evidence/harness; no production runtime copied"
+    },
+    {
+      "path": "convolution-boundary-rejected/benchmark-results/2026-10-12-convolution-boundary/block0-published.log",
+      "sourceWorktree": "vectors-convolution-boundary",
+      "sourceCommit": "944ae2c2492dd572f477e15acd213fcd2ae88da7",
+      "sourcePath": "benchmark-results/2026-10-12-convolution-boundary/block0-published.log",
+      "bytes": 1059,
+      "sha256": "c54a1c05214cd28ece338ebbd05b0921709d448d9e5b44f0d2ac35c7b1cf5219",
+      "scope": "REJECTED experiment evidence/harness; no production runtime copied"
+    },
+    {
+      "path": "convolution-boundary-rejected/benchmark-results/2026-10-12-convolution-boundary/block1-broad.log",
+      "sourceWorktree": "vectors-convolution-boundary",
+      "sourceCommit": "944ae2c2492dd572f477e15acd213fcd2ae88da7",
+      "sourcePath": "benchmark-results/2026-10-12-convolution-boundary/block1-broad.log",
+      "bytes": 1050,
+      "sha256": "c31ca00c55a3d0acda97bc0e963a59cba39faf957fd92ab0c233bdb57ab9ca15",
+      "scope": "REJECTED experiment evidence/harness; no production runtime copied"
+    },
+    {
+      "path": "convolution-boundary-rejected/benchmark-results/2026-10-12-convolution-boundary/block1-candidate.log",
+      "sourceWorktree": "vectors-convolution-boundary",
+      "sourceCommit": "944ae2c2492dd572f477e15acd213fcd2ae88da7",
+      "sourcePath": "benchmark-results/2026-10-12-convolution-boundary/block1-candidate.log",
+      "bytes": 1049,
+      "sha256": "b2107fb2487bb20802acc88528e0c898078a58aa28731ff264e6f27f0080999f",
+      "scope": "REJECTED experiment evidence/harness; no production runtime copied"
+    },
+    {
+      "path": "convolution-boundary-rejected/benchmark-results/2026-10-12-convolution-boundary/block1-published.log",
+      "sourceWorktree": "vectors-convolution-boundary",
+      "sourceCommit": "944ae2c2492dd572f477e15acd213fcd2ae88da7",
+      "sourcePath": "benchmark-results/2026-10-12-convolution-boundary/block1-published.log",
+      "bytes": 1059,
+      "sha256": "f423bd1a30c40dcd896859a90827dea396358ae4092c47291efb127d75396f16",
+      "scope": "REJECTED experiment evidence/harness; no production runtime copied"
+    },
+    {
+      "path": "convolution-boundary-rejected/benchmark-results/2026-10-12-convolution-boundary/block2-broad.log",
+      "sourceWorktree": "vectors-convolution-boundary",
+      "sourceCommit": "944ae2c2492dd572f477e15acd213fcd2ae88da7",
+      "sourcePath": "benchmark-results/2026-10-12-convolution-boundary/block2-broad.log",
+      "bytes": 1050,
+      "sha256": "39fc85e87b651ce6e3ff1b6ffd8525ea66289f6138f07cfa5965e32331b6925f",
+      "scope": "REJECTED experiment evidence/harness; no production runtime copied"
+    },
+    {
+      "path": "convolution-boundary-rejected/benchmark-results/2026-10-12-convolution-boundary/block2-candidate.log",
+      "sourceWorktree": "vectors-convolution-boundary",
+      "sourceCommit": "944ae2c2492dd572f477e15acd213fcd2ae88da7",
+      "sourcePath": "benchmark-results/2026-10-12-convolution-boundary/block2-candidate.log",
+      "bytes": 1049,
+      "sha256": "8bf967aee1c55c96adf65adc47b5f052fc7c1b06ea431d2566d8d83c2afa0107",
+      "scope": "REJECTED experiment evidence/harness; no production runtime copied"
+    },
+    {
+      "path": "convolution-boundary-rejected/benchmark-results/2026-10-12-convolution-boundary/block2-published.log",
+      "sourceWorktree": "vectors-convolution-boundary",
+      "sourceCommit": "944ae2c2492dd572f477e15acd213fcd2ae88da7",
+      "sourcePath": "benchmark-results/2026-10-12-convolution-boundary/block2-published.log",
+      "bytes": 1059,
+      "sha256": "f3d36193ca532c455c000d3593708aac01dcb795ffab8f2e99ad3a46f98a6555",
+      "scope": "REJECTED experiment evidence/harness; no production runtime copied"
+    },
+    {
+      "path": "convolution-boundary-rejected/benchmark-results/2026-10-12-convolution-boundary/block3-broad.log",
+      "sourceWorktree": "vectors-convolution-boundary",
+      "sourceCommit": "944ae2c2492dd572f477e15acd213fcd2ae88da7",
+      "sourcePath": "benchmark-results/2026-10-12-convolution-boundary/block3-broad.log",
+      "bytes": 1050,
+      "sha256": "e1776fa057c944d271f7297892b1167edbdbbc2668fd9d081e1981c04511d027",
+      "scope": "REJECTED experiment evidence/harness; no production runtime copied"
+    },
+    {
+      "path": "convolution-boundary-rejected/benchmark-results/2026-10-12-convolution-boundary/block3-candidate.log",
+      "sourceWorktree": "vectors-convolution-boundary",
+      "sourceCommit": "944ae2c2492dd572f477e15acd213fcd2ae88da7",
+      "sourcePath": "benchmark-results/2026-10-12-convolution-boundary/block3-candidate.log",
+      "bytes": 1050,
+      "sha256": "234e755cd05b907f6791fdefe3056dd12491991c6d6167ebb03a0940f77d0476",
+      "scope": "REJECTED experiment evidence/harness; no production runtime copied"
+    },
+    {
+      "path": "convolution-boundary-rejected/benchmark-results/2026-10-12-convolution-boundary/block3-published.log",
+      "sourceWorktree": "vectors-convolution-boundary",
+      "sourceCommit": "944ae2c2492dd572f477e15acd213fcd2ae88da7",
+      "sourcePath": "benchmark-results/2026-10-12-convolution-boundary/block3-published.log",
+      "bytes": 1059,
+      "sha256": "98b44a66b13a66596d475d7284afa73ef6a340772a07bc96b8627d242ca11f63",
+      "scope": "REJECTED experiment evidence/harness; no production runtime copied"
+    },
+    {
+      "path": "convolution-boundary-rejected/benchmark-results/2026-10-12-convolution-boundary/block4-broad.log",
+      "sourceWorktree": "vectors-convolution-boundary",
+      "sourceCommit": "944ae2c2492dd572f477e15acd213fcd2ae88da7",
+      "sourcePath": "benchmark-results/2026-10-12-convolution-boundary/block4-broad.log",
+      "bytes": 1050,
+      "sha256": "a6db7917c2791e5528e4bf1a7514cfe2b7b1fc1a8eb789d1cde2d3fc9e34b17e",
+      "scope": "REJECTED experiment evidence/harness; no production runtime copied"
+    },
+    {
+      "path": "convolution-boundary-rejected/benchmark-results/2026-10-12-convolution-boundary/block4-candidate.log",
+      "sourceWorktree": "vectors-convolution-boundary",
+      "sourceCommit": "944ae2c2492dd572f477e15acd213fcd2ae88da7",
+      "sourcePath": "benchmark-results/2026-10-12-convolution-boundary/block4-candidate.log",
+      "bytes": 1050,
+      "sha256": "116bd287a754b1c9da8c9923893655e5a239dd1d2b9d155c9f22126fbddbee1b",
+      "scope": "REJECTED experiment evidence/harness; no production runtime copied"
+    },
+    {
+      "path": "convolution-boundary-rejected/benchmark-results/2026-10-12-convolution-boundary/block4-published.log",
+      "sourceWorktree": "vectors-convolution-boundary",
+      "sourceCommit": "944ae2c2492dd572f477e15acd213fcd2ae88da7",
+      "sourcePath": "benchmark-results/2026-10-12-convolution-boundary/block4-published.log",
+      "bytes": 1059,
+      "sha256": "252ee0c4f1e8872b9b8669b8a4db13a2efcea34799bdbe1f14206b16bb8745fa",
+      "scope": "REJECTED experiment evidence/harness; no production runtime copied"
+    },
+    {
+      "path": "convolution-boundary-rejected/benchmark-results/2026-10-12-convolution-boundary/block5-broad.log",
+      "sourceWorktree": "vectors-convolution-boundary",
+      "sourceCommit": "944ae2c2492dd572f477e15acd213fcd2ae88da7",
+      "sourcePath": "benchmark-results/2026-10-12-convolution-boundary/block5-broad.log",
+      "bytes": 1050,
+      "sha256": "9d0338da50228e91158f41fe9ed0ea1668e617eb84fb5468d7f34cdb8810fa2f",
+      "scope": "REJECTED experiment evidence/harness; no production runtime copied"
+    },
+    {
+      "path": "convolution-boundary-rejected/benchmark-results/2026-10-12-convolution-boundary/block5-candidate.log",
+      "sourceWorktree": "vectors-convolution-boundary",
+      "sourceCommit": "944ae2c2492dd572f477e15acd213fcd2ae88da7",
+      "sourcePath": "benchmark-results/2026-10-12-convolution-boundary/block5-candidate.log",
+      "bytes": 1050,
+      "sha256": "e92a221ae114f6302171605b3470844918e29a425563c738ab4a17a696c2b579",
+      "scope": "REJECTED experiment evidence/harness; no production runtime copied"
+    },
+    {
+      "path": "convolution-boundary-rejected/benchmark-results/2026-10-12-convolution-boundary/block5-published.log",
+      "sourceWorktree": "vectors-convolution-boundary",
+      "sourceCommit": "944ae2c2492dd572f477e15acd213fcd2ae88da7",
+      "sourcePath": "benchmark-results/2026-10-12-convolution-boundary/block5-published.log",
+      "bytes": 1059,
+      "sha256": "a983b3e5e8c457d853e0a526ea2c52baf40ed7762ceff394067891dc2fde910a",
+      "scope": "REJECTED experiment evidence/harness; no production runtime copied"
+    },
+    {
+      "path": "convolution-boundary-rejected/benchmark-results/2026-10-12-convolution-boundary/build-corrected.log",
+      "sourceWorktree": "vectors-convolution-boundary",
+      "sourceCommit": "944ae2c2492dd572f477e15acd213fcd2ae88da7",
+      "sourcePath": "benchmark-results/2026-10-12-convolution-boundary/build-corrected.log",
+      "bytes": 10612,
+      "sha256": "7aaa6dd0985fca23c61f4f6afe7b2c8ac273c8e89dcf45b871d0beef1839a3dc",
+      "scope": "REJECTED experiment evidence/harness; no production runtime copied"
+    },
+    {
+      "path": "convolution-boundary-rejected/benchmark-results/2026-10-12-convolution-boundary/build-first-attempt.log",
+      "sourceWorktree": "vectors-convolution-boundary",
+      "sourceCommit": "944ae2c2492dd572f477e15acd213fcd2ae88da7",
+      "sourcePath": "benchmark-results/2026-10-12-convolution-boundary/build-first-attempt.log",
+      "bytes": 2276,
+      "sha256": "2456908931b602e60e47448bafb3675432679d35afa216b72a8dd2b4f62fb21e",
+      "scope": "REJECTED experiment evidence/harness; no production runtime copied"
+    },
+    {
+      "path": "convolution-boundary-rejected/benchmark-results/2026-10-12-convolution-boundary/contract-configurations.json",
+      "sourceWorktree": "vectors-convolution-boundary",
+      "sourceCommit": "944ae2c2492dd572f477e15acd213fcd2ae88da7",
+      "sourcePath": "benchmark-results/2026-10-12-convolution-boundary/contract-configurations.json",
+      "bytes": 6970,
+      "sha256": "47fabb8313f1a33ec99692ebd7b906568034a0d6f0653d99ff5734137d9853e9",
+      "scope": "REJECTED experiment evidence/harness; no production runtime copied"
+    },
+    {
+      "path": "convolution-boundary-rejected/benchmark-results/2026-10-12-convolution-boundary/contracts-128-no-fma.log",
+      "sourceWorktree": "vectors-convolution-boundary",
+      "sourceCommit": "944ae2c2492dd572f477e15acd213fcd2ae88da7",
+      "sourcePath": "benchmark-results/2026-10-12-convolution-boundary/contracts-128-no-fma.log",
+      "bytes": 1024,
+      "sha256": "fc64313bc2b8cf1c2db1d70ac9c0cc3aae663b24a0bf804c3c65ea0b64e901a3",
+      "scope": "REJECTED experiment evidence/harness; no production runtime copied"
+    },
+    {
+      "path": "convolution-boundary-rejected/benchmark-results/2026-10-12-convolution-boundary/contracts-128.log",
+      "sourceWorktree": "vectors-convolution-boundary",
+      "sourceCommit": "944ae2c2492dd572f477e15acd213fcd2ae88da7",
+      "sourcePath": "benchmark-results/2026-10-12-convolution-boundary/contracts-128.log",
+      "bytes": 964,
+      "sha256": "a7f5352c758fc3f593d6d113e90485deba3a6fd9ad92247fb4f84a1c04c7d720",
+      "scope": "REJECTED experiment evidence/harness; no production runtime copied"
+    },
+    {
+      "path": "convolution-boundary-rejected/benchmark-results/2026-10-12-convolution-boundary/contracts-256-no-fma.log",
+      "sourceWorktree": "vectors-convolution-boundary",
+      "sourceCommit": "944ae2c2492dd572f477e15acd213fcd2ae88da7",
+      "sourcePath": "benchmark-results/2026-10-12-convolution-boundary/contracts-256-no-fma.log",
+      "bytes": 955,
+      "sha256": "22e5f15cf0082f97d1eed115654d8caf6c37f83697f24e8f9dc7e50967390823",
+      "scope": "REJECTED experiment evidence/harness; no production runtime copied"
+    },
+    {
+      "path": "convolution-boundary-rejected/benchmark-results/2026-10-12-convolution-boundary/contracts-256.log",
+      "sourceWorktree": "vectors-convolution-boundary",
+      "sourceCommit": "944ae2c2492dd572f477e15acd213fcd2ae88da7",
+      "sourcePath": "benchmark-results/2026-10-12-convolution-boundary/contracts-256.log",
+      "bytes": 895,
+      "sha256": "43a49e52861b4b622cd31c82723c279ee743244dc56a9d06266fbd3c71dcf764",
+      "scope": "REJECTED experiment evidence/harness; no production runtime copied"
+    },
+    {
+      "path": "convolution-boundary-rejected/benchmark-results/2026-10-12-convolution-boundary/contracts-512-no-fma.log",
+      "sourceWorktree": "vectors-convolution-boundary",
+      "sourceCommit": "944ae2c2492dd572f477e15acd213fcd2ae88da7",
+      "sourcePath": "benchmark-results/2026-10-12-convolution-boundary/contracts-512-no-fma.log",
+      "bytes": 955,
+      "sha256": "00564bcf5b0a82ec462990ecada4bc02c523618ae04c275b4aec4eaac0199b60",
+      "scope": "REJECTED experiment evidence/harness; no production runtime copied"
+    },
+    {
+      "path": "convolution-boundary-rejected/benchmark-results/2026-10-12-convolution-boundary/contracts-512.log",
+      "sourceWorktree": "vectors-convolution-boundary",
+      "sourceCommit": "944ae2c2492dd572f477e15acd213fcd2ae88da7",
+      "sourcePath": "benchmark-results/2026-10-12-convolution-boundary/contracts-512.log",
+      "bytes": 895,
+      "sha256": "74331d89ce9624a7b6c8ff99f4182c06f669ec88b2b786c9fcdf19ba1f6295e7",
+      "scope": "REJECTED experiment evidence/harness; no production runtime copied"
+    },
+    {
+      "path": "convolution-boundary-rejected/benchmark-results/2026-10-12-convolution-boundary/contracts-64-no-fma.log",
+      "sourceWorktree": "vectors-convolution-boundary",
+      "sourceCommit": "944ae2c2492dd572f477e15acd213fcd2ae88da7",
+      "sourcePath": "benchmark-results/2026-10-12-convolution-boundary/contracts-64-no-fma.log",
+      "bytes": 1019,
+      "sha256": "8b88bda1e3d1953642ec49dea82e4af10d6f897cae1432cc41f95d88a8546bc8",
+      "scope": "REJECTED experiment evidence/harness; no production runtime copied"
+    },
+    {
+      "path": "convolution-boundary-rejected/benchmark-results/2026-10-12-convolution-boundary/contracts-64.log",
+      "sourceWorktree": "vectors-convolution-boundary",
+      "sourceCommit": "944ae2c2492dd572f477e15acd213fcd2ae88da7",
+      "sourcePath": "benchmark-results/2026-10-12-convolution-boundary/contracts-64.log",
+      "bytes": 959,
+      "sha256": "68cee2a2a1513728ddccc529a7186765ffcc4e3dd02a3dac6a31155fe4bebd42",
+      "scope": "REJECTED experiment evidence/harness; no production runtime copied"
+    },
+    {
+      "path": "convolution-boundary-rejected/benchmark-results/2026-10-12-convolution-boundary/contracts-default-no-fma.log",
+      "sourceWorktree": "vectors-convolution-boundary",
+      "sourceCommit": "944ae2c2492dd572f477e15acd213fcd2ae88da7",
+      "sourcePath": "benchmark-results/2026-10-12-convolution-boundary/contracts-default-no-fma.log",
+      "bytes": 938,
+      "sha256": "292767a1b9603540deab1416d22b8c94d7d08211340d3b9407341f5afb6694dc",
+      "scope": "REJECTED experiment evidence/harness; no production runtime copied"
+    },
+    {
+      "path": "convolution-boundary-rejected/benchmark-results/2026-10-12-convolution-boundary/contracts-default.log",
+      "sourceWorktree": "vectors-convolution-boundary",
+      "sourceCommit": "944ae2c2492dd572f477e15acd213fcd2ae88da7",
+      "sourcePath": "benchmark-results/2026-10-12-convolution-boundary/contracts-default.log",
+      "bytes": 919,
+      "sha256": "490cd197806eb92717a7a91edd9f027a062e9537874f33d2b83cc866474a84b9",
+      "scope": "REJECTED experiment evidence/harness; no production runtime copied"
+    },
+    {
+      "path": "convolution-boundary-rejected/benchmark-results/2026-10-12-convolution-boundary/manifest.json",
+      "sourceWorktree": "vectors-convolution-boundary",
+      "sourceCommit": "944ae2c2492dd572f477e15acd213fcd2ae88da7",
+      "sourcePath": "benchmark-results/2026-10-12-convolution-boundary/manifest.json",
+      "bytes": 1279,
+      "sha256": "05a8c9b2ce71b807e9e0cec6e4e056d41bf32b1442d4bae1b80e5fc459a4a7aa",
+      "scope": "REJECTED experiment evidence/harness; no production runtime copied"
+    },
+    {
+      "path": "convolution-boundary-rejected/benchmark-results/2026-10-12-convolution-boundary/pilot-0-broad.log",
+      "sourceWorktree": "vectors-convolution-boundary",
+      "sourceCommit": "944ae2c2492dd572f477e15acd213fcd2ae88da7",
+      "sourcePath": "benchmark-results/2026-10-12-convolution-boundary/pilot-0-broad.log",
+      "bytes": 1049,
+      "sha256": "df6dd0182a593ea40aadb2d6edf8b4be16511f49191dbc21dddadf099b9e5d0f",
+      "scope": "REJECTED experiment evidence/harness; no production runtime copied"
+    },
+    {
+      "path": "convolution-boundary-rejected/benchmark-results/2026-10-12-convolution-boundary/pilot-0-published.log",
+      "sourceWorktree": "vectors-convolution-boundary",
+      "sourceCommit": "944ae2c2492dd572f477e15acd213fcd2ae88da7",
+      "sourcePath": "benchmark-results/2026-10-12-convolution-boundary/pilot-0-published.log",
+      "bytes": 1059,
+      "sha256": "e2e4bb762ccf348c96c15a0316aea26c6139cf5048c86074ad0e5e8fe877028f",
+      "scope": "REJECTED experiment evidence/harness; no production runtime copied"
+    },
+    {
+      "path": "convolution-boundary-rejected/benchmark-results/2026-10-12-convolution-boundary/pilot-1-broad.log",
+      "sourceWorktree": "vectors-convolution-boundary",
+      "sourceCommit": "944ae2c2492dd572f477e15acd213fcd2ae88da7",
+      "sourcePath": "benchmark-results/2026-10-12-convolution-boundary/pilot-1-broad.log",
+      "bytes": 1049,
+      "sha256": "8406d4a157890367f1c20f3fac4c9c1fae701fbf7b5edf71f7471888c0430367",
+      "scope": "REJECTED experiment evidence/harness; no production runtime copied"
+    },
+    {
+      "path": "convolution-boundary-rejected/benchmark-results/2026-10-12-convolution-boundary/pilot-1-published.log",
+      "sourceWorktree": "vectors-convolution-boundary",
+      "sourceCommit": "944ae2c2492dd572f477e15acd213fcd2ae88da7",
+      "sourcePath": "benchmark-results/2026-10-12-convolution-boundary/pilot-1-published.log",
+      "bytes": 1059,
+      "sha256": "ecf3ed88e59818d4acdbe916f8aa86ca966b1b3887bbc1b4185605006fb80380",
+      "scope": "REJECTED experiment evidence/harness; no production runtime copied"
+    },
+    {
+      "path": "convolution-boundary-rejected/benchmark-results/2026-10-12-convolution-boundary/pilot.json",
+      "sourceWorktree": "vectors-convolution-boundary",
+      "sourceCommit": "944ae2c2492dd572f477e15acd213fcd2ae88da7",
+      "sourcePath": "benchmark-results/2026-10-12-convolution-boundary/pilot.json",
+      "bytes": 4542,
+      "sha256": "1282240bc67d49f5a310f43d682de8992845097ef737275c82dc5c76346729c8",
+      "scope": "REJECTED experiment evidence/harness; no production runtime copied"
+    },
+    {
+      "path": "convolution-boundary-rejected/benchmark-results/2026-10-12-convolution-boundary/raw.json",
+      "sourceWorktree": "vectors-convolution-boundary",
+      "sourceCommit": "944ae2c2492dd572f477e15acd213fcd2ae88da7",
+      "sourcePath": "benchmark-results/2026-10-12-convolution-boundary/raw.json",
+      "bytes": 18826,
+      "sha256": "7c7a9ea58be4a46ff3b6c500015a0e4b5ff5d111d0f7651f3b5430afe507f574",
+      "scope": "REJECTED experiment evidence/harness; no production runtime copied"
+    },
+    {
+      "path": "convolution-boundary-rejected/build/reports/problems/problems-report.html",
+      "sourceWorktree": "vectors-convolution-boundary",
+      "sourceCommit": "944ae2c2492dd572f477e15acd213fcd2ae88da7",
+      "sourcePath": "build/reports/problems/problems-report.html",
+      "bytes": 146874,
+      "sha256": "cf85fb83a4265330f96d055d08cf72db19c9331d63c199e176c66c30b6dfcc6e",
+      "scope": "historical ignored report; not a new test run"
+    },
+    {
+      "path": "convolution-boundary-rejected/experiments/convolution-boundary/ConvolutionBoundaryProbe.java",
+      "sourceWorktree": "vectors-convolution-boundary",
+      "sourceCommit": "944ae2c2492dd572f477e15acd213fcd2ae88da7",
+      "sourcePath": "experiments/convolution-boundary/ConvolutionBoundaryProbe.java",
+      "bytes": 5305,
+      "sha256": "382f0c079d13405707b302afe9165100d19fdbb534a019e7b8a20220b3b58bdf",
+      "scope": "REJECTED experiment evidence/harness; no production runtime copied"
+    },
+    {
+      "path": "convolution-boundary-rejected/experiments/convolution-boundary/PROTOCOL.md",
+      "sourceWorktree": "vectors-convolution-boundary",
+      "sourceCommit": "944ae2c2492dd572f477e15acd213fcd2ae88da7",
+      "sourcePath": "experiments/convolution-boundary/PROTOCOL.md",
+      "bytes": 1780,
+      "sha256": "2dc5c8af7274dfffc95a6854ab25b3565247ec8e300e98484488032e248a1bab",
+      "scope": "REJECTED experiment evidence/harness; no production runtime copied"
+    },
+    {
+      "path": "convolution-boundary-rejected/experiments/convolution-boundary/run-three-arms.py",
+      "sourceWorktree": "vectors-convolution-boundary",
+      "sourceCommit": "944ae2c2492dd572f477e15acd213fcd2ae88da7",
+      "sourcePath": "experiments/convolution-boundary/run-three-arms.py",
+      "bytes": 3238,
+      "sha256": "44f0f4490355313458585c12057aa09a21bcbff4ac4aefb7040995a15087863c",
+      "scope": "REJECTED experiment evidence/harness; no production runtime copied"
+    },
+    {
+      "path": "convolution-boundary-rejected/vectors-core/build/reports/tests/test/3kt4ctnftyg/index.html",
+      "sourceWorktree": "vectors-convolution-boundary",
+      "sourceCommit": "944ae2c2492dd572f477e15acd213fcd2ae88da7",
+      "sourcePath": "vectors-core/build/reports/tests/test/3kt4ctnftyg/index.html",
+      "bytes": 2724,
+      "sha256": "261451e3626e61efbdf95363ce78ceaf9af89049039ebad3cebe79a946e3d07c",
+      "scope": "historical ignored report; not a new test run"
+    },
+    {
+      "path": "convolution-boundary-rejected/vectors-core/build/reports/tests/test/Fm2-o4eKrxk/index.html",
+      "sourceWorktree": "vectors-convolution-boundary",
+      "sourceCommit": "944ae2c2492dd572f477e15acd213fcd2ae88da7",
+      "sourcePath": "vectors-core/build/reports/tests/test/Fm2-o4eKrxk/index.html",
+      "bytes": 2439,
+      "sha256": "d7c6ddd0c7a2f45af2d68777582a594425cb89b8bddf345ff210bcaf47346c1c",
+      "scope": "historical ignored report; not a new test run"
+    },
+    {
+      "path": "convolution-boundary-rejected/vectors-core/build/reports/tests/test/IkinDx_MXRc/El6-M3f51Ig/ZV2_9WIvhu8/index.html",
+      "sourceWorktree": "vectors-convolution-boundary",
+      "sourceCommit": "944ae2c2492dd572f477e15acd213fcd2ae88da7",
+      "sourcePath": "vectors-core/build/reports/tests/test/IkinDx_MXRc/El6-M3f51Ig/ZV2_9WIvhu8/index.html",
+      "bytes": 8977,
+      "sha256": "8d428227656ae88558aa2f857c2f4e6c08499654beec1f5a30edc55af037e75a",
+      "scope": "historical ignored report; not a new test run"
+    },
+    {
+      "path": "convolution-boundary-rejected/vectors-core/build/reports/tests/test/IkinDx_MXRc/El6-M3f51Ig/ZV2_9WIvhu8/wDhPSoeTyzw.html",
+      "sourceWorktree": "vectors-convolution-boundary",
+      "sourceCommit": "944ae2c2492dd572f477e15acd213fcd2ae88da7",
+      "sourcePath": "vectors-core/build/reports/tests/test/IkinDx_MXRc/El6-M3f51Ig/ZV2_9WIvhu8/wDhPSoeTyzw.html",
+      "bytes": 3384,
+      "sha256": "66c6fd3684beea7303f17614aab6ac20fb966370529d6cd1c9f7940672572596",
+      "scope": "historical ignored report; not a new test run"
+    },
+    {
+      "path": "convolution-boundary-rejected/vectors-core/build/reports/tests/test/IkinDx_MXRc/El6-M3f51Ig/index.html",
+      "sourceWorktree": "vectors-convolution-boundary",
+      "sourceCommit": "944ae2c2492dd572f477e15acd213fcd2ae88da7",
+      "sourcePath": "vectors-core/build/reports/tests/test/IkinDx_MXRc/El6-M3f51Ig/index.html",
+      "bytes": 2900,
+      "sha256": "993f8f7371cd54fd1b4cd0030287793141f7dcf2c744ffe59480713eb993a2b1",
+      "scope": "historical ignored report; not a new test run"
+    },
+    {
+      "path": "convolution-boundary-rejected/vectors-core/build/reports/tests/test/IkinDx_MXRc/El6-M3f51Ig/ttZLIAABI6Q/index.html",
+      "sourceWorktree": "vectors-convolution-boundary",
+      "sourceCommit": "944ae2c2492dd572f477e15acd213fcd2ae88da7",
+      "sourcePath": "vectors-core/build/reports/tests/test/IkinDx_MXRc/El6-M3f51Ig/ttZLIAABI6Q/index.html",
+      "bytes": 8980,
+      "sha256": "223ff5fe31ca4644643196b0a705c6a9e3651e2acb0f0d02cba8a1c470fe121f",
+      "scope": "historical ignored report; not a new test run"
+    },
+    {
+      "path": "convolution-boundary-rejected/vectors-core/build/reports/tests/test/IkinDx_MXRc/index.html",
+      "sourceWorktree": "vectors-convolution-boundary",
+      "sourceCommit": "944ae2c2492dd572f477e15acd213fcd2ae88da7",
+      "sourcePath": "vectors-core/build/reports/tests/test/IkinDx_MXRc/index.html",
+      "bytes": 2431,
+      "sha256": "cc6fc01f5b60877f16c9b0c0f488777396b66d1258b037fe7db4447e3db1cf30",
+      "scope": "historical ignored report; not a new test run"
+    },
+    {
+      "path": "convolution-boundary-rejected/vectors-core/build/reports/tests/test/PVR2_TgsFag/index.html",
+      "sourceWorktree": "vectors-convolution-boundary",
+      "sourceCommit": "944ae2c2492dd572f477e15acd213fcd2ae88da7",
+      "sourcePath": "vectors-core/build/reports/tests/test/PVR2_TgsFag/index.html",
+      "bytes": 2648,
+      "sha256": "a704fb84c4c2fd8fa093cc4c0fc89018e21adb24304cb1a74ffd7d74e88a6c0a",
+      "scope": "historical ignored report; not a new test run"
+    },
+    {
+      "path": "convolution-boundary-rejected/vectors-core/build/reports/tests/test/RCKgKT0NDKk/index.html",
+      "sourceWorktree": "vectors-convolution-boundary",
+      "sourceCommit": "944ae2c2492dd572f477e15acd213fcd2ae88da7",
+      "sourcePath": "vectors-core/build/reports/tests/test/RCKgKT0NDKk/index.html",
+      "bytes": 2694,
+      "sha256": "cbb693cf7d50ed28c4d0a083ab49e9ec4b8ee14629fbf23974ea8925e9a913fd",
+      "scope": "historical ignored report; not a new test run"
+    },
+    {
+      "path": "convolution-boundary-rejected/vectors-core/build/reports/tests/test/T0n5fCB_wuk/index.html",
+      "sourceWorktree": "vectors-convolution-boundary",
+      "sourceCommit": "944ae2c2492dd572f477e15acd213fcd2ae88da7",
+      "sourcePath": "vectors-core/build/reports/tests/test/T0n5fCB_wuk/index.html",
+      "bytes": 2453,
+      "sha256": "42a23502e6f4c84f571b6b7252978f22a0db8b3746e896463c45cb183012ef06",
+      "scope": "historical ignored report; not a new test run"
+    },
+    {
+      "path": "convolution-boundary-rejected/vectors-core/build/reports/tests/test/XuzpdQxLtIg/index.html",
+      "sourceWorktree": "vectors-convolution-boundary",
+      "sourceCommit": "944ae2c2492dd572f477e15acd213fcd2ae88da7",
+      "sourcePath": "vectors-core/build/reports/tests/test/XuzpdQxLtIg/index.html",
+      "bytes": 4086,
+      "sha256": "30a65b38fec2fcfd647a9282be554a619b1cfbb14a7ff58b9d9d278b06a526e7",
+      "scope": "historical ignored report; not a new test run"
+    },
+    {
+      "path": "convolution-boundary-rejected/vectors-core/build/reports/tests/test/css/base-style.css",
+      "sourceWorktree": "vectors-convolution-boundary",
+      "sourceCommit": "944ae2c2492dd572f477e15acd213fcd2ae88da7",
+      "sourcePath": "vectors-core/build/reports/tests/test/css/base-style.css",
+      "bytes": 2449,
+      "sha256": "ae3edaf7d2e0cdfbd9919e0c89fcabbc6c593118515e82a13567005dc10bbf08",
+      "scope": "historical ignored report; not a new test run"
+    },
+    {
+      "path": "convolution-boundary-rejected/vectors-core/build/reports/tests/test/css/style.css",
+      "sourceWorktree": "vectors-convolution-boundary",
+      "sourceCommit": "944ae2c2492dd572f477e15acd213fcd2ae88da7",
+      "sourcePath": "vectors-core/build/reports/tests/test/css/style.css",
+      "bytes": 2201,
+      "sha256": "7e5a63bb31295a4a5627ca9d8f8bd463bd91c035577fa2b4d020713936083a08",
+      "scope": "historical ignored report; not a new test run"
+    },
+    {
+      "path": "convolution-boundary-rejected/vectors-core/build/reports/tests/test/gXF-XrDBYKs/-wki8UFhDBI.html",
+      "sourceWorktree": "vectors-convolution-boundary",
+      "sourceCommit": "944ae2c2492dd572f477e15acd213fcd2ae88da7",
+      "sourcePath": "vectors-core/build/reports/tests/test/gXF-XrDBYKs/-wki8UFhDBI.html",
+      "bytes": 3203,
+      "sha256": "15a3003c28b1850c1b268e259913a9dd4bba70103df9690f9199ef62b0da7509",
+      "scope": "historical ignored report; not a new test run"
+    },
+    {
+      "path": "convolution-boundary-rejected/vectors-core/build/reports/tests/test/gXF-XrDBYKs/index.html",
+      "sourceWorktree": "vectors-convolution-boundary",
+      "sourceCommit": "944ae2c2492dd572f477e15acd213fcd2ae88da7",
+      "sourcePath": "vectors-core/build/reports/tests/test/gXF-XrDBYKs/index.html",
+      "bytes": 2457,
+      "sha256": "710fa26092c62f35441e3020558b1ffe7e1a91109de347019161bd3c7aa97c5d",
+      "scope": "historical ignored report; not a new test run"
+    },
+    {
+      "path": "convolution-boundary-rejected/vectors-core/build/reports/tests/test/index.html",
+      "sourceWorktree": "vectors-convolution-boundary",
+      "sourceCommit": "944ae2c2492dd572f477e15acd213fcd2ae88da7",
+      "sourcePath": "vectors-core/build/reports/tests/test/index.html",
+      "bytes": 4241,
+      "sha256": "129485577a86d24768390793ef20566aa6cb4ab4d28c5a0cd78e0b2091d0e18a",
+      "scope": "historical ignored report; not a new test run"
+    },
+    {
+      "path": "convolution-boundary-rejected/vectors-core/build/reports/tests/test/js/report.js",
+      "sourceWorktree": "vectors-convolution-boundary",
+      "sourceCommit": "944ae2c2492dd572f477e15acd213fcd2ae88da7",
+      "sourcePath": "vectors-core/build/reports/tests/test/js/report.js",
+      "bytes": 6718,
+      "sha256": "3aadca4fcf721dca618b54c0e93c93c37884c8d25aa2c9cb92782a3db9ffa605",
+      "scope": "historical ignored report; not a new test run"
+    },
+    {
+      "path": "convolution-boundary-rejected/vectors-core/build/reports/tests/test/sGh_wkwo_KM/index.html",
+      "sourceWorktree": "vectors-convolution-boundary",
+      "sourceCommit": "944ae2c2492dd572f477e15acd213fcd2ae88da7",
+      "sourcePath": "vectors-core/build/reports/tests/test/sGh_wkwo_KM/index.html",
+      "bytes": 2700,
+      "sha256": "512c621cab2b1a0f7251b803990a22abce2d1b12eb8d8eb8d949f60de9621c82",
+      "scope": "historical ignored report; not a new test run"
+    },
+    {
+      "path": "convolution-boundary-rejected/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.ActivationColdHotTest.xml",
+      "sourceWorktree": "vectors-convolution-boundary",
+      "sourceCommit": "944ae2c2492dd572f477e15acd213fcd2ae88da7",
+      "sourcePath": "vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.ActivationColdHotTest.xml",
+      "bytes": 508,
+      "sha256": "2c77e74091608be4b2c917342b691886e42d30ae17025d8288be3f69f92cc160",
+      "scope": "historical ignored report; not a new test run"
+    },
+    {
+      "path": "convolution-boundary-rejected/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.BFloat16MatrixTest.xml",
+      "sourceWorktree": "vectors-convolution-boundary",
+      "sourceCommit": "944ae2c2492dd572f477e15acd213fcd2ae88da7",
+      "sourcePath": "vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.BFloat16MatrixTest.xml",
+      "bytes": 1180,
+      "sha256": "3dc4304b3ef0afca1b68d35cce1adea04d6eda9a897c6b322b5c17dc3a97cd11",
+      "scope": "historical ignored report; not a new test run"
+    },
+    {
+      "path": "convolution-boundary-rejected/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.GgufQuantizedDotTest.xml",
+      "sourceWorktree": "vectors-convolution-boundary",
+      "sourceCommit": "944ae2c2492dd572f477e15acd213fcd2ae88da7",
+      "sourcePath": "vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.GgufQuantizedDotTest.xml",
+      "bytes": 1466,
+      "sha256": "7bbdfe2abd99ea38eca48b2e0024f459e7739bc049692a94b8ddfe05ac39cde7",
+      "scope": "historical ignored report; not a new test run"
+    },
+    {
+      "path": "convolution-boundary-rejected/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.Mxfp4MatrixTest.xml",
+      "sourceWorktree": "vectors-convolution-boundary",
+      "sourceCommit": "944ae2c2492dd572f477e15acd213fcd2ae88da7",
+      "sourcePath": "vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.Mxfp4MatrixTest.xml",
+      "bytes": 627,
+      "sha256": "e106956e4a94a625e3a581641e98aa6ee3ac832be8688f84a47f3d9117d5259a",
+      "scope": "historical ignored report; not a new test run"
+    },
+    {
+      "path": "convolution-boundary-rejected/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.PackedInt4GroupMatrixTest.xml",
+      "sourceWorktree": "vectors-convolution-boundary",
+      "sourceCommit": "944ae2c2492dd572f477e15acd213fcd2ae88da7",
+      "sourcePath": "vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.PackedInt4GroupMatrixTest.xml",
+      "bytes": 517,
+      "sha256": "0d7f4586973fe94bbce87a22d9d9bbeb9f3c22018dd44746ef37f9ab5249804a",
+      "scope": "historical ignored report; not a new test run"
+    },
+    {
+      "path": "convolution-boundary-rejected/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.ReproducibleActivationExpTest.xml",
+      "sourceWorktree": "vectors-convolution-boundary",
+      "sourceCommit": "944ae2c2492dd572f477e15acd213fcd2ae88da7",
+      "sourcePath": "vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.ReproducibleActivationExpTest.xml",
+      "bytes": 686,
+      "sha256": "37983524aecf96c09e8bc25004129890f9272daf6ed86039c6cdd8c506ab9b30",
+      "scope": "historical ignored report; not a new test run"
+    },
+    {
+      "path": "convolution-boundary-rejected/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.RotatedCodebookMatrixTest.xml",
+      "sourceWorktree": "vectors-convolution-boundary",
+      "sourceCommit": "944ae2c2492dd572f477e15acd213fcd2ae88da7",
+      "sourcePath": "vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.RotatedCodebookMatrixTest.xml",
+      "bytes": 665,
+      "sha256": "e474657360cafd473dd3f65fd0e9166255df473843f2e82c450c4fcd7a15d825",
+      "scope": "historical ignored report; not a new test run"
+    },
+    {
+      "path": "convolution-boundary-rejected/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.ScalarVectorUtilSupportTest.xml",
+      "sourceWorktree": "vectors-convolution-boundary",
+      "sourceCommit": "944ae2c2492dd572f477e15acd213fcd2ae88da7",
+      "sourcePath": "vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.ScalarVectorUtilSupportTest.xml",
+      "bytes": 671,
+      "sha256": "1550a6c20b6cf8d8209ed6343d2f16ee74a28b1e41a9e8a7c8c48a708bde4077",
+      "scope": "historical ignored report; not a new test run"
+    },
+    {
+      "path": "convolution-boundary-rejected/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.VectorUtilSupportTest$VectorArithmeticTest.xml",
+      "sourceWorktree": "vectors-convolution-boundary",
+      "sourceCommit": "944ae2c2492dd572f477e15acd213fcd2ae88da7",
+      "sourcePath": "vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.VectorUtilSupportTest$VectorArithmeticTest.xml",
+      "bytes": 9326,
+      "sha256": "0857062e9b98802aac36be13d96facf9bf610980d85c0e2b0028f693310f1935",
+      "scope": "historical ignored report; not a new test run"
+    },
+    {
+      "path": "convolution-boundary-rejected/vectors-core/build/test-results/test/binary/output-events.bin",
+      "sourceWorktree": "vectors-convolution-boundary",
+      "sourceCommit": "944ae2c2492dd572f477e15acd213fcd2ae88da7",
+      "sourcePath": "vectors-core/build/test-results/test/binary/output-events.bin",
+      "bytes": 1516,
+      "sha256": "18edb50dbeb625c5b49c953fcbff6665379115a755d5f5aa4f2411841e83b227",
+      "scope": "historical ignored report; not a new test run"
+    },
+    {
+      "path": "convolution-boundary-rejected/vectors-core/build/test-results/test/binary/results-generic.bin",
+      "sourceWorktree": "vectors-convolution-boundary",
+      "sourceCommit": "944ae2c2492dd572f477e15acd213fcd2ae88da7",
+      "sourcePath": "vectors-core/build/test-results/test/binary/results-generic.bin",
+      "bytes": 14970,
+      "sha256": "fcaaa6f87bbde5e5e133f3be122d772623a081e06c30ed29b01264d9865921de",
+      "scope": "historical ignored report; not a new test run"
+    },
+    {
+      "path": "bf16-hotfix-control/.github/workflows/bf16-hotfix.yml",
+      "sourceWorktree": "vectors-bf16-hotfix",
+      "sourceCommit": "405639cb9e8dff8e9453618ca58a46cdbe8c3c78",
+      "sourcePath": ".github/workflows/bf16-hotfix.yml",
+      "bytes": 2085,
+      "sha256": "d8753a02cc50c45b49a252fe2dee672236dc8f85cf7f8fa7ce6ae28329a30a4b",
+      "scope": "historical BF16-only control protocol/workflow; not an active workflow"
+    },
+    {
+      "path": "bf16-hotfix-control/build/reports/problems/problems-report.html",
+      "sourceWorktree": "vectors-bf16-hotfix",
+      "sourceCommit": "405639cb9e8dff8e9453618ca58a46cdbe8c3c78",
+      "sourcePath": "build/reports/problems/problems-report.html",
+      "bytes": 127251,
+      "sha256": "a3528f0d262d539deea327b969c15396a87ab170b775faf0207625c01d2d4f6e",
+      "scope": "historical ignored report; not a new test run"
+    },
+    {
+      "path": "bf16-hotfix-control/experiments/bf16-hotfix/PROTOCOL.md",
+      "sourceWorktree": "vectors-bf16-hotfix",
+      "sourceCommit": "405639cb9e8dff8e9453618ca58a46cdbe8c3c78",
+      "sourcePath": "experiments/bf16-hotfix/PROTOCOL.md",
+      "bytes": 3094,
+      "sha256": "09aabbec8404ad2714fb2c07628c1cebcb85b5e2fc5366197669dade9b4b299f",
+      "scope": "historical BF16-only control protocol/workflow; not an active workflow"
+    },
+    {
+      "path": "bf16-hotfix-control/experiments/bf16-hotfix/local-validation.json",
+      "sourceWorktree": "vectors-bf16-hotfix",
+      "sourceCommit": "405639cb9e8dff8e9453618ca58a46cdbe8c3c78",
+      "sourcePath": "experiments/bf16-hotfix/local-validation.json",
+      "bytes": 1582,
+      "sha256": "2557e1c0a2c1e1755fb83bb61ea3b59d49eadeb6c836e2d98c5524b591c2fef8",
+      "scope": "historical BF16-only control protocol/workflow; not an active workflow"
+    },
+    {
+      "path": "bf16-hotfix-control/experiments/bf16-hotfix/minimal-fixed-tree-history.json",
+      "sourceWorktree": "vectors-bf16-hotfix",
+      "sourceCommit": "405639cb9e8dff8e9453618ca58a46cdbe8c3c78",
+      "sourcePath": "experiments/bf16-hotfix/minimal-fixed-tree-history.json",
+      "bytes": 14850,
+      "sha256": "3dd9cbfa02eaebd7eaac4a50ca2fee834ce7a5f5238f281268fb16897d4d6d66",
+      "scope": "historical BF16-only control protocol/workflow; not an active workflow"
+    },
+    {
+      "path": "bf16-hotfix-control/experiments/bf16-hotfix/run-paired.py",
+      "sourceWorktree": "vectors-bf16-hotfix",
+      "sourceCommit": "405639cb9e8dff8e9453618ca58a46cdbe8c3c78",
+      "sourcePath": "experiments/bf16-hotfix/run-paired.py",
+      "bytes": 6377,
+      "sha256": "5aa6c31b5ac8f12fe477b2fdfe299b63ff2188ae0b0e5ca63e400960d30627f8",
+      "scope": "historical BF16-only control protocol/workflow; not an active workflow"
+    },
+    {
+      "path": "bf16-hotfix-control/vectors-core/build/reports/tests/test/ApVlGBJMhi8/index.html",
+      "sourceWorktree": "vectors-bf16-hotfix",
+      "sourceCommit": "405639cb9e8dff8e9453618ca58a46cdbe8c3c78",
+      "sourcePath": "vectors-core/build/reports/tests/test/ApVlGBJMhi8/index.html",
+      "bytes": 2476,
+      "sha256": "0583b1cf54c1689d710402275468ab79a5529cfbbb432ce62c6e99656fbc632e",
+      "scope": "historical ignored report; not a new test run"
+    },
+    {
+      "path": "bf16-hotfix-control/vectors-core/build/reports/tests/test/Ep76qL6Fnp0/index.html",
+      "sourceWorktree": "vectors-bf16-hotfix",
+      "sourceCommit": "405639cb9e8dff8e9453618ca58a46cdbe8c3c78",
+      "sourcePath": "vectors-core/build/reports/tests/test/Ep76qL6Fnp0/index.html",
+      "bytes": 7548,
+      "sha256": "73bd7fdf86898af8958b819ca3caf2599c53214ff19eb65a58345a3177ed1d03",
+      "scope": "historical ignored report; not a new test run"
+    },
+    {
+      "path": "bf16-hotfix-control/vectors-core/build/reports/tests/test/I46CkaTWsaE/index.html",
+      "sourceWorktree": "vectors-bf16-hotfix",
+      "sourceCommit": "405639cb9e8dff8e9453618ca58a46cdbe8c3c78",
+      "sourcePath": "vectors-core/build/reports/tests/test/I46CkaTWsaE/index.html",
+      "bytes": 2448,
+      "sha256": "30ae865c335762c36cf841fddae5252a92b9b9a6829ece4d9dbda4a6b69e5ab8",
+      "scope": "historical ignored report; not a new test run"
+    },
+    {
+      "path": "bf16-hotfix-control/vectors-core/build/reports/tests/test/css/base-style.css",
+      "sourceWorktree": "vectors-bf16-hotfix",
+      "sourceCommit": "405639cb9e8dff8e9453618ca58a46cdbe8c3c78",
+      "sourcePath": "vectors-core/build/reports/tests/test/css/base-style.css",
+      "bytes": 2449,
+      "sha256": "ae3edaf7d2e0cdfbd9919e0c89fcabbc6c593118515e82a13567005dc10bbf08",
+      "scope": "historical ignored report; not a new test run"
+    },
+    {
+      "path": "bf16-hotfix-control/vectors-core/build/reports/tests/test/css/style.css",
+      "sourceWorktree": "vectors-bf16-hotfix",
+      "sourceCommit": "405639cb9e8dff8e9453618ca58a46cdbe8c3c78",
+      "sourcePath": "vectors-core/build/reports/tests/test/css/style.css",
+      "bytes": 2201,
+      "sha256": "7e5a63bb31295a4a5627ca9d8f8bd463bd91c035577fa2b4d020713936083a08",
+      "scope": "historical ignored report; not a new test run"
+    },
+    {
+      "path": "bf16-hotfix-control/vectors-core/build/reports/tests/test/gXF-XrDBYKs/gWGDcOGvKHo.html",
+      "sourceWorktree": "vectors-bf16-hotfix",
+      "sourceCommit": "405639cb9e8dff8e9453618ca58a46cdbe8c3c78",
+      "sourcePath": "vectors-core/build/reports/tests/test/gXF-XrDBYKs/gWGDcOGvKHo.html",
+      "bytes": 3203,
+      "sha256": "271439490bfcf2b67f892a2159e08f6323e66225feac5cc0fcfcac19e7738fee",
+      "scope": "historical ignored report; not a new test run"
+    },
+    {
+      "path": "bf16-hotfix-control/vectors-core/build/reports/tests/test/gXF-XrDBYKs/index.html",
+      "sourceWorktree": "vectors-bf16-hotfix",
+      "sourceCommit": "405639cb9e8dff8e9453618ca58a46cdbe8c3c78",
+      "sourcePath": "vectors-core/build/reports/tests/test/gXF-XrDBYKs/index.html",
+      "bytes": 4409,
+      "sha256": "b86e0b1ca241aec9e4c7bfb09ab769e443e6856a430dc21e822116567b44ae74",
+      "scope": "historical ignored report; not a new test run"
+    },
+    {
+      "path": "bf16-hotfix-control/vectors-core/build/reports/tests/test/iPkHtDdlZxs/EKSDylUh8OE/index.html",
+      "sourceWorktree": "vectors-bf16-hotfix",
+      "sourceCommit": "405639cb9e8dff8e9453618ca58a46cdbe8c3c78",
+      "sourcePath": "vectors-core/build/reports/tests/test/iPkHtDdlZxs/EKSDylUh8OE/index.html",
+      "bytes": 5446,
+      "sha256": "7d5acaf8734359aec516e3501d336075ef7d04055b013b748b2dc29b53c10385",
+      "scope": "historical ignored report; not a new test run"
+    },
+    {
+      "path": "bf16-hotfix-control/vectors-core/build/reports/tests/test/iPkHtDdlZxs/index.html",
+      "sourceWorktree": "vectors-bf16-hotfix",
+      "sourceCommit": "405639cb9e8dff8e9453618ca58a46cdbe8c3c78",
+      "sourcePath": "vectors-core/build/reports/tests/test/iPkHtDdlZxs/index.html",
+      "bytes": 2526,
+      "sha256": "87b09de3225a06152725fe4567d5ac0ce1316a4ee852519b2f4b1f5e89c7e491",
+      "scope": "historical ignored report; not a new test run"
+    },
+    {
+      "path": "bf16-hotfix-control/vectors-core/build/reports/tests/test/index.html",
+      "sourceWorktree": "vectors-bf16-hotfix",
+      "sourceCommit": "405639cb9e8dff8e9453618ca58a46cdbe8c3c78",
+      "sourcePath": "vectors-core/build/reports/tests/test/index.html",
+      "bytes": 3514,
+      "sha256": "5d844e0a156a150960fabb5cc5cbd27568ea28a7ca7aa9f64f64ba87327f846c",
+      "scope": "historical ignored report; not a new test run"
+    },
+    {
+      "path": "bf16-hotfix-control/vectors-core/build/reports/tests/test/js/report.js",
+      "sourceWorktree": "vectors-bf16-hotfix",
+      "sourceCommit": "405639cb9e8dff8e9453618ca58a46cdbe8c3c78",
+      "sourcePath": "vectors-core/build/reports/tests/test/js/report.js",
+      "bytes": 6718,
+      "sha256": "3aadca4fcf721dca618b54c0e93c93c37884c8d25aa2c9cb92782a3db9ffa605",
+      "scope": "historical ignored report; not a new test run"
+    },
+    {
+      "path": "bf16-hotfix-control/vectors-core/build/reports/tests/test/zrLwy5ZfZuE/8GG592iUxaQ.html",
+      "sourceWorktree": "vectors-bf16-hotfix",
+      "sourceCommit": "405639cb9e8dff8e9453618ca58a46cdbe8c3c78",
+      "sourcePath": "vectors-core/build/reports/tests/test/zrLwy5ZfZuE/8GG592iUxaQ.html",
+      "bytes": 3231,
+      "sha256": "a04cc328a417290bc7ad1ef43fee9200d6a13a54ff8c73a99b121abda37e2d8d",
+      "scope": "historical ignored report; not a new test run"
+    },
+    {
+      "path": "bf16-hotfix-control/vectors-core/build/reports/tests/test/zrLwy5ZfZuE/index.html",
+      "sourceWorktree": "vectors-bf16-hotfix",
+      "sourceCommit": "405639cb9e8dff8e9453618ca58a46cdbe8c3c78",
+      "sourcePath": "vectors-core/build/reports/tests/test/zrLwy5ZfZuE/index.html",
+      "bytes": 2489,
+      "sha256": "35e838d076e3f2ace36cac9444a62100ba8f3b0f33389e661d554258f06f6ed6",
+      "scope": "historical ignored report; not a new test run"
+    },
+    {
+      "path": "bf16-hotfix-control/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.BFloat16MatrixAllocationTest.xml",
+      "sourceWorktree": "vectors-bf16-hotfix",
+      "sourceCommit": "405639cb9e8dff8e9453618ca58a46cdbe8c3c78",
+      "sourcePath": "vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.BFloat16MatrixAllocationTest.xml",
+      "bytes": 517,
+      "sha256": "3b01699e0e5994555a32349b9944b16d5816120c1007f37795d19d912a5da7b0",
+      "scope": "historical ignored report; not a new test run"
+    },
+    {
+      "path": "bf16-hotfix-control/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.BFloat16MatrixColdHotTest.xml",
+      "sourceWorktree": "vectors-bf16-hotfix",
+      "sourceCommit": "405639cb9e8dff8e9453618ca58a46cdbe8c3c78",
+      "sourcePath": "vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.BFloat16MatrixColdHotTest.xml",
+      "bytes": 2033,
+      "sha256": "6409f3e69044c90eff5dcedc74a680d5f034792ee4fc6f4a967f0fd8841880da",
+      "scope": "historical ignored report; not a new test run"
+    },
+    {
+      "path": "bf16-hotfix-control/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.BFloat16MatrixDispatchTest.xml",
+      "sourceWorktree": "vectors-bf16-hotfix",
+      "sourceCommit": "405639cb9e8dff8e9453618ca58a46cdbe8c3c78",
+      "sourcePath": "vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.BFloat16MatrixDispatchTest.xml",
+      "bytes": 1201,
+      "sha256": "0d15575c25fe3c365b5dc1304afd64efdbbaa77db0bc8c00de8feb597b39af10",
+      "scope": "historical ignored report; not a new test run"
+    },
+    {
+      "path": "bf16-hotfix-control/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.BFloat16MatrixTest.xml",
+      "sourceWorktree": "vectors-bf16-hotfix",
+      "sourceCommit": "405639cb9e8dff8e9453618ca58a46cdbe8c3c78",
+      "sourcePath": "vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.BFloat16MatrixTest.xml",
+      "bytes": 2320,
+      "sha256": "1163d6271e6bbbb8c0b87345db69636d4e0d22ef352c203df08d81ffc56d69da",
+      "scope": "historical ignored report; not a new test run"
+    },
+    {
+      "path": "bf16-hotfix-control/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.BFloat16NestedDispatchTest.xml",
+      "sourceWorktree": "vectors-bf16-hotfix",
+      "sourceCommit": "405639cb9e8dff8e9453618ca58a46cdbe8c3c78",
+      "sourcePath": "vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.BFloat16NestedDispatchTest.xml",
+      "bytes": 528,
+      "sha256": "8959aa92a77b58d29c7e738a5074ab30219dbc6329fae1c453ce152bbd845e97",
+      "scope": "historical ignored report; not a new test run"
+    },
+    {
+      "path": "bf16-hotfix-control/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.GgufParallelSupportTest.xml",
+      "sourceWorktree": "vectors-bf16-hotfix",
+      "sourceCommit": "405639cb9e8dff8e9453618ca58a46cdbe8c3c78",
+      "sourcePath": "vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.GgufParallelSupportTest.xml",
+      "bytes": 3572,
+      "sha256": "b96991b25c4873f4d9b8a94c82f3b74940fa7d3e189a48d9fc2ed21135d0cc6c",
+      "scope": "historical ignored report; not a new test run"
+    },
+    {
+      "path": "bf16-hotfix-control/vectors-core/build/test-results/test/binary/output-events.bin",
+      "sourceWorktree": "vectors-bf16-hotfix",
+      "sourceCommit": "405639cb9e8dff8e9453618ca58a46cdbe8c3c78",
+      "sourcePath": "vectors-core/build/test-results/test/binary/output-events.bin",
+      "bytes": 1516,
+      "sha256": "768c22e51e6f01f09ff9824fc06b240128c43a070154131ee9b3ddf0654eded2",
+      "scope": "historical ignored report; not a new test run"
+    },
+    {
+      "path": "bf16-hotfix-control/vectors-core/build/test-results/test/binary/results-generic.bin",
+      "sourceWorktree": "vectors-bf16-hotfix",
+      "sourceCommit": "405639cb9e8dff8e9453618ca58a46cdbe8c3c78",
+      "sourcePath": "vectors-core/build/test-results/test/binary/results-generic.bin",
+      "bytes": 7975,
+      "sha256": "e9370645cbb74bcddc6448b7a3c8e91168ad04d028aacb6791c6c6308f6fe3ff",
+      "scope": "historical ignored report; not a new test run"
+    }
+  ]
+}

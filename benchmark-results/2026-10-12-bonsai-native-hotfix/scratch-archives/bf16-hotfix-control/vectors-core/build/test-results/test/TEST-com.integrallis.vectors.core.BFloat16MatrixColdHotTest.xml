@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.integrallis.vectors.core.BFloat16MatrixColdHotTest" tests="12" skipped="0" failures="0" errors="0" timestamp="2026-10-12T22:53:11.171Z" hostname="Brians-MacBook-Pro.local" time="101.551">
+  <properties/>
+  <testcase name="[1] maxBits=64, rows=48, columns=5120" classname="com.integrallis.vectors.core.BFloat16MatrixColdHotTest" time="26.914"/>
+  <testcase name="[2] maxBits=128, rows=48, columns=5120" classname="com.integrallis.vectors.core.BFloat16MatrixColdHotTest" time="1.905"/>
+  <testcase name="[3] maxBits=256, rows=48, columns=5120" classname="com.integrallis.vectors.core.BFloat16MatrixColdHotTest" time="1.691"/>
+  <testcase name="[4] maxBits=64, rows=5, columns=37" classname="com.integrallis.vectors.core.BFloat16MatrixColdHotTest" time="0.969"/>
+  <testcase name="[5] maxBits=128, rows=5, columns=37" classname="com.integrallis.vectors.core.BFloat16MatrixColdHotTest" time="0.815"/>
+  <testcase name="[6] maxBits=256, rows=5, columns=37" classname="com.integrallis.vectors.core.BFloat16MatrixColdHotTest" time="0.918"/>
+  <testcase name="[7] maxBits=64, rows=8193, columns=37" classname="com.integrallis.vectors.core.BFloat16MatrixColdHotTest" time="26.894"/>
+  <testcase name="[8] maxBits=128, rows=8193, columns=37" classname="com.integrallis.vectors.core.BFloat16MatrixColdHotTest" time="1.593"/>
+  <testcase name="[9] maxBits=256, rows=8193, columns=37" classname="com.integrallis.vectors.core.BFloat16MatrixColdHotTest" time="1.972"/>
+  <testcase name="[10] maxBits=64, rows=512, columns=2048" classname="com.integrallis.vectors.core.BFloat16MatrixColdHotTest" time="33.368"/>
+  <testcase name="[11] maxBits=128, rows=512, columns=2048" classname="com.integrallis.vectors.core.BFloat16MatrixColdHotTest" time="2.974"/>
+  <testcase name="[12] maxBits=256, rows=512, columns=2048" classname="com.integrallis.vectors.core.BFloat16MatrixColdHotTest" time="1.384"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

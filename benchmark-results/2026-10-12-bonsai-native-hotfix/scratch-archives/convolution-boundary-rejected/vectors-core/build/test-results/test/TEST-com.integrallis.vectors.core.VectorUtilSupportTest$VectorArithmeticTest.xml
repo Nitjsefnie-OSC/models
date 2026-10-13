@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.integrallis.vectors.core.VectorUtilSupportTest$VectorArithmeticTest" tests="66" skipped="0" failures="0" errors="0" timestamp="2026-10-12T23:24:24.808Z" hostname="Brians-MacBook-Pro.local" time="1.144">
+  <properties/>
+  <testcase name="dim=1" classname="com.integrallis.vectors.core.VectorUtilSupportTest$VectorArithmeticTest" time="0.191"/>
+  <testcase name="dim=2" classname="com.integrallis.vectors.core.VectorUtilSupportTest$VectorArithmeticTest" time="0.002"/>
+  <testcase name="dim=3" classname="com.integrallis.vectors.core.VectorUtilSupportTest$VectorArithmeticTest" time="0.002"/>
+  <testcase name="dim=4" classname="com.integrallis.vectors.core.VectorUtilSupportTest$VectorArithmeticTest" time="0.001"/>
+  <testcase name="dim=5" classname="com.integrallis.vectors.core.VectorUtilSupportTest$VectorArithmeticTest" time="0.001"/>
+  <testcase name="dim=7" classname="com.integrallis.vectors.core.VectorUtilSupportTest$VectorArithmeticTest" time="0.002"/>
+  <testcase name="dim=8" classname="com.integrallis.vectors.core.VectorUtilSupportTest$VectorArithmeticTest" time="0.06"/>
+  <testcase name="dim=9" classname="com.integrallis.vectors.core.VectorUtilSupportTest$VectorArithmeticTest" time="0.002"/>
+  <testcase name="dim=15" classname="com.integrallis.vectors.core.VectorUtilSupportTest$VectorArithmeticTest" time="0.002"/>
+  <testcase name="dim=16" classname="com.integrallis.vectors.core.VectorUtilSupportTest$VectorArithmeticTest" time="0.005"/>
+  <testcase name="dim=17" classname="com.integrallis.vectors.core.VectorUtilSupportTest$VectorArithmeticTest" time="0.003"/>
+  <testcase name="dim=31" classname="com.integrallis.vectors.core.VectorUtilSupportTest$VectorArithmeticTest" time="0.005"/>
+  <testcase name="dim=32" classname="com.integrallis.vectors.core.VectorUtilSupportTest$VectorArithmeticTest" time="0.005"/>
+  <testcase name="dim=33" classname="com.integrallis.vectors.core.VectorUtilSupportTest$VectorArithmeticTest" time="0.008"/>
+  <testcase name="dim=63" classname="com.integrallis.vectors.core.VectorUtilSupportTest$VectorArithmeticTest" time="0.005"/>
+  <testcase name="dim=64" classname="com.integrallis.vectors.core.VectorUtilSupportTest$VectorArithmeticTest" time="0.005"/>
+  <testcase name="dim=65" classname="com.integrallis.vectors.core.VectorUtilSupportTest$VectorArithmeticTest" time="0.005"/>
+  <testcase name="dim=127" classname="com.integrallis.vectors.core.VectorUtilSupportTest$VectorArithmeticTest" time="0.007"/>
+  <testcase name="dim=128" classname="com.integrallis.vectors.core.VectorUtilSupportTest$VectorArithmeticTest" time="0.007"/>
+  <testcase name="dim=129" classname="com.integrallis.vectors.core.VectorUtilSupportTest$VectorArithmeticTest" time="0.006"/>
+  <testcase name="dim=255" classname="com.integrallis.vectors.core.VectorUtilSupportTest$VectorArithmeticTest" time="0.008"/>
+  <testcase name="dim=256" classname="com.integrallis.vectors.core.VectorUtilSupportTest$VectorArithmeticTest" time="0.006"/>
+  <testcase name="dim=257" classname="com.integrallis.vectors.core.VectorUtilSupportTest$VectorArithmeticTest" time="0.009"/>
+  <testcase name="dim=300" classname="com.integrallis.vectors.core.VectorUtilSupportTest$VectorArithmeticTest" time="0.008"/>
+  <testcase name="dim=384" classname="com.integrallis.vectors.core.VectorUtilSupportTest$VectorArithmeticTest" time="0.007"/>
+  <testcase name="dim=511" classname="com.integrallis.vectors.core.VectorUtilSupportTest$VectorArithmeticTest" time="0.007"/>
+  <testcase name="dim=512" classname="com.integrallis.vectors.core.VectorUtilSupportTest$VectorArithmeticTest" time="0.007"/>
+  <testcase name="dim=513" classname="com.integrallis.vectors.core.VectorUtilSupportTest$VectorArithmeticTest" time="0.005"/>
+  <testcase name="dim=768" classname="com.integrallis.vectors.core.VectorUtilSupportTest$VectorArithmeticTest" time="0.008"/>
+  <testcase name="dim=1023" classname="com.integrallis.vectors.core.VectorUtilSupportTest$VectorArithmeticTest" time="0.007"/>
+  <testcase name="dim=1024" classname="com.integrallis.vectors.core.VectorUtilSupportTest$VectorArithmeticTest" time="0.008"/>
+  <testcase name="dim=1025" classname="com.integrallis.vectors.core.VectorUtilSupportTest$VectorArithmeticTest" time="0.008"/>
+  <testcase name="dim=1536" classname="com.integrallis.vectors.core.VectorUtilSupportTest$VectorArithmeticTest" time="0.009"/>
+  <testcase name="dim=1" classname="com.integrallis.vectors.core.VectorUtilSupportTest$VectorArithmeticTest" time="0.015"/>
+  <testcase name="dim=2" classname="com.integrallis.vectors.core.VectorUtilSupportTest$VectorArithmeticTest" time="0.001"/>
+  <testcase name="dim=3" classname="com.integrallis.vectors.core.VectorUtilSupportTest$VectorArithmeticTest" time="0.002"/>
+  <testcase name="dim=4" classname="com.integrallis.vectors.core.VectorUtilSupportTest$VectorArithmeticTest" time="0.001"/>
+  <testcase name="dim=5" classname="com.integrallis.vectors.core.VectorUtilSupportTest$VectorArithmeticTest" time="0.002"/>
+  <testcase name="dim=7" classname="com.integrallis.vectors.core.VectorUtilSupportTest$VectorArithmeticTest" time="0.001"/>
+  <testcase name="dim=8" classname="com.integrallis.vectors.core.VectorUtilSupportTest$VectorArithmeticTest" time="0.039"/>
+  <testcase name="dim=9" classname="com.integrallis.vectors.core.VectorUtilSupportTest$VectorArithmeticTest" time="0.003"/>
+  <testcase name="dim=15" classname="com.integrallis.vectors.core.VectorUtilSupportTest$VectorArithmeticTest" time="0.003"/>
+  <testcase name="dim=16" classname="com.integrallis.vectors.core.VectorUtilSupportTest$VectorArithmeticTest" time="0.005"/>
+  <testcase name="dim=17" classname="com.integrallis.vectors.core.VectorUtilSupportTest$VectorArithmeticTest" time="0.004"/>
+  <testcase name="dim=31" classname="com.integrallis.vectors.core.VectorUtilSupportTest$VectorArithmeticTest" time="0.006"/>
+  <testcase name="dim=32" classname="com.integrallis.vectors.core.VectorUtilSupportTest$VectorArithmeticTest" time="0.007"/>
+  <testcase name="dim=33" classname="com.integrallis.vectors.core.VectorUtilSupportTest$VectorArithmeticTest" time="0.007"/>
+  <testcase name="dim=63" classname="com.integrallis.vectors.core.VectorUtilSupportTest$VectorArithmeticTest" time="0.009"/>
+  <testcase name="dim=64" classname="com.integrallis.vectors.core.VectorUtilSupportTest$VectorArithmeticTest" time="0.011"/>
+  <testcase name="dim=65" classname="com.integrallis.vectors.core.VectorUtilSupportTest$VectorArithmeticTest" time="0.009"/>
+  <testcase name="dim=127" classname="com.integrallis.vectors.core.VectorUtilSupportTest$VectorArithmeticTest" time="0.02"/>
+  <testcase name="dim=128" classname="com.integrallis.vectors.core.VectorUtilSupportTest$VectorArithmeticTest" time="0.015"/>
+  <testcase name="dim=129" classname="com.integrallis.vectors.core.VectorUtilSupportTest$VectorArithmeticTest" time="0.014"/>
+  <testcase name="dim=255" classname="com.integrallis.vectors.core.VectorUtilSupportTest$VectorArithmeticTest" time="0.021"/>
+  <testcase name="dim=256" classname="com.integrallis.vectors.core.VectorUtilSupportTest$VectorArithmeticTest" time="0.023"/>
+  <testcase name="dim=257" classname="com.integrallis.vectors.core.VectorUtilSupportTest$VectorArithmeticTest" time="0.019"/>
+  <testcase name="dim=300" classname="com.integrallis.vectors.core.VectorUtilSupportTest$VectorArithmeticTest" time="0.021"/>
+  <testcase name="dim=384" classname="com.integrallis.vectors.core.VectorUtilSupportTest$VectorArithmeticTest" time="0.026"/>
+  <testcase name="dim=511" classname="com.integrallis.vectors.core.VectorUtilSupportTest$VectorArithmeticTest" time="0.027"/>
+  <testcase name="dim=512" classname="com.integrallis.vectors.core.VectorUtilSupportTest$VectorArithmeticTest" time="0.026"/>
+  <testcase name="dim=513" classname="com.integrallis.vectors.core.VectorUtilSupportTest$VectorArithmeticTest" time="0.026"/>
+  <testcase name="dim=768" classname="com.integrallis.vectors.core.VectorUtilSupportTest$VectorArithmeticTest" time="0.036"/>
+  <testcase name="dim=1023" classname="com.integrallis.vectors.core.VectorUtilSupportTest$VectorArithmeticTest" time="0.042"/>
+  <testcase name="dim=1024" classname="com.integrallis.vectors.core.VectorUtilSupportTest$VectorArithmeticTest" time="0.037"/>
+  <testcase name="dim=1025" classname="com.integrallis.vectors.core.VectorUtilSupportTest$VectorArithmeticTest" time="0.032"/>
+  <testcase name="dim=1536" classname="com.integrallis.vectors.core.VectorUtilSupportTest$VectorArithmeticTest" time="0.034"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[Oct 12, 2026 4:24:24 PM com.integrallis.vectors.core.PanamaVectorUtilSupportProvider create
+INFO: vectors-core: Using Panama Vector API SIMD provider (vector bits: 256)
+Oct 12, 2026 4:24:25 PM com.integrallis.vectors.core.VectorizationProvider logActiveToggles
+INFO: vectors-core: provider=PanamaVectorUtilSupport panama=true maxBits=256 preferredBits=256 fastVectorFMA=true fastScalarFMA=true sve=false ggufParallel=true ggufParallelThreshold=1048576 ggufExecutor=persistent ggufThreads=12 ggufChunksPerThread=2 mappedKQuantLongOffsets=auto(q4=true,q5=false,q6=false) q4ShortPairwiseSupported=true q4UnsignedPairwiseSupported=true toggles=[(defaults — no -Dvectors.* overrides)]
+]]></system-err>
+</testsuite>

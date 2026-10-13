@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.integrallis.vectors.core.GgufQuantizedDotTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2026-10-12T23:24:31.291Z" hostname="Brians-MacBook-Pro.local" time="0.436">
+  <properties/>
+  <testcase name="q8_0BlockRangeActivationQuantizationMatchesWholeBatchExactly()" classname="com.integrallis.vectors.core.GgufQuantizedDotTest" time="0.032"/>
+  <testcase name="q5_KQ8_KBatchDotProduct_matchesQuantizedActivationReferenceWithMins()" classname="com.integrallis.vectors.core.GgufQuantizedDotTest" time="0.044"/>
+  <testcase name="blockMajorQ8_0ActivationLayoutMatchesPackedWholeAndSplitQuantizationExactly()" classname="com.integrallis.vectors.core.GgufQuantizedDotTest" time="0.021"/>
+  <testcase name="quantizedBatchDotRejectsAnActivationShorterThanCols()" classname="com.integrallis.vectors.core.GgufQuantizedDotTest" time="0.011"/>
+  <testcase name="quantizedBatchDotAcceptsAnOversizedActivationBuffer()" classname="com.integrallis.vectors.core.GgufQuantizedDotTest" time="0.066"/>
+  <testcase name="q4_0BlockRangeActivationQuantizationMatchesWholeBatchExactly()" classname="com.integrallis.vectors.core.GgufQuantizedDotTest" time="0.254"/>
+  <testcase name="blockMajorQ8_0RowsRequireExplicitBlockMajorActivationStorage()" classname="com.integrallis.vectors.core.GgufQuantizedDotTest" time="0.002"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
