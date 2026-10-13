@@ -60,7 +60,7 @@ jobs:
           import hashlib, os, pathlib, tarfile, urllib.request
           path = pathlib.Path('payload.tar.gz')
           urllib.request.urlretrieve(os.environ['PAYLOAD_URL'], path)
-          assert hashlib.sha256(path.read_bytes()).hexdigest() == '5d55124154a61c17b74cbf0c86c0518dc35acb5310606a8eb870370784216613'
+          assert hashlib.sha256(path.read_bytes()).hexdigest() == '1b4f818bbc8de4fff3c52411bf971aba7e71e9306cb5bc25a60aa78008f049c1'
           pathlib.Path('harness').mkdir()
           with tarfile.open(path) as archive:
               archive.extractall('harness', filter='data')
