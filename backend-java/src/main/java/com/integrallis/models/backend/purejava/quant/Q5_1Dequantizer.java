@@ -60,6 +60,10 @@ public final class Q5_1Dequantizer implements Dequantizer {
   @Override
   public void dequantize(MemorySegment src, long srcOffset, float[] dst, int dstOffset, int count) {
     DequantizationChecks.validate(src, srcOffset, dst, dstOffset, count, BLOCK_SIZE, BLOCK_BYTES);
+    if (IntVector.SPECIES_PREFERRED.vectorBitSize() < 256) {
+      dequantizeNarrow(src, srcOffset, dst, dstOffset, count);
+      return;
+    }
     int numBlocks = count / BLOCK_SIZE;
     for (int block = 0; block < numBlocks; block++) {
       long blockOffset = srcOffset + (long) block * BLOCK_BYTES;
@@ -97,5 +101,54 @@ public final class Q5_1Dequantizer implements Dequantizer {
             .intoArray(dst, outIdx + 16 + offset);
       }
     }
+  }
+
+  // Four weights per native 128-bit vector avoid emulated 256-bit temporary objects.
+  // Read exactly four packed bytes: the final group ends at the block boundary.
+  private static void dequantizeNarrow(
+      MemorySegment src, long srcOffset, float[] dst, int dstOffset, int count) {
+    for (int block = 0; block < count / BLOCK_SIZE; block++) {
+      long base = srcOffset + (long) block * BLOCK_BYTES;
+      float scale = Float16.toFloat(src.get(LE_SHORT, base)),
+          minimum = Float16.toFloat(src.get(LE_SHORT, base + 2));
+      int high = src.get(LE_INT, base + 4), output = dstOffset + block * BLOCK_SIZE;
+      for (int n = 0; n < 16; n += 4) {
+        var packed =
+            IntVector.broadcast(IntVector.SPECIES_128, src.get(LE_INT, base + 8 + n))
+                .lanewise(VectorOperators.LSHR, Narrow.BYTE_SHIFTS);
+        var plane = IntVector.broadcast(IntVector.SPECIES_128, high >>> n);
+        var low =
+            packed
+                .and(15)
+                .or(
+                    plane
+                        .lanewise(VectorOperators.LSHR, Narrow.BIT_LANES)
+                        .and(1)
+                        .lanewise(VectorOperators.LSHL, 4));
+        var upper =
+            packed
+                .lanewise(VectorOperators.LSHR, 4)
+                .and(15)
+                .or(
+                    plane
+                        .lanewise(VectorOperators.LSHR, Narrow.HIGH_BIT_LANES)
+                        .and(1)
+                        .lanewise(VectorOperators.LSHL, 4));
+        ((FloatVector) low.convertShape(VectorOperators.I2F, FloatVector.SPECIES_128, 0))
+            .mul(scale)
+            .add(minimum)
+            .intoArray(dst, output + n);
+        ((FloatVector) upper.convertShape(VectorOperators.I2F, FloatVector.SPECIES_128, 0))
+            .mul(scale)
+            .add(minimum)
+            .intoArray(dst, output + 16 + n);
+      }
+    }
+  }
+
+  private static final class Narrow {
+    static final IntVector BIT_LANES = IntVector.zero(IntVector.SPECIES_128).addIndex(1);
+    static final IntVector HIGH_BIT_LANES = BIT_LANES.add(16);
+    static final IntVector BYTE_SHIFTS = BIT_LANES.mul(8);
   }
 }
