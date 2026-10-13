@@ -1,6 +1,6 @@
-import json,math,random,statistics,sys
+import json,math,random,statistics,sys,os
 from pathlib import Path
-P=json.loads((Path(__file__).parent/'protocol.json').read_text())
+P=json.loads((Path(__file__).parent/os.environ.get('PINNED_WIDTH_PROTOCOL','protocol.json')).read_text())
 def interval(values,limit):
  rng=random.Random(P['bootstrapSeed'])
  if all(v==0 for v in values):return {'ratio':0.0,'ci95':[0.0,0.0],'gate':True}
@@ -26,7 +26,8 @@ def analyze(root):
     for size in P['shapes']:
      rows=[r for r in records if r['kind']=='measure' and r['size']==size]
      assert sorted(r['block'] for r in rows)==list(range(5))
-     assert all(r['calls']==1000 for r in rows)
+     assert all(r['calls']==P.get('measuredCallsByKernel',{}).get(kernel,{}).get(str(size),1000) for r in rows)
+     assert all(r['nanos']>=P.get('minimumBlockNanos',0) for r in rows),'declared minimum timing block not reached'
      arms[arm][size]={k:statistics.mean(r[k]/r['calls'] for r in rows) for k in ('nanos','bytes')}
    assert signatures[0]==signatures[1],'numeric difference in timed observations'
    for size in P['shapes']:

@@ -26,7 +26,9 @@ public final class WidthBench {
     ALLOC.setThreadAllocatedMemoryEnabled(true);
     String kernel=args[0];long thread=Thread.currentThread().threadId();
     System.out.println("{\"kind\":\"host\",\"preferredBits\":"+FloatVector.SPECIES_PREFERRED.vectorBitSize()+",\"kernel\":\""+kernel+"\"}");
+    int shapeIndex=0;
     for(int size:new int[]{896,1536,4096,4864}) {
+      int calls=args.length>1 ? Integer.parseInt(args[1].split(",")[shapeIndex++]) : 1000;
       Random random=new Random(80217+size);float[] a=new float[size],b=new float[size];observed=a;
       for(int n=0;n<size;n++){a[n]=random.nextFloat()-0.5f;b[n]=random.nextFloat()-0.5f;}
       byte[] bytes=new byte[size/32*24];random.nextBytes(bytes);
@@ -40,9 +42,9 @@ public final class WidthBench {
       for(int n=0;n<20000;n++)sink=Float.floatToRawIntBits(invoke(kernel,a,b,memory,n));
       for(int block=0;block<5;block++) {
         allocated=ALLOC.getThreadAllocatedBytes(thread);start=System.nanoTime();
-        for(int n=0;n<1000;n++)sink=Float.floatToRawIntBits(invoke(kernel,a,b,memory,n));
+        for(int n=0;n<calls;n++)sink=Float.floatToRawIntBits(invoke(kernel,a,b,memory,n));
         long elapsed=System.nanoTime()-start,count=ALLOC.getThreadAllocatedBytes(thread)-allocated;
-        System.out.println("{\"kind\":\"measure\",\"size\":"+size+",\"block\":"+block+",\"calls\":1000,\"nanos\":"+elapsed+",\"bytes\":"+count+",\"checksum\":"+sink+"}");
+        System.out.println("{\"kind\":\"measure\",\"size\":"+size+",\"block\":"+block+",\"calls\":"+calls+",\"nanos\":"+elapsed+",\"bytes\":"+count+",\"checksum\":"+sink+"}");
       }
       ByteBuffer output=ByteBuffer.allocate(size*4).order(ByteOrder.LITTLE_ENDIAN);for(float x:a)output.putInt(Float.floatToRawIntBits(x));
       String hash=HexFormat.of().formatHex(MessageDigest.getInstance("SHA-256").digest(output.array()));

@@ -27,4 +27,11 @@ class AnalysisTest(unittest.TestCase):
  def test_numeric_change_rejected(self):
   p=self.root/'dot-0-candidate.stdout';p.write_text(p.read_text().replace('"checksum": 52','"checksum": 53',1))
   with self.assertRaises(AssertionError):a.analyze(self.root)
+ def test_short_duration_block_rejected(self):
+  original=a.P
+  try:
+   a.P={**original,'minimumBlockNanos':200000000}
+   (self.root/'provenance.json').write_text(json.dumps({'protocol':a.P}))
+   with self.assertRaises(AssertionError):a.analyze(self.root)
+  finally:a.P=original
 if __name__=='__main__':unittest.main()

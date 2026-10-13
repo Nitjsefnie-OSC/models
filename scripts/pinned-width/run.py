@@ -1,7 +1,7 @@
 import hashlib,json,os,platform,subprocess,sys,time
 from pathlib import Path
 HERE=Path(__file__).resolve().parent
-P=json.loads((HERE/'protocol.json').read_text())
+P=json.loads((HERE/os.environ.get('PINNED_WIDTH_PROTOCOL','protocol.json')).read_text())
 ROOT=HERE.parent.parent
 
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
@@ -38,7 +38,7 @@ def pair(out,kernel,index):
  signatures=[]
  for arm in (('baseline','candidate') if index%2==0 else ('candidate','baseline')):
   prefix=out/f'{kernel}-{index}-{arm}'
-  run(['/usr/bin/time','-v','java','--add-modules','jdk.incubator.vector','--enable-native-access=ALL-UNNAMED','-Xms256m','-Xmx2g','-cp',str(out/kernel/arm),'WidthBench',kernel],prefix)
+  run(['/usr/bin/time','-v','java','--add-modules','jdk.incubator.vector','--enable-native-access=ALL-UNNAMED','-Xms256m','-Xmx2g','-cp',str(out/kernel/arm),'WidthBench',kernel,*([','.join(str(P['measuredCallsByKernel'][kernel][str(size)]) for size in P['shapes'])] if 'measuredCallsByKernel' in P else [])],prefix)
   records=[json.loads(l) for l in prefix.with_suffix('.stdout').read_text().splitlines() if l.startswith('{')]
   assert len([r for r in records if r['kind']=='measure'])==20
   signatures.append({'outputs':[r for r in records if r['kind']=='output'],'blocks':[(r['size'],r['block'],r['checksum']) for r in records if r['kind']=='measure']})

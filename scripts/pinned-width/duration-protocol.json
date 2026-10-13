@@ -1,0 +1,42 @@
+{
+  "scope": "Prospective x86 fixed-call timing confirmation; counts frozen from completed short-block diagnostic, no optional stopping or pooling",
+  "baselineRevision": "4f3d3e9a548bf3781ab3d002ff37df0875760e49",
+  "dotRevision": "440557495d7ddabf607956654554d13a1034023b",
+  "decoderRevision": "9d57f248c99ee14d0ffb96a82106c76d3fd60b10",
+  "pairs": 12,
+  "warmCallsPerShape": 20000,
+  "blocksPerShape": 5,
+  "callsPerBlock": 1000,
+  "shapes": [
+    896,
+    1536,
+    4096,
+    4864
+  ],
+  "jdk": "25.0.3",
+  "bootstrapResamples": 20000,
+  "bootstrapSeed": 309021,
+  "latencyRatioMaximum": 1.0,
+  "allocationRatioMaximum": 1.01,
+  "maximumIntervalWidth": 0.02,
+  "countSelection": {
+    "previousRun": 38340726518,
+    "rule": "For each kernel/shape, ceil(500000000 / minimum observed nanoseconds per call /64)*64 from all 12 completed x86 pairs, both arms and all blocks",
+    "minimumAcceptedBlockNanos": 200000000
+  },
+  "minimumBlockNanos": 200000000,
+  "measuredCallsByKernel": {
+    "dot": {
+      "896": 4058112,
+      "1536": 3577792,
+      "4096": 2066048,
+      "4864": 1565760
+    },
+    "decoder": {
+      "896": 1998528,
+      "1536": 1300160,
+      "4096": 575552,
+      "4864": 485696
+    }
+  }
+}
