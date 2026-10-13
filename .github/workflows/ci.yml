@@ -84,7 +84,9 @@ jobs:
       # others can fail -- a guard that cannot detect its own defect reports green and everyone
       # stops looking, which has already happened here.
       - name: Check cited evidence exists
-        run: python3 scripts/integrity/check-evidence-references.py
+        run: |
+          python3 -m unittest discover -s scripts/integrity -p 'test_*.py'
+          python3 scripts/integrity/check-evidence-references.py
 
       - name: Check no workflow duplicates a shared setup step
         run: python3 scripts/integrity/check-workflow-duplication.py

@@ -26,7 +26,10 @@ import pathlib
 import re
 import sys
 
-REFERENCE = re.compile(r"((?:benchmark-results|experiments)/[A-Za-z0-9_][A-Za-z0-9_./-]*)")
+# Match whole directory names, never a suffix such as "rejected-experiments/" in an external
+# archive name. Relative citations (../experiments/...) must still be checked.
+REFERENCE = re.compile(
+    r"(?<![A-Za-z0-9_-])((?:benchmark-results|experiments)/[A-Za-z0-9_][A-Za-z0-9_./-]*)")
 # A reference whose last segment is a bare prefix is prose describing a family of directories
 # ("benchmark-results/certified-*"), not a citation of one file.
 PROSE_TAIL = re.compile(r"[-/]$")

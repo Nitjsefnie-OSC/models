@@ -21,8 +21,10 @@ No model marker is promoted merely because a library build passes.
 ## 2. Publish and verify Vectors
 
 Finish PR #100 with the qualified final Bonsai/BF16 source, changelog, full build/compliance,
-supported-host checks and dry-run release. Preserve PR #98's broader audit and experimental
-evidence during consolidation; it is not an independently qualified release. Merge the final
+supported-host checks and dry-run release. PR #98 is now closed in favor of PR #100; its complete
+history and experimental evidence are preserved in the verified external
+`audit-artifacts/branch-consolidation-2026-10-13/vectors-pr98.bundle` archive. Closure is branch
+consolidation, not release qualification. Merge the final
 runtime source through passing CI. Dispatch `release.yml`
 with `dry_run=true`; once it passes for the exact release source, dispatch `dry_run=false` with
 `skip_deploy=false`. Do not use GitHub-release-only mode to stand in for Central publication.

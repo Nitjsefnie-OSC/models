@@ -70,5 +70,7 @@ test. Full raw supported-host logs are retained under
 `s3://models-qual-077051030817/results/gdn-proof-.../` prefixes.
 `raw-files.sha256` indexes retained files. `paired-summary.json` records explicit
 ratio direction and bootstraps entire process-pair clusters (10,000 draws,
-seed 724). The archived `experiments/q5-proof/analyze-results.py` regenerates it
-when run inside the extracted historical campaign environment. No failed candidate or incomplete phase is a release pass.
+seed 724). The archived Q5 analysis script, `analyze-results.py`, regenerates it
+when run inside the extracted historical campaign environment described in the
+[archive provenance](../../docs/findings/historical-experiment-decisions.md#archive-provenance).
+No failed candidate or incomplete phase is a release pass.
