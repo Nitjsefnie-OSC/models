@@ -44,6 +44,22 @@ unresolved. The diagnostic correctly failed its overall gate. Final qualificatio
 must compare the current artifact with the published release, preserving every
 original observation and limit.
 
+## Unresolved cold activation cost
+
+The first uncompiled convolution call allocates about 22 MB with the corrected
+exact activation versus about 5 MB with the published implementation. Local JFR
+and caller-thread allocation controls attribute most of the gap to transient
+Vector API objects before compilation. This remains an observed resource
+regression under the release plan; no prototype has been adopted to resolve it.
+
+The frozen whole-model allocation gate measures warmed requests. Passing that
+metric, or model-load timing, would not establish that this separate cold cost
+is fixed. There is no independently frozen numerical convolution-allocation
+threshold to relabel as failed. The original whole-model metrics retain their
+limits, and the release plan's broader resource blocker remains explicit.
+Evidence and rejected controls are retained in
+`benchmark-results/2026-10-12-bonsai-native-hotfix/cold-activation-attribution/`.
+
 ## Confirmed failure
 
 Models' normal dependency graph resolves Vectors 0.1.29. The unchanged native Bonsai
