@@ -1,0 +1,37 @@
+name: Q51 decoder block boundary screen
+on:
+  push:
+    branches: [fix/qwen-precision-proof]
+    paths: [.github/workflows/q51-block-boundary.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  diagnostic:
+    strategy:
+      fail-fast: false
+      matrix:
+        runner: [ubuntu-24.04, ubuntu-24.04-arm]
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 20
+    steps:
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '25.0.3'
+      - name: Fetch immutable external control
+        env:
+          PAYLOAD_URL: ${{ secrets.Q51_BLOCK_BOUNDARY_URL }}
+        run: |
+          curl --fail --silent --show-error --location "$PAYLOAD_URL" -o payload.tar.gz
+          echo "70f2e1e249c37f2e4500d24e82bda55ea9c9d0fd743559ac4e94b2e7424ff1e7  payload.tar.gz" | sha256sum -c -
+          tar -xzf payload.tar.gz
+      - name: Fixed paired public decoder measurements
+        run: python3 payload/run.py
+      - name: Retain all observations
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: q51-block-${{ matrix.runner }}
+          path: evidence/
+          retention-days: 30
