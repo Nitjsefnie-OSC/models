@@ -1,0 +1,22 @@
+{
+  "scope": "Independent synthetic public-kernel diagnosis, not whole-model or release qualification",
+  "baselineRevision": "4f3d3e9a548bf3781ab3d002ff37df0875760e49",
+  "dotRevision": "440557495d7ddabf607956654554d13a1034023b",
+  "decoderRevision": "9d57f248c99ee14d0ffb96a82106c76d3fd60b10",
+  "pairs": 12,
+  "warmCallsPerShape": 20000,
+  "blocksPerShape": 5,
+  "callsPerBlock": 1000,
+  "shapes": [
+    896,
+    1536,
+    4096,
+    4864
+  ],
+  "jdk": "25.0.3",
+  "bootstrapResamples": 20000,
+  "bootstrapSeed": 309021,
+  "latencyRatioMaximum": 1.0,
+  "allocationRatioMaximum": 1.01,
+  "maximumIntervalWidth": 0.02
+}
