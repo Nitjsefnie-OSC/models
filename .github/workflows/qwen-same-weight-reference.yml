@@ -1,4 +1,4 @@
-name: Pinned Qwen same-weight official reference
+name: Complete148-case Qwen same-weight official reference
 on:
   push:
     branches: [fix/qwen-precision-proof]
@@ -24,6 +24,28 @@ jobs:
           echo '797517a81d4cd3c7e0f91d1eb494e2a4b41a535c16b2d58d940c9e0ce113e92e  payload.tar.gz' | sha256sum -c -
           tar -xzf payload.tar.gz
           python payload/prepare.py 2>&1 | tee evidence/prepare.log
+      - name: Fetch complete unchanged148-case diagnostic campaign
+        env:
+          CAMPAIGN_URL: ${{ secrets.QWEN_SAME_WEIGHT_REFERENCE_FULL_URL }}
+        run: |
+          set -euo pipefail
+          curl --fail --silent --show-error --location "$CAMPAIGN_URL" -o campaign.tar.gz
+          echo 'bd5611f78162d8d7cc889d7d1f1f4065bedd81f3e7b07a4e6b85dc885413320d  campaign.tar.gz' | sha256sum -c -
+          tar -xzf campaign.tar.gz
+          python - <<'PYCODE'
+          import hashlib,json,pathlib
+          root=pathlib.Path('campaign')
+          for name,expected in json.loads((root/'manifest.json').read_text()).items():
+              assert hashlib.sha256((root/name).read_bytes()).hexdigest()==expected,name
+          requests=json.loads((root/'requests.json').read_text())
+          protocol=json.loads((root/'protocol.json').read_text())
+          assert len(requests)==148 and [x['id'] for x in requests]==protocol['requests']
+          PYCODE
+          cp campaign/protocol.json evidence/full-protocol.json
+          cp campaign/manifest.json evidence/full-manifest.json
+          cp campaign/requests.json evidence/full-requests.json
+          cp campaign/tasks.json evidence/full-tasks.json
+          cp campaign/reference.py evidence/full-reference.py
       - name: Install pinned CPU reference dependencies
         run: |
           set -euo pipefail
@@ -33,12 +55,12 @@ jobs:
           python -m pip freeze > evidence/python-packages.txt
           lscpu > evidence/cpu.txt
           free -b > evidence/memory.txt
-      - name: Run two frozen requests through the official same-weight graph
+      - name: Run all148 frozen requests through the official same-weight graph
         run: |
           set -euo pipefail
-          timeout 1800s python -u payload/reference.py 2>&1 | tee evidence/reference.log
+          timeout 1800s python -u campaign/reference.py 2>&1 | tee evidence/reference.log
       - uses: actions/upload-artifact@v7
         if: always()
         with:
-          name: qwen-same-weight-reference
+          name: qwen-same-weight-reference-full
           path: evidence/
