@@ -27,7 +27,7 @@ def main():
  a=argparse.ArgumentParser();a.add_argument('phase',choices=['prepare','java','native','analyze']);a.add_argument('--model',required=True);a.add_argument('--models',type=Path,required=True);a.add_argument('--core',type=Path,required=True);a.add_argument('--out',type=Path,required=True);args=a.parse_args()
  out=args.out.resolve();out.mkdir(parents=True,exist_ok=True);model=next(x for x in P['models'] if x['architecture']==args.model)
  runtime=out/'runtime'; weights=out/'model.gguf'
- native=args.models.resolve()/'backend-native/rust/target/release/libjmodels_kernels.so'
+ native=args.models.resolve()/'backend-native/build/rust-target/release/libjmodels_kernels.so'
  if args.phase=='prepare':
   assert subprocess.check_output(['git','-C',str(args.models),'rev-parse','HEAD'],text=True).strip()==P['modelsRevision']
   assert sha(args.core)==P['vectorsSha256']
