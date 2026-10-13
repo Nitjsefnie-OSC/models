@@ -1,0 +1,81 @@
+name: Qwen independent complete-pipeline numerical replay
+on:
+  push:
+    branches: [fix/qwen-precision-proof]
+    paths: [.github/workflows/qwen-operation-contract-replay.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  replay:
+    strategy:
+      fail-fast: false
+      matrix:
+        case: [easy-intent-00, easy-intent-10]
+    runs-on: ubuntu-24.04-arm
+    timeout-minutes: 60
+    env:
+      OMP_NUM_THREADS: '4'
+      OPENBLAS_NUM_THREADS: '1'
+    steps:
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install fixed numerical array dependency
+        run: python -m pip install numpy==2.2.6
+      - name: Fetch immutable independently implemented replay
+        env:
+          PAYLOAD_URL: ${{ secrets.QWEN_OPERATION_REPLAY_URL }}
+        run: |
+          set -euo pipefail
+          curl --fail --silent --show-error --location "$PAYLOAD_URL" -o replay.tar.gz
+          echo '3b3c8d39062cd04be6cab88aefa921071822542919df5fdf62fec2a085cffae6  replay.tar.gz' | sha256sum -c -
+          python3 - <<'PYCODE'
+          import tarfile
+          with tarfile.open('replay.tar.gz') as t:t.extractall('.',filter='data')
+          PYCODE
+      - name: Recover fixed successful original-runtime capture
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh run download 38461032618 --repo integrallis/models --name qwen-operation-contract-manifest --dir capture-manifest
+          gh run download 38461032618 --repo integrallis/models --name qwen-operation-contract-plain --dir capture-plain
+          gh run download 38461032618 --repo integrallis/models --name qwen-operation-contract-observer --dir capture-observer
+          python3 replay-payload/run.py prepare ${{ matrix.case }}
+      - name: Exact packed activation quantization and projection reduction
+        run: python3 replay-payload/run.py projections ${{ matrix.case }}
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: qwen-operation-replay-${{ matrix.case }}-projections
+          path: replay-out/
+      - name: Exact recurrent state update and independent FP64 formula
+        if: always()
+        run: python3 replay-payload/run.py recurrence ${{ matrix.case }}
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: qwen-operation-replay-${{ matrix.case }}-recurrence
+          path: replay-out/recurrence*
+      - name: Convolution and activation contracts
+        if: always()
+        run: python3 replay-payload/run.py activations ${{ matrix.case }}
+      - name: Normalization residual history and attention contracts
+        if: always()
+        run: python3 replay-payload/run.py basic ${{ matrix.case }}
+      - name: Stored embeddings and complete attention graph connections
+        if: always()
+        run: python3 replay-payload/run.py graph ${{ matrix.case }}
+      - name: Report every discrepancy without changing accuracy bounds
+        if: always()
+        run: python3 replay-payload/summarize.py
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: qwen-operation-replay-${{ matrix.case }}-complete
+          path: |
+            replay-out/
+            replay-payload/files.json
+            replay-payload/PROTOCOL.md
+            replay-payload/*preflight*.json
