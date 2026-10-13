@@ -93,6 +93,32 @@ Raw component records and summaries remain outside the repositories at
 follow-up has its own run identity. The earlier masked-load and scalar controls
 remain rejected diagnostic evidence, never production alternatives.
 
+## Generated x86 code correspondence
+
+The [separate compiler diagnostic](https://github.com/integrallis/models/actions/runs/38342470170)
+compiles the same public controls with the same JDK and retains all generated
+C2 code. Full output hashes agree. It does not enable LogCompilation, but its
+assembly-print instrumentation still means it is diagnostic evidence, not a
+measurement of the uninstrumented timing forks.
+
+The public dot method and its wide vector body have the same instruction
+sequence after explicitly normalizing process-specific pointers, relative
+constant-pool addresses and in-method branch destinations. Their code sizes
+are 1,448 and 1,168 bytes respectively; the additional hardware selection does
+not survive in the x86 hot implementation. The decoder likewise removes that
+selection and retains its 4,568-byte, 1,012-instruction implementation and all
+arithmetic counts. One unrolled body has different register assignment and
+instruction scheduling, so the decoder is not claimed to be byte-identical.
+Neither diagnostic contains a new allocation/fallback route in the wide hot
+implementation. The failed statistical gates above remain unresolved.
+
+Raw assembly, source/class hashes, numerical records and the explicit
+normalization comparison remain under
+`audit-artifacts/2026-10-13-activation/pinned-width-compiler-38342470170/`.
+The preceding capture's parser failure from asynchronous VM/Java stdout
+interleaving is retained under `pinned-width-compiler-38342317952`; the corrected
+capture writes numerical records to a separate file.
+
 ## Remaining release gates
 
 The composed implementation still needs the full Q5_1 logits, task-quality,
