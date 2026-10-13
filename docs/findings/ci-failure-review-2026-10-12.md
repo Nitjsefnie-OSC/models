@@ -93,5 +93,5 @@ model weights, binaries or credential material found during the scoped inspectio
 [verification-summary.json](../../benchmark-results/2026-10-12-runtime-cleanup/ci-failure-review/huatuo-candidate-github-38316803282/verification-summary.json)
 records SHA-256 hashes and sizes for the original files, the verified repeated-logit checks,
 and fetched GitHub job conclusions/source revisions. It also records hashes and parsed counts
-for the already retained [expanded Bonsai artifacts](../../benchmark-results/2026-10-12-bonsai-native-hotfix/combined-expanded-github-38323006687/).
-Raw reports and prior failed/timed-out receipts remain unchanged.
+for the already retained [expanded Bonsai historical summary and archive index](../../benchmark-results/2026-10-12-bonsai-native-hotfix/README.md).
+Raw reports and prior failed/timed-out receipts remain byte-preserved; superseded Bonsai raw payloads are externalized with per-file hashes and the original Git revision in that archive index.

@@ -1,0 +1,1486 @@
+{
+  "scope": "Complete superseded Bonsai correction and qualification history; includes successes, failures, unresolved precision and prior archive pointers. No current runtime or acceptance gate is removed.",
+  "sourceRevision": "6bbde0833fcf46de11bbb285c95c07cb5c9cf506",
+  "originalRepositoryPath": "benchmark-results/2026-10-12-bonsai-native-hotfix",
+  "archiveWorkspacePath": "audit-artifacts/2026-10-13-bonsai-history/bonsai-history.tar.gz",
+  "archiveSha256": "39bbd945fecc6632252e6f51af171b353199155a4425544b4abda9b8a17603e8",
+  "archiveBytes": 871344,
+  "files": [
+    {
+      "path": "ablation-summary.json",
+      "sha256": "3667956bd741fb684e2f9d906c66c262fc06f544ab2fc090b8aa4ad3656e504a",
+      "bytes": 7571
+    },
+    {
+      "path": "all-activation-github-38321333816/bonsai-upstream-ubuntu-24.04/reports/bonsai-upstream.json",
+      "sha256": "8f2cd59be27de3dfc0aee425f59471f6783d16fb9c0a6b6e5f68353c838043e0",
+      "bytes": 4127
+    },
+    {
+      "path": "all-activation-github-38321333816/bonsai-upstream-ubuntu-24.04/reports/tests/bonsai2NativeSlowTest/T7G_aSdyZHw/2Did58Yqp-8.html",
+      "sha256": "100f40a76711422107c7020ab0a8932c4580b549bb8891714eef8b46a9ff115a",
+      "bytes": 3401
+    },
+    {
+      "path": "all-activation-github-38321333816/bonsai-upstream-ubuntu-24.04/reports/tests/bonsai2NativeSlowTest/T7G_aSdyZHw/9aFQ9MiSfrc.html",
+      "sha256": "8677a7925ab01bdf7602b15a49a66b0a96f098fee51bb7847f464602670b3a7c",
+      "bytes": 2886
+    },
+    {
+      "path": "all-activation-github-38321333816/bonsai-upstream-ubuntu-24.04/reports/tests/bonsai2NativeSlowTest/T7G_aSdyZHw/index.html",
+      "sha256": "a29eeea2f9396553654c33d9fdcb09c08e174aaef9effe3b7364a2252677d667",
+      "bytes": 2926
+    },
+    {
+      "path": "all-activation-github-38321333816/bonsai-upstream-ubuntu-24.04/reports/tests/bonsai2NativeSlowTest/css/base-style.css",
+      "sha256": "ae3edaf7d2e0cdfbd9919e0c89fcabbc6c593118515e82a13567005dc10bbf08",
+      "bytes": 2449
+    },
+    {
+      "path": "all-activation-github-38321333816/bonsai-upstream-ubuntu-24.04/reports/tests/bonsai2NativeSlowTest/css/style.css",
+      "sha256": "7e5a63bb31295a4a5627ca9d8f8bd463bd91c035577fa2b4d020713936083a08",
+      "bytes": 2201
+    },
+    {
+      "path": "all-activation-github-38321333816/bonsai-upstream-ubuntu-24.04/reports/tests/bonsai2NativeSlowTest/index.html",
+      "sha256": "b18f7af98eafe9a5caeac8a987e7425df5cc038cc2c1453a821cb6d15b7d79eb",
+      "bytes": 2323
+    },
+    {
+      "path": "all-activation-github-38321333816/bonsai-upstream-ubuntu-24.04/reports/tests/bonsai2NativeSlowTest/js/report.js",
+      "sha256": "3aadca4fcf721dca618b54c0e93c93c37884c8d25aa2c9cb92782a3db9ffa605",
+      "bytes": 6718
+    },
+    {
+      "path": "all-activation-github-38321333816/bonsai-upstream-ubuntu-24.04/test-results/bonsai2NativeSlowTest/TEST-com.integrallis.models.backend.nativekernel.Bonsai2NativeModelFixtureSlowTest.xml",
+      "sha256": "0fa3bc26f0d4f808420ef511e6e7ebc185d048466d13c4d31f3937012ad4c2ba",
+      "bytes": 1724
+    },
+    {
+      "path": "all-activation-github-38321333816/bonsai-upstream-ubuntu-24.04/test-results/bonsai2NativeSlowTest/binary/output-events.bin",
+      "sha256": "98ef3c30e1bcc2a6826139bb2dc09d5b8a18645310bc720025e2f86954b1a2a9",
+      "bytes": 1096
+    },
+    {
+      "path": "all-activation-github-38321333816/bonsai-upstream-ubuntu-24.04/test-results/bonsai2NativeSlowTest/binary/results-generic.bin",
+      "sha256": "968ea4b739dba54a30759a83fdbb60ab427b0a4e6313f3ff3cde799728274d47",
+      "bytes": 666
+    },
+    {
+      "path": "all-activation-github-38321333816/bonsai-upstream-ubuntu-24.04-arm/reports/bonsai-upstream.json",
+      "sha256": "8f2cd59be27de3dfc0aee425f59471f6783d16fb9c0a6b6e5f68353c838043e0",
+      "bytes": 4127
+    },
+    {
+      "path": "all-activation-github-38321333816/bonsai-upstream-ubuntu-24.04-arm/reports/tests/bonsai2NativeSlowTest/T7G_aSdyZHw/2Did58Yqp-8.html",
+      "sha256": "929b7a294c6822116a14ff6ccca9ac2f1c7cbcac64ed7c14895f76954783e7e1",
+      "bytes": 3336
+    },
+    {
+      "path": "all-activation-github-38321333816/bonsai-upstream-ubuntu-24.04-arm/reports/tests/bonsai2NativeSlowTest/T7G_aSdyZHw/9aFQ9MiSfrc.html",
+      "sha256": "0462b94aad88c0da4d3e2cf3dce1a664179ec6a8c3f7a2219cb3305516046607",
+      "bytes": 2886
+    },
+    {
+      "path": "all-activation-github-38321333816/bonsai-upstream-ubuntu-24.04-arm/reports/tests/bonsai2NativeSlowTest/T7G_aSdyZHw/index.html",
+      "sha256": "f8e8150cb480ec054600600049183e3d378e4be53c0c89c9f1e11392bea120c7",
+      "bytes": 2926
+    },
+    {
+      "path": "all-activation-github-38321333816/bonsai-upstream-ubuntu-24.04-arm/reports/tests/bonsai2NativeSlowTest/css/base-style.css",
+      "sha256": "ae3edaf7d2e0cdfbd9919e0c89fcabbc6c593118515e82a13567005dc10bbf08",
+      "bytes": 2449
+    },
+    {
+      "path": "all-activation-github-38321333816/bonsai-upstream-ubuntu-24.04-arm/reports/tests/bonsai2NativeSlowTest/css/style.css",
+      "sha256": "7e5a63bb31295a4a5627ca9d8f8bd463bd91c035577fa2b4d020713936083a08",
+      "bytes": 2201
+    },
+    {
+      "path": "all-activation-github-38321333816/bonsai-upstream-ubuntu-24.04-arm/reports/tests/bonsai2NativeSlowTest/index.html",
+      "sha256": "fc5324058b1b333a30d330d7e50ec7f4490e5c510f665f8100722e06dd472eec",
+      "bytes": 2323
+    },
+    {
+      "path": "all-activation-github-38321333816/bonsai-upstream-ubuntu-24.04-arm/reports/tests/bonsai2NativeSlowTest/js/report.js",
+      "sha256": "3aadca4fcf721dca618b54c0e93c93c37884c8d25aa2c9cb92782a3db9ffa605",
+      "bytes": 6718
+    },
+    {
+      "path": "all-activation-github-38321333816/bonsai-upstream-ubuntu-24.04-arm/test-results/bonsai2NativeSlowTest/TEST-com.integrallis.models.backend.nativekernel.Bonsai2NativeModelFixtureSlowTest.xml",
+      "sha256": "3138a537071e841e674fff199f82e2407ec7551b67f513614bf6138cf0aa6648",
+      "bytes": 1658
+    },
+    {
+      "path": "all-activation-github-38321333816/bonsai-upstream-ubuntu-24.04-arm/test-results/bonsai2NativeSlowTest/binary/output-events.bin",
+      "sha256": "e43a115f6dbc1870b40ae4817441a97b1c30641f00f9ad3b0a2bc463f7ee4183",
+      "bytes": 1031
+    },
+    {
+      "path": "all-activation-github-38321333816/bonsai-upstream-ubuntu-24.04-arm/test-results/bonsai2NativeSlowTest/binary/results-generic.bin",
+      "sha256": "fed28733a7bdf0738acf6bc0474c27f28c1217009b0513148788818be6776c77",
+      "bytes": 666
+    },
+    {
+      "path": "bf16-kernel-38319356761/REPORT.md",
+      "sha256": "c1fde8c8b5423c8bbf5f9ce7f75a5743fe4ee02fb03700ddcc1326a6e8cfff1e",
+      "bytes": 2813
+    },
+    {
+      "path": "bf16-kernel-38319356761/SCOPE.md",
+      "sha256": "834a74fd524d4c7cf326a7931c413239c17531cf58f9dd71bffb7a42a4581a76",
+      "bytes": 1005
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-arm/candidate/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.BFloat16MatrixAllocationTest.xml",
+      "sha256": "74d558d83edfb0102751a1c888186eb43d553c5a4dc74bd42eac004a4878491c",
+      "bytes": 504
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-arm/candidate/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.BFloat16MatrixColdHotTest.xml",
+      "sha256": "32be59b0c737bd699d0c50a413409091377bc5f44254ece1038d3a57502cf3a3",
+      "bytes": 2016
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-arm/candidate/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.BFloat16MatrixDispatchTest.xml",
+      "sha256": "d75207e7ae02e634f61ea88901d710e5e106cbd98e8a3d41052433459fb31e37",
+      "bytes": 1193
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-arm/candidate/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.BFloat16MatrixTest.xml",
+      "sha256": "b0eb95a5bec39b397888922490518b56ba280ab86cb7757b50f019275c01f38b",
+      "bytes": 1622
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-arm/candidate/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.BFloat16NestedDispatchTest.xml",
+      "sha256": "3f79228c48cf54f8f8e24b95462c0eb2ad3bca94d47e8862efffd0439a634512",
+      "bytes": 518
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-arm/candidate/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.GgufParallelSupportTest.xml",
+      "sha256": "f869a344fc51caab5ae294683fd534628355970f54c198aa4ff1b572043b63c5",
+      "bytes": 3557
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-arm/evidence/analysis.json",
+      "sha256": "a6a48b71393de05d4555354707e104b562c4e4573ee96123668a61a08e4863cd",
+      "bytes": 9432
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-arm/evidence/commands.json",
+      "sha256": "a7e5b9d36f1b3a33c976282004b3c865d374b4285e572361563fed23b9c95750",
+      "bytes": 21619
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-arm/evidence/compile-unchanged-benchmark.log",
+      "sha256": "009db4d37f7f8c4e9a542d7b8510d729f2134bd0cc00175a81512538b120bc3d",
+      "bytes": 295
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-arm/evidence/host.txt",
+      "sha256": "c6ac8f02055ef21d541d082447daa60fbf9af6f2685068af7d6f951420f06a79",
+      "bytes": 2661
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-arm/evidence/manifest.json",
+      "sha256": "881e0116fa94f2d007eebace2a325f1907930a7ba755bdd325b4f306cafdc19b",
+      "bytes": 1330
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-arm/evidence/pair0-baseline.json",
+      "sha256": "ff80c97867f22a3f0cc1f29d03462af75b0acaffbf3ceced7b67f193abd595cc",
+      "bytes": 32733
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-arm/evidence/pair0-baseline.log",
+      "sha256": "30fcab5118c0ecce4d7ed79108e407b1498662a1085749c4fb3970b8abdaeaed",
+      "bytes": 29788
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-arm/evidence/pair0-candidate.json",
+      "sha256": "3ad1a3b5ad0c7623baf6bc03f87faf888447c1ffee16609e25d64d4e8fd2d357",
+      "bytes": 31700
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-arm/evidence/pair0-candidate.log",
+      "sha256": "063dc77c36e1d1f818429fed2e39c532221e1d68eb760ac255878ee560da0974",
+      "bytes": 28276
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-arm/evidence/pair1-baseline.json",
+      "sha256": "f92df553b90db3d77aa345f3675c7554920291067588d6be4f9273aa8111525c",
+      "bytes": 33313
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-arm/evidence/pair1-baseline.log",
+      "sha256": "b59aa883a0fd00eb3805f05ab99f9b94bbbcd057a693a15585b9379d1093fc80",
+      "bytes": 29782
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-arm/evidence/pair1-candidate.json",
+      "sha256": "f4c70e2ac41a504f54dc76801f8fba6937ff2004f10ce4bf7536638054fe0b6f",
+      "bytes": 31696
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-arm/evidence/pair1-candidate.log",
+      "sha256": "66bedd889047ee11745f697c11846b5ecb55c33e2afab57f823036a30023e314",
+      "bytes": 28278
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-arm/evidence/pair10-baseline.json",
+      "sha256": "cbc518cbd602ae9a56e0bd31c04108be5c58d9beee1e594402cc4e8a72a5d4f2",
+      "bytes": 33054
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-arm/evidence/pair10-baseline.log",
+      "sha256": "8ab8da6d296ab04438c5422c3edc554d67f90b4e166886bc1ac8b423ea6ce676",
+      "bytes": 29816
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-arm/evidence/pair10-candidate.json",
+      "sha256": "e3896430f86cfc1e6eed4de1dec55bfdde764b32f33e284333dc7b378e94f813",
+      "bytes": 31666
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-arm/evidence/pair10-candidate.log",
+      "sha256": "3e7f2e51694a0b990c47c04fff5356184d6c6409241c9163b6c4e95d26075d4a",
+      "bytes": 28311
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-arm/evidence/pair11-baseline.json",
+      "sha256": "934c1cbe6c2e4060248d6ff3b3539cc931d63e43c778ecc86d7068c23cb3372d",
+      "bytes": 32882
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-arm/evidence/pair11-baseline.log",
+      "sha256": "fbe96da983f288faf2191a7091b9ecccf7c307d4b0c6f1414a4b0d04c8fe1f57",
+      "bytes": 29819
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-arm/evidence/pair11-candidate.json",
+      "sha256": "78b1957f22ee8087456f7dbd981e6a5626202647d09c6389abe3ae3b3fc981c2",
+      "bytes": 31693
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-arm/evidence/pair11-candidate.log",
+      "sha256": "7f2920350ba1d456b6d898393a661b688c3368da63b4daf527cfbea884f8aa88",
+      "bytes": 28309
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-arm/evidence/pair2-baseline.json",
+      "sha256": "77bbd11c1700803aeee31b6cc83aeaecba3355aa0e468c8a63852f25db9b774c",
+      "bytes": 32982
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-arm/evidence/pair2-baseline.log",
+      "sha256": "92ba9bb118923224b241dca1c65600e860daa8b9b788a76931564483e8ff6463",
+      "bytes": 29815
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-arm/evidence/pair2-candidate.json",
+      "sha256": "7f6a4dc9b17629289ab08b2395ab1ba1e9938918db82949275a5e02c6f9dbcbf",
+      "bytes": 31604
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-arm/evidence/pair2-candidate.log",
+      "sha256": "708dd9fbc02cf80b7ff07963c9d062e2a317540d3c634668fcf2a2d7c6d07ca6",
+      "bytes": 28279
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-arm/evidence/pair3-baseline.json",
+      "sha256": "431a3ba30aee54a559d93b9d5e681af9bf75349d39219e2149bf908b8f473afa",
+      "bytes": 32986
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-arm/evidence/pair3-baseline.log",
+      "sha256": "9fcbd84aca2d6a5baf3cb133b1a4f0614fbc78b418db21492f80c35dc450ba25",
+      "bytes": 29815
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-arm/evidence/pair3-candidate.json",
+      "sha256": "d74815723599230223b78d72d1a06f572ae3de3a3a426b4579d33b6c2231ffb0",
+      "bytes": 31702
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-arm/evidence/pair3-candidate.log",
+      "sha256": "143b5fbf199d8ad1fdb81c778ec065b898f5e85e6ef20480158c31af817abcd8",
+      "bytes": 28279
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-arm/evidence/pair4-baseline.json",
+      "sha256": "f79b27635cfd9d41dd07d756cc0b8f7e9a6d46770ae0a49aa2980c10af4079ce",
+      "bytes": 32956
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-arm/evidence/pair4-baseline.log",
+      "sha256": "baad99433c3d68cd4147f6a3718a50f017dbacc992c35bf807614ead00a9d80e",
+      "bytes": 29815
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-arm/evidence/pair4-candidate.json",
+      "sha256": "9235bcf351662602d41c82760710989be481330089799d23083130b3df401f86",
+      "bytes": 31701
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-arm/evidence/pair4-candidate.log",
+      "sha256": "9da2a08b5faa475db30d05de3e08fc68911dfdf9864d75567be6102013cd0374",
+      "bytes": 28279
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-arm/evidence/pair5-baseline.json",
+      "sha256": "c7dcf9f794a190a1ed18d3f0d06067ad42c7a51dfcd596144a746dc46058eb2f",
+      "bytes": 33059
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-arm/evidence/pair5-baseline.log",
+      "sha256": "1740d72b320b9aaadf43372d4c971beb6f15f30a88c5b535e9b59e938b4463ec",
+      "bytes": 29818
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-arm/evidence/pair5-candidate.json",
+      "sha256": "f439afbb02c36bf361dceaef3958571763865ac559e6972d5664010300263e25",
+      "bytes": 31660
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-arm/evidence/pair5-candidate.log",
+      "sha256": "f85323ae3d139abfc64b772661911a2d900f5616f08c57a11a4f98e465192864",
+      "bytes": 28276
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-arm/evidence/pair6-baseline.json",
+      "sha256": "5431eb99feebd8c15478b5caf03b01568516ac38dec1c1e218b7f9fd3af193e3",
+      "bytes": 32999
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-arm/evidence/pair6-baseline.log",
+      "sha256": "fe5fdc23797af7e14abe627054457296112b95a7926fe404c5cbbce083193942",
+      "bytes": 29817
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-arm/evidence/pair6-candidate.json",
+      "sha256": "61a31fa25d3b5b31f2a0dd5074ed4a9a11348c6aca4975209a13230efe1508d2",
+      "bytes": 31644
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-arm/evidence/pair6-candidate.log",
+      "sha256": "98165189bb9716329e22d03d2a95b3871d3f0e1220e3fa6fcc3cdb44e59532c0",
+      "bytes": 28304
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-arm/evidence/pair7-baseline.json",
+      "sha256": "20c00fb1630edb4ab0ef1cb69f090162cf363ea9ad7b3553e7dc5657b3888984",
+      "bytes": 32915
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-arm/evidence/pair7-baseline.log",
+      "sha256": "0bcdfd39c1268556898f6a02e09b7d58f27fea4aa16f9bf504405e4c3722639f",
+      "bytes": 29817
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-arm/evidence/pair7-candidate.json",
+      "sha256": "7b53783d96af1fdd3ef646750daa61e69be50f3f1a199306b4560014d8963c36",
+      "bytes": 31644
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-arm/evidence/pair7-candidate.log",
+      "sha256": "33cc6dcf6126200d101d2836e56456e9fad94598a1ffc4c50c82a5ebe7bd6a32",
+      "bytes": 28313
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-arm/evidence/pair8-baseline.json",
+      "sha256": "888ddda08a345f95e14b771efab0fb0b871af664f1977b87ff7bf67f411ad5c9",
+      "bytes": 32994
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-arm/evidence/pair8-baseline.log",
+      "sha256": "57fc813c0fe993ad40466ae1ad456ee105cb8fc607a0e022cbc2a61622a258a2",
+      "bytes": 29816
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-arm/evidence/pair8-candidate.json",
+      "sha256": "f1c1eda1b3946fc605a837154f6f5d002e7d4384557b60e48fa1c4463383b701",
+      "bytes": 31627
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-arm/evidence/pair8-candidate.log",
+      "sha256": "8db983862bf13c80058a4df56959377434634ae3c714a7a4ae358ba62b434aee",
+      "bytes": 28279
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-arm/evidence/pair9-baseline.json",
+      "sha256": "bb25ce4232ef14239bf11f59df62e40cb6d636fa212ce87051862323cb48ad2e",
+      "bytes": 33023
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-arm/evidence/pair9-baseline.log",
+      "sha256": "8269a8fbf503e306c9e0c34e184bb2c33ddecc8c474b88e2c1be794f74c54574",
+      "bytes": 29789
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-arm/evidence/pair9-candidate.json",
+      "sha256": "aabaa3dcf7bdfdd1e74a16e3b13387901412f3a64c0a1e3281ded21cafd7a683",
+      "bytes": 31697
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-arm/evidence/pair9-candidate.log",
+      "sha256": "790b69c5e65d48b75589aa313bac631335cf796ef54111baa0bc1c549e9b0267",
+      "bytes": 28279
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-x86/candidate/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.BFloat16MatrixAllocationTest.xml",
+      "sha256": "567cde1cbbdd041c50d6c77c14a9b7843cc8d7a21b58a74994feeaf5b64dee1e",
+      "bytes": 504
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-x86/candidate/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.BFloat16MatrixColdHotTest.xml",
+      "sha256": "f0b3879d4edb9e42836ed284a44bfc0bf955c16920f0bae3921601dcc5252c94",
+      "bytes": 2017
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-x86/candidate/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.BFloat16MatrixDispatchTest.xml",
+      "sha256": "05cdbe81f5cf2466c39bd5dadc95232b4e3c1955d3819d218f4a9813dbea5c39",
+      "bytes": 1191
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-x86/candidate/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.BFloat16MatrixTest.xml",
+      "sha256": "48aea56d36d2cf24b2770fc532d33f6c24ec19e91929d6ec4878134f4b325ea0",
+      "bytes": 1626
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-x86/candidate/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.BFloat16NestedDispatchTest.xml",
+      "sha256": "1cbafeab846d91e7f645904cccb8b65034cf3636f50945ff9c09fa5961953028",
+      "bytes": 518
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-x86/candidate/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.GgufParallelSupportTest.xml",
+      "sha256": "3a3b235ae0523814295af2a75ac4b4086e74fb868cf3f03f7517ca479db87d6e",
+      "bytes": 3562
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-x86/evidence/analysis.json",
+      "sha256": "b956ee812f32763a977cfb4f29d19a44d6a12c98dd20625b7e44e7c6ea774e90",
+      "bytes": 9422
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-x86/evidence/commands.json",
+      "sha256": "6ffb3b1235eb68b70231700dfd83159dd4247154caada7f179f543c8933869fd",
+      "bytes": 21619
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-x86/evidence/compile-unchanged-benchmark.log",
+      "sha256": "009db4d37f7f8c4e9a542d7b8510d729f2134bd0cc00175a81512538b120bc3d",
+      "bytes": 295
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-x86/evidence/host.txt",
+      "sha256": "4ff0450a1b6506afdf6088d7081c5cd93ab5bf9fe66da1b21aba08fe5a3fa3bc",
+      "bytes": 3493
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-x86/evidence/manifest.json",
+      "sha256": "881e0116fa94f2d007eebace2a325f1907930a7ba755bdd325b4f306cafdc19b",
+      "bytes": 1330
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-x86/evidence/pair0-baseline.json",
+      "sha256": "685d97ebe4d4feafacf3e27616eed71f875370af8d98d008e4b56237b91033a8",
+      "bytes": 33295
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-x86/evidence/pair0-baseline.log",
+      "sha256": "0e5109e6afc0a52806e47eea2e63ff14dae8ed4096e3f2019b300303bb9b15de",
+      "bytes": 29815
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-x86/evidence/pair0-candidate.json",
+      "sha256": "905c2eef5ef8b593e59d51a1d28d68126a281f465f0cd711c5b5fb64fef8f26c",
+      "bytes": 32334
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-x86/evidence/pair0-candidate.log",
+      "sha256": "2f084b3e6bea44fc520bc3e565675444c79b1da634114ac3cb40b4c754cd55e9",
+      "bytes": 28916
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-x86/evidence/pair1-baseline.json",
+      "sha256": "7930764152b835ad3ffcd8d235249cfbe8bd2b89ed9bbc2166596b98907bec65",
+      "bytes": 33227
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-x86/evidence/pair1-baseline.log",
+      "sha256": "f9257491b676707b9d935b63ada61fa0131d983630750ea770a03986be87ed5e",
+      "bytes": 29736
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-x86/evidence/pair1-candidate.json",
+      "sha256": "fbd27692e569557d3d7eac37b80d6025b5237c0298c81ff2a93381f46dc2804a",
+      "bytes": 32372
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-x86/evidence/pair1-candidate.log",
+      "sha256": "d016e3b8bdfe606cfa2752eecab41210dce3b8760f819a9e3ba34ef4a29d8895",
+      "bytes": 28919
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-x86/evidence/pair10-baseline.json",
+      "sha256": "6ce0acb446424b6579ae520edfeaf02c581114f6f3c7651e8f822e89af3c0c06",
+      "bytes": 33038
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-x86/evidence/pair10-baseline.log",
+      "sha256": "f2c533b02e205ca1426d7179b0be0b8e76d1d48764cf0f2c091f4dd7170abaf1",
+      "bytes": 29787
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-x86/evidence/pair10-candidate.json",
+      "sha256": "f603592fbdaa9e220ee68ced75125353657a623b1ef406d6af170a0e306fde1b",
+      "bytes": 32420
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-x86/evidence/pair10-candidate.log",
+      "sha256": "e4602a50112d01734770decd1a63d87bd079f9a3842363da9c256a17f6b7d16a",
+      "bytes": 28889
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-x86/evidence/pair11-baseline.json",
+      "sha256": "ef0f12053e049b5d20758039b848f018d51098dca351da16970879360bfc2497",
+      "bytes": 33295
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-x86/evidence/pair11-baseline.log",
+      "sha256": "f13fb52b6efcf8e4a8c257654536b0073b5e09366e7397d33132bc2f4a46c069",
+      "bytes": 29809
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-x86/evidence/pair11-candidate.json",
+      "sha256": "d378c6c7eeb0e9dd4d539984aec46b3cfb68947eb672a8213702ff60a28be58e",
+      "bytes": 32330
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-x86/evidence/pair11-candidate.log",
+      "sha256": "3defb90762d8ea77a4e22145ec0623058ca01014cc7cc62ccbfabb54d5a06a12",
+      "bytes": 28918
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-x86/evidence/pair2-baseline.json",
+      "sha256": "35a51e22f20f561af2ad4cc159adfbaa17e144a8f23284e7fb157f9370095f36",
+      "bytes": 33040
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-x86/evidence/pair2-baseline.log",
+      "sha256": "d2bfb9b64ceecee2fc3bc7d4b9b11cd3a400ef507c7cf63c6d348b4adb71aeab",
+      "bytes": 29786
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-x86/evidence/pair2-candidate.json",
+      "sha256": "96f2b4227a11e4bcb98dbf57f3f13ab46a61093292487e25404fcc925c451433",
+      "bytes": 32242
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-x86/evidence/pair2-candidate.log",
+      "sha256": "8dd2dd2374bee492cba65b9378e801cb2f131e1eb77601693050953660a896b2",
+      "bytes": 28915
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-x86/evidence/pair3-baseline.json",
+      "sha256": "02d3b08f3d5cacc112e4cf418913d11863e74654cdeeb56fa3415fea187a204b",
+      "bytes": 33151
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-x86/evidence/pair3-baseline.log",
+      "sha256": "6cf52d7b88a44710f49828062cb9a84e3c03ca0756ce5859bb2ce58777321c17",
+      "bytes": 29784
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-x86/evidence/pair3-candidate.json",
+      "sha256": "b0b3ed2d07586832b077d384180a18673bdc136776a675e81e34e5b0836eaf01",
+      "bytes": 32262
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-x86/evidence/pair3-candidate.log",
+      "sha256": "1ea360a0be85a2a8acdb45c0062ee00a9376829477117bdbeba31f0e51362aa1",
+      "bytes": 28847
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-x86/evidence/pair4-baseline.json",
+      "sha256": "7b913f7296ff4773e78c3370b6baab3b6633f24c443c2b690645d06bc8185576",
+      "bytes": 33306
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-x86/evidence/pair4-baseline.log",
+      "sha256": "b401f3d24ee525d7e44faca3f45debfa84efd2efbecdedb443e96e242eea9252",
+      "bytes": 29810
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-x86/evidence/pair4-candidate.json",
+      "sha256": "7b931206c44ef854af77455b021e8b61843dce99d16ebfe1a82aecf18072b1b7",
+      "bytes": 32296
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-x86/evidence/pair4-candidate.log",
+      "sha256": "282ca35081028831ce50ceed24c896e99991128ef202be47d1947c60f80e136d",
+      "bytes": 28914
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-x86/evidence/pair5-baseline.json",
+      "sha256": "1638f73feb915471c61a589e25642f19b34b0748bf22f243812ead60f62047bf",
+      "bytes": 33299
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-x86/evidence/pair5-baseline.log",
+      "sha256": "1a332ee2be29958561a1f8d790d58b594fb36c71c12a549757c85aaa4d604e1e",
+      "bytes": 29788
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-x86/evidence/pair5-candidate.json",
+      "sha256": "76736863aac601da5a0514bb0574587920326871181bb67347cfa4cea961125d",
+      "bytes": 32380
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-x86/evidence/pair5-candidate.log",
+      "sha256": "ac7464f6f8db0bbcce3adabe42d23a4b97e0a1a6a532aa7c66acfa713c91e0f9",
+      "bytes": 28889
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-x86/evidence/pair6-baseline.json",
+      "sha256": "d94db1ff5adbd3263919ce4964773821ef093544773df95a82799fd9f6c8f0fe",
+      "bytes": 33247
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-x86/evidence/pair6-baseline.log",
+      "sha256": "02d4b54de9ced48a1e12f09be7b28275e126d47edb7bc92af85180026ad87425",
+      "bytes": 29782
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-x86/evidence/pair6-candidate.json",
+      "sha256": "f401c13bdf9ce48a84f43b7e34faf7e35ce56d1e2e34312cc1852a01cde4aaab",
+      "bytes": 32280
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-x86/evidence/pair6-candidate.log",
+      "sha256": "e8035cb1303daf5a80886ebbfd10d8d62bb76114bdbe0c110895c7dc40b35e85",
+      "bytes": 28915
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-x86/evidence/pair7-baseline.json",
+      "sha256": "0caa37814580f844301200558474d05edc19efa9feb9d4ecbdad81263d085947",
+      "bytes": 32876
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-x86/evidence/pair7-baseline.log",
+      "sha256": "6e8cc7fe129aa6ea6d6a3aee18323035c3b3703e0edfb9306392271e87c38b26",
+      "bytes": 29739
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-x86/evidence/pair7-candidate.json",
+      "sha256": "c3d60cfdf288bf080390ddb681d40ed7d15466777a88e7fbcb4d3beca0334b7b",
+      "bytes": 32294
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-x86/evidence/pair7-candidate.log",
+      "sha256": "a9991abcaaee334db29b71345c2ec8c398b8effc91f29651eeac27a227dad994",
+      "bytes": 28888
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-x86/evidence/pair8-baseline.json",
+      "sha256": "835bae9b10d9545868485567d7d9ae229b7186d1e80e31af3a6bceaca4a52220",
+      "bytes": 33205
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-x86/evidence/pair8-baseline.log",
+      "sha256": "d15f0573d5cc7ce645e1d42f4018408f076cba14bfe393b52d47593de61acf03",
+      "bytes": 29762
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-x86/evidence/pair8-candidate.json",
+      "sha256": "1da40c340ec4d5ca4610d6e815aef51fd278b56c9abb6aed64c6c4eba41a6558",
+      "bytes": 32144
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-x86/evidence/pair8-candidate.log",
+      "sha256": "ae3842ee3003d516106ad17da9aed6c4f0f511392559b854e822d8bc501e9ee9",
+      "bytes": 28887
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-x86/evidence/pair9-baseline.json",
+      "sha256": "cd7dc017e43f4fe23f9b4775d5236f61bcbb1dfb8bd48ffde0ead1cc4682b055",
+      "bytes": 33243
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-x86/evidence/pair9-baseline.log",
+      "sha256": "a33057b7b8333b74efe6888a2e6993a0ab048e56d6202befa7639fc6ce880cbb",
+      "bytes": 29786
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-x86/evidence/pair9-candidate.json",
+      "sha256": "dd7825427557f0fe60805b08dd50c01e5464c3c75fce9974bfa4b660e79ac543",
+      "bytes": 32291
+    },
+    {
+      "path": "bf16-kernel-38319356761/bf16-hotfix-x86/evidence/pair9-candidate.log",
+      "sha256": "94cbc85abdd1537f369de4e7ebf0ae28db6161e1c63bf438ad1d8b85adab5ca7",
+      "bytes": 28889
+    },
+    {
+      "path": "bf16-kernel-38319356761/receipt-sha256.json",
+      "sha256": "c65ab641dc9bcbf85176bf968bfa954d2ce279df9b08d268f131cc073f9f2ba6",
+      "bytes": 25650
+    },
+    {
+      "path": "bf16-only-github-38319438508/bonsai-upstream-ubuntu-24.04/reports/bonsai-upstream.json",
+      "sha256": "f83834aeeb7638994a640934acb2d0ef7e235df5d05d64dd8177b641bd9db8bb",
+      "bytes": 4127
+    },
+    {
+      "path": "bf16-only-github-38319438508/bonsai-upstream-ubuntu-24.04/reports/tests/bonsai2NativeSlowTest/T7G_aSdyZHw/2Did58Yqp-8.html",
+      "sha256": "e0676ed66c7dc5da4f75b1cd1ead51dc30716ca66dfd0da3885b5d5fd86287f7",
+      "bytes": 3401
+    },
+    {
+      "path": "bf16-only-github-38319438508/bonsai-upstream-ubuntu-24.04/reports/tests/bonsai2NativeSlowTest/T7G_aSdyZHw/9aFQ9MiSfrc.html",
+      "sha256": "24e66241d99243da81ac8c19835ede3845a6bc097ecc6f9eb69bb95978c272ec",
+      "bytes": 3651
+    },
+    {
+      "path": "bf16-only-github-38319438508/bonsai-upstream-ubuntu-24.04/reports/tests/bonsai2NativeSlowTest/T7G_aSdyZHw/index.html",
+      "sha256": "afbc9524116c4af8e3de7d9c16d2ad2f05dad6764116254d5c909dfbafc7842f",
+      "bytes": 3672
+    },
+    {
+      "path": "bf16-only-github-38319438508/bonsai-upstream-ubuntu-24.04/reports/tests/bonsai2NativeSlowTest/css/base-style.css",
+      "sha256": "ae3edaf7d2e0cdfbd9919e0c89fcabbc6c593118515e82a13567005dc10bbf08",
+      "bytes": 2449
+    },
+    {
+      "path": "bf16-only-github-38319438508/bonsai-upstream-ubuntu-24.04/reports/tests/bonsai2NativeSlowTest/css/style.css",
+      "sha256": "7e5a63bb31295a4a5627ca9d8f8bd463bd91c035577fa2b4d020713936083a08",
+      "bytes": 2201
+    },
+    {
+      "path": "bf16-only-github-38319438508/bonsai-upstream-ubuntu-24.04/reports/tests/bonsai2NativeSlowTest/index.html",
+      "sha256": "5703e0d29ac7aed936dbbe9b950d730b07c74d6a9ab28f7fc28a1769a2aa8491",
+      "bytes": 3025
+    },
+    {
+      "path": "bf16-only-github-38319438508/bonsai-upstream-ubuntu-24.04/reports/tests/bonsai2NativeSlowTest/js/report.js",
+      "sha256": "3aadca4fcf721dca618b54c0e93c93c37884c8d25aa2c9cb92782a3db9ffa605",
+      "bytes": 6718
+    },
+    {
+      "path": "bf16-only-github-38319438508/bonsai-upstream-ubuntu-24.04/test-results/bonsai2NativeSlowTest/TEST-com.integrallis.models.backend.nativekernel.Bonsai2NativeModelFixtureSlowTest.xml",
+      "sha256": "992d7da6b63a77f199651444d56e3aafec79cd092f00f10e76b98b655d518684",
+      "bytes": 2318
+    },
+    {
+      "path": "bf16-only-github-38319438508/bonsai-upstream-ubuntu-24.04/test-results/bonsai2NativeSlowTest/binary/output-events.bin",
+      "sha256": "7a30891aedb2c9937a8184a8ab32eeaad5a9c440490228be815c858bd53b29ad",
+      "bytes": 919
+    },
+    {
+      "path": "bf16-only-github-38319438508/bonsai-upstream-ubuntu-24.04/test-results/bonsai2NativeSlowTest/binary/results-generic.bin",
+      "sha256": "4c1542eed7ce40b819901efb2d3930961f3a772d829991693ad75b5ce2425c26",
+      "bytes": 1345
+    },
+    {
+      "path": "bf16-only-github-38319438508/bonsai-upstream-ubuntu-24.04-arm/reports/bonsai-upstream.json",
+      "sha256": "f83834aeeb7638994a640934acb2d0ef7e235df5d05d64dd8177b641bd9db8bb",
+      "bytes": 4127
+    },
+    {
+      "path": "bf16-only-github-38319438508/bonsai-upstream-ubuntu-24.04-arm/reports/tests/bonsai2NativeSlowTest/T7G_aSdyZHw/2Did58Yqp-8.html",
+      "sha256": "5fcf639413ec79491f8da0340ea869d474b7be706a301e0829caa1b0bcd26919",
+      "bytes": 3336
+    },
+    {
+      "path": "bf16-only-github-38319438508/bonsai-upstream-ubuntu-24.04-arm/reports/tests/bonsai2NativeSlowTest/T7G_aSdyZHw/9aFQ9MiSfrc.html",
+      "sha256": "94510b525116de746e50fd240dc1663b89eced1c72654f81cf8f54e301411274",
+      "bytes": 3652
+    },
+    {
+      "path": "bf16-only-github-38319438508/bonsai-upstream-ubuntu-24.04-arm/reports/tests/bonsai2NativeSlowTest/T7G_aSdyZHw/index.html",
+      "sha256": "97204c4a1b3ff703c459934fb8c0c042aefd33539651c3aac7039118e83e2f21",
+      "bytes": 3672
+    },
+    {
+      "path": "bf16-only-github-38319438508/bonsai-upstream-ubuntu-24.04-arm/reports/tests/bonsai2NativeSlowTest/css/base-style.css",
+      "sha256": "ae3edaf7d2e0cdfbd9919e0c89fcabbc6c593118515e82a13567005dc10bbf08",
+      "bytes": 2449
+    },
+    {
+      "path": "bf16-only-github-38319438508/bonsai-upstream-ubuntu-24.04-arm/reports/tests/bonsai2NativeSlowTest/css/style.css",
+      "sha256": "7e5a63bb31295a4a5627ca9d8f8bd463bd91c035577fa2b4d020713936083a08",
+      "bytes": 2201
+    },
+    {
+      "path": "bf16-only-github-38319438508/bonsai-upstream-ubuntu-24.04-arm/reports/tests/bonsai2NativeSlowTest/index.html",
+      "sha256": "29df4b04f7197b9e61384b75a7de9820ed057a2d4985d91f5381a466d51b9376",
+      "bytes": 3025
+    },
+    {
+      "path": "bf16-only-github-38319438508/bonsai-upstream-ubuntu-24.04-arm/reports/tests/bonsai2NativeSlowTest/js/report.js",
+      "sha256": "3aadca4fcf721dca618b54c0e93c93c37884c8d25aa2c9cb92782a3db9ffa605",
+      "bytes": 6718
+    },
+    {
+      "path": "bf16-only-github-38319438508/bonsai-upstream-ubuntu-24.04-arm/test-results/bonsai2NativeSlowTest/TEST-com.integrallis.models.backend.nativekernel.Bonsai2NativeModelFixtureSlowTest.xml",
+      "sha256": "eb661fd9aaec12b20ea057383e3f1ce4df384cce6199affaa4e98aaa68b871e5",
+      "bytes": 2252
+    },
+    {
+      "path": "bf16-only-github-38319438508/bonsai-upstream-ubuntu-24.04-arm/test-results/bonsai2NativeSlowTest/binary/output-events.bin",
+      "sha256": "9f818b714d55184fe38288b5fb75dec26c176c5764f451cbf83d6101787e7019",
+      "bytes": 855
+    },
+    {
+      "path": "bf16-only-github-38319438508/bonsai-upstream-ubuntu-24.04-arm/test-results/bonsai2NativeSlowTest/binary/results-generic.bin",
+      "sha256": "351640ca997fa7b4b23694262385eda3b8dc33f686070161d22dc782efe9eb8f",
+      "bytes": 1345
+    },
+    {
+      "path": "bonsai2-actual-header.json",
+      "sha256": "ba6f063eeda41af3f4aa42f00d97bf0924833528f35e71d9d5c41c04b66c1d8f",
+      "bytes": 11809
+    },
+    {
+      "path": "broad-core-github-38319081991/bonsai-upstream-ubuntu-24.04/reports/bonsai-upstream.json",
+      "sha256": "39f9a97e9cbe6003ec50a89e32c888edbae83acb1946080bfcd4e83dad72e491",
+      "bytes": 4127
+    },
+    {
+      "path": "broad-core-github-38319081991/bonsai-upstream-ubuntu-24.04/reports/tests/bonsai2NativeSlowTest/T7G_aSdyZHw/2Did58Yqp-8.html",
+      "sha256": "126177be3827382100e3eb81213f1d635c2950cad808b64e5934b1ef76326157",
+      "bytes": 3334
+    },
+    {
+      "path": "broad-core-github-38319081991/bonsai-upstream-ubuntu-24.04/reports/tests/bonsai2NativeSlowTest/T7G_aSdyZHw/9aFQ9MiSfrc.html",
+      "sha256": "d7ad905e5d8dcabb0846010814f9c66f2e5fc73d7376592471438d1bd2afebef",
+      "bytes": 2886
+    },
+    {
+      "path": "broad-core-github-38319081991/bonsai-upstream-ubuntu-24.04/reports/tests/bonsai2NativeSlowTest/T7G_aSdyZHw/index.html",
+      "sha256": "90cc2d3e871e65c6b326740d74953c6360ab534e4785eedf22a5677731474af0",
+      "bytes": 2925
+    },
+    {
+      "path": "broad-core-github-38319081991/bonsai-upstream-ubuntu-24.04/reports/tests/bonsai2NativeSlowTest/css/base-style.css",
+      "sha256": "ae3edaf7d2e0cdfbd9919e0c89fcabbc6c593118515e82a13567005dc10bbf08",
+      "bytes": 2449
+    },
+    {
+      "path": "broad-core-github-38319081991/bonsai-upstream-ubuntu-24.04/reports/tests/bonsai2NativeSlowTest/css/style.css",
+      "sha256": "7e5a63bb31295a4a5627ca9d8f8bd463bd91c035577fa2b4d020713936083a08",
+      "bytes": 2201
+    },
+    {
+      "path": "broad-core-github-38319081991/bonsai-upstream-ubuntu-24.04/reports/tests/bonsai2NativeSlowTest/index.html",
+      "sha256": "f0f378e6a4c5967650435d7eb7e864d0b5d77f7b8f288dd2b35fe800ac98fd50",
+      "bytes": 2321
+    },
+    {
+      "path": "broad-core-github-38319081991/bonsai-upstream-ubuntu-24.04/reports/tests/bonsai2NativeSlowTest/js/report.js",
+      "sha256": "3aadca4fcf721dca618b54c0e93c93c37884c8d25aa2c9cb92782a3db9ffa605",
+      "bytes": 6718
+    },
+    {
+      "path": "broad-core-github-38319081991/bonsai-upstream-ubuntu-24.04/test-results/bonsai2NativeSlowTest/TEST-com.integrallis.models.backend.nativekernel.Bonsai2NativeModelFixtureSlowTest.xml",
+      "sha256": "d12485f10fe3f05ac13116ab2fe6d77b1ef21d87eba7d97489000504badf2bd8",
+      "bytes": 1656
+    },
+    {
+      "path": "broad-core-github-38319081991/bonsai-upstream-ubuntu-24.04/test-results/bonsai2NativeSlowTest/binary/output-events.bin",
+      "sha256": "655cb09af8dbdb1cffc668acdd8a28c96e55fbe8be5b40497bcb23956bb23c7f",
+      "bytes": 1029
+    },
+    {
+      "path": "broad-core-github-38319081991/bonsai-upstream-ubuntu-24.04/test-results/bonsai2NativeSlowTest/binary/results-generic.bin",
+      "sha256": "5a5301f8ca2ef8b70f8f88e1d852a226121b90fcb46c6386988f569b69b0baba",
+      "bytes": 666
+    },
+    {
+      "path": "broad-core-github-38319081991/bonsai-upstream-ubuntu-24.04-arm/reports/bonsai-upstream.json",
+      "sha256": "39f9a97e9cbe6003ec50a89e32c888edbae83acb1946080bfcd4e83dad72e491",
+      "bytes": 4127
+    },
+    {
+      "path": "broad-core-github-38319081991/bonsai-upstream-ubuntu-24.04-arm/reports/tests/bonsai2NativeSlowTest/T7G_aSdyZHw/2Did58Yqp-8.html",
+      "sha256": "1917775d64aaf4468bb4c1f21badfa5ff8663af11c0836f266e6ea3f8bf1478c",
+      "bytes": 3336
+    },
+    {
+      "path": "broad-core-github-38319081991/bonsai-upstream-ubuntu-24.04-arm/reports/tests/bonsai2NativeSlowTest/T7G_aSdyZHw/9aFQ9MiSfrc.html",
+      "sha256": "26e36d51a670bf3dd96a4e988b2838156fd2b88fd046c620d548b1bdf7af0b80",
+      "bytes": 2886
+    },
+    {
+      "path": "broad-core-github-38319081991/bonsai-upstream-ubuntu-24.04-arm/reports/tests/bonsai2NativeSlowTest/T7G_aSdyZHw/index.html",
+      "sha256": "3ed82f1f205658e2753327fcb1b3eb86182ad3fb290559d31fcb64c7ec2c1646",
+      "bytes": 2926
+    },
+    {
+      "path": "broad-core-github-38319081991/bonsai-upstream-ubuntu-24.04-arm/reports/tests/bonsai2NativeSlowTest/css/base-style.css",
+      "sha256": "ae3edaf7d2e0cdfbd9919e0c89fcabbc6c593118515e82a13567005dc10bbf08",
+      "bytes": 2449
+    },
+    {
+      "path": "broad-core-github-38319081991/bonsai-upstream-ubuntu-24.04-arm/reports/tests/bonsai2NativeSlowTest/css/style.css",
+      "sha256": "7e5a63bb31295a4a5627ca9d8f8bd463bd91c035577fa2b4d020713936083a08",
+      "bytes": 2201
+    },
+    {
+      "path": "broad-core-github-38319081991/bonsai-upstream-ubuntu-24.04-arm/reports/tests/bonsai2NativeSlowTest/index.html",
+      "sha256": "0ba69f5a631c97604c552b1df98d7c3031c5c3b9fcfc3fc25b69540514a0438d",
+      "bytes": 2323
+    },
+    {
+      "path": "broad-core-github-38319081991/bonsai-upstream-ubuntu-24.04-arm/reports/tests/bonsai2NativeSlowTest/js/report.js",
+      "sha256": "3aadca4fcf721dca618b54c0e93c93c37884c8d25aa2c9cb92782a3db9ffa605",
+      "bytes": 6718
+    },
+    {
+      "path": "broad-core-github-38319081991/bonsai-upstream-ubuntu-24.04-arm/test-results/bonsai2NativeSlowTest/TEST-com.integrallis.models.backend.nativekernel.Bonsai2NativeModelFixtureSlowTest.xml",
+      "sha256": "d060523d303647aeac07612b43c3f185a4a9e5685260b45195416525f12caf7f",
+      "bytes": 1658
+    },
+    {
+      "path": "broad-core-github-38319081991/bonsai-upstream-ubuntu-24.04-arm/test-results/bonsai2NativeSlowTest/binary/output-events.bin",
+      "sha256": "9459105dfccf39d8e0b247bdf2953affed95b90edd208496d3ba5f6521bf249e",
+      "bytes": 1031
+    },
+    {
+      "path": "broad-core-github-38319081991/bonsai-upstream-ubuntu-24.04-arm/test-results/bonsai2NativeSlowTest/binary/results-generic.bin",
+      "sha256": "da32d172113055877f2cdf28f364e96fb6a5ba972fdb401a4cd2bebece553c73",
+      "bytes": 666
+    },
+    {
+      "path": "broad-core-local/TEST-com.integrallis.models.backend.nativekernel.Bonsai2NativeModelFixtureSlowTest.xml",
+      "sha256": "1f1a4b746e38d9c88103045968678b387ac7b91ef8f4b7ffb81c25fd6dc1c2b3",
+      "bytes": 1668
+    },
+    {
+      "path": "broad-core-local/bonsai-upstream-validated-init.log",
+      "sha256": "dedbd8cffcd1bc1253c6e7c6ffadcd0b61740eded422ccba7172bdb6f70451a3",
+      "bytes": 2631
+    },
+    {
+      "path": "broad-core-local/bonsai-upstream.json",
+      "sha256": "9d5befb0b67d0f40c43f24bacf3580ffc886c02b596dc6090b1a8f5557327aa9",
+      "bytes": 4564
+    },
+    {
+      "path": "broad-core-local/scope.json",
+      "sha256": "bce4a538e687fe2502751316fefa38daa29959df2fcded55afdad6f020f21e64",
+      "bytes": 749
+    },
+    {
+      "path": "cold-activation-attribution/README.md",
+      "sha256": "de77afdfcd0ea9403b597867431ef364db19ef09f66cea6ab40f27d44bd3ab4f",
+      "bytes": 607
+    },
+    {
+      "path": "combined-expanded-github-38323006687/bonsai-upstream-ubuntu-24.04-arm-jdk-25/reports/bonsai-upstream.json",
+      "sha256": "75e9d1587d6e2efbe107617ed01857efdca217065b16dc4d1edb64a2530571d5",
+      "bytes": 4127
+    },
+    {
+      "path": "combined-expanded-github-38323006687/bonsai-upstream-ubuntu-24.04-arm-jdk-25/reports/tests/bonsai2NativeSlowTest/MkzTxEW1d_k/gJiqZJ_0R4c.html",
+      "sha256": "7b38774016fbb9440a685e901b25c507a4b329a314623e4971f2f5cf2cb53ba0",
+      "bytes": 6664
+    },
+    {
+      "path": "combined-expanded-github-38323006687/bonsai-upstream-ubuntu-24.04-arm-jdk-25/reports/tests/bonsai2NativeSlowTest/MkzTxEW1d_k/index.html",
+      "sha256": "3bf910133b750b83c5959b1db43fca608d13de1752605a1ad895f7e1298ebfaa",
+      "bytes": 2587
+    },
+    {
+      "path": "combined-expanded-github-38323006687/bonsai-upstream-ubuntu-24.04-arm-jdk-25/reports/tests/bonsai2NativeSlowTest/T7G_aSdyZHw/2Did58Yqp-8.html",
+      "sha256": "436bdd8975828c5e78a8b1f4bc3a2715bc0601825023c2f1ce80ec75972e250b",
+      "bytes": 3336
+    },
+    {
+      "path": "combined-expanded-github-38323006687/bonsai-upstream-ubuntu-24.04-arm-jdk-25/reports/tests/bonsai2NativeSlowTest/T7G_aSdyZHw/9aFQ9MiSfrc.html",
+      "sha256": "0be965328f2254c35ab87d2af57ece9d91f5a3a1f235f6b9c520a5650fc3b4fc",
+      "bytes": 2886
+    },
+    {
+      "path": "combined-expanded-github-38323006687/bonsai-upstream-ubuntu-24.04-arm-jdk-25/reports/tests/bonsai2NativeSlowTest/T7G_aSdyZHw/index.html",
+      "sha256": "46a2d5bec10cfea78c39b910f0b9056f12bcaa2b12f7382daf62ba0a740571f8",
+      "bytes": 2926
+    },
+    {
+      "path": "combined-expanded-github-38323006687/bonsai-upstream-ubuntu-24.04-arm-jdk-25/reports/tests/bonsai2NativeSlowTest/css/base-style.css",
+      "sha256": "ae3edaf7d2e0cdfbd9919e0c89fcabbc6c593118515e82a13567005dc10bbf08",
+      "bytes": 2449
+    },
+    {
+      "path": "combined-expanded-github-38323006687/bonsai-upstream-ubuntu-24.04-arm-jdk-25/reports/tests/bonsai2NativeSlowTest/css/style.css",
+      "sha256": "7e5a63bb31295a4a5627ca9d8f8bd463bd91c035577fa2b4d020713936083a08",
+      "bytes": 2201
+    },
+    {
+      "path": "combined-expanded-github-38323006687/bonsai-upstream-ubuntu-24.04-arm-jdk-25/reports/tests/bonsai2NativeSlowTest/index.html",
+      "sha256": "1a3eadf5a6854aefd25c49f4a779c2c5fe5886ec84b3211c82beeb9e9cfb6364",
+      "bytes": 2612
+    },
+    {
+      "path": "combined-expanded-github-38323006687/bonsai-upstream-ubuntu-24.04-arm-jdk-25/reports/tests/bonsai2NativeSlowTest/js/report.js",
+      "sha256": "3aadca4fcf721dca618b54c0e93c93c37884c8d25aa2c9cb92782a3db9ffa605",
+      "bytes": 6718
+    },
+    {
+      "path": "combined-expanded-github-38323006687/bonsai-upstream-ubuntu-24.04-arm-jdk-25/test-results/bonsai2NativeSlowTest/TEST-com.integrallis.models.backend.nativekernel.Bonsai2NativeFreshSessionSlowTest.xml",
+      "sha256": "99572b192b90e846ce21d5903bb3d722367858bf3d16cdc22761ad5923c38ed2",
+      "bytes": 4176
+    },
+    {
+      "path": "combined-expanded-github-38323006687/bonsai-upstream-ubuntu-24.04-arm-jdk-25/test-results/bonsai2NativeSlowTest/TEST-com.integrallis.models.backend.nativekernel.Bonsai2NativeModelFixtureSlowTest.xml",
+      "sha256": "39718ddd29983f85d17724f6b1fd376b217544664079fca82fabee40a83ef2cf",
+      "bytes": 1658
+    },
+    {
+      "path": "combined-expanded-github-38323006687/bonsai-upstream-ubuntu-24.04-arm-jdk-25/test-results/bonsai2NativeSlowTest/binary/output-events.bin",
+      "sha256": "3a3f15f676cd88ea34658bcf5e89c4f3c1f2cd95e4d8a8f6212b7dd78c373a5b",
+      "bytes": 5220
+    },
+    {
+      "path": "combined-expanded-github-38323006687/bonsai-upstream-ubuntu-24.04-arm-jdk-25/test-results/bonsai2NativeSlowTest/binary/results-generic.bin",
+      "sha256": "27398a3c23d1e77d42aa441e257ff635e5556362cc7da247e059b32a28481e3d",
+      "bytes": 1061
+    },
+    {
+      "path": "combined-expanded-github-38323006687/bonsai-upstream-ubuntu-24.04-arm-jdk-25.0.3/reports/bonsai-upstream.json",
+      "sha256": "75e9d1587d6e2efbe107617ed01857efdca217065b16dc4d1edb64a2530571d5",
+      "bytes": 4127
+    },
+    {
+      "path": "combined-expanded-github-38323006687/bonsai-upstream-ubuntu-24.04-arm-jdk-25.0.3/reports/tests/bonsai2NativeSlowTest/MkzTxEW1d_k/gJiqZJ_0R4c.html",
+      "sha256": "5d2fac7795555f3946cf27059c58c638f7bd4187e845827a435adb3fd1f10ac3",
+      "bytes": 6662
+    },
+    {
+      "path": "combined-expanded-github-38323006687/bonsai-upstream-ubuntu-24.04-arm-jdk-25.0.3/reports/tests/bonsai2NativeSlowTest/MkzTxEW1d_k/index.html",
+      "sha256": "2c3fadfb8de8333890380694bae845f8a591279d9549577b6b6e57158fb41808",
+      "bytes": 2587
+    },
+    {
+      "path": "combined-expanded-github-38323006687/bonsai-upstream-ubuntu-24.04-arm-jdk-25.0.3/reports/tests/bonsai2NativeSlowTest/T7G_aSdyZHw/2Did58Yqp-8.html",
+      "sha256": "92061bc930620e2771c084ce9e567a85c1c1473af1818743cd260717463e7e53",
+      "bytes": 3336
+    },
+    {
+      "path": "combined-expanded-github-38323006687/bonsai-upstream-ubuntu-24.04-arm-jdk-25.0.3/reports/tests/bonsai2NativeSlowTest/T7G_aSdyZHw/9aFQ9MiSfrc.html",
+      "sha256": "1230148d30fb10a850646ad1a28420c3a393ca7f8206cd2888d07ceabb22c335",
+      "bytes": 2886
+    },
+    {
+      "path": "combined-expanded-github-38323006687/bonsai-upstream-ubuntu-24.04-arm-jdk-25.0.3/reports/tests/bonsai2NativeSlowTest/T7G_aSdyZHw/index.html",
+      "sha256": "01d04ac769a3a985732d6e7652d5aed8e094d5b6329317d979c2bb9798a974a2",
+      "bytes": 2926
+    },
+    {
+      "path": "combined-expanded-github-38323006687/bonsai-upstream-ubuntu-24.04-arm-jdk-25.0.3/reports/tests/bonsai2NativeSlowTest/css/base-style.css",
+      "sha256": "ae3edaf7d2e0cdfbd9919e0c89fcabbc6c593118515e82a13567005dc10bbf08",
+      "bytes": 2449
+    },
+    {
+      "path": "combined-expanded-github-38323006687/bonsai-upstream-ubuntu-24.04-arm-jdk-25.0.3/reports/tests/bonsai2NativeSlowTest/css/style.css",
+      "sha256": "7e5a63bb31295a4a5627ca9d8f8bd463bd91c035577fa2b4d020713936083a08",
+      "bytes": 2201
+    },
+    {
+      "path": "combined-expanded-github-38323006687/bonsai-upstream-ubuntu-24.04-arm-jdk-25.0.3/reports/tests/bonsai2NativeSlowTest/index.html",
+      "sha256": "94c6c02dfa2ba9e2d9051bb1d962146d0ec1cac9b01f2159aff877707bf59d86",
+      "bytes": 2612
+    },
+    {
+      "path": "combined-expanded-github-38323006687/bonsai-upstream-ubuntu-24.04-arm-jdk-25.0.3/reports/tests/bonsai2NativeSlowTest/js/report.js",
+      "sha256": "3aadca4fcf721dca618b54c0e93c93c37884c8d25aa2c9cb92782a3db9ffa605",
+      "bytes": 6718
+    },
+    {
+      "path": "combined-expanded-github-38323006687/bonsai-upstream-ubuntu-24.04-arm-jdk-25.0.3/test-results/bonsai2NativeSlowTest/TEST-com.integrallis.models.backend.nativekernel.Bonsai2NativeFreshSessionSlowTest.xml",
+      "sha256": "b0782245cdf828ef2b6f8b0e8287d3dd9cea8f6fa5c412ae4dc18080245fae7e",
+      "bytes": 4175
+    },
+    {
+      "path": "combined-expanded-github-38323006687/bonsai-upstream-ubuntu-24.04-arm-jdk-25.0.3/test-results/bonsai2NativeSlowTest/TEST-com.integrallis.models.backend.nativekernel.Bonsai2NativeModelFixtureSlowTest.xml",
+      "sha256": "6584f85fc23396a103acf704bf8b72bca59e74267a196312edbb69848804e888",
+      "bytes": 1657
+    },
+    {
+      "path": "combined-expanded-github-38323006687/bonsai-upstream-ubuntu-24.04-arm-jdk-25.0.3/test-results/bonsai2NativeSlowTest/binary/output-events.bin",
+      "sha256": "220fd7e88508ed6f852733a91b187c84e8f356eb3a970567e9a6ae3a6c154f40",
+      "bytes": 5217
+    },
+    {
+      "path": "combined-expanded-github-38323006687/bonsai-upstream-ubuntu-24.04-arm-jdk-25.0.3/test-results/bonsai2NativeSlowTest/binary/results-generic.bin",
+      "sha256": "106c32943e98c49de320d42bd752183b767746bdafcaec403c6962c688d099c2",
+      "bytes": 1061
+    },
+    {
+      "path": "combined-expanded-github-38323006687/bonsai-upstream-ubuntu-24.04-jdk-25/reports/bonsai-upstream.json",
+      "sha256": "75e9d1587d6e2efbe107617ed01857efdca217065b16dc4d1edb64a2530571d5",
+      "bytes": 4127
+    },
+    {
+      "path": "combined-expanded-github-38323006687/bonsai-upstream-ubuntu-24.04-jdk-25/reports/tests/bonsai2NativeSlowTest/MkzTxEW1d_k/gJiqZJ_0R4c.html",
+      "sha256": "68f0fc9dc5a79b4594876e692ea594532d7039170b5e393dc60c48232ee836d3",
+      "bytes": 6663
+    },
+    {
+      "path": "combined-expanded-github-38323006687/bonsai-upstream-ubuntu-24.04-jdk-25/reports/tests/bonsai2NativeSlowTest/MkzTxEW1d_k/index.html",
+      "sha256": "364046dd8a5a67c2c9e3ad3a2c7925f4ded9b3eece68da04d22b82b486017f33",
+      "bytes": 2589
+    },
+    {
+      "path": "combined-expanded-github-38323006687/bonsai-upstream-ubuntu-24.04-jdk-25/reports/tests/bonsai2NativeSlowTest/T7G_aSdyZHw/2Did58Yqp-8.html",
+      "sha256": "f5ba3ed9976587f9723346211cf2138f211ffd536879ed3ba5b0292df63441d6",
+      "bytes": 3334
+    },
+    {
+      "path": "combined-expanded-github-38323006687/bonsai-upstream-ubuntu-24.04-jdk-25/reports/tests/bonsai2NativeSlowTest/T7G_aSdyZHw/9aFQ9MiSfrc.html",
+      "sha256": "618494aa7187c057e6a8683c0c218d26710ea9844a66cc6aba8173f0aa9af7ec",
+      "bytes": 2886
+    },
+    {
+      "path": "combined-expanded-github-38323006687/bonsai-upstream-ubuntu-24.04-jdk-25/reports/tests/bonsai2NativeSlowTest/T7G_aSdyZHw/index.html",
+      "sha256": "55ffc28c2258d77db68cdbf8662c4bbb477e3621f3982b6ad4db0063b1dec1cc",
+      "bytes": 2925
+    },
+    {
+      "path": "combined-expanded-github-38323006687/bonsai-upstream-ubuntu-24.04-jdk-25/reports/tests/bonsai2NativeSlowTest/css/base-style.css",
+      "sha256": "ae3edaf7d2e0cdfbd9919e0c89fcabbc6c593118515e82a13567005dc10bbf08",
+      "bytes": 2449
+    },
+    {
+      "path": "combined-expanded-github-38323006687/bonsai-upstream-ubuntu-24.04-jdk-25/reports/tests/bonsai2NativeSlowTest/css/style.css",
+      "sha256": "7e5a63bb31295a4a5627ca9d8f8bd463bd91c035577fa2b4d020713936083a08",
+      "bytes": 2201
+    },
+    {
+      "path": "combined-expanded-github-38323006687/bonsai-upstream-ubuntu-24.04-jdk-25/reports/tests/bonsai2NativeSlowTest/index.html",
+      "sha256": "bc6c4f3b0cc2615be2ccb1903298d47611921168977789bc274f09a78f268e61",
+      "bytes": 2612
+    },
+    {
+      "path": "combined-expanded-github-38323006687/bonsai-upstream-ubuntu-24.04-jdk-25/reports/tests/bonsai2NativeSlowTest/js/report.js",
+      "sha256": "3aadca4fcf721dca618b54c0e93c93c37884c8d25aa2c9cb92782a3db9ffa605",
+      "bytes": 6718
+    },
+    {
+      "path": "combined-expanded-github-38323006687/bonsai-upstream-ubuntu-24.04-jdk-25/test-results/bonsai2NativeSlowTest/TEST-com.integrallis.models.backend.nativekernel.Bonsai2NativeFreshSessionSlowTest.xml",
+      "sha256": "e203c1a062ceb23dbbe446ffc7d0c7d87becc35702f406b82ca675d8bb03724b",
+      "bytes": 4175
+    },
+    {
+      "path": "combined-expanded-github-38323006687/bonsai-upstream-ubuntu-24.04-jdk-25/test-results/bonsai2NativeSlowTest/TEST-com.integrallis.models.backend.nativekernel.Bonsai2NativeModelFixtureSlowTest.xml",
+      "sha256": "7287916f999aaa32e5b98d2e17bc710a6dabe337ee1662a58a454164c7c58235",
+      "bytes": 1657
+    },
+    {
+      "path": "combined-expanded-github-38323006687/bonsai-upstream-ubuntu-24.04-jdk-25/test-results/bonsai2NativeSlowTest/binary/output-events.bin",
+      "sha256": "16324de59724993e7dd9ea358f6eedc11f9df51efe2f801402db0a6959eba0ea",
+      "bytes": 5216
+    },
+    {
+      "path": "combined-expanded-github-38323006687/bonsai-upstream-ubuntu-24.04-jdk-25/test-results/bonsai2NativeSlowTest/binary/results-generic.bin",
+      "sha256": "468b8ae2021c656d898d424dbf3697c351b7e31edb5e27cd6c5b3d1fe77176f8",
+      "bytes": 1061
+    },
+    {
+      "path": "combined-expanded-github-38323006687/bonsai-upstream-ubuntu-24.04-jdk-25.0.3/reports/bonsai-upstream.json",
+      "sha256": "75e9d1587d6e2efbe107617ed01857efdca217065b16dc4d1edb64a2530571d5",
+      "bytes": 4127
+    },
+    {
+      "path": "combined-expanded-github-38323006687/bonsai-upstream-ubuntu-24.04-jdk-25.0.3/reports/tests/bonsai2NativeSlowTest/MkzTxEW1d_k/gJiqZJ_0R4c.html",
+      "sha256": "ffcd4d6f050af0fb04386fb81a269ee7d460f27fad76a30bb92d52609629153a",
+      "bytes": 6661
+    },
+    {
+      "path": "combined-expanded-github-38323006687/bonsai-upstream-ubuntu-24.04-jdk-25.0.3/reports/tests/bonsai2NativeSlowTest/MkzTxEW1d_k/index.html",
+      "sha256": "63e54fe2a03f9cf84ab5787f751c46a54fe0c87d5ed5a43cbe0f54372c3b2e76",
+      "bytes": 2589
+    },
+    {
+      "path": "combined-expanded-github-38323006687/bonsai-upstream-ubuntu-24.04-jdk-25.0.3/reports/tests/bonsai2NativeSlowTest/T7G_aSdyZHw/2Did58Yqp-8.html",
+      "sha256": "82035c115841593c594a06be6a6ad35e27d5073c01d50e9878d597b695012c50",
+      "bytes": 3334
+    },
+    {
+      "path": "combined-expanded-github-38323006687/bonsai-upstream-ubuntu-24.04-jdk-25.0.3/reports/tests/bonsai2NativeSlowTest/T7G_aSdyZHw/9aFQ9MiSfrc.html",
+      "sha256": "17371c25bd18b509360638a40d804ffb2210fe5ceb0111d258fb0d1ca57acd81",
+      "bytes": 2886
+    },
+    {
+      "path": "combined-expanded-github-38323006687/bonsai-upstream-ubuntu-24.04-jdk-25.0.3/reports/tests/bonsai2NativeSlowTest/T7G_aSdyZHw/index.html",
+      "sha256": "532fb562b51479e4756f4ad860f635f04bb5fb1fa5bf1e6d8556573373375cdd",
+      "bytes": 2925
+    },
+    {
+      "path": "combined-expanded-github-38323006687/bonsai-upstream-ubuntu-24.04-jdk-25.0.3/reports/tests/bonsai2NativeSlowTest/css/base-style.css",
+      "sha256": "ae3edaf7d2e0cdfbd9919e0c89fcabbc6c593118515e82a13567005dc10bbf08",
+      "bytes": 2449
+    },
+    {
+      "path": "combined-expanded-github-38323006687/bonsai-upstream-ubuntu-24.04-jdk-25.0.3/reports/tests/bonsai2NativeSlowTest/css/style.css",
+      "sha256": "7e5a63bb31295a4a5627ca9d8f8bd463bd91c035577fa2b4d020713936083a08",
+      "bytes": 2201
+    },
+    {
+      "path": "combined-expanded-github-38323006687/bonsai-upstream-ubuntu-24.04-jdk-25.0.3/reports/tests/bonsai2NativeSlowTest/index.html",
+      "sha256": "7b7032efb3bdba96e1a52dbc54af9b1c03434fa62da75a7761a4de36fdc92c02",
+      "bytes": 2612
+    },
+    {
+      "path": "combined-expanded-github-38323006687/bonsai-upstream-ubuntu-24.04-jdk-25.0.3/reports/tests/bonsai2NativeSlowTest/js/report.js",
+      "sha256": "3aadca4fcf721dca618b54c0e93c93c37884c8d25aa2c9cb92782a3db9ffa605",
+      "bytes": 6718
+    },
+    {
+      "path": "combined-expanded-github-38323006687/bonsai-upstream-ubuntu-24.04-jdk-25.0.3/test-results/bonsai2NativeSlowTest/TEST-com.integrallis.models.backend.nativekernel.Bonsai2NativeFreshSessionSlowTest.xml",
+      "sha256": "d252b023cbd21d0c49b6bff1df49e750219e38ec796cacf5b24a3e39511db512",
+      "bytes": 4172
+    },
+    {
+      "path": "combined-expanded-github-38323006687/bonsai-upstream-ubuntu-24.04-jdk-25.0.3/test-results/bonsai2NativeSlowTest/TEST-com.integrallis.models.backend.nativekernel.Bonsai2NativeModelFixtureSlowTest.xml",
+      "sha256": "2460faf79f770b05835467eebde54ddd834d45dcfd6d8032bd652aa8ab2dcdee",
+      "bytes": 1657
+    },
+    {
+      "path": "combined-expanded-github-38323006687/bonsai-upstream-ubuntu-24.04-jdk-25.0.3/test-results/bonsai2NativeSlowTest/binary/output-events.bin",
+      "sha256": "427316ffcfe0ba8b7296196527255e688e235a83e5cff0c004dddd46f5ee0848",
+      "bytes": 5213
+    },
+    {
+      "path": "combined-expanded-github-38323006687/bonsai-upstream-ubuntu-24.04-jdk-25.0.3/test-results/bonsai2NativeSlowTest/binary/results-generic.bin",
+      "sha256": "5cda93338e46554bfc4a381dad5e8d0c39be62355a0d500bf7ab5bc3db27290d",
+      "bytes": 1061
+    },
+    {
+      "path": "combined-expanded-github-38323006687/summary.json",
+      "sha256": "2db28f30422ece51f073ca1310dbfb366a17f5b29020f1468accb6a015b54fd0",
+      "bytes": 1671
+    },
+    {
+      "path": "final-vectors-ci-38325753898/README.md",
+      "sha256": "c2614280d9a2546c3bdbf791bc62f03fccc531314753dbfaa8b0bf6af6124b6c",
+      "bytes": 1331
+    },
+    {
+      "path": "final-vectors-ci-38325753898/documentation-followup-ci.json",
+      "sha256": "5b42546cda693d5f1d36eb297cf98700b2faf2cb8319804a05f187b84e96165f",
+      "bytes": 4917
+    },
+    {
+      "path": "final-vectors-ci-38325753898/documentation-followup-dry-run.json",
+      "sha256": "3037d17a7116c03e24ff4ba93c8fed08a632741628f3623982251cb23738d8ad",
+      "bytes": 7980
+    },
+    {
+      "path": "final-vectors-ci-38325753898/manifest.json",
+      "sha256": "ee642611cf5cd27388940848a2b007ea53dcceeae12832dacbea1ff9765e7320",
+      "bytes": 167824
+    },
+    {
+      "path": "final-vectors-ci-38325753898/raw-evidence.tar.gz",
+      "sha256": "067ea10c563ecc891535963e4718be0e51c04d834238338caea2bbbf81071679",
+      "bytes": 379167
+    },
+    {
+      "path": "final-vectors-ci-38325753898/release-dry-run.json",
+      "sha256": "7bb961f42995c4d525f05dcfb0c0eca9b0b2bbf5841053121a97582b158f8348",
+      "bytes": 7980
+    },
+    {
+      "path": "final-vectors-ci-38325753898/run.json",
+      "sha256": "d5737e92a0a43be829a72cda6f43ffd8afbd7fbf09d68ac01ac5f900a8351d5a",
+      "bytes": 24520
+    },
+    {
+      "path": "scalar-convolution-control/README.md",
+      "sha256": "6c0780355407c17192c48772b612749405d75e49f53037d826702c04fa5aee6e",
+      "bytes": 606
+    },
+    {
+      "path": "scratch-archives/README.md",
+      "sha256": "101f765ae858136f59959e8e9022abb799034d78b98b9c805e5650682e2bc521",
+      "bytes": 596
+    },
+    {
+      "path": "serial-allocation-expanded-github-38324642561/bonsai-upstream-ubuntu-24.04-arm-jdk-25/reports/bonsai-upstream.json",
+      "sha256": "22f3c0864a8d7bf0e987a7abcf2943452f5fb438db381a6ea8b1ed7aed90de24",
+      "bytes": 4127
+    },
+    {
+      "path": "serial-allocation-expanded-github-38324642561/bonsai-upstream-ubuntu-24.04-arm-jdk-25/test-results/bonsai2NativeSlowTest/TEST-com.integrallis.models.backend.nativekernel.Bonsai2NativeFreshSessionSlowTest.xml",
+      "sha256": "53b935c615e04c3e3d2d6475e414a911c94aade4fc8841b725c4c6ce10b2e801",
+      "bytes": 4177
+    },
+    {
+      "path": "serial-allocation-expanded-github-38324642561/bonsai-upstream-ubuntu-24.04-arm-jdk-25/test-results/bonsai2NativeSlowTest/TEST-com.integrallis.models.backend.nativekernel.Bonsai2NativeModelFixtureSlowTest.xml",
+      "sha256": "7ccd02e5458c0cdfc777eeec910d618183a8c295d04f366a86f3fe42fa7831d4",
+      "bytes": 1657
+    },
+    {
+      "path": "serial-allocation-expanded-github-38324642561/bonsai-upstream-ubuntu-24.04-arm-jdk-25.0.3/reports/bonsai-upstream.json",
+      "sha256": "22f3c0864a8d7bf0e987a7abcf2943452f5fb438db381a6ea8b1ed7aed90de24",
+      "bytes": 4127
+    },
+    {
+      "path": "serial-allocation-expanded-github-38324642561/bonsai-upstream-ubuntu-24.04-arm-jdk-25.0.3/test-results/bonsai2NativeSlowTest/TEST-com.integrallis.models.backend.nativekernel.Bonsai2NativeFreshSessionSlowTest.xml",
+      "sha256": "57212e0c58bc1cf4dad91b909e59aac0da9df1b49ae101cc8bc6bc5217261881",
+      "bytes": 4172
+    },
+    {
+      "path": "serial-allocation-expanded-github-38324642561/bonsai-upstream-ubuntu-24.04-arm-jdk-25.0.3/test-results/bonsai2NativeSlowTest/TEST-com.integrallis.models.backend.nativekernel.Bonsai2NativeModelFixtureSlowTest.xml",
+      "sha256": "6229fe027535280608dc523c7a71c47ab0e7f9aaf863e76981e737f4fe26413d",
+      "bytes": 1659
+    },
+    {
+      "path": "serial-allocation-expanded-github-38324642561/bonsai-upstream-ubuntu-24.04-jdk-25/reports/bonsai-upstream.json",
+      "sha256": "22f3c0864a8d7bf0e987a7abcf2943452f5fb438db381a6ea8b1ed7aed90de24",
+      "bytes": 4127
+    },
+    {
+      "path": "serial-allocation-expanded-github-38324642561/bonsai-upstream-ubuntu-24.04-jdk-25/test-results/bonsai2NativeSlowTest/TEST-com.integrallis.models.backend.nativekernel.Bonsai2NativeFreshSessionSlowTest.xml",
+      "sha256": "683c209989c9598f8635bf962631c7c9c82243761561bbff532b4be9e7bedbb5",
+      "bytes": 4175
+    },
+    {
+      "path": "serial-allocation-expanded-github-38324642561/bonsai-upstream-ubuntu-24.04-jdk-25/test-results/bonsai2NativeSlowTest/TEST-com.integrallis.models.backend.nativekernel.Bonsai2NativeModelFixtureSlowTest.xml",
+      "sha256": "f97a775555c9f650d9d10bcdafc90f79cd73f752784f6b86551c72339e95a5ed",
+      "bytes": 1657
+    },
+    {
+      "path": "serial-allocation-expanded-github-38324642561/bonsai-upstream-ubuntu-24.04-jdk-25.0.3/reports/bonsai-upstream.json",
+      "sha256": "22f3c0864a8d7bf0e987a7abcf2943452f5fb438db381a6ea8b1ed7aed90de24",
+      "bytes": 4127
+    },
+    {
+      "path": "serial-allocation-expanded-github-38324642561/bonsai-upstream-ubuntu-24.04-jdk-25.0.3/test-results/bonsai2NativeSlowTest/TEST-com.integrallis.models.backend.nativekernel.Bonsai2NativeFreshSessionSlowTest.xml",
+      "sha256": "9ebe79502f5c0fdb72b7f5ac5f3d7d3432d6617669fb380c7eb95e8c3476f17c",
+      "bytes": 4240
+    },
+    {
+      "path": "serial-allocation-expanded-github-38324642561/bonsai-upstream-ubuntu-24.04-jdk-25.0.3/test-results/bonsai2NativeSlowTest/TEST-com.integrallis.models.backend.nativekernel.Bonsai2NativeModelFixtureSlowTest.xml",
+      "sha256": "083651d9f75f2a8a691104b4ee0c29ff06c9e1b5c7da5677afabf92758442d16",
+      "bytes": 1724
+    },
+    {
+      "path": "serial-allocation-expanded-github-38324642561/summary.json",
+      "sha256": "731c9ab61391614cadfebedc6f3ccafa365227106fa2710e7e5cb78618318acf",
+      "bytes": 4807
+    },
+    {
+      "path": "swiglu-only-github-38320444703/bonsai-upstream-ubuntu-24.04/reports/bonsai-upstream.json",
+      "sha256": "f9b3ab03ac7f1f8099267aebf363fd48d911de821bf37beb09c2faabb7a8f848",
+      "bytes": 4127
+    },
+    {
+      "path": "swiglu-only-github-38320444703/bonsai-upstream-ubuntu-24.04/reports/tests/bonsai2NativeSlowTest/T7G_aSdyZHw/2Did58Yqp-8.html",
+      "sha256": "ed664f139cad52e29715eb7312ed03be604f7847e26958e53f6a5609392a678d",
+      "bytes": 3334
+    },
+    {
+      "path": "swiglu-only-github-38320444703/bonsai-upstream-ubuntu-24.04/reports/tests/bonsai2NativeSlowTest/T7G_aSdyZHw/9aFQ9MiSfrc.html",
+      "sha256": "877869f1b62aba39b9bc8f18e82a0f7fb15cacda8d67f24c34beac870b20f90d",
+      "bytes": 3652
+    },
+    {
+      "path": "swiglu-only-github-38320444703/bonsai-upstream-ubuntu-24.04/reports/tests/bonsai2NativeSlowTest/T7G_aSdyZHw/index.html",
+      "sha256": "a1cbd4d11cb6dee2f4b23cd13ecfa027b2729104f0bc7e697d5b2fa477183687",
+      "bytes": 3673
+    },
+    {
+      "path": "swiglu-only-github-38320444703/bonsai-upstream-ubuntu-24.04/reports/tests/bonsai2NativeSlowTest/css/base-style.css",
+      "sha256": "ae3edaf7d2e0cdfbd9919e0c89fcabbc6c593118515e82a13567005dc10bbf08",
+      "bytes": 2449
+    },
+    {
+      "path": "swiglu-only-github-38320444703/bonsai-upstream-ubuntu-24.04/reports/tests/bonsai2NativeSlowTest/css/style.css",
+      "sha256": "7e5a63bb31295a4a5627ca9d8f8bd463bd91c035577fa2b4d020713936083a08",
+      "bytes": 2201
+    },
+    {
+      "path": "swiglu-only-github-38320444703/bonsai-upstream-ubuntu-24.04/reports/tests/bonsai2NativeSlowTest/index.html",
+      "sha256": "27ee8ea80936561f0141c1510f4a118202d1bfc239be37c94ec9443a4a374211",
+      "bytes": 3022
+    },
+    {
+      "path": "swiglu-only-github-38320444703/bonsai-upstream-ubuntu-24.04/reports/tests/bonsai2NativeSlowTest/js/report.js",
+      "sha256": "3aadca4fcf721dca618b54c0e93c93c37884c8d25aa2c9cb92782a3db9ffa605",
+      "bytes": 6718
+    },
+    {
+      "path": "swiglu-only-github-38320444703/bonsai-upstream-ubuntu-24.04/test-results/bonsai2NativeSlowTest/TEST-com.integrallis.models.backend.nativekernel.Bonsai2NativeModelFixtureSlowTest.xml",
+      "sha256": "be0ab9d04fa933b5fb3f3e86aec7ba37caaa8766ef9e1f81bf895e6c49684052",
+      "bytes": 2252
+    },
+    {
+      "path": "swiglu-only-github-38320444703/bonsai-upstream-ubuntu-24.04/test-results/bonsai2NativeSlowTest/binary/output-events.bin",
+      "sha256": "8a201cc2424e26c0e9ee8092d977ac1baf0909a05a616b1c0ecc67fd5b690680",
+      "bytes": 852
+    },
+    {
+      "path": "swiglu-only-github-38320444703/bonsai-upstream-ubuntu-24.04/test-results/bonsai2NativeSlowTest/binary/results-generic.bin",
+      "sha256": "726167110fae0a993d70b7f3e3157433d499fe87ec652403da9fdedcc52f5b03",
+      "bytes": 1345
+    },
+    {
+      "path": "swiglu-only-github-38320444703/bonsai-upstream-ubuntu-24.04-arm/reports/bonsai-upstream.json",
+      "sha256": "f9b3ab03ac7f1f8099267aebf363fd48d911de821bf37beb09c2faabb7a8f848",
+      "bytes": 4127
+    },
+    {
+      "path": "swiglu-only-github-38320444703/bonsai-upstream-ubuntu-24.04-arm/reports/tests/bonsai2NativeSlowTest/T7G_aSdyZHw/2Did58Yqp-8.html",
+      "sha256": "18731e8774d414e4ead634b25d4d150b49c45076b851703dab6b1b3aafb01460",
+      "bytes": 3336
+    },
+    {
+      "path": "swiglu-only-github-38320444703/bonsai-upstream-ubuntu-24.04-arm/reports/tests/bonsai2NativeSlowTest/T7G_aSdyZHw/9aFQ9MiSfrc.html",
+      "sha256": "e5d50f380501859114a3efd162f8fb8f4b1285d4c8df0bc447cd6dbe26cf93ee",
+      "bytes": 3650
+    },
+    {
+      "path": "swiglu-only-github-38320444703/bonsai-upstream-ubuntu-24.04-arm/reports/tests/bonsai2NativeSlowTest/T7G_aSdyZHw/index.html",
+      "sha256": "1ffbe0aa35700369edc24a504ba8ceb455a680b686b40e140b48d909873c064a",
+      "bytes": 3672
+    },
+    {
+      "path": "swiglu-only-github-38320444703/bonsai-upstream-ubuntu-24.04-arm/reports/tests/bonsai2NativeSlowTest/css/base-style.css",
+      "sha256": "ae3edaf7d2e0cdfbd9919e0c89fcabbc6c593118515e82a13567005dc10bbf08",
+      "bytes": 2449
+    },
+    {
+      "path": "swiglu-only-github-38320444703/bonsai-upstream-ubuntu-24.04-arm/reports/tests/bonsai2NativeSlowTest/css/style.css",
+      "sha256": "7e5a63bb31295a4a5627ca9d8f8bd463bd91c035577fa2b4d020713936083a08",
+      "bytes": 2201
+    },
+    {
+      "path": "swiglu-only-github-38320444703/bonsai-upstream-ubuntu-24.04-arm/reports/tests/bonsai2NativeSlowTest/index.html",
+      "sha256": "7f42249cc057730d7d5c04a2993fdf66c0c710312746a1e0a4285b3afc8e5163",
+      "bytes": 3025
+    },
+    {
+      "path": "swiglu-only-github-38320444703/bonsai-upstream-ubuntu-24.04-arm/reports/tests/bonsai2NativeSlowTest/js/report.js",
+      "sha256": "3aadca4fcf721dca618b54c0e93c93c37884c8d25aa2c9cb92782a3db9ffa605",
+      "bytes": 6718
+    },
+    {
+      "path": "swiglu-only-github-38320444703/bonsai-upstream-ubuntu-24.04-arm/test-results/bonsai2NativeSlowTest/TEST-com.integrallis.models.backend.nativekernel.Bonsai2NativeModelFixtureSlowTest.xml",
+      "sha256": "ac3d469420a3a7f6b342a90568dc0a780958c6fe0ace272258384371b124302e",
+      "bytes": 2252
+    },
+    {
+      "path": "swiglu-only-github-38320444703/bonsai-upstream-ubuntu-24.04-arm/test-results/bonsai2NativeSlowTest/binary/output-events.bin",
+      "sha256": "f50e5191d39683ec0198316c49734e0c5a724aa3d3ed4d96c886a4e017879c1c",
+      "bytes": 853
+    },
+    {
+      "path": "swiglu-only-github-38320444703/bonsai-upstream-ubuntu-24.04-arm/test-results/bonsai2NativeSlowTest/binary/results-generic.bin",
+      "sha256": "55f86950140f2a5b34dddbcdf897020c7c47927cf13f7d6b2d42b8da75037eeb",
+      "bytes": 1345
+    }
+  ],
+  "verification": "Every tar member was read back and matched to original SHA256 and size before repository removal."
+}

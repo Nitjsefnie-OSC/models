@@ -61,7 +61,7 @@ is fixed. There is no independently frozen numerical convolution-allocation
 threshold to relabel as failed. The original whole-model metrics retain their
 limits, and the release plan's broader resource blocker remains explicit.
 Evidence and rejected controls are retained in
-`benchmark-results/2026-10-12-bonsai-native-hotfix/cold-activation-attribution/`.
+[historical archive index](../../benchmark-results/2026-10-12-bonsai-native-hotfix/README.md).
 
 ## Confirmed failure
 
