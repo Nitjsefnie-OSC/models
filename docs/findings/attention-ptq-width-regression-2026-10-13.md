@@ -1,6 +1,6 @@
 # Attention and PTQ physical-width regressions
 
-Status: the narrow-host corrections pass exact-output checks and remove the measured ARM allocation regressions. **The combined component run still fails x86 attention-score latency.** Helper-layout controls are being measured; neither is qualified or integrated as a fix. This report does not grant whole-model or release qualification.
+Status: the narrow-host corrections pass exact-output checks and remove the measured ARM allocation regressions. **The combined component run still fails x86 attention-score latency.** The full-method helper is the promising candidate after a completed comparison; performance precision remains unresolved. This report does not grant whole-model or release qualification.
 
 The original code maintained eight logical reduction lanes using physical 256-bit vectors even on a JVM whose preferred width is 128 bits. Those logical lanes are needed for reproducibility; physical emulation is not. The initial same-host [diagnostic](https://github.com/integrallis/models/actions/runs/38341564816) measured 634,880 allocated bytes per score call, 163,200 per softmax call and 653,312 per Q8 PTQ call on ARM. Separate JFR records attribute the allocation to unsupported-vector fallback objects. The x86 vector routes did not show that warmed allocation problem.
 
@@ -25,11 +25,13 @@ The x86 score host is AMD EPYC 9V74 with `UseAVX=3`, `MaxVectorSize=64`, `UseFMA
 
 The source-only correction was integrated as `d296ae24112a1419d31273b1a327c2cc22a7b4b7`. Its comment correction changes debug line information but not instructions. Standalone diagnostic compilation uses `javac -g`; Gradle also emits `MethodParameters`. Resolved `javap -p -c` instructions match for the two changed classes; artifact hashes are not falsely equated.
 
-## Pending helper comparison
+## Completed helper comparison
 
 [Run 38345876367](https://github.com/integrallis/models/actions/runs/38345876367), harness `224a1d0277aeb0391428aa4f3af6adf037d48837`, freezes four arms: original baseline, corrected current method, unchanged wide body behind a helper, and the entire original wide method including validation behind a helper. The latter preserves all 359 original instructions and bytecode offsets after normalizing constant-pool indices. The comparison admits CPU/JVM metadata matching the failed EPYC cohort before timing, uses four bounded host attempts, and retains every admitted host's 16 rotating four-arm cycles without outcome-based stopping. Non-admitted hardware is recorded explicitly and supplies no timing verdict.
 
-The eight focused attention tests and baseline/candidate parity checks pass locally. That establishes tested correctness, not a performance fix. The production attention-score path will not be called qualified until the measured regression is resolved.
+One admitted EPYC 9V74 host completed all 16 cycles; three other attempts were excluded by CPU/JVM metadata before timing. The current corrected method measured 1.00330 versus baseline, interval [0.97367, 1.03351], so the earlier 5.3% slowdown was not precisely reproduced in this cohort. The body-only helper measured 1.02021 [0.99402, 1.05075] and is rejected. The full-original-method helper measured 0.98069 [0.94224, 1.01905] against baseline, and 0.97747 [0.94985, 1.00264] against current. It has the best point estimate, but the intervals still permit a small slowdown; it is not performance-qualified. Its cold allocation ratio is 1.00733 and maximum measured warm block allocation is 0.002 bytes per call.
+
+The eight focused attention tests and all baseline/candidate parity checks pass. The minimal source-only candidate is `48ead2163f42c8c697ea0818f2ad5e6f85dcb251`, equivalent to measured `61a47f54`, changing only the score helper layout. A prospective fixed comparison is required to resolve latency and precision before qualification. Raw admitted and non-admitted receipts plus paired analysis remain at `audit-artifacts/attention-ptq-width/score-boundary-run-38345876367`.
 
 ## Reachability and evidence
 
