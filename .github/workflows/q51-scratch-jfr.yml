@@ -24,17 +24,36 @@ jobs:
         env:
           Q51_SCRATCH_REFERENCE_URL: ${{ secrets.Q51_SCRATCH_REFERENCE_URL }}
         run: python3 scripts/q51-scratch/run.py prepare --out "$RUNNER_TEMP/q51" --models .
-      - name: Instrument three variants outside decisive timing
-        run: python3 scripts/q51-scratch/run.py diagnostic-only --out "$RUNNER_TEMP/q51"
-      - name: Retain all diagnostic output
+      - name: Capture bounded prior compiler and allocation window
+        run: python3 scripts/q51-scratch/run.py diagnostic-window --diagnostic-variant prior --out "$RUNNER_TEMP/q51"
+      - name: Retain prior diagnostic immediately
         if: always()
         uses: actions/upload-artifact@v7
         with:
-          name: q51-arm-instrumented-only
+          name: q51-arm-window-prior
           path: |
-            ${{ runner.temp }}/q51/*.json
-            ${{ runner.temp }}/q51/*.stdout
-            ${{ runner.temp }}/q51/*.stderr
-            ${{ runner.temp }}/q51/diagnostic-*.jfr
-            ${{ runner.temp }}/q51/diagnostic-*.xml
+            ${{ runner.temp }}/q51/provenance.json
+            ${{ runner.temp }}/q51/window-prior.*
+          retention-days: 30
+      - name: Capture bounded row-reuse compiler and allocation window
+        run: python3 scripts/q51-scratch/run.py diagnostic-window --diagnostic-variant row-reuse --out "$RUNNER_TEMP/q51"
+      - name: Retain row-reuse diagnostic immediately
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: q51-arm-window-row-reuse
+          path: |
+            ${{ runner.temp }}/q51/provenance.json
+            ${{ runner.temp }}/q51/window-row-reuse.*
+          retention-days: 30
+      - name: Capture bounded full compiler and allocation window
+        run: python3 scripts/q51-scratch/run.py diagnostic-window --diagnostic-variant full --out "$RUNNER_TEMP/q51"
+      - name: Retain full diagnostic immediately
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: q51-arm-window-full
+          path: |
+            ${{ runner.temp }}/q51/provenance.json
+            ${{ runner.temp }}/q51/window-full.*
           retention-days: 30

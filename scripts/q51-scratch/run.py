@@ -7,6 +7,7 @@ import os
 from pathlib import Path
 import platform
 import shutil
+import signal
 import subprocess
 import tarfile
 import time
@@ -103,13 +104,32 @@ def records(out, name):
     return [json.loads(line) for line in (out/(name+'.stdout')).read_text().splitlines() if line.startswith('{')]
 
 
-def execute(out, phase, pair):
+def execute(out, phase, pair, diagnostic_variant=None):
     assert (out/'PREPARED').is_file()
     runtime=out/'runtime'
     native=runtime/'rust/target/release/libjmodels_kernels.so'
     def command(variant, mode, value):
         return ['/usr/bin/time','-v','java','--add-modules','jdk.incubator.vector','--enable-native-access=ALL-UNNAMED','-Xmx4g',f'-Dmodels.native.kernels.threads={CONFIG["threads"]}',f'-Dvectors.gguf.threads={CONFIG["threads"]}', '-cp',f'{out}/{variant}/backend-java.jar:{runtime}/probe.jar:{runtime}/lib/*','experiments.q5.Q51CausalProof',mode,str(out/'causal-q51.gguf'),str(native),str(runtime/'tasks.json'),str(value),'native']
     variants=[v['name'] for v in CONFIG['variants']]
+    if phase=='diagnostic-window':
+        assert diagnostic_variant in variants
+        variant=diagnostic_variant
+        cmd=command(variant,'timing',0)
+        cmd[3:3]=[f'-XX:StartFlightRecording=filename={out}/window-{variant}.jfr,settings=profile,duration=90s,dumponexit=true', '-XX:+UnlockDiagnosticVMOptions','-XX:+LogCompilation',f'-XX:LogFile={out}/window-{variant}.xml']
+        start=time.monotonic()
+        with (out/f'window-{variant}.stdout').open('w') as stdout, (out/f'window-{variant}.stderr').open('w') as stderr:
+            process=subprocess.Popen(cmd,stdout=stdout,stderr=stderr,start_new_session=True)
+            capped=False
+            try:code=process.wait(timeout=180)
+            except subprocess.TimeoutExpired:
+                capped=True
+                os.killpg(process.pid,signal.SIGTERM)
+                try:code=process.wait(timeout=20)
+                except subprocess.TimeoutExpired:
+                    os.killpg(process.pid,signal.SIGKILL);code=process.wait()
+        save(out/f'window-{variant}.execution.json',{'command':cmd,'exitCode':code,'wallSeconds':time.monotonic()-start,'boundedDiagnosticWindow':True,'windowSeconds':180,'windowReached':capped,'qualificationMeasurement':False,'fullNumericalCohortExecuted':False})
+        assert (out/f'window-{variant}.jfr').stat().st_size>0,'recording was not retained'
+        return
     if phase=='correctness':
         baseline=None
         for variant in variants:
@@ -145,13 +165,14 @@ def execute(out, phase, pair):
 
 def main():
     parser=argparse.ArgumentParser()
-    parser.add_argument('phase',choices=['prepare','correctness','timing','diagnostic','diagnostic-only'])
+    parser.add_argument('phase',choices=['prepare','correctness','timing','diagnostic','diagnostic-only','diagnostic-window'])
     parser.add_argument('--out',type=Path,required=True)
     parser.add_argument('--models',type=Path)
     parser.add_argument('--pair',type=int,choices=range(CONFIG['triplets']))
+    parser.add_argument('--diagnostic-variant',choices=[v['name'] for v in CONFIG['variants']])
     args=parser.parse_args();out=args.out.resolve();out.mkdir(parents=True,exist_ok=True)
     if args.phase=='prepare':prepare(out,args.models.resolve())
-    else:execute(out,args.phase,args.pair)
+    else:execute(out,args.phase,args.pair,args.diagnostic_variant)
 
 
 if __name__=='__main__':main()
