@@ -22,7 +22,7 @@ jobs:
           set -euo pipefail
           mkdir -p proof-out
           curl --fail --silent --show-error --location "$PAYLOAD_URL" -o payload.tar.gz
-          echo '83f880e46204f85b03fe1ef18940f163dd6c48ecb57e6e35bb1fbb77537c7351  payload.tar.gz' | sha256sum -c -
+          echo '98f3e479add4a3108e0634de03b72a5f4346eb1985f635f7a67afd9cf011e7bf  payload.tar.gz' | sha256sum -c -
           python3 - <<'PYCODE'
           import tarfile
           with tarfile.open('payload.tar.gz') as t:t.extractall('.',filter='data')
@@ -32,6 +32,8 @@ jobs:
           java -version 2>&1 | grep '25.0.3+9'
           rustc --version >> proof-out/host.txt
           python3 payload/run.py prepare
+      - name: Admit literal warmed EXP and LOG runtime calls
+        run: python3 payload/run.py oracle
       - name: Actual native full-domain and retained-input numerical proof
         run: python3 payload/run.py numeric
       - uses: actions/upload-artifact@v7
