@@ -29,7 +29,7 @@ jobs:
         run: |
           set -euo pipefail
           curl --fail --silent --show-error --location "$PAYLOAD_URL" -o payload.tar.gz
-          echo '7177c6ae46fb10bb027f43e3e629087e5b3c1cdd2358b2cd30fa50853ade3822  payload.tar.gz' | sha256sum -c -
+          echo 'b9f207fd9f52cfed10c21401c0626b532b68d6c24e957f269d648ff7031af2ed  payload.tar.gz' | sha256sum -c -
           python3 - <<'PYCODE'
           import tarfile
           with tarfile.open('payload.tar.gz') as archive:
