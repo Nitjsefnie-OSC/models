@@ -1,0 +1,28 @@
+{
+  "retired": [
+    {
+      "directory": "/Users/briansam-bodden/Code/java-ai/projects/vectors-bonsai-combined",
+      "branch": "fix/bonsai-combined-correction",
+      "tag": "audit/2026-10-12/bonsai-combined-superseded",
+      "commit": "561109f5dfe224800960511b852370f980e85915"
+    },
+    {
+      "directory": "/Users/briansam-bodden/Code/java-ai/projects/vectors-bonsai-all-activation",
+      "branch": "fix/bonsai-all-activation",
+      "tag": "audit/2026-10-12/bonsai-all-activation-control",
+      "commit": "de8d58ef350581e95d99fba27e43e4d0e0fb7d24"
+    },
+    {
+      "directory": "/Users/briansam-bodden/Code/java-ai/projects/vectors-bf16-hotfix",
+      "branch": "fix/bf16-correctness-hotfix",
+      "tag": "audit/2026-10-12/bf16-hotfix-control",
+      "commit": "405639cb9e8dff8e9453618ca58a46cdbe8c3c78"
+    }
+  ],
+  "directoriesRetained": true,
+  "pr99": "closed as superseded",
+  "remoteBranchesDeleted": [
+    "fix/bonsai-all-activation",
+    "fix/bf16-correctness-hotfix"
+  ]
+}

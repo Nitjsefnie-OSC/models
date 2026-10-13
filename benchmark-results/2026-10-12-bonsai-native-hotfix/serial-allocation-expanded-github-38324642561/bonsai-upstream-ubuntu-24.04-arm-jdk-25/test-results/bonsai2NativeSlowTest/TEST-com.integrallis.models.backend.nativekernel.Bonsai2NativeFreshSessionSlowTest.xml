@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.integrallis.models.backend.nativekernel.Bonsai2NativeFreshSessionSlowTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-10-12T23:58:47.146Z" hostname="runnervmy3dvn" time="55.344">
+  <properties/>
+  <testcase name="freshSessionsAndResetPreserveEveryLogitFromTheFirstColdSession()" classname="com.integrallis.models.backend.nativekernel.Bonsai2NativeFreshSessionSlowTest" time="55.329"/>
+  <system-out><![CDATA[Bonsai fresh-session JVM=25.0.4.1+1-LTS vendor=Eclipse Adoptium
+Bonsai fresh-session repeat=0 step=0 fullLogitSha256=f296f03618cd73a4b2faf1ab0f8677ecab121dabcad4988f770a334f7f9249f7
+Bonsai fresh-session repeat=0 step=1 fullLogitSha256=b81ca53b97fd6ae6393a975873bca5daa084b6be413dbd95a57cce90e62d8cfb
+Bonsai fresh-session repeat=0 step=2 fullLogitSha256=45d95f809f760cf84c0a4fe7644c503be8136c1f10bfb8f29ffe5c456710cdd6
+Bonsai fresh-session repeat=0 step=3 fullLogitSha256=8aed1f68fe644ace9834bdf5d80b2f3f57f70eadd057993f75ae154147ad5073
+Bonsai fresh-session repeat=0 step=4 fullLogitSha256=9d343ff474d826f9883cfc3a26b51ae4ea5dffbf35626b1f299a1272f67b6f89
+Bonsai fresh-session repeat=0 step=5 fullLogitSha256=da050c86e5e3c62b2ffcb39d8c86295976caf297dd0293a120dd2a00adf6d4a9
+Bonsai fresh-session repeat=0 step=6 fullLogitSha256=4bc1d6ac514e94f93863c958b908559957ec7ef5358955c7432b8474a17cf1bd
+Bonsai fresh-session repeat=0 step=7 fullLogitSha256=6ecd12ad22f124728188866a282391d3e3817d53f7b136d8e97e20744d02e3e8
+Bonsai fresh-session repeat=1 step=0 fullLogitSha256=f296f03618cd73a4b2faf1ab0f8677ecab121dabcad4988f770a334f7f9249f7
+Bonsai fresh-session repeat=1 step=1 fullLogitSha256=b81ca53b97fd6ae6393a975873bca5daa084b6be413dbd95a57cce90e62d8cfb
+Bonsai fresh-session repeat=1 step=2 fullLogitSha256=45d95f809f760cf84c0a4fe7644c503be8136c1f10bfb8f29ffe5c456710cdd6
+Bonsai fresh-session repeat=1 step=3 fullLogitSha256=8aed1f68fe644ace9834bdf5d80b2f3f57f70eadd057993f75ae154147ad5073
+Bonsai fresh-session repeat=1 step=4 fullLogitSha256=9d343ff474d826f9883cfc3a26b51ae4ea5dffbf35626b1f299a1272f67b6f89
+Bonsai fresh-session repeat=1 step=5 fullLogitSha256=da050c86e5e3c62b2ffcb39d8c86295976caf297dd0293a120dd2a00adf6d4a9
+Bonsai fresh-session repeat=1 step=6 fullLogitSha256=4bc1d6ac514e94f93863c958b908559957ec7ef5358955c7432b8474a17cf1bd
+Bonsai fresh-session repeat=1 step=7 fullLogitSha256=6ecd12ad22f124728188866a282391d3e3817d53f7b136d8e97e20744d02e3e8
+Bonsai fresh-session repeat=2 step=0 fullLogitSha256=f296f03618cd73a4b2faf1ab0f8677ecab121dabcad4988f770a334f7f9249f7
+Bonsai fresh-session repeat=2 step=1 fullLogitSha256=b81ca53b97fd6ae6393a975873bca5daa084b6be413dbd95a57cce90e62d8cfb
+Bonsai fresh-session repeat=2 step=2 fullLogitSha256=45d95f809f760cf84c0a4fe7644c503be8136c1f10bfb8f29ffe5c456710cdd6
+Bonsai fresh-session repeat=2 step=3 fullLogitSha256=8aed1f68fe644ace9834bdf5d80b2f3f57f70eadd057993f75ae154147ad5073
+Bonsai fresh-session repeat=2 step=4 fullLogitSha256=9d343ff474d826f9883cfc3a26b51ae4ea5dffbf35626b1f299a1272f67b6f89
+Bonsai fresh-session repeat=2 step=5 fullLogitSha256=da050c86e5e3c62b2ffcb39d8c86295976caf297dd0293a120dd2a00adf6d4a9
+Bonsai fresh-session repeat=2 step=6 fullLogitSha256=4bc1d6ac514e94f93863c958b908559957ec7ef5358955c7432b8474a17cf1bd
+Bonsai fresh-session repeat=2 step=7 fullLogitSha256=6ecd12ad22f124728188866a282391d3e3817d53f7b136d8e97e20744d02e3e8
+BONSAI_FRESH_SESSION_FULL_LOGITS_EXACT
+]]></system-out>
+  <system-err><![CDATA[Oct 12, 2026 11:58:51 PM com.integrallis.vectors.core.PanamaVectorUtilSupportProvider create
+INFO: vectors-core: Using Panama Vector API SIMD provider (vector bits: 128)
+Oct 12, 2026 11:58:51 PM com.integrallis.vectors.core.VectorizationProvider logActiveToggles
+INFO: vectors-core: provider=PanamaVectorUtilSupport panama=true maxBits=256 preferredBits=128 fastVectorFMA=true fastScalarFMA=true sve=true ggufParallel=true ggufParallelThreshold=1048576 ggufExecutor=persistent ggufThreads=4 ggufChunksPerThread=2 mappedKQuantLongOffsets=auto(q4=false,q5=false,q6=false) q4ShortPairwiseSupported=false q4UnsignedPairwiseSupported=false toggles=[(defaults — no -Dvectors.* overrides)]
+]]></system-err>
+</testsuite>
