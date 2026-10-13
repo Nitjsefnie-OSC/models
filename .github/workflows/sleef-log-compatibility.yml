@@ -1,0 +1,53 @@
+name: Pinned ARM warmed LOG numerical compatibility
+on:
+  push:
+    branches: [fix/qwen-precision-proof]
+    paths: [.github/workflows/sleef-log-compatibility.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  numerical:
+    runs-on: ubuntu-24.04-arm
+    timeout-minutes: 55
+    steps:
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '25.0.3'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Fetch immutable external source and protocol
+        env:
+          PAYLOAD_URL: ${{ secrets.SLEEF_LOG_COMPATIBILITY_URL }}
+        run: |
+          set -euo pipefail
+          mkdir -p proof-out
+          curl --fail --silent --show-error --location "$PAYLOAD_URL" -o payload.tar.gz
+          echo '474817165ea12e08ec76864e0f504771193e381f5c6c894b3368a55c2bfa1016  payload.tar.gz' | sha256sum -c -
+          python3 - <<'PYCODE'
+          import tarfile
+          with tarfile.open('payload.tar.gz') as t:t.extractall('.',filter='data')
+          PYCODE
+          uname -a > proof-out/host.txt
+          lscpu >> proof-out/host.txt
+          java -version 2>> proof-out/host.txt
+          java -XX:+PrintFlagsFinal -version >> proof-out/host.txt 2>&1
+          sha256sum "$JAVA_HOME/lib/libsleef.so" "$JAVA_HOME/lib/modules" > proof-out/jdk-library-sha256.txt
+      - name: Compare explicit algorithm with warmed JDK on all frozen inputs
+        run: python3 payload/run.py
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: sleef-log-compatibility-arm
+          path: |
+            proof-out/*.json
+            proof-out/*.stdout
+            proof-out/*.stderr
+            proof-out/*.txt
+            payload/PROTOCOL.md
+            payload/files.json
+            payload/upstream-source.json
+          retention-days: 30
