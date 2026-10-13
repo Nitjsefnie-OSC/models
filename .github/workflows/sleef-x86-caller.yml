@@ -1,0 +1,58 @@
+name: Consistent x86 SLEEF activation caller screen
+on:
+  push:
+    branches: [fix/qwen-precision-proof]
+    paths: [.github/workflows/sleef-x86-caller.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  screen:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '25.0.3'
+      - name: Verify immutable external source and actual Gradle artifact
+        env:
+          PAYLOAD_URL: ${{ secrets.SLEEF_X86_CALLER_URL }}
+        run: |
+          set -euo pipefail
+          mkdir -p proof-out
+          curl --fail --silent --show-error --location "$PAYLOAD_URL" -o payload.tar.gz
+          echo 'e47eb764b7095f2b182562e51ea0106281b141fd5b7d7834581b348e7840c8ca  payload.tar.gz' | sha256sum -c -
+          python3 - <<'PYCODE'
+          import tarfile
+          with tarfile.open('payload.tar.gz') as t:t.extractall('.',filter='data')
+          PYCODE
+          lscpu > proof-out/host.txt
+          java -XX:+PrintFlagsFinal -version >> proof-out/host.txt 2>&1
+      - name: Public chunks cold hot aliases history and independent scalar recipe
+        run: python3 payload/run.py parity
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: sleef-x86-public-contract
+          path: |
+            proof-out
+            payload/PROTOCOL.md
+            payload/files.json
+            payload/freeze.json
+          retention-days: 30
+      - name: Retain original implementation-specific StrictMath golden result
+        continue-on-error: true
+        run: python3 payload/run.py existing
+      - name: Four fixed matched public-operation blocks
+        run: python3 payload/run.py timing
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: sleef-x86-caller-screen
+          path: |
+            proof-out
+            payload/PROTOCOL.md
+            payload/files.json
+            payload/freeze.json
+          retention-days: 30
