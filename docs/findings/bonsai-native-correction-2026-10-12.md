@@ -1,5 +1,8 @@
 # Bonsai native batch parity correction
 
+
+**Current follow-up:** the confirmed cold-allocation regression now has a production replacement under validation; see [the exact source, artifact and live checks](convolution-allocation-regression-2026-10-13.md). The13f0 results below describe the preceding candidate, not the replacement.
+
 ## Current result
 
 The current combined correction plus the serial-allocation fix passes the expanded
