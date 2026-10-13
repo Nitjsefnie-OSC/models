@@ -75,11 +75,18 @@ arrays, not whole-model qualification.
 On x86, warm allocation remained exactly equal between arms, but all eight
 latency confidence intervals crossed equality. The short 1,000-call blocks did
 not resolve non-regression or precision; they are retained as unresolved.
-A [separate fixed follow-up](https://github.com/integrallis/models/actions/runs/38341071968)
-uses counts prospectively frozen from all completed x86 observations to target
-500 ms per block. Every new block must last at least 200 ms. Pair counts, order,
-acceptance limits and five blocks per shape remain fixed, with no optional
-stopping or pooling of the earlier observations.
+The [separate fixed follow-up](https://github.com/integrallis/models/actions/runs/38341071968)
+used counts prospectively frozen from all completed x86 observations to target
+500 ms per block. Every new block had to last at least 200 ms. Pair counts, order,
+acceptance limits and five blocks per shape stayed fixed, with no optional
+stopping or pooling of the earlier observations. All twelve pairs completed:
+outputs were exact and allocation equal, but all eight latency intervals still
+crossed equality and failed precision. Ratios ranged from 0.9897 to 1.0132;
+the 4,096-element dot ratio was 1.0074 [0.9561, 1.0603]. Those frozen gates
+remain unresolved. There is no further repeated timing cohort planned for an
+unchanged wide implementation; generated-code correspondence will instead
+check whether the public dispatch changes its compiled hot path. That evidence
+cannot turn a failed statistical gate into a pass.
 
 Raw component records and summaries remain outside the repositories at
 `audit-artifacts/2026-10-13-activation/pinned-width-38340726518/`; the longer
