@@ -95,9 +95,6 @@ public final class GgufHugePages {
   /** {@code MAP_PRIVATE | MAP_ANONYMOUS} on Linux. */
   private static final int MAP_PRIVATE_ANONYMOUS = 0x02 | 0x20;
 
-  /** The x86-64 huge page. Allocating aligned to it is what lets the kernel promote at all. */
-  private static final long HUGE_PAGE_BYTES = 2L * 1024 * 1024;
-
   /**
    * Below this a copy cannot pay for itself: the TLB covers a small model without help.
    *
