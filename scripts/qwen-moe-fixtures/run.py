@@ -9,12 +9,35 @@ def sha(p):
   for block in iter(lambda:f.read(8*1024*1024),b''):h.update(block)
  return h.hexdigest()
 def save(p,x):p.write_text(json.dumps(x,indent=2)+'\n')
+def process_snapshot(parent):
+ # Read only this invocation's descendants. No timing gate uses these diagnostics.
+ processes={}
+ for directory in Path('/proc').iterdir():
+  if not directory.name.isdigit():continue
+  try:
+   text=(directory/'stat').read_text();fields=text[text.rfind(')')+2:].split()
+   processes[int(directory.name)]={'pid':int(directory.name),'ppid':int(fields[1]),'state':fields[0],
+     'minorFaults':int(fields[7]),'majorFaults':int(fields[9]),'userTicks':int(fields[11]),'systemTicks':int(fields[12]),
+     'status':(directory/'status').read_text(),'io':(directory/'io').read_text()}
+  except (OSError,ValueError,IndexError):continue
+ selected={parent};changed=True
+ while changed:
+  children={pid for pid,r in processes.items() if r['ppid'] in selected};changed=bool(children-selected);selected|=children
+ return [processes[pid] for pid in sorted(selected) if pid in processes]
 def run(out,name,command,seconds):
  start=time.time()
  with (out/(name+'.stdout')).open('w') as stdout,(out/(name+'.stderr')).open('w') as stderr:
-  result=subprocess.run(['timeout','--signal=TERM','--kill-after=15',str(seconds),*map(str,command)],stdout=stdout,stderr=stderr)
- save(out/(name+'.execution.json'),{'exitCode':result.returncode,'elapsedSeconds':time.time()-start,'secondsLimit':seconds,'command':list(map(str,command))})
- if result.returncode:raise RuntimeError(f'{name} failed: {result.returncode}')
+  process=subprocess.Popen(['timeout','--signal=TERM','--kill-after=15',str(seconds),*map(str,command)],stdout=stdout,stderr=stderr)
+  while True:
+   try:code=process.wait(timeout=30);break
+   except subprocess.TimeoutExpired:
+    record={'elapsedSeconds':time.time()-start,'processes':process_snapshot(process.pid),'memory':Path('/proc/meminfo').read_text()}
+    with (out/(name+'.resources.jsonl')).open('a') as f:f.write(json.dumps(record)+'\n')
+    print(json.dumps({'phase':name,'elapsedSeconds':round(record['elapsedSeconds']),
+      'processes':[{k:r[k] for k in ['pid','ppid','state','majorFaults','userTicks','systemTicks']} for r in record['processes']],
+      'stdoutBytes':(out/(name+'.stdout')).stat().st_size}),flush=True)
+ save(out/(name+'.execution.json'),{'exitCode':code,'elapsedSeconds':time.time()-start,'secondsLimit':seconds,'command':list(map(str,command))})
+ if code:raise RuntimeError(f'{name} failed: {code}')
 def verify_records(path):
  rows=[json.loads(l) for l in path.read_text().splitlines() if l.startswith('{')]
  fresh=[r for r in rows if r.get('kind')=='fresh-session']
