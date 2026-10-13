@@ -1,1 +1,0 @@
-[{"dataset": "jevbench", "id": "easy-extraction-06", "prompt": "Could I get the blue shirt in size M, please?\nOptions:\n- S: Small\n- M: Medium\n- L: Large\n- XL: Extra large\nWhich shirt size does the customer ask for?\nA: S\nB: M\nC: L\nD: XL\nAnswer:", "labels": ["S", "M", "L", "XL"], "expected": "M"}]

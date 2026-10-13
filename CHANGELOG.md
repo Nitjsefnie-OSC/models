@@ -239,7 +239,7 @@ kill switch on top of that.
   catalogue edit able to reach a marker already on Maven Central.
 
 - **The `loadWarmup` prefill is gone with its setting.** Its experiment returned VOID
-  (`experiments/loadwarmup-first-generation/`), so it bought no measured speed while costing load
+  ([historical decision](docs/findings/historical-experiment-decisions.md)), so it bought no measured speed while costing load
   time against the readiness gate.
 
 - **Q5_0 projections always run independently**, and that is a decision rather than a setting:

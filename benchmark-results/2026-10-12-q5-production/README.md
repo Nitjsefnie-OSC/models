@@ -1,5 +1,9 @@
 # Q5 production cleanup and qualification
 
+This is a historical source-specific report. Its superseded experiment harness and data
+are preserved in the [external campaign archive](../../docs/findings/historical-experiment-decisions.md);
+later BERT restoration and resource failures are not overwritten by these earlier observations.
+
 The production change is `71d301a0`: exact Java Q5_1 SIMD expansion, one decoded
 weight row shared across a batch, parallel row dispatch through the existing
 Vectors executor, and reusable BERT scratch. BERT retains its Java path. The
@@ -22,7 +26,7 @@ rejection of the retired Q5_0 format.
 * The renewed actual-provider experiment executed 30 native projections in its
   first BERT embedding. All 82 SciFact/NFCorpus query/document embeddings matched
   Java exactly on both hosts. Input selection and pinned source hashes are in
-  `../../experiments/q5-proof/data/`. Oversized documents were shortened to the
+  the archived `experiments/q5-proof/data/` directory. Oversized documents were shortened to the
   model's 512-token limit; every record retains original and evaluated lengths.
 * The new Java BERT implementation was faster than actual Rust injection in
   ten counterbalanced process pairs on both hosts. Arithmetic mean request times
@@ -66,5 +70,5 @@ test. Full raw supported-host logs are retained under
 `s3://models-qual-077051030817/results/gdn-proof-.../` prefixes.
 `raw-files.sha256` indexes retained files. `paired-summary.json` records explicit
 ratio direction and bootstraps entire process-pair clusters (10,000 draws,
-seed 724). Run `../../experiments/q5-proof/analyze-results.py RAW_ROOT OUTPUT_DIR`
-to regenerate it. No failed candidate or incomplete phase is a release pass.
+seed 724). The archived `experiments/q5-proof/analyze-results.py` regenerates it
+when run inside the extracted historical campaign environment. No failed candidate or incomplete phase is a release pass.

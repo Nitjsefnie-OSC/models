@@ -14,7 +14,7 @@ verify every operation in the library, and no observed inference corruption is a
 
 ## Authorized correction — committed locally
 
-[The patch](../../experiments/gdn/native-attention-exclusive-slices.patch) narrows output and
+[The archived ownership patch](../../docs/findings/historical-experiment-decisions.md) narrows output and
 score slices to each worker's assigned heads and indexes them relative to that range.
 Arithmetic and scheduling remain unchanged. Following the user’s instruction to continue, the patch is also applied to the production checkout.
 The pending DeltaNet deletion remains separate and unpublished. A pinned Miri CI check exercises

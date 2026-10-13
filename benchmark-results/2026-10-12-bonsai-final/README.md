@@ -31,3 +31,7 @@ identities required by the merger are committed here.
 Reproduce scoring with `merge-recovered-public-qa.py` and the original
 `../2026-10-11-bonsai-production/score-public-qa.py`; the merged reports and full
 `summary.json` preserve per-case provenance and confidence intervals.
+
+The obsolete `launch.py`, which depended on a generated payload in another worktree,
+is preserved in the [external campaign archive](../../docs/findings/historical-experiment-decisions.md).
+Scoring and merging remain available here; the archived launcher is not a current entrypoint.
