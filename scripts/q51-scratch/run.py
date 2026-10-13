@@ -51,7 +51,7 @@ def run(out, name, command, timeout=900):
         raise RuntimeError(f'{name} failed: {code}, timeout={capped}')
 
 
-def prepare(out, models):
+def prepare_reference(out):
     url = os.environ['Q51_SCRATCH_REFERENCE_URL']
     payload = out / 'reference.tar.gz'
     urllib.request.urlretrieve(url, payload)
@@ -83,6 +83,11 @@ def prepare(out, models):
     model=out/'causal-q51.gguf'
     run(out,'convert-q51',[str(oracle/'bin/llama-quantize'),'--allow-requantize','--pure','--output-tensor-type','q5_1','--token-embedding-type','q5_1',str(source),str(model),'Q5_1','8'])
     assert sha(model)==CONFIG['derivedFixtureSha256']
+    return runtime, old_delta
+
+
+def prepare(out, models):
+    runtime, old_delta = prepare_reference(out)
     shared_classes=out/'shared-width-classes'
     shared_sources=[]
     for repair in CONFIG.get('sharedKernelRepairs',[]):

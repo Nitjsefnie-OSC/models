@@ -1,0 +1,37 @@
+{
+  "scope": "Final composed Q51 route selection: actual unmodified hybrid artifact versus provider-only blanket-native/all-Java controls. No historical result pooling.",
+  "payloadSha256": "06adff0d10bf5986fa2d532d4134201989293b573c45ab000238bf48c59f84b5",
+  "variants": [
+    "hybrid",
+    "native",
+    "java"
+  ],
+  "jdk": "25.0.3",
+  "threads": 4,
+  "triplets": 12,
+  "warmRequests": 32,
+  "measuredRequests": 3,
+  "requestsInNumericalCohort": 148,
+  "snapshotsPerRequest": 9,
+  "vectorsSha256": "263bff1aef74bac56d0597ba6b4d7ad52af846fac08b32e70e5d549ce5c8f099",
+  "derivedFixtureSha256": "2381b9c9db9f2eb07049ed124280f6a8cfd18c0aef96ca317134115d870e23d1",
+  "perProcessSeconds": 900,
+  "bootstrapSeed": 903271,
+  "bootstrapResamples": 20000,
+  "maximumIntervalWidth": 0.02,
+  "limits": {
+    "prefillNanos": 1.0,
+    "decodeNanos": 1.0,
+    "modelNanos": 1.0,
+    "javaAllocatedBytes": 1.01,
+    "loadNanos": 1.01,
+    "peakRssKb": 1.01,
+    "requestNanos": 1.0,
+    "coldRequestNanos": 1.0,
+    "coldAllocatedBytes": 1.01
+  },
+  "modelsRevision": "5344b5a2ff84a27548f0f2c4840c24f22d73c32d",
+  "vectorsRevision": "b0aadc8d972f3504426f6e38fcb0a4b4a97a0333",
+  "dispatchReady": true,
+  "harnessSha256": "d3a371f131ec18567d120325f5ba67713cd51f21fabf906cfed33db1535f1b4c"
+}

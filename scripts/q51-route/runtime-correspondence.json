@@ -1,0 +1,39 @@
+{
+  "modelsRevision": "5344b5a2ff84a27548f0f2c4840c24f22d73c32d",
+  "vectorsRevision": "b0aadc8d972f3504426f6e38fcb0a4b4a97a0333",
+  "backendJavaSha256": "87f6b22a7a17bf1ebea98a276a9297920d64434d97a4cc0de4e1745fa0fbe94a",
+  "vectorsSha256": "263bff1aef74bac56d0597ba6b4d7ad52af846fac08b32e70e5d549ce5c8f099",
+  "changesFromPreviousPreparation": [
+    {
+      "arch": "x86",
+      "jar": "backend-java-0.3.59.jar",
+      "changes": [
+        "com/integrallis/models/backend/purejava/ops/GroupedQueryAttentionKernel.class",
+        "com/integrallis/models/backend/purejava/quant/TernaryDequantizer.class"
+      ]
+    },
+    {
+      "arch": "x86",
+      "jar": "vectors-core-0.1.30.jar",
+      "changes": [
+        "com/integrallis/vectors/core/BFloat16Matrix.class"
+      ]
+    },
+    {
+      "arch": "arm",
+      "jar": "backend-java-0.3.59.jar",
+      "changes": [
+        "com/integrallis/models/backend/purejava/ops/GroupedQueryAttentionKernel.class",
+        "com/integrallis/models/backend/purejava/quant/TernaryDequantizer.class"
+      ]
+    },
+    {
+      "arch": "arm",
+      "jar": "vectors-core-0.1.30.jar",
+      "changes": [
+        "com/integrallis/vectors/core/BFloat16Matrix.class"
+      ]
+    }
+  ],
+  "scope": "These changed classes are excluded from the exact Q51 fixture/configuration by type inventory and runtime-plan assertions. Candidate is composed correctness runtime, not final release freeze or proof of those excluded kernels."
+}
