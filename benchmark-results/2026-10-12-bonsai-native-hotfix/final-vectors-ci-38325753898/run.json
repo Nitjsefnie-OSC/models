@@ -1,0 +1,770 @@
+{
+  "conclusion": "success",
+  "headSha": "837ca23a95a88ed99657756ae6c348c4b866400d",
+  "jobs": [
+    {
+      "completedAt": "2026-10-13T00:26:59Z",
+      "conclusion": "success",
+      "databaseId": 115063903176,
+      "name": "build",
+      "startedAt": "2026-10-13T00:08:29Z",
+      "status": "completed",
+      "steps": [
+        {
+          "completedAt": "2026-10-13T00:08:34Z",
+          "conclusion": "success",
+          "name": "Set up job",
+          "number": 1,
+          "startedAt": "2026-10-13T00:08:30Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-13T00:08:36Z",
+          "conclusion": "success",
+          "name": "Run actions/checkout@v5",
+          "number": 2,
+          "startedAt": "2026-10-13T00:08:34Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-13T00:08:37Z",
+          "conclusion": "success",
+          "name": "Run actions/setup-java@v5",
+          "number": 3,
+          "startedAt": "2026-10-13T00:08:36Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-13T00:08:48Z",
+          "conclusion": "success",
+          "name": "Setup Gradle",
+          "number": 4,
+          "startedAt": "2026-10-13T00:08:37Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-13T00:09:03Z",
+          "conclusion": "success",
+          "name": "Install native BLAS (Smile LAPACK backend)",
+          "number": 5,
+          "startedAt": "2026-10-13T00:08:48Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-13T00:21:53Z",
+          "conclusion": "success",
+          "name": "Build + Test",
+          "number": 6,
+          "startedAt": "2026-10-13T00:09:03Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-13T00:22:36Z",
+          "conclusion": "success",
+          "name": "Test dependency policy rejection cases",
+          "number": 7,
+          "startedAt": "2026-10-13T00:21:53Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-13T00:22:37Z",
+          "conclusion": "success",
+          "name": "Validate performance reproduction command",
+          "number": 8,
+          "startedAt": "2026-10-13T00:22:36Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-13T00:23:24Z",
+          "conclusion": "success",
+          "name": "Storage and Studio integration tests",
+          "number": 9,
+          "startedAt": "2026-10-13T00:22:37Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-13T00:23:33Z",
+          "conclusion": "success",
+          "name": "Studio t-SNE regression tests",
+          "number": 10,
+          "startedAt": "2026-10-13T00:23:24Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-13T00:23:39Z",
+          "conclusion": "success",
+          "name": "Run actions/setup-node@v6",
+          "number": 11,
+          "startedAt": "2026-10-13T00:23:33Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-13T00:23:39Z",
+          "conclusion": "success",
+          "name": "Studio projection browser state tests",
+          "number": 12,
+          "startedAt": "2026-10-13T00:23:39Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-13T00:23:54Z",
+          "conclusion": "success",
+          "name": "Build Documentation",
+          "number": 13,
+          "startedAt": "2026-10-13T00:23:39Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-13T00:24:39Z",
+          "conclusion": "success",
+          "name": "Recall Regression Gate",
+          "number": 14,
+          "startedAt": "2026-10-13T00:23:54Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-13T00:25:02Z",
+          "conclusion": "success",
+          "name": "Generate SBOM",
+          "number": 15,
+          "startedAt": "2026-10-13T00:24:40Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-13T00:26:51Z",
+          "conclusion": "success",
+          "name": "Compliance Check",
+          "number": 16,
+          "startedAt": "2026-10-13T00:25:02Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-13T00:26:53Z",
+          "conclusion": "success",
+          "name": "Retain dependency and consumer evidence",
+          "number": 17,
+          "startedAt": "2026-10-13T00:26:51Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-13T00:26:54Z",
+          "conclusion": "success",
+          "name": "Upload SBOM",
+          "number": 18,
+          "startedAt": "2026-10-13T00:26:53Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-13T00:26:54Z",
+          "conclusion": "skipped",
+          "name": "Upload Test Reports",
+          "number": 19,
+          "startedAt": "2026-10-13T00:26:54Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-13T00:26:54Z",
+          "conclusion": "success",
+          "name": "Post Run actions/setup-node@v6",
+          "number": 35,
+          "startedAt": "2026-10-13T00:26:54Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-13T00:26:55Z",
+          "conclusion": "success",
+          "name": "Post Setup Gradle",
+          "number": 36,
+          "startedAt": "2026-10-13T00:26:54Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-13T00:26:55Z",
+          "conclusion": "success",
+          "name": "Post Run actions/setup-java@v5",
+          "number": 37,
+          "startedAt": "2026-10-13T00:26:55Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-13T00:26:55Z",
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@v5",
+          "number": 38,
+          "startedAt": "2026-10-13T00:26:55Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-13T00:26:55Z",
+          "conclusion": "success",
+          "name": "Complete job",
+          "number": 39,
+          "startedAt": "2026-10-13T00:26:55Z",
+          "status": "completed"
+        }
+      ],
+      "url": "https://github.com/integrallis/vectors/actions/runs/38325753898/job/115063903176"
+    },
+    {
+      "completedAt": "2026-10-13T00:11:56Z",
+      "conclusion": "success",
+      "databaseId": 115063903359,
+      "name": "Core portability (x86-128)",
+      "startedAt": "2026-10-13T00:08:29Z",
+      "status": "completed",
+      "steps": [
+        {
+          "completedAt": "2026-10-13T00:08:34Z",
+          "conclusion": "success",
+          "name": "Set up job",
+          "number": 1,
+          "startedAt": "2026-10-13T00:08:30Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-13T00:08:36Z",
+          "conclusion": "success",
+          "name": "Run actions/checkout@v5",
+          "number": 2,
+          "startedAt": "2026-10-13T00:08:34Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-13T00:08:37Z",
+          "conclusion": "success",
+          "name": "Run actions/setup-java@v5",
+          "number": 3,
+          "startedAt": "2026-10-13T00:08:36Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-13T00:08:47Z",
+          "conclusion": "success",
+          "name": "Run gradle/actions/setup-gradle@v6",
+          "number": 4,
+          "startedAt": "2026-10-13T00:08:37Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-13T00:08:47Z",
+          "conclusion": "success",
+          "name": "Record hardware and source",
+          "number": 5,
+          "startedAt": "2026-10-13T00:08:47Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-13T00:11:34Z",
+          "conclusion": "success",
+          "name": "Execute core and index contracts",
+          "number": 6,
+          "startedAt": "2026-10-13T00:08:47Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-13T00:11:52Z",
+          "conclusion": "success",
+          "name": "Execute flat scheduling contracts",
+          "number": 7,
+          "startedAt": "2026-10-13T00:11:34Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-13T00:11:53Z",
+          "conclusion": "success",
+          "name": "Retain portability evidence",
+          "number": 8,
+          "startedAt": "2026-10-13T00:11:52Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-13T00:11:53Z",
+          "conclusion": "success",
+          "name": "Post Run gradle/actions/setup-gradle@v6",
+          "number": 14,
+          "startedAt": "2026-10-13T00:11:53Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-13T00:11:53Z",
+          "conclusion": "success",
+          "name": "Post Run actions/setup-java@v5",
+          "number": 15,
+          "startedAt": "2026-10-13T00:11:53Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-13T00:11:53Z",
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@v5",
+          "number": 16,
+          "startedAt": "2026-10-13T00:11:53Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-13T00:11:53Z",
+          "conclusion": "success",
+          "name": "Complete job",
+          "number": 17,
+          "startedAt": "2026-10-13T00:11:53Z",
+          "status": "completed"
+        }
+      ],
+      "url": "https://github.com/integrallis/vectors/actions/runs/38325753898/job/115063903359"
+    },
+    {
+      "completedAt": "2026-10-13T00:11:24Z",
+      "conclusion": "success",
+      "databaseId": 115063903383,
+      "name": "Execute Java Notebooks",
+      "startedAt": "2026-10-13T00:08:29Z",
+      "status": "completed",
+      "steps": [
+        {
+          "completedAt": "2026-10-13T00:08:31Z",
+          "conclusion": "success",
+          "name": "Set up job",
+          "number": 1,
+          "startedAt": "2026-10-13T00:08:30Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-13T00:08:33Z",
+          "conclusion": "success",
+          "name": "Run actions/checkout@v5",
+          "number": 2,
+          "startedAt": "2026-10-13T00:08:31Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-13T00:08:33Z",
+          "conclusion": "success",
+          "name": "Run actions/setup-java@v5",
+          "number": 3,
+          "startedAt": "2026-10-13T00:08:33Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-13T00:08:39Z",
+          "conclusion": "success",
+          "name": "Setup Gradle",
+          "number": 4,
+          "startedAt": "2026-10-13T00:08:33Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-13T00:09:10Z",
+          "conclusion": "success",
+          "name": "Prepare source classpath",
+          "number": 5,
+          "startedAt": "2026-10-13T00:08:39Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-13T00:09:10Z",
+          "conclusion": "success",
+          "name": "Prepare writable notebook output",
+          "number": 6,
+          "startedAt": "2026-10-13T00:09:10Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-13T00:10:25Z",
+          "conclusion": "success",
+          "name": "Build JJava image",
+          "number": 7,
+          "startedAt": "2026-10-13T00:09:10Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-13T00:11:22Z",
+          "conclusion": "success",
+          "name": "Execute and validate all notebooks",
+          "number": 8,
+          "startedAt": "2026-10-13T00:10:25Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-13T00:11:22Z",
+          "conclusion": "skipped",
+          "name": "Upload executed notebooks",
+          "number": 9,
+          "startedAt": "2026-10-13T00:11:22Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-13T00:11:23Z",
+          "conclusion": "success",
+          "name": "Post Setup Gradle",
+          "number": 16,
+          "startedAt": "2026-10-13T00:11:22Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-13T00:11:23Z",
+          "conclusion": "success",
+          "name": "Post Run actions/setup-java@v5",
+          "number": 17,
+          "startedAt": "2026-10-13T00:11:23Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-13T00:11:23Z",
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@v5",
+          "number": 18,
+          "startedAt": "2026-10-13T00:11:23Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-13T00:11:23Z",
+          "conclusion": "success",
+          "name": "Complete job",
+          "number": 19,
+          "startedAt": "2026-10-13T00:11:23Z",
+          "status": "completed"
+        }
+      ],
+      "url": "https://github.com/integrallis/vectors/actions/runs/38325753898/job/115063903383"
+    },
+    {
+      "completedAt": "2026-10-13T00:09:54Z",
+      "conclusion": "success",
+      "databaseId": 115063903433,
+      "name": "Studio browser workflows",
+      "startedAt": "2026-10-13T00:08:29Z",
+      "status": "completed",
+      "steps": [
+        {
+          "completedAt": "2026-10-13T00:08:33Z",
+          "conclusion": "success",
+          "name": "Set up job",
+          "number": 1,
+          "startedAt": "2026-10-13T00:08:30Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-13T00:08:35Z",
+          "conclusion": "success",
+          "name": "Run actions/checkout@v5",
+          "number": 2,
+          "startedAt": "2026-10-13T00:08:33Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-13T00:08:36Z",
+          "conclusion": "success",
+          "name": "Run actions/setup-java@v5",
+          "number": 3,
+          "startedAt": "2026-10-13T00:08:35Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-13T00:08:43Z",
+          "conclusion": "success",
+          "name": "Run gradle/actions/setup-gradle@v6",
+          "number": 4,
+          "startedAt": "2026-10-13T00:08:36Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-13T00:08:44Z",
+          "conclusion": "success",
+          "name": "Run actions/setup-python@v6",
+          "number": 5,
+          "startedAt": "2026-10-13T00:08:43Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-13T00:09:13Z",
+          "conclusion": "success",
+          "name": "Install projection and browser runtimes",
+          "number": 6,
+          "startedAt": "2026-10-13T00:08:44Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-13T00:09:33Z",
+          "conclusion": "success",
+          "name": "Build Studio distribution",
+          "number": 7,
+          "startedAt": "2026-10-13T00:09:13Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-13T00:09:48Z",
+          "conclusion": "success",
+          "name": "Exercise collection and projection workflows",
+          "number": 8,
+          "startedAt": "2026-10-13T00:09:33Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-13T00:09:50Z",
+          "conclusion": "success",
+          "name": "Retain browser evidence",
+          "number": 9,
+          "startedAt": "2026-10-13T00:09:48Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-13T00:09:50Z",
+          "conclusion": "success",
+          "name": "Post Run actions/setup-python@v6",
+          "number": 15,
+          "startedAt": "2026-10-13T00:09:50Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-13T00:09:51Z",
+          "conclusion": "success",
+          "name": "Post Run gradle/actions/setup-gradle@v6",
+          "number": 16,
+          "startedAt": "2026-10-13T00:09:50Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-13T00:09:51Z",
+          "conclusion": "success",
+          "name": "Post Run actions/setup-java@v5",
+          "number": 17,
+          "startedAt": "2026-10-13T00:09:51Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-13T00:09:51Z",
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@v5",
+          "number": 18,
+          "startedAt": "2026-10-13T00:09:51Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-13T00:09:51Z",
+          "conclusion": "success",
+          "name": "Complete job",
+          "number": 19,
+          "startedAt": "2026-10-13T00:09:51Z",
+          "status": "completed"
+        }
+      ],
+      "url": "https://github.com/integrallis/vectors/actions/runs/38325753898/job/115063903433"
+    },
+    {
+      "completedAt": "2026-10-13T00:10:42Z",
+      "conclusion": "success",
+      "databaseId": 115063903479,
+      "name": "Core portability (arm64)",
+      "startedAt": "2026-10-13T00:08:33Z",
+      "status": "completed",
+      "steps": [
+        {
+          "completedAt": "2026-10-13T00:08:37Z",
+          "conclusion": "success",
+          "name": "Set up job",
+          "number": 1,
+          "startedAt": "2026-10-13T00:08:34Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-13T00:08:38Z",
+          "conclusion": "success",
+          "name": "Run actions/checkout@v5",
+          "number": 2,
+          "startedAt": "2026-10-13T00:08:37Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-13T00:08:42Z",
+          "conclusion": "success",
+          "name": "Run actions/setup-java@v5",
+          "number": 3,
+          "startedAt": "2026-10-13T00:08:38Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-13T00:08:47Z",
+          "conclusion": "success",
+          "name": "Run gradle/actions/setup-gradle@v6",
+          "number": 4,
+          "startedAt": "2026-10-13T00:08:42Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-13T00:08:47Z",
+          "conclusion": "success",
+          "name": "Record hardware and source",
+          "number": 5,
+          "startedAt": "2026-10-13T00:08:47Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-13T00:10:19Z",
+          "conclusion": "success",
+          "name": "Execute core and index contracts",
+          "number": 6,
+          "startedAt": "2026-10-13T00:08:47Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-13T00:10:38Z",
+          "conclusion": "success",
+          "name": "Execute flat scheduling contracts",
+          "number": 7,
+          "startedAt": "2026-10-13T00:10:19Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-13T00:10:39Z",
+          "conclusion": "success",
+          "name": "Retain portability evidence",
+          "number": 8,
+          "startedAt": "2026-10-13T00:10:38Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-13T00:10:39Z",
+          "conclusion": "success",
+          "name": "Post Run gradle/actions/setup-gradle@v6",
+          "number": 14,
+          "startedAt": "2026-10-13T00:10:39Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-13T00:10:40Z",
+          "conclusion": "success",
+          "name": "Post Run actions/setup-java@v5",
+          "number": 15,
+          "startedAt": "2026-10-13T00:10:39Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-13T00:10:40Z",
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@v5",
+          "number": 16,
+          "startedAt": "2026-10-13T00:10:40Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-13T00:10:40Z",
+          "conclusion": "success",
+          "name": "Complete job",
+          "number": 17,
+          "startedAt": "2026-10-13T00:10:40Z",
+          "status": "completed"
+        }
+      ],
+      "url": "https://github.com/integrallis/vectors/actions/runs/38325753898/job/115063903479"
+    },
+    {
+      "completedAt": "2026-10-13T00:10:50Z",
+      "conclusion": "success",
+      "databaseId": 115063903605,
+      "name": "Core portability (x86-scalar)",
+      "startedAt": "2026-10-13T00:08:29Z",
+      "status": "completed",
+      "steps": [
+        {
+          "completedAt": "2026-10-13T00:08:33Z",
+          "conclusion": "success",
+          "name": "Set up job",
+          "number": 1,
+          "startedAt": "2026-10-13T00:08:30Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-13T00:08:35Z",
+          "conclusion": "success",
+          "name": "Run actions/checkout@v5",
+          "number": 2,
+          "startedAt": "2026-10-13T00:08:33Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-13T00:08:35Z",
+          "conclusion": "success",
+          "name": "Run actions/setup-java@v5",
+          "number": 3,
+          "startedAt": "2026-10-13T00:08:35Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-13T00:08:44Z",
+          "conclusion": "success",
+          "name": "Run gradle/actions/setup-gradle@v6",
+          "number": 4,
+          "startedAt": "2026-10-13T00:08:35Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-13T00:08:44Z",
+          "conclusion": "success",
+          "name": "Record hardware and source",
+          "number": 5,
+          "startedAt": "2026-10-13T00:08:44Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-13T00:10:21Z",
+          "conclusion": "success",
+          "name": "Execute core and index contracts",
+          "number": 6,
+          "startedAt": "2026-10-13T00:08:44Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-13T00:10:44Z",
+          "conclusion": "success",
+          "name": "Execute flat scheduling contracts",
+          "number": 7,
+          "startedAt": "2026-10-13T00:10:21Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-13T00:10:46Z",
+          "conclusion": "success",
+          "name": "Retain portability evidence",
+          "number": 8,
+          "startedAt": "2026-10-13T00:10:44Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-13T00:10:46Z",
+          "conclusion": "success",
+          "name": "Post Run gradle/actions/setup-gradle@v6",
+          "number": 14,
+          "startedAt": "2026-10-13T00:10:46Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-13T00:10:46Z",
+          "conclusion": "success",
+          "name": "Post Run actions/setup-java@v5",
+          "number": 15,
+          "startedAt": "2026-10-13T00:10:46Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-13T00:10:47Z",
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@v5",
+          "number": 16,
+          "startedAt": "2026-10-13T00:10:46Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-13T00:10:47Z",
+          "conclusion": "success",
+          "name": "Complete job",
+          "number": 17,
+          "startedAt": "2026-10-13T00:10:47Z",
+          "status": "completed"
+        }
+      ],
+      "url": "https://github.com/integrallis/vectors/actions/runs/38325753898/job/115063903605"
+    }
+  ],
+  "status": "completed",
+  "url": "https://github.com/integrallis/vectors/actions/runs/38325753898"
+}

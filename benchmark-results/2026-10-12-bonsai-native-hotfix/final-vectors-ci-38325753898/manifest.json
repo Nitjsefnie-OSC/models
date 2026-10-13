@@ -1,0 +1,3287 @@
+{
+  "source": "837ca23a95a88ed99657756ae6c348c4b866400d",
+  "run": "https://github.com/integrallis/vectors/actions/runs/38325753898",
+  "scope": "Final-source CI and staged consumer graphs; not Central publication or performance qualification",
+  "coreSha256": "13f0bd516ede8e4306541c72ef368e94c9bddddd80a99631ff5aa65992fdbba8",
+  "portability": {
+    "core-portability-arm64": {
+      "tests": 2131,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 4,
+      "skipReasons": {
+        "org.opentest4j.TestAbortedException: Assumption failed: host lacks this width": 4
+      }
+    },
+    "core-portability-x86-128": {
+      "tests": 2135,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "skipReasons": {}
+    },
+    "core-portability-x86-scalar": {
+      "tests": 2131,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 62,
+      "skipReasons": {
+        "org.opentest4j.TestAbortedException: Assumption failed: assumption is not true": 1,
+        "org.opentest4j.TestAbortedException: Assumption failed: band arm requires the Vector API": 37,
+        "org.opentest4j.TestAbortedException: Assumption failed: SIMD dequant requires the Vector API": 24
+      }
+    }
+  },
+  "consumerModuleCount": 33,
+  "consumerResolvers": [
+    "Maven",
+    "Gradle"
+  ],
+  "archive": {
+    "file": "raw-evidence.tar.gz",
+    "sha256": "067ea10c563ecc891535963e4718be0e51c04d834238338caea2bbbf81071679",
+    "bytes": 379167
+  },
+  "files": [
+    {
+      "path": "core-portability-arm64/build/core-portability/host.txt",
+      "bytes": 2712,
+      "sha256": "977df9d48aa01520ceb29e52f6d2c97f8490babdf04adc7b0053fb30650fed96"
+    },
+    {
+      "path": "core-portability-arm64/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.ActivationColdHotTest.xml",
+      "bytes": 497,
+      "sha256": "125c76ba2221de7e001e77dbc086317bbeab97e5d53997e4b71ea3afb3abbd69"
+    },
+    {
+      "path": "core-portability-arm64/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.BFloat16MatrixAllocationTest.xml",
+      "bytes": 504,
+      "sha256": "0165df6eb586905e57287ca74c95b67ff8ee605a498c4215a6c28d48a1a6a39f"
+    },
+    {
+      "path": "core-portability-arm64/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.BFloat16MatrixColdHotTest.xml",
+      "bytes": 2017,
+      "sha256": "b2325e1b2fe66631d6f10f4ed879b4c7a80e6843709ffaff82b8af4ce9cfcadf"
+    },
+    {
+      "path": "core-portability-arm64/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.BFloat16MatrixDispatchTest.xml",
+      "bytes": 1193,
+      "sha256": "925053b09e1d01f68708c5dbe36ac377537eb8c8b0d7ed9954e7c420c6c62fc2"
+    },
+    {
+      "path": "core-portability-arm64/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.BFloat16MatrixTest.xml",
+      "bytes": 1628,
+      "sha256": "fc38ba8f9c04323cce7fced38678e7fdcc9e83f539ba3fe9629f65053171bed5"
+    },
+    {
+      "path": "core-portability-arm64/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.BFloat16NestedDispatchTest.xml",
+      "bytes": 518,
+      "sha256": "15996eaf835aeb87cb437d14614f1cb3f31591a09ad257928f00251e655157de"
+    },
+    {
+      "path": "core-portability-arm64/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.BonsaiActivationSequenceTest.xml",
+      "bytes": 2045,
+      "sha256": "13fe2f9ab10e5c24fa1fe4c4b239103eab8f811f1a422168ba960558f7059f0a"
+    },
+    {
+      "path": "core-portability-arm64/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.CoreValueTypesTest.xml",
+      "bytes": 763,
+      "sha256": "7870a27b80e1010604e1279f7a15a5611949b230fed7ab0a5dca49aa4eb3f5d7"
+    },
+    {
+      "path": "core-portability-arm64/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.CosineAllocationTest.xml",
+      "bytes": 1263,
+      "sha256": "67ab0c76cdd9e8e66566e9872f3176f9dd2a56caf01947f950ac158f1e892b1e"
+    },
+    {
+      "path": "core-portability-arm64/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.DocumentsTest.xml",
+      "bytes": 1042,
+      "sha256": "35244cdc2dfe1024f3193c453ff461b143e67a9d91b0ed180792e8167e64c014"
+    },
+    {
+      "path": "core-portability-arm64/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.EmbeddingProvenanceTest.xml",
+      "bytes": 2326,
+      "sha256": "cd334cc74a64c39a62bf123bf921a3f2227757cde4959fa248efb185ff470dda"
+    },
+    {
+      "path": "core-portability-arm64/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.F32ExecutionMatrixColdHotTest.xml",
+      "bytes": 864,
+      "sha256": "1b5e4534b851d99c289eac308fe05e4e808688e0ac5692f91ab3b943f5ff7cef"
+    },
+    {
+      "path": "core-portability-arm64/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.F32ExecutionMatrixTest.xml",
+      "bytes": 782,
+      "sha256": "397c2516c53e5281778511c24ce82d611c2ba503a59f9a5cc876974928959eb2"
+    },
+    {
+      "path": "core-portability-arm64/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.FusedSimilaritySegmentTest.xml",
+      "bytes": 1809,
+      "sha256": "2fd25d18014e843799171206f387dee9091d8a1a56d7d1b2a49a2cd43b77aab7"
+    },
+    {
+      "path": "core-portability-arm64/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.FusedSimilarityTest.xml",
+      "bytes": 717,
+      "sha256": "8030e13a6cc215f20057412d99514be9cd234939d5e19156c16de8af4740e616"
+    },
+    {
+      "path": "core-portability-arm64/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.GgufBandGemmTest.xml",
+      "bytes": 4384,
+      "sha256": "b343351e8b3bd519fa86cc3446c9e1528a270641c6097a9b9f382d434f10c46a"
+    },
+    {
+      "path": "core-portability-arm64/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.GgufBatchDispatchTest.xml",
+      "bytes": 1410,
+      "sha256": "c2092bb7fc305ae45ac89fbd00ee01779645d4a1c0e81d2f77cf6e807f02c6c3"
+    },
+    {
+      "path": "core-portability-arm64/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.GgufKQuantDequantTest.xml",
+      "bytes": 24046,
+      "sha256": "cfa3da5d2feecfd44c8d580998c0e737804ce0ce144e99c087aa6a40462cfb6b"
+    },
+    {
+      "path": "core-portability-arm64/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.GgufParallelSupportTest.xml",
+      "bytes": 3556,
+      "sha256": "079932cff311f968af803ee8eec1057144799251ea0b49ba3670f29087a7bdb1"
+    },
+    {
+      "path": "core-portability-arm64/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.GgufQ8_0F32MatrixTest.xml",
+      "bytes": 955,
+      "sha256": "23e3ab862b8254827e4b4f387bad8d433becd0adebb10b39f5f9ecbb76008719"
+    },
+    {
+      "path": "core-portability-arm64/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.GgufQuantizedDotTest.xml",
+      "bytes": 13250,
+      "sha256": "8cd2fc7770e2f5016aeb141b6559a8ce71f456ce08450e866f363775a4f13f1a"
+    },
+    {
+      "path": "core-portability-arm64/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.MaxBitsSelectionTest.xml",
+      "bytes": 1486,
+      "sha256": "16b71e6e6988a31448844968ffe4dabee3e69eb2384bdcb5532df5678fc7bbe9"
+    },
+    {
+      "path": "core-portability-arm64/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.Mxfp4MatrixTest.xml",
+      "bytes": 1447,
+      "sha256": "3cf3134689fa1965184444236bef64b7c5bc2b21b5558985211a6ef77785cb66"
+    },
+    {
+      "path": "core-portability-arm64/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.OffsetBatchCosineBitsTest.xml",
+      "bytes": 1251,
+      "sha256": "b959da5e118200b02a6fab555ebf6292cef94bdaceeef12b7c8d575dd113a9dc"
+    },
+    {
+      "path": "core-portability-arm64/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.OffsetBatchCosineTest.xml",
+      "bytes": 638,
+      "sha256": "fe6f9e1c3197bbee2db05b9eebda53d608215ce1ff2dade2afba3e60d398c9fa"
+    },
+    {
+      "path": "core-portability-arm64/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.PackedInt4GroupMatrixTest.xml",
+      "bytes": 1290,
+      "sha256": "218b6ada70958caf99f88db0b860fcc4e0781d01d6b073d8481c219e4d0b35a2"
+    },
+    {
+      "path": "core-portability-arm64/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.PanamaConstantsTest.xml",
+      "bytes": 2013,
+      "sha256": "32518456ed8e1f28e4f5a95b7926ca896ec980dfe0ac03ee1ba4741a7a12ede2"
+    },
+    {
+      "path": "core-portability-arm64/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.PanamaGgufQuantizedDotTest.xml",
+      "bytes": 7602,
+      "sha256": "82ec2c3283fa8aff70a7fb9d7d784e46f9a102bb091399c7e9d6677981d5115e"
+    },
+    {
+      "path": "core-portability-arm64/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.PreparedCosineTest.xml",
+      "bytes": 1456,
+      "sha256": "dac8e0585b8485de18ce20cc438f2bb49a52b92bf821f5cb7d8c91f41626a1f0"
+    },
+    {
+      "path": "core-portability-arm64/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.Q4KColdHotDeterminismTest.xml",
+      "bytes": 661,
+      "sha256": "df29eaf92c1ce315c47f79d83378ca56c60a0e2ce1fcddb4e5ac666de9b9747d"
+    },
+    {
+      "path": "core-portability-arm64/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.Q5KColdHotDeterminismTest.xml",
+      "bytes": 660,
+      "sha256": "85ed7ef6d38bcc2acbe246ae23206d2de6e8aa286d7815e25f2f0fabc6c84e58"
+    },
+    {
+      "path": "core-portability-arm64/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.Q6KColdHotDeterminismTest.xml",
+      "bytes": 661,
+      "sha256": "335929a43105c16fc2fc8340ee22fa3ff37cd4bd2ae34deaa4973c56ee59d218"
+    },
+    {
+      "path": "core-portability-arm64/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.Q6KReductionOrderContractTest.xml",
+      "bytes": 1026,
+      "sha256": "d2641f54dda3377f49e44d4546cbaa33368b3231e0affdee64f1546d9dc85e85"
+    },
+    {
+      "path": "core-portability-arm64/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.Q8ColdHotDeterminismTest.xml",
+      "bytes": 657,
+      "sha256": "955b0d887d25f540e08cdf90300c3d35bc434bc0cacc126fb624b89eba689a83"
+    },
+    {
+      "path": "core-portability-arm64/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.ReproducibleActivationExpTest.xml",
+      "bytes": 675,
+      "sha256": "a924c804dc1ba61fb5ae43c60a044811aea7ee09a257a04464b78f2c5452552f"
+    },
+    {
+      "path": "core-portability-arm64/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.RotatedCodebookMatrixTest.xml",
+      "bytes": 2283,
+      "sha256": "97749dd5771ba4f3342bcad903e169b7ad15d675882c74be41e5256ac2855510"
+    },
+    {
+      "path": "core-portability-arm64/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.ScalarVectorUtilSupportTest.xml",
+      "bytes": 2376,
+      "sha256": "e2c9902b7a67514228a84882ad425c00ba7cf33c5a37649de260b68a9aca883c"
+    },
+    {
+      "path": "core-portability-arm64/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.SimilarityFunctionTest.xml",
+      "bytes": 2236,
+      "sha256": "ca6524bd2f58d03fe36c9f6f468ff3315a3975cfee2393373fef16d62f6156f1"
+    },
+    {
+      "path": "core-portability-arm64/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.SwiGluColdHotTest.xml",
+      "bytes": 496,
+      "sha256": "fe1e8aa5cf770436c0a5b5bf54fe6773eb14b8c1a5aac403c8988ae00f328576"
+    },
+    {
+      "path": "core-portability-arm64/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.TopKTest.xml",
+      "bytes": 2025,
+      "sha256": "c5412b4fc1a783551b49fb6ef2e3463352986dd622e12d1c114a9ff058c6da29"
+    },
+    {
+      "path": "core-portability-arm64/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.VectorEncodingTest.xml",
+      "bytes": 1045,
+      "sha256": "63862402ca0c0224a4b0fffb9f4b29b421a1ab991738afa3d8d9da081c483f5e"
+    },
+    {
+      "path": "core-portability-arm64/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.VectorSpeciesConstantStructureTest.xml",
+      "bytes": 976,
+      "sha256": "f26365232eb06225cced2b419e155ccd2c044e006bfd7eb2784e023f0b2706ad"
+    },
+    {
+      "path": "core-portability-arm64/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.VectorUtilSupportProviderTest.xml",
+      "bytes": 11831,
+      "sha256": "1ad3de88cb29fa4c35864be97a05f369ee2ce4624ed6b03ff627a342eb207da7"
+    },
+    {
+      "path": "core-portability-arm64/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.VectorUtilSupportTest$ByteDistanceTest.xml",
+      "bytes": 12515,
+      "sha256": "75f2303963efce79d1f324617f3b1f215095b218f1a73f4141bab1aa4764dfa0"
+    },
+    {
+      "path": "core-portability-arm64/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.VectorUtilSupportTest$ExactStridedBatchDotProductTest.xml",
+      "bytes": 4824,
+      "sha256": "0fceaeee8ecabc2d84a431975a9afdb7e41dbc246f91981cd111820413139e21"
+    },
+    {
+      "path": "core-portability-arm64/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.VectorUtilSupportTest$FloatCosineTest.xml",
+      "bytes": 16329,
+      "sha256": "5ad46b52732683afc7606758158ad89dc249e01b9dfe8d21762be5c7b011de4b"
+    },
+    {
+      "path": "core-portability-arm64/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.VectorUtilSupportTest$FloatDotProductTest.xml",
+      "bytes": 16979,
+      "sha256": "46ca567990d5ea2ee1c46608222ba52b5a841fc17dff03b2a6a7a84169764b26"
+    },
+    {
+      "path": "core-portability-arm64/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.VectorUtilSupportTest$FloatSquareDistanceTest.xml",
+      "bytes": 17738,
+      "sha256": "93ee377b9b5aba600d5760c8c5124960671d3fc613e0410c7f0c27b48b0c55bc"
+    },
+    {
+      "path": "core-portability-arm64/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.VectorUtilSupportTest$HammingDistanceTest.xml",
+      "bytes": 1879,
+      "sha256": "f5d2191548732d679d132dbcadb6eb203bdad11fead016e80cb3b43761f1d034"
+    },
+    {
+      "path": "core-portability-arm64/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.VectorUtilSupportTest$L2NormalizeTest.xml",
+      "bytes": 8664,
+      "sha256": "7ac78029d441ad0908c4b0ae63f76345c7b94d478da749bb60e22220ea90187d"
+    },
+    {
+      "path": "core-portability-arm64/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.VectorUtilSupportTest$MemorySegmentCosineTest.xml",
+      "bytes": 2682,
+      "sha256": "eec8d711952563ecac3d09f606753f86ca82c8a762af4851ea5470fec7160c73"
+    },
+    {
+      "path": "core-portability-arm64/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.VectorUtilSupportTest$MemorySegmentTest.xml",
+      "bytes": 2292,
+      "sha256": "97ffafa78042a0eafd4db5fb7fbaf6104edfb121a0408b2009d3686f40e675b4"
+    },
+    {
+      "path": "core-portability-arm64/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.VectorUtilSupportTest$VectorArithmeticTest.xml",
+      "bytes": 41676,
+      "sha256": "2ddf5a3f7d78bcabcba7f8b23298642ea267f6644f032940a0d7a454c6f1f50b"
+    },
+    {
+      "path": "core-portability-arm64/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.VectorUtilTest.xml",
+      "bytes": 4326,
+      "sha256": "8db6fadbdff2be17afb55b8dd57691fe24d7d474183fa2d9b6d6435e8529f1be"
+    },
+    {
+      "path": "core-portability-arm64/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.VectorizationProviderTest.xml",
+      "bytes": 1903,
+      "sha256": "dbca03f6eb13f8a9ccfa1ee3db4ca5e516c43a91dd266cf4f6e8c657fa5c0aa5"
+    },
+    {
+      "path": "core-portability-arm64/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.cluster.CentroidIndexTest.xml",
+      "bytes": 2235,
+      "sha256": "ddf6060b0a3147ba021b92ec5b6d9483c3870491843a3682a73f1fe5a378d587"
+    },
+    {
+      "path": "core-portability-arm64/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.cluster.KMeansTest.xml",
+      "bytes": 2436,
+      "sha256": "f930a7e156a8736187eaa1eb1e90f4bcd2b2a074f1fe331277af59dcfff3501f"
+    },
+    {
+      "path": "core-portability-arm64/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.cluster.VectorUtilBatchCosineTest.xml",
+      "bytes": 5480,
+      "sha256": "974276a6105f612519d2d39549da479d20faa04458e438cbb1b0f8e399faea38"
+    },
+    {
+      "path": "core-portability-arm64/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.cluster.VectorUtilBatchTest.xml",
+      "bytes": 4008,
+      "sha256": "d6d40d7a976551a34a0dbd156490b134bc2d25511ee3f23475e0c04a6af3ad6c"
+    },
+    {
+      "path": "core-portability-arm64/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.cluster.VectorUtilSegmentBatchTest.xml",
+      "bytes": 6471,
+      "sha256": "5e4b06959e84c6786f2bad2cc9f23a561fa4c77422a11ab00f25a5bee4dd405e"
+    },
+    {
+      "path": "core-portability-arm64/vectors-core/build/test-results/test/binary/output-events.bin",
+      "bytes": 15081,
+      "sha256": "11ea6582dd7e7e389ff913316c6b8f23e523d14bf5474d197f0b3eb4331a8ca7"
+    },
+    {
+      "path": "core-portability-arm64/vectors-core/build/test-results/test/binary/results-generic.bin",
+      "bytes": 269225,
+      "sha256": "09f80c39010cdbe6858ecf969cb2ee0f86e88e917c05bde5e204d85b6f3a9629"
+    },
+    {
+      "path": "core-portability-arm64/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.FlatCollectionBatchTest.xml",
+      "bytes": 1668,
+      "sha256": "6f250d931163b2b6a59cf64f7c18972ab3a3dc6c495d40b64adfda553658eb22"
+    },
+    {
+      "path": "core-portability-arm64/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.index.ParallelFlatScanTest.xml",
+      "bytes": 1173,
+      "sha256": "d829dd06934bfca0ce5d82267589276e33d41ff043916750e5e59f5c9188dd57"
+    },
+    {
+      "path": "core-portability-arm64/vectors-db/build/test-results/test/binary/output-events.bin",
+      "bytes": 866,
+      "sha256": "1dc17d32eea48d017dfe372a908a5b990bc130270e761f19d680961a16d12aeb"
+    },
+    {
+      "path": "core-portability-arm64/vectors-db/build/test-results/test/binary/results-generic.bin",
+      "bytes": 1619,
+      "sha256": "e6e617129ebeddac776940beee3358bcc70fb3464b351627df380f61786ef681"
+    },
+    {
+      "path": "core-portability-arm64/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.AsyncVectorPrefetcherTest.xml",
+      "bytes": 919,
+      "sha256": "766f79055ee1d1eb1ec9b270209b51d471b05f590eeb6338535233b9d48ed382"
+    },
+    {
+      "path": "core-portability-arm64/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.ConcurrentHnswGraphBuilderAppendTest.xml",
+      "bytes": 1932,
+      "sha256": "1947f6111d5138635aa27cb67bbdea6af3aa57aea14b56ac71cf66c7fa07f19a"
+    },
+    {
+      "path": "core-portability-arm64/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.ConcurrentHnswGraphBuilderSelfLoopTest.xml",
+      "bytes": 532,
+      "sha256": "23f45b6933d3590eafd99453c3e6856ae9002871d9dac9c71697ee540bd7ae64"
+    },
+    {
+      "path": "core-portability-arm64/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.DataStructuresTest$HnswGraphTests.xml",
+      "bytes": 1350,
+      "sha256": "9fa1cd4ae927739951c92ef12546ac221d9c39cfdb7002f03a2e544819d12650"
+    },
+    {
+      "path": "core-portability-arm64/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.DataStructuresTest$NeighborArrayTests.xml",
+      "bytes": 1790,
+      "sha256": "01c976976c0ed92ed6dc8d4b29c3dd5fc5674b05b7d992fed78b7beb27189f26"
+    },
+    {
+      "path": "core-portability-arm64/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.DataStructuresTest$NodeQueueTests.xml",
+      "bytes": 1352,
+      "sha256": "8b8e945147ed9679fd0917dadf044e593fd708713d8be49f011386b2d049bb2a"
+    },
+    {
+      "path": "core-portability-arm64/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.DistinctNeighborInsertTest.xml",
+      "bytes": 648,
+      "sha256": "896cd08fadbea86563cde5e156fbb8c6e2fec82ce51fd1b762fe206a1dd2b83c"
+    },
+    {
+      "path": "core-portability-arm64/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.ExactScoreCacheTest.xml",
+      "bytes": 628,
+      "sha256": "b1fdb2e9a92ea916ebb549e3774c8bb026de9e02c0ee6e85fd3076cb2da23a89"
+    },
+    {
+      "path": "core-portability-arm64/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.HnswAppendOwnershipTest.xml",
+      "bytes": 639,
+      "sha256": "3f037007d5f05e697a686b891e93c5762b3fa387499c9107248726152bbe46ee"
+    },
+    {
+      "path": "core-portability-arm64/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.HnswGraphBuilderTest$ConcurrentBuild.xml",
+      "bytes": 1120,
+      "sha256": "1c57876a4885495cb1fe2fa23b4d4dfd1829147646f584452e23cf1987ec5a07"
+    },
+    {
+      "path": "core-portability-arm64/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.HnswGraphBuilderTest$MediumGraphConstruction.xml",
+      "bytes": 828,
+      "sha256": "b7d697d82d7ca6d02e24cfc9e5a28d1b3a3e2ffa091e4c18ac7473fafa6243af"
+    },
+    {
+      "path": "core-portability-arm64/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.HnswGraphBuilderTest$NeighborSelectorTests.xml",
+      "bytes": 1319,
+      "sha256": "97dfdc534a436f7bce525449fc56dae49b6399fb98afdd19ee50e073e31c804e"
+    },
+    {
+      "path": "core-portability-arm64/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.HnswGraphBuilderTest$RandomLevelGeneratorTests.xml",
+      "bytes": 955,
+      "sha256": "34138696e783f85201946f8446744a5822f5e13b2394521227c4d26cceb03400"
+    },
+    {
+      "path": "core-portability-arm64/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.HnswGraphBuilderTest$SingleNodeInsertion.xml",
+      "bytes": 941,
+      "sha256": "a91c9fba6fdae272d8aaeefe3eb06cd27cbc7de5676aeebffc7d874b0f4d00d8"
+    },
+    {
+      "path": "core-portability-arm64/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.HnswGraphBuilderTest$SmallGraphConstruction.xml",
+      "bytes": 990,
+      "sha256": "419413a569003003c248338f712adf81fb1a53e1e0d974d57000ce581a5071a7"
+    },
+    {
+      "path": "core-portability-arm64/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.HnswGraphBuilderTest$SsdPrefetchTests.xml",
+      "bytes": 1047,
+      "sha256": "68cf08bfe522da77ad02fa03cb5b3983fce17731fe00b02bba0c91079b7457b9"
+    },
+    {
+      "path": "core-portability-arm64/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.HnswGraphDiagnosticsTest$HandBuilt.xml",
+      "bytes": 1079,
+      "sha256": "a247f894ac7d3fe0958bdfb21b0427be3ec4f6736dbc97bc5c945fdaef186bbf"
+    },
+    {
+      "path": "core-portability-arm64/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.HnswGraphDiagnosticsTest$RealBuilds.xml",
+      "bytes": 845,
+      "sha256": "dd37cf62cf274ffa041bae17753aff4c1e0d4d5fab48a1747082b3aa80469b79"
+    },
+    {
+      "path": "core-portability-arm64/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.HnswGraphMergerTest.xml",
+      "bytes": 613,
+      "sha256": "06ec13bb69047668222099d62c5f1205c4e4a6f5ee475309386c306092903d51"
+    },
+    {
+      "path": "core-portability-arm64/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.HnswSearcherMultiStartTest$Concurrency.xml",
+      "bytes": 500,
+      "sha256": "01cf15943e878a97facc47bd054a801522c299ada95f4bd74b20aecb81353cd9"
+    },
+    {
+      "path": "core-portability-arm64/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.HnswSearcherMultiStartTest$EdgeCases.xml",
+      "bytes": 758,
+      "sha256": "429694da84b128ba52435ce41d437d3a5d1c57220cffcb05d5034d55f1874527"
+    },
+    {
+      "path": "core-portability-arm64/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.HnswSearcherMultiStartTest$ExceptionPropagation.xml",
+      "bytes": 533,
+      "sha256": "aa647b2289f6606726a9d92ecfdec7c4f07f5d43f89f9d529a6c46df29a3cd4f"
+    },
+    {
+      "path": "core-portability-arm64/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.HnswSearcherMultiStartTest$Identity.xml",
+      "bytes": 495,
+      "sha256": "9f65b14c9c6fe25ca794c55450e6c1f98a8b0dbf21253dcb72474641b3ef3f34"
+    },
+    {
+      "path": "core-portability-arm64/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.HnswSearcherMultiStartTest$Recall.xml",
+      "bytes": 493,
+      "sha256": "beaffae286b42049d4bb40aad10411e0ebf6380760774fe319f0501e57febec4"
+    },
+    {
+      "path": "core-portability-arm64/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.HnswSearcherTest$AllSimilarityFunctions.xml",
+      "bytes": 1443,
+      "sha256": "13f520cde4e5bbf9c99655bb37f6eee2fe7bad4f124f6727fb02432b12e11b1d"
+    },
+    {
+      "path": "core-portability-arm64/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.HnswSearcherTest$BasicSearch.xml",
+      "bytes": 1021,
+      "sha256": "920d8303ffa72d752f9af968045973239d2b9dc5574b37c01ce5d10d0b28397c"
+    },
+    {
+      "path": "core-portability-arm64/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.HnswSearcherTest$FusedAdcSearch.xml",
+      "bytes": 2107,
+      "sha256": "1a24caea24dc4f3ae00ab75891bf91a65a16bff8d397ad7d81cc4a704a190029"
+    },
+    {
+      "path": "core-portability-arm64/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.HnswSearcherTest$HnswIndexApiTests.xml",
+      "bytes": 899,
+      "sha256": "f8f742a3a22c6c154b888b4fa582a4b2a20ed15d7601b5392192658c39cb2b8f"
+    },
+    {
+      "path": "core-portability-arm64/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.HnswSearcherTest$MediumDatasetSearch.xml",
+      "bytes": 648,
+      "sha256": "6f14406fdf1da1162789a037ce40c0f55a01e65614e488efc944e6ac42b1bb9e"
+    },
+    {
+      "path": "core-portability-arm64/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.HnswSearcherTest$SmallDatasetSearch.xml",
+      "bytes": 917,
+      "sha256": "ca55fb48b525c65bf4a111c1ea469560b694dfac71e958dddd6a6774a7c00fa8"
+    },
+    {
+      "path": "core-portability-arm64/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.HnswSegmentScoringRecallTest.xml",
+      "bytes": 846,
+      "sha256": "8e918f2a2d35a4d9166d297b9606cf86b4fd7bef43c7a8a3d0b570c5755e4bb7"
+    },
+    {
+      "path": "core-portability-arm64/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.PreparedQuerySearchTest.xml",
+      "bytes": 501,
+      "sha256": "fa68d02a06f0ee7658d2fd06aaedd6387b5ff6a63c43d54b60a888fd39b1db8f"
+    },
+    {
+      "path": "core-portability-arm64/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.QuantizedSearchTest$NodeScorerBasics.xml",
+      "bytes": 677,
+      "sha256": "822792d2a4bac08f8e60892778fcd86fb008430f4ec3f10d3436b4013462a8a7"
+    },
+    {
+      "path": "core-portability-arm64/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.QuantizedSearchTest$QuantizationAttachment.xml",
+      "bytes": 827,
+      "sha256": "40225e7c88046ee0185436029f19000b146f37ca221dbf10ab0f686fc1a42a68"
+    },
+    {
+      "path": "core-portability-arm64/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.QuantizedSearchTest$RefactoredSearcher.xml",
+      "bytes": 687,
+      "sha256": "b5a014b8e75ebc9ce531057371e4e7b24ac5b8e2d4575dda107bfc8ea7dbc600"
+    },
+    {
+      "path": "core-portability-arm64/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.QuantizedSearchTest$Rescore.xml",
+      "bytes": 632,
+      "sha256": "b98d341564c20ea0710ee7c3fc1b0874dd9b2baf0211145ec40fc7a102fc7092"
+    },
+    {
+      "path": "core-portability-arm64/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.QuantizedSearchTest$TwoPassAllSimilarityFunctions.xml",
+      "bytes": 950,
+      "sha256": "49313292db308eccf6ac51f3ce947cb1de89631c72115610e99c7a8b2bea816b"
+    },
+    {
+      "path": "core-portability-arm64/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.QuantizedSearchTest$TwoPassRecall.xml",
+      "bytes": 789,
+      "sha256": "191db9cf662f1c63d256741492547e29013f2e20232794e202f3d9b839f9a00b"
+    },
+    {
+      "path": "core-portability-arm64/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.QuantizedSearchTest$TwoPassSearch.xml",
+      "bytes": 826,
+      "sha256": "9e9c94b024a3eb254c7c33bbc58fecdd2e0fa81fba0ead721ea15901e7dc0b46"
+    },
+    {
+      "path": "core-portability-arm64/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.QuantizedSearchTest$VectorDatasetBridge.xml",
+      "bytes": 674,
+      "sha256": "7a85bb059dddd80f79751e1671a01779645a748d2a73c12692337aacae16d63a"
+    },
+    {
+      "path": "core-portability-arm64/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.ResultDrainTest.xml",
+      "bytes": 832,
+      "sha256": "cadbe5255cc6f73ecd19470c0b40677027149fff585fecb0af9b0a50e32fda76"
+    },
+    {
+      "path": "core-portability-arm64/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.SearcherAllocationTest.xml",
+      "bytes": 537,
+      "sha256": "6d5a0d67c21c1da131931d51a337492a3b4edd53cb510268a232d63a518a3ec2"
+    },
+    {
+      "path": "core-portability-arm64/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.SharedVectorBuildTest.xml",
+      "bytes": 919,
+      "sha256": "35059186e09fd24c876f07343a12e10e2845adb4b0157d25e63f25ba4716ffa9"
+    },
+    {
+      "path": "core-portability-arm64/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.VectorStoreVectorsTest.xml",
+      "bytes": 602,
+      "sha256": "52d79e73d897e6e2c606b71bb61bcdc2b067ab13410f66a3211a227152cb5819"
+    },
+    {
+      "path": "core-portability-arm64/vectors-hnsw/build/test-results/test/binary/output-events.bin",
+      "bytes": 1513,
+      "sha256": "16b0cb3d20c0c7c3478dcdbcc813aa8c5932b2f25ffec386be411e71827fa063"
+    },
+    {
+      "path": "core-portability-arm64/vectors-hnsw/build/test-results/test/binary/results-generic.bin",
+      "bytes": 30633,
+      "sha256": "e32b6a51bd7e8c4e3be445f3f2a031d0b3cc679442003f785894576bfe17bc62"
+    },
+    {
+      "path": "core-portability-arm64/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.BinaryQuantizerTest$BbqEncoding.xml",
+      "bytes": 1606,
+      "sha256": "3d06263510c86892d201226c28bb02d4d14650f2bb9a2a9896ccc113194da2bd"
+    },
+    {
+      "path": "core-portability-arm64/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.BinaryQuantizerTest$BbqScoring.xml",
+      "bytes": 2053,
+      "sha256": "b27f0fd180ac86332ac96c77f0d6dfae7c71158bb0650b16f488944fc8cf1f27"
+    },
+    {
+      "path": "core-portability-arm64/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.BinaryQuantizerTest$BitPacking.xml",
+      "bytes": 946,
+      "sha256": "a3b1a34dd181e4efab4bbaf223a1ecad617b9e0e408d7c3faa519dbde87e46cf"
+    },
+    {
+      "path": "core-portability-arm64/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.BinaryQuantizerTest$SignBitEncoding.xml",
+      "bytes": 1459,
+      "sha256": "d1f6a4f0e7239fa103ae188b1e2b3107344c4ccc38cf538a1f07bbb71a935432"
+    },
+    {
+      "path": "core-portability-arm64/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.BinaryQuantizerTest$SignBitScoring.xml",
+      "bytes": 1425,
+      "sha256": "3ba494bbffe7a044dd8b2167ea88772d96dfa3f9b64419872117510d35e8a707"
+    },
+    {
+      "path": "core-portability-arm64/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.ExtendedRaBitQRawScorerTest.xml",
+      "bytes": 666,
+      "sha256": "0ae774f95d791d90a925e7613923b780f218d6a5b1e876709851bc29b2796401"
+    },
+    {
+      "path": "core-portability-arm64/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.ExtendedRaBitQuantizerTest$BitPacking.xml",
+      "bytes": 1593,
+      "sha256": "241cd741d8c9bacc21b899bacaacb75d19d07d9a537503109ade97f3ee520e35"
+    },
+    {
+      "path": "core-portability-arm64/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.ExtendedRaBitQuantizerTest$CorrectionFactors.xml",
+      "bytes": 1027,
+      "sha256": "4868ed1c01d3f5eb03c0a3bc580fd0824a4aafa61f8839c326d4cc8c5b65f865"
+    },
+    {
+      "path": "core-portability-arm64/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.ExtendedRaBitQuantizerTest$DefaultRotation.xml",
+      "bytes": 701,
+      "sha256": "38e99b1d8e5030fc629cd71fda76e231dae61c9e3de4082e435731138a37bf60"
+    },
+    {
+      "path": "core-portability-arm64/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.ExtendedRaBitQuantizerTest$EncodingTests.xml",
+      "bytes": 2182,
+      "sha256": "db2da89cba101a77a2bdf1c864287539ed9c51abd6f853e1fbd097e55f2a2220"
+    },
+    {
+      "path": "core-portability-arm64/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.ExtendedRaBitQuantizerTest$GreedyQuantizeTests.xml",
+      "bytes": 714,
+      "sha256": "6e5e2daf7959e2c87add084341611709f532b7a014d86c5eceecb8b4b88b725c"
+    },
+    {
+      "path": "core-portability-arm64/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.ExtendedRaBitQuantizerTest$RotationStrategies.xml",
+      "bytes": 840,
+      "sha256": "6f64310d0d6c0c30dca47c15a94a52c3b0e14afb9a0f26778dd29989edf1691d"
+    },
+    {
+      "path": "core-portability-arm64/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.ExtendedRaBitQuantizerTest$ScoringTests.xml",
+      "bytes": 2346,
+      "sha256": "bd1727c4c959b846932296b2b5fb41e3ffc2db326fd0001c29da0a5a36ecae99"
+    },
+    {
+      "path": "core-portability-arm64/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.Fp16QuantizerTest.xml",
+      "bytes": 1116,
+      "sha256": "b79efef84c0fbc10211c2c1cbcd7433c10dffcf7aa049da28bc8959befa3c0bb"
+    },
+    {
+      "path": "core-portability-arm64/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.LloydMaxCodebookTest$BasicProperties.xml",
+      "bytes": 1666,
+      "sha256": "a3675fdd3e6b843c7b16e0c5ee0dcd5472914b2cecc3fb172e56d9efc073940c"
+    },
+    {
+      "path": "core-portability-arm64/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.LloydMaxCodebookTest$DifferentDimensions.xml",
+      "bytes": 1002,
+      "sha256": "b5d937d745e4c52922de6dbb47ff4a76e1b744913fa3da3d20da68401a354e98"
+    },
+    {
+      "path": "core-portability-arm64/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.LloydMaxCodebookTest$MSEOptimality.xml",
+      "bytes": 666,
+      "sha256": "4f47995db2b92e3ff8be5ed7beeb0fd0ff2699d7c920b3db83a24dec955c1688"
+    },
+    {
+      "path": "core-portability-arm64/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.LloydMaxCodebookTest$QuantizeDequantize.xml",
+      "bytes": 1015,
+      "sha256": "90d48d22247a079d017305c3d6442500a2c05f083e3a04d67148fb24283734cb"
+    },
+    {
+      "path": "core-portability-arm64/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.NVQuantizerTest$EncodingTests.xml",
+      "bytes": 1408,
+      "sha256": "6f56a747c8f0f79c9823cc92986e29943ca03519211e416492840329e0bff377"
+    },
+    {
+      "path": "core-portability-arm64/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.NVQuantizerTest$NQTransformTests.xml",
+      "bytes": 1290,
+      "sha256": "57ab3d3ba355e2e6f229723c0ea7db24c608c8c23dc857ad4541e36e7d5a7e7c"
+    },
+    {
+      "path": "core-portability-arm64/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.NVQuantizerTest$ScoringTests.xml",
+      "bytes": 1055,
+      "sha256": "476d1dd78e4d796fdb6ea93078ef94c3647f225e356b84c169639e99340d2b5c"
+    },
+    {
+      "path": "core-portability-arm64/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.NVQuantizerTest$SubvectorTests.xml",
+      "bytes": 965,
+      "sha256": "77b26f646bcf2998c5594fe3cc5fd4c77a4a39e3d1cd0ff1565fc5dfce8222cd"
+    },
+    {
+      "path": "core-portability-arm64/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.ProductQuantizerTest$ADCScoring.xml",
+      "bytes": 3098,
+      "sha256": "296fcda7c6786c4cedea050366391ea9ccbaa6b7ccf0209dbc5b363d348d8f9d"
+    },
+    {
+      "path": "core-portability-arm64/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.ProductQuantizerTest$CompressionRatio.xml",
+      "bytes": 1230,
+      "sha256": "e5a1610326169f83b18689029458b048a098a7c8a3d57da65d73e56e88ba1518"
+    },
+    {
+      "path": "core-portability-arm64/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.ProductQuantizerTest$EncodeAndDecode.xml",
+      "bytes": 3282,
+      "sha256": "5ec3d71bf3fe003a9709e71bf0463cc5c330bf7421473738e55411a5f377c2f2"
+    },
+    {
+      "path": "core-portability-arm64/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.ProductQuantizerTest$GlobalCentroid.xml",
+      "bytes": 689,
+      "sha256": "01eba4d4e8563d209a19117baebfb6ec6b1ff75e3d8bb5e1035a75259417ae6d"
+    },
+    {
+      "path": "core-portability-arm64/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.ProductQuantizerTest$OptimizedPQTests.xml",
+      "bytes": 1329,
+      "sha256": "8530e7c7fca5abb3c94d60172b7d92bf6c9265aebcf8383a5513bd6a95036ff0"
+    },
+    {
+      "path": "core-portability-arm64/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.ProductQuantizerTest$PipelineTests.xml",
+      "bytes": 2086,
+      "sha256": "30c96da9d08306e47df4e39af161079e07f8a2c7a10bb0f32f16a5eb3a74b175"
+    },
+    {
+      "path": "core-portability-arm64/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.ProductQuantizerTest$Training.xml",
+      "bytes": 2276,
+      "sha256": "eaf56a558292790a0a90573a512d9aeba3d67917aa5d898cdb2c263708ed85d2"
+    },
+    {
+      "path": "core-portability-arm64/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.QuantizerFromStateTest$BinaryQuantizerFromState.xml",
+      "bytes": 719,
+      "sha256": "36eed4133ca0eb3e64778acdbb6d591b62ac362732b4124ba54fd8dd3fd48ff5"
+    },
+    {
+      "path": "core-portability-arm64/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.QuantizerFromStateTest$NVQuantizerFromState.xml",
+      "bytes": 693,
+      "sha256": "11ed11f5f8e14c31f1dd7476f0d3e3badca5c615879bab4238765cce8949fbed"
+    },
+    {
+      "path": "core-portability-arm64/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.QuantizerFromStateTest$ProductQuantizerFromState.xml",
+      "bytes": 708,
+      "sha256": "39d5f6c0875ca6f73cd4f1800160d623fae67d57af4006e7308ff355d7a0309a"
+    },
+    {
+      "path": "core-portability-arm64/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.QuantizerFromStateTest$RaBitQuantizerFromState.xml",
+      "bytes": 538,
+      "sha256": "78b4d5073c27b28c9a3cf901320b50374b754344efba2b019a6ad37bc05f155c"
+    },
+    {
+      "path": "core-portability-arm64/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.QuantizerFromStateTest$RotationFromState.xml",
+      "bytes": 861,
+      "sha256": "a196f0b928c35e8e07fe56a986bd7b69271699225eb13bef08b5a1b968943db1"
+    },
+    {
+      "path": "core-portability-arm64/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.RaBitQuantizerTest$BitOperations.xml",
+      "bytes": 997,
+      "sha256": "1afea6bb610ce0636700f0980e1a70fba26b6055957aaaaca2eb0c62e226b459"
+    },
+    {
+      "path": "core-portability-arm64/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.RaBitQuantizerTest$DefaultRotation.xml",
+      "bytes": 676,
+      "sha256": "1bc2423f49afeeb132f1e1f0d4cf6c2446fd675e36ad7bd7e771bf7ae842647e"
+    },
+    {
+      "path": "core-portability-arm64/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.RaBitQuantizerTest$DistanceEstimation.xml",
+      "bytes": 1193,
+      "sha256": "d3983a339c7af96bc1ec0bd3c116d617f0a78d5fa5089bbe6178400dd2f38306"
+    },
+    {
+      "path": "core-portability-arm64/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.RaBitQuantizerTest$EncodingTests.xml",
+      "bytes": 1765,
+      "sha256": "52f203563e690b5487dd76d4fca50d3ed8824ead13378c4519d33e32389a4c37"
+    },
+    {
+      "path": "core-portability-arm64/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.RaBitQuantizerTest$RotationTests.xml",
+      "bytes": 1417,
+      "sha256": "239131cd2b84623b19aaf6a2a642b2b1ae6524d49deb0991c40a190e3d2538cd"
+    },
+    {
+      "path": "core-portability-arm64/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.RaBitQuantizerTest$ScoringTests.xml",
+      "bytes": 1227,
+      "sha256": "0649aa26919e35e494536ab4963339a84ae50a5370142ce5320728d9da86ba65"
+    },
+    {
+      "path": "core-portability-arm64/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.RotationTest$GivensRotationTests.xml",
+      "bytes": 1663,
+      "sha256": "5b80b392b048c12bff41837bf2c5c84916960cc820b8fedf7b9d319c8961f497"
+    },
+    {
+      "path": "core-portability-arm64/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.RotationTest$QuaternionRotationTests.xml",
+      "bytes": 1706,
+      "sha256": "ca63eaafd208d69326a6745088770d30ca90315d348bb24f110d42553597c0e1"
+    },
+    {
+      "path": "core-portability-arm64/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.RotationTest$RotationInterfaceTests.xml",
+      "bytes": 1011,
+      "sha256": "b2fcb7b017aded044de86d5a215054f3f786d13b9d95462891cc9a0d3ac41583"
+    },
+    {
+      "path": "core-portability-arm64/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.ScalarQuantizerRepeatedValuesTest.xml",
+      "bytes": 532,
+      "sha256": "7053c509c660e8da443771986e4f6d0d9cdd72cc607a824e059401c2a44ace40"
+    },
+    {
+      "path": "core-portability-arm64/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.ScalarQuantizerTest$ArrayVectorDatasetTest.xml",
+      "bytes": 660,
+      "sha256": "49f87bf6cb80edc4b1a46b987d5607de49d7e7451978632c46752aee42c81095"
+    },
+    {
+      "path": "core-portability-arm64/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.ScalarQuantizerTest$CompressionRatio.xml",
+      "bytes": 646,
+      "sha256": "75bf35f7b1430eb0f4c3a5060858c3dffd2a9edfc76c69dbd382ea43fb15170e"
+    },
+    {
+      "path": "core-portability-arm64/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.ScalarQuantizerTest$EdgeCases.xml",
+      "bytes": 1058,
+      "sha256": "6a390b8769f08da9e079cb1ad53d06b17a3df6ba47db2b7d974fb2f6b6b1da10"
+    },
+    {
+      "path": "core-portability-arm64/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.ScalarQuantizerTest$EncodeAndDecode.xml",
+      "bytes": 2240,
+      "sha256": "86c3e44ec12b006b27daa13da9ca7f7fca5445cab821840d26b76bf37a4eece0"
+    },
+    {
+      "path": "core-portability-arm64/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.ScalarQuantizerTest$Int4Quantization.xml",
+      "bytes": 4134,
+      "sha256": "7abc882fdbc290b95ae5296d50b4448694c1c280535ee1b34160d6c06c49c0eb"
+    },
+    {
+      "path": "core-portability-arm64/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.ScalarQuantizerTest$Scoring.xml",
+      "bytes": 2437,
+      "sha256": "43ed1f191c17d84a52e8a15da40aab51dfae0d7dc34ad6f6b151ad3a1ea96022"
+    },
+    {
+      "path": "core-portability-arm64/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.ScalarQuantizerTest$Training.xml",
+      "bytes": 2178,
+      "sha256": "10c545eb8387c7234eaab8f9b93388c6b4e54e4586c874625c2f1ab09ed8034c"
+    },
+    {
+      "path": "core-portability-arm64/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.TurboQuantizerTest$BitWidthTests.xml",
+      "bytes": 772,
+      "sha256": "b42fadbba4cb51e0107c0b641c2b427d9cf1ad0e1e7e6882ce1f367959726cb1"
+    },
+    {
+      "path": "core-portability-arm64/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.TurboQuantizerTest$EncodingTests.xml",
+      "bytes": 1601,
+      "sha256": "05114abd43164a8be445b94836848386ed0b391187042bb05d58e17e0a7fdaf6"
+    },
+    {
+      "path": "core-portability-arm64/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.TurboQuantizerTest$RotationStrategyTests.xml",
+      "bytes": 986,
+      "sha256": "101facb5d301d1b24f6ca77b291296f5b108c895dd5ccab494465ab3720aeaed"
+    },
+    {
+      "path": "core-portability-arm64/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.TurboQuantizerTest$ScoringTests.xml",
+      "bytes": 1698,
+      "sha256": "c2e6a579c95a02ba94371e3157218cd27d33e455bfdc70d1b9799b5dbf4e0379"
+    },
+    {
+      "path": "core-portability-arm64/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.TurboQuantizerTest$UnbiasedProdTests.xml",
+      "bytes": 686,
+      "sha256": "8c15b7ec6a1c117a2e9270d7ab307ebf9696d3227b4d0e744b31ae910345267d"
+    },
+    {
+      "path": "core-portability-arm64/vectors-quantization/build/test-results/test/binary/output-events.bin",
+      "bytes": 4415,
+      "sha256": "b52f4d14a3a4666cacedd5dc1bdc103111588020acc1b99be71b51cb4f08a853"
+    },
+    {
+      "path": "core-portability-arm64/vectors-quantization/build/test-results/test/binary/results-generic.bin",
+      "bytes": 65522,
+      "sha256": "fd228a6890d84980036b5c152743e4b70268c2800b0c91e0bc98eb413f8b4e40"
+    },
+    {
+      "path": "core-portability-x86-128/build/core-portability/host.txt",
+      "bytes": 3693,
+      "sha256": "f909eefd485e8c730395196ba5dcd50b64ff7310da96d44bc041fd969749bc13"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.ActivationColdHotTest.xml",
+      "bytes": 497,
+      "sha256": "0913501cad40c216e8a7e418db9c1b03d8b712e31a6a841f58dd3c942f7a7db6"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.BFloat16MatrixAllocationTest.xml",
+      "bytes": 504,
+      "sha256": "c878cb0aae09f912056e7c58be1dab7bb7f193056cb8f9fd389953c0972aee66"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.BFloat16MatrixColdHotTest.xml",
+      "bytes": 2019,
+      "sha256": "394d3d5224e82577ff6df67d0ac30ccc0c83163dd5e6cc04950ceccab8bf67f5"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.BFloat16MatrixDispatchTest.xml",
+      "bytes": 1240,
+      "sha256": "2a2bd572e661823bf3dfe6882c3284c2a2b0193cb99e0a768dce11029697cdae"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.BFloat16MatrixTest.xml",
+      "bytes": 1623,
+      "sha256": "3ee998d8de4dacb123a1633f8c6837c234cf43feaffda39a4259f61b48f3bde5"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.BFloat16NestedDispatchTest.xml",
+      "bytes": 518,
+      "sha256": "7f12219bf1b7e80422106d9e0aabc41d5ba2ead12e66784d1e5952750948e002"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.BonsaiActivationSequenceTest.xml",
+      "bytes": 2043,
+      "sha256": "2abeeda574aed912d0f78cd08fa6968dd5af1ac8c02388cac44c01cd752af1da"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.CoreValueTypesTest.xml",
+      "bytes": 761,
+      "sha256": "020e0ec99a95e3cb6b5f87cc6bfa90eca4357654e43e58cea65ba75d0463736d"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.CosineAllocationTest.xml",
+      "bytes": 1326,
+      "sha256": "93f77151d7d4d12cd75c96289326a7f02fba243eb4a34df8443b4471459fab55"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.DocumentsTest.xml",
+      "bytes": 1040,
+      "sha256": "c111b302f484241c53d49ce1c2c917d26ccb64f3907436b3c25e91d4a0f7950a"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.EmbeddingProvenanceTest.xml",
+      "bytes": 2332,
+      "sha256": "45d075e45c2354bb74ef9b58b4446826424ed4cf6e2366d8e1e0e84243cb75dd"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.F32ExecutionMatrixColdHotTest.xml",
+      "bytes": 864,
+      "sha256": "595d93dbe62f5ae18261c56a2bc97d2f5b84ac15af0129a7955cf9f78f602e69"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.F32ExecutionMatrixTest.xml",
+      "bytes": 782,
+      "sha256": "33f661fcb2697ed86530f96a59d0dfb88741dd28d3f7940561617765e840fd45"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.FusedSimilaritySegmentTest.xml",
+      "bytes": 1811,
+      "sha256": "ffb6628bb5f835c91c2cf0121442d1dd391a9e4b85d2c69f80cf43a6530393a6"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.FusedSimilarityTest.xml",
+      "bytes": 715,
+      "sha256": "81d739258bed76697b447849bab72fccecfa73113a88b28812d2f6836152aaac"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.GgufBandGemmTest.xml",
+      "bytes": 4385,
+      "sha256": "93474e43350e091a42061c96e6332ef855d98174ed5df181f400fae5f8f2aed8"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.GgufBatchDispatchTest.xml",
+      "bytes": 1409,
+      "sha256": "1e5776753abda7897fe5ca2de799f3d7156f700745905cd84aeb3ae153dba786"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.GgufKQuantDequantTest.xml",
+      "bytes": 4117,
+      "sha256": "d9a1c051cd934fb4173305f3b89f8ad6be5ef88f51620143e924fea13e542f86"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.GgufParallelSupportTest.xml",
+      "bytes": 3552,
+      "sha256": "4a32031b522ebd4de956eac86b2e64b01cc912620d00683dcc6cafb65a12116e"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.GgufQ8_0F32MatrixTest.xml",
+      "bytes": 951,
+      "sha256": "778bf72c2f21229c89c05698a1fd06e126990ee96d43da067b10aa2727ec75bd"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.GgufQuantizedDotTest.xml",
+      "bytes": 13235,
+      "sha256": "22bc839df80f8b5ae50734bb28c22622e1c84b2979cc357ccc10eff65241260c"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.MaxBitsSelectionTest.xml",
+      "bytes": 1478,
+      "sha256": "1a73d0d3e43d71fb08e7fb254488bd4ca715b8ce1c8819620ac3546c546ddc31"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.Mxfp4MatrixTest.xml",
+      "bytes": 1441,
+      "sha256": "269de05a8db2f6d23a0aca32e4aba0415a319b51e858a76e6197c1641710c4ca"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.OffsetBatchCosineBitsTest.xml",
+      "bytes": 1252,
+      "sha256": "3ccd159d418f4f9fe8a09ebede30fad00935d33e2f642cb232211f33e5dd0738"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.OffsetBatchCosineTest.xml",
+      "bytes": 637,
+      "sha256": "e4e3b818d994d19a7977e0abd74a4ff024eaa9bace460d55dc683ca22af03c39"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.PackedInt4GroupMatrixTest.xml",
+      "bytes": 1288,
+      "sha256": "13f9e214a063bc0be1f248c9bfbe3f4164a656b1256f03a7ade0c915a9298422"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.PanamaConstantsTest.xml",
+      "bytes": 2011,
+      "sha256": "7a3850c0821f2ddd519fb80b411149d310dc0172c8ca8f11230f3a93a6f8eaee"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.PanamaGgufQuantizedDotTest.xml",
+      "bytes": 7582,
+      "sha256": "a6f18149fe65eaa1daebb1d2980fbfa54b3f794f17ddb7a102607578f48c0ec7"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.PreparedCosineTest.xml",
+      "bytes": 1457,
+      "sha256": "fd2dc885d6ba00fe07f9a30cb2f7844dad4c0dcb725f92eeaa91109f96d46348"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.Q4KColdHotDeterminismTest.xml",
+      "bytes": 661,
+      "sha256": "edb752fa6fc37918c875783827760389866189fd44a83fea0072a1fb21e221b3"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.Q5KColdHotDeterminismTest.xml",
+      "bytes": 661,
+      "sha256": "bd2ede4508279121ab277f2f4eaea22b236908a0f7a42c12ec0ab10f4ab4a1ab"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.Q6KColdHotDeterminismTest.xml",
+      "bytes": 661,
+      "sha256": "05a86f7076fd2f0a9d1c461c1aaf16f5b5ce4784f18ddf3efcd523aaacec93ac"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.Q6KReductionOrderContractTest.xml",
+      "bytes": 1030,
+      "sha256": "efc8fc4fe743fe07cf14e7d1112af98fb39170f815dd6f7e03eb42e3469c3bca"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.Q8ColdHotDeterminismTest.xml",
+      "bytes": 658,
+      "sha256": "c7bc4d3cfbab99f29ef4424b3fc83b0ce961a792c797a82bfc7092f100c0969b"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.ReproducibleActivationExpTest.xml",
+      "bytes": 675,
+      "sha256": "936527d7ec05fc71993c8526c34db6905921747344d62bb6645e2289d5daf3de"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.RotatedCodebookMatrixTest.xml",
+      "bytes": 2283,
+      "sha256": "7e3ce560ab8f94b19ba721e135c82fe4e17db586233fbbb1750dcc44488cb28a"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.ScalarVectorUtilSupportTest.xml",
+      "bytes": 2366,
+      "sha256": "819e06274ed3503713ae04b0dd803eebbe483b336716d47e7f098031ec8aa870"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.SimilarityFunctionTest.xml",
+      "bytes": 2240,
+      "sha256": "c3dbcf7b10735bf7322c55865a7a03b788c800850730594374aac0c93dc7db54"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.SwiGluColdHotTest.xml",
+      "bytes": 496,
+      "sha256": "d20b14cdf00510856299a929c2ce6bc28b8c59eb282930f779cf51ead43ed8ee"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.TopKTest.xml",
+      "bytes": 2019,
+      "sha256": "3402d1a067273f3e460a52a8ec3c62fe3b72cddf24c4900719b3620a0ad073e9"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.VectorEncodingTest.xml",
+      "bytes": 1043,
+      "sha256": "14133081741a3ca63dfbf8bc956cb5f31a083f854983a6b271bf1803b0159ecd"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.VectorSpeciesConstantStructureTest.xml",
+      "bytes": 976,
+      "sha256": "178064d4669873b61236cbbde8300a7975af7d987e9e5668bfca1df4fa8d8497"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.VectorUtilSupportProviderTest.xml",
+      "bytes": 11898,
+      "sha256": "03142aa3bd52a451a4bc5398222c786ca65cedce76dc1cb6e3555a09b652599e"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.VectorUtilSupportTest$ByteDistanceTest.xml",
+      "bytes": 12509,
+      "sha256": "7e171c5fae7b29a66235ba480b8d84f7bac1d04a3f202073d399ed30180fe40d"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.VectorUtilSupportTest$ExactStridedBatchDotProductTest.xml",
+      "bytes": 4831,
+      "sha256": "a177f8c442fafc12aa54dbe9a24de871114bf19c97bb269a05acac41822e4357"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.VectorUtilSupportTest$FloatCosineTest.xml",
+      "bytes": 16307,
+      "sha256": "b3341a210ab799726d24e5f1086ec2a239b199abe3a257799f32f1106ec06da3"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.VectorUtilSupportTest$FloatDotProductTest.xml",
+      "bytes": 16965,
+      "sha256": "89397aee8c77feccb80f80a44e20d3845f3f272a5d43ce003a32117df1af85cb"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.VectorUtilSupportTest$FloatSquareDistanceTest.xml",
+      "bytes": 17722,
+      "sha256": "8de5156c20cc0a92875ad1af3fb9c547260e1c52bb0942e9dfb97cc246c9bdf3"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.VectorUtilSupportTest$HammingDistanceTest.xml",
+      "bytes": 1876,
+      "sha256": "0bea91dcb66432652bcf69a5aeec9d62d45466c0e8d4364596fd2c01c478bd90"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.VectorUtilSupportTest$L2NormalizeTest.xml",
+      "bytes": 8650,
+      "sha256": "55262a3b210e30935d350288cce136659ad4d2c07d560815d255339ad1ed6a1c"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.VectorUtilSupportTest$MemorySegmentCosineTest.xml",
+      "bytes": 2676,
+      "sha256": "73c246532867f610f5eec0a25e61f5c1726c800cb2037496ca892c6455223f8f"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.VectorUtilSupportTest$MemorySegmentTest.xml",
+      "bytes": 2289,
+      "sha256": "976245dcdc0d34d8cdd4e38648d4d921af7f024fcf19ed476c8c2aec524f101b"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.VectorUtilSupportTest$VectorArithmeticTest.xml",
+      "bytes": 41628,
+      "sha256": "866f84d854d108a0a95814a69fe67b92a548e06d6e31229acad72efd162387f5"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.VectorUtilTest.xml",
+      "bytes": 4322,
+      "sha256": "4ee7725dbd4d89ec3ab5fc3b68a04ad6e454b9b547799ad141ea914e4ca0aaf8"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.VectorizationProviderTest.xml",
+      "bytes": 1903,
+      "sha256": "e25de478808b7b971670d90a92a7600068480207beb6141400e01db75d6df930"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.cluster.CentroidIndexTest.xml",
+      "bytes": 2241,
+      "sha256": "c28e62c9feb7a64de8b42722e9d15bac382dd74ad7a0f50e47d07e5ae319eae4"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.cluster.KMeansTest.xml",
+      "bytes": 2432,
+      "sha256": "d7763deb979e7250103d7310836f69efe459fdaf663ab10ac8cb43d57fc97456"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.cluster.VectorUtilBatchCosineTest.xml",
+      "bytes": 5464,
+      "sha256": "2e0fb670350e7802516c09220208966377974f3236b5f3c7dfe899d4c0187ccd"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.cluster.VectorUtilBatchTest.xml",
+      "bytes": 4009,
+      "sha256": "ea4a5e259fbcb7fb4951d6f50409460312549d0c1dc81ea974cb4ec1ab659d1e"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.cluster.VectorUtilSegmentBatchTest.xml",
+      "bytes": 6452,
+      "sha256": "530a3bc69ce73768a3065f06830d6e8253996fa68915201f59869b158ad21695"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-core/build/test-results/test/binary/output-events.bin",
+      "bytes": 15260,
+      "sha256": "89ae04534f0eb212be111e9de200deb89cb066ef8ff13adc91d113f3d6937870"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-core/build/test-results/test/binary/results-generic.bin",
+      "bytes": 249677,
+      "sha256": "7786b52b72a52f53341d475404dedd696a9ddcac9cf4c1351e1b521155303774"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.FlatCollectionBatchTest.xml",
+      "bytes": 1716,
+      "sha256": "c5b3a37e4dc46c76abbeef567f0d1519a6f592097067ec54f6c78f60fa4a3409"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.index.ParallelFlatScanTest.xml",
+      "bytes": 1175,
+      "sha256": "55fe225e5530857ff2541648c9d37b1ce6e7c8ff24f79a30d823749c0643a7f9"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-db/build/test-results/test/binary/output-events.bin",
+      "bytes": 913,
+      "sha256": "321692cc60fd5bddffbc2ec57a3038d26b4e37adc59d1ace1586f4f42fd0ed89"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-db/build/test-results/test/binary/results-generic.bin",
+      "bytes": 1619,
+      "sha256": "18f7b784e42b6d49325b38b821ca3c0cb93918b46226c7695c72d612a0ff10d5"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.AsyncVectorPrefetcherTest.xml",
+      "bytes": 919,
+      "sha256": "8ad749960bf7229eb6dd0ddf866682563632e938f0ec5edf39cc2490d339d96f"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.ConcurrentHnswGraphBuilderAppendTest.xml",
+      "bytes": 1979,
+      "sha256": "c44a3804939a4d0e2d2a58172b3757bbb72a256337491d03c71abd67ca75cd3b"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.ConcurrentHnswGraphBuilderSelfLoopTest.xml",
+      "bytes": 532,
+      "sha256": "3510a27bd2f3824ae8b62ec0baa13631352a3f7dded155d3c07bbce1e08b1bac"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.DataStructuresTest$HnswGraphTests.xml",
+      "bytes": 1352,
+      "sha256": "adf911aaffd4899d3f812b88d1675cdfbfa638b7c8088af9f12657fa699884fd"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.DataStructuresTest$NeighborArrayTests.xml",
+      "bytes": 1784,
+      "sha256": "1d741c7d8a0a6732b13ad247cd9d663b4277b916b87d7c74b503a04b1aa01d1f"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.DataStructuresTest$NodeQueueTests.xml",
+      "bytes": 1348,
+      "sha256": "53f9ba8c957cef56b9dd6b5af3e65497bd54dbf766f40c9f8480d5708e2b86ca"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.DistinctNeighborInsertTest.xml",
+      "bytes": 648,
+      "sha256": "0fdc96c178d25dd7975206461dfb5029f3e3517bf52ac7376f5052910541b384"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.ExactScoreCacheTest.xml",
+      "bytes": 628,
+      "sha256": "2c81ee002ed9b6d1c37abe1cee375b1efc57ae3e9575887ab9f507728a7c9d4d"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.HnswAppendOwnershipTest.xml",
+      "bytes": 639,
+      "sha256": "37ca235be7db8bcb70390ac078465bea2c369c490ae6cba179a083f79f4b0e5a"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.HnswGraphBuilderTest$ConcurrentBuild.xml",
+      "bytes": 1120,
+      "sha256": "b68c4f82f73772adb7e6673018f1d2c2fd7a1f17fb9c3fe95dec3f742bc363c8"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.HnswGraphBuilderTest$MediumGraphConstruction.xml",
+      "bytes": 827,
+      "sha256": "bdcf77207c9602f14d7a3e06ee1094c344d1e84b72a9548a4993b7463f8e1b4d"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.HnswGraphBuilderTest$NeighborSelectorTests.xml",
+      "bytes": 1313,
+      "sha256": "00609d98472f960bff38b7f3d4cfcc35738ff8d5e1498f3ec37d01e15f750e8a"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.HnswGraphBuilderTest$RandomLevelGeneratorTests.xml",
+      "bytes": 955,
+      "sha256": "922e49977e234477b4d1641b2dae99ab9cfe92c2158b87ba5a96b7633809cb36"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.HnswGraphBuilderTest$SingleNodeInsertion.xml",
+      "bytes": 935,
+      "sha256": "5a1c1b213a7a600d487407e2baa259f606d1b74673a1319dd169055b32a62d4e"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.HnswGraphBuilderTest$SmallGraphConstruction.xml",
+      "bytes": 984,
+      "sha256": "f522913e8f0bb5b4bab81f8f96f2c7519136de3ae0154aa96e264da0e4e09b58"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.HnswGraphBuilderTest$SsdPrefetchTests.xml",
+      "bytes": 1045,
+      "sha256": "be87c2c2286b2a7a7318ce7adb07d9adb18dda9557bfce7026561ee005ee4f1e"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.HnswGraphDiagnosticsTest$HandBuilt.xml",
+      "bytes": 1081,
+      "sha256": "ca5036ad3062412892bd834c1326e8733d58f6baa2baab571dc1a55f12bbc7a1"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.HnswGraphDiagnosticsTest$RealBuilds.xml",
+      "bytes": 845,
+      "sha256": "d1ff8f70f6ec1fdc05c470b035cf4abc30fe0578a743fbfb5eaa1c4bd306f3d5"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.HnswGraphMergerTest.xml",
+      "bytes": 614,
+      "sha256": "9bc05d3ab784166dbee30dbf62226b965a35dad039334c0b8c0d3a90200d1bba"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.HnswSearcherMultiStartTest$Concurrency.xml",
+      "bytes": 500,
+      "sha256": "30d09210d68513a9580d5fa9b6036ff6e95b27706b0ae8f40bade02998c8a01d"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.HnswSearcherMultiStartTest$EdgeCases.xml",
+      "bytes": 758,
+      "sha256": "3fd8b95cb63a6b5d5bb0cd144db89a8edc927963cd6448bb35158781c2c6a186"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.HnswSearcherMultiStartTest$ExceptionPropagation.xml",
+      "bytes": 533,
+      "sha256": "a514922196608c2f6c310991a504e672160acc060e342c413e993eb69dc4b60e"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.HnswSearcherMultiStartTest$Identity.xml",
+      "bytes": 496,
+      "sha256": "e4ac9c68da6157aa0348db8a8a5a24086a82a67777205fbb946632209d45daae"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.HnswSearcherMultiStartTest$Recall.xml",
+      "bytes": 493,
+      "sha256": "e61224ec2841bffb8e3c2cf975567daab58a8f0cc666f21acdcd20768728c353"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.HnswSearcherTest$AllSimilarityFunctions.xml",
+      "bytes": 1441,
+      "sha256": "c1c3bbf680eeb9a7a54abfc0d2890be245ae9e547f0f7aa4ec3d44edbf525c79"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.HnswSearcherTest$BasicSearch.xml",
+      "bytes": 1023,
+      "sha256": "7f755b24eaf9c2f97dee3d6fd2033f239023ef0212bde2c257ba6de88c51c201"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.HnswSearcherTest$FusedAdcSearch.xml",
+      "bytes": 2106,
+      "sha256": "414cdcd4b55f555cab81033947a3e1bfa99350610a296187a53e508a43e98ba6"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.HnswSearcherTest$HnswIndexApiTests.xml",
+      "bytes": 900,
+      "sha256": "2988bf26491efe9ac84fa21a73ca8da1f24160a09105a4dd4c9ae5c19b5f7009"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.HnswSearcherTest$MediumDatasetSearch.xml",
+      "bytes": 648,
+      "sha256": "fe3507e5a278111a233461d6535c70135cd49e7ed5712d7c2002cbb4bf9fad33"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.HnswSearcherTest$SmallDatasetSearch.xml",
+      "bytes": 918,
+      "sha256": "d41dae8603008c2e699055381373bcd7166fb2a5c3b91ecb0e6f2c00e7c351a6"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.HnswSegmentScoringRecallTest.xml",
+      "bytes": 845,
+      "sha256": "931f5953f3fac38d78e69b51eac75ca303c356b889c420d6e2e1526dd3af422f"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.PreparedQuerySearchTest.xml",
+      "bytes": 501,
+      "sha256": "71a12da1ea55bfa0e96c8f8c5f53d1de393c5cbaae5ce3cddfff234c1ca06413"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.QuantizedSearchTest$NodeScorerBasics.xml",
+      "bytes": 677,
+      "sha256": "1e3794479cbc99a57420b2dab8d80414811cb466c29a935f17d4f82e920d8d88"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.QuantizedSearchTest$QuantizationAttachment.xml",
+      "bytes": 827,
+      "sha256": "3e687497e92ee5978ad433ba289fc89095d8fa1b837b74f7493dd3d6f63b8fa0"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.QuantizedSearchTest$RefactoredSearcher.xml",
+      "bytes": 687,
+      "sha256": "685b6b70f1016dd7cfd16cccab25b3b8a9b9d8cf78c598f8acb67f4ec41b1cc6"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.QuantizedSearchTest$Rescore.xml",
+      "bytes": 631,
+      "sha256": "6290ea1543c9e97f74ab3965a00ccf143d08e484cd1c7380d6fc4e7440504d11"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.QuantizedSearchTest$TwoPassAllSimilarityFunctions.xml",
+      "bytes": 949,
+      "sha256": "0123776b1f562df97dd511171db09aa26db5dfbc381e527b4aa8db2a993a29bc"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.QuantizedSearchTest$TwoPassRecall.xml",
+      "bytes": 789,
+      "sha256": "3d99b3ccb792755414da40815cc89110ba7e98e95b5980ae2c0b872b5ace004d"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.QuantizedSearchTest$TwoPassSearch.xml",
+      "bytes": 826,
+      "sha256": "44f51f00fc61d658e6db717ac1531e660541ec1a33c28d644299a465482a165a"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.QuantizedSearchTest$VectorDatasetBridge.xml",
+      "bytes": 674,
+      "sha256": "413398f690e7a3c27456952042d5dbda99250ca0615a378bda32ac2e6ac6aca4"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.ResultDrainTest.xml",
+      "bytes": 833,
+      "sha256": "0f248c54e0568993fc9072b58622adcf5249bc6f63c1933fbc9c75d3ae7fbacc"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.SearcherAllocationTest.xml",
+      "bytes": 537,
+      "sha256": "af18401e250cce162f2832e6dcc8e01ef417a3ca8c024f55ca836b1a101fa626"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.SharedVectorBuildTest.xml",
+      "bytes": 917,
+      "sha256": "b85b154f1fd8c22809dd53280a8880e6e8d318bbe54c958c419ad9a8bdb31ded"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.VectorStoreVectorsTest.xml",
+      "bytes": 602,
+      "sha256": "42f982d4772335c6bbdead81894922564e50923b32e7f8611668a64dce906c90"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-hnsw/build/test-results/test/binary/output-events.bin",
+      "bytes": 1560,
+      "sha256": "5b30ce81cafe590a7b3f7baa26de00851caad28f5ae16a2d2c42faf6f21eff88"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-hnsw/build/test-results/test/binary/results-generic.bin",
+      "bytes": 30633,
+      "sha256": "f96845c3574177713bdffe5dfb24db66b094ff6b24337b604241908460baaaac"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.BinaryQuantizerTest$BbqEncoding.xml",
+      "bytes": 1606,
+      "sha256": "8374c4278e137dac639a5be3755323116042223ac09175d95c1eadc38638b8fe"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.BinaryQuantizerTest$BbqScoring.xml",
+      "bytes": 2100,
+      "sha256": "fa47899dad4a2a9e2a7330ef910150486d952dbed5de6fa4ccfecadbe5995615"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.BinaryQuantizerTest$BitPacking.xml",
+      "bytes": 948,
+      "sha256": "7b4dd5294e85c1ecdc409703879249e881bba4e90c7430fa420bc5de89988024"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.BinaryQuantizerTest$SignBitEncoding.xml",
+      "bytes": 1461,
+      "sha256": "b51aab75e698628272513b0a243db7d795047bb30be12912f1d5a26eb3c7b4e8"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.BinaryQuantizerTest$SignBitScoring.xml",
+      "bytes": 1420,
+      "sha256": "a6ea2c3f86bd4ed270954a05a039dd75c1081c03ee670e395d4f72ff3b1ba0a7"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.ExtendedRaBitQRawScorerTest.xml",
+      "bytes": 666,
+      "sha256": "2c7d2e6c00dc8ef95ee00a86e27af8847d30950f989bee20da4fcb74d9b8f60c"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.ExtendedRaBitQuantizerTest$BitPacking.xml",
+      "bytes": 1595,
+      "sha256": "1ce85bd4aed4a1f0b24536df5844bdc17fd2221f6eed05d7a94a1f2ab75bc493"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.ExtendedRaBitQuantizerTest$CorrectionFactors.xml",
+      "bytes": 1025,
+      "sha256": "5da0c1a221c2dfceae595201e3632396c8ca940e7b91defe11b6233db2126de1"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.ExtendedRaBitQuantizerTest$DefaultRotation.xml",
+      "bytes": 702,
+      "sha256": "60ef1569cbc5a13f8c62f80d4cf5635b5c97335b82f93f1dca83f3a481a77ef0"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.ExtendedRaBitQuantizerTest$EncodingTests.xml",
+      "bytes": 2179,
+      "sha256": "bc8109439454deed65d53fb2011a91323c6ba817c6d949dce768c6c470238e24"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.ExtendedRaBitQuantizerTest$GreedyQuantizeTests.xml",
+      "bytes": 714,
+      "sha256": "6c8d1a6624a120d9a242e36562b5ed61e67b2b25c452582756dcbf85d4678921"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.ExtendedRaBitQuantizerTest$RotationStrategies.xml",
+      "bytes": 840,
+      "sha256": "4de6005b2b093d346cd36f44963ee7d1516c6956602d384e9e7c44519e43207e"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.ExtendedRaBitQuantizerTest$ScoringTests.xml",
+      "bytes": 2345,
+      "sha256": "5c9ba74658965ca0d21551f7b155c5d0754a3a3fb783881dc5291ab6967aca99"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.Fp16QuantizerTest.xml",
+      "bytes": 1117,
+      "sha256": "a71969429797ff67c64502ff05d2e5d2d67ecdc33457df28fd922f7338d0e169"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.LloydMaxCodebookTest$BasicProperties.xml",
+      "bytes": 1656,
+      "sha256": "deaba2f31ce8e77419f24c92e2e45a945a32aeb5ab5b54fe1b1ced61399e3dbf"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.LloydMaxCodebookTest$DifferentDimensions.xml",
+      "bytes": 1001,
+      "sha256": "b9bc9860d2401114d7cacb54f995eda74adaf55b94ed15beb3c94cb5f83e862c"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.LloydMaxCodebookTest$MSEOptimality.xml",
+      "bytes": 667,
+      "sha256": "1e65d1ad615b594ea937bf92218a5ae09f509415b1fcf52473b583c084cbe095"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.LloydMaxCodebookTest$QuantizeDequantize.xml",
+      "bytes": 1013,
+      "sha256": "0ab10e11a4da263713b8402848d1b8958783d0eab2b2474c2244e7b90985e957"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.NVQuantizerTest$EncodingTests.xml",
+      "bytes": 1409,
+      "sha256": "edf156b29bd9c1c79c74037c221fb4cc0b631e8ba4d729529a195e655883efb2"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.NVQuantizerTest$NQTransformTests.xml",
+      "bytes": 1290,
+      "sha256": "1e19e1d23377a927c10a4b325a3c74ea7c6834dbf04dfb10fc3b11118fdbfb96"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.NVQuantizerTest$ScoringTests.xml",
+      "bytes": 1057,
+      "sha256": "56d59a9f2420db652a32632abd99464d2794f05719ecb61801ca0b5bd4fa281f"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.NVQuantizerTest$SubvectorTests.xml",
+      "bytes": 966,
+      "sha256": "f81224d90e3df5f1b27c1424a923a4d736a7d5e1e8abb1dea9cef0b4e76632ec"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.ProductQuantizerTest$ADCScoring.xml",
+      "bytes": 3098,
+      "sha256": "18adb7acf8d21608af26c27bfdba0775e45724fbb07954d4398302f80aac7b1c"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.ProductQuantizerTest$CompressionRatio.xml",
+      "bytes": 1231,
+      "sha256": "9bb4be48e7c43666bc9de1110851664d8f288dcc08c185c184a88f95037fad99"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.ProductQuantizerTest$EncodeAndDecode.xml",
+      "bytes": 3284,
+      "sha256": "9c7bf57a10aef78955275f87d7ea3e72c39d49954d3cf9001309aa64794f23d9"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.ProductQuantizerTest$GlobalCentroid.xml",
+      "bytes": 689,
+      "sha256": "eed4a7340ee3986b2ad9c9c1837af34493ef465c6af93d0132f5f8c03cde7682"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.ProductQuantizerTest$OptimizedPQTests.xml",
+      "bytes": 1328,
+      "sha256": "3d3378423998a42e3f7131494936b861091f2d9000763556238e3a87f8a43170"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.ProductQuantizerTest$PipelineTests.xml",
+      "bytes": 2085,
+      "sha256": "87c1403acc43cb658d6958d0b2c636698b827a01a3703e4fd1183e3b639e9e58"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.ProductQuantizerTest$Training.xml",
+      "bytes": 2274,
+      "sha256": "3b9b6a9867fe8b590876ff964fc4e49421558b542447038e0100133c17a2774a"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.QuantizerFromStateTest$BinaryQuantizerFromState.xml",
+      "bytes": 719,
+      "sha256": "3e179317d2ff46f292a524ddac71cd82b1fa00f5aba1260e6fd44ed762247b38"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.QuantizerFromStateTest$NVQuantizerFromState.xml",
+      "bytes": 691,
+      "sha256": "a049edfd4a54463d11fa7ca7110ed3120f1dfb65b87d233789a365377db3f7f4"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.QuantizerFromStateTest$ProductQuantizerFromState.xml",
+      "bytes": 708,
+      "sha256": "ea273ec417625affbebdf784a4fba81ddcda42f51adf8847cf999acb13cd6d87"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.QuantizerFromStateTest$RaBitQuantizerFromState.xml",
+      "bytes": 538,
+      "sha256": "2c5edc30cd3b10e0377d42c99393bbff13d73de48090ddbc259e285dc1b04b6e"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.QuantizerFromStateTest$RotationFromState.xml",
+      "bytes": 861,
+      "sha256": "9dce33fa8d8c1efbb19370afd11827b5a2adf164ea93ce9f075de532865311cf"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.RaBitQuantizerTest$BitOperations.xml",
+      "bytes": 995,
+      "sha256": "60600847df8dd84260ed3fd6b3ce7dd70f5616ae9dfe064abae3602b7b0b26a9"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.RaBitQuantizerTest$DefaultRotation.xml",
+      "bytes": 674,
+      "sha256": "e741864be4efdba6be35ccece4b6444a4283719ca8121c9e94b8823088c8ec48"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.RaBitQuantizerTest$DistanceEstimation.xml",
+      "bytes": 1194,
+      "sha256": "73d7b66c1dded09a0d3029546dbf45e14a3c404202320f99316a74e6fb8c7ee4"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.RaBitQuantizerTest$EncodingTests.xml",
+      "bytes": 1767,
+      "sha256": "3616641c436426a03f68b49050a874376b01ed90f14b8899ea3acfcc069208bd"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.RaBitQuantizerTest$RotationTests.xml",
+      "bytes": 1417,
+      "sha256": "aaf2a57e50f11b943b643ac4d5370f558228c2b47e0171b120e723aa547c698e"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.RaBitQuantizerTest$ScoringTests.xml",
+      "bytes": 1228,
+      "sha256": "e8e85fb9d2eb6e11f5801fb6e70e2e0a248d90d7ff3284ddec08ca80c66d9f80"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.RotationTest$GivensRotationTests.xml",
+      "bytes": 1659,
+      "sha256": "3e9b73acf40af3d99fd0a16110a4a5a32bd607ee3629b2e6bb77436859b4cb09"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.RotationTest$QuaternionRotationTests.xml",
+      "bytes": 1706,
+      "sha256": "baf256b4714ec8b5b8468949203aed06e90924de5d37ee0dddb4a212a45ae873"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.RotationTest$RotationInterfaceTests.xml",
+      "bytes": 1010,
+      "sha256": "3ae27c19a64adbdf5939ac83441fa16157f734ee98dc4a413e73710d520b8f1a"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.ScalarQuantizerRepeatedValuesTest.xml",
+      "bytes": 533,
+      "sha256": "d9a6d4ed49bf042c62ab5537c74671c3518c5ba1fec35e3a27621ba6e7adbb41"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.ScalarQuantizerTest$ArrayVectorDatasetTest.xml",
+      "bytes": 660,
+      "sha256": "45839f451c5b9a411c0542c584147f97e76c2e67618b6ae8b29b5b91ad51d423"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.ScalarQuantizerTest$CompressionRatio.xml",
+      "bytes": 648,
+      "sha256": "df1568be738d8b7593f4f7e907eeb42c6322fe96ed7b797ce0809036417f77a3"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.ScalarQuantizerTest$EdgeCases.xml",
+      "bytes": 1056,
+      "sha256": "9f2c16e4069bf2aa0fe4dc467cb8c00d2e452c8803e09877bc2bea64fb56fb32"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.ScalarQuantizerTest$EncodeAndDecode.xml",
+      "bytes": 2240,
+      "sha256": "88809d63a9b807e4fbe6674ef00aa5dcd2ebe4c5fd96f3a91c2c6f98cf603fc7"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.ScalarQuantizerTest$Int4Quantization.xml",
+      "bytes": 4134,
+      "sha256": "a1aa81f677acc748711bf0ccaf34544de63bf65edadc22f416a3f820d24b9748"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.ScalarQuantizerTest$Scoring.xml",
+      "bytes": 2439,
+      "sha256": "675ff32b58571a403180297fabf4ed91f81b4b4802e7faba24dcf5c0b96c7579"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.ScalarQuantizerTest$Training.xml",
+      "bytes": 2178,
+      "sha256": "ec0746eeacae9ba5868c86d36d63f12f60fbc13682d76a9af0837681f85ccaef"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.TurboQuantizerTest$BitWidthTests.xml",
+      "bytes": 770,
+      "sha256": "5a7f00fed40a9d4c1d7c9089d2686943779079851b99ddd96d1a3482c6427890"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.TurboQuantizerTest$EncodingTests.xml",
+      "bytes": 1601,
+      "sha256": "b537122a5e4ede4572053a7eba833f657e5291a52bf25dfa22c71fbd93fd0786"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.TurboQuantizerTest$RotationStrategyTests.xml",
+      "bytes": 986,
+      "sha256": "3de88c9254ea8ac009a6d05e3ae58f186ad0741a67aa302b91449afc184ecf5e"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.TurboQuantizerTest$ScoringTests.xml",
+      "bytes": 1698,
+      "sha256": "d645edd2f77e5056df47ee48be72c0247d10709ec00f381d8ed2c276ac797309"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.TurboQuantizerTest$UnbiasedProdTests.xml",
+      "bytes": 687,
+      "sha256": "29fb1912cb4d753eeb94c8a73971f02714de9540b22863709251f465c12025fa"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-quantization/build/test-results/test/binary/output-events.bin",
+      "bytes": 4462,
+      "sha256": "2feceaba8473a29086d87cc77bed1a4bbf1b3c00db9af37b289750e97e9dd7f1"
+    },
+    {
+      "path": "core-portability-x86-128/vectors-quantization/build/test-results/test/binary/results-generic.bin",
+      "bytes": 65522,
+      "sha256": "45f7a2643c3441e5a8f4b8d16cf0b6494a1974751459c13b338ac1cf10ead178"
+    },
+    {
+      "path": "core-portability-x86-scalar/build/core-portability/host.txt",
+      "bytes": 3543,
+      "sha256": "67c4e9fe45502a1d8369f3c874f63dfa7f0c9aba5c2e6996df4ceca1a8041169"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.ActivationColdHotTest.xml",
+      "bytes": 496,
+      "sha256": "9fec8a65eb6484271668581bd46e64a7fdd850e487067117b9bd320810cdb10a"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.BFloat16MatrixAllocationTest.xml",
+      "bytes": 503,
+      "sha256": "e8ae0b9295deece41b5c156036bb29072b99bc242f670b88c9620c229b8a825b"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.BFloat16MatrixColdHotTest.xml",
+      "bytes": 2015,
+      "sha256": "524d467f4227d50d7073ac625d98c4c9875e088293c691dfe9408dc6523d186f"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.BFloat16MatrixDispatchTest.xml",
+      "bytes": 1170,
+      "sha256": "90d7adbace68551375af36409d3310085ad89d8df717dd269a3da1147442c7b8"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.BFloat16MatrixTest.xml",
+      "bytes": 1628,
+      "sha256": "a946c68475939765660188457883b7e7a42987b78e858abb14e6dd895f140ba8"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.BFloat16NestedDispatchTest.xml",
+      "bytes": 518,
+      "sha256": "7adae133221d339a2565fb2d9843d03a6d4218e84560be81eb065b242e1ac3d0"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.BonsaiActivationSequenceTest.xml",
+      "bytes": 2044,
+      "sha256": "95ce6239c4c132a48a2296ed6c56260b6d7b7acee72c466b7a61fba886cdcfc5"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.CoreValueTypesTest.xml",
+      "bytes": 763,
+      "sha256": "fdc7db77ae72d43faec3580f8d5ab642b1de1cd00daeaa672bd0f74591b2fb62"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.CosineAllocationTest.xml",
+      "bytes": 1341,
+      "sha256": "d67fde51831064baacd4aed911f2233bc37cc445f940d8354585d35011da6baa"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.DocumentsTest.xml",
+      "bytes": 1036,
+      "sha256": "6a591e511683fe98234ca7eb5b0b51a0491670925b9fb0aed7791541b2b71118"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.EmbeddingProvenanceTest.xml",
+      "bytes": 2328,
+      "sha256": "80c5bbf1bc5b56da15c95f2125151abe9ecfd8cb812d788c7fdaffcdf474b186"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.F32ExecutionMatrixColdHotTest.xml",
+      "bytes": 865,
+      "sha256": "4ac5978ad9f884855f802f1baaeb5959c21f967cb64ebe5584beb6a9e834db56"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.F32ExecutionMatrixTest.xml",
+      "bytes": 782,
+      "sha256": "15658a4b38c3de378993ff007327edc5e5f65b0f3d8a2e1a0a19769e02395b9e"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.FusedSimilaritySegmentTest.xml",
+      "bytes": 1810,
+      "sha256": "85c35232c16d253bc082124f14e3ee606dd1dc4ef9878aa412710587aaa889f4"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.FusedSimilarityTest.xml",
+      "bytes": 717,
+      "sha256": "ffc2608cdb4736135bae356f760ea350a4ec2142ff7c85aaa5203510252661f3"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.GgufBandGemmTest.xml",
+      "bytes": 155406,
+      "sha256": "244fcf1ea21e4175cd96c6dbd94ba1c131e1ca13993252feba17f368b37393ca"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.GgufBatchDispatchTest.xml",
+      "bytes": 17638,
+      "sha256": "5d6f48c39cbc1c5680b380feef4999c0b84c440b5eb4769e3c74699ff039da6a"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.GgufKQuantDequantTest.xml",
+      "bytes": 127030,
+      "sha256": "e8cc2a124cb8a2405f58c41aa805737890220c5ab6beb4c4e5f1faef5496594f"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.GgufParallelSupportTest.xml",
+      "bytes": 3559,
+      "sha256": "17a2a7a69badbf1ac8cd6d55a81c061b1661c0846df3f0b2253fa3c92f3e2549"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.GgufQ8_0F32MatrixTest.xml",
+      "bytes": 955,
+      "sha256": "dd47c8b6dd33a153a6656c9af4a1a0e02c0d9779976452a99055b9c846b50bf0"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.GgufQuantizedDotTest.xml",
+      "bytes": 13246,
+      "sha256": "742a4097fc1409a7acd28771beab8cbbf80cda2da2fa8ad4540163255f2222e6"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.MaxBitsSelectionTest.xml",
+      "bytes": 1484,
+      "sha256": "ef1d8f52d4ffe39795afaf7045b70409a9c819a4221a4c7630b59daea67d3e09"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.Mxfp4MatrixTest.xml",
+      "bytes": 1443,
+      "sha256": "b1ac5fcedb8964c36d04aa618c2dd2abb44d6325142a7fd1907aede9e7647e9d"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.OffsetBatchCosineBitsTest.xml",
+      "bytes": 1255,
+      "sha256": "cccb68072dbd9905e7bfe75f58b1d7b01d5ac3d7db9eeaa36677e5a43b8b116b"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.OffsetBatchCosineTest.xml",
+      "bytes": 638,
+      "sha256": "1b1e92707cf6da4f86915890158470b8f6ad853d979ed971f69ab30750771965"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.PackedInt4GroupMatrixTest.xml",
+      "bytes": 1290,
+      "sha256": "35c55cc67854f972858f773635af314d1f40a3fa5b39b351bcf7b330bc71f41c"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.PanamaConstantsTest.xml",
+      "bytes": 2013,
+      "sha256": "2cba895b898adafb94f5512a8d32dc4a073bc65567d3195c978c21e6dba48afc"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.PanamaGgufQuantizedDotTest.xml",
+      "bytes": 7608,
+      "sha256": "42dd29b1fe2b1b7bfd0ff99f905d919484d2a58f585e387793c77be46ed7a6c2"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.PreparedCosineTest.xml",
+      "bytes": 1460,
+      "sha256": "0e60b0aa6f14536088cb487dcf7db1456f0282b3a9d226d4a31c8bedad1493d5"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.Q4KColdHotDeterminismTest.xml",
+      "bytes": 661,
+      "sha256": "c71647a9574502f00593eeb55cc5d7ef4f86aa1f632b9d638af9c58931ec6e71"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.Q5KColdHotDeterminismTest.xml",
+      "bytes": 661,
+      "sha256": "6ee2c9c022e1f47e38a24bf443059454e20aee57aee722c48bbf89fe1c5940ba"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.Q6KColdHotDeterminismTest.xml",
+      "bytes": 661,
+      "sha256": "a2876ec25cd22fbd4ff2a0c0a27e2d86861e5eb26542ff7f919e0d1c6a3cce53"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.Q6KReductionOrderContractTest.xml",
+      "bytes": 1028,
+      "sha256": "85b2f83491ebf605e09ebefdb4b68c5a3e1c2a45a04d0a7a9686b6c63cd4b41a"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.Q8ColdHotDeterminismTest.xml",
+      "bytes": 657,
+      "sha256": "531b49a55aa9851f61866876d78c2c36479e3ff3b93faec74afc22407a57d256"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.ReproducibleActivationExpTest.xml",
+      "bytes": 675,
+      "sha256": "d09ad75e30096e3de95a2cc147b40473d51e772536d477dce6d645f878b20010"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.RotatedCodebookMatrixTest.xml",
+      "bytes": 2283,
+      "sha256": "be1547d573bb30113d60550d745b8ef37115a0102a5aac227117e93a8dc88901"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.ScalarVectorUtilSupportTest.xml",
+      "bytes": 2374,
+      "sha256": "6e2d594b45c6146c0d341708a8613d26f1d03f2bdebb4bcfe5ca7f31c206c6df"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.SimilarityFunctionTest.xml",
+      "bytes": 2236,
+      "sha256": "3e4a545e36e84e500f019dcd6815d4b0a4705f6337bddf831b7af28d0d1a73f7"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.SwiGluColdHotTest.xml",
+      "bytes": 496,
+      "sha256": "ec5671e0fe184899c86ac547ec210044114b84cecbfa25f525a22f595f402762"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.TopKTest.xml",
+      "bytes": 2021,
+      "sha256": "38af63e299a828c17dce03e5f1563a443e1cf1110b935c8e43eba9a3a35af648"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.VectorEncodingTest.xml",
+      "bytes": 1045,
+      "sha256": "9835fa8a2c9b957950dd6a9b07aa22296134a522c42c24520bb4a5ae116ec3a2"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.VectorSpeciesConstantStructureTest.xml",
+      "bytes": 976,
+      "sha256": "64b82ed066b9af1c6bd579951c21d763c86c00144faa2ff579ef775185edfad3"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.VectorUtilSupportProviderTest.xml",
+      "bytes": 11839,
+      "sha256": "1a29165abbc2c4a445c0235d7b208d3e78f6e2e08101908b1db5013834c51c23"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.VectorUtilSupportTest$ByteDistanceTest.xml",
+      "bytes": 12527,
+      "sha256": "7268cb168a9a7f37e8a190ee5db9cc11901fbfaf8ec2f50e6ae1dfae9a03aea7"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.VectorUtilSupportTest$ExactStridedBatchDotProductTest.xml",
+      "bytes": 4826,
+      "sha256": "9c737284dd5ae04eaff41c8140ffdfe1c16fb47695f17df7eb05958f2432966b"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.VectorUtilSupportTest$FloatCosineTest.xml",
+      "bytes": 16337,
+      "sha256": "edeb69190d64eaae0803a7370c5191e4f2467941fa27514d80c2172e00a0ed41"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.VectorUtilSupportTest$FloatDotProductTest.xml",
+      "bytes": 16987,
+      "sha256": "2a7801d1caeea09f281d7256520605e714f926e990078a3a97dcab2a7ef981d2"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.VectorUtilSupportTest$FloatSquareDistanceTest.xml",
+      "bytes": 17724,
+      "sha256": "5b553f5e176543137dbcb06ece2a8d78f3b2110cb8c05aa30828c05a8af97cf1"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.VectorUtilSupportTest$HammingDistanceTest.xml",
+      "bytes": 1875,
+      "sha256": "917c7388ab23c1a1fed41ec7803d68b7306817bcc5f9f946fd61be1970600b87"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.VectorUtilSupportTest$L2NormalizeTest.xml",
+      "bytes": 8676,
+      "sha256": "6f4f7bd92161c5b3bc42118f5afbe908a8187cb4c9b55411bb7f167a796b7bb5"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.VectorUtilSupportTest$MemorySegmentCosineTest.xml",
+      "bytes": 2678,
+      "sha256": "6701319a5d865a555e735b925f6f34ae6349f84a081bd28f7bdf4a0c420e5ab3"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.VectorUtilSupportTest$MemorySegmentTest.xml",
+      "bytes": 2292,
+      "sha256": "1a83be83269473ec1153987cf3542e4b5381ec76fc70f70c6ef6aa7dedec0419"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.VectorUtilSupportTest$VectorArithmeticTest.xml",
+      "bytes": 41691,
+      "sha256": "5777c4a3cd14e9070f0ba313d918b31952486451ffad446c803799b0f2c18fd7"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.VectorUtilTest.xml",
+      "bytes": 4319,
+      "sha256": "8adedc9f7784463437118bddb8f8f445c8736e494d796141949951f8bf3c7191"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.VectorizationProviderTest.xml",
+      "bytes": 1905,
+      "sha256": "ea4435f0d93c40f7ccce323e0451dc7040b2be2cd7acca78e8fac62b7fcc2aa2"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.cluster.CentroidIndexTest.xml",
+      "bytes": 2247,
+      "sha256": "d938b0e1843942a7e6856f83c7a79e5dbbe0535c7c26bb04cb2a2e4d3c688f15"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.cluster.KMeansTest.xml",
+      "bytes": 2436,
+      "sha256": "0c965e6792dd520b7f6405035bd28c1145a0c7e2cb36c8166abd22bd5c37cd35"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.cluster.VectorUtilBatchCosineTest.xml",
+      "bytes": 5480,
+      "sha256": "0aa27b0db970dc4913c0cb1447764abfc1b4bbf6bde0c5ef1ec9d3bd73d782fe"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.cluster.VectorUtilBatchTest.xml",
+      "bytes": 4014,
+      "sha256": "1cadfdf124fe36fe849e9ea6ffe082bd7134bf3cad89bb9c472d1f784b5b5b55"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.cluster.VectorUtilSegmentBatchTest.xml",
+      "bytes": 6469,
+      "sha256": "acabedc2d008ee52f41a5da1569b3f24bc034b8e20fda89e3212ec6d93c63070"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-core/build/test-results/test/binary/output-events.bin",
+      "bytes": 15144,
+      "sha256": "1e7bacabfae845779a98a5ea029afa63bbb38edc64b5fd40dcac7850eb81d1c5"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-core/build/test-results/test/binary/results-generic.bin",
+      "bytes": 536774,
+      "sha256": "248b79c947b676ff8d2c0601644e1a7e3d2b60abbfd955e569ff0ae39ea11745"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.FlatCollectionBatchTest.xml",
+      "bytes": 2404,
+      "sha256": "2f4eaaf4fb539e8ae394c38d7ff08fa80840dee9fec43af50695c5326b940d03"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.index.ParallelFlatScanTest.xml",
+      "bytes": 1173,
+      "sha256": "7340ae0ea537fa4cdf9f4005433f115fb3193c16a6a94d61b5bcdce5243e099f"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-db/build/test-results/test/binary/output-events.bin",
+      "bytes": 786,
+      "sha256": "65202dc2e0cf9b016c8a5095ade8779e2afb8c56d6c43ed1de58dc9aff4fc887"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-db/build/test-results/test/binary/results-generic.bin",
+      "bytes": 2367,
+      "sha256": "ae91205a801f69415073c68058b771edeaa2c6fa228c0eb2e14d0f81930e84ae"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.AsyncVectorPrefetcherTest.xml",
+      "bytes": 919,
+      "sha256": "15fa465183d50c73b1b769513074dbf2ce81a027ff7daf843d7efd93fd97cb45"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.ConcurrentHnswGraphBuilderAppendTest.xml",
+      "bytes": 1911,
+      "sha256": "8876deb0aafd21e088d63fd067b3ae2a8d65bd81e812d4515e11fa9ae61b664f"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.ConcurrentHnswGraphBuilderSelfLoopTest.xml",
+      "bytes": 532,
+      "sha256": "8e5973d7cd16b0177cb0673a7526ba01d2a9414c392e228fbb4b39daf44a1bee"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.DataStructuresTest$HnswGraphTests.xml",
+      "bytes": 1351,
+      "sha256": "49d6539783db7fe47936a1473163db694d4d35a59b4918b90f75e5b2f68d24e8"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.DataStructuresTest$NeighborArrayTests.xml",
+      "bytes": 1794,
+      "sha256": "6f04442a7ea96bbf0fa66fae4c772c8524e5376e456c0a7cf5c7a22cfc59b16e"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.DataStructuresTest$NodeQueueTests.xml",
+      "bytes": 1350,
+      "sha256": "6501ec8b1404cb46e1d78b01d0b31baa1ed17e9bcaeb35ddd4848dd19af74574"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.DistinctNeighborInsertTest.xml",
+      "bytes": 647,
+      "sha256": "cab739086292e4ddfd996db1d1e5c88a7cdf1873db36408e0e3af2f148d7a153"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.ExactScoreCacheTest.xml",
+      "bytes": 629,
+      "sha256": "dca81b1b181e85e8cd698057d4c94efd1f79b87ecf26429511ea219ebe1c96c7"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.HnswAppendOwnershipTest.xml",
+      "bytes": 639,
+      "sha256": "3bfa2ef65775cfd2d15add8b44dcaabca047aca7022144b5b34f99783532e85f"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.HnswGraphBuilderTest$ConcurrentBuild.xml",
+      "bytes": 1120,
+      "sha256": "d0eaf35a5997b9f8513c5f9f6b4354db8aef458b9517cabd681c098045a40e0b"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.HnswGraphBuilderTest$MediumGraphConstruction.xml",
+      "bytes": 828,
+      "sha256": "ad3d56335fb61ccd3cf81146a3ab4554b1bfbcf523a1b9b2c2900b9bc1b5c761"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.HnswGraphBuilderTest$NeighborSelectorTests.xml",
+      "bytes": 1319,
+      "sha256": "a4ccaa4e84ab016b84f828b88019dc947e6876e7e551b3c373d5ce565c35ea03"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.HnswGraphBuilderTest$RandomLevelGeneratorTests.xml",
+      "bytes": 954,
+      "sha256": "f8e89711c4d80f0f34a0c0c1cbd08ef4bd8db8c27e2e178057c339875407290d"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.HnswGraphBuilderTest$SingleNodeInsertion.xml",
+      "bytes": 941,
+      "sha256": "a2db63cb2fd79de090247706f7cb9537e8b9ea5ff8ce16c6fb243a73108a2486"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.HnswGraphBuilderTest$SmallGraphConstruction.xml",
+      "bytes": 990,
+      "sha256": "8c016e18efebdda88bde1d8d07311e32ef59c1641b2ad002b8ae172b7ac64327"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.HnswGraphBuilderTest$SsdPrefetchTests.xml",
+      "bytes": 1047,
+      "sha256": "097f30d477f5c47ad61944f9fc6e3b5a79992dd5aa0f48b5dd701eb1bb13b14d"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.HnswGraphDiagnosticsTest$HandBuilt.xml",
+      "bytes": 1083,
+      "sha256": "879f207093a594af3d1f0d88a72bbb2d7eb7fc953b3121d3eec567847657783e"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.HnswGraphDiagnosticsTest$RealBuilds.xml",
+      "bytes": 844,
+      "sha256": "791f4001fd1785fa9bd17800a5f170a2425052ba8c11febae0b6b9a23466c511"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.HnswGraphMergerTest.xml",
+      "bytes": 614,
+      "sha256": "e7c0820a7f7d9bf4734d071c24181ae926b709949ac759a5e5ac376a0bb02ca2"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.HnswSearcherMultiStartTest$Concurrency.xml",
+      "bytes": 500,
+      "sha256": "9d9883e5757a5564e43e049afe4c8c1c32902869a35a45d76db12d9a34246dee"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.HnswSearcherMultiStartTest$EdgeCases.xml",
+      "bytes": 758,
+      "sha256": "bdab23de99414e268fda5c5bec590e0af3e55eb5d1fbbb549611a4fe7009cb1e"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.HnswSearcherMultiStartTest$ExceptionPropagation.xml",
+      "bytes": 532,
+      "sha256": "f240aea90587888ddf122a50f66bbc41dc29453f0d1b89fa233ebc5a9f81b0e3"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.HnswSearcherMultiStartTest$Identity.xml",
+      "bytes": 496,
+      "sha256": "5f25ce4cb066a5cf119f3bcb4ff449a87bc880d471f3841cef5cd1ebb855b02b"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.HnswSearcherMultiStartTest$Recall.xml",
+      "bytes": 493,
+      "sha256": "9acb7feb733a8717fe4b9f5e8caf2def4d7dd3efc3ddda73541bd2c05a2319ec"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.HnswSearcherTest$AllSimilarityFunctions.xml",
+      "bytes": 1443,
+      "sha256": "635d82fe1406c5b07cd08a9dfe6a2d08b5de0b583373639f79ae92638054d207"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.HnswSearcherTest$BasicSearch.xml",
+      "bytes": 1021,
+      "sha256": "ea81206693d0ecdca361fa8fa2547367002a5b9dd2ca4738816024ae6a78923d"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.HnswSearcherTest$FusedAdcSearch.xml",
+      "bytes": 2106,
+      "sha256": "9d6298c73f89e16835c80e5e171d299bd73a184f524dccaf7aa32a4867fdc782"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.HnswSearcherTest$HnswIndexApiTests.xml",
+      "bytes": 896,
+      "sha256": "0ee1cb06174dc66e97834294d7688c85b8bef6fe15e04edbe3c449e66d8271e2"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.HnswSearcherTest$MediumDatasetSearch.xml",
+      "bytes": 648,
+      "sha256": "5754f5c4b3808f7220c23e75e8599cf2e8a5e46ae2812fe5f28f2d0c81a380b9"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.HnswSearcherTest$SmallDatasetSearch.xml",
+      "bytes": 918,
+      "sha256": "bb41dc468fe8ec58c32dbb16aa05e662e0831a679bdce3dd608113abb2fe11ce"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.HnswSegmentScoringRecallTest.xml",
+      "bytes": 844,
+      "sha256": "ba39ea0df2b10b954759c385ca3b93ce50cc88a9cd8551319412cbec55f5a5c8"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.PreparedQuerySearchTest.xml",
+      "bytes": 501,
+      "sha256": "8df537026d9fc727319887045c78aa07044c903562a8b649a776790912f25464"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.QuantizedSearchTest$NodeScorerBasics.xml",
+      "bytes": 677,
+      "sha256": "0264aaae01de75cf1fc12ad9df6b605a48ea54798456ee2b79b75c2de68d9687"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.QuantizedSearchTest$QuantizationAttachment.xml",
+      "bytes": 827,
+      "sha256": "ff937ec3a0a5d4d547d82a4422146e12327dfae61bd84dca6e1c339c9fb8d742"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.QuantizedSearchTest$RefactoredSearcher.xml",
+      "bytes": 686,
+      "sha256": "fecb9981eeeef5ff2ef0da3c748fdf8b54d9b440f55ca7fee4c9cbab7a187b02"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.QuantizedSearchTest$Rescore.xml",
+      "bytes": 632,
+      "sha256": "aba88bc11b22e0a6de37cf018c266eeaa84dd52e1313102c34e356fd24096e79"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.QuantizedSearchTest$TwoPassAllSimilarityFunctions.xml",
+      "bytes": 950,
+      "sha256": "6402ee0b03a437a5fe7026b4d447bfa3eb4c902c57660c00dd76e9bbb90ad41c"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.QuantizedSearchTest$TwoPassRecall.xml",
+      "bytes": 789,
+      "sha256": "0772c724ffe620e7ae5821544719e012ebc266ebb3125bfd5f1d3b59a5c9132b"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.QuantizedSearchTest$TwoPassSearch.xml",
+      "bytes": 824,
+      "sha256": "715a26f54eb3a114ffce36958a68c9d91153e133f7c46e9262e2e06758792820"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.QuantizedSearchTest$VectorDatasetBridge.xml",
+      "bytes": 676,
+      "sha256": "d30b158f206c8bbca3452d3e7f75317e318826217e689fcdf7ed430838c3ab78"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.ResultDrainTest.xml",
+      "bytes": 833,
+      "sha256": "7ae4cc40b7c4ccd87e7a46d55811a42e882cbdd7c3ec6f5ba4baf77787dcedd4"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.SearcherAllocationTest.xml",
+      "bytes": 537,
+      "sha256": "f1b6f3603a3e2c6410ed649793e411b42f5992066fef617ee0a7db163002838a"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.SharedVectorBuildTest.xml",
+      "bytes": 919,
+      "sha256": "45ff097979d7bc6277f5a2bf52e878fff19cf4af0d735e14c0ade98ef3342849"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.VectorStoreVectorsTest.xml",
+      "bytes": 600,
+      "sha256": "30a628c257ef94dfcb7c5e5012a28d7e36520cceebdb7bc8c6e7c487b9d04269"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-hnsw/build/test-results/test/binary/output-events.bin",
+      "bytes": 1490,
+      "sha256": "b57c188b8c8b1a28366813e3448e6d2daf049d3e67093c5a2920cbd3110756f5"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-hnsw/build/test-results/test/binary/results-generic.bin",
+      "bytes": 30633,
+      "sha256": "67eb1077cb8e240dbf35c7b972ac8aa5f016f99c8e581e45c314559e0768c6e2"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.BinaryQuantizerTest$BbqEncoding.xml",
+      "bytes": 1602,
+      "sha256": "f762f4339783cbe6f3688853c9dfb90554ce740329aa0c7ea199360ea6667e4f"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.BinaryQuantizerTest$BbqScoring.xml",
+      "bytes": 2031,
+      "sha256": "104365e1e92573b94989787fa8c27b5da6801ee443576f36fed94186a84029f8"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.BinaryQuantizerTest$BitPacking.xml",
+      "bytes": 948,
+      "sha256": "68b045328b52952a5b645d1fc06ca0f6ad88ce25014f5acda83da6166b477a8d"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.BinaryQuantizerTest$SignBitEncoding.xml",
+      "bytes": 1461,
+      "sha256": "0cddb2c7585ade915485ae55bf1de15710fabf5d41816e3ead13677d5db973dc"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.BinaryQuantizerTest$SignBitScoring.xml",
+      "bytes": 1425,
+      "sha256": "48a8c488826d8e53bfd87c4f7eead73277a04bc5edcdb980503bf98be1c51336"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.ExtendedRaBitQRawScorerTest.xml",
+      "bytes": 666,
+      "sha256": "23bf683ef876d1205eda5998d846ae24456f00652999c0d133b7a09220e8721b"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.ExtendedRaBitQuantizerTest$BitPacking.xml",
+      "bytes": 1589,
+      "sha256": "81a59f0fb0eb6273c7d4a7de10b09a87bd4fda9910f899082b1da3aeceb7488f"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.ExtendedRaBitQuantizerTest$CorrectionFactors.xml",
+      "bytes": 1026,
+      "sha256": "fa14ef0fdd26e8aedf5136d9ae4b837ee349fec539e13d6d7679e5d910c0d504"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.ExtendedRaBitQuantizerTest$DefaultRotation.xml",
+      "bytes": 702,
+      "sha256": "dfd4f3db5e06dc580d19f941e62e6e722f0eab30ffc6b8bd6930dd0e526c8365"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.ExtendedRaBitQuantizerTest$EncodingTests.xml",
+      "bytes": 2182,
+      "sha256": "a8c46fe26ab02c7853de9061dbe5da92bf1a36e71ed880525dd2fb9815b2aff1"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.ExtendedRaBitQuantizerTest$GreedyQuantizeTests.xml",
+      "bytes": 716,
+      "sha256": "5d1c06b67fab236cbe641db7e1f38a3bdc5322b9e11baeffa3b06e98584d184e"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.ExtendedRaBitQuantizerTest$RotationStrategies.xml",
+      "bytes": 839,
+      "sha256": "96df5d518dec3ef6dcdfd12a1e7842274f39cd862cf15e18482fe362cc7bf5c8"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.ExtendedRaBitQuantizerTest$ScoringTests.xml",
+      "bytes": 2344,
+      "sha256": "43ff75dabf34f1292dfedd03cc49545a3261ab97dc1d7c2c2d32d7321f96990d"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.Fp16QuantizerTest.xml",
+      "bytes": 1117,
+      "sha256": "ff0d636638c1c5cb945a5c3c591aac1b5df7c633057c8d94f74d3302849e17ef"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.LloydMaxCodebookTest$BasicProperties.xml",
+      "bytes": 1660,
+      "sha256": "f1d5f3230ddb8e4a0ecaec1529319e77b4275aae9f1762a98e79964d6d2e39ef"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.LloydMaxCodebookTest$DifferentDimensions.xml",
+      "bytes": 1002,
+      "sha256": "184a613d66f8ee9712ed662b4dc2d96d746faec586b8dd2162e777a4977f824c"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.LloydMaxCodebookTest$MSEOptimality.xml",
+      "bytes": 666,
+      "sha256": "bec89135a81133061f54e5b42209867fe4eac01f202f565d3d279f35656dc409"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.LloydMaxCodebookTest$QuantizeDequantize.xml",
+      "bytes": 1015,
+      "sha256": "cf40f31551474f52e989865705aa6dd0824417abca35c43480e5985028775b69"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.NVQuantizerTest$EncodingTests.xml",
+      "bytes": 1411,
+      "sha256": "4588ca7d4e064af72dd22e693aa11162ce3161c9aa8be48f3ab646f06aef54d7"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.NVQuantizerTest$NQTransformTests.xml",
+      "bytes": 1288,
+      "sha256": "f0af79d2b99cc157abcfe65fd965a14eeeb5caa87121ccb5fd3454f9184d0669"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.NVQuantizerTest$ScoringTests.xml",
+      "bytes": 1057,
+      "sha256": "bba65405675771de540a3f9a8e31835addd010ce5e2cffdb5ee4f1f2b6ce7947"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.NVQuantizerTest$SubvectorTests.xml",
+      "bytes": 966,
+      "sha256": "18c1c0f07c06ecca2815ff1abc2eb1c51fae93d27c92f7b3f291de14c20c9abe"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.ProductQuantizerTest$ADCScoring.xml",
+      "bytes": 3098,
+      "sha256": "fdedab491e31a442047437280bc802627bd1e539aac40c733a41ca26c8352866"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.ProductQuantizerTest$CompressionRatio.xml",
+      "bytes": 1231,
+      "sha256": "276c6eb984a061389cce7d0c48cd72281e3992666be1268bebe729047f36cedd"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.ProductQuantizerTest$EncodeAndDecode.xml",
+      "bytes": 3283,
+      "sha256": "104a94fe4f8336060ff02a220e515ed032e24ba53626317f54c1d3eb114d5c65"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.ProductQuantizerTest$GlobalCentroid.xml",
+      "bytes": 689,
+      "sha256": "5bc6ee00481431e4573540f709c93e63996000785c423b87d5af798ed35576f8"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.ProductQuantizerTest$OptimizedPQTests.xml",
+      "bytes": 1327,
+      "sha256": "da7700e3ce269b1c8c050dbf06789dd9cc5731a4afbf91aa1163bee5589b16c4"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.ProductQuantizerTest$PipelineTests.xml",
+      "bytes": 2087,
+      "sha256": "29908464d3d0258302f2bfc3d51744fdd73552ac61c7c9d9a3744a4d0c308fdd"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.ProductQuantizerTest$Training.xml",
+      "bytes": 2275,
+      "sha256": "1e7cddb049a8da0cf038151c24f76c3a72aa15914b257d079b03d3da34def4d0"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.QuantizerFromStateTest$BinaryQuantizerFromState.xml",
+      "bytes": 719,
+      "sha256": "233f34eb3c847609b2e74a009a6048c594d17cc1744ffbc98fbd9fcb1e57400f"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.QuantizerFromStateTest$NVQuantizerFromState.xml",
+      "bytes": 692,
+      "sha256": "a4e774af505f56e4b3b26f37330f74a324c78a6594018597f26202dd9da49679"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.QuantizerFromStateTest$ProductQuantizerFromState.xml",
+      "bytes": 708,
+      "sha256": "a308eefd65d2a228b1b41e6c614443fa22c9c3e7ac80dae7476e09bdc613ed13"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.QuantizerFromStateTest$RaBitQuantizerFromState.xml",
+      "bytes": 538,
+      "sha256": "a110256bbcb9127d4a01d26b87f2b067e387752bd6192de6ff790bdcd9d34b48"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.QuantizerFromStateTest$RotationFromState.xml",
+      "bytes": 857,
+      "sha256": "7d2429685b71630a7134f7c6a96dc3e58965302adb1252dd34e2d1e18676489c"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.RaBitQuantizerTest$BitOperations.xml",
+      "bytes": 999,
+      "sha256": "253769b27ea2c9f79336e6386f067d427bc88e159dfa1a2daefe9ff8be347cc4"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.RaBitQuantizerTest$DefaultRotation.xml",
+      "bytes": 678,
+      "sha256": "574109effa247a516c83032e03639877358faea615f54552ec8c6b94a4b0c567"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.RaBitQuantizerTest$DistanceEstimation.xml",
+      "bytes": 1191,
+      "sha256": "b6320b08f769a8bc8d7fee5a5a32a0ace337bada67d403e9c721aca74e85bba2"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.RaBitQuantizerTest$EncodingTests.xml",
+      "bytes": 1765,
+      "sha256": "ebfebec1cede1deae4cf50d47d8c55163fbb55b4b8fa5a22bde8c3421711d822"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.RaBitQuantizerTest$RotationTests.xml",
+      "bytes": 1417,
+      "sha256": "f1f171fe8c236c28eb344b22929bb5de83f088dea97be0a2435a23a3d3b9c9ac"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.RaBitQuantizerTest$ScoringTests.xml",
+      "bytes": 1229,
+      "sha256": "3ce594c96ee57af68a42e661af923552e57c15cf80d8bb2dd3fb7385672c9b61"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.RotationTest$GivensRotationTests.xml",
+      "bytes": 1665,
+      "sha256": "54217ac7e08e7fcb3f5527c3abd0498488c8d99e71e722be193f89877ed0f195"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.RotationTest$QuaternionRotationTests.xml",
+      "bytes": 1708,
+      "sha256": "f82b6635d198a97e1be1de5f158b1e27092f5906df885c1cc16e901387fa4a37"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.RotationTest$RotationInterfaceTests.xml",
+      "bytes": 1011,
+      "sha256": "8369413eeb76d966cdef086239b68a08dcf4e095906742f787da197f7375534e"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.ScalarQuantizerRepeatedValuesTest.xml",
+      "bytes": 533,
+      "sha256": "d88e60b0089a359d83d9cdcf849f85fdde97fb42a6fee19bc3ad6963d5959b2a"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.ScalarQuantizerTest$ArrayVectorDatasetTest.xml",
+      "bytes": 660,
+      "sha256": "0d01619ed01e17600985a3be99822cc8c75c47d1c0ac62785b763b0fda6c4a5b"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.ScalarQuantizerTest$CompressionRatio.xml",
+      "bytes": 644,
+      "sha256": "cac3b1b8dbf444f0110b1c9ae64636717c8354569908cf72346b413e877e6b90"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.ScalarQuantizerTest$EdgeCases.xml",
+      "bytes": 1059,
+      "sha256": "0f1a36599b21e24a8f3aff9289ff4499d1c1c18ecc175474b3dc77c627b5eb87"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.ScalarQuantizerTest$EncodeAndDecode.xml",
+      "bytes": 2245,
+      "sha256": "aea0be57ee6319496d942ed2360d1a73714d4c1c46dbfecb025183ddef2a117e"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.ScalarQuantizerTest$Int4Quantization.xml",
+      "bytes": 4133,
+      "sha256": "18774c692537c29a1f135979b2ac2b307d23597c5aac970f9cc16f2063bef7a7"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.ScalarQuantizerTest$Scoring.xml",
+      "bytes": 2437,
+      "sha256": "ac55e039e78f6b66264666357b22db1c874e59c526afe7ee8e38a66d24896c86"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.ScalarQuantizerTest$Training.xml",
+      "bytes": 2181,
+      "sha256": "a4f3179bdb517181816113dedbe7a247d8daf99bddf5bc8cd2e5b2698a9d86d6"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.TurboQuantizerTest$BitWidthTests.xml",
+      "bytes": 771,
+      "sha256": "eb023fc18beaf702bbdcbbaa8edc45b3507f29793d4a1017e730d7f5893bac03"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.TurboQuantizerTest$EncodingTests.xml",
+      "bytes": 1600,
+      "sha256": "4971ca585f7dcf3f9d27cfef37f90cf5204167a82eaa5b067cb616b68c3c0701"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.TurboQuantizerTest$RotationStrategyTests.xml",
+      "bytes": 986,
+      "sha256": "5275e848c32eb9df7204ffc2ab278482f7c56f19c85ffe11d9480f1c0ab2a8de"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.TurboQuantizerTest$ScoringTests.xml",
+      "bytes": 1698,
+      "sha256": "5a3634cd338ea6f2114a3ea7c5bfb8dc15ce4ebdcd30f19fcd4d5364f2015d28"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.TurboQuantizerTest$UnbiasedProdTests.xml",
+      "bytes": 687,
+      "sha256": "d396abb546be3004502dd96bb3f9700205f03d175b7c99d9a073228dbb2b5d48"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-quantization/build/test-results/test/binary/output-events.bin",
+      "bytes": 4392,
+      "sha256": "fbf404dbe1b30d8945f1ee5aa80907a3363acce17773b9128b071c91bb4c051a"
+    },
+    {
+      "path": "core-portability-x86-scalar/vectors-quantization/build/test-results/test/binary/results-generic.bin",
+      "bytes": 65522,
+      "sha256": "7b37d556c4da1bbba048eb684c9a45c49a86d00bb3fd5a79b8e78d82af69c5e7"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/gradle.log",
+      "bytes": 2637,
+      "sha256": "6c811ab45e4f126bd13e30696f4f8f5801e65e2a7b530ac76439d0fa7db80923"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/results.json",
+      "bytes": 121705,
+      "sha256": "4c9006dc56dae102430100f3d924c9c483342b1d19abc2bf9a8338a91200700a"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors/gradle-graph.json",
+      "bytes": 1756,
+      "sha256": "b9474e6b2bfc8a363d640ef83c503175ef4b68d9708b12872fdfb04a53928b90"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors/maven-graph.json",
+      "bytes": 2636,
+      "sha256": "8a21997ad37c81102cf11d740e346f64d9ea55e011a06d53bf0d51a79b91ef76"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors/maven.log",
+      "bytes": 3131,
+      "sha256": "f745c982ee53656913a397a92322d4fbde733168d8b8ee6bfa0d720275da34fc"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors/pom.xml",
+      "bytes": 911,
+      "sha256": "505e8410757395421a6ee0d79d0e7077445617d2cf2fa87e9f458855cd29ebee"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-cache/gradle-graph.json",
+      "bytes": 1205,
+      "sha256": "9690bc3db5787a4057878c1255d3eb9555f301dad78e3c57e88a46c0d562d8dc"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-cache/maven-graph.json",
+      "bytes": 1532,
+      "sha256": "739c2ece1ce48dbe31cce58b08310957ef58fa0b5953cfdc1885112b65dc9802"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-cache/maven.log",
+      "bytes": 2542,
+      "sha256": "9a9ec548446f70fa3abb929111da08c24f1c1e11efe8bc0bb19bbffa607b02fc"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-cache/pom.xml",
+      "bytes": 923,
+      "sha256": "abcefc24eb74169a82c3372105e5b470d7cd45cf4ccb8ab7bb2d7fb8c461f002"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-cache-jcache/gradle-graph.json",
+      "bytes": 1647,
+      "sha256": "384d07e5d000f4f8c955f5035ec5f021b871d423bdf33da392da16b00d1560cd"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-cache-jcache/maven-graph.json",
+      "bytes": 2183,
+      "sha256": "9189f4664363ab92c1ad4dde67a2d0aa0be0d7e126611b77f8033ffdd1426e9c"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-cache-jcache/maven.log",
+      "bytes": 1862,
+      "sha256": "3bf5255a791e943757c797f6b8fdc3b48150b0f89612b371daba22d059af820d"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-cache-jcache/pom.xml",
+      "bytes": 937,
+      "sha256": "30f734047c94a5f62da03e387d3e80953adf651c47443d2e30f3efc639a6a565"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-cache-langchain4j/gradle-graph.json",
+      "bytes": 1433,
+      "sha256": "43f82f1f4d9a4e3fbda5e5b05f5e2188aa4a3ddb645f1114ce1265b89b2cbba3"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-cache-langchain4j/maven-graph.json",
+      "bytes": 1956,
+      "sha256": "bb41784f5f00c44613933a9b3e16acd437e8e371853e0bbce494a69899f62fb4"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-cache-langchain4j/maven.log",
+      "bytes": 1232,
+      "sha256": "3e7e5497caf52e047977a81399a0bdfb317cb759b4a5aea09bb4363956d2bb9f"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-cache-langchain4j/pom.xml",
+      "bytes": 947,
+      "sha256": "a007d99abd2fc9b20952383ef66000c7a53c2715218040d55b25e7afb9fada4a"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-cache-semantic-db/gradle-graph.json",
+      "bytes": 2786,
+      "sha256": "4233286998d0d8560a727317ee8f515169f94d716e963b26cec7c42bb5c2fb4b"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-cache-semantic-db/maven-graph.json",
+      "bytes": 3935,
+      "sha256": "02c121c7a975bafb48ca46bc6686645f77afd05fecaed9e22fdf6c01defb11bb"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-cache-semantic-db/maven.log",
+      "bytes": 1232,
+      "sha256": "ade62bb3541c67a972236ed1371f9f8fba5cea17b718d9da3bed32f0d391e6a4"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-cache-semantic-db/pom.xml",
+      "bytes": 947,
+      "sha256": "f33a2b1b4cd40f5ec86e763f2abbb56f46cdec2515019bf356a4df1ba28cfd3b"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-cache-semantic-langchain4j/gradle-graph.json",
+      "bytes": 1460,
+      "sha256": "3beccf65795360120b8c8088c96078aef5e3f812b3016d27768e894469e1f718"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-cache-semantic-langchain4j/maven-graph.json",
+      "bytes": 1974,
+      "sha256": "3d960115fa6bdb478bc08d49ca8f54dc385dd886c24c0ff6785b347f322d2d0b"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-cache-semantic-langchain4j/maven.log",
+      "bytes": 1268,
+      "sha256": "c4f122f011c64f00c984ad6379394bf3562b4560b4d5dcffa47621ef076b1914"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-cache-semantic-langchain4j/pom.xml",
+      "bytes": 965,
+      "sha256": "c080aafa5923d10187191b13966dadb688dd9470a6811f812cd6a39342a9ce02"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-cache-semantic-spring-ai/gradle-graph.json",
+      "bytes": 1454,
+      "sha256": "57eaed49d456017852697e9dcc8602a3ac328061ebc8552a28d9226f6c49d65c"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-cache-semantic-spring-ai/maven-graph.json",
+      "bytes": 1970,
+      "sha256": "5bca1bca6a380a4261c16c8ba87e926c2157f975719c7c7b3f7a581d316bf940"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-cache-semantic-spring-ai/maven.log",
+      "bytes": 1260,
+      "sha256": "84cbdafe5ef9ef234cde565c5616c22d35190d99e1ca0b248910ff512fc2ac87"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-cache-semantic-spring-ai/pom.xml",
+      "bytes": 961,
+      "sha256": "96a4f5531ff441e642051a1956e82f0682dab6e7ac89b9853f8deca90b24a889"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-cache-spring-ai/gradle-graph.json",
+      "bytes": 1427,
+      "sha256": "c5ee67540a7d6328f4a734edb9c87d2aa515799d20cbddd8483f11420cb3b96f"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-cache-spring-ai/maven-graph.json",
+      "bytes": 1952,
+      "sha256": "491692dc6a3f19fb55d117202c2fdba0134d4ee1122110a064d936671d461b25"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-cache-spring-ai/maven.log",
+      "bytes": 1224,
+      "sha256": "3e25d1243c2c0bdfd2b396c1bd3d97f3ac14c5202dfad9aec6d8fc136241515d"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-cache-spring-ai/pom.xml",
+      "bytes": 943,
+      "sha256": "9e277d7d20700be4877a219926589c2a9f42a348cacdc8373931da2ee1411205"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-core/gradle-graph.json",
+      "bytes": 418,
+      "sha256": "b2f3eb3d6adadd9e5b9135705619626d9b9a19e710e096aedfd71a36a8686d3e"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-core/maven-graph.json",
+      "bytes": 667,
+      "sha256": "d2045c6298f66f8aa805bc19374c47f2170b4f7c54122b2496460f7b145c3a0d"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-core/maven.log",
+      "bytes": 1180,
+      "sha256": "5201d3891c93d979653a5931b20c716f1671d36451e5201048ce06fdbdfcffe4"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-core/pom.xml",
+      "bytes": 921,
+      "sha256": "f305d1671addc580bd534ee1f856b49af36e550780b8d6c81111edfbeb0bc68b"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-db/gradle-graph.json",
+      "bytes": 1582,
+      "sha256": "f17d1122315944a19615a2d1620a286c47326d7a59b85e3e4d1e27d9623b22b1"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-db/maven-graph.json",
+      "bytes": 2145,
+      "sha256": "694c44f943fcce24ea79baf9c9840af1061d52c15846bc492da5e11ab8ad5622"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-db/maven.log",
+      "bytes": 1172,
+      "sha256": "15f929f7a2a8bf67b424d6cc6f1f910853d3b4e5ed58238751f8f9d73248b553"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-db/pom.xml",
+      "bytes": 917,
+      "sha256": "baa87993c1f05201e405a4a256b0a68bf92aaac2f2b19a6c4c0ddd64d010e54f"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-db-arrow/gradle-graph.json",
+      "bytes": 4501,
+      "sha256": "d7046a56d8bc2cfa0fd5b03e0e7de4648fd566e7c92b70b35335ab121d6412e5"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-db-arrow/maven-graph.json",
+      "bytes": 5345,
+      "sha256": "ddfa85b1268d3b73933c02f686fd1909e39f5a645f9ecb94c58209d6385a542d"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-db-arrow/maven.log",
+      "bytes": 15259,
+      "sha256": "2a9924fd5ff76abb26a9fc6736993c7e98314ffc10cbae8b2cb367f0db45b3b3"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-db-arrow/pom.xml",
+      "bytes": 929,
+      "sha256": "2ab54fed0730865b8ab4419ff45c78b83e0e3f46ed77131aef8d5729672557e2"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-db-jackson/gradle-graph.json",
+      "bytes": 1465,
+      "sha256": "5e1b8c097a5b72d34e2f359a5b1df5b4fdc0e3f3c129f91e215074d8449785bc"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-db-jackson/maven-graph.json",
+      "bytes": 1811,
+      "sha256": "263852e8455bd47802fd272b559835f927fe6e48107e3e08afdfb5d0983bb485"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-db-jackson/maven.log",
+      "bytes": 1204,
+      "sha256": "e549665fd8f58914729ea0449233185837ad0853759e82aa343aa2655ad6ceb8"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-db-jackson/pom.xml",
+      "bytes": 933,
+      "sha256": "9dc0accf0a4250239bcf34985d3c25ea11c0ce7232a780c8a91abce5f51260e9"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-hnsw/gradle-graph.json",
+      "bytes": 1018,
+      "sha256": "63471ed0afdd6f7c05aa9d5b342e204a802e2f42c7d357173d4b69d84ab7a35b"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-hnsw/maven-graph.json",
+      "bytes": 1413,
+      "sha256": "766140a9837f27a73a271625edf654c4e3b97f3dffafa02092815a33b6302c86"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-hnsw/maven.log",
+      "bytes": 1180,
+      "sha256": "afab18ee9ec77f0e0d76bfec108476c3c9bd78b88a2eb1d35d5bdcaf4cd4bd36"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-hnsw/pom.xml",
+      "bytes": 921,
+      "sha256": "d07cd244f8772bb19c087f3293c205af57650688dfd8c8ab79c1f1c300a97bb5"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-hybrid/gradle-graph.json",
+      "bytes": 613,
+      "sha256": "c7fe9a129d7a1a9d230bcd22d0f024192795afc01df91bd9455bffe32d2deaee"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-hybrid/maven-graph.json",
+      "bytes": 916,
+      "sha256": "7758165ae8f9fbb4b6bf4cadb96b63793c07aa0c286b4fbe2fc571327346f149"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-hybrid/maven.log",
+      "bytes": 1188,
+      "sha256": "909a8ba7354770ad0f7f5f7fbb93b806ce11c07971d1f01e94bd962a93873001"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-hybrid/pom.xml",
+      "bytes": 925,
+      "sha256": "743f11c8fc7def624905f2eddbfd08f98993168b0a25c129902afd4a7472f3f3"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-ivf/gradle-graph.json",
+      "bytes": 1015,
+      "sha256": "8ce74676714e7bffe58dfc10e3a931f5c8cefa6c39fe63cc88da3359e275da5b"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-ivf/maven-graph.json",
+      "bytes": 1411,
+      "sha256": "67351dafe6413d8a93e8d764144d7ddf10f4401b7031899868ce53b0387a12dc"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-ivf/maven.log",
+      "bytes": 1176,
+      "sha256": "b45c586e467d8d5baa480093eee42214bc947b7211411e7d7f216d7de9cec5aa"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-ivf/pom.xml",
+      "bytes": 919,
+      "sha256": "a19e7d97accac64b754c3c724e2dc27df43f3e744f1cf1c46650669743d21fab"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-jakarta-batch/gradle-graph.json",
+      "bytes": 1798,
+      "sha256": "db94c3fbf3116a9b6f21343244852cb9a6a2ec2c9c4424669b9440527cd12092"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-jakarta-batch/maven-graph.json",
+      "bytes": 2664,
+      "sha256": "6154b548ddabf533563247f8af15c0f6dde0eb8efdefab0a28852e0247f5027e"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-jakarta-batch/maven.log",
+      "bytes": 1216,
+      "sha256": "824171e43a4cb01a8ed4f69480934a4217ea78057e54266f07894089bcefd7ae"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-jakarta-batch/pom.xml",
+      "bytes": 939,
+      "sha256": "d69b9d6fb6e61584e7344460430f63611e65194d79e0140d1b82deb5efc8c78e"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-langchain4j/gradle-graph.json",
+      "bytes": 1987,
+      "sha256": "4c0bfe9941dfbbbceecc08eaccfc04ec1161ff2ee8cadb38160a4bdfd0244e32"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-langchain4j/maven-graph.json",
+      "bytes": 2907,
+      "sha256": "ad6a69a395487745f928a9ff28f18bfb11eaa6191579001e7ac9a080892b5902"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-langchain4j/maven.log",
+      "bytes": 1208,
+      "sha256": "4282d0f18802d755130816353e7d820db210a0833382b9cef1eccba7d5844a40"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-langchain4j/pom.xml",
+      "bytes": 935,
+      "sha256": "79e3c0eb7b9136e0706903c14628533975ea2755e60e9e651e39ac0e29da74c0"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-quantization/gradle-graph.json",
+      "bytes": 829,
+      "sha256": "f6fd75ec68cb270d488a599ef9eb5695b65486d816b9c32d09ae6473c8dc3720"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-quantization/maven-graph.json",
+      "bytes": 1176,
+      "sha256": "e35f945d0fa93853cc7a6022e445f87cb03cb1acd79daf239f585f7291dc8c91"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-quantization/maven.log",
+      "bytes": 1212,
+      "sha256": "ed289fc3beddc76df9cca3b8875cccace779e3f897a89b92f02ce5188dddacaa"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-quantization/pom.xml",
+      "bytes": 937,
+      "sha256": "a49c0d35b126d87f7dd2e742894879408aa15cff1a585abadeaec2738e0f2ce1"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-router/gradle-graph.json",
+      "bytes": 613,
+      "sha256": "484d568da6ee2ae3642e19936845fe27da77468e56f71d0112d44c654715dc05"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-router/maven-graph.json",
+      "bytes": 916,
+      "sha256": "ada2db1cc4285edb61f00a5fb3ae1dc52158c311a419998e59f538ef77e3429f"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-router/maven.log",
+      "bytes": 1188,
+      "sha256": "9fd15b4fe35f19dd8574fe80025bea59f829c18d92fcf216565db6aa50ec9de5"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-router/pom.xml",
+      "bytes": 925,
+      "sha256": "e0ce599fe5b9701c7c4c256e74c14333abfc1aac1a6727d86d958f0f5fa98d55"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-spring-ai/gradle-graph.json",
+      "bytes": 1981,
+      "sha256": "f473772f4acb3889e292774fc286460c6a6fb5271199228671aaca2aae343457"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-spring-ai/maven-graph.json",
+      "bytes": 2903,
+      "sha256": "67ae4a69a3deca5f503afd6b4cb6a7ba01fc9910265db9a5dbc27b0df36503b4"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-spring-ai/maven.log",
+      "bytes": 1200,
+      "sha256": "ddc8736b1e2fa9365031c22034414ed7e350482cbbd4540c05e6e86e51875814"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-spring-ai/pom.xml",
+      "bytes": 931,
+      "sha256": "e4d66165b010a57ab20479e2fdafe8ff45468445b302887be4b6a7d32b9d4125"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-spring-batch/gradle-graph.json",
+      "bytes": 1795,
+      "sha256": "4e99e08a3ab1a00cc6b28f5aabb2a1b764a5c86e9fd17876a0c21255f3d1d5b5"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-spring-batch/maven-graph.json",
+      "bytes": 2662,
+      "sha256": "9cb0f7eec6a5c7ef1f6c98bab70fc0efe218cbcd363ae45720b89d1ec6b43eec"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-spring-batch/maven.log",
+      "bytes": 1212,
+      "sha256": "35a99374354cffdab63a522ad2d00db3abb437a593f5a05f33806a94cb0d2bc7"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-spring-batch/pom.xml",
+      "bytes": 937,
+      "sha256": "ec540c88b466d2f88e5b57cdf0e3d0285c9d523b11c1e86446166a718074d0f6"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-spring-boot-starter/gradle-graph.json",
+      "bytes": 2215,
+      "sha256": "30405d41acfed255e57f4547f190cfaea554dd73ca8efaae170c3248d2f3d7f2"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-spring-boot-starter/maven-graph.json",
+      "bytes": 3507,
+      "sha256": "28a53cb1377b6146cd19c49a719a644f5f53417162bb35de2ad1d61c07face72"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-spring-boot-starter/maven.log",
+      "bytes": 1240,
+      "sha256": "38ac575e613e1cf4fdbf2c10ebd04ea0b3bbd7bc059710de9d7ce9bf9fe9a97a"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-spring-boot-starter/pom.xml",
+      "bytes": 951,
+      "sha256": "5ba86236518a063d438825a1abf694c4a3d89ecd1691e07e51b45dda4bc9afba"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-storage/gradle-graph.json",
+      "bytes": 616,
+      "sha256": "9a46f115febabeeadb53e8a1e8d4ebf37d170a1715c615fc71cc946967c365d8"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-storage/maven-graph.json",
+      "bytes": 918,
+      "sha256": "f5a25608c9cd09fa638a08fcc52145ec2afa5655c95bc57085c25949cc521e2d"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-storage/maven.log",
+      "bytes": 1192,
+      "sha256": "04fd8d2da4c8294fa7543fb9e813415fece9b37542e07b97d4fddbef76335b3e"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-storage/pom.xml",
+      "bytes": 927,
+      "sha256": "3e7d0d893e4ffe4a631b7d9d29d15f8d8147f069e96768fb8fec9c5f6fe025a6"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-storage-s3/gradle-graph.json",
+      "bytes": 13350,
+      "sha256": "71548e2b7c7efc6971b10ac0f952c061a2682de34f139e5397bcb1cf7ae54124"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-storage-s3/maven-graph.json",
+      "bytes": 14782,
+      "sha256": "d766c3109b7fc4f7530d857fb901e09151271cb522614ef5822e96bcf4b77d1d"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-storage-s3/maven.log",
+      "bytes": 27297,
+      "sha256": "99ef056693d244706741e506e34f32639b71679c99e9377d27c6639f413ced28"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-storage-s3/pom.xml",
+      "bytes": 933,
+      "sha256": "be792f72848e407f5324117ba90725eb6215888ca225b4909abb48c6a3e0da6f"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-vamana/gradle-graph.json",
+      "bytes": 1024,
+      "sha256": "4cbf7b5a523f5973f5254d8839469774021a40205b888cba0478d32e92774bd6"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-vamana/maven-graph.json",
+      "bytes": 1491,
+      "sha256": "0ded3a507aa4ed6a87c7490d2fdf11d9649126066cde94e33e967d92b7e1b0c1"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-vamana/maven.log",
+      "bytes": 1188,
+      "sha256": "d97369ceff68f5f79580d4f5d8b44b8cc712b96d964cfe499754beeddabb8656"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-vamana/pom.xml",
+      "bytes": 925,
+      "sha256": "ff061601c5a2df88f64faf82ea46d14cea14d941ebfe468714a0a69268912959"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-vcr-core/gradle-graph.json",
+      "bytes": 817,
+      "sha256": "5398832199de3bc76c269b624fd07a3c0554cc54d8054da8d767bc875ed1663f"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-vcr-core/maven-graph.json",
+      "bytes": 1242,
+      "sha256": "830c8f84e68ccbc1509871facac3c53abe43644dd3b7395983e2de607516e776"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-vcr-core/maven.log",
+      "bytes": 1196,
+      "sha256": "0cf82ebf4e0a21e6e68c784c2a6d5826710abdceaaf3fdc3043832a0a1a6fc60"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-vcr-core/pom.xml",
+      "bytes": 929,
+      "sha256": "b9ef9f06a6e6af88398b1c58a93b02a72810bd0203b408d33b4b0490c9f06e40"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-vcr-junit5/gradle-graph.json",
+      "bytes": 1024,
+      "sha256": "d48e126a3362120e24bc4c8f3f84835e208f68f1c2a2c6b929e25a30c153aa05"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-vcr-junit5/maven-graph.json",
+      "bytes": 1613,
+      "sha256": "96c699faa3e1d551e17ca282f458176c6e86a5feaea05d79ef8285def11cd3e9"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-vcr-junit5/maven.log",
+      "bytes": 1204,
+      "sha256": "04f521abd860a928826a5780234303eb7aff7bd8538e0581eb79f467db221aca"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-vcr-junit5/pom.xml",
+      "bytes": 933,
+      "sha256": "3b8950a06d80471fd82a2204760a61f15f9bf938fbf428ad0d614c6806df3aa9"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-vcr-langchain4j/gradle-graph.json",
+      "bytes": 1039,
+      "sha256": "874322c693ecac9103b46b22fe09792cee810255f9fe7001f64d05887bb8261c"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-vcr-langchain4j/maven-graph.json",
+      "bytes": 1623,
+      "sha256": "13c15ffecaafffe3a433a3930dc76523e17e75390746b5fabe98fc9dcac4e925"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-vcr-langchain4j/maven.log",
+      "bytes": 1224,
+      "sha256": "cc0ec1187fcc4d8956bd9ccdcb1e8918987e963d0e9f68b4fdf05e179ddae9b3"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-vcr-langchain4j/pom.xml",
+      "bytes": 943,
+      "sha256": "e1686da232826a4c74b71938c85df9ad0e9542e95dc37d948b71e44a675824cc"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-vcr-semantic-db/gradle-graph.json",
+      "bytes": 2005,
+      "sha256": "3327d0e821fa006a1e321fc187660580a2f33fab500286bfd6edf67537c68827"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-vcr-semantic-db/maven-graph.json",
+      "bytes": 2955,
+      "sha256": "d4e543beb5bc28e7ec058ad1a5d1ec969af24d39f4afd3f6985a376356eede8a"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-vcr-semantic-db/maven.log",
+      "bytes": 1224,
+      "sha256": "7bb8df376acb72539ce0a5b53d2b644a3a94c49e7110be716fd07877014b3124"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-vcr-semantic-db/pom.xml",
+      "bytes": 943,
+      "sha256": "fc29d73145a98a9a2616a77a4ef5144141f5a4e8f03f2b0b04ec51e874db3452"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-vcr-serde-avaje/gradle-graph.json",
+      "bytes": 1769,
+      "sha256": "c9baf60a1849edf54a60f39cb794b720750d51a364b1079e2f951c2fab72905c"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-vcr-serde-avaje/maven-graph.json",
+      "bytes": 2456,
+      "sha256": "8a18f556649e0f26664d33844cdee3c5e7b424310574c4050f165cc76d93e4c0"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-vcr-serde-avaje/maven.log",
+      "bytes": 2858,
+      "sha256": "38dd79d2a900787b7abdee2cca98b5d191cc518a7a43027e2e0488439502249b"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-vcr-serde-avaje/pom.xml",
+      "bytes": 943,
+      "sha256": "438b1ac56c4c7eaee32f9f8c8379b42826b62a233ceba73c7f860a4cfe8cf227"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-vcr-serde-jackson/gradle-graph.json",
+      "bytes": 1885,
+      "sha256": "e99bade73d5d79525b2ae3cfdfd6fd4cb7f3924c8f2adf45daee70ab0d82a93f"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-vcr-serde-jackson/maven-graph.json",
+      "bytes": 2514,
+      "sha256": "28307562f965a5c669a748875d887f0cac4002033e0cca656bb229010d096574"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-vcr-serde-jackson/maven.log",
+      "bytes": 1232,
+      "sha256": "ce8804f73e183bea70f94b1053b1599406add285069745b0a156655b56638bcc"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-vcr-serde-jackson/pom.xml",
+      "bytes": 947,
+      "sha256": "036a3743079b635b2bfdf14c5aa2fd7a52c19eb1b36147a2e5da1bb641b04230"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-vcr-spring-ai/gradle-graph.json",
+      "bytes": 1033,
+      "sha256": "5880d74ff7e48d4c3cfc228e3388fc278847c11e52fbc73090ccb1a3f229d789"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-vcr-spring-ai/maven-graph.json",
+      "bytes": 1619,
+      "sha256": "6fd07b82077390657064d5025073334236b55afde7f7d89bf2399afca2b4b3d2"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-vcr-spring-ai/maven.log",
+      "bytes": 1216,
+      "sha256": "d9dc656cd9d552d968d3ba69100948d2a8048a6330e26cbf7ebc6b0318ea622b"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-vcr-spring-ai/pom.xml",
+      "bytes": 939,
+      "sha256": "0c86332f80c12bd2dc93337f206faf4f59102420da5e0b348215471da6c9e67f"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-vcr-testng/gradle-graph.json",
+      "bytes": 1024,
+      "sha256": "648615b44aee013684d6c1301d9b508b1f7e392a07405172eea53d4fb5d83ef9"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-vcr-testng/maven-graph.json",
+      "bytes": 1613,
+      "sha256": "438b17aa93c532c05c4dc0e7131cc7415ef4182c721ae0eabf60707f0797ff04"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-vcr-testng/maven.log",
+      "bytes": 1204,
+      "sha256": "b6217cd393cc32941a0fc022b3437d2bda2ab98986f9fff6dcf708d5db527c11"
+    },
+    {
+      "path": "maven-runtime-consumers/published-consumers/vectors-vcr-testng/pom.xml",
+      "bytes": 933,
+      "sha256": "a2544cb2f988bb62f45794315e4d5a25a41b3e9551ba4a3d2d0b6ab2d5d95b4c"
+    },
+    {
+      "path": "maven-runtime-consumers/reports/release-dependencies/train.json",
+      "bytes": 2345129,
+      "sha256": "870cb0dbf7575552473cdd3925943cb80099f11fe7741e91e3615b4bacba82c1"
+    }
+  ]
+}
