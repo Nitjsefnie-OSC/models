@@ -1,5 +1,7 @@
 # DeltaNet qualification findings
 
+> Historical measurements and decisions from the recorded revisions below, not a current release verdict. Raw experiments, failed controls, scripts and captures are preserved in the [verified external archive](ARCHIVE.md). Current status is in [runtime cleanup](../../docs/findings/runtime-cleanup-2026-10-12.md).
+
 The former inactive DeltaNet route was not safe to activate unchanged. Qualification
 found and fixed recurrent state ownership/slot/group handling, grouped Q4_K
 projection inconsistency, and native-call allocation. The corrected native
@@ -110,8 +112,9 @@ phases remain explicitly incomplete rather than being promoted to passes.
 
 ## Independent model correctness and task quality
 
-`ORACLE-DIAGNOSIS.md` and `ORACLE-PROTOCOL-RECONCILIATION.md` retain the original
-failed external assertions. They establish a publisher-mandated additive epsilon
+`ORACLE-DIAGNOSIS.md` and its archived raw captures retain the original
+failed external assertions. The former reference to `ORACLE-PROTOCOL-RECONCILIATION.md`
+was not present in the recorded source inventory and is not claimed as available evidence. They establish a publisher-mandated additive epsilon
 already implemented correctly in Models and an independently reproduced ARM
 oracle Q8_0 repack tail defect. Captured Q8 quantization/reduction differences
 explain additional tensor discrepancies; they do not establish that every later

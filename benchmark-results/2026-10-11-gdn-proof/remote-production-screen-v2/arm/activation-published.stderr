@@ -1,8 +1,0 @@
-WARNING: Using incubator modules: jdk.incubator.vector
-Oct 12, 2026 3:14:16 PM com.integrallis.vectors.core.PanamaVectorUtilSupportProvider create
-INFO: vectors-core: Using Panama Vector API SIMD provider (vector bits: 256)
-Oct 12, 2026 3:14:16 PM com.integrallis.vectors.core.VectorizationProvider logActiveToggles
-INFO: vectors-core: provider=PanamaVectorUtilSupport panama=true maxBits=256 preferredBits=256 fastVectorFMA=true fastScalarFMA=true sve=true ggufParallel=true ggufParallelThreshold=1048576 ggufExecutor=persistent ggufThreads=4 ggufChunksPerThread=2 mappedKQuantLongOffsets=auto(q4=false,q5=false,q6=false) q4ShortPairwiseSupported=true q4UnsignedPairwiseSupported=true toggles=[(defaults — no -Dvectors.* overrides)]
-Exception in thread "main" java.lang.AssertionError: activation drift seed=4021 iteration=937 operation=0 cell=6 cold=1.0834197 hot=1.0834196
-	at com.integrallis.vectors.core.ActivationColdHotProbe.check(ActivationColdHotProbe.java:73)
-	at com.integrallis.vectors.core.ActivationColdHotProbe.main(ActivationColdHotProbe.java:27)

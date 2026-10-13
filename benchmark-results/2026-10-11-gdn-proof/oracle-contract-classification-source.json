@@ -1,7 +1,0 @@
-{
-  "file": "/tmp/gdn-oracle-diagnosis/ggml/src/ggml-quants.c",
-  "sha256": "07143d7068936ae46b3c528b2f3d4bbb666e74d88992165716174d243573965d",
-  "scope": "Captured pinned scalar reference read-only; no production arithmetic change",
-  "publisherRevision": "812a950d7037ba93bb624b154030e9068afdce4d",
-  "llamaRevision": "a935fbffe1a3d31509c325c116454ab5d56b2eb8"
-}

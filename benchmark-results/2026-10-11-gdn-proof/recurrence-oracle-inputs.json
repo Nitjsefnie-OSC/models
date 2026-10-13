@@ -1,9 +1,0 @@
-{
-  "path": "recurrence-oracle-inputs.tar.gz",
-  "sha256": "2fc2c53336f5427a2b4268d5fab834a6bd522def497403f2b17760efb4a0fbd9",
-  "sizeBytes": 58460915,
-  "samples": 18,
-  "comparison": "recurrence-oracle-comparison.json",
-  "reproduce": "Extract archive; run experiments/gdn/check-recurrence-oracle.py on both folders with the recorded torch/numpy versions",
-  "archiveUri": "s3://models-qual-077051030817/results/gdn-proof-recurrence-oracle-local-v1/recurrence-oracle-inputs.tar.gz"
-}

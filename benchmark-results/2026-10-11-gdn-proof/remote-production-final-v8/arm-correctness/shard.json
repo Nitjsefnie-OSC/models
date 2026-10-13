@@ -1,5 +1,0 @@
-{
-  "shard": "arm-correctness",
-  "arch": "arm",
-  "phase": "correctness"
-}

@@ -1,0 +1,21 @@
+{
+  "sourceRevision": "17f3d31ef37e0a797f55dfff3a6ec05ab8248f78",
+  "fileCount": 5082,
+  "trackedFileCount": 5082,
+  "archiveSha256": "3599491281d5842f16591dc5fdda2a7184b080a4e357efdf62d6d7171c5ceead",
+  "archiveBytes": 20786843,
+  "archivePath": "audit-artifacts/2026-10-13-gdn-history/gdn-history.tar.gz",
+  "s3Archive": "s3://models-qual-077051030817/audit/2026-10-13/gdn-history/3599491281d5842f16591dc5fdda2a7184b080a4e357efdf62d6d7171c5ceead.tar.gz",
+  "retainedFiles": [
+    "ATTENTION-OWNERSHIP.md",
+    "FINAL-GDN-FINDINGS.md",
+    "ORACLE-DIAGNOSIS.md",
+    "QUALITY-FACTORIAL.md",
+    "local-tiled-exploratory-NOT-PERFORMANCE-EVIDENCE.md",
+    "production-final-v11-analysis.json",
+    "production-final-v9-cohort-analysis.json",
+    "quality-factorial-v1-analysis.json",
+    "scalar-activation-v1-analysis.json"
+  ],
+  "removedFiles": 5073
+}

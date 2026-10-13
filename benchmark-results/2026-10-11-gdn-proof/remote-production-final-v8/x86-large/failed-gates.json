@@ -1,8 +1,0 @@
-[
-  {
-    "model": "qwen-4b",
-    "arm": "published",
-    "gate": "published-grouped-numeric-exactness",
-    "error": "('qwen-4b-published-routing', 1)"
-  }
-]

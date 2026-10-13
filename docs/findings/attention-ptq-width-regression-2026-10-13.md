@@ -1,6 +1,6 @@
 # Attention and PTQ physical-width regressions
 
-Status: the narrow-host corrections pass exact-output checks and remove the measured ARM allocation regressions. **The combined component run still fails x86 attention-score latency.** The full-method helper is the promising candidate after a completed comparison; performance precision remains unresolved. This report does not grant whole-model or release qualification.
+Status: the final narrow-host corrections pass exact-output and allocation checks on both architectures. ARM passes its component gates. **Final x86 latency non-regression remains unresolved:** the completed five-host cohort has near-baseline point estimates but confidence upper bounds above one. The earlier 5.3% slowdown is retained as a failed earlier source. This report does not grant whole-model or release qualification.
 
 The original code maintained eight logical reduction lanes using physical 256-bit vectors even on a JVM whose preferred width is 128 bits. Those logical lanes are needed for reproducibility; physical emulation is not. The initial same-host [diagnostic](https://github.com/integrallis/models/actions/runs/38341564816) measured 634,880 allocated bytes per score call, 163,200 per softmax call and 653,312 per Q8 PTQ call on ARM. Separate JFR records attribute the allocation to unsupported-vector fallback objects. The x86 vector routes did not show that warmed allocation problem.
 
@@ -21,7 +21,7 @@ Earlier native-128 PTQ controls improved warm allocation but increased cold allo
 
 These intervals are descriptive paired-process bootstrap estimates, not a substitute for declared release precision or whole-model gates. Warm per-process median allocation is zero for every final ARM kernel. On x86, some early softmax and float-PTQ measurement blocks still allocate while compilation settles; the raw blocks are retained, so this is not a claim that every measurement block allocates zero bytes.
 
-The x86 score host is AMD EPYC 9V74 with `UseAVX=3`, `MaxVectorSize=64`, `UseFMA=true` and `UseSSE=4`. The 5.3% score regression remains unresolved. Compiler captures show changed register allocation/scheduling after adding the hardware dispatch even though the wide arithmetic is unchanged; they do not yet establish a sufficient causal explanation or a fix.
+The x86 score host is AMD EPYC 9V74 with `UseAVX=3`, `MaxVectorSize=64`, `UseFMA=true` and `UseSSE=4`. That earlier source has a measured 5.3% score regression; the later frozen-source results below do not erase it. Compiler captures show changed register allocation/scheduling after adding the hardware dispatch even though the wide arithmetic is unchanged; they do not yet establish a sufficient causal explanation or a fix.
 
 The source-only correction was integrated as `d296ae24112a1419d31273b1a327c2cc22a7b4b7`. Its comment correction changes debug line information but not instructions. Standalone diagnostic compilation uses `javac -g`; Gradle also emits `MethodParameters`. Resolved `javap -p -c` instructions match for the two changed classes; artifact hashes are not falsely equated.
 
@@ -41,7 +41,32 @@ The permanent six-kernel mixed-caller guard then reproduces **2,112 bytes per so
 
 The final source `d72380a39d9bbb56fd2d4b1129902625a33f97c5`, source-only integration correction `3c592a0a850320ade4adfeb66227621246557b7b`, passes all eight focused tests and 2,328 exact parity cases in each default/forced128 mode. The reproduced six-kernel mixed caller now measures zero bytes per call at 128/256 bits with both ordinary compilation and `-Xbatch`. The local and integration backend-Java JAR both hash `afe2cb1888c77697415f0132be40a8ea0fa1744e56faa61fae29795faa8b30f9`. Raw failed and corrected observations remain under `audit-artifacts/attention-ptq-width/cold-attribution`.
 
-[Powered final validation](https://github.com/integrallis/models/actions/runs/38347192761), harness `451163341f66a6cacac1895a7f5452452234de38`, freezes 16 x86 hardware-admission attempts with 128 score pairs per admitted host and four ARM hosts with 16 score pairs each; every host also records 16 softmax pairs. At least four matching x86 hosts/512 pairs are required. The sample rationale starts from retained log-ratio variance, increases the independent-fork estimate, and explicitly resamples both host and paired-process levels. Every admitted host and failed/non-admitted attempt is retained. Strict latency, interval-width and cold-allocation gates remain pending; the local fix is not represented as a completed performance pass. The queued predecessor `38347144006` was canceled after detecting that copied four-arm ordering did not match the new strict two-arm alternation; no measurements from that canceled setup qualify this run.
+[Powered final validation](https://github.com/integrallis/models/actions/runs/38347192761), harness `451163341f66a6cacac1895a7f5452452234de38`, freezes 16 x86 hardware-admission attempts with 128 score pairs per admitted host and four ARM hosts with 16 score pairs each; every host also records 16 softmax pairs. At least four matching x86 hosts/512 pairs are required. The sample rationale starts from retained log-ratio variance, increases the independent-fork estimate, and explicitly resamples both host and paired-process levels. Every admitted host and failed/non-admitted attempt is retained. The completed gate results are recorded below; the local fix alone was never represented as a completed performance pass. The queued predecessor `38347144006` was canceled after detecting that copied four-arm ordering did not match the new strict two-arm alternation; no measurements from that canceled setup qualify this run.
+
+## Completed prospective powered validation
+
+[Run 38347192761](https://github.com/integrallis/models/actions/runs/38347192761) completed every one of its 20 fixed host attempts. Five admitted EPYC 9V74 hosts supplied 640 score pairs and 80 softmax pairs; four Neoverse-N2 hosts supplied 64 pairs per kernel. Eleven metadata non-admissions remain recorded. No attempt was dropped based on timing. The exact source, per-file hashes, cold/hot signatures and complete pair counts pass verification.
+
+| Host / kernel | Latency ratio, hierarchical 95% interval | Cold-allocation ratio | Declared result |
+| --- | --- | ---: | --- |
+| x86 score | 0.999981 [0.989015, 1.010079] | 0.972540 | **NOT_PASSED**: upper bound exceeds 1; interval width 0.021064 exceeds 0.02 |
+| x86 softmax | 0.997904 [0.988999, 1.006340] | 0.979556 | **NOT_PASSED**: upper bound exceeds 1 |
+| ARM score | 0.010096 [0.010045, 0.010149] | 0.827410 | Component gates passed |
+| ARM softmax | 0.027369 [0.027251, 0.027473] | 0.925896 | Component gates passed |
+
+Every individual cold-allocation pair improves. Warm per-process median allocation is zero for both final kernels; this does not mean every early block is allocation-free. The maximum candidate blocks are 0.002 bytes/call for x86 score, 394.843 for x86 softmax, 0.008 for ARM score and 69.439 for ARM softmax. All blocks remain in the archive. The separate mixed-caller permanent guard also passes under ordinary compilation and `-Xbatch`.
+
+The final x86 score point estimate is effectively unchanged from baseline. The observed interval does not establish a remaining slowdown, but it also does not meet the declared strict non-regression requirement. The earlier 5.3% failure remains a historical failure of the earlier source, not a claim that the final source is 5.3% slower. No confidence gate is relaxed and no extra samples are appended to this completed cohort. Overall component qualification remains **NOT_PASSED**. Whole-model and release requirements remain separate.
+
+Raw observations, all 20 admission records, immutable protocol/source identities, analysis and completion summary are outside the repository at `audit-artifacts/attention-ptq-width/powered-run-38347192761`. The analysis resamples both hosts and matched process pairs with equal host weighting; it does not pool all forks as independent hosts.
+
+## Generated-code correspondence and rejected controls
+
+[Compiler-only run 38350203624](https://github.com/integrallis/models/actions/runs/38350203624) captures every byte of final C2 code on two admitted EPYC 9V74 hosts. Both score kernels have the same 672-instruction, 3,680-byte layout and register allocation after address normalization. Separate compiler logs verify that the public hardware-dispatch wrapper inlines into the hot probe caller. Softmax is 984 instructions and 4,808 bytes in both arms: one host matches normalized layout; the other only swaps two zero-vector-length blocks, unused by the 515-element workload. External runtime/object/table addresses are enumerated rather than equated, and their live referents were not dumped. This establishes scoped instruction-path correspondence, not full binary identity or a passing statistical verdict. No ongoing wide-path regression is demonstrated by the final evidence.
+
+Seven bounded local layout controls retain exact outputs but regress allocation or latency: half-vector extraction via cast or reinterpret, zero-filling slices, primitive lane extraction, paired exponential unrolling, and two-head tiles with four or two rows. None is promoted. Sources, compiled classes, fixed paired observations and rejected decisions remain outside repositories. The first compiler capture retains its detected stdout-interleaving gaps; the corrected run uses the existing isolated-output wrapper and verifies complete byte coverage. Four intervening attempts supply only metadata non-admissions. The fixed eight-attempt final diagnosis retains all six non-admitted hosts alongside its two captures. No performance samples were appended to the completed 640-pair cohort.
+
+Receipts: `audit-artifacts/attention-ptq-width/final-compiler-38350203624/instruction-correspondence.json`, `caller-inlining.json` and `assembly-summary.json`.
 
 ## Reachability and evidence
 

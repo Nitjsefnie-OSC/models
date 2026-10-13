@@ -1,5 +1,7 @@
 # Independent oracle diagnosis
 
+> Historical measurements and decisions from the recorded revisions below, not a current release verdict. Raw experiments, failed controls, scripts and captures are preserved in the [verified external archive](ARCHIVE.md). Current status is in [runtime cleanup](../../docs/findings/runtime-cleanup-2026-10-12.md).
+
 These are diagnostic findings, not a replacement verdict for the failed exact-greedy
 checks. The original failures remain in their original result directories.
 

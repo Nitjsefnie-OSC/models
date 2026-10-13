@@ -1,5 +1,7 @@
 # Public-cohort arithmetic factorial
 
+> Historical measurements and decisions from the recorded revisions below, not a current release verdict. Raw experiments, failed controls, scripts and captures are preserved in the [verified external archive](ARCHIVE.md). Current status is in [runtime cleanup](../../docs/findings/runtime-cleanup-2026-10-12.md).
+
 Four fixed artifact arms reproduce the x86 small-model score change: published89/148, activation-only88/148, corrected-projection/Java artifact88/148, combined86/148. The combined loss is three net examples (seven correct-to-wrong and four wrong-to-correct); thirteen labels change. No prompts, labels, thresholds, or arithmetic were tuned against these cases.
 
 The activation change replaces an approximation that failed the declared numerical contract with deterministic fdlibm arithmetic. The projection change fixes independently reproduced batched-versus-single Q4_K rounding disagreement. These are correctness-motivated changes; the factorial identifies which artifact change affects each ranking but does not establish that every later internal tensor is defect-free. The broad corrected-projection arm also carries documented ownership/Java corrections, so it is not advertised as a one-instruction isolation. The task-quality loss remains explicit and is not a passed gate.

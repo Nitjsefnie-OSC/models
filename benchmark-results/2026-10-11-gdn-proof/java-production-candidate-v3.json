@@ -1,7 +1,0 @@
-{
-  "revision": "1621e9c8947365fcb6598e15d8a77eecf5cbd640",
-  "parent": "4337ee45",
-  "status": "candidate, not qualified or published",
-  "patchSha256": "2db4e9cbad06e43cf956d80e8ff312dff319554f487089e352ba16b274a4ecb0",
-  "checks": "models-gdn-java-production-q4-k-build.log"
-}

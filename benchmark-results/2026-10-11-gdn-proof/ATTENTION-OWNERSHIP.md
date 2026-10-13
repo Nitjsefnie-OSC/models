@@ -1,5 +1,7 @@
 # Active attention: overlapping mutable slices
 
+> Historical measurements and decisions from the recorded revisions below, not a current release verdict. Raw experiments, failed controls, scripts and captures are preserved in the [verified external archive](ARCHIVE.md). Current status is in [runtime cleanup](../../docs/findings/runtime-cleanup-2026-10-12.md).
+
 The active Rust `execute_attention_partition` constructs mutable slices covering the entire
 output and score buffers in every worker, then indexes the heads assigned to that worker.
 Disjoint writes do not make overlapping exclusive references valid. Rust's

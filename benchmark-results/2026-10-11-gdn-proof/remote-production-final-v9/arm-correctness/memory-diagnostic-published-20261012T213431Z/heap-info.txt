@@ -1,3 +1,0 @@
-5796:
-garbage-first heap   total reserved 10485760K, committed 2105344K, used 1131073K [0x0000000580000000, 0x0000000800000000)
- region size 8192K, 24 young (196608K), 3 survivors (24576K)

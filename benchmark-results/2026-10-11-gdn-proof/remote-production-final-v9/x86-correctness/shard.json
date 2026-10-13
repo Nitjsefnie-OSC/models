@@ -1,5 +1,0 @@
-{
-  "shard": "x86-correctness",
-  "arch": "x86",
-  "phase": "correctness"
-}
