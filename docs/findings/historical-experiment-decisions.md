@@ -21,3 +21,9 @@ The external archive is `audit-artifacts/2026-10-13-models-experiment-cleanup/mo
 Source revision: `b76c3f675fe275303b67bba9b399e553b632d7ae`. Archived files: 270. Archive SHA-256: `a961d8382f17b33f0cc5ed1bf8014adcf82be0eab7be9cba1d84bc7872bc8c58`.
 
 The same content remains recoverable from that source revision in Git history, so the decisions do not depend on an unversioned local path. To reproduce an old experiment, extract its complete archived environment; do not run its old cloud launcher as a current qualification entrypoint.
+
+## Superseded checkout snapshot
+
+The remaining `superseded-checkouts` snapshot beneath the runtime-cleanup evidence directory contained 102 duplicate historical files, including rejected BF16 payloads and patches. No current build, workflow or source referenced it. It has now been removed from the release tree after every archived file and the remote archive readback were verified.
+
+Source revision: `70ed047916fb1ec04f9c48cc0ebede97d383b7bc`. Archive SHA-256: `917fa30264cbee1008cff07d260577e95a6587abc3fed79c7447a41bdabe8e30`. Durable archive: `s3://models-qual-077051030817/audit/2026-10-13/superseded-checkouts/917fa30264cbee1008cff07d260577e95a6587abc3fed79c7447a41bdabe8e30.tar.gz`. The parent workspace retains the archive, per-file hashes and verification receipt under `audit-artifacts/superseded-checkouts-cleanup-2026-10-13/`. This is evidence relocation, not a change to any experiment's verdict.
