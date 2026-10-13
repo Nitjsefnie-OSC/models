@@ -28,6 +28,9 @@ jobs:
           # that ran a September kernel for a whole campaign.
           fetch-depth: 0
 
+      - name: Check Windows checkout path lengths
+        run: python3 scripts/integrity/check-portable-paths.py
+
       - uses: actions/setup-java@v5
         with:
           distribution: temurin
