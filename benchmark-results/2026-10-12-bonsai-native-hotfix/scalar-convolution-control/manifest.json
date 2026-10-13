@@ -1,0 +1,267 @@
+{
+  "source": "58e8ca001391513056630cada4576bf630381808",
+  "scope": "Rejected local scalar final activation controls, not production changes or whole-model qualification",
+  "files": [
+    {
+      "path": "BonsaiActivationSequenceProbe.java",
+      "sha256": "3cee7daf600ae3ade80f89f531b5ebc7630f84278e0611fb41d9c8580c748973",
+      "bytes": 7034
+    },
+    {
+      "path": "ConvolutionBoundaryProbe.java",
+      "sha256": "382f0c079d13405707b302afe9165100d19fdbb534a019e7b8a20220b3b58bdf",
+      "bytes": 5305
+    },
+    {
+      "path": "README.md",
+      "sha256": "fc275e5b0fb87902b53f8d249fa820ab5c3be6ea5fed53c027a229eb596aaedd",
+      "bytes": 3668
+    },
+    {
+      "path": "SHA256SUMS.json",
+      "sha256": "b1b9f4f7817def4300dc13b38b91c65210f26d038c27d61a78bd2ed7cb5048d1",
+      "bytes": 5131
+    },
+    {
+      "path": "artifacts.json",
+      "sha256": "bad594b4ce9c0307eb441511adac364c86e3368d7d97125ea278cbf0b38c64d9",
+      "bytes": 1074
+    },
+    {
+      "path": "block0-fdlibm.log",
+      "sha256": "4ff615f63bb5e83bb98ecc6f829396d8e6d83fc4f12c3eb1b3bcc65380940592",
+      "bytes": 1049
+    },
+    {
+      "path": "block0-full-scalar.log",
+      "sha256": "8145c679fe424e61645341ccf2ef096661e1b4c9fda854cf03b9b64684e9e221",
+      "bytes": 1049
+    },
+    {
+      "path": "block0-half-scalar.log",
+      "sha256": "9dedf5d06463187c2a109ea230d63bedd6d886ee1d30bf45d90037aafb528776",
+      "bytes": 1049
+    },
+    {
+      "path": "block0-published.log",
+      "sha256": "b6124587b94ab5fc78f89821fd397a1caf3397ef6e27acab0351c18f584b2c35",
+      "bytes": 1059
+    },
+    {
+      "path": "block1-fdlibm.log",
+      "sha256": "2e9b249ffd0adbb651fdbcef487b42e495d77b056e0ade207ac80ac737a681db",
+      "bytes": 1049
+    },
+    {
+      "path": "block1-full-scalar.log",
+      "sha256": "3bd098191aeb5e21b3572c4d99a8ef7d11bdec4946f71d15809010a3db622cea",
+      "bytes": 1049
+    },
+    {
+      "path": "block1-half-scalar.log",
+      "sha256": "98726d2cade3b4592784792a1f62431ea60cc28cbe23dfd5901c9044533442ea",
+      "bytes": 1049
+    },
+    {
+      "path": "block1-published.log",
+      "sha256": "ec1cb6cf642d434ee9e6de32412694c6b1c6c4c71445a4a233a3c9987ccfba16",
+      "bytes": 1059
+    },
+    {
+      "path": "block2-fdlibm.log",
+      "sha256": "2fc8daec58cbbb253b9b4b6e915b12cc329310b690699bc5ea1699718df2a182",
+      "bytes": 1049
+    },
+    {
+      "path": "block2-full-scalar.log",
+      "sha256": "e1ad239f210a1dac50c54e9b2642c04fa30b0903248212628f73571d4c7b529f",
+      "bytes": 1049
+    },
+    {
+      "path": "block2-half-scalar.log",
+      "sha256": "d7503a2dbcc93e7c146c7090672d2800763199f75b9ba353c6ad8576695f2e81",
+      "bytes": 1049
+    },
+    {
+      "path": "block2-published.log",
+      "sha256": "a9e135d61536298aed7ed37b54c07e6887ea1dc895db1d8f6349ac95d5d77a02",
+      "bytes": 1059
+    },
+    {
+      "path": "block3-fdlibm.log",
+      "sha256": "198007363c266a38c19fc4f71890acbb5c066e5b2f083632de49eed6383a1c9c",
+      "bytes": 1049
+    },
+    {
+      "path": "block3-full-scalar.log",
+      "sha256": "7e578bbc8b8980b97073e9cf938149d3b7c338b06911205e7682007b630687b7",
+      "bytes": 1049
+    },
+    {
+      "path": "block3-half-scalar.log",
+      "sha256": "6a6bd1bc6e0df18ee7d8a3eeb7eaf2159c7628a86ec17bc39a5e40d8fbb8898e",
+      "bytes": 1049
+    },
+    {
+      "path": "block3-published.log",
+      "sha256": "ebf7acc25085710c551b0ed9fb17a76a0cf280bd529152d9e07993260e4a6b91",
+      "bytes": 1059
+    },
+    {
+      "path": "build-prototypes.py",
+      "sha256": "73e0dfcb832a331350c00fe492bff5a43116a766f0a7f97543cf081c65d04ff4",
+      "bytes": 3284
+    },
+    {
+      "path": "changed-jar-entries.json",
+      "sha256": "8bf5501471ca2cf0a1333290ab50b52b2f1597657639a15c8b0ac6cf2b278895",
+      "bytes": 495
+    },
+    {
+      "path": "contract-full-scalar-128-fma.log",
+      "sha256": "a21a849488521832b4ac96c57b3dd49bc60ea96634e19bdcda2aee53af9ded23",
+      "bytes": 964
+    },
+    {
+      "path": "contract-full-scalar-128-no-fma.log",
+      "sha256": "ad1e76056744f06b9e162a3b9a0abbf423170e0be00a46b343a24ec8a9f9cce9",
+      "bytes": 1024
+    },
+    {
+      "path": "contract-full-scalar-256-fma.log",
+      "sha256": "b70af746ca0ec1e4de8fdeb3e4e18761d924d0e2f02ba1494cceef00d91cedd3",
+      "bytes": 895
+    },
+    {
+      "path": "contract-full-scalar-256-no-fma.log",
+      "sha256": "c67b84ad383a35ff469395886cd26d6dbb0573b205dba074ffc8e870616da95b",
+      "bytes": 955
+    },
+    {
+      "path": "contract-full-scalar-512-fma.log",
+      "sha256": "2a680971bb4ca614acf2f4285cc92b584e22a8eb6cfc427ef6059fb14f77ef14",
+      "bytes": 895
+    },
+    {
+      "path": "contract-full-scalar-512-no-fma.log",
+      "sha256": "f8a282a1d597d0e474f9cf64b7ccb9216a242e4006eb831738517eb6da1e44c8",
+      "bytes": 955
+    },
+    {
+      "path": "contract-full-scalar-64-fma.log",
+      "sha256": "4aef6572a539ba25f9aa0ddad231c38375f4a68010944ef0c4dc2523696d4fa1",
+      "bytes": 959
+    },
+    {
+      "path": "contract-full-scalar-64-no-fma.log",
+      "sha256": "90a8ed725d0909e93b40b790207a863b00ea4af2c7b9c7470c15bcc99f1b271a",
+      "bytes": 1019
+    },
+    {
+      "path": "contract-full-scalar-default-fma.log",
+      "sha256": "64d161236170bb3d4b40bd5b1643822269b067fd2d63bf472227c53e9bba9d0d",
+      "bytes": 919
+    },
+    {
+      "path": "contract-full-scalar-default-no-fma.log",
+      "sha256": "00824260b971a12d1de589faea63c95edf0c3881bfeba7c841908672fff8ba4e",
+      "bytes": 938
+    },
+    {
+      "path": "contract-half-scalar-128-fma.log",
+      "sha256": "b808c974c5643773cd9d15d35785ed955719e8d091c040a7d356902fd1ca680b",
+      "bytes": 964
+    },
+    {
+      "path": "contract-half-scalar-128-no-fma.log",
+      "sha256": "2160cd59d1c8e588fe054598205d64eeaf8d6552700d5c1d359501b401aa30d2",
+      "bytes": 1024
+    },
+    {
+      "path": "contract-half-scalar-256-fma.log",
+      "sha256": "5cbd1edf359a66b0bf3c6f764da2c416c46ed3e5e2795df8088d22fa8e37b10f",
+      "bytes": 895
+    },
+    {
+      "path": "contract-half-scalar-256-no-fma.log",
+      "sha256": "a48e196c372a7ebec1484480081725fa5c250778da6a6cabffbccaf8c1fd9271",
+      "bytes": 955
+    },
+    {
+      "path": "contract-half-scalar-512-fma.log",
+      "sha256": "c937c577e7130cdc24d0cfe058d4740a40b2c157fae3b538a57b39f0ab9bb087",
+      "bytes": 895
+    },
+    {
+      "path": "contract-half-scalar-512-no-fma.log",
+      "sha256": "a7a49428360b0777b7ebea2bb4efee04fcb0a979c9adc06b211552a1dae39d23",
+      "bytes": 955
+    },
+    {
+      "path": "contract-half-scalar-64-fma.log",
+      "sha256": "6da80f0e6ec3ae525a4cf43056e15cfd73936028b94bc9ce8ac0331d20dadacf",
+      "bytes": 959
+    },
+    {
+      "path": "contract-half-scalar-64-no-fma.log",
+      "sha256": "97a630f0149af32e10eb2fa8e29e1d8689178081ba3af28ece4a980f9f920027",
+      "bytes": 1019
+    },
+    {
+      "path": "contract-half-scalar-default-fma.log",
+      "sha256": "7ca1ff818e6c83dafcbe541401f2b2368ddfbe5ec0623bafc9a32882b34dde3a",
+      "bytes": 919
+    },
+    {
+      "path": "contract-half-scalar-default-no-fma.log",
+      "sha256": "88e7e13c5eabea10d2a10f813ebb9d688b1dce1fbc90d78f8c598915adeb3b67",
+      "bytes": 938
+    },
+    {
+      "path": "contract-results.json",
+      "sha256": "598184a7607c73208bc842bd02625c6033c938f0d5d1da3c1c11b1762519177d",
+      "bytes": 18409
+    },
+    {
+      "path": "convolution-raw.json",
+      "sha256": "4c21c1c894db9a8cfbb8bd4d2973523cec9f52e70a871a74f4039b0638a5a184",
+      "bytes": 18498
+    },
+    {
+      "path": "environment.json",
+      "sha256": "1772f24314e2cb2c043f0533f523c3ffd9377f60e9da69cd47df23ed8ef9ee10",
+      "bytes": 376
+    },
+    {
+      "path": "full-scalar/PanamaVectorUtilSupport.java",
+      "sha256": "7a7c3f28fa785a4dfdfd2550ea0cf2d3709ec3c526ab3d587b6680f1439844e2",
+      "bytes": 316527
+    },
+    {
+      "path": "half-scalar/PanamaVectorUtilSupport.java",
+      "sha256": "ac33d6faad81793269f9e59bdf7c773a9e46a052946e55bcf7885faf56eebddc",
+      "bytes": 316735
+    },
+    {
+      "path": "historical-scalar-control-builder.py",
+      "sha256": "297f985762b4f4a810de765eabeaf632a6d0342c6e14a83fc16126a010b94851",
+      "bytes": 3024
+    },
+    {
+      "path": "run-contracts.py",
+      "sha256": "db86f09e82edb21a6989f81532bb4cb1da1a13a345892911745e6df290a5fe33",
+      "bytes": 1282
+    },
+    {
+      "path": "run-convolution.py",
+      "sha256": "cbdfff42c4304462c0917b5970b4d084a9dc78be7bbd19fe3f47ba7ba0046676",
+      "bytes": 1589
+    },
+    {
+      "path": "summary.json",
+      "sha256": "12c99f9982aa89829dc17ac01d8daf0e16ecd3fbb8cc0509bbdd959a8594abd1",
+      "bytes": 3739
+    }
+  ],
+  "archiveSha256": "de6e483fe0a1f79b64045c186bba2152845397a727aca32958f841591a497bc2"
+}
