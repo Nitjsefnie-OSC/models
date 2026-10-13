@@ -1,5 +1,5 @@
 name: Composed native functional validation
-run-name: Composed native validation (1dae97f4)
+run-name: Composed native validation (b5a302c5)
 on:
   workflow_dispatch:
     inputs:
@@ -33,16 +33,11 @@ jobs:
           ref: 218daaea7b3a52e97311b56e5d950245ed917343
           path: models
       - uses: actions/checkout@v5
+        if: runner.os != 'Windows'
         with:
           repository: integrallis/vectors
           ref: b0aadc8d972f3504426f6e38fcb0a4b4a97a0333
           path: vectors
-          # Only these two unrelated demo fixture names are invalid on NTFS.
-          # Core sources/build inputs remain complete and hash-verified.
-          sparse-checkout-cone-mode: false
-          sparse-checkout: |
-            /*
-            !/demos/vcr-e2e/src/test/resources/vcr-data/
       - uses: actions/setup-python@v6
         with:
           python-version: '3.13'
@@ -65,12 +60,12 @@ jobs:
           import hashlib, os, pathlib, tarfile, urllib.request
           path = pathlib.Path('payload.tar.gz')
           urllib.request.urlretrieve(os.environ['PAYLOAD_URL'], path)
-          assert hashlib.sha256(path.read_bytes()).hexdigest() == '290a0ff8f7fde1ba9b8d3ff19ac3b16691d6838dd9b82601586fc7549dac2b56'
+          assert hashlib.sha256(path.read_bytes()).hexdigest() == '5d55124154a61c17b74cbf0c86c0518dc35acb5310606a8eb870370784216613'
           pathlib.Path('harness').mkdir()
           with tarfile.open(path) as archive:
               archive.extractall('harness', filter='data')
           PYCODE
-      - name: Verify exact source and build the frozen upstream
+      - name: Verify source and prepare the frozen upstream artifact
         run: python harness/validate-native.py prepare
       - name: Run all native checks and require zero skipped tests
         run: python harness/validate-native.py test '${{ matrix.platform }}'
