@@ -1,0 +1,97 @@
+name: Deferred versus eager native linkage source-factor diagnostic
+on:
+  push:
+    branches: [fix/qwen-precision-proof]
+    paths: [.github/workflows/deferred-linkage-ablation.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  paired:
+    strategy:
+      fail-fast: false
+      matrix:
+        host: [0, 1, 2, 3]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 180
+    env:
+      RUSTUP_TOOLCHAIN: '1.96.0'
+    steps:
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '25.0.3'
+      - name: Install pinned native compiler
+        run: rustup toolchain install 1.96.0 --profile minimal --no-self-update
+      - name: Fetch immutable external diagnostic
+        env:
+          PAYLOAD_URL: ${{ secrets.DEFERRED_LINKAGE_ABLATION_URL }}
+        run: |
+          set -euo pipefail
+          curl --fail --silent --show-error --location "$PAYLOAD_URL" -o payload.tar.gz
+          echo '7177c6ae46fb10bb027f43e3e629087e5b3c1cdd2358b2cd30fa50853ade3822  payload.tar.gz' | sha256sum -c -
+          python3 - <<'PYCODE'
+          import tarfile
+          with tarfile.open('payload.tar.gz') as archive:
+              archive.extractall('.', filter='data')
+          PYCODE
+      - name: Verify source artifacts and both pinned model fixtures
+        run: python3 payload/run.py prepare out
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: linkage-${{ matrix.host }}-prepare
+          path: |
+            out/*.json
+            out/*.stdout
+            out/*.stderr
+      - name: Untimed owned vectors and executed native dispatch
+        run: python3 payload/run.py fixtures out
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: linkage-${{ matrix.host }}-fixtures
+          path: |
+            out/*.json
+            out/*.stdout
+            out/*.stderr
+      - name: Fixed q51 pair 0
+        run: python3 payload/run.py pair out --host ${{ matrix.host }} --model q51 --pair 0
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: linkage-${{ matrix.host }}-q51-0
+          path: |
+            out/*.json
+            out/*.stdout
+            out/*.stderr
+      - name: Fixed bonsai pair 0
+        run: python3 payload/run.py pair out --host ${{ matrix.host }} --model bonsai --pair 0
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: linkage-${{ matrix.host }}-bonsai-0
+          path: |
+            out/*.json
+            out/*.stdout
+            out/*.stderr
+      - name: Fixed q51 pair 1
+        run: python3 payload/run.py pair out --host ${{ matrix.host }} --model q51 --pair 1
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: linkage-${{ matrix.host }}-q51-1
+          path: |
+            out/*.json
+            out/*.stdout
+            out/*.stderr
+      - name: Verify all fixed observations and report source-factor contrasts
+        run: python3 payload/analyze.py out ${{ matrix.host }}
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: linkage-${{ matrix.host }}-complete
+          path: |
+            out/*.json
+            out/*.stdout
+            out/*.stderr
