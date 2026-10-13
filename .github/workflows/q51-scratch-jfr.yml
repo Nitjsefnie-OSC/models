@@ -1,0 +1,40 @@
+name: Q51 isolated ARM allocation and compiler diagnosis
+on:
+  push:
+    branches: [fix/qwen-precision-proof]
+    paths: ['.github/workflows/q51-scratch-jfr.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  diagnose:
+    runs-on: ubuntu-24.04-arm
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '25.0.3'
+      - name: Install fixed Rust toolchain
+        run: rustup toolchain install 1.96.0 --profile minimal --no-self-update
+      - name: Prepare exact controls
+        env:
+          Q51_SCRATCH_REFERENCE_URL: ${{ secrets.Q51_SCRATCH_REFERENCE_URL }}
+        run: python3 scripts/q51-scratch/run.py prepare --out "$RUNNER_TEMP/q51" --models .
+      - name: Instrument three variants outside decisive timing
+        run: python3 scripts/q51-scratch/run.py diagnostic-only --out "$RUNNER_TEMP/q51"
+      - name: Retain all diagnostic output
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: q51-arm-instrumented-only
+          path: |
+            ${{ runner.temp }}/q51/*.json
+            ${{ runner.temp }}/q51/*.stdout
+            ${{ runner.temp }}/q51/*.stderr
+            ${{ runner.temp }}/q51/diagnostic-*.jfr
+            ${{ runner.temp }}/q51/diagnostic-*.xml
+          retention-days: 30

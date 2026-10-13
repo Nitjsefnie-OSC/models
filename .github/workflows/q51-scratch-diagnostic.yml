@@ -1,10 +1,5 @@
 name: Q51 scratch code-form diagnosis
 on:
-  push:
-    branches: [fix/qwen-precision-proof]
-    paths:
-      - '.github/workflows/q51-scratch-diagnostic.yml'
-      - 'scripts/q51-scratch/**'
   workflow_dispatch:
 permissions:
   contents: read

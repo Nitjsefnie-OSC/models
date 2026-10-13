@@ -121,12 +121,18 @@ def execute(out, phase, pair):
             if baseline is None:baseline=actual
             else:assert actual==baseline,'numerical contract changed'
         (out/'CORRECT').write_text('148 cases,9 full vectors,all variants exact\n')
-    elif phase=='diagnostic':
-        assert (out/'CORRECT').is_file()
+    elif phase in ('diagnostic','diagnostic-only'):
+        if phase=='diagnostic':assert (out/'CORRECT').is_file()
+        diagnostic_signatures=[]
         for variant in variants:
             cmd=command(variant,'timing',0)
             cmd[3:3]=[f'-XX:StartFlightRecording=filename={out}/diagnostic-{variant}.jfr,settings=profile,dumponexit=true', '-XX:+UnlockDiagnosticVMOptions','-XX:+LogCompilation',f'-XX:LogFile={out}/diagnostic-{variant}.xml']
             run(out,'diagnostic-'+variant,cmd,CONFIG['perProcessSeconds'])
+            observed=[r for r in records(out,'diagnostic-'+variant) if r['kind']=='request']
+            assert sorted(r['repeat'] for r in observed)==list(range(-32,3))
+            diagnostic_signatures.append([(r['id'],r['repeat'],r['inputTokens'],r['fullLogitSha256'],r['greedyTokens']) for r in observed])
+        assert all(value==diagnostic_signatures[0] for value in diagnostic_signatures)
+        save(out/'diagnostic-scope.json',{'scope':'JFR/compiler instrumentation only; all measured durations and allocation totals excluded from qualification','full148CaseGateExecutedHere':phase=='diagnostic','instrumentedSnapshotsExactAcrossVariants':True})
     else:
         assert (out/'CORRECT').is_file()
         order=list(itertools.permutations(variants))[pair%6]
@@ -139,7 +145,7 @@ def execute(out, phase, pair):
 
 def main():
     parser=argparse.ArgumentParser()
-    parser.add_argument('phase',choices=['prepare','correctness','timing','diagnostic'])
+    parser.add_argument('phase',choices=['prepare','correctness','timing','diagnostic','diagnostic-only'])
     parser.add_argument('--out',type=Path,required=True)
     parser.add_argument('--models',type=Path)
     parser.add_argument('--pair',type=int,choices=range(CONFIG['triplets']))
