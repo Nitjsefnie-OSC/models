@@ -2,13 +2,19 @@
 
 ## Current result
 
-The combined correction passes the expanded native suite on Linux x86 and ARM,
-each with Temurin 25.0.3 and 25.0.4.1, in
-[38323006687](https://github.com/integrallis/models/actions/runs/38323006687).
+The current combined correction plus the serial-allocation fix passes the expanded
+native suite on Linux x86 and ARM, each with Temurin 25.0.3 and 25.0.4.1, in
+[38324642561](https://github.com/integrallis/models/actions/runs/38324642561).
 Downloaded JUnit reports confirm **three tests per configuration, zero failures,
-errors or skips**. All four jobs built the same core JAR:
-`e3e7b0ab79d0630bcad65c4cbe9fd356cf589dd159eba8e6c0aa402db24bd33c`.
-The final source retains exactly that artifact; later Vectors changes add tests only.
+errors or skips**. All four jobs built core JAR:
+`13f0bd516ede8e4306541c72ef368e94c9bddddd80a99631ff5aa65992fdbba8`,
+from Vectors `91dd64ae`. The release branch builds this identical JAR.
+
+The prior combined runtime `e3e7b0ab79d0630bcad65c4cbe9fd356cf589dd159eba8e6c0aa402db24bd33c`
+also passed the expanded matrix in
+[38323006687](https://github.com/integrallis/models/actions/runs/38323006687).
+Only `BFloat16Matrix.class` changed: serial batches execute their row loop directly,
+using the existing threading threshold and unchanged numerical helpers.
 
 The new test runs in an isolated JVM with four visible CPUs. It retains owned
 snapshots of all vocabulary logits at eight continuation positions across three
@@ -18,9 +24,25 @@ the corrected artifact passes. These receipts are retained in
 `benchmark-results/2026-10-12-bonsai-fresh-session-regression/`.
 
 Release status remains **unpublished**. Normal Models CI still uses the declared
-published dependency. Performance/resource gates and the final release dry run
-remain open; the dry run is [38323832193](https://github.com/integrallis/vectors/actions/runs/38323832193).
-A candidate-classpath pass does not complete the downstream dependency fix.
+published dependency. Final performance/resource and release gates remain open;
+a candidate-classpath pass does not complete the downstream dependency fix.
+
+The fixed 400-pair Qwen startup study per architecture passed the declared
+one-percent allowance for the prior `e3e7` artifact in
+[38323913262](https://github.com/integrallis/models/actions/runs/38323913262).
+ARM's load ratio was 1.00394, with 95% interval [1.00032, 1.00760]: a small
+measured increase within that allowance. This result is not relabeled as a
+measurement of `13f0`.
+
+The separate allocation ablation
+[38324610747](https://github.com/integrallis/vectors/actions/runs/38324610747)
+confirms that the serial callback accounts for approximately 48 bytes per call
+on ARM. The new loop removes that allocation and slightly improves ARM serial
+latency. Both parallel timing intervals cross parity. On x86 the serial timing
+interval also crosses parity and includes a 4.39% slowdown; that effect remains
+unresolved. The diagnostic correctly failed its overall gate. Final qualification
+must compare the current artifact with the published release, preserving every
+original observation and limit.
 
 ## Confirmed failure
 
@@ -130,7 +152,7 @@ retain its actual source, JAR hashes and matching measurements.
 2. Complete the upstream correctness, affected performance and release checks.
 3. Publish and independently fetch the corrected Vectors artifacts from Maven Central.
 4. Update Models' declared Vectors version, documentation attribute and dependency locks.
-5. Pass both normal Bonsai jobs without a classpath replacement, and validate the
+5. Pass all four normal Bonsai configurations without a classpath replacement, and validate the
    resolved dependency graph.
 
 No tolerance relaxation, skipped case, warm-up-only workaround or disabled native
