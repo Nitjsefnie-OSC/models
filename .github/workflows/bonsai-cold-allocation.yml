@@ -1,0 +1,126 @@
+name: Bonsai cold allocation attribution
+on:
+  push:
+    branches: [fix/qwen-precision-proof]
+    paths: [.github/workflows/bonsai-cold-allocation.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  diagnostic:
+    runs-on: ${{ matrix.arch == 'arm' && 'ubuntu-24.04-arm' || 'ubuntu-24.04' }}
+    timeout-minutes: 100
+    strategy:
+      fail-fast: false
+      matrix:
+        arch: [arm, x86]
+        shard: ['0']
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: 2a75baf5497ce4b99841f7bdda3a9fc33a5b9fc7
+          path: harness
+      - name: Read immutable protocol
+        id: protocol
+        run: |
+          python3 - <<'PY'
+          import json, os
+          p=json.load(open('harness/scripts/bonsai-cold/protocol.json'))
+          with open(os.environ['GITHUB_OUTPUT'],'a') as f:
+              f.write('models='+p['modelsRevision']+'\n')
+              f.write('vectors='+p['vectorsRevision']+'\n')
+          PY
+      - uses: actions/checkout@v5
+        with:
+          ref: ${{ steps.protocol.outputs.models }}
+          path: models
+      - uses: actions/checkout@v5
+        with:
+          repository: integrallis/vectors
+          ref: ${{ steps.protocol.outputs.vectors }}
+          path: vectors
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '25.0.3'
+      - uses: gradle/actions/setup-gradle@v6
+      - name: Install pinned Rust toolchain
+        run: rustup toolchain install 1.96.0 --profile minimal --no-self-update
+      - name: Build immutable actual artifacts
+        run: |
+          set -euo pipefail
+          test "$(git -C models rev-parse HEAD)" = '${{ steps.protocol.outputs.models }}'
+          test "$(git -C vectors rev-parse HEAD)" = '${{ steps.protocol.outputs.vectors }}'
+          (cd vectors && ./gradlew :vectors-core:jar --no-daemon --max-workers=2)
+          (cd models && ./gradlew :backend-native:cargoBuildRelease :backend-native:copyPairedRuntime --init-script ../harness/scripts/bonsai-paired/runtime.init.gradle --no-daemon --max-workers=2)
+      - name: prepare
+        timeout-minutes: 82
+        env:
+          SHARD: ${{ matrix.shard }}
+          ARCH: ${{ matrix.arch }}
+        run: |
+          set -euo pipefail
+          mapfile -t jars < <(find vectors/vectors-core/build/libs -maxdepth 1 -name 'vectors-core-*.jar' ! -name '*-sources.jar' ! -name '*-javadoc.jar')
+          test "${#jars[@]}" -eq 1
+          python3 harness/scripts/bonsai-cold/run.py --shard "$SHARD" --arch "$ARCH" --models models --candidate-core "${jars[0]}" --output "out/cold-$ARCH-$SHARD" --stage prepare
+      - name: Fetch immutable diagnostic helper
+        env:
+          PAYLOAD_URL: ${{ secrets.BONSAI_COLD_ALLOCATION_URL }}
+        run: |
+          set -euo pipefail
+          curl --fail --silent --show-error --location "$PAYLOAD_URL" -o payload.tar.gz
+          echo "6b6b3c8f0549d23f3460922564f89fadd0a7064a80f9e4d92a696697fac3bbbe  payload.tar.gz" | sha256sum -c -
+          tar -xzf payload.tar.gz
+          python3 payload/run.py '${{ matrix.arch }}' compile
+      - name: plain-baseline
+        run: python3 payload/run.py '${{ matrix.arch }}' plain-baseline
+      - name: Retain plain-baseline observations
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: cold-allocation-${{ matrix.arch }}-plain-baseline
+          path: |
+            out/cold-${{ matrix.arch }}-0/*.json
+            out/cold-${{ matrix.arch }}-0/*.stdout
+            out/cold-${{ matrix.arch }}-0/*.stderr
+            out/cold-${{ matrix.arch }}-0/plain-baseline.jfr
+          retention-days: 30
+      - name: plain-candidate
+        run: python3 payload/run.py '${{ matrix.arch }}' plain-candidate
+      - name: Retain plain-candidate observations
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: cold-allocation-${{ matrix.arch }}-plain-candidate
+          path: |
+            out/cold-${{ matrix.arch }}-0/*.json
+            out/cold-${{ matrix.arch }}-0/*.stdout
+            out/cold-${{ matrix.arch }}-0/*.stderr
+            out/cold-${{ matrix.arch }}-0/plain-candidate.jfr
+          retention-days: 30
+      - name: profile-candidate
+        run: python3 payload/run.py '${{ matrix.arch }}' profile-candidate
+      - name: Retain profile-candidate observations
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: cold-allocation-${{ matrix.arch }}-profile-candidate
+          path: |
+            out/cold-${{ matrix.arch }}-0/*.json
+            out/cold-${{ matrix.arch }}-0/*.stdout
+            out/cold-${{ matrix.arch }}-0/*.stderr
+            out/cold-${{ matrix.arch }}-0/profile-candidate.jfr
+          retention-days: 30
+      - name: profile-baseline
+        run: python3 payload/run.py '${{ matrix.arch }}' profile-baseline
+      - name: Retain profile-baseline observations
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: cold-allocation-${{ matrix.arch }}-profile-baseline
+          path: |
+            out/cold-${{ matrix.arch }}-0/*.json
+            out/cold-${{ matrix.arch }}-0/*.stdout
+            out/cold-${{ matrix.arch }}-0/*.stderr
+            out/cold-${{ matrix.arch }}-0/profile-baseline.jfr
+          retention-days: 30
