@@ -1,0 +1,251 @@
+{
+  "conclusion": "success",
+  "headSha": "040b918b45ae7ff62e8fe8d7c29bcdf6d9b390b4",
+  "jobs": [
+    {
+      "completedAt": "2026-10-13T00:56:12Z",
+      "conclusion": "success",
+      "databaseId": 115070234765,
+      "name": "Release to Maven Central and GitHub",
+      "startedAt": "2026-10-13T00:32:26Z",
+      "status": "completed",
+      "steps": [
+        {
+          "completedAt": "2026-10-13T00:32:34Z",
+          "conclusion": "success",
+          "name": "Set up job",
+          "number": 1,
+          "startedAt": "2026-10-13T00:32:27Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-13T00:32:37Z",
+          "conclusion": "success",
+          "name": "Checkout",
+          "number": 2,
+          "startedAt": "2026-10-13T00:32:34Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-13T00:32:45Z",
+          "conclusion": "success",
+          "name": "Set up JDK",
+          "number": 3,
+          "startedAt": "2026-10-13T00:32:37Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-13T00:32:59Z",
+          "conclusion": "success",
+          "name": "Setup Gradle",
+          "number": 4,
+          "startedAt": "2026-10-13T00:32:45Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-13T00:33:08Z",
+          "conclusion": "success",
+          "name": "Run actions/setup-node@v6",
+          "number": 5,
+          "startedAt": "2026-10-13T00:32:59Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-13T00:33:19Z",
+          "conclusion": "success",
+          "name": "Install native BLAS (Vectors Studio)",
+          "number": 6,
+          "startedAt": "2026-10-13T00:33:08Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-13T00:51:58Z",
+          "conclusion": "success",
+          "name": "Build, test, and stage artifacts",
+          "number": 7,
+          "startedAt": "2026-10-13T00:33:19Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-13T00:52:41Z",
+          "conclusion": "success",
+          "name": "Test dependency policy rejection cases",
+          "number": 8,
+          "startedAt": "2026-10-13T00:51:58Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-13T00:52:41Z",
+          "conclusion": "success",
+          "name": "Resolve project version",
+          "number": 9,
+          "startedAt": "2026-10-13T00:52:41Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-13T00:52:41Z",
+          "conclusion": "skipped",
+          "name": "Validate release tag",
+          "number": 10,
+          "startedAt": "2026-10-13T00:52:41Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-13T00:52:50Z",
+          "conclusion": "success",
+          "name": "Prepare staged-release notebook classpath",
+          "number": 11,
+          "startedAt": "2026-10-13T00:52:41Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-13T00:52:50Z",
+          "conclusion": "success",
+          "name": "Prepare writable notebook output",
+          "number": 12,
+          "startedAt": "2026-10-13T00:52:50Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-13T00:53:37Z",
+          "conclusion": "success",
+          "name": "Build JJava notebook image",
+          "number": 13,
+          "startedAt": "2026-10-13T00:52:50Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-13T00:54:25Z",
+          "conclusion": "success",
+          "name": "Execute notebooks against staged artifacts",
+          "number": 14,
+          "startedAt": "2026-10-13T00:53:37Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-13T00:54:25Z",
+          "conclusion": "success",
+          "name": "Reject snapshot release",
+          "number": 15,
+          "startedAt": "2026-10-13T00:54:25Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-13T00:56:06Z",
+          "conclusion": "success",
+          "name": "Validate Maven Central deployment",
+          "number": 16,
+          "startedAt": "2026-10-13T00:54:25Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-13T00:56:06Z",
+          "conclusion": "skipped",
+          "name": "Deploy to Maven Central",
+          "number": 17,
+          "startedAt": "2026-10-13T00:56:06Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-13T00:56:06Z",
+          "conclusion": "skipped",
+          "name": "Verify Maven Central publication",
+          "number": 18,
+          "startedAt": "2026-10-13T00:56:06Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-13T00:56:06Z",
+          "conclusion": "success",
+          "name": "Restore JDK 25 for published consumers",
+          "number": 19,
+          "startedAt": "2026-10-13T00:56:06Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-13T00:56:06Z",
+          "conclusion": "skipped",
+          "name": "Verify released consumer graphs",
+          "number": 20,
+          "startedAt": "2026-10-13T00:56:06Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-13T00:56:06Z",
+          "conclusion": "skipped",
+          "name": "Publish GitHub release",
+          "number": 21,
+          "startedAt": "2026-10-13T00:56:06Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-13T00:56:08Z",
+          "conclusion": "success",
+          "name": "Upload JReleaser logs",
+          "number": 22,
+          "startedAt": "2026-10-13T00:56:06Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-13T00:56:08Z",
+          "conclusion": "success",
+          "name": "Post Restore JDK 25 for published consumers",
+          "number": 39,
+          "startedAt": "2026-10-13T00:56:08Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-13T00:56:08Z",
+          "conclusion": "success",
+          "name": "Post Validate Maven Central deployment",
+          "number": 40,
+          "startedAt": "2026-10-13T00:56:08Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-13T00:56:08Z",
+          "conclusion": "success",
+          "name": "Post Run actions/setup-node@v6",
+          "number": 41,
+          "startedAt": "2026-10-13T00:56:08Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-13T00:56:08Z",
+          "conclusion": "success",
+          "name": "Post Setup Gradle",
+          "number": 42,
+          "startedAt": "2026-10-13T00:56:08Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-13T00:56:09Z",
+          "conclusion": "success",
+          "name": "Post Set up JDK",
+          "number": 43,
+          "startedAt": "2026-10-13T00:56:08Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-13T00:56:09Z",
+          "conclusion": "success",
+          "name": "Post Checkout",
+          "number": 44,
+          "startedAt": "2026-10-13T00:56:09Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-13T00:56:09Z",
+          "conclusion": "success",
+          "name": "Complete job",
+          "number": 45,
+          "startedAt": "2026-10-13T00:56:09Z",
+          "status": "completed"
+        }
+      ],
+      "url": "https://github.com/integrallis/vectors/actions/runs/38327742042/job/115070234765"
+    }
+  ],
+  "status": "completed",
+  "url": "https://github.com/integrallis/vectors/actions/runs/38327742042"
+}
