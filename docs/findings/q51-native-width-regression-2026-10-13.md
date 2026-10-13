@@ -119,6 +119,40 @@ The preceding capture's parser failure from asynchronous VM/Java stdout
 interleaving is retained under `pinned-width-compiler-38342317952`; the corrected
 capture writes numerical records to a separate file.
 
+## Scratch isolation after the width repair
+
+The [separate twelve-triplet cohort](https://github.com/integrallis/models/actions/runs/38342190622)
+completed on both hosts. All three historical TensorOps variants used the same
+verified width corrections; 148 requests with nine full-logit snapshots agreed
+exactly, as did every cold/warm request in the timing cohort. No earlier
+observations were pooled into this experiment.
+
+The full scratch change versus the prior scratch implementation reduced measured
+warm Java allocation to 0.857635 [0.847389, 0.867373] on x86 and 0.621100
+[0.613734, 0.630022] on ARM. Both allocation and precision gates pass. On ARM,
+prefill was 0.999884 [0.967587, 1.031906], model latency 0.999246
+[0.978660, 1.019779], decode 0.995105 [0.989637, 1.000569], and peak RSS
+1.014350 [0.978141, 1.053033]. Those non-regression gates remain unresolved;
+the x86 latency, startup and RSS gates are likewise unresolved. The new N2
+experiment does not establish the cause or resolution of the historical
+wider-ARM regression. In particular, the final convenience-method Q8 scratch
+removal is bypassed by this causal model's caller-supplied scratch path.
+
+Raw observations and official summaries remain under
+`audit-artifacts/2026-10-13-activation/q51-width-repaired-38342190622/`.
+The independent replay of all twelve ARM triplets exactly matches the official
+summary. The separately instrumented diagnostic is excluded from these ratios.
+
+The [composed route comparison](https://github.com/integrallis/models/actions/runs/38345118256)
+then tests the actual hybrid artifact against provider-only blanket-native and
+all-Java Q5_1 controls. It pins Models `5344b5a2` and Vectors `b0aadc8d`,
+verifies every runtime artifact entry, and counts executed native calls. The
+exact GGUF contains 121 F32 and 170 Q5_1 tensors, no BF16 or PTQ tensors;
+each process also asserts that fused grouped attention is disabled. These
+checks delimit the proof from the unrelated attention/PTQ/BF16 corrections.
+It includes cold-request allocation and latency as well as the existing warm,
+startup and resident-memory gates. Its results are still pending.
+
 ## Remaining release gates
 
 The composed implementation still needs the full Q5_1 logits, task-quality,
@@ -128,7 +162,7 @@ cohort. A new scratch-only comparison must state that both controls share the
 verified width repairs; it cannot be relabeled as a comparison against the old
 published runtime.
 
-The composed Models source is `00782f64092a14fccb437a4e85bbd866b6c4b11a`.
+The initial composed width source was `00782f64092a14fccb437a4e85bbd866b6c4b11a`.
 Its production-source difference from the earlier frozen runtime is limited to
 these two classes. The current macro preparation injects a checksum-bound
 Vectors candidate while Models release metadata still declares the published
