@@ -1,0 +1,214 @@
+{
+  "sourceRun": "38319356761",
+  "originalArmHost": "Neoverse-N2, SVE/SVE2, four visible CPUs, Temurin25.0.3+9",
+  "sourceCandidate": "cb3dab3dd35c7f3209b41d833c878a744620e77c",
+  "sourceArtifact": "107b807f5dfd3ec420ebbdfd72c3e825240b224861fcb2f7d940683c5843fd96",
+  "ordinaryMatvec": [
+    {
+      "pair": 0,
+      "microseconds": 248.86829234065144,
+      "iterations": [
+        247.76640772851127,
+        248.30231729099478,
+        248.48564448857994,
+        247.6722103311913,
+        252.11488186397986
+      ],
+      "bytesPerOp": 41.908790740754775,
+      "gcCount": 0.0
+    },
+    {
+      "pair": 1,
+      "microseconds": 426.64092922057887,
+      "iterations": [
+        424.28810093299404,
+        423.7782834811998,
+        436.0637566390945,
+        424.1381103127642,
+        424.9363947368421
+      ],
+      "bytesPerOp": 43.28006248452889,
+      "gcCount": 0.0
+    },
+    {
+      "pair": 2,
+      "microseconds": 247.8436834337329,
+      "iterations": [
+        250.15637825,
+        248.0739130542482,
+        246.61520891845282,
+        247.49776199901038,
+        246.87515494695288
+      ],
+      "bytesPerOp": 41.90277963122649,
+      "gcCount": 0.0
+    },
+    {
+      "pair": 3,
+      "microseconds": 249.2349370006731,
+      "iterations": [
+        246.87338588699728,
+        248.1979550617284,
+        249.80658607784432,
+        255.30425133962746,
+        245.99250663716813
+      ],
+      "bytesPerOp": 41.91569247906609,
+      "gcCount": 0.0
+    },
+    {
+      "pair": 4,
+      "microseconds": 426.12567790581227,
+      "iterations": [
+        426.22662010221467,
+        425.37851806204844,
+        426.1492337441564,
+        425.2559351420093,
+        427.61808247863246
+      ],
+      "bytesPerOp": 43.26879645123587,
+      "gcCount": 0.0
+    },
+    {
+      "pair": 5,
+      "microseconds": 424.8652286465607,
+      "iterations": [
+        426.11474105621807,
+        424.79155146124526,
+        424.5587860780985,
+        424.3681083368599,
+        424.4929563003818
+      ],
+      "bytesPerOp": 43.25840266343929,
+      "gcCount": 0.0
+    },
+    {
+      "pair": 6,
+      "microseconds": 425.82294828499187,
+      "iterations": [
+        427.369878891258,
+        424.96578131634817,
+        426.30704770017036,
+        425.0142299533305,
+        425.45780356385234
+      ],
+      "bytesPerOp": 43.26141151267425,
+      "gcCount": 0.0
+    },
+    {
+      "pair": 7,
+      "microseconds": 427.38218946230126,
+      "iterations": [
+        426.38610676307957,
+        427.1395415778252,
+        429.9498157216495,
+        427.6554034188034,
+        425.7800798301486
+      ],
+      "bytesPerOp": 43.299840447062124,
+      "gcCount": 0.0
+    },
+    {
+      "pair": 8,
+      "microseconds": 250.37291178899076,
+      "iterations": [
+        249.81382206139256,
+        251.28194029101857,
+        249.6349872754491,
+        250.4503968452679,
+        250.6834124718257
+      ],
+      "bytesPerOp": 41.91977347828671,
+      "gcCount": 0.0
+    },
+    {
+      "pair": 9,
+      "microseconds": 423.2716241526141,
+      "iterations": [
+        422.7390012679628,
+        424.32001102629346,
+        424.3771180702497,
+        422.53434723978086,
+        422.38764315878376
+      ],
+      "bytesPerOp": 43.25430174329866,
+      "gcCount": 0.0
+    },
+    {
+      "pair": 10,
+      "microseconds": 252.48180837496497,
+      "iterations": [
+        253.12754945610928,
+        251.76935647798743,
+        252.96130169149205,
+        252.08255289672545,
+        252.46828135251073
+      ],
+      "bytesPerOp": 41.93731462761284,
+      "gcCount": 0.0
+    },
+    {
+      "pair": 11,
+      "microseconds": 426.57192009684616,
+      "iterations": [
+        424.3225116377486,
+        426.2914940425532,
+        427.05192025586354,
+        427.64024488054605,
+        427.5534296675192
+      ],
+      "bytesPerOp": 43.28415245758099,
+      "gcCount": 0.0
+    }
+  ],
+  "smallBatch": {
+    "baseline": {
+      "measurementIterations": 60,
+      "meanMicroseconds": 654.7472520435077,
+      "meanBytes": 5.033195471967694,
+      "estimatedBytesAfterCommonProfilerFloor": -0.008358368767314668
+    },
+    "candidate": {
+      "measurementIterations": 60,
+      "meanMicroseconds": 621.1114784513632,
+      "meanBytes": 52.78193725239771,
+      "estimatedBytesAfterCommonProfilerFloor": 47.99937886832221
+    }
+  },
+  "modelHeader": {
+    "path": "/Users/briansam-bodden/.jvllm/models/Ternary-Bonsai-2-27B-PTQ1_0.gguf",
+    "bf16Count": 96,
+    "dimensions": [
+      5120,
+      48
+    ],
+    "conditionalOneCallbackPerTensorPerBatchBytes": 4608
+  },
+  "floorEstimateCaveat": "7.7KB/s common bookkeeping approximation inferred from receipts, not a direct allocation-site trace; negative residual baseline is noise. Captured callback allocation is a hypothesis until ablation.",
+  "rawHashes": {
+    "pair0-baseline.json": "ff80c97867f22a3f0cc1f29d03462af75b0acaffbf3ceced7b67f193abd595cc",
+    "pair0-candidate.json": "3ad1a3b5ad0c7623baf6bc03f87faf888447c1ffee16609e25d64d4e8fd2d357",
+    "pair1-baseline.json": "f92df553b90db3d77aa345f3675c7554920291067588d6be4f9273aa8111525c",
+    "pair1-candidate.json": "f4c70e2ac41a504f54dc76801f8fba6937ff2004f10ce4bf7536638054fe0b6f",
+    "pair10-baseline.json": "cbc518cbd602ae9a56e0bd31c04108be5c58d9beee1e594402cc4e8a72a5d4f2",
+    "pair10-candidate.json": "e3896430f86cfc1e6eed4de1dec55bfdde764b32f33e284333dc7b378e94f813",
+    "pair11-baseline.json": "934c1cbe6c2e4060248d6ff3b3539cc931d63e43c778ecc86d7068c23cb3372d",
+    "pair11-candidate.json": "78b1957f22ee8087456f7dbd981e6a5626202647d09c6389abe3ae3b3fc981c2",
+    "pair2-baseline.json": "77bbd11c1700803aeee31b6cc83aeaecba3355aa0e468c8a63852f25db9b774c",
+    "pair2-candidate.json": "7f6a4dc9b17629289ab08b2395ab1ba1e9938918db82949275a5e02c6f9dbcbf",
+    "pair3-baseline.json": "431a3ba30aee54a559d93b9d5e681af9bf75349d39219e2149bf908b8f473afa",
+    "pair3-candidate.json": "d74815723599230223b78d72d1a06f572ae3de3a3a426b4579d33b6c2231ffb0",
+    "pair4-baseline.json": "f79b27635cfd9d41dd07d756cc0b8f7e9a6d46770ae0a49aa2980c10af4079ce",
+    "pair4-candidate.json": "9235bcf351662602d41c82760710989be481330089799d23083130b3df401f86",
+    "pair5-baseline.json": "c7dcf9f794a190a1ed18d3f0d06067ad42c7a51dfcd596144a746dc46058eb2f",
+    "pair5-candidate.json": "f439afbb02c36bf361dceaef3958571763865ac559e6972d5664010300263e25",
+    "pair6-baseline.json": "5431eb99feebd8c15478b5caf03b01568516ac38dec1c1e218b7f9fd3af193e3",
+    "pair6-candidate.json": "61a31fa25d3b5b31f2a0dd5074ed4a9a11348c6aca4975209a13230efe1508d2",
+    "pair7-baseline.json": "20c00fb1630edb4ab0ef1cb69f090162cf363ea9ad7b3553e7dc5657b3888984",
+    "pair7-candidate.json": "7b53783d96af1fdd3ef646750daa61e69be50f3f1a199306b4560014d8963c36",
+    "pair8-baseline.json": "888ddda08a345f95e14b771efab0fb0b871af664f1977b87ff7bf67f411ad5c9",
+    "pair8-candidate.json": "f1c1eda1b3946fc605a837154f6f5d002e7d4384557b60e48fa1c4463383b701",
+    "pair9-baseline.json": "bb25ce4232ef14239bf11f59df62e40cb6d636fa212ce87051862323cb48ad2e",
+    "pair9-candidate.json": "aabaa3dcf7bdfdd1e74a16e3b13387901412f3a64c0a1e3281ded21cafd7a683"
+  }
+}

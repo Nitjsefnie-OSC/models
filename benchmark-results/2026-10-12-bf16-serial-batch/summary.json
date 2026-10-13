@@ -1,0 +1,174 @@
+{
+  "run": "https://github.com/integrallis/vectors/actions/runs/38324610747",
+  "source": "91dd64ae1a4b4bffa534514f10aeaba7e9671574",
+  "productionCommit": "00d26851182b2d797e6bbedab431c0d878db0c5d",
+  "scope": "Fixed allocation ablation against combined e3e7, not qualification against published0.1.29",
+  "hosts": {
+    "arm": {
+      "tests": 45,
+      "failures": 0,
+      "errors": 0,
+      "comparisons": [
+        {
+          "shape": "4864x896",
+          "time": {
+            "ratio": 0.996765369618875,
+            "ci95": [
+              0.9901969313478803,
+              1.0044918417378634
+            ],
+            "direction": "unresolved",
+            "precisionTargetMet": true,
+            "processRatios": [
+              0.9952934522353246,
+              1.0025865391632167,
+              1.0012314175430057,
+              0.9978064660952911,
+              0.9769098057121853,
+              0.9938882564282405,
+              0.9820159048325575,
+              1.0060596466701537,
+              0.9878012606181239,
+              0.9963157739315909,
+              1.0293479505147742,
+              0.9928838047439461
+            ]
+          },
+          "allocationMeans": {
+            "baseline": 71.08679360211194,
+            "candidate": 71.00445224385354
+          },
+          "allocationPairedDifference": {
+            "mean": -0.08234135825840501,
+            "ci95": [
+              -0.23358327773667278,
+              0.08536585894772249
+            ],
+            "purpose": "Descriptive causal estimate; no new qualification threshold"
+          }
+        },
+        {
+          "shape": "48x5120",
+          "time": {
+            "ratio": 0.9981680429847036,
+            "ci95": [
+              0.9976779394303429,
+              0.9986998257990128
+            ],
+            "direction": "faster",
+            "precisionTargetMet": true,
+            "processRatios": [
+              0.9981155378625235,
+              0.9993497847459278,
+              0.9971635878995816,
+              0.9975443880049965,
+              0.9982722707588745,
+              0.9981444618724606,
+              0.9967219908778713,
+              0.9980334706492697,
+              0.9989247725985685,
+              0.9979204054739816,
+              1.0001481823816176,
+              0.9976825239799888
+            ]
+          },
+          "allocationMeans": {
+            "baseline": 52.78602858162104,
+            "candidate": 4.7769316482072
+          },
+          "allocationPairedDifference": {
+            "mean": -48.00909693341384,
+            "ci95": [
+              -48.02078577995734,
+              -48.000479261833696
+            ],
+            "purpose": "Descriptive causal estimate; no new qualification threshold"
+          }
+        }
+      ]
+    },
+    "x86": {
+      "tests": 45,
+      "failures": 0,
+      "errors": 0,
+      "comparisons": [
+        {
+          "shape": "4864x896",
+          "time": {
+            "ratio": 1.0004226057726786,
+            "ci95": [
+              0.9942127316734192,
+              1.005672624672757
+            ],
+            "direction": "unresolved",
+            "precisionTargetMet": true,
+            "processRatios": [
+              0.975573600246723,
+              0.9955813113973071,
+              1.0043303505484675,
+              1.0147486521405646,
+              1.0104463660341467,
+              0.9993473040428762,
+              1.007572978664836,
+              0.999814408310206,
+              1.0068509817362048,
+              0.9987407711887417,
+              0.9881590216040352,
+              1.0045225303831422
+            ]
+          },
+          "allocationMeans": {
+            "baseline": 80.89882299117336,
+            "candidate": 80.8531449328681
+          },
+          "allocationPairedDifference": {
+            "mean": -0.04567805830524444,
+            "ci95": [
+              -0.37148029235560404,
+              0.22716583202406562
+            ],
+            "purpose": "Descriptive causal estimate; no new qualification threshold"
+          }
+        },
+        {
+          "shape": "48x5120",
+          "time": {
+            "ratio": 1.0203826443155715,
+            "ci95": [
+              0.9959798051324125,
+              1.0438569211278519
+            ],
+            "direction": "unresolved",
+            "precisionTargetMet": false,
+            "processRatios": [
+              1.0254746325598005,
+              1.075100710331069,
+              1.055148141359544,
+              0.9932462362383827,
+              1.0451862528152582,
+              1.059435311294945,
+              0.9841818262342218,
+              0.9402696124763951,
+              0.9869895248253342,
+              1.0125877436247466,
+              1.0859483409082167,
+              0.9914300303921586
+            ]
+          },
+          "allocationMeans": {
+            "baseline": 4.4780519993769365,
+            "candidate": 4.5615163478203336
+          },
+          "allocationPairedDifference": {
+            "mean": 0.08346434844339694,
+            "ci95": [
+              -0.021845972920140417,
+              0.18290137719303864
+            ],
+            "purpose": "Descriptive causal estimate; no new qualification threshold"
+          }
+        }
+      ]
+    }
+  }
+}
