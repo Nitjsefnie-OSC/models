@@ -1,0 +1,65 @@
+name: BERT exact native Q51 reuse against scalar Java
+on:
+  push:
+    branches: [fix/qwen-precision-proof]
+    paths: [.github/workflows/bert-q51-native-reuse.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  diagnostic:
+    strategy:
+      fail-fast: false
+      matrix:
+        runner: [ubuntu-24.04, ubuntu-24.04-arm]
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 45
+    steps:
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '25.0.3'
+      - name: Install pinned Rust
+        run: rustup toolchain install 1.96.0 --profile minimal --no-self-update
+      - name: Fetch immutable source and artifact control
+        env:
+          PAYLOAD_URL: ${{ secrets.BERT_Q51_NATIVE_REUSE_URL }}
+        run: |
+          curl --fail --silent --show-error --location "$PAYLOAD_URL" -o payload.tar.gz
+          echo "1e70afe0dd5cdf6858f5441f48ff83c1b3c1b5499cdb9f06f822e7025723931f  payload.tar.gz" | sha256sum -c -
+          tar -xzf payload.tar.gz
+      - name: Verify artifacts, real routing and82 exact embeddings
+        run: python3 payload/run.py prepare
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: bert-q51-${{ matrix.runner }}-correctness
+          path: evidence/
+      - name: pair-0
+        run: python3 payload/run.py pair 0
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: bert-q51-${{ matrix.runner }}-pair-0
+          path: evidence/
+      - name: pair-1
+        run: python3 payload/run.py pair 1
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: bert-q51-${{ matrix.runner }}-pair-1
+          path: evidence/
+      - name: pair-2
+        run: python3 payload/run.py pair 2
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: bert-q51-${{ matrix.runner }}-pair-2
+          path: evidence/
+      - name: pair-3
+        run: python3 payload/run.py pair 3
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: bert-q51-${{ matrix.runner }}-pair-3
+          path: evidence/
