@@ -1,0 +1,107 @@
+name: Affected real MoE and Next consistency
+on:
+  push:
+    branches: [fix/qwen-precision-proof]
+    paths: [.github/workflows/qwen-moe-real-fixtures.yml]
+  workflow_dispatch:
+    inputs:
+      architecture:
+        type: choice
+        options: [qwen35moe, qwen3next]
+        default: qwen35moe
+permissions:
+  contents: read
+jobs:
+  fixture:
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 135
+    strategy:
+      fail-fast: false
+      max-parallel: 1
+      matrix:
+        runner: [ubuntu-24.04, ubuntu-24.04-arm]
+    env:
+      ARCHITECTURE: ${{ inputs.architecture || 'qwen35moe' }}
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          path: harness
+      - name: Read exact runtime pins
+        id: pins
+        run: |
+          python3 - <<'PY'
+          import json,os
+          p=json.load(open('harness/scripts/qwen-moe-fixtures/protocol.json'))
+          with open(os.environ['GITHUB_OUTPUT'],'a') as f:
+              f.write('models='+p['modelsRevision']+'\nvectors='+p['vectorsRevision']+'\n')
+          PY
+      - uses: actions/checkout@v5
+        with:
+          ref: ${{ steps.pins.outputs.models }}
+          path: models
+      - uses: actions/checkout@v5
+        with:
+          repository: integrallis/vectors
+          ref: ${{ steps.pins.outputs.vectors }}
+          path: vectors
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '25.0.3'
+      - uses: gradle/actions/setup-gradle@v6
+      - name: Reclaim unused ephemeral runner tool storage
+        run: |
+          df -h
+          sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /usr/local/share/boost /opt/hostedtoolcache/CodeQL
+          sudo docker image prune --all --force
+          df -h
+      - name: Build exact actual runtime
+        run: |
+          set -euo pipefail
+          rustup toolchain install 1.96.0 --profile minimal --no-self-update
+          (cd vectors && ./gradlew :vectors-core:jar --no-daemon --max-workers=2)
+          (cd models && ./gradlew :backend-native:cargoBuildRelease :backend-native:copyPairedRuntime --init-script ../harness/scripts/q51-route/runtime.init.gradle --no-daemon --max-workers=2)
+          mapfile -t jars < <(find vectors/vectors-core/build/libs -maxdepth 1 -name 'vectors-core-*.jar' ! -name '*-sources.jar' ! -name '*-javadoc.jar')
+          test "${#jars[@]}" -eq 1
+          echo "CORE=$PWD/${jars[0]}" >> "$GITHUB_ENV"
+          echo "EVIDENCE=$RUNNER_TEMP/real-moe-fixture" >> "$GITHUB_ENV"
+      - name: Download smallest pinned artifact and verify source/runtime
+        id: prepare
+        run: python3 harness/scripts/qwen-moe-fixtures/run.py prepare --model "$ARCHITECTURE" --models models --core "$CORE" --out "$EVIDENCE"
+      - name: Retain preparation
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: real-moe-${{ matrix.runner }}-${{ env.ARCHITECTURE }}-prepare
+          path: |
+            ${{ runner.temp }}/real-moe-fixture/*.json
+            ${{ runner.temp }}/real-moe-fixture/*.stdout
+            ${{ runner.temp }}/real-moe-fixture/*.stderr
+      - name: Java real-weight consistency
+        id: java
+        if: ${{ always() && steps.prepare.outcome == 'success' }}
+        run: python3 harness/scripts/qwen-moe-fixtures/run.py java --model "$ARCHITECTURE" --models models --core "$CORE" --out "$EVIDENCE"
+      - name: Retain Java observations
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: real-moe-${{ matrix.runner }}-${{ env.ARCHITECTURE }}-java
+          path: |
+            ${{ runner.temp }}/real-moe-fixture/java.*
+            ${{ runner.temp }}/real-moe-fixture/java-snapshots/
+      - name: Java and Rust real-weight consistency
+        id: native
+        if: ${{ always() && steps.prepare.outcome == 'success' }}
+        run: python3 harness/scripts/qwen-moe-fixtures/run.py native --model "$ARCHITECTURE" --models models --core "$CORE" --out "$EVIDENCE"
+      - name: Verify all fixed assertions completed
+        if: ${{ always() && steps.java.outcome == 'success' && steps.native.outcome == 'success' }}
+        run: python3 harness/scripts/qwen-moe-fixtures/run.py analyze --model "$ARCHITECTURE" --models models --core "$CORE" --out "$EVIDENCE"
+      - name: Retain native observations and summary
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: real-moe-${{ matrix.runner }}-${{ env.ARCHITECTURE }}-native
+          path: |
+            ${{ runner.temp }}/real-moe-fixture/native.*
+            ${{ runner.temp }}/real-moe-fixture/native-snapshots/
+            ${{ runner.temp }}/real-moe-fixture/summary.json

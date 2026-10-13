@@ -1,0 +1,25 @@
+{
+  "scope": "Pinned smallest catalog artifact per affected routed architecture; direct numerical checks, not model task-quality qualification",
+  "models": [
+    {
+      "id": "deepreinforce_ai_ornith_1_0_35b_gguf_q4_k_m",
+      "name": "Ornith-1.0-35B GGUF Q4_K_M",
+      "architecture": "qwen35moe",
+      "downloadUri": "https://huggingface.co/deepreinforce-ai/Ornith-1.0-35B-GGUF/resolve/c2e1703039380de4ce6820e97afd185682d3c16c/ornith-1.0-35b-Q4_K_M.gguf",
+      "sha256": "ff25291b2599fb927a835e624d2b3540106af61761c3fa57ac4264046dbec002",
+      "sizeBytes": 21166757760
+    },
+    {
+      "id": "unsloth_qwen3_coder_next_gguf_q4_k_m",
+      "name": "Qwen3-Coder-Next GGUF Q4_K_M",
+      "architecture": "qwen3next",
+      "downloadUri": "https://huggingface.co/unsloth/Qwen3-Coder-Next-GGUF/resolve/ce09c67b53bc8739eef83fe67b2f5d293c270632/Qwen3-Coder-Next-Q4_K_M.gguf",
+      "sha256": "9e6032d2f3b50a60f17ce8bf5a1d85c71af9b53b89c7978020ae7c660f29b090",
+      "sizeBytes": 48528320544
+    }
+  ],
+  "modelsRevision": "399327407c634909c8f755600f48c63d7293d9c9",
+  "vectorsRevision": "b0aadc8d972f3504426f6e38fcb0a4b4a97a0333",
+  "vectorsSha256": "263bff1aef74bac56d0597ba6b4d7ad52af846fac08b32e70e5d549ce5c8f099",
+  "backendSha256": "afe2cb1888c77697415f0132be40a8ea0fa1744e56faa61fae29795faa8b30f9"
+}
