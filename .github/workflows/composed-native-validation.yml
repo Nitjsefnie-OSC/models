@@ -1,6 +1,9 @@
 name: Composed native functional validation
 run-name: Composed native validation (1dae97f4)
 on:
+  push:
+    branches: [fix/qwen-precision-proof]
+    paths: [.github/workflows/composed-native-validation.yml]
   workflow_dispatch:
 permissions:
   contents: read
