@@ -47,7 +47,9 @@ def prepare(out, models):
     runtime = out / 'runtime'
     runtime.mkdir()
     with tarfile.open(payload) as archive:
-        archive.extractall(runtime, filter='data')
+        metadata=[m.name for m in archive.getmembers() if any(part.startswith('._') or part=='__MACOSX' for part in Path(m.name).parts)]
+        archive.extractall(runtime,members=[m for m in archive.getmembers() if m.name not in metadata],filter='data')
+    save(out/'excluded-archive-metadata.json',{'appleDoubleSidecars':metadata})
     assert sha(runtime/'prior-hybrid.jar') == CONFIG['priorJarSha256']
     assert sha(runtime/'candidate.jar') == CONFIG['oldFullJarSha256']
     core = runtime/'lib/vectors-core-0.1.30.jar'
