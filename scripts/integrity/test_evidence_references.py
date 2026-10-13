@@ -43,6 +43,42 @@ class EvidenceReferencesTest(unittest.TestCase):
         self.assertEqual(0, self.check_document(
             "[Result](benchmark-results/retained.json)", ["benchmark-results/retained.json"]))
 
+    def test_module_prefix_is_preserved(self):
+        self.assertEqual(0, self.check_document(
+            "[Result](models-bench/benchmark-results/retained.json)",
+            ["models-bench/benchmark-results/retained.json"]))
+        self.assertEqual(1, self.check_document(
+            "[Result](models-bench/benchmark-results/retained.json)",
+            ["benchmark-results/retained.json"]))
+
+    def test_relative_module_link_resolves_from_document(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = pathlib.Path(directory)
+            document = root / "benchmark-results/README.md"
+            document.parent.mkdir()
+            document.write_text(
+                "[Result](../models-bench/benchmark-results/retained.json)")
+            report = root / "models-bench/benchmark-results/retained.json"
+            report.parent.mkdir(parents=True)
+            report.write_text("retained evidence")
+            with contextlib.redirect_stdout(io.StringIO()):
+                self.assertEqual(0, CHECK.main(["--root", str(root)]))
+
+    def test_remote_report_is_outside_local_file_scope(self):
+        self.assertEqual(0, self.check_document(
+            "[Report](https://example.com/project/benchmark-results/remote.json)"))
+
+    def test_external_snapshot_is_not_a_live_repository_citation(self):
+        self.assertEqual(0, self.check_document(
+            "`audit-artifacts/retired/models/benchmark-results/old/report.json`"))
+        self.assertEqual(1, self.check_document(
+            "`audit-artifacts/retired/models/benchmark-results/old/report.json` and "
+            "`models-bench/benchmark-results/missing.json`"))
+
+    def test_shell_variable_is_not_interpreted_as_a_literal_directory(self):
+        self.assertEqual(0, self.check_document(
+            '`$PWD/benchmark-results/future-output.json`'))
+
 
 if __name__ == "__main__":
     unittest.main()
