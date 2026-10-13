@@ -2,7 +2,7 @@ name: Native-width x86 compiler correspondence
 on:
   push:
     branches: [fix/qwen-precision-proof]
-    paths: ['.github/workflows/pinned-width-compiler.yml']
+    paths: ['.github/workflows/pinned-width-compiler.yml', 'scripts/pinned-width/compiler.py', 'scripts/pinned-width/CompilerEntry.java']
   workflow_dispatch:
 permissions:
   contents: read
