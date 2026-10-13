@@ -1,0 +1,48 @@
+name: Pinned MobileMoE publisher oracle fixture
+on:
+  push:
+    branches: [fix/qwen-precision-proof]
+    paths: [.github/workflows/mobilemoe-pinned-oracle.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  oracle:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - name: Fetch checksum-bound publisher fixture and generator
+        env:
+          PAYLOAD_URL: ${{ secrets.MOBILEMOE_PINNED_ORACLE_URL }}
+        run: |
+          curl --fail --silent --show-error --location "$PAYLOAD_URL" -o payload.tar
+          echo 'd6cac73d352b5d896a3e8d342d8d295109d5611da1eb240d30feba55a7437d42  payload.tar' | sha256sum -c -
+          tar -xf payload.tar
+          python - <<'PY'
+          import hashlib, json, pathlib
+          root = pathlib.Path('payload')
+          for name, expected in json.loads((root / 'manifest.json').read_text()).items():
+              with (root / name).open('rb') as stream:
+                  assert hashlib.file_digest(stream, 'sha256').hexdigest() == expected, name
+          PY
+      - name: Install pinned publisher reference dependencies
+        run: |
+          python -m pip install torch==2.8.0 --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install transformers==4.57.6 tokenizers==0.22.2 safetensors==0.7.0 numpy==2.2.6
+      - name: Generate reference logits without Models
+        run: |
+          mkdir -p evidence
+          cp payload/manifest.json evidence/input-manifest.json
+          cp payload/prepare-mobilemoe-oracle.py evidence/
+          python payload/prepare-mobilemoe-oracle.py --directory payload/model 2>&1 | tee evidence/generator.log
+          cp payload/model/*.f32le payload/model/oracle-provenance.json evidence/
+          python -m pip freeze > evidence/python-packages.txt
+          lscpu > evidence/cpu.txt
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: mobilemoe-pinned-publisher-oracle
+          path: evidence/
