@@ -69,6 +69,102 @@ class LlamaForwardPassTest {
   private static final int CONTEXT = 64;
   private static final float SIMD_REDUCTION_TOLERANCE = 2.0e-7f;
 
+  @Nested
+  class SessionScratchLifetime {
+    @Test
+    void completedRaggedPrefillReleasesScratchReferencesButPreservesOwnedSessions()
+        throws Exception {
+      GgufFile file = buildQ4NanoModel(new Random(72));
+      LlamaConfig config = LlamaConfig.fromMetadata(file.metadata());
+      LlamaWeights weights = LlamaWeights.fromGgufFile(file, config);
+      LlamaForwardPass pass = memoryPass(config, weights, null);
+      LlamaForwardPass.Session first = pass.openSession();
+      LlamaForwardPass.Session second = pass.openSession();
+      pass.prefillBatch(
+          new LlamaForwardPass.Session[] {first, second}, new int[][] {{1, 2, 3}, {4, 5}});
+      assertNoScratchSessions(pass);
+      assertThat(first.checkpoint()).isEqualTo(3);
+      assertThat(second.checkpoint()).isEqualTo(2);
+      LlamaForwardPass reference = memoryPass(config, weights, null);
+      LlamaForwardPass.Session referenceSession = reference.openSession();
+      reference.prefill(referenceSession, new int[] {1, 2, 3}, 0);
+      assertThat(pass.forward(first, 7, 3))
+          .containsExactly(reference.forward(referenceSession, 7, 3));
+      LlamaForwardPass.Session shorter = pass.openSession();
+      pass.prefill(shorter, new int[] {6, 7}, 0);
+      assertNoScratchSessions(pass);
+    }
+
+    @Test
+    void failedLayerReleasesAllScratchSessionReferences() throws Exception {
+      GgufFile file = buildQ4NanoModel(new Random(72));
+      LlamaConfig config = LlamaConfig.fromMetadata(file.metadata());
+      LlamaWeights weights = LlamaWeights.fromGgufFile(file, config);
+      LlamaForwardPass pass =
+          memoryPass(
+              config,
+              weights,
+              (layer, position, state, offset, length) -> {
+                throw new IllegalStateException("injected layer failure");
+              });
+      LlamaForwardPass.Session first = pass.openSession();
+      LlamaForwardPass.Session second = pass.openSession();
+      assertThatThrownBy(
+              () ->
+                  pass.prefillBatch(
+                      new LlamaForwardPass.Session[] {first, second},
+                      new int[][] {{1, 2, 3}, {4, 5}}))
+          .isInstanceOf(IllegalStateException.class)
+          .hasMessage("injected layer failure");
+      assertNoScratchSessions(pass);
+      // Clearing internal references does not reset or invalidate caller-owned state.
+      assertThat(first.cache()).isNotNull();
+      assertThat(second.cache()).isNotNull();
+    }
+
+    @Test
+    void knownPromptCapacityIsReservedBeforeTheFirstLayer() {
+      GgufFile file = buildQ4NanoModel(new Random(72));
+      LlamaConfig config = LlamaConfig.fromMetadata(file.metadata());
+      LlamaWeights weights = LlamaWeights.fromGgufFile(file, config);
+      LlamaForwardPass.Session[] observed = new LlamaForwardPass.Session[1];
+      AtomicInteger observations = new AtomicInteger();
+      LlamaForwardPass pass =
+          memoryPass(
+              config,
+              weights,
+              (layer, position, state, offset, length) -> {
+                observations.incrementAndGet();
+                assertThat(observed[0].cache().allocatedSequenceCapacity())
+                    .isGreaterThanOrEqualTo(33);
+              });
+      observed[0] = pass.openSession();
+      int[] prompt = new int[33];
+      java.util.Arrays.fill(prompt, 3);
+      pass.prefill(observed[0], prompt, 0);
+      assertThat(observations.get()).isPositive();
+      assertThat(observed[0].checkpoint()).isEqualTo(33);
+    }
+
+    private LlamaForwardPass memoryPass(
+        LlamaConfig config, LlamaWeights weights, LlamaForwardPass.LayerObserver observer) {
+      return new LlamaForwardPass(
+          config,
+          weights,
+          new KvCache(
+              config.numLayers(), config.contextLength(), config.keyDim(), config.valueDim()),
+          observer,
+          executionPlan(config, weights, 4, false));
+    }
+
+    private void assertNoScratchSessions(LlamaForwardPass pass) throws Exception {
+      // Inspect the strong-reference owner directly rather than depend on nondeterministic GC.
+      var field = LlamaForwardPass.class.getDeclaredField("batchSessions");
+      field.setAccessible(true);
+      assertThat((Object[]) field.get(pass)).containsOnlyNulls();
+    }
+  }
+
   private GgufFile buildNanoModel(Random rng) {
     return buildNanoModel(rng, "llama");
   }
