@@ -21,7 +21,7 @@ jobs:
           set -euo pipefail
           mkdir -p evidence
           curl --fail --silent --show-error --location "$PAYLOAD_URL" -o payload.tar.gz
-          echo '8e997e9c8ae25bc73af0dd979285c54746a4423e052cec7536db9d741bf19846  payload.tar.gz' | sha256sum -c -
+          echo '797517a81d4cd3c7e0f91d1eb494e2a4b41a535c16b2d58d940c9e0ce113e92e  payload.tar.gz' | sha256sum -c -
           tar -xzf payload.tar.gz
           python payload/prepare.py 2>&1 | tee evidence/prepare.log
       - name: Install pinned CPU reference dependencies
