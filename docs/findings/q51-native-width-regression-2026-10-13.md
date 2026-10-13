@@ -1,8 +1,8 @@
 # Q5_1 allocations on 128-bit hosts
 
-Status: corrected source and focused numerical tests are complete; supported-host
-component measurements and fresh whole-model qualification remain pending.
-Neither correction has been released.
+Status: corrected source, focused numerical tests and the ARM component gates
+are complete. X86 timing precision and fresh whole-model qualification remain
+open. Neither correction has been released.
 
 ## Observed defect
 
@@ -47,7 +47,7 @@ Both routes are selected from the host's preferred vector width, not a new
 user-tuning switch. Hardware selection preserves the numerical contract; forcing
 unsupported vector shapes is unnecessary for a fixed logical reduction order.
 
-## Evidence still required
+## Supported-host measurements
 
 Local component diagnostics with a forced 128-bit JVM show the decoder correction
 removing 679,936 allocated bytes per 4,096-weight call and reducing diagnostic
@@ -58,8 +58,47 @@ masked-load candidate regressed the 256-bit path and was rejected. All these
 experiments remain under `audit-artifacts/q51-width-diagnostic/`, outside the
 project codebase.
 
-Independent decoder and reduction comparisons on the actual x86 and ARM hosts
-must pass before accepting their performance claims. The composed implementation
-then needs the full Q5_1 logits, task-quality, allocation, startup, memory and
-latency gates. This hardware defect does not erase the separate historical
-scratch-allocation regression or its failed ARM cohort.
+The [fixed supported-host run](https://github.com/integrallis/models/actions/runs/38340726518)
+completed twelve counterbalanced fresh-process pairs per kernel, separately for
+four nonuniform shapes (896, 1,536, 4,096 and 4,864 elements). Every measured
+block checksum and final output-array hash matched its control.
+
+On the actual Neoverse-N2 host, reduction latency ratios were 0.0285–0.0375
+(candidate/baseline, roughly 27–35 times faster); decoder ratios were
+0.0131–0.0144 (roughly 69–77 times faster). Both corrected kernels allocated zero
+bytes in every measured block. All eight ARM latency intervals met the original
+non-regression and precision limits, as did allocation. For the 4,096-element
+shape, reduction was 0.028850 [0.027998, 0.029616] and decoding was
+0.013187 [0.013094, 0.013292]. These are public-kernel measurements on synthetic
+arrays, not whole-model qualification.
+
+On x86, warm allocation remained exactly equal between arms, but all eight
+latency confidence intervals crossed equality. The short 1,000-call blocks did
+not resolve non-regression or precision; they are retained as unresolved.
+A [separate fixed follow-up](https://github.com/integrallis/models/actions/runs/38341071968)
+uses counts prospectively frozen from all completed x86 observations to target
+500 ms per block. Every new block must last at least 200 ms. Pair counts, order,
+acceptance limits and five blocks per shape remain fixed, with no optional
+stopping or pooling of the earlier observations.
+
+Raw component records and summaries remain outside the repositories at
+`audit-artifacts/2026-10-13-activation/pinned-width-38340726518/`; the longer
+follow-up has its own run identity. The earlier masked-load and scalar controls
+remain rejected diagnostic evidence, never production alternatives.
+
+## Remaining release gates
+
+The composed implementation still needs the full Q5_1 logits, task-quality,
+allocation, startup, memory and latency gates. This hardware defect does not
+erase the separate historical scratch-allocation regression or its failed ARM
+cohort. A new scratch-only comparison must state that both controls share the
+verified width repairs; it cannot be relabeled as a comparison against the old
+published runtime.
+
+The composed Models source is `00782f64092a14fccb437a4e85bbd866b6c4b11a`.
+Its production-source difference from the earlier frozen runtime is limited to
+these two classes. The current macro preparation injects a checksum-bound
+Vectors candidate while Models release metadata still declares the published
+Vectors dependency. Final release dependency pins/manifests therefore need
+explicit class-equivalence checks and consumer validation; an override run alone
+is not validation of released dependency metadata.
