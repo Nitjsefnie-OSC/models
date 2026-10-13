@@ -20,7 +20,7 @@ jobs:
           distribution: temurin
           java-version: '25.0.3'
       - name: Install pinned Rust
-        run: rustup toolchain install 1.96.0 --profile minimal --no-self-update
+        run: rustup toolchain install 1.96.0 --profile minimal --component rustfmt --component clippy --no-self-update
       - name: Fetch immutable source and artifact control
         env:
           PAYLOAD_URL: ${{ secrets.BERT_Q51_NATIVE_REUSE_URL }}
