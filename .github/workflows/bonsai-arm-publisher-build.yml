@@ -1,0 +1,43 @@
+name: Frozen ARM Bonsai publisher preparation
+on:
+  push:
+    branches: [fix/qwen-precision-proof]
+    paths: [.github/workflows/bonsai-arm-publisher-build.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  publisher:
+    runs-on: ubuntu-24.04-arm
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: PrismML-Eng/llama.cpp
+          ref: e8fd209c975c80aa7fb36a8423571ff3b1b7e955
+          path: prism
+          persist-credentials: false
+      - name: Install native build dependencies
+        run: sudo apt-get update -qq && sudo apt-get install -y cmake ninja-build libssl-dev
+      - name: Verify immutable preflight payload
+        env:
+          PAYLOAD_URL: ${{ secrets.BONSAI_ARM_PUBLISHER_URL }}
+        run: |
+          set -euo pipefail
+          curl --fail --silent --show-error --location "$PAYLOAD_URL" -o payload.tar.gz
+          echo '33aff122e488577b8b2a8328b56e0b8959fe675f943ec951a81ff8fa0c6b5700  payload.tar.gz' | sha256sum -c -
+          python3 - <<'PYCODE'
+          import tarfile,json,hashlib
+          from pathlib import Path
+          with tarfile.open('payload.tar.gz') as t:t.extractall('.',filter='data')
+          for n,h in json.loads(Path('payload/inventory.json').read_text()).items():
+              assert hashlib.sha256((Path('payload')/n).read_bytes()).hexdigest()==h,n
+          PYCODE
+      - name: Build exact source, verify archive, all200 tokens and inference smoke
+        run: python3 payload/build.py
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: bonsai-arm-publisher-preparation
+          path: out
+          retention-days: 30
