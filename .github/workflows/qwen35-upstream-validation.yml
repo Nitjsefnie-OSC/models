@@ -1,0 +1,89 @@
+name: Affected Qwen35 upstream correctness
+
+on:
+  push:
+    branches: [fix/qwen-precision-proof]
+    paths:
+      - '.github/workflows/qwen35-upstream-validation.yml'
+      - 'scripts/qwen35-upstream-validation.*'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  VECTORS_REVISION: 825c912e8aa318a695a64ca5792c34ad1bdcebac
+  VECTORS_SHA256: 279e006dd90d67f21d344d7aaad71146b6d3164e37278dfe28732080f7a9039b
+
+jobs:
+  affected:
+    name: Dense Qwen35 and affected synthetic routes (${{ matrix.runner }})
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 75
+    strategy:
+      fail-fast: false
+      matrix:
+        runner: [ubuntu-24.04, ubuntu-24.04-arm]
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          path: models
+      - uses: actions/checkout@v5
+        with:
+          repository: integrallis/vectors
+          ref: ${{ env.VECTORS_REVISION }}
+          path: vectors
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '25.0.3'
+      - uses: gradle/actions/setup-gradle@v6
+      - name: Record host and immutable inputs
+        run: |
+          mkdir -p "$RUNNER_TEMP/qwen35-results"
+          {
+            date -u
+            uname -a
+            lscpu
+            free -b
+            java -version
+            git -C models rev-parse HEAD
+            git -C vectors rev-parse HEAD
+          } > "$RUNNER_TEMP/qwen35-results/host.txt" 2>&1
+          [[ "$(git -C vectors rev-parse HEAD)" == "$VECTORS_REVISION" ]]
+      - name: Build and verify the actual candidate artifact
+        working-directory: vectors
+        run: |
+          ./gradlew :vectors-core:jar --no-daemon --max-workers=2 --stacktrace
+          mapfile -t jars < <(find "$PWD/vectors-core/build/libs" -maxdepth 1 -name 'vectors-core-*.jar' ! -name '*-sources.jar' ! -name '*-javadoc.jar' -type f)
+          [[ ${#jars[@]} -eq 1 ]]
+          echo "$VECTORS_SHA256  ${jars[0]}" | sha256sum -c -
+          {
+            echo "QWEN35_UPSTREAM_JAR=${jars[0]}"
+            echo "QWEN35_UPSTREAM_REVISION=$VECTORS_REVISION"
+            echo "QWEN35_UPSTREAM_SHA256=$VECTORS_SHA256"
+            echo "QWEN35_UPSTREAM_RESULTS=$RUNNER_TEMP/qwen35-results"
+          } >> "$GITHUB_ENV"
+      - uses: actions/cache@v5
+        with:
+          path: |
+            ~/.jvllm/models/Qwen3.5-0.8B-Q4_K_M.gguf
+            ~/.jvllm/models/Qwen3.5-4B-Q4_K_M.gguf
+          key: qwen35-upstream-real-fixtures-bd258782-00fe7986
+      - name: Run unchanged dense and synthetic assertions
+        working-directory: models
+        run: |
+          set -o pipefail
+          ./gradlew :backend-java:qwen35GgufLayoutTest \
+            :backend-java:qwen35GroupedGdnCompatibilityTest \
+            :backend-java:qwen35UpstreamSyntheticTest \
+            --init-script scripts/qwen35-upstream-validation.init.gradle \
+            --no-daemon --max-workers=2 --continue --stacktrace \
+            2>&1 | tee "$QWEN35_UPSTREAM_RESULTS/gradle.log"
+      - name: Retain raw results even on failure
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: qwen35-upstream-${{ matrix.runner }}
+          path: ${{ runner.temp }}/qwen35-results/
+          retention-days: 30

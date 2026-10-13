@@ -1,0 +1,93 @@
+// Diagnostic overlay for unchanged affected-family tests; never changes normal dependency resolution.
+import groovy.json.JsonOutput
+import java.security.MessageDigest
+import org.gradle.api.tasks.testing.Test
+
+def jarPath = System.getenv('QWEN35_UPSTREAM_JAR')
+def revision = System.getenv('QWEN35_UPSTREAM_REVISION')
+def expectedHash = System.getenv('QWEN35_UPSTREAM_SHA256')
+def outputPath = System.getenv('QWEN35_UPSTREAM_RESULTS')
+if (!jarPath || !(revision ==~ /[0-9a-f]{40}/) || !(expectedHash ==~ /[0-9a-f]{64}/) || !outputPath) {
+    throw new GradleException('Exact upstream JAR, revision, SHA-256 and external result directory are required')
+}
+def candidate = new File(jarPath).canonicalFile
+def resultRoot = new File(outputPath).canonicalFile
+if (!candidate.isFile()) throw new GradleException("Missing upstream candidate: $candidate")
+def hash = { File file ->
+    def digest = MessageDigest.getInstance('SHA-256')
+    file.withInputStream { stream ->
+        byte[] buffer = new byte[65536]
+        int count
+        while ((count = stream.read(buffer)) != -1) digest.update(buffer, 0, count)
+    }
+    digest.digest().encodeHex().toString()
+}
+if (hash(candidate) != expectedHash) throw new GradleException('Upstream artifact hash mismatch')
+def expectedClasses = [
+    qwen35GgufLayoutTest: ['Qwen35GgufLayoutTest', 'Qwen35ForwardPassIntegrationTest'],
+    qwen35GroupedGdnCompatibilityTest: ['Qwen35GroupedGdnIntegrationTest'],
+    qwen35UpstreamSyntheticTest: ['Qwen35ConfigTest', 'Qwen35ForwardPassTest',
+        'Qwen35MixtureOfExpertsTest', 'Qwen35QuantizedExpertsTest', 'Qwen35FusedBetaAlphaTest']
+].collectEntries { name, classes -> [name, classes.collect {
+    'com.integrallis.models.backend.purejava.qwen35.' + it
+}] }
+def permitted = expectedClasses.keySet().toList()
+gradle.projectsEvaluated {
+    def root = gradle.rootProject
+    if (resultRoot.toPath().startsWith(root.projectDir.canonicalFile.toPath())) {
+        throw new GradleException('Diagnostic results must be stored outside the repository')
+    }
+    if (!gradle.startParameter.taskNames || gradle.startParameter.taskNames.any {
+        !permitted.collect { ':backend-java:' + it }.contains(it)
+    }) throw new GradleException('Only the three affected-family diagnostic tasks are permitted')
+    def backend = root.project(':backend-java')
+    backend.tasks.register('qwen35UpstreamSyntheticTest', Test) {
+        description = 'Unchanged synthetic dense, MoE and Qwen3-Next convolution callers'
+        testClassesDirs = backend.sourceSets.test.output.classesDirs
+        classpath = backend.sourceSets.test.runtimeClasspath
+        useJUnitPlatform()
+        filter {
+            expectedClasses.qwen35UpstreamSyntheticTest.each { includeTestsMatching(it) }
+        }
+        dependsOn(backend.tasks.named('testClasses'))
+    }
+    permitted.each { taskName ->
+        backend.tasks.named(taskName, Test).configure {
+            def seenClasses = [] as Set
+            def original = classpath
+            def released = original.filter { it.name.startsWith('vectors-core-') && it.name.endsWith('.jar') }
+            classpath = backend.files(candidate) + (original - released)
+            inputs.property('upstreamRevision', revision)
+            inputs.property('upstreamSha256', expectedHash)
+            outputs.upToDateWhen { false }
+            reports.junitXml.outputLocation.set(new File(resultRoot, taskName + '/xml'))
+            reports.html.outputLocation.set(new File(resultRoot, taskName + '/html'))
+            binaryResultsDirectory.set(new File(resultRoot, taskName + '/binary'))
+            doFirst {
+                if (released.files.size() != 1) throw new GradleException('Expected exactly one released vectors-core JAR')
+                def report = new File(resultRoot, taskName + '/provenance.json')
+                report.parentFile.mkdirs()
+                report.text = JsonOutput.prettyPrint(JsonOutput.toJson([
+                    scope: 'Unchanged affected-family assertions with exact unpublished upstream core; no release or real-MoE qualification claim',
+                    vectorsRevision: revision,
+                    modelsRevision: ['git', 'rev-parse', 'HEAD'].execute(null, root.projectDir).text.trim(),
+                    expectedTestClasses: expectedClasses[taskName],
+                    candidate: [path: candidate.path, sha256: hash(candidate)],
+                    replaced: released.files.collect { [path: it.path, sha256: hash(it)] },
+                    classpath: classpath.files.collect { [path: it.path, sha256: it.isFile() ? hash(it) : null] },
+                    javaVersion: System.getProperty('java.version'),
+                    selectedTask: path
+                ])) + '\n'
+            }
+            afterTest { descriptor, result -> seenClasses.add(descriptor.className) }
+            afterSuite { descriptor, result ->
+                if (descriptor.parent == null && (result.testCount == 0 || result.skippedTestCount != 0)) {
+                    throw new GradleException("Affected-family tests must execute without skips: count=$result.testCount skipped=$result.skippedTestCount")
+                }
+                if (descriptor.parent == null && seenClasses != expectedClasses[taskName].toSet()) {
+                    throw new GradleException("Missing affected-family classes: expected=${expectedClasses[taskName]} actual=$seenClasses")
+                }
+            }
+        }
+    }
+}
