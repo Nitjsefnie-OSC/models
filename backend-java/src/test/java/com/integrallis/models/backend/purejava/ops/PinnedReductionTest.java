@@ -21,6 +21,7 @@ import static org.junit.jupiter.api.Assumptions.assumeTrue;
 import com.integrallis.vectors.core.PanamaConstants;
 import com.integrallis.vectors.core.VectorUtil;
 import java.util.Random;
+import jdk.incubator.vector.FloatVector;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -49,7 +50,8 @@ class PinnedReductionTest {
     // shape already computed, so no pinned model oracle moves. It can only be asserted where the
     // host actually is 256 bits and fuses, which is the common case and this development machine.
     assumeTrue(
-        PanamaConstants.MAX_BITS == 256, "only meaningful where the original computes 8 lanes");
+        Math.min(PanamaConstants.MAX_BITS, FloatVector.SPECIES_PREFERRED.vectorBitSize()) == 256,
+        "only meaningful where the original computes 8 lanes");
     assumeTrue(PanamaConstants.HAS_FAST_VECTOR_FMA, "the original fuses only with fast vector FMA");
     assumeTrue(PanamaConstants.HAS_FAST_SCALAR_FMA, "and fuses its scalar tail likewise");
 
