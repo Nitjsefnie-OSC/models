@@ -1,0 +1,82 @@
+name: Explicit warmed SLEEF ARM native caller proof
+on:
+  push:
+    branches: [fix/qwen-precision-proof]
+    paths: [.github/workflows/sleef-native-arm.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  caller:
+    runs-on: ubuntu-24.04-arm
+    timeout-minutes: 50
+    steps:
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '25.0.3'
+      - name: Verify immutable external source, runtime and prospective protocol
+        env:
+          PAYLOAD_URL: ${{ secrets.SLEEF_NATIVE_ARM_URL }}
+        run: |
+          set -euo pipefail
+          mkdir -p proof-out
+          curl --fail --silent --show-error --location "$PAYLOAD_URL" -o payload.tar.gz
+          echo '83f880e46204f85b03fe1ef18940f163dd6c48ecb57e6e35bb1fbb77537c7351  payload.tar.gz' | sha256sum -c -
+          python3 - <<'PYCODE'
+          import tarfile
+          with tarfile.open('payload.tar.gz') as t:t.extractall('.',filter='data')
+          PYCODE
+          lscpu > proof-out/host.txt
+          java -XX:+PrintFlagsFinal -version >> proof-out/host.txt 2>&1
+          java -version 2>&1 | grep '25.0.3+9'
+          rustc --version >> proof-out/host.txt
+          python3 payload/run.py prepare
+      - name: Actual native full-domain and retained-input numerical proof
+        run: python3 payload/run.py numeric
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: sleef-native-arm-numeric
+          path: |
+            proof-out
+            payload/PROTOCOL.md
+            payload/files.json
+            payload/freeze.json
+          retention-days: 30
+      - name: Actual public cold hot chunk alias tail history and concurrency contracts
+        run: python3 payload/run.py parity
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: sleef-native-arm-parity
+          path: |
+            proof-out
+            payload/PROTOCOL.md
+            payload/files.json
+            payload/freeze.json
+          retention-days: 30
+      - name: Four fixed matched public caller blocks with full first-call linkage cost
+        run: python3 payload/run.py timing
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: sleef-native-arm-caller
+          path: |
+            proof-out
+            payload/PROTOCOL.md
+            payload/files.json
+            payload/freeze.json
+          retention-days: 30
+      - name: Separate untimed compiled caller diagnosis
+        run: python3 payload/run.py codegen
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: sleef-native-arm-final
+          path: |
+            proof-out
+            payload/PROTOCOL.md
+            payload/files.json
+            payload/freeze.json
+          retention-days: 30
