@@ -44,6 +44,27 @@ The preliminary artifact's four local paired observations show a variable speed 
 
 The subsequent [CPU-stratified cohort](https://github.com/integrallis/vectors/actions/runs/38342150666) retains the exact same `6102074a` artifact and reports **NOT_PASSED**. AMD EPYC 7763 has 96 pairs across three hosts: warm ratio 0.800, 95% interval 0.779–0.820. AMD EPYC 9V74 has 64 pairs across two hosts: 0.906, interval 0.849–0.960. Neoverse-N2 has 32 pairs on one host: 0.559, interval 0.550–0.570. All latency upper bounds are below one; cold allocation and individual allocation checks pass. However, every latency interval remains wider than the declared precision limit. This is improved measured performance with an unresolved precision gate, not a release pass. The raw analysis and independent re-analysis are preserved at `audit-artifacts/convolution-precision-38342150666`; no unfavorable host or pair is discarded. Independent model correctness and public-QA work can proceed while precision is resolved, but publication stays blocked.
 
+
+## Completed final component cohorts
+
+The [powered cohort](https://github.com/integrallis/vectors/actions/runs/38344820787) passes its
+completed EPYC 7763 AVX2, Neoverse N2 and EPYC 9V74 AVX512 strata. Its 9V74 AVX2 stratum had six
+of eight required hosts and is incomplete. The separate, frozen
+[AVX2-only cohort](https://github.com/integrallis/vectors/actions/runs/38347424166) completes eight
+hosts and 1,024 paired observations: candidate/published warm ratio `0.8657338573`, interval
+`[0.8559327031, 0.8763074811]`. Latency and allocation improve, but interval width `0.0203747780`
+exceeds the unchanged `0.02` precision limit. Verdict remains **NOT_PASSED**. No older six-host
+observations were pooled into this result, and no additional precision cohort is being launched.
+Official and independent analyses agree; all admissions and raw observations remain external at
+`audit-artifacts/convolution-avx2-independent-v1`.
+
+The current composed core `263bff1a` changes BF16 only; its convolution class is byte-identical
+to the measured `6102074a` artifact. This correspondence does not close the whole-model failure:
+the completed ten-pair ARM Bonsai cohort measures cold allocation at `1.833414` times published
+(interval `[1.805587, 1.860513]`) and whole-request latency at `1.004125`
+(`[1.003131, 1.004886]`). Separate matched JFR/actual-tensor investigations identify SwiGLU and
+BF16 allocation contributions. These are release regressions even though convolution itself improves.
+
 ## Immutable run receipts
 
 - [Rejected scalar component cohort](https://github.com/integrallis/vectors/actions/runs/38332030050). All 2,451 retained files, artifact identities and descriptive partial observations are archived outside repositories at `audit-artifacts/2026-10-13-rejected-experiments/vectors/convolution-925460-run-38332030050`.
@@ -59,6 +80,6 @@ The canceled screening setup used `-XX:-UseFMA`, which disables the intrinsic wh
 
 ## Remaining release gates
 
-Qualify a replacement on supported hosts, then run affected whole-model numerical, latency, throughput, startup, allocation and resident-memory checks. Bonsai requires the unchanged 200-case public-QA comparison. The previous QA run timed out before completion; its partial outputs are preserved outside repositories and do not establish a quality verdict.
+Qualify a replacement on supported hosts, then run affected whole-model numerical, latency, throughput, startup, allocation and resident-memory checks. Bonsai requires the unchanged 200-case public-QA comparison. An earlier candidate completed all 200 cases; that result does not qualify later arithmetic changes. The composed candidate's [new 200-case comparison](https://github.com/integrallis/models/actions/runs/38345112860) is separate and remains pending.
 
 Publish only after the final exact source passes normal CI and release validation, then update the Models dependency through the dependency-ordered release plan. No new release has been published, and no failed control, canceled cohort or later source change is represented as qualified.

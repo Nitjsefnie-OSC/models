@@ -1,12 +1,26 @@
 # CI failure review — 12 October 2026
 
-The candidate upstream correction now passes all five Huatuo determinism configurations and
-all four expanded Bonsai configurations. **Ordinary dependency-pinned Models CI remains red:**
-run [38319088829](https://github.com/integrallis/models/actions/runs/38319088829) at
-`4f3d3e9a548bf3781ab3d002ff37df0875760e49` passes all nine pure-Java large-model jobs,
-including Fin-R1, but fails both native Bonsai jobs. It still resolves published Vectors 0.1.29.
-The green candidate runs below use an explicitly recorded unpublished core; they do not establish
-that a corrected dependency has shipped or that the remaining performance/resource gates pass.
+
+## Current source, 13 October
+
+Models `196ada53d4d6d571262a3a2f8c86af978b29c278` passes
+[full CI](https://github.com/integrallis/models/actions/runs/38352278543),
+[all six native platforms, Miri and the standalone bundle](https://github.com/integrallis/models/actions/runs/38352278572),
+[model integration](https://github.com/integrallis/models/actions/runs/38352278486),
+framework compatibility, CodeQL and Apple bridge checks. The macOS x86 native job initially failed
+before compilation because Gradle could not resolve its pinned SpotBugs plugin. Its unmodified
+rerun resolved the dependency and passed; the original failed log is retained outside the repository
+at `audit-artifacts/ci-38352278572`. No numerical fix is inferred from that rerun.
+
+**Ordinary large-model CI remains red:**
+[38352278821](https://github.com/integrallis/models/actions/runs/38352278821) fails the four native
+Bonsai configurations against published Vectors. The explicitly corrected dependency graph passes
+all twelve Bonsai fixture assertions across x86/ARM and pinned/current JDKs in
+[38344960005](https://github.com/integrallis/models/actions/runs/38344960005), with no skipped tests.
+The corrected candidate still fails whole-model allocation/performance gates; it has not shipped.
+Publishing it merely to turn the ordinary dependency-pinned tests green would ship those regressions.
+
+## Historical findings
 
 The following table preserves the earlier failure findings and their evidence. The 21:55 UTC
 snapshot had passing Models build, model integration, six native-platform jobs, framework matrix,
