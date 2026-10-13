@@ -27,6 +27,7 @@ jobs:
       - name: Preserve exact source bytes and allow long paths
         run: |
           git config --global core.autocrlf false
+          git config --global core.eol lf
           git config --global core.longpaths true
       - uses: actions/checkout@v5
         with:
