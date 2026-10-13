@@ -113,9 +113,11 @@ All four Bonsai jobs fail with `fresh session changed after compilation`, as do 
 four Qwen BF16 jobs. These are real numerical failures; the workflow correctly
 blocked timing. Matching selected tokens had concealed different full logits.
 
-The combined BF16 + complete-activation runtime passes those broader fixtures in
-[38321278750](https://github.com/integrallis/models/actions/runs/38321278750).
-Whole-model timing/resource analysis is still pending for Bonsai. The corrected
+The combined BF16 + complete-activation runtime passes the expanded permanent
+fixture in [38323006687](https://github.com/integrallis/models/actions/runs/38323006687).
+The separate paired run [38321278750](https://github.com/integrallis/models/actions/runs/38321278750)
+is still running for Bonsai; its fixture and whole-model observations need their
+completed artifact receipts before a verdict. The corrected
 release candidate therefore needs both changes. The permanent isolated-JVM native
 fixture now checks complete snapshots across fresh sessions, with all original
 assertions retained.
@@ -128,8 +130,9 @@ arithmetic or relax the original Bonsai tests.
 
 ## Validation and release boundary
 
-The separate manual upstream-validation workflow runs the original two Bonsai tests
-with one explicitly selected Vectors core. It checks an immutable source revision,
+The separate manual upstream-validation workflow originally ran two Bonsai tests
+and now includes the third full-logit fresh-session regression, with one explicitly
+selected Vectors core. It checks an immutable source revision,
 builds its JAR, removes the released core from that test's runtime classpath, and
 records the replacement, hashes and complete classpath beside the JUnit results.
 It cannot be used for publication or other Gradle tasks. Normal CI remains on the
@@ -140,11 +143,14 @@ The first two-architecture validation is
 Vectors `6893a587d7f1d8fd2cd58e85310ef87579b42b25`. Its result must be read from the
 completed jobs and retained XML; a running job is not a pass.
 
-The broader Vectors candidate also contains unrelated changes with unresolved
-performance gates. A narrow hotfix is being evaluated separately. The smallest
-fixed-tree patch already has historical kernel regressions, so it cannot inherit
-the optimized implementation's performance evidence. Any optimized hotfix must
-retain its actual source, JAR hashes and matching measurements.
+Vectors PR 100 is the continuing correction. Its final core is `13f0` as recorded
+above; the latest documentation-only source is `040b918b`. Final-core Qwen and BF16
+cohorts run in [38325763396](https://github.com/integrallis/models/actions/runs/38325763396)
+and [38326571129](https://github.com/integrallis/vectors/actions/runs/38326571129).
+The final-artifact 200-case publisher comparison runs separately in
+[38328345931](https://github.com/integrallis/models/actions/runs/38328345931).
+None of these running measurements is a qualification receipt. The earlier minimal
+fixed-tree implementation and rejected experiments retain their original evidence.
 
 ## Completion criteria
 
