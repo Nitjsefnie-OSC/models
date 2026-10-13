@@ -39,8 +39,8 @@ import java.util.Map;
 import java.util.Objects;
 
 /**
- * GGUF backend that keeps transformer execution in Java and delegates qualified matrix kernels to
- * Models-owned Rust code through FFM.
+ * GGUF backend that keeps transformer execution in Java and delegates eligible operations to
+ * Models-owned Rust kernels through FFM.
  */
 public final class RustFfmBackend
     implements GroupedDecisionBackend,

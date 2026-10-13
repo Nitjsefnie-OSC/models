@@ -24,23 +24,16 @@ import java.util.Properties;
 import java.util.Set;
 
 /**
- * The one native setting a deployment can still choose: how many worker threads the shim runs.
+ * Resolves the native worker count and reports obsolete deployment settings.
  *
- * <p>There used to be four more — {@code quantizedDecode}, {@code q5_0.grouped}, {@code
- * gatedDeltaNet} and {@code loadWarmup} — each of which vetoed a Rust kernel the shim had already
- * reported a capability for, and each of which defaulted to <em>off</em> when no deployment
- * property and no matching ModelJar profile supplied it. That was the common case: every published
- * performance profile selects on an exact {@code os}, {@code architecture}, {@code cpu-model},
- * {@code processors} and usually an exact {@code vm-version}, so any host outside the two EC2 CPU
- * models we qualify on matched nothing and ran the slow route. Routing decode to the Java path cost
- * 6.2x on the same host and harness — 2.52 against 15.72 tok/s, OFFLINE against USABLE
- * (`benchmark-results/2026-09-23-prefill-budget/NOTES.md`) — while every certified qualification
- * run had it forced on, so the published tiers described a path users did not get.
+ * <p>Earlier releases also exposed switches for quantized decode, grouped Q5_0, DeltaNet, load
+ * warmup, and grouped attention. Published model profiles can still contain these settings, so they
+ * are accepted and reported as ignored. They do not select an implementation in this release.
  *
- * <p>They are gone rather than flipped. The shim serves whatever it reports a capability for, and
- * the Java path remains only where there is no capability, which is a real fallback and not a
- * choice. {@code loadWarmup} is gone outright: its experiment returned VOID, so it bought no
- * measured speed while costing load time against the readiness gate.
+ * <p>Routing belongs to the kernel provider and each model caller. A reported native capability
+ * establishes availability; caller eligibility also depends on the operation, shape, and supported
+ * hardware. Capability discovery is not a performance qualification. Removed settings must not
+ * resurrect retired kernels or override those routing decisions.
  */
 record NativeKernelSettings(int threadCount, List<String> ignoredRemovedSettings) {
   private static final String PROPERTY_PREFIX = "models.native.";
@@ -55,11 +48,9 @@ record NativeKernelSettings(int threadCount, List<String> ignoredRemovedSettings
    * marker jar embeds its profile, so a version of this class that threw on them would stop those
    * models loading at all — and no catalogue edit could reach a marker already in Maven Central.
    *
-   * <p>Ignoring them is also the truthful answer rather than a concession. Each named a faster
-   * route that the shim now takes unconditionally, so a profile asking for it gets exactly what it
-   * asked for. {@link #ignoredRemovedSettings()} reports which were seen so {@code RustFfmBackend}
-   * can record them in its diagnostics: a caller reading the report finds the setting named and
-   * marked ignored, instead of silently believing it still does something.
+   * <p>{@link #ignoredRemovedSettings()} reports which were seen so {@code RustFfmBackend} can
+   * identify obsolete configuration in its diagnostics. The diagnostic does not imply that the
+   * requested historical route still exists or is selected.
    */
   private static final Set<String> REMOVED_SETTINGS =
       Set.of(
