@@ -1,7 +1,9 @@
 # Prospective fixed Qwen full-metric phase
 
-**Prepared, not launched.** Held pending the isolated BF16 allocation investigation. If the runtime
-changes, freeze and validate its exact artifact before launching; do not relabel existing results.
+**Authorized for launch on the isolated13f0bd51 BF16 artifact.** The bounded comparison removed
+48B/op from the ARM serial case; x86 serial and both parallel latency intervals remain unresolved.
+They are retained as limitations, not reclassified as passing gates. This separate final-artifact
+whole-model cohort measures the published comparison directly.
 
 Keep all observations from run38321278750 and its failed precision verdicts unchanged. A separate
 fixed full-metric Qwen cohort can resolve effect-size precision more cheaply than separate latency,
@@ -51,7 +53,7 @@ ten ARM load ratios is0.03199; that predicts400-pair width0.00627 and about87% n
 power at true ratio1.005, versus the original CI-derived planning estimate≈93%. Both are uncertain
 planning approximations; the fixed400 count and the original1.01/0.02 limits remain unchanged.
 
-The prepared candidate is now91dd64ae / SHA25613f0bd51, pending its bounded supported-host gate.
+The candidate is91dd64ae / SHA25613f0bd51, with the bounded supported-host findings above.
 Full JAR comparison proves only `BFloat16Matrix.class` differs from the measured combined e3e7
 artifact; no added or removed entries. The fixed cohort size and all metrics/limits are unchanged.
 New core correspondence is retained in `candidate-correspondence.json`.
