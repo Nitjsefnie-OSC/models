@@ -1,0 +1,117 @@
+name: Published ARM activation recipe Qwen causal quality
+on:
+  push:
+    branches: [fix/qwen-precision-proof]
+    paths: [.github/workflows/sleef-activation-model.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  quality:
+    strategy:
+      fail-fast: false
+      max-parallel: 4
+      matrix:
+        shard: [0, 1, 2, 3]
+    runs-on: ubuntu-24.04-arm
+    timeout-minutes: 120
+    steps:
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '25.0.3'
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          toolchain: '1.96.0'
+      - name: Verify immutable cleaned candidate and fixed full cohort
+        env:
+          PAYLOAD_URL: ${{ secrets.SLEEF_ACTIVATION_MODEL_URL }}
+        run: |
+          set -euo pipefail
+          mkdir -p out
+          curl --fail --silent --show-error --location "$PAYLOAD_URL" -o payload.tar.gz
+          echo 'dc331c8f8379271e6ba2f4fbe99424d5834a940864555cb41540819fce080836  payload.tar.gz' | sha256sum -c -
+          python3 - <<'PYCODE'
+          import tarfile,hashlib,json,pathlib
+          with tarfile.open('payload.tar.gz') as t:t.extractall('.',filter='data')
+          p=pathlib.Path('payload')
+          for n,h in json.loads((p/'files.json').read_text()).items():assert hashlib.sha256((p/n).read_bytes()).hexdigest()==h,n
+          PYCODE
+          javac --add-modules jdk.incubator.vector -cp payload/sleef.jar -d out/probe-classes payload/probe/*.java
+          java --add-modules jdk.incubator.vector --enable-native-access=ALL-UNNAMED -cp out/probe-classes:payload/sleef.jar com.integrallis.vectors.core.AdapterProof public intrinsic > out/public-parity.stdout 2> out/public-parity.stderr
+      - name: Build exact native controls and verify actual runtime inventories
+        run: python3 payload/run.py prepare ${{ matrix.shard }}
+      - name: Fixed arm 0 - observed routes, plain owned logits, state checks
+        run: python3 payload/run.py 0 ${{ matrix.shard }}
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: sleef-model-arm-${{ matrix.shard }}-checkpoint-0
+          path: |
+            out/*.json
+            out/*.stdout
+            out/*.stderr
+            out/*-state-snapshots
+            payload/protocol.json
+            payload/files.json
+            payload/expected-runtime.json
+          retention-days: 30
+      - name: Fixed arm 1 - observed routes, plain owned logits, state checks
+        run: python3 payload/run.py 1 ${{ matrix.shard }}
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: sleef-model-arm-${{ matrix.shard }}-checkpoint-1
+          path: |
+            out/*.json
+            out/*.stdout
+            out/*.stderr
+            out/*-state-snapshots
+            payload/protocol.json
+            payload/files.json
+            payload/expected-runtime.json
+          retention-days: 30
+      - name: Fixed arm 2 - observed routes, plain owned logits, state checks
+        run: python3 payload/run.py 2 ${{ matrix.shard }}
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: sleef-model-arm-${{ matrix.shard }}-checkpoint-2
+          path: |
+            out/*.json
+            out/*.stdout
+            out/*.stderr
+            out/*-state-snapshots
+            payload/protocol.json
+            payload/files.json
+            payload/expected-runtime.json
+          retention-days: 30
+      - name: Fixed arm 3 - observed routes, plain owned logits, state checks
+        run: python3 payload/run.py 3 ${{ matrix.shard }}
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: sleef-model-arm-${{ matrix.shard }}-checkpoint-3
+          path: |
+            out/*.json
+            out/*.stdout
+            out/*.stderr
+            out/*-state-snapshots
+            payload/protocol.json
+            payload/files.json
+            payload/expected-runtime.json
+          retention-days: 30
+      - name: Preserve all case outcomes and observer/plain discrepancies
+        run: python3 payload/run.py analyze ${{ matrix.shard }}
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: sleef-model-arm-${{ matrix.shard }}-final
+          path: |
+            out/*.json
+            out/*.stdout
+            out/*.stderr
+            out/*-state-snapshots
+            payload/protocol.json
+            payload/files.json
+          retention-days: 30
