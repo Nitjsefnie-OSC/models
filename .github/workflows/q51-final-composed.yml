@@ -1,0 +1,206 @@
+name: Final composed Q51 exact route and published comparison
+on:
+  push:
+    branches: [fix/qwen-precision-proof]
+    paths: [.github/workflows/q51-final-composed.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  proof:
+    strategy:
+      fail-fast: false
+      matrix:
+        arch: [x86, arm]
+    runs-on: ${{ matrix.arch == 'arm' && 'ubuntu-24.04-arm' || 'ubuntu-24.04' }}
+    timeout-minutes: 180
+    env:
+      RUSTUP_TOOLCHAIN: '1.96.0'
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          path: harness
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '25.0.3'
+      - name: Install pinned Rust
+        run: rustup toolchain install 1.96.0 --profile minimal --no-self-update
+      - name: Fetch frozen actual runtime
+        env:
+          COMPOSED_URL: ${{ secrets.GDN_COMPOSED_URL }}
+        run: |
+          set -euo pipefail
+          curl --fail --silent --show-error --location "$COMPOSED_URL" -o composed.tar.gz
+          python3 - <<'PYCODE'
+          import json,hashlib,tarfile
+          p=json.load(open('harness/scripts/q51-composed/protocol.json'))
+          assert p['dispatchReady']
+          assert hashlib.sha256(open('composed.tar.gz','rb').read()).hexdigest()==p['runtimePayloadSha256']
+          with tarfile.open('composed.tar.gz') as tar:tar.extractall('.',filter='data')
+          PYCODE
+      - name: prepare
+        env:
+          Q51_SCRATCH_REFERENCE_URL: ${{ secrets.Q51_SCRATCH_REFERENCE_URL }}
+          GDN_REFERENCE_URL: ${{ secrets.GDN_REFERENCE_URL }}
+        run: python3 harness/scripts/q51-composed/run.py prepare --bundle composed --arch ${{ matrix.arch }} --out out
+      - name: Full148-case candidate numerical cohort
+        run: python3 harness/scripts/q51-composed/run.py cohort --arm candidate --out out
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: q51-composed-${{ matrix.arch }}-cohort-candidate
+          path: |
+            out/*.json
+            out/*.stdout
+            out/*.stderr
+      - name: Full148-case hybrid numerical cohort
+        run: python3 harness/scripts/q51-composed/run.py cohort --arm hybrid --out out
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: q51-composed-${{ matrix.arch }}-cohort-hybrid
+          path: |
+            out/*.json
+            out/*.stdout
+            out/*.stderr
+      - name: Full148-case published numerical cohort
+        run: python3 harness/scripts/q51-composed/run.py cohort --arm published --out out
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: q51-composed-${{ matrix.arch }}-cohort-published
+          path: |
+            out/*.json
+            out/*.stdout
+            out/*.stderr
+      - name: triplet-0
+        run: python3 harness/scripts/q51-composed/run.py timing --pair 0 --out out
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: q51-composed-${{ matrix.arch }}-triplet-0
+          path: |
+            out/*.json
+            out/*.stdout
+            out/*.stderr
+      - name: triplet-1
+        run: python3 harness/scripts/q51-composed/run.py timing --pair 1 --out out
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: q51-composed-${{ matrix.arch }}-triplet-1
+          path: |
+            out/*.json
+            out/*.stdout
+            out/*.stderr
+      - name: triplet-2
+        run: python3 harness/scripts/q51-composed/run.py timing --pair 2 --out out
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: q51-composed-${{ matrix.arch }}-triplet-2
+          path: |
+            out/*.json
+            out/*.stdout
+            out/*.stderr
+      - name: triplet-3
+        run: python3 harness/scripts/q51-composed/run.py timing --pair 3 --out out
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: q51-composed-${{ matrix.arch }}-triplet-3
+          path: |
+            out/*.json
+            out/*.stdout
+            out/*.stderr
+      - name: triplet-4
+        run: python3 harness/scripts/q51-composed/run.py timing --pair 4 --out out
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: q51-composed-${{ matrix.arch }}-triplet-4
+          path: |
+            out/*.json
+            out/*.stdout
+            out/*.stderr
+      - name: triplet-5
+        run: python3 harness/scripts/q51-composed/run.py timing --pair 5 --out out
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: q51-composed-${{ matrix.arch }}-triplet-5
+          path: |
+            out/*.json
+            out/*.stdout
+            out/*.stderr
+      - name: triplet-6
+        run: python3 harness/scripts/q51-composed/run.py timing --pair 6 --out out
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: q51-composed-${{ matrix.arch }}-triplet-6
+          path: |
+            out/*.json
+            out/*.stdout
+            out/*.stderr
+      - name: triplet-7
+        run: python3 harness/scripts/q51-composed/run.py timing --pair 7 --out out
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: q51-composed-${{ matrix.arch }}-triplet-7
+          path: |
+            out/*.json
+            out/*.stdout
+            out/*.stderr
+      - name: triplet-8
+        run: python3 harness/scripts/q51-composed/run.py timing --pair 8 --out out
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: q51-composed-${{ matrix.arch }}-triplet-8
+          path: |
+            out/*.json
+            out/*.stdout
+            out/*.stderr
+      - name: triplet-9
+        run: python3 harness/scripts/q51-composed/run.py timing --pair 9 --out out
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: q51-composed-${{ matrix.arch }}-triplet-9
+          path: |
+            out/*.json
+            out/*.stdout
+            out/*.stderr
+      - name: triplet-10
+        run: python3 harness/scripts/q51-composed/run.py timing --pair 10 --out out
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: q51-composed-${{ matrix.arch }}-triplet-10
+          path: |
+            out/*.json
+            out/*.stdout
+            out/*.stderr
+      - name: triplet-11
+        run: python3 harness/scripts/q51-composed/run.py timing --pair 11 --out out
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: q51-composed-${{ matrix.arch }}-triplet-11
+          path: |
+            out/*.json
+            out/*.stdout
+            out/*.stderr
+      - name: Unchanged complete gates
+        run: python3 harness/scripts/q51-composed/analyze.py out out/summary.json
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: q51-composed-${{ matrix.arch }}-summary
+          path: |
+            out/*.json
+            out/*.stdout
+            out/*.stderr

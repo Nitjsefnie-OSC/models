@@ -1,0 +1,49 @@
+{
+  "scope": "Prospective exact composed Q51 candidate versus same-artifact prior hybrid eligibility and separately retained published-release control. No old result pooling.",
+  "payloadSha256": "06adff0d10bf5986fa2d532d4134201989293b573c45ab000238bf48c59f84b5",
+  "variants": [
+    "candidate",
+    "hybrid",
+    "published"
+  ],
+  "jdk": "25.0.3",
+  "threads": 4,
+  "triplets": 12,
+  "warmRequests": 32,
+  "measuredRequests": 3,
+  "requestsInNumericalCohort": 148,
+  "snapshotsPerRequest": 9,
+  "vectorsSha256": "9fc500f992f5b5ef73086691d53d82a8ea8702e5d80d6145d582365b3ef7c189",
+  "derivedFixtureSha256": "2381b9c9db9f2eb07049ed124280f6a8cfd18c0aef96ca317134115d870e23d1",
+  "perProcessSeconds": 900,
+  "bootstrapSeed": 903271,
+  "bootstrapResamples": 20000,
+  "maximumIntervalWidth": 0.02,
+  "limits": {
+    "prefillNanos": 1.0,
+    "decodeNanos": 1.0,
+    "modelNanos": 1.0,
+    "javaAllocatedBytes": 1.01,
+    "loadNanos": 1.01,
+    "peakRssKb": 1.01,
+    "requestNanos": 1.0,
+    "coldRequestNanos": 1.0,
+    "coldAllocatedBytes": 1.01
+  },
+  "modelsRevision": "218daaea7b3a52e97311b56e5d950245ed917343",
+  "vectorsRevision": "b0aadc8d972f3504426f6e38fcb0a4b4a97a0333",
+  "dispatchReady": true,
+  "harnessSha256": "d3a371f131ec18567d120325f5ba67713cd51f21fabf906cfed33db1535f1b4c",
+  "runtimePayloadSha256": "3b41f363a01199256f62ef8cb8d0501363e2425d2630c26e89ee0500c2a07c58",
+  "runtimeManifestSha256": "bff840850d9375e97d759a7a1f4d2940310a0079601f94a9e815cd5a97c3398b",
+  "comparisonPolicy": {
+    "candidateVsHybrid": "All148x9 raw-logit hashes, greedy tokens and labels must be exact; all35 timed requests exact within and across freshprocesses. All original metric limits unchanged.",
+    "candidateVsPublished": "Same148 identities and per-dataset accuracy must not regress. Published cold/hot numeric instability retained, not required to match corrected values. All original metric limits unchanged."
+  },
+  "processOrder": "All six permutations repeated twice across fixed12 triplets per architecture",
+  "historicalPublishedPayloadSha256": "af7d58efacdde64e3e66e0f68331afbff2d6f18058d7671c110c1e73ad2dabd4",
+  "modelsSourcePatchSha256": "a43b47ca8ba326b456456fd008f416b2d740e39ee25e0da873c03c269ffce918",
+  "vectorsSourcePatchSha256": "c4e27193e565db4323d6aba07e948a8c7f19515a1f0ed01b384be02ac1266a68",
+  "vectorsSourceManifestSha256": "f4296af80e30dc935c9a6a7693180ebb190e8a6e67b338285e42bf9d8a7aadb8",
+  "publishedClasspath": "Same eight required modules/dependencies as candidate; published API/backend/core JARs remain byte-for-byte from frozen reference, common third-party dependency SHA equality required. Unused database/index/benchmark/CUDA modules are excluded prospectively from both arms."
+}
