@@ -1,0 +1,125 @@
+name: Fixed x86 native capability causal diagnostic
+on:
+  push:
+    branches: [fix/qwen-precision-proof]
+    paths: [.github/workflows/x86-capability-causal.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  diagnostic:
+    strategy:
+      fail-fast: false
+      matrix:
+        host: [0, 1]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 180
+    env:
+      RUSTUP_TOOLCHAIN: '1.96.0'
+    steps:
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '25.0.3'
+      - name: Install exact native compiler
+        run: rustup toolchain install 1.96.0 --profile minimal --no-self-update
+      - name: Fetch frozen external diagnostic
+        env:
+          PAYLOAD_URL: ${{ secrets.X86_CAPABILITY_CAUSAL_URL }}
+        run: |
+          set -euo pipefail
+          curl --fail --silent --show-error --location "$PAYLOAD_URL" -o payload.tar.gz
+          echo 'f354219c2e5e45b64cfe324f9553c23c182aa9501d38ec0332b283d976075c53  payload.tar.gz' | sha256sum -c -
+          python3 - <<'PYCODE'
+          import tarfile
+          with tarfile.open('payload.tar.gz') as archive:
+              archive.extractall('.', filter='data')
+          PYCODE
+      - name: Verify exact runtime, source, ELF control bytes and weights
+        run: python3 payload/run.py prepare out
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: capability-${{ matrix.host }}-prepare
+          path: |
+            out/*.json
+            out/*.stdout
+            out/*.stderr
+            out/native/*
+      - name: Untimed q51 actual dispatch and owned snapshots
+        run: python3 payload/run.py route out --model q51
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: capability-${{ matrix.host }}-route-q51
+          path: |
+            out/*.json
+            out/*.stdout
+            out/*.stderr
+            out/native/*
+      - name: Untimed bonsai actual dispatch and owned snapshots
+        run: python3 payload/run.py route out --model bonsai
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: capability-${{ matrix.host }}-route-bonsai
+          path: |
+            out/*.json
+            out/*.stdout
+            out/*.stderr
+            out/native/*
+      - name: Fixed q51 counterbalanced round 0
+        run: python3 payload/run.py round out --host ${{ matrix.host }} --model q51 --round 0
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: capability-${{ matrix.host }}-q51-0
+          path: |
+            out/*.json
+            out/*.stdout
+            out/*.stderr
+            out/native/*
+      - name: Fixed bonsai counterbalanced round 0
+        run: python3 payload/run.py round out --host ${{ matrix.host }} --model bonsai --round 0
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: capability-${{ matrix.host }}-bonsai-0
+          path: |
+            out/*.json
+            out/*.stdout
+            out/*.stderr
+            out/native/*
+      - name: Fixed q51 counterbalanced round 1
+        run: python3 payload/run.py round out --host ${{ matrix.host }} --model q51 --round 1
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: capability-${{ matrix.host }}-q51-1
+          path: |
+            out/*.json
+            out/*.stdout
+            out/*.stderr
+            out/native/*
+      - name: Fixed bonsai counterbalanced round 1
+        run: python3 payload/run.py round out --host ${{ matrix.host }} --model bonsai --round 1
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: capability-${{ matrix.host }}-bonsai-1
+          path: |
+            out/*.json
+            out/*.stdout
+            out/*.stderr
+            out/native/*
+      - name: Verify all fixed observations
+        run: python3 payload/run.py finish out --host ${{ matrix.host }}
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: capability-${{ matrix.host }}-complete
+          path: |
+            out/*.json
+            out/*.stdout
+            out/*.stderr
+            out/native/*
