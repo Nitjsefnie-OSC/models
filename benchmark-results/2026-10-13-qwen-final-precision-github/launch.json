@@ -1,0 +1,12 @@
+{
+  "createdAt": "2026-10-13T00:08:33Z",
+  "databaseId": 38325763396,
+  "headSha": "ac119fa4eeb26fb57b6ae7fd59d259c1ab401e73",
+  "status": "in_progress",
+  "url": "https://github.com/integrallis/models/actions/runs/38325763396",
+  "candidateCoreSha256": "13f0bd516ede8e4306541c72ef368e94c9bddddd80a99631ff5aa65992fdbba8",
+  "vectorsRevision": "91dd64ae1a4b4bffa534514f10aeaba7e9671574",
+  "x86Pairs": 320,
+  "armPairs": 160,
+  "independentOfOriginalCohort": true
+}
