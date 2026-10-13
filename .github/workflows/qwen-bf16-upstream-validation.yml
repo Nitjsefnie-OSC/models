@@ -1,0 +1,41 @@
+name: Final Qwen BF16 real-weight fixture
+on:
+  push:
+    branches: [fix/qwen-precision-proof]
+    paths: [.github/workflows/qwen-bf16-upstream-validation.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  fixture:
+    strategy:
+      fail-fast: false
+      matrix:
+        runner: [ubuntu-24.04, ubuntu-24.04-arm]
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 45
+    steps:
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '25.0.3'
+      - name: Fetch immutable actual Models and Vectors artifacts
+        env:
+          PAYLOAD_URL: ${{ secrets.QWEN_BF16_FIXTURE_PAYLOAD_URL }}
+        run: |
+          curl --fail --silent --show-error --location "$PAYLOAD_URL" -o payload.tar.gz
+          echo "5abff8e41cf6ba7850fdd4b71287cb4b854b76d8f0dc12c7cb33b5c96a6249db  payload.tar.gz" | sha256sum -c -
+          tar -xzf payload.tar.gz
+      - uses: actions/cache@v5
+        with:
+          path: ${{ runner.temp }}/qwen-bf16-final
+          key: qwen-bf16-final-fixture-fdf756fa
+      - name: Execute unchanged oracle, full-logit repeat, reset and batch assertions
+        run: python3 payload/run.py
+      - name: Retain both arms including failures
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: qwen-bf16-final-${{ matrix.runner }}
+          path: evidence/
+          retention-days: 30
