@@ -29,7 +29,7 @@ jobs:
         run: |
           import hashlib,os,tarfile,urllib.request
           urllib.request.urlretrieve(os.environ['SOURCE_URL'],'source.tar.gz')
-          assert hashlib.sha256(open('source.tar.gz','rb').read()).hexdigest()=='3f4947326e6c2c398e9cc18975ff44d7ddab6d87650496774c764402fab446bf'
+          assert hashlib.sha256(open('source.tar.gz','rb').read()).hexdigest()=='df3288ab802dc3cde749b47702fa8bf9cfc6f82f9081043025909967ad9fb091'
           with tarfile.open('source.tar.gz') as t:t.extractall('.',filter='data')
       - name: Test storage, default VCR engines and real cassette playback
         run: python payload/run.py
