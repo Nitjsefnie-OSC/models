@@ -1,0 +1,45 @@
+name: SLEEF LOG fixed software-FMA numerical completion
+on:
+  push:
+    branches: [fix/qwen-precision-proof]
+    paths: [.github/workflows/sleef-log-software-fma.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  numerical:
+    runs-on: ubuntu-24.04-arm
+    timeout-minutes: 15
+    steps:
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '25.0.3'
+      - name: Fetch unchanged candidate and fixed reduced warmup
+        env:
+          PAYLOAD_URL: ${{ secrets.SLEEF_LOG_SOFTWARE_FMA_URL }}
+        run: |
+          set -euo pipefail
+          mkdir -p proof-out
+          curl --fail --silent --show-error --location "$PAYLOAD_URL" -o payload.tar.gz
+          echo '6854b76ce3f91dc2f0e2786b08dbf9382fa4aec50ccc34230933a4da630cb310  payload.tar.gz' | sha256sum -c -
+          python3 - <<'PYCODE'
+          import tarfile
+          with tarfile.open('payload.tar.gz') as t:t.extractall('.',filter='data')
+          PYCODE
+          lscpu > proof-out/host.txt
+          java -XX:-UseFMA -XX:+PrintFlagsFinal -version >> proof-out/host.txt 2>&1
+      - name: Complete both fixed software-FMA numerical cohorts
+        run: python3 payload/run.py
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: sleef-log-software-fma-arm
+          path: |
+            proof-out/*.json
+            proof-out/*.stdout
+            proof-out/*.stderr
+            proof-out/*.txt
+            payload/PROTOCOL.md
+            payload/files.json
+          retention-days: 30
