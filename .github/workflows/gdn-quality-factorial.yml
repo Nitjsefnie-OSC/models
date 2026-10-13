@@ -1,0 +1,84 @@
+name: GDN quality first-divergence diagnostic
+on:
+  push:
+    branches: [fix/qwen-precision-proof]
+    paths: [.github/workflows/gdn-quality-factorial.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  diagnostic:
+    strategy:
+      fail-fast: false
+      matrix:
+        runner: [ubuntu-24.04, ubuntu-24.04-arm]
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 240
+    steps:
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '25.0.3'
+      - name: Fetch immutable diagnostic
+        env:
+          PAYLOAD_URL: ${{ secrets.GDN_QUALITY_FACTORIAL_URL }}
+        run: |
+          curl --fail --silent --show-error --location "$PAYLOAD_URL" -o payload.tar.gz
+          echo "6bbcbbdda71125361eef293821cdc6d0407d368a286fa54c8e19f0381dc93dda  payload.tar.gz" | sha256sum -c -
+          tar -xzf payload.tar.gz
+      - name: Verify actual artifacts and build unchanged native arms
+        run: python3 payload/run.py prepare
+      - name: published
+        run: python3 payload/run.py published
+      - name: Retain completed published observations
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: gdn-factorial-${{ matrix.runner }}-published
+          path: evidence/
+          retention-days: 30
+      - name: core-only
+        run: python3 payload/run.py core-only
+      - name: Retain completed core-only observations
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: gdn-factorial-${{ matrix.runner }}-core-only
+          path: evidence/
+          retention-days: 30
+      - name: model-only
+        run: python3 payload/run.py model-only
+      - name: Retain completed model-only observations
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: gdn-factorial-${{ matrix.runner }}-model-only
+          path: evidence/
+          retention-days: 30
+      - name: combined
+        run: python3 payload/run.py combined
+      - name: Retain completed combined observations
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: gdn-factorial-${{ matrix.runner }}-combined
+          path: evidence/
+          retention-days: 30
+      - name: capture
+        run: python3 payload/run.py capture
+      - name: Retain completed capture observations
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: gdn-factorial-${{ matrix.runner }}-capture
+          path: evidence/
+          retention-days: 30
+      - name: oracle
+        run: python3 payload/run.py oracle
+      - name: Retain completed oracle observations
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: gdn-factorial-${{ matrix.runner }}-oracle
+          path: evidence/
+          retention-days: 30
