@@ -1,0 +1,81 @@
+name: Native fused convolution component screen
+on:
+  push:
+    branches: [fix/qwen-precision-proof]
+    paths: [.github/workflows/convolution-native-fused-proof.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  screen:
+    strategy:
+      fail-fast: false
+      matrix:
+        runner: [ubuntu-24.04, ubuntu-24.04-arm]
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 30
+    steps:
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '25.0.3'
+      - name: Install fixed Rust toolchain
+        run: |
+          rustup toolchain install 1.96.0 --profile minimal --component clippy
+          rustup default 1.96.0
+      - name: Fetch frozen external component control
+        env:
+          PAYLOAD_URL: ${{ secrets.CONV_NATIVE_FUSED_V1_URL }}
+        run: |
+          set -euo pipefail
+          curl --fail --silent --show-error --location "$PAYLOAD_URL" -o payload.tar.gz
+          echo "037acefd5677e21cdd68ca8f4bca5e85973c8ef15151fec36f375f9a0da50423  payload.tar.gz" | sha256sum -c -
+          tar -xzf payload.tar.gz
+          python3 payload/run.py prepare
+      - name: Exhaustive finite and public alias history tests
+        run: python3 payload/run.py numeric
+      - name: Fixed four-arm block 0
+        run: python3 payload/run.py block 0
+      - name: Retain completed block 0
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: convolution-native-fused-${{ matrix.runner }}-block-0
+          path: evidence/
+          retention-days: 30
+      - name: Fixed four-arm block 1
+        run: python3 payload/run.py block 1
+      - name: Retain completed block 1
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: convolution-native-fused-${{ matrix.runner }}-block-1
+          path: evidence/
+          retention-days: 30
+      - name: Fixed four-arm block 2
+        run: python3 payload/run.py block 2
+      - name: Retain completed block 2
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: convolution-native-fused-${{ matrix.runner }}-block-2
+          path: evidence/
+          retention-days: 30
+      - name: Fixed four-arm block 3
+        run: python3 payload/run.py block 3
+      - name: Retain completed block 3
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: convolution-native-fused-${{ matrix.runner }}-block-3
+          path: evidence/
+          retention-days: 30
+      - name: Analyze all fixed observations
+        run: python3 payload/run.py analyze
+      - name: Retain terminal summary
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: convolution-native-fused-${{ matrix.runner }}-summary
+          path: evidence/
+          retention-days: 30
