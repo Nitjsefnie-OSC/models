@@ -1,0 +1,59 @@
+name: Actual Q51 residual attention allocation attribution
+on:
+  push:
+    branches: [fix/qwen-precision-proof]
+    paths: [.github/workflows/attention-residual-allocation.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  diagnostic:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '25.0.3'
+      - name: Verify immutable actual runtime and pinned derived weights
+        env:
+          PAYLOAD_URL: ${{ secrets.ATTENTION_RESIDUAL_PAYLOAD_URL }}
+          MODEL_URL: ${{ secrets.ATTENTION_RESIDUAL_MODEL_URL }}
+        run: |
+          set -euo pipefail
+          mkdir -p evidence
+          curl --fail --silent --show-error --location "$PAYLOAD_URL" -o payload.tar.gz
+          echo 'eca9d4105d92d7fee31a4906adface26483be9ef193882160b9028db54d6af07  payload.tar.gz' | sha256sum -c -
+          python3 - <<'PYCODE'
+          import tarfile
+          with tarfile.open('payload.tar.gz') as t:t.extractall('.',filter='data')
+          PYCODE
+          python3 payload/run.py prepare
+          lscpu > evidence/host.txt
+          java -XX:+PrintFlagsFinal -version >> evidence/host.txt 2>&1
+      - name: Original plain actual-model request stream
+        run: python3 payload/run.py plain-before
+      - name: Same request stream with allocation stacks and compiler inlining log
+        run: python3 payload/run.py jfr
+      - name: Retain independent plain process after observer
+        run: python3 payload/run.py plain-after
+      - name: Decode full-depth allocation and execution stacks
+        if: always()
+        run: |
+          if test -f evidence/allocation.jfr; then
+            jfr print --json --stack-depth 128 --events jdk.ObjectAllocationSample,jdk.ExecutionSample evidence/allocation.jfr > evidence/allocation-events.json
+          fi
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: q51-residual-allocation-x86
+          path: |
+            evidence/*.json
+            evidence/*.stdout
+            evidence/*.stderr
+            evidence/*.jfr
+            evidence/*.xml
+            evidence/*.txt
+            payload/protocol.json
+            payload/files.json
+          retention-days: 30
