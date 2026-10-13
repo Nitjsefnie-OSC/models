@@ -8,11 +8,12 @@ the transformer graph, KV-cache ownership, sampling, and generation remain in Ja
 The native boundary is a versioned C ABI implemented by the Models-owned
 `jmodels-kernels` Rust crate.
 
-ABI 6 exposes Q4_0, Q5_0, Q5_1, Q8_0, Q4_K, Q5_K, Q6_K, and PTQ1_0 projections,
-grouped dispatch, attention, and experimental float32 Gated DeltaNet recurrence
-kernels. The production dispatcher leaves recurrence in Java; exported capabilities
-do not imply that every native route is enabled. Mixed Q4_K/Q5_K/Q6_K groups
-share one Q8_K activation quantization.
+ABI 7 exposes Q4_0, Q5_0, Q5_1, Q8_0, Q4_K, Q5_K, Q6_K, and PTQ1_0 projections,
+grouped dispatch, attention, and corrected float32 Gated DeltaNet recurrence kernels.
+The Qwen 3.5 graph selects native recurrence when the loaded capability, JVM fused
+arithmetic policy, and supported state dimensions agree. The native implementation
+advances tokens sequentially; unsupported configurations retain Java recurrence.
+Mixed Q4_K/Q5_K/Q6_K groups share one Q8_K activation quantization.
 
 PTQ1_0 uses Q8_0 activations in both Java and Rust: nearest-even integer rounding,
 32-value activation blocks with binary16-rounded scales, and a pinned FMA fold.
