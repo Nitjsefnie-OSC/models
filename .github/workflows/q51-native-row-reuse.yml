@@ -1,0 +1,147 @@
+name: Q51 exact native row reuse control
+on:
+  push:
+    branches: [fix/qwen-precision-proof]
+    paths: ['.github/workflows/q51-native-row-reuse.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  routes:
+    runs-on: ${{ matrix.arch == 'arm' && 'ubuntu-24.04-arm' || 'ubuntu-24.04' }}
+    timeout-minutes: 150
+    strategy:
+      fail-fast: false
+      matrix:
+        arch: [x86, arm]
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          path: harness
+      - name: Read immutable protocol
+        id: protocol
+        run: |
+          python3 - <<'PY'
+          import json, os
+          p=json.load(open('harness/scripts/q51-route/protocol.json'))
+          assert p['dispatchReady'], 'final source/artifact freeze is still held'
+          with open(os.environ['GITHUB_OUTPUT'],'a') as f:
+              f.write('models='+p['modelsRevision']+'\n')
+              f.write('vectors='+p['vectorsRevision']+'\n')
+          PY
+      - uses: actions/checkout@v5
+        with:
+          ref: ${{ steps.protocol.outputs.models }}
+          path: models
+      - uses: actions/checkout@v5
+        with:
+          repository: integrallis/vectors
+          ref: ${{ steps.protocol.outputs.vectors }}
+          path: vectors
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '25.0.3'
+      - uses: gradle/actions/setup-gradle@v6
+      - name: Install pinned Rust toolchain
+        run: rustup toolchain install 1.96.0 --profile minimal --no-self-update
+      - name: Build immutable actual artifacts
+        run: |
+          set -euo pipefail
+          test "$(git -C models rev-parse HEAD)" = '${{ steps.protocol.outputs.models }}'
+          test "$(git -C vectors rev-parse HEAD)" = '${{ steps.protocol.outputs.vectors }}'
+          (cd vectors && ./gradlew :vectors-core:jar --no-daemon --max-workers=2)
+          (cd models && ./gradlew :backend-native:cargoBuildRelease :backend-native:copyPairedRuntime --init-script ../harness/scripts/q51-route/runtime.init.gradle --no-daemon --max-workers=2)
+      - name: prepare
+        env:
+          Q51_SCRATCH_REFERENCE_URL: ${{ secrets.Q51_SCRATCH_REFERENCE_URL }}
+          ARCH: ${{ matrix.arch }}
+        run: |
+          set -euo pipefail
+          mapfile -t jars < <(find vectors/vectors-core/build/libs -maxdepth 1 -name 'vectors-core-*.jar' ! -name '*-sources.jar' ! -name '*-javadoc.jar')
+          test "${#jars[@]}" -eq 1
+          python3 harness/scripts/q51-route/run.py prepare --arch "$ARCH" --models models --core "${jars[0]}" --out out
+      - name: Retain prepare
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: q51-reuse-${{ matrix.arch }}-prepare
+          path: |
+            out/*.json
+            out/*.stdout
+            out/*.stderr
+      - name: Fetch frozen diagnostic source
+        env:
+          PAYLOAD_URL: ${{ secrets.Q51_NATIVE_REUSE_URL }}
+        run: |
+          curl --fail --silent --show-error --location "$PAYLOAD_URL" -o payload.tar.gz
+          echo "ea96bbc39ad9dcbc52dc1ab40f2286eea28b054adec8117ebf515817e3ea6241  payload.tar.gz" | sha256sum -c -
+          tar -xzf payload.tar.gz
+      - name: Verify candidate native source and tests
+        run: python3 payload/run.py prepare
+      - name: first-pair
+        run: python3 payload/run.py pair --pair 0
+      - name: Retain first-pair
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: q51-reuse-${{ matrix.arch }}-first-pair
+          path: |
+            out/*.json
+            out/*.stdout
+            out/*.stderr
+      - name: hybrid-cohort
+        run: python3 payload/run.py cohort --arm hybrid
+      - name: Retain hybrid-cohort
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: q51-reuse-${{ matrix.arch }}-hybrid-cohort
+          path: |
+            out/*.json
+            out/*.stdout
+            out/*.stderr
+      - name: reuse-cohort
+        run: python3 payload/run.py cohort --arm reuse
+      - name: Retain reuse-cohort
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: q51-reuse-${{ matrix.arch }}-reuse-cohort
+          path: |
+            out/*.json
+            out/*.stdout
+            out/*.stderr
+      - name: pair-1
+        run: python3 payload/run.py pair --pair 1
+      - name: Retain pair-1
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: q51-reuse-${{ matrix.arch }}-pair-1
+          path: |
+            out/*.json
+            out/*.stdout
+            out/*.stderr
+      - name: pair-2
+        run: python3 payload/run.py pair --pair 2
+      - name: Retain pair-2
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: q51-reuse-${{ matrix.arch }}-pair-2
+          path: |
+            out/*.json
+            out/*.stdout
+            out/*.stderr
+      - name: pair-3
+        run: python3 payload/run.py pair --pair 3
+      - name: Retain pair-3
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: q51-reuse-${{ matrix.arch }}-pair-3
+          path: |
+            out/*.json
+            out/*.stdout
+            out/*.stderr
