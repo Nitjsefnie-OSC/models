@@ -1,0 +1,14 @@
+{
+  "runId": 38332159092,
+  "url": "https://github.com/integrallis/models/actions/runs/38332159092",
+  "harnessRevision": "89c274a652e70c009790bf0c2fdeb8d6d5782992",
+  "modelsRevision": "4f3d3e9a548bf3781ab3d002ff37df0875760e49",
+  "vectorsRevision": "e710f2bdf074b244d0b8f2b424bb5411f03c8874",
+  "candidateCoreSha256": "925460aebba2767b9f215600fafb1d0e2ad21e6f88391e23d8a0a1ae568de69d",
+  "hosts": 20,
+  "maximumConcurrentHosts": 10,
+  "pairsPerArchitecture": 10,
+  "authorization": "Parent approved fixed affected-route cohort; GitHub only; no publication",
+  "originalBroadRun": 38321278750,
+  "originalQwenPrecisionRun": 38325763396
+}
