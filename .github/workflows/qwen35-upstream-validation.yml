@@ -12,8 +12,10 @@ permissions:
   contents: read
 
 env:
-  VECTORS_REVISION: 825c912e8aa318a695a64ca5792c34ad1bdcebac
-  VECTORS_SHA256: 279e006dd90d67f21d344d7aaad71146b6d3164e37278dfe28732080f7a9039b
+  MODELS_REVISION: 5344b5a2ff84a27548f0f2c4840c24f22d73c32d
+  BACKEND_SHA256: 87f6b22a7a17bf1ebea98a276a9297920d64434d97a4cc0de4e1745fa0fbe94a
+  VECTORS_REVISION: b0aadc8d972f3504426f6e38fcb0a4b4a97a0333
+  VECTORS_SHA256: 263bff1aef74bac56d0597ba6b4d7ad52af846fac08b32e70e5d549ce5c8f099
 
 jobs:
   affected:
@@ -27,6 +29,10 @@ jobs:
     steps:
       - uses: actions/checkout@v5
         with:
+          path: harness
+      - uses: actions/checkout@v5
+        with:
+          ref: ${{ env.MODELS_REVISION }}
           path: models
       - uses: actions/checkout@v5
         with:
@@ -51,6 +57,7 @@ jobs:
             git -C vectors rev-parse HEAD
           } > "$RUNNER_TEMP/qwen35-results/host.txt" 2>&1
           [[ "$(git -C vectors rev-parse HEAD)" == "$VECTORS_REVISION" ]]
+          [[ "$(git -C models rev-parse HEAD)" == "$MODELS_REVISION" ]]
       - name: Build and verify the actual candidate artifact
         working-directory: vectors
         run: |
@@ -64,6 +71,11 @@ jobs:
             echo "QWEN35_UPSTREAM_SHA256=$VECTORS_SHA256"
             echo "QWEN35_UPSTREAM_RESULTS=$RUNNER_TEMP/qwen35-results"
           } >> "$GITHUB_ENV"
+      - name: Verify exact composed Models backend
+        working-directory: models
+        run: |
+          ./gradlew :backend-java:jar --no-daemon --max-workers=2 --stacktrace
+          echo "$BACKEND_SHA256  backend-java/build/libs/backend-java-0.3.59.jar" | sha256sum -c - | tee "$QWEN35_UPSTREAM_RESULTS/backend-sha256.txt"
       - uses: actions/cache@v5
         with:
           path: |
@@ -77,7 +89,7 @@ jobs:
           ./gradlew :backend-java:qwen35GgufLayoutTest \
             :backend-java:qwen35GroupedGdnCompatibilityTest \
             :backend-java:qwen35UpstreamSyntheticTest \
-            --init-script scripts/qwen35-upstream-validation.init.gradle \
+            --init-script ../harness/scripts/qwen35-upstream-validation.init.gradle \
             --no-daemon --max-workers=2 --continue --stacktrace \
             2>&1 | tee "$QWEN35_UPSTREAM_RESULTS/gradle.log"
       - name: Retain raw results even on failure

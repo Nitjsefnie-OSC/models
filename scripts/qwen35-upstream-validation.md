@@ -29,3 +29,5 @@ export QWEN35_UPSTREAM_RESULTS=/absolute/path/outside-the-repository/results
 ```
 
 Run on supported x86 and ARM hosts, preserving the actual CPU/JDK and exact runtime provenance. A configuration-only `--dry-run` verifies task wiring but is never reported as a model test pass.
+
+The composed repeat pins Models `5344b5a2ff84a27548f0f2c4840c24f22d73c32d` and Vectors `b0aadc8d972f3504426f6e38fcb0a4b4a97a0333`. Before inference, it verifies the complete backend JAR (`87f6b22a7a17bf1ebea98a276a9297920d64434d97a4cc0de4e1745fa0fbe94a`) and core JAR (`263bff1aef74bac56d0597ba6b4d7ad52af846fac08b32e70e5d549ce5c8f099`), separately from the harness checkout. Earlier candidate runs retain their own source scope.
