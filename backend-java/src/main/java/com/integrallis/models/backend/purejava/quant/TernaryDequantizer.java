@@ -107,6 +107,9 @@ public final class TernaryDequantizer {
       MemorySegment source, long sourceOffset, float[] input, int inputOffset, int count) {
     require(count, 128);
     java.util.Objects.checkFromIndexSize(inputOffset, count, input.length);
+    if (FloatVector.SPECIES_PREFERRED.vectorBitSize() < 256) {
+      return dotProductPtq1_0NarrowHost(source, sourceOffset, input, inputOffset, count);
+    }
     float total = 0;
     for (int block = 0; block < count / 128; block++) {
       long base = sourceOffset + (long) block * 28;
@@ -141,6 +144,61 @@ public final class TernaryDequantizer {
       total = Math.fma(blockSum, scale, total);
     }
     return total;
+  }
+
+  // Retain eight logical FMA chains with primitive values when 256-bit vectors are not native.
+  // Splitting this decoder's widening operations also increased first-call allocation; primitive
+  // chains avoid both unsupported-vector emulation and those conversion wrappers.
+  private static float dotProductPtq1_0NarrowHost(
+      MemorySegment source, long sourceOffset, float[] input, int inputOffset, int count) {
+    float total = 0;
+    for (int block = 0; block < count / 128; block++) {
+      long base = sourceOffset + block * 28L;
+      int at = inputOffset + block * 128;
+      float a0 = 0, a1 = 0, a2 = 0, a3 = 0, a4 = 0, a5 = 0, a6 = 0, a7 = 0;
+      for (int n = 0; n < 5; n++) {
+        int power = POW3[n];
+        a0 = Math.fma(ptqTrit(source, base + 0, power), input[at + n * 16 + 0], a0);
+        a0 = Math.fma(ptqTrit(source, base + 8, power), input[at + n * 16 + 8], a0);
+        a0 = Math.fma(ptqTrit(source, base + 16, power), input[at + 80 + n * 8 + 0], a0);
+        a1 = Math.fma(ptqTrit(source, base + 1, power), input[at + n * 16 + 1], a1);
+        a1 = Math.fma(ptqTrit(source, base + 9, power), input[at + n * 16 + 9], a1);
+        a1 = Math.fma(ptqTrit(source, base + 17, power), input[at + 80 + n * 8 + 1], a1);
+        a2 = Math.fma(ptqTrit(source, base + 2, power), input[at + n * 16 + 2], a2);
+        a2 = Math.fma(ptqTrit(source, base + 10, power), input[at + n * 16 + 10], a2);
+        a2 = Math.fma(ptqTrit(source, base + 18, power), input[at + 80 + n * 8 + 2], a2);
+        a3 = Math.fma(ptqTrit(source, base + 3, power), input[at + n * 16 + 3], a3);
+        a3 = Math.fma(ptqTrit(source, base + 11, power), input[at + n * 16 + 11], a3);
+        a3 = Math.fma(ptqTrit(source, base + 19, power), input[at + 80 + n * 8 + 3], a3);
+        a4 = Math.fma(ptqTrit(source, base + 4, power), input[at + n * 16 + 4], a4);
+        a4 = Math.fma(ptqTrit(source, base + 12, power), input[at + n * 16 + 12], a4);
+        a4 = Math.fma(ptqTrit(source, base + 20, power), input[at + 80 + n * 8 + 4], a4);
+        a5 = Math.fma(ptqTrit(source, base + 5, power), input[at + n * 16 + 5], a5);
+        a5 = Math.fma(ptqTrit(source, base + 13, power), input[at + n * 16 + 13], a5);
+        a5 = Math.fma(ptqTrit(source, base + 21, power), input[at + 80 + n * 8 + 5], a5);
+        a6 = Math.fma(ptqTrit(source, base + 6, power), input[at + n * 16 + 6], a6);
+        a6 = Math.fma(ptqTrit(source, base + 14, power), input[at + n * 16 + 14], a6);
+        a6 = Math.fma(ptqTrit(source, base + 22, power), input[at + 80 + n * 8 + 6], a6);
+        a7 = Math.fma(ptqTrit(source, base + 7, power), input[at + n * 16 + 7], a7);
+        a7 = Math.fma(ptqTrit(source, base + 15, power), input[at + n * 16 + 15], a7);
+        a7 = Math.fma(ptqTrit(source, base + 23, power), input[at + 80 + n * 8 + 7], a7);
+      }
+      float blockSum = ((a4 + a0) + (a6 + a2)) + ((a5 + a1) + (a7 + a3));
+      for (int n = 0; n < 4; n++) {
+        for (int h = 0; h < 2; h++) {
+          blockSum =
+              Math.fma(
+                  ptqTrit(source, base + 24 + h, POW3[n]), input[at + 120 + n * 2 + h], blockSum);
+        }
+      }
+      total = Math.fma(blockSum, halfToFloat(source.get(LE_SHORT, base + 26)), total);
+    }
+    return total;
+  }
+
+  private static int ptqTrit(MemorySegment source, long offset, int power) {
+    int packed = (Byte.toUnsignedInt(source.get(ValueLayout.JAVA_BYTE, offset)) * power) & 255;
+    return ((packed * 3) >>> 8) - 1;
   }
 
   /**
@@ -181,6 +239,10 @@ public final class TernaryDequantizer {
       throw new IllegalArgumentException("PTQ/Q8 input must use aligned nonnegative dimensions");
     java.util.Objects.checkFromIndexSize(inputOffset, count, input.length);
     java.util.Objects.checkFromIndexSize(inputOffset / 32, count / 32, scales.length);
+    if (IntVector.SPECIES_PREFERRED.vectorBitSize() < 256) {
+      return dotProductPtq1_0Q8_0NarrowHost(
+          source, sourceOffset, input, scales, inputOffset, count);
+    }
     float total = 0;
     for (int block = 0; block < count / 128; block++) {
       long base = sourceOffset + (long) block * 28;
@@ -217,6 +279,53 @@ public final class TernaryDequantizer {
           }
         }
         int integerSum = vectorSum.reduceLanes(VectorOperators.ADD) + scalarTail;
+        blockSum = Math.fma(integerSum, scales[at / 32 + group], blockSum);
+      }
+      total = Math.fma(blockSum, halfToFloat(source.get(LE_SHORT, base + 26)), total);
+    }
+    return total;
+  }
+
+  /**
+   * Integer sums remain exact; primitive accumulation avoids unsupported-vector emulation. Scale
+   * FMAs retain their order.
+   */
+  private static float dotProductPtq1_0Q8_0NarrowHost(
+      MemorySegment source,
+      long sourceOffset,
+      byte[] input,
+      float[] scales,
+      int inputOffset,
+      int count) {
+    float total = 0;
+    for (int block = 0; block < count / 128; block++) {
+      long base = sourceOffset + block * 28L;
+      int at = inputOffset + block * 128;
+      float blockSum = 0;
+      for (int group = 0; group < 4; group++) {
+        int integerSum = 0;
+        for (int segment = 0; segment < 4; segment++) {
+          int index = group * 32 + segment * 8;
+          if (index == 120) {
+            for (int j = 0; j < 8; j++) {
+              int packed =
+                  (Byte.toUnsignedInt(source.get(ValueLayout.JAVA_BYTE, base + 24 + j % 2))
+                          * POW3[j / 2])
+                      & 255;
+              integerSum += ((packed * 3 >>> 8) - 1) * input[at + index + j];
+            }
+          } else {
+            int packedIndex = index < 80 ? index % 16 : 16;
+            int power = POW3[index < 80 ? index / 16 : (index - 80) / 8];
+            for (int j = 0; j < 8; j++) {
+              int packed =
+                  (Byte.toUnsignedInt(source.get(ValueLayout.JAVA_BYTE, base + packedIndex + j))
+                          * power)
+                      & 255;
+              integerSum += ((packed * 3 >>> 8) - 1) * input[at + index + j];
+            }
+          }
+        }
         blockSum = Math.fma(integerSum, scales[at / 32 + group], blockSum);
       }
       total = Math.fma(blockSum, halfToFloat(source.get(LE_SHORT, base + 26)), total);
