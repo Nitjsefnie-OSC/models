@@ -1,3 +1,7 @@
-# Bonsai convolution whole-model follow-up
+# Archived experimental evidence
 
-[Run 38332159092](https://github.com/integrallis/models/actions/runs/38332159092) was launched from the frozen protocol in `launch.json`. Results remain pending; no performance, allocation or qualification claim is made. Original broad e3e7 results and completed Qwen13f0 results remain separate.
+The experimental source and raw results were removed from this project tree. They are preserved outside the repositories in the workspace archive:
+
+`audit-artifacts/2026-10-13-rejected-experiments/models/benchmark-results/2026-10-13-bonsai-convolution-github`
+
+`ARCHIVE-MANIFEST.json` records every original file's SHA256, size and source revision (`906537f7aeb503993e3389dd64d699ceac4d8306`). This directory is a provenance pointer, not a runtime implementation or a qualification claim. Rejected or incomplete experiments do not authorize release.

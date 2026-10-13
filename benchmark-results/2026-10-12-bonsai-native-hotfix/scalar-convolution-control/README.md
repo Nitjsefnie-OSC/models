@@ -1,7 +1,7 @@
-# Rejected scalar final activation controls
+# Archived experimental evidence
 
-These local controls retain vector/FMA convolution accumulation and store the convolved values into the existing output array, then apply scalar StrictMath SiLU in place. They add no buffer or warmup-dependent route. Twenty width/FMA/history checks pass; measured cold and warm output/history bits match exactly.
+The experimental source and raw results were removed from this project tree. They are preserved outside the repositories in the workspace archive:
 
-The primary control retains the existing grouping and store order. Cold allocation is about 4.87 MB (below the published implementation's 5.10 MB), but warmed latency is 1.464 times published and 2.571 times the current correction. A full-width companion allocates about 4.18 MB cold but remains 1.306 times published latency and 2.293 times current latency. Both allocate zero bytes warmed.
+`audit-artifacts/2026-10-13-rejected-experiments/models/benchmark-results/2026-10-12-bonsai-native-hotfix/scalar-convolution-control`
 
-Both are rejected on these results. Fixing cold allocation by introducing a warm regression is insufficient. These are local feasibility measurements, not supported-host or whole-model qualification. No production source or frozen cohort changed. The archive preserves all 52 tracked files from the source identified in the manifest.
+`ARCHIVE-MANIFEST.json` records every original file's SHA256, size and source revision (`906537f7aeb503993e3389dd64d699ceac4d8306`). This directory is a provenance pointer, not a runtime implementation or a qualification claim. Rejected or incomplete experiments do not authorize release.

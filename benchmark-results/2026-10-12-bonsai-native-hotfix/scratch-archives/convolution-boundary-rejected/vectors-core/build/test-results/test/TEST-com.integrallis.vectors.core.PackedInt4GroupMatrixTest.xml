@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.integrallis.vectors.core.PackedInt4GroupMatrixTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-10-12T23:24:31.783Z" hostname="Brians-MacBook-Pro.local" time="0.028">
-  <properties/>
-  <testcase name="preparedInt8BatchStaysCloseToTheFullPrecisionActivationPath()" classname="com.integrallis.vectors.core.PackedInt4GroupMatrixTest" time="0.027"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>

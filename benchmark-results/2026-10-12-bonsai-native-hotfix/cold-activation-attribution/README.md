@@ -1,9 +1,7 @@
-# Cold activation allocation: local attribution, unresolved optimization
+# Archived experimental evidence
 
-The isolated source is `9c8415e869db041f5912e0b81f1b646fbfadd10c` in Vectors. This archive preserves all 65 tracked experiment files, including the failed controls and JFR recordings. No prototype changed the final runtime or its frozen measurements.
+The experimental source and raw results were removed from this project tree. They are preserved outside the repositories in the workspace archive:
 
-The proposed lower/upper rounding guard passed 20 million sampled and boundary comparisons, but allocated about 245,808 bytes per warmed convolution call; the current exact implementation and the archived inline Estrin control allocated zero. The new guard is rejected. The inline Estrin control remains unqualified work: it reduced local cold allocation by only about 3.7%, insufficient to resolve the observed cold gap. Sampling is not exhaustive numerical proof, and shared-host timings do not qualify performance.
+`audit-artifacts/2026-10-13-rejected-experiments/models/benchmark-results/2026-10-12-bonsai-native-hotfix/cold-activation-attribution`
 
-A separate allocation diagnostic attributes most first-call allocation to transient Vector API objects before compilation optimizes them away. After priming one vector group, the next full convolution call loaded no classes yet allocated 15.14 MB; all 30 sampled caller-thread TLAB refill stacks came from Vector API operations. Relevant class initialization accounted for a smaller portion. JFR measured about 21 MB for the corrected implementation versus 4 MB for the published implementation, with instrumentation affecting both figures; the earlier uninstrumented controls were about 22 MB and 5 MB. These are component allocation observations, not whole-model resource verdicts or persistent-buffer measurements.
-
-The cold gap remains an observed cost. This diagnostic does not justify hiding it through warmup, changing a gate, or declaring the runtime qualified. The final full-model cohort and the original release requirements retain their own authority.
+`ARCHIVE-MANIFEST.json` records every original file's SHA256, size and source revision (`906537f7aeb503993e3389dd64d699ceac4d8306`). This directory is a provenance pointer, not a runtime implementation or a qualification claim. Rejected or incomplete experiments do not authorize release.
