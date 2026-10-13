@@ -10,9 +10,10 @@ The 295 original files (4,204,530 bytes) are preserved in the parent workspace a
 `39bbd945fecc6632252e6f51af171b353199155a4425544b4abda9b8a17603e8`.
 Every member was read back and matched to its original size and SHA256 before removal.
 [archive.json](archive.json) records all original relative paths, hashes, source revision and
-archive identity. The complete original tree is also recoverable from Models Git revision
-`6bbde0833fcf46de11bbb285c95c07cb5c9cf506`; the archive does not depend solely on an unversioned
-local directory. Original JSON command/classpath strings remain immutable historical provenance.
+archive identity. Of these files, 283 were tracked and are independently recoverable from Models Git revision
+`6bbde0833fcf46de11bbb285c95c07cb5c9cf506`; their hashes were also verified against Git. Twelve
+ignored BF16 JUnit XML receipts were additionally preserved in the complete external archive
+and are identified individually in the manifest. Those twelve are not claimed to exist in Git. Original JSON command/classpath strings remain immutable historical provenance.
 
 | Historical comparison | Result and retained scope |
 | --- | --- |
