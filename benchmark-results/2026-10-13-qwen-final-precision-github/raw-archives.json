@@ -1,0 +1,38 @@
+[
+  {
+    "path": "raw-archives/precision-arm-0.tar.gz",
+    "sha256": "6b2aacc12b47bd06c9ccb2b4f1f9f40bb7090b485bfebbf385b28e79896eb70a",
+    "sizeBytes": 703729,
+    "files": 574
+  },
+  {
+    "path": "raw-archives/precision-arm-1.tar.gz",
+    "sha256": "834b505eaac932ec50ece3976720d190a7874f863008ae7a326a41398631b34f",
+    "sizeBytes": 703420,
+    "files": 574
+  },
+  {
+    "path": "raw-archives/precision-x86-0.tar.gz",
+    "sha256": "a9ee56d56dafc362e1f7eee81002851e248781fb7436f4a88e24d944b4f379c0",
+    "sizeBytes": 698283,
+    "files": 574
+  },
+  {
+    "path": "raw-archives/precision-x86-1.tar.gz",
+    "sha256": "c00cae26cfb7f4f39d8da8c417f2ec5e5bf52f67d3ad1c3ec302f5e3d702c988",
+    "sizeBytes": 699346,
+    "files": 574
+  },
+  {
+    "path": "raw-archives/precision-x86-2.tar.gz",
+    "sha256": "e6027c0e793e91f8c411dfd532042b2371c1a0bece4c0fad0341112762917cf4",
+    "sizeBytes": 699815,
+    "files": 574
+  },
+  {
+    "path": "raw-archives/precision-x86-3.tar.gz",
+    "sha256": "4ccf24d732e3b93a5f27c884da59cc68018a654495945e42c0032bcc71844366",
+    "sizeBytes": 700248,
+    "files": 574
+  }
+]
