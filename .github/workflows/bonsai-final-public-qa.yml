@@ -29,7 +29,7 @@ jobs:
           PAYLOAD_URL: ${{ secrets.BONSAI_SPI_PUBLIC_QA_PAYLOAD_URL }}
         run: |
           curl -fL --retry 3 "$PAYLOAD_URL" -o payload.tar.gz
-          echo '7e808f0fb8f8ce09ccfedfbbcf7ac96a62f6a5e394102b129ea8fe7e6949f242  payload.tar.gz' | sha256sum -c -
+          echo '3f4a98978d568f176b98d7e8b53d4566c5ac288c983f925f9c0fd52913a8d1e9  payload.tar.gz' | sha256sum -c -
           tar -xzf payload.tar.gz -C harness
       - name: Read frozen runtime revisions
         id: runtime
@@ -227,7 +227,7 @@ jobs:
           PAYLOAD_URL: ${{ secrets.BONSAI_SPI_PUBLIC_QA_PAYLOAD_URL }}
         run: |
           curl -fL --retry 3 "$PAYLOAD_URL" -o payload.tar.gz
-          echo '7e808f0fb8f8ce09ccfedfbbcf7ac96a62f6a5e394102b129ea8fe7e6949f242  payload.tar.gz' | sha256sum -c -
+          echo '3f4a98978d568f176b98d7e8b53d4566c5ac288c983f925f9c0fd52913a8d1e9  payload.tar.gz' | sha256sum -c -
           tar -xzf payload.tar.gz
       - uses: actions/download-artifact@v8
         with:
