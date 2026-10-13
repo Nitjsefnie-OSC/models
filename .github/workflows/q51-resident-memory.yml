@@ -1,0 +1,64 @@
+name: Q51 ARM resident memory attribution
+on:
+  push:
+    branches: [fix/qwen-precision-proof]
+    paths: [.github/workflows/q51-resident-memory.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  memory:
+    runs-on: ubuntu-24.04-arm
+    timeout-minutes: 50
+    env:
+      RUSTUP_TOOLCHAIN: '1.96.0'
+    steps:
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '25.0.3'
+      - run: rustup toolchain install 1.96.0 --profile minimal --no-self-update
+      - name: Fetch and verify immutable external diagnostic
+        env:
+          PAYLOAD_URL: ${{ secrets.Q51_RESIDENT_MEMORY_URL }}
+        run: |
+          set -euo pipefail
+          curl --fail --silent --show-error --location "$PAYLOAD_URL" -o payload.tar.gz
+          echo 'f81bb315996435208379daa0c430c5c6e0d243e8fdfb0aa43cf703b9c61874db  payload.tar.gz' | sha256sum -c -
+          python3 - <<'PYCODE'
+          import tarfile,json,hashlib
+          from pathlib import Path
+          with tarfile.open('payload.tar.gz') as t: t.extractall('.',filter='data')
+          for n,h in json.loads(Path('payload/inventory.json').read_text()).items():
+              assert hashlib.sha256((Path('payload')/n).read_bytes()).hexdigest()==h,n
+          PYCODE
+      - name: Rebuild exact native sources and exact Q51 fixture
+        run: python3 payload/diagnose.py prepare --out out
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: q51-memory-prepare
+          path: |
+            out/*.json
+            out/*.stdout
+            out/*.stderr
+      - name: Fixed plain published process
+        run: python3 payload/diagnose.py run --out out --index 0
+      - name: Fixed plain candidate process
+        run: python3 payload/diagnose.py run --out out --index 1
+      - name: Candidate resident memory snapshots
+        run: python3 payload/diagnose.py run --out out --index 2
+      - name: Published resident memory snapshots
+        run: python3 payload/diagnose.py run --out out --index 3
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: q51-memory-complete
+          path: |
+            out/*.json
+            out/*.stdout
+            out/*.stderr
+            out/candidate-plain/
+            out/published-plain/
+            out/candidate-observed/
+            out/published-observed/
