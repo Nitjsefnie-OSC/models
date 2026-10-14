@@ -1,0 +1,158 @@
+name: Retained FP64 state four-arm x86 quality
+on:
+  push:
+    branches: [fix/qwen-precision-proof]
+    paths: [.github/workflows/fp64-state-model-quality.yml]
+  workflow_dispatch:
+    inputs:
+      phase:
+        type: choice
+        description: Numerical and route smoke first; full cohort after independent review
+        default: smoke
+        options: [smoke, cohort]
+permissions:
+  contents: read
+jobs:
+  preflight:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 180
+    steps:
+      - uses: actions/setup-java@v5
+        with: {distribution: temurin, java-version: '25.0.3+9.0.LTS'}
+      - name: Extract immutable quality-only artifacts
+        env: {PAYLOAD_URL: '${{ secrets.FP64_STATE_PREREQUISITE_URL }}'}
+        run: |
+          curl --fail --silent --show-error --location "$PAYLOAD_URL" -o payload.tar.gz
+          echo '7858287b21779e5141b14e9b6f6d7eaa5c4ecc5ba08b109a52f1f88ce1c33efc  payload.tar.gz' | sha256sum -c -
+          python3 -c "import tarfile; tarfile.open('payload.tar.gz').extractall('.', filter='data')"
+      - name: Verify all distributions and fixed first case
+        run: python3 payload/run.py prepare x86 0
+      - name: Four fresh-model arms and observable FP32 versus FP64 GDN routes
+        run: python3 payload/run.py smoke x86 0
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: fp64-quality-preflight-x86
+          path: |
+            proof-out/*.json
+            proof-out/*.stdout
+            proof-out/*.stderr
+            proof-out/*.so
+            proof-out/*.o
+            proof-out/classes/
+            payload/protocol.json
+            payload/files.json
+            payload/expected-runtime.json
+          retention-days: 30
+  cohort:
+    needs: preflight
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.phase == 'cohort' }}
+    strategy:
+      fail-fast: false
+      max-parallel: 4
+      matrix: {shard: [0, 1, 2, 3]}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 360
+    steps:
+      - uses: actions/setup-java@v5
+        with: {distribution: temurin, java-version: '25.0.3+9.0.LTS'}
+      - name: Extract immutable artifacts
+        env: {PAYLOAD_URL: '${{ secrets.FP64_STATE_PREREQUISITE_URL }}'}
+        run: |
+          curl --fail --silent --show-error --location "$PAYLOAD_URL" -o payload.tar.gz
+          echo '7858287b21779e5141b14e9b6f6d7eaa5c4ecc5ba08b109a52f1f88ce1c33efc  payload.tar.gz' | sha256sum -c -
+          python3 -c "import tarfile; tarfile.open('payload.tar.gz').extractall('.', filter='data')"
+      - name: Admit all runtime, native and model identities
+        id: prepare
+        run: python3 payload/run.py prepare x86 ${{ matrix.shard }}
+      - name: Fixed arm 0, retain every preceding failure
+        if: ${{ always() && steps.prepare.outcome == 'success' }}
+        run: python3 payload/run.py quality-0 x86 ${{ matrix.shard }}
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: fp64-quality-x86-${{ matrix.shard }}-arm-0
+          path: |
+            proof-out/*.json
+            proof-out/*.stdout
+            proof-out/*.stderr
+          retention-days: 30
+      - name: Fixed arm 1, retain every preceding failure
+        if: ${{ always() && steps.prepare.outcome == 'success' }}
+        run: python3 payload/run.py quality-1 x86 ${{ matrix.shard }}
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: fp64-quality-x86-${{ matrix.shard }}-arm-1
+          path: |
+            proof-out/*.json
+            proof-out/*.stdout
+            proof-out/*.stderr
+          retention-days: 30
+      - name: Fixed arm 2, retain every preceding failure
+        if: ${{ always() && steps.prepare.outcome == 'success' }}
+        run: python3 payload/run.py quality-2 x86 ${{ matrix.shard }}
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: fp64-quality-x86-${{ matrix.shard }}-arm-2
+          path: |
+            proof-out/*.json
+            proof-out/*.stdout
+            proof-out/*.stderr
+          retention-days: 30
+      - name: Fixed arm 3, retain every preceding failure
+        if: ${{ always() && steps.prepare.outcome == 'success' }}
+        run: python3 payload/run.py quality-3 x86 ${{ matrix.shard }}
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: fp64-quality-x86-${{ matrix.shard }}-arm-3
+          path: |
+            proof-out/*.json
+            proof-out/*.stdout
+            proof-out/*.stderr
+          retention-days: 30
+      - name: Original unsharded state contracts on all four arms
+        if: ${{ always() && steps.prepare.outcome == 'success' && matrix.shard == 0 }}
+        run: python3 payload/run.py state x86 ${{ matrix.shard }}
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: fp64-quality-x86-host-${{ matrix.shard }}
+          path: |
+            proof-out/*.json
+            proof-out/*.stdout
+            proof-out/*.stderr
+            proof-out/*-snapshots/
+            payload/protocol.json
+            payload/files.json
+            payload/expected-runtime.json
+          retention-days: 30
+  analyze:
+    needs: cohort
+    if: ${{ always() && github.event_name == 'workflow_dispatch' && inputs.phase == 'cohort' }}
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/download-artifact@v8
+        with:
+          pattern: fp64-quality-x86-host-*
+          path: raw
+      - name: Extract frozen analyzer
+        env: {PAYLOAD_URL: '${{ secrets.FP64_STATE_PREREQUISITE_URL }}'}
+        run: |
+          curl --fail --silent --show-error --location "$PAYLOAD_URL" -o payload.tar.gz
+          echo '7858287b21779e5141b14e9b6f6d7eaa5c4ecc5ba08b109a52f1f88ce1c33efc  payload.tar.gz' | sha256sum -c -
+          python3 -c "import tarfile; tarfile.open('payload.tar.gz').extractall('.', filter='data')"
+          python3 - <<'PYTHON'
+          from pathlib import Path
+          for p in Path('raw').iterdir(): p.rename(p.with_name(p.name.removeprefix('fp64-quality-')))
+          PYTHON
+      - name: Complete148 per-dataset scores, state and route parity
+        run: python3 payload/analyze.py raw x86 quality-x86.json
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: fp64-quality-analysis-x86
+          path: quality-x86.json
+          retention-days: 30
