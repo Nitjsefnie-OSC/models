@@ -18,7 +18,7 @@ jobs:
       - uses: actions/checkout@v5
         with:
           repository: integrallis/vectors
-          ref: b0aadc8d972f3504426f6e38fcb0a4b4a97a0333
+          ref: 98401e0db7ce693a933198055a7299f659cf02c1
           path: vectors
       - uses: actions/setup-java@v5
         with:
@@ -30,7 +30,7 @@ jobs:
         run: |
           set -euo pipefail
           curl --fail --silent --show-error --location "$PAYLOAD_URL" -o payload.tar.gz
-          echo 'e4a4ee862a6fc276228f53cf7fcae134592c4884deea456876ca0cdd32ee9d7c  payload.tar.gz' | sha256sum -c -
+          echo '10590bb82b96fcb25177e736924df316e46179ac9175ceb08a09d448a13539c4  payload.tar.gz' | sha256sum -c -
           python3 - <<'PYCODE'
           import tarfile
           with tarfile.open('payload.tar.gz') as archive: archive.extractall('.', filter='data')
