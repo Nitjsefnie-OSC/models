@@ -1,0 +1,121 @@
+name: Fixed Q8 F32 serial-dispatch cleanup comparison
+on:
+  push:
+    branches: [fix/qwen-precision-proof]
+    paths: [.github/workflows/q8-f32-serial-dispatch-comparison.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  prepare:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '25.0.3'
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.13'
+      - name: Retrieve and verify the frozen comparison
+        env:
+          PAYLOAD_URL: ${{ secrets.Q8_F32_CLEANUP_COMPARISON_URL }}
+        run: |
+          set -euo pipefail
+          curl --fail --silent --show-error --location "$PAYLOAD_URL" -o payload.tar.gz
+          echo 'ebab8fe1ed51d8b531258416a24d7246767dceafcc5f8d165b167c297e1fcd53  payload.tar.gz' | sha256sum -c -
+          python3 - <<'PYCODE'
+          import tarfile
+          with tarfile.open('payload.tar.gz') as archive:
+              archive.extractall('.', filter='data')
+          PYCODE
+      - name: Fault tests and actual numerical preparation before fanout
+        run: |
+          python3 -m pip install numpy==2.5.4
+          python3 payload/test-harness.py
+          python3 payload/test-analyzer.py
+          python3 payload/test-admission.py
+          python3 payload/run.py prepare
+          python3 payload/validate-admission.py out
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: preparation
+          path: out/
+          retention-days: 30
+  comparison:
+    needs: prepare
+    strategy:
+      fail-fast: false
+      max-parallel: 16
+      matrix:
+        platform:
+          - {runner: ubuntu-24.04, arch: x86}
+          - {runner: ubuntu-24.04-arm, arch: arm}
+        host: [0, 1, 2, 3, 4, 5, 6, 7]
+    runs-on: ${{ matrix.platform.runner }}
+    timeout-minutes: 45
+    steps:
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '25.0.3'
+      - name: Verify the immutable comparison payload
+        env:
+          PAYLOAD_URL: ${{ secrets.Q8_F32_CLEANUP_COMPARISON_URL }}
+        run: |
+          set -euo pipefail
+          curl --fail --silent --show-error --location "$PAYLOAD_URL" -o payload.tar.gz
+          echo 'ebab8fe1ed51d8b531258416a24d7246767dceafcc5f8d165b167c297e1fcd53  payload.tar.gz' | sha256sum -c -
+          python3 - <<'PYCODE'
+          import tarfile
+          with tarfile.open('payload.tar.gz') as archive:
+              archive.extractall('.', filter='data')
+          PYCODE
+      - name: Execute all fixed pairs with no extension or filtering
+        run: python3 payload/run.py measure --arch '${{ matrix.platform.arch }}' --host '${{ matrix.host }}'
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: ${{ matrix.platform.arch }}-${{ matrix.host }}
+          path: out/
+          retention-days: 30
+  analyze:
+    needs: [prepare, comparison]
+    if: always()
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.13'
+      - name: Retrieve the exact frozen analyzer
+        env:
+          PAYLOAD_URL: ${{ secrets.Q8_F32_CLEANUP_COMPARISON_URL }}
+        run: |
+          set -euo pipefail
+          curl --fail --silent --show-error --location "$PAYLOAD_URL" -o payload.tar.gz
+          echo 'ebab8fe1ed51d8b531258416a24d7246767dceafcc5f8d165b167c297e1fcd53  payload.tar.gz' | sha256sum -c -
+          python3 - <<'PYCODE'
+          import tarfile
+          with tarfile.open('payload.tar.gz') as archive:
+              archive.extractall('.', filter='data')
+          PYCODE
+          python3 -m pip install numpy==2.5.4
+      - uses: actions/download-artifact@v8
+        with:
+          pattern: '*-*'
+          path: receipts
+      - name: Reject incomplete cohorts and analyze all retained pairs
+        run: |
+          python3 payload/validate-admission.py receipts --cohort --output admission.json
+          python3 payload/analyze.py receipts result.json
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: aggregate
+          path: |
+            result.json
+            admission.json
+          retention-days: 30
