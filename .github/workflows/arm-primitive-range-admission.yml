@@ -1,0 +1,85 @@
+name: ARM public cold allocation and range compiler admission
+on:
+  push:
+    branches: [fix/qwen-precision-proof]
+    paths: [.github/workflows/arm-primitive-range-admission.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  admission:
+    strategy:
+      fail-fast: false
+      max-parallel: 2
+      matrix: {host: [0, 1]}
+    runs-on: ubuntu-24.04-arm
+    timeout-minutes: 35
+    steps:
+      - uses: actions/setup-java@v5
+        with: {distribution: temurin, java-version: '25.0.3'}
+      - name: Extract immutable four-arm admission
+        env: {PAYLOAD_URL: '${{ secrets.ARM_RANGE_ADMISSION_URL }}'}
+        run: |
+          curl --fail --silent --show-error --location "$PAYLOAD_URL" -o payload.tar.gz
+          echo '75ffa738af6e7cfecf43d7ea3d6229c1c027c4f997908aec6785c010959292d1  payload.tar.gz' | sha256sum -c -
+          python3 -c "import tarfile; tarfile.open('payload.tar.gz').extractall('.', filter='data')"
+      - name: Source correspondence, N2 admission and exact numerical ownership proofs
+        run: python3 payload/worker.py prepare ${{ matrix.host }}
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: range-host-${{ matrix.host }}-preflight
+          path: |
+            out/
+            payload/protocol.json
+            payload/files.json
+          retention-days: 30
+      - name: Fixed four blocks of fresh public calls, no warm timing
+        run: python3 payload/worker.py cold ${{ matrix.host }}
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: range-host-${{ matrix.host }}-cold
+          path: out/
+          retention-days: 30
+      - name: Separate public-dispatch compiler evidence
+        run: python3 payload/worker.py codegen ${{ matrix.host }}
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: range-host-${{ matrix.host }}
+          path: |
+            out/
+            payload/protocol.json
+            payload/files.json
+          retention-days: 30
+  analyze:
+    needs: admission
+    if: always()
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/download-artifact@v8
+        with:
+          pattern: range-host-*
+          path: raw
+      - name: Extract exact bounded analyzer
+        env: {PAYLOAD_URL: '${{ secrets.ARM_RANGE_ADMISSION_URL }}'}
+        run: |
+          curl --fail --silent --show-error --location "$PAYLOAD_URL" -o payload.tar.gz
+          echo '75ffa738af6e7cfecf43d7ea3d6229c1c027c4f997908aec6785c010959292d1  payload.tar.gz' | sha256sum -c -
+          python3 -c "import tarfile; tarfile.open('payload.tar.gz').extractall('.', filter='data')"
+          python3 - <<'PY'
+          from pathlib import Path
+          for host in range(2):
+              p=Path('raw')/f'range-host-{host}'
+              assert p.is_dir(),p
+              p.rename(Path('raw')/f'host-{host}')
+          PY
+      - name: Retain every cold observation without warm qualification
+        run: python3 payload/analyze.py raw analysis.json
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: range-admission-analysis
+          path: analysis.json
+          retention-days: 30
