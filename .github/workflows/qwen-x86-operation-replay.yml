@@ -1,0 +1,114 @@
+name: Qwen x86 independent complete operation replay
+on:
+  push:
+    branches: [fix/qwen-precision-proof]
+    paths: [.github/workflows/qwen-x86-operation-replay.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  replay:
+    strategy:
+      fail-fast: false
+      matrix:
+        case: [easy-tool_selection-05, original-policy-03-1]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    env:
+      OMP_NUM_THREADS: '4'
+    steps:
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '25.0.3'
+      - name: Install fixed numerical reference dependency
+        run: python3 -m pip install 'numpy==2.3.3'
+      - name: Fetch immutable replay and verify source inventory
+        env:
+          PAYLOAD_URL: ${{ secrets.QWEN_X86_OPERATION_REPLAY_URL }}
+        run: |
+          set -euo pipefail
+          curl --fail --silent --show-error --location "$PAYLOAD_URL" -o replay.tar.gz
+          echo '084d9539d9fdc185bed8979c6aaa1c792e225e80f09e51c3d403b48d4382dd32  replay.tar.gz' | sha256sum -c -
+          python3 - <<'PYCODE'
+          import tarfile
+          with tarfile.open('replay.tar.gz') as t: t.extractall('.', filter='data')
+          PYCODE
+      - name: Recover the fixed successful x86 capture
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          gh run download 38580973854 --repo integrallis/models -n qwen-x86-operation-manifest -D capture-manifest
+          gh run download 38580973854 --repo integrallis/models -n qwen-x86-operation-plain -D capture-plain
+          gh run download 38580973854 --repo integrallis/models -n qwen-x86-operation-observer -D capture-observer
+          python3 replay-payload/run.py prepare ${{ matrix.case }}
+      - name: Packed quantization and x86 projection reductions
+        if: ${{ !cancelled() }}
+        run: python3 replay-payload/run.py projections ${{ matrix.case }}
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: qwen-x86-replay-${{ matrix.case }}-projections
+          path: replay-out/projections/
+      - name: Recurrent outputs and state
+        if: ${{ !cancelled() }}
+        run: python3 replay-payload/run.py recurrence ${{ matrix.case }}
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: qwen-x86-replay-${{ matrix.case }}-recurrence
+          path: replay-out/recurrence/
+      - name: Convolution and activation formulas
+        if: ${{ !cancelled() }}
+        run: python3 replay-payload/run.py activations ${{ matrix.case }}
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: qwen-x86-replay-${{ matrix.case }}-activations
+          path: replay-out/activations/
+      - name: Normalization, attention, RoPE and cache
+        if: ${{ !cancelled() }}
+        run: python3 replay-payload/run.py basic ${{ matrix.case }}
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: qwen-x86-replay-${{ matrix.case }}-basic
+          path: replay-out/basic/
+      - name: Stored embedding decode and attention graph
+        if: ${{ !cancelled() }}
+        run: python3 replay-payload/run.py graph ${{ matrix.case }}
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: qwen-x86-replay-${{ matrix.case }}-graph
+          path: replay-out/graph/
+      - name: Normalization weight roles
+        if: ${{ !cancelled() }}
+        run: python3 replay-payload/run.py roles ${{ matrix.case }}
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: qwen-x86-replay-${{ matrix.case }}-roles
+          path: replay-out/roles/
+      - name: Hidden rows, complete outputs and residual graph
+        if: ${{ !cancelled() }}
+        run: python3 replay-payload/run.py edges ${{ matrix.case }}
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: qwen-x86-replay-${{ matrix.case }}-edges
+          path: replay-out/edges/
+      - name: Report all discrepancies without changing gates
+        if: always()
+        run: python3 replay-payload/summarize.py
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: qwen-x86-replay-${{ matrix.case }}-complete
+          path: |
+            replay-out/
+            replay-payload/files.json
+            replay-payload/PROTOCOL.md
+            replay-payload/replay-basic/preflight.json
