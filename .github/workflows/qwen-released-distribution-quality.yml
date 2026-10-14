@@ -1,0 +1,135 @@
+name: Released distribution Qwen0.8B fixed quality
+on:
+  push:
+    branches: [fix/qwen-precision-proof]
+    paths: [.github/workflows/qwen-released-distribution-quality.yml]
+  workflow_dispatch:
+    inputs:
+      phase:
+        type: choice
+        description: Smoke first; cohort only after smoke review
+        default: smoke
+        options: [smoke, cohort]
+permissions:
+  contents: read
+jobs:
+  preflight:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - {arch: x86, runner: ubuntu-24.04}
+          - {arch: arm, runner: ubuntu-24.04-arm}
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 60
+    steps:
+      - uses: actions/setup-java@v5
+        with: {distribution: temurin, java-version: '25.0.3'}
+      - name: Extract immutable quality-only artifacts
+        env: {PAYLOAD_URL: '${{ secrets.QWEN_RELEASE_QUALITY_URL }}'}
+        run: |
+          curl --fail --silent --show-error --location "$PAYLOAD_URL" -o payload.tar.gz
+          echo '3816d65c0ab09cd3d225232324b11fdb480f8285994c9e59aefc4b1c2c6f8cb2  payload.tar.gz' | sha256sum -c -
+          python3 -c "import tarfile; tarfile.open('payload.tar.gz').extractall('.', filter='data')"
+      - name: Verify actual distributions and prepare fixed first case
+        run: python3 payload/run.py prepare ${{ matrix.arch }} 0
+      - name: Fresh public-backend smoke on each actual distribution
+        run: python3 payload/run.py smoke ${{ matrix.arch }} 0
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: released-quality-preflight-${{ matrix.arch }}
+          path: |
+            proof-out/*.json
+            proof-out/*.stdout
+            proof-out/*.stderr
+            payload/protocol.json
+            payload/files.json
+            payload/expected-runtime.json
+          retention-days: 30
+  cohort:
+    needs: preflight
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.phase == 'cohort' }}
+    strategy:
+      fail-fast: false
+      max-parallel: 4
+      matrix:
+        arch: [x86, arm]
+        shard: [0, 1, 2, 3]
+        include:
+          - {arch: x86, runner: ubuntu-24.04}
+          - {arch: arm, runner: ubuntu-24.04-arm}
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 240
+    steps:
+      - uses: actions/setup-java@v5
+        with: {distribution: temurin, java-version: '25.0.3'}
+      - name: Extract immutable artifacts
+        env: {PAYLOAD_URL: '${{ secrets.QWEN_RELEASE_QUALITY_URL }}'}
+        run: |
+          curl --fail --silent --show-error --location "$PAYLOAD_URL" -o payload.tar.gz
+          echo '3816d65c0ab09cd3d225232324b11fdb480f8285994c9e59aefc4b1c2c6f8cb2  payload.tar.gz' | sha256sum -c -
+          python3 -c "import tarfile; tarfile.open('payload.tar.gz').extractall('.', filter='data')"
+      - name: Admit runtime, native and model identities
+        id: prepare
+        run: python3 payload/run.py prepare ${{ matrix.arch }} ${{ matrix.shard }}
+      - name: Fixed first arm
+        run: python3 payload/run.py quality-0 ${{ matrix.arch }} ${{ matrix.shard }}
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: released-quality-${{ matrix.arch }}-${{ matrix.shard }}-first-arm
+          path: |
+            proof-out/*.json
+            proof-out/*.stdout
+            proof-out/*.stderr
+          retention-days: 30
+      - name: Fixed second arm, retaining any failed first arm
+        if: ${{ always() && steps.prepare.outcome == 'success' }}
+        run: python3 payload/run.py quality-1 ${{ matrix.arch }} ${{ matrix.shard }}
+      - name: Original separate unsharded state contracts
+        if: ${{ always() && steps.prepare.outcome == 'success' && matrix.shard == 0 }}
+        run: python3 payload/run.py state ${{ matrix.arch }} ${{ matrix.shard }}
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: released-quality-${{ matrix.arch }}-host-${{ matrix.shard }}
+          path: |
+            proof-out/*.json
+            proof-out/*.stdout
+            proof-out/*.stderr
+            proof-out/*-snapshots/
+            payload/protocol.json
+            payload/files.json
+            payload/expected-runtime.json
+          retention-days: 30
+  analyze:
+    needs: cohort
+    if: ${{ always() && github.event_name == 'workflow_dispatch' && inputs.phase == 'cohort' }}
+    strategy:
+      fail-fast: false
+      matrix: {arch: [x86, arm]}
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/download-artifact@v8
+        with:
+          pattern: released-quality-${{ matrix.arch }}-host-*
+          path: raw
+      - name: Extract exact analyzer
+        env: {PAYLOAD_URL: '${{ secrets.QWEN_RELEASE_QUALITY_URL }}'}
+        run: |
+          curl --fail --silent --show-error --location "$PAYLOAD_URL" -o payload.tar.gz
+          echo '3816d65c0ab09cd3d225232324b11fdb480f8285994c9e59aefc4b1c2c6f8cb2  payload.tar.gz' | sha256sum -c -
+          python3 -c "import tarfile; tarfile.open('payload.tar.gz').extractall('.', filter='data')"
+          python3 - <<'PY'
+          from pathlib import Path
+          for p in Path('raw').iterdir(): p.rename(p.with_name(p.name.removeprefix('released-quality-')))
+          PY
+      - name: Complete148 per-dataset comparison without pooling
+        run: python3 payload/analyze.py raw ${{ matrix.arch }} quality-${{ matrix.arch }}.json
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: released-quality-analysis-${{ matrix.arch }}
+          path: quality-*.json
+          retention-days: 30
