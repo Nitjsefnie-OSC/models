@@ -1,0 +1,134 @@
+name: Q5_0 native versus repaired Java full-model qualification
+on:
+  push:
+    branches: [fix/qwen-precision-proof]
+    paths: [.github/workflows/q50-model-qualification.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  preflight:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - {arch: x86, runner: ubuntu-24.04}
+          - {arch: arm, runner: ubuntu-24.04-arm}
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 90
+    steps:
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '25.0.3'
+      - name: Extract immutable runtime and unchanged model harness
+        env:
+          PAYLOAD_URL: ${{ secrets.Q50_MODEL_QUALIFICATION_URL }}
+        run: |
+          set -euo pipefail
+          mkdir -p proof-out
+          curl --fail --silent --show-error --location "$PAYLOAD_URL" -o payload.tar.gz
+          echo '575cdacb2129dc0297012bfdae4bea58982823514fcb1ff646defa99d34367a1  payload.tar.gz' | sha256sum -c -
+          python3 - <<'PY'
+          import tarfile
+          with tarfile.open('payload.tar.gz') as archive:
+              archive.extractall('.', filter='data')
+          PY
+      - name: Execute routing, owned numerical cohort and full timing command preflight
+        run: python3 payload/run.py preflight ${{ matrix.arch }} 0
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: q50-model-preflight-${{ matrix.arch }}
+          path: |
+            proof-out
+            payload/protocol.json
+            payload/files.json
+          retention-days: 30
+  cohort:
+    needs: preflight
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [0, 1, 2, 3]
+        include:
+          - {arch: x86, runner: ubuntu-24.04}
+          - {arch: arm, runner: ubuntu-24.04-arm}
+        arch: [x86, arm]
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 120
+    steps:
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '25.0.3'
+      - name: Verify immutable payload before every independent host
+        env:
+          PAYLOAD_URL: ${{ secrets.Q50_MODEL_QUALIFICATION_URL }}
+        run: |
+          set -euo pipefail
+          mkdir -p proof-out
+          curl --fail --silent --show-error --location "$PAYLOAD_URL" -o payload.tar.gz
+          echo '575cdacb2129dc0297012bfdae4bea58982823514fcb1ff646defa99d34367a1  payload.tar.gz' | sha256sum -c -
+          python3 - <<'PY'
+          import tarfile
+          with tarfile.open('payload.tar.gz') as archive:
+              archive.extractall('.', filter='data')
+          PY
+      - name: Fixed 37-case shard and three same-host pairs
+        run: python3 payload/run.py run ${{ matrix.arch }} ${{ matrix.shard }}
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: q50-model-${{ matrix.arch }}-host-${{ matrix.shard }}
+          path: |
+            proof-out
+            payload/protocol.json
+            payload/files.json
+          retention-days: 30
+  analyze:
+    needs: cohort
+    if: always()
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - name: Extract exact frozen analyzers
+        env:
+          PAYLOAD_URL: ${{ secrets.Q50_MODEL_QUALIFICATION_URL }}
+        run: |
+          set -euo pipefail
+          curl --fail --silent --show-error --location "$PAYLOAD_URL" -o payload.tar.gz
+          echo '575cdacb2129dc0297012bfdae4bea58982823514fcb1ff646defa99d34367a1  payload.tar.gz' | sha256sum -c -
+          python3 - <<'PY'
+          import tarfile
+          with tarfile.open('payload.tar.gz') as archive:
+              archive.extractall('.', filter='data')
+          PY
+      - uses: actions/download-artifact@v8
+        with:
+          pattern: q50-model-*-host-*
+          path: results
+      - name: Retain both architectures and every analysis failure
+        run: |
+          python3 - <<'PY'
+          import pathlib,subprocess,json
+          root=pathlib.Path('results'); root.mkdir(exist_ok=True)
+          for path in list(root.glob('q50-model-*-host-*')):
+              path.rename(path.with_name(path.name.removeprefix('q50-model-')))
+          failures=[]
+          for arch in ['x86','arm']:
+              for kind in ['quality','resources']:
+                  cmd=['python3','payload/analyze-'+kind+'.py','results',arch,'results/'+arch+'-'+kind+'.json']
+                  r=subprocess.run(cmd,capture_output=True,text=True)
+                  (root/(arch+'-'+kind+'.stdout')).write_text(r.stdout)
+                  (root/(arch+'-'+kind+'.stderr')).write_text(r.stderr)
+                  if r.returncode:failures.append(dict(arch=arch,kind=kind,exitCode=r.returncode))
+          (root/'analysis-execution.json').write_text(json.dumps(failures,indent=2)+'\n')
+          if failures:raise SystemExit('Incomplete, failed, or unresolved qualification; raw evidence retained')
+          PY
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: q50-model-analysis
+          path: results
+          retention-days: 30
