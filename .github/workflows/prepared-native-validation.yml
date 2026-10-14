@@ -1,5 +1,5 @@
 name: Prepared native functional validation
-run-name: Prepared native validation (f3b32fbb + coverage tests)
+run-name: Prepared native validation (f3b32fbb + portable coverage tests)
 on:
   push:
     branches: [fix/qwen-precision-proof]
@@ -58,7 +58,7 @@ jobs:
           import hashlib, os, pathlib, tarfile, urllib.request
           path = pathlib.Path('payload.tar.gz')
           urllib.request.urlretrieve(os.environ['PAYLOAD_URL'], path)
-          assert hashlib.sha256(path.read_bytes()).hexdigest() == '8c690323d976ae32b054e37b9f08e0e135823235284374cdb01fdeb4a45e6186'
+          assert hashlib.sha256(path.read_bytes()).hexdigest() == '7f1a2afd02cdfcf376fba94bf56acabd37e2b5b71c9470a12c4583aecd694b61'
           pathlib.Path('harness').mkdir()
           with tarfile.open(path) as archive:
               archive.extractall('harness', filter='data')
