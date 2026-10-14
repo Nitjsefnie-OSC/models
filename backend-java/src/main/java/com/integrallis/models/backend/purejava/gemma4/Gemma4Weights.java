@@ -300,14 +300,6 @@ final class Gemma4Weights {
         perLayerTokenEmbedding, perLayerTokenEmbeddingType, token, output.length, output);
   }
 
-  MemorySegment perLayerTokenEmbedding() {
-    return perLayerTokenEmbedding;
-  }
-
-  GgufTensorType perLayerTokenEmbeddingType() {
-    return perLayerTokenEmbeddingType;
-  }
-
   Matrix perLayerModelProjection() {
     return perLayerModelProjection;
   }

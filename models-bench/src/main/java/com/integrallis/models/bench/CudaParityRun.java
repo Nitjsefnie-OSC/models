@@ -49,13 +49,7 @@ final class CudaParityRun {
       int comparedTokens,
       int endOfGenerationSequences,
       boolean identical,
-      Optional<Divergence> firstDivergence) {
-
-    /** Whether every compared sequence matched. */
-    boolean passed() {
-      return identical;
-    }
-  }
+      Optional<Divergence> firstDivergence) {}
 
   /**
    * Compares two arms' sequences prompt by prompt, token by token, stopping at the first mismatch.

@@ -599,7 +599,6 @@ public final class Qwen35ForwardPass {
       }
 
       for (int row = 0; row < rows; row++) {
-        group.branch(active[row]).advance();
         int index = active[row];
         if (suffixes[index].length == step + 1) {
           logits[index] = projectRowLogits(batch, row, state.scratch);
