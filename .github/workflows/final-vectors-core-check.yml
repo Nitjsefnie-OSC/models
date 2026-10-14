@@ -1,0 +1,49 @@
+name: Final Vectors core architecture checks
+on:
+  push:
+    branches: [fix/qwen-precision-proof]
+    paths: [.github/workflows/final-vectors-core-check.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  core:
+    strategy:
+      fail-fast: false
+      matrix:
+        runner: [ubuntu-24.04, ubuntu-24.04-arm]
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          repository: integrallis/vectors
+          ref: b0aadc8d972f3504426f6e38fcb0a4b4a97a0333
+          path: vectors
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '25.0.3'
+      - name: Verify exact source payload
+        env:
+          PAYLOAD_URL: ${{ secrets.FINAL_VECTORS_CORE_CHECK_URL }}
+        run: |
+          set -euo pipefail
+          curl --fail --silent --show-error --location "$PAYLOAD_URL" -o payload.tar.gz
+          echo 'e4a4ee862a6fc276228f53cf7fcae134592c4884deea456876ca0cdd32ee9d7c  payload.tar.gz' | sha256sum -c -
+          python3 - <<'PYCODE'
+          import tarfile
+          with tarfile.open('payload.tar.gz') as archive: archive.extractall('.', filter='data')
+          PYCODE
+          python3 payload/run.py prepare
+      - name: Run complete core checks and reproduce exact runtime JAR
+        run: python3 payload/run.py check
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: final-vectors-core-${{ matrix.runner }}
+          path: |
+            evidence/
+            vectors/vectors-core/build/test-results/
+            vectors/vectors-core/build/reports/
+          retention-days: 30
