@@ -29,7 +29,7 @@ jobs:
         env: {PAYLOAD_URL: '${{ secrets.QWEN_RELEASE_QUALITY_URL }}'}
         run: |
           curl --fail --silent --show-error --location "$PAYLOAD_URL" -o payload.tar.gz
-          echo '3816d65c0ab09cd3d225232324b11fdb480f8285994c9e59aefc4b1c2c6f8cb2  payload.tar.gz' | sha256sum -c -
+          echo '98fb4f0f98d2cee9a20fc38da0e44680f36c23b6300f02942521a36d422516b0  payload.tar.gz' | sha256sum -c -
           python3 -c "import tarfile; tarfile.open('payload.tar.gz').extractall('.', filter='data')"
       - name: Verify actual distributions and prepare fixed first case
         run: python3 payload/run.py prepare ${{ matrix.arch }} 0
@@ -68,7 +68,7 @@ jobs:
         env: {PAYLOAD_URL: '${{ secrets.QWEN_RELEASE_QUALITY_URL }}'}
         run: |
           curl --fail --silent --show-error --location "$PAYLOAD_URL" -o payload.tar.gz
-          echo '3816d65c0ab09cd3d225232324b11fdb480f8285994c9e59aefc4b1c2c6f8cb2  payload.tar.gz' | sha256sum -c -
+          echo '98fb4f0f98d2cee9a20fc38da0e44680f36c23b6300f02942521a36d422516b0  payload.tar.gz' | sha256sum -c -
           python3 -c "import tarfile; tarfile.open('payload.tar.gz').extractall('.', filter='data')"
       - name: Admit runtime, native and model identities
         id: prepare
@@ -119,7 +119,7 @@ jobs:
         env: {PAYLOAD_URL: '${{ secrets.QWEN_RELEASE_QUALITY_URL }}'}
         run: |
           curl --fail --silent --show-error --location "$PAYLOAD_URL" -o payload.tar.gz
-          echo '3816d65c0ab09cd3d225232324b11fdb480f8285994c9e59aefc4b1c2c6f8cb2  payload.tar.gz' | sha256sum -c -
+          echo '98fb4f0f98d2cee9a20fc38da0e44680f36c23b6300f02942521a36d422516b0  payload.tar.gz' | sha256sum -c -
           python3 -c "import tarfile; tarfile.open('payload.tar.gz').extractall('.', filter='data')"
           python3 - <<'PY'
           from pathlib import Path
