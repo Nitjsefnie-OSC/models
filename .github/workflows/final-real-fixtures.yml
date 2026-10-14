@@ -1,0 +1,52 @@
+name: Final frozen runtime real fixture completeness
+on:
+  push:
+    branches: [fix/qwen-precision-proof]
+    paths: [.github/workflows/final-real-fixtures.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  fixtures:
+    strategy:
+      fail-fast: false
+      matrix:
+        runner: [ubuntu-24.04, ubuntu-24.04-arm]
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: 218daaea7b3a52e97311b56e5d950245ed917343
+          path: models
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '25.0.3'
+      - name: Verify exact payload and configure all real fixtures
+        env:
+          FIXTURE_PAYLOAD_URL: ${{ secrets.FINAL_REAL_FIXTURE_URL }}
+          MOBILE_FIXTURE_URL: ${{ secrets.FINAL_MOBILE_FIXTURE_URL }}
+        run: |
+          set -euo pipefail
+          mkdir -p evidence
+          curl --fail --silent --show-error --location "$FIXTURE_PAYLOAD_URL" -o payload.tar.gz
+          echo '93f768279b95f51da8444ab17d23a08590e7625a413195700f5bf457727a2a33  payload.tar.gz' | sha256sum -c -
+          python3 - <<'PYCODE'
+          import tarfile
+          with tarfile.open('payload.tar.gz') as archive: archive.extractall('.', filter='data')
+          PYCODE
+          python3 payload/run.py prepare
+      - name: Execute full Java backend suite and reject every skipped fixture
+        run: python3 payload/run.py test
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: final-real-fixtures-${{ matrix.runner }}
+          path: |
+            evidence/
+            payload/protocol.json
+            payload/files.json
+            models/backend-java/build/test-results/test/
+            models/backend-java/build/reports/final-fixture-runtime.json
+          retention-days: 30
