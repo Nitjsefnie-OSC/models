@@ -37,6 +37,6 @@ configuration and dependency locks. Changing an affected file invalidates a comp
 unrelated article edits do not. Supporting workers inherit justification from the compute
 operations they serve and need no invented, independent JVM limitation.
 
-The BF16 and SwiGLU candidate entries remain UNPROVEN. Their [inventory](bf16-swiglu-candidate-inventory.md) separates measured compiler/allocation mechanisms and component screens from missing final composed and supported-profile gates. Raw rejected experiments remain outside project repositories.
+The BF16 and SwiGLU candidate entries remain UNPROVEN. Their [inventory](bf16-swiglu-candidate-inventory.md) separates measured compiler/allocation mechanisms, completed artifact-specific functional and Bonsai quality campaigns, and component screens from unresolved causal/resource and final-composition gates. Raw rejected experiments remain outside project repositories.
 
 [ABI7 symbol retirement](abi7-symbol-retirement.md) lists removed compatibility wrappers and the retained generic entry points.

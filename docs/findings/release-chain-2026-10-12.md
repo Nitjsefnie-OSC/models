@@ -4,6 +4,11 @@ This is the execution plan for the current cleanup, not a publication receipt. C
 are Vectors 0.1.30, Models 0.3.59, and ModelJars 0.1.58. No member of this train is published yet.
 Existing authorizations cover completion and publication through these gates.
 
+Release each library as soon as its own engineering, qualification, dependency and publication
+checks are complete. Unrelated downstream work does not hold a clean upstream release. A known
+regression blocks its affected library; an unfinished check cannot be marked complete.
+The active per-library checklist is `../../../../RELEASE-TODO.md` in the shared workspace.
+
 ## 1. Freeze and qualify the corrected runtime
 
 Retain immutable source revisions, compiled artifact hashes, JDK/native compiler versions,
@@ -11,6 +16,14 @@ weights, data, prompts, observed route counters, and every failed control. Combi
 BF16 and activation fixes with the executor lifecycle guard; combine Models' ownership,
 recurrence, Q4 rounding, Q5 selection/allocation, and shared-prefix corrections. A later
 source change invalidates affected evidence and needs an explicitly bounded rerun.
+
+The release comparator must use the complete previously released distribution fetched from
+Central, including its bundled native libraries and transitive dependency versions. Record its
+POM/module metadata and artifact/entry hashes before launch. A held Models build combined with
+published Vectors is a component control, not the released distribution; a rebuilt native library
+is not the released binary. Preserve those historical controls with their actual scope and never
+pool them into the release contrast. The current released baseline is Models 0.3.58 with Vectors
+0.1.29; its native libraries are resources inside the released backend-native JAR.
 
 Run supported-host numerical/cold-hot/reset/grouped checks and paired whole-model measurements.
 Preserve the declared latency, throughput, allocation, RSS, startup and task-quality gates.

@@ -15,4 +15,4 @@ These symbols appeared in published native libraries, but the supported Java bin
 
 This removal belongs to the already-breaking ABI 7 transition. Published ABI 6 Java loaders require exactly ABI 6 and reject ABI 7 independently of this change. No ABI 6 artifact is changed, and consumers must update matching Java/native artifacts together.
 
-Removing the redundant callers changes native compiler inlining even though the generic arithmetic remains unchanged. Correctness and resource qualification must therefore use the rebuilt final native artifact. The symbol inventory records 14 CPU exports after this removal; operation proof status is unchanged.
+Removing the redundant callers changes native compiler inlining even though the generic arithmetic remains unchanged. Correctness and resource qualification must therefore use the rebuilt final native artifact. The retirement left 14 CPU exports. The two subsequent ARM recurrent-activation entries (`jmodels_sigmoid_scaled_softplus_f32` and `jmodels_causal_depthwise_conv_silu_f32`) bring the current source and registry inventory to 16 CPU exports; operation proof status is unchanged.

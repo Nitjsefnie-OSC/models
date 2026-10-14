@@ -1,10 +1,22 @@
 # BF16 and SwiGLU candidate evidence inventory
 
-Both operations remain **UNPROVEN**. This inventory accompanies the external composed Models patch `a43b47ca8ba326b456456fd008f416b2d740e39ee25e0da873c03c269ffce918` over `218daaea7b3a52e97311b56e5d950245ed917343`, with actual Gradle Vectors JAR `9fc500f992f5b5ef73086691d53d82a8ea8702e5d80d6145d582365b3ef7c189`. It is not a release or a completed native-necessity certificate.
+Both operations remain **UNPROVEN**. The historical sections below accompany the external composed Models patch `a43b47ca8ba326b456456fd008f416b2d740e39ee25e0da873c03c269ffce918` over `218daaea7b3a52e97311b56e5d950245ed917343`, with actual Gradle Vectors JAR `9fc500f992f5b5ef73086691d53d82a8ea8702e5d80d6145d582365b3ef7c189`. It is not a release or a completed native-necessity certificate.
 
 ## Current external composition delta
 
 The paragraphs below describe historical `a43` evidence and retain its original scope. The current ARM SLEEF composition changes capability-27 ARM128 SwiGLU to the pinned permissively licensed SLEEF recipe, including full-domain exceptional handling and consistent scalar activation tails. It also adds sigmoid/scaled-softplus and causal convolution hooks. The ordinary Qwen2/Qwen3 Llama path now consults the SwiGLU provider; Granite retains its separate arithmetic. x86 keeps the earlier finite-domain native algorithm. Caller-owned prepared views remove repeated heap-segment wrappers without caching session arrays in the provider. Each new route remains UNPROVEN until the final artifact passes its own model-specific quality and complete resource/performance gates; historical component results do not transfer automatically.
+
+## Completed later functional and task-quality evidence
+
+The following receipts supersede the old work-matrix-v4 statements that these campaigns were still running. They do not change either operation's UNPROVEN status or close causal/performance requirements. Each uses Models source tree `f3b32fbbf7db51c55737fab1a6a2ffb90133facd3968e8aa07ca781d3132ed16`; their different Vectors cores must not be conflated.
+
+| Completed campaign | Exact Vectors core | Executed scope and result | Independently verified receipt under `audit-artifacts/` |
+| --- | --- | --- | --- |
+| Bonsai public QA, run 38492206904 | `e249e91455f6800260e61d9c3d3a5e9822c7be45fabd1219d3f659dc037501c6` | ARM Neoverse-N2; all 200 frozen cases and 400 raw answers; unchanged SQuAD2/BoolQ scoring PASS against the pinned publisher with the proven ARM repacking repair. Task quality only. | `final-public-qa-fast-v3/independent-final200/verification.json` |
+| Native and Bonsai functional validation, runs 38591864882 / 38591864848 | `cc484b11257c5df44ea04e9233bfbd1e3acd48b1bca941935f5002be526b8eda` | 77 native tests on each of six OS/architecture targets: 462 executions; 16 Bonsai fixture executions across four Linux architecture/JDK configurations; zero failures or skips. No per-platform performance claim. | `final-native-bonsai-cc484-v1/independent-results.json` |
+| Full real-model Java fixtures, run 38590385522 | Same `cc484b11` core | 1,029 tests on each Linux architecture, including all 18 required real fixtures; zero failures or skips. Backend Java JAR `5d2fd0ed5dbedf16edb72cc85d2535746cb4a2eb15baa3c1a7912814310455f5`. | `final-real-fixtures-v3/independent-results.json` |
+
+The 200-case result is not a cc484 quality result. None of these receipts tests the later SwiGLU forward-overlap repair commit `1ff05e11`, the proposed Q8 full-bound cleanup, or a later release composition. Their own affected checks remain required. Existing resource failures/unresolved intervals and native-necessity requirements are unchanged; historical component measurements below retain their original a43/9fc scope.
 
 ## BF16 fixed-tree projection
 
