@@ -31,7 +31,7 @@ jobs:
           set -euo pipefail
           mkdir -p evidence
           curl --fail --silent --show-error --location "$FIXTURE_PAYLOAD_URL" -o payload.tar.gz
-          echo '93f768279b95f51da8444ab17d23a08590e7625a413195700f5bf457727a2a33  payload.tar.gz' | sha256sum -c -
+          echo '5b7018607bf360e808c5aac928ccc699361af80e376b7edfa08f7028968bbed4  payload.tar.gz' | sha256sum -c -
           python3 - <<'PYCODE'
           import tarfile
           with tarfile.open('payload.tar.gz') as archive: archive.extractall('.', filter='data')
