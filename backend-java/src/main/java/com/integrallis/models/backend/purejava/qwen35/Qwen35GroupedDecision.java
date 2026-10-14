@@ -157,7 +157,6 @@ final class Qwen35GroupedDecision {
     }
   }
 
-  private final Qwen35Config config;
   private final Branch[] branches;
   private final int suffixCapacity;
 
@@ -182,7 +181,6 @@ final class Qwen35GroupedDecision {
     if (suffixCapacity < 1) {
       throw new IllegalArgumentException("suffixCapacity must be >= 1: " + suffixCapacity);
     }
-    this.config = config;
     this.suffixCapacity = suffixCapacity;
     this.branches = new Branch[groupSize];
     for (int index = 0; index < groupSize; index++) {
@@ -247,23 +245,5 @@ final class Qwen35GroupedDecision {
 
   Branch branch(int index) {
     return branches[index];
-  }
-
-  Qwen35Config config() {
-    return config;
-  }
-
-  /** Bytes of private state a group holds, which is what bounds how many questions run at once. */
-  long stateBytes() {
-    long bytes = 0L;
-    for (float[] layer : recurrentState) {
-      bytes += layer == null ? 0L : (long) layer.length * Float.BYTES;
-    }
-    for (Branch branch : branches) {
-      for (float[] layer : branch.suffixKeys) {
-        bytes += layer == null ? 0L : 2L * layer.length * Float.BYTES;
-      }
-    }
-    return bytes;
   }
 }
