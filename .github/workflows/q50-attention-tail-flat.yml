@@ -1,0 +1,48 @@
+name: Q5_0 flattened attention-tail causal screen
+on:
+  push:
+    branches: [fix/qwen-precision-proof]
+    paths: [.github/workflows/q50-attention-tail-flat.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  diagnostic:
+    strategy:
+      fail-fast: false
+      matrix:
+        host: [0, 1]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 120
+    steps:
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '25.0.3'
+      - name: Verify immutable eight-JAR-per-arm diagnostic
+        env:
+          PAYLOAD_URL: ${{ secrets.Q50_ATTENTION_TAIL_FLAT_URL }}
+        run: |
+          set -euo pipefail
+          mkdir -p proof-out
+          curl --fail --silent --show-error --location "$PAYLOAD_URL" -o payload.tar.gz
+          echo 'ce2a64b38d6c631978e52737b6f9837470b7525118aa54c0f2fd2882f63268ef  payload.tar.gz' | sha256sum -c -
+          python3 - <<'PY'
+          import tarfile
+          with tarfile.open('payload.tar.gz') as archive:
+              archive.extractall('.', filter='data')
+          PY
+      - name: Fixed plain-profile forks with owned-vector correspondence
+        run: python3 payload/run.py run ${{ matrix.host }}
+      - name: Summarize allocation stacks separately from qualification
+        if: always()
+        run: python3 payload/analyze.py proof-out proof-out/allocation-analysis.json
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: q50-attention-tail-flat-x86-${{ matrix.host }}
+          path: |
+            proof-out
+            payload/protocol.json
+            payload/files.json
+          retention-days: 30
