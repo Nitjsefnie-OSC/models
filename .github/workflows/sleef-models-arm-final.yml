@@ -31,7 +31,7 @@ jobs:
           set -euo pipefail
           mkdir -p proof-out
           curl --fail --silent --show-error --location "$PAYLOAD_URL" -o payload.tar.gz
-          echo '6eb2f60ff6b24472e6a7f186c76963cca8e1922b95349be1010702a63f2979c1  payload.tar.gz' | sha256sum -c -
+          echo '838bac411326d3876ee004994f36bc86762736c0d3df4a02171628d6e3e6aee5  payload.tar.gz' | sha256sum -c -
           python3 - <<'PYCODE'
           import tarfile,pathlib,json,hashlib
           with tarfile.open('payload.tar.gz') as t:t.extractall('.',filter='data')
@@ -84,7 +84,7 @@ jobs:
           set -euo pipefail
           mkdir -p proof-out
           curl --fail --silent --show-error --location "$PAYLOAD_URL" -o payload.tar.gz
-          echo '6eb2f60ff6b24472e6a7f186c76963cca8e1922b95349be1010702a63f2979c1  payload.tar.gz' | sha256sum -c -
+          echo '838bac411326d3876ee004994f36bc86762736c0d3df4a02171628d6e3e6aee5  payload.tar.gz' | sha256sum -c -
           python3 - <<'PYCODE'
           import tarfile,pathlib,json,hashlib
           with tarfile.open('payload.tar.gz') as t:t.extractall('.',filter='data')
