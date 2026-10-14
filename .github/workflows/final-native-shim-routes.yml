@@ -1,0 +1,52 @@
+name: Final native shim observed-route prerequisites
+on:
+  push:
+    branches: [fix/qwen-precision-proof]
+    paths: [.github/workflows/final-native-shim-routes.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  routes:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - {arch: x86, runner: ubuntu-24.04}
+          - {arch: arm, runner: ubuntu-24.04-arm}
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 90
+    steps:
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '25.0.3'
+      - name: Verify immutable final binaries and external control payload
+        env:
+          PAYLOAD_URL: ${{ secrets.FINAL_SHIM_ROUTE_URL }}
+        run: |
+          set -euo pipefail
+          mkdir -p proof-out
+          curl --fail --silent --show-error --location "$PAYLOAD_URL" -o payload.tar.gz
+          echo '9090a71ea7bbb88affa2af5c86342d485ec578ec492275345fe678a895ed04b0  payload.tar.gz' | sha256sum -c -
+          python3 - <<'PYCODE'
+          import tarfile,pathlib,json,hashlib
+          with tarfile.open('payload.tar.gz') as t:t.extractall('.',filter='data')
+          p=pathlib.Path('payload')
+          for n,h in json.loads((p/'files.json').read_text()).items():assert hashlib.sha256((p/n).read_bytes()).hexdigest()==h,n
+          PYCODE
+          python3 payload/test_run.py
+          python3 payload/run.py prepare ${{ matrix.arch }}
+      - name: Observe actual positive and declining routes with owned-vector correspondence
+        run: python3 payload/run.py run ${{ matrix.arch }}
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: final-shim-routes-${{ matrix.arch }}
+          path: |
+            proof-out
+            payload/protocol.json
+            payload/files.json
+            payload/source-manifest.json
+            payload/manifest.json
+          retention-days: 30
