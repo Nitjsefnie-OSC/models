@@ -1,0 +1,41 @@
+name: FP64 retained-state numerical and lifecycle prerequisite
+on:
+  push:
+    branches: [fix/qwen-precision-proof]
+    paths: [.github/workflows/fp64-state-prerequisite.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  contracts:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - {runner: ubuntu-24.04, arch: x86}
+          - {runner: ubuntu-24.04-arm, arch: arm}
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 45
+    steps:
+      - uses: actions/setup-java@v5
+        with: {distribution: temurin, java-version: '25.0.3+9.0.LTS'}
+      - name: Extract immutable component and synthetic-graph payload
+        env: {PAYLOAD_URL: '${{ secrets.FP64_STATE_PREREQUISITE_URL }}'}
+        run: |
+          curl --fail --silent --show-error --location "$PAYLOAD_URL" -o payload.tar.gz
+          echo '9ecdca8be01235434b892ea0acffcff1c4b1d08a2d3e2b3bf776048ab119d0f6  payload.tar.gz' | sha256sum -c -
+          python3 -c "import tarfile; tarfile.open('payload.tar.gz').extractall('.', filter='data')"
+      - name: Fixed numerical, lifecycle and forbidden-FP32-route contracts
+        run: python3 payload/run.py
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: fp64-state-prerequisite-${{ matrix.arch }}
+          path: |
+            proof-out/
+            payload/protocol.json
+            payload/files.json
+            payload/runtime.patch
+            payload/runtime-manifest.json
+            payload/artifact-correspondence.json
+          retention-days: 30
