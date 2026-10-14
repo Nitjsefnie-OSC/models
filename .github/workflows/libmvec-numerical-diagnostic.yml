@@ -1,0 +1,73 @@
+name: External system vector math numerical diagnostic
+on:
+  push:
+    branches: [fix/qwen-precision-proof]
+    paths: [.github/workflows/libmvec-numerical-diagnostic.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  numerical:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '25.0.3+9'
+      - name: Extract immutable external diagnostic
+        env:
+          PAYLOAD_URL: ${{ secrets.LIBMVEC_NUMERICAL_DIAGNOSTIC_URL }}
+        run: |
+          set -euo pipefail
+          curl --fail --silent --show-error --location "$PAYLOAD_URL" -o payload.tar.gz
+          echo 'f0d53b0f6b21e470f92ef4d190e37565349317da3451a05ad12767c4641d2768  payload.tar.gz' | sha256sum -c -
+          python3 - <<'PYCODE'
+          import tarfile,hashlib,json,pathlib
+          with tarfile.open('payload.tar.gz') as t:t.extractall('.',filter='data')
+          p=pathlib.Path('payload');c=json.loads((p/'protocol.json').read_text())
+          for n,h in c['sourceSha256'].items(): assert hashlib.sha256((p/n).read_bytes()).hexdigest()==h
+          PYCODE
+      - name: Record host and compile the bridge against installed system libraries
+        run: |
+          set -euo pipefail
+          mkdir -p results classes
+          lscpu > results/cpu.txt
+          java -version 2> results/java.txt
+          getconf GNU_LIBC_VERSION > results/glibc.txt
+          cc --version > results/compiler.txt
+          cc -O3 -mavx2 -mfma -fPIC -shared payload/bridge.c -lmvec -lm -o results/libdiagnostic.so
+          ldd results/libdiagnostic.so > results/linked-libraries.txt
+          python3 - <<'PYCODE'
+          import pathlib,hashlib,json
+          paths=[pathlib.Path('/lib/x86_64-linux-gnu/libmvec.so.1'),pathlib.Path('/lib/x86_64-linux-gnu/libm.so.6'),pathlib.Path('results/libdiagnostic.so')]
+          report={str(p):{'resolved':str(p.resolve()),'sha256':hashlib.sha256(p.read_bytes()).hexdigest()} for p in paths}
+          pathlib.Path('results/native-identities.json').write_text(json.dumps(report,indent=2)+'\n')
+          PYCODE
+          javac --add-modules jdk.incubator.vector -d classes payload/MathVectorProbe.java
+      - name: Compare fixed independent values with the warmed JDK implementation
+        run: |
+          set -euo pipefail
+          java --add-modules jdk.incubator.vector --enable-native-access=ALL-UNNAMED \
+            -Xms512m -Xmx512m -XX:UseAVX=2 -XX:MaxVectorSize=32 -XX:+PrintCompilation \
+            -cp classes MathVectorProbe "$PWD/results/libdiagnostic.so" \
+            > results/numerical.stdout 2> results/numerical.stderr
+          python3 - <<'PYCODE'
+          import pathlib,json
+          p=pathlib.Path('results');s=(p/'numerical.stdout').read_text()
+          rows=[json.loads(x) for x in s.splitlines() if x.startswith('{')]
+          assert [r['operation'] for r in rows]==['exp-broad','log-positive-bits','exp-boundaries','log-boundaries']
+          assert [r['values'] for r in rows]==[4194304,4194304,8192,8192]
+          # PrintCompilation records compilation level4 (C2); ensure both oracle methods reached it.
+          for method in ['jdkExp','jdkLog']:
+              assert any('MathVectorProbe::'+method in l and '4' in l.split()[:5] and 'made not entrant' not in l for l in s.splitlines()),method
+          (p/'summary.json').write_text(json.dumps({'executionComplete':True,'numericallyExact':all(r['mismatches']==0 for r in rows),'results':rows,'scope':'External numerical diagnostic only; no runtime adoption, model qualification, or license authorization.'},indent=2)+'\n')
+          PYCODE
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: libmvec-numerical-diagnostic
+          path: |
+            results/
+            payload/
+          if-no-files-found: error
