@@ -1,0 +1,70 @@
+name: Final Bonsai ARM runtime build and paired public preflight
+on:
+  push:
+    branches: [fix/qwen-precision-proof]
+    paths: [.github/workflows/bonsai-final-runtime-build.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  build-and-preflight:
+    runs-on: ubuntu-24.04-arm
+    timeout-minutes: 75
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          path: harness
+      - uses: actions/checkout@v5
+        with:
+          repository: integrallis/models
+          ref: 218daaea7b3a52e97311b56e5d950245ed917343
+          path: models
+      - uses: actions/checkout@v5
+        with:
+          repository: integrallis/vectors
+          ref: b0aadc8d972f3504426f6e38fcb0a4b4a97a0333
+          path: vectors
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '25.0.3'
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          toolchain: '1.96.0'
+      - name: Verify immutable source, harness and publisher payload
+        env:
+          PAYLOAD_URL: ${{ secrets.BONSAI_FINAL_RUNTIME_BUILD_URL }}
+        run: |
+          set -euo pipefail
+          curl --fail --silent --show-error --location "$PAYLOAD_URL" -o payload.tar.gz
+          echo '8ef2c13faf59f2cfb34456064a3fb871f7fde4ad25caee65a3186777906f9f59  payload.tar.gz' | sha256sum -c -
+          tar -xzf payload.tar.gz -C harness
+          python3 -m unittest discover -s harness/scripts/bonsai-final-qa -p 'test_*.py'
+      - name: Admit N2, reconstruct exact sources, compile and freeze runtime once
+        timeout-minutes: 25
+        run: python3 harness/build-runtime.py
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: final-bonsai-runtime-build
+          path: |
+            build-out/
+            harness/source-provenance/
+            harness/scripts/bonsai-final-qa/protocol.json
+            harness/files.json
+          retention-days: 30
+      - uses: actions/cache@v5
+        with:
+          path: ~/.jvllm/models/Ternary-Bonsai-2-27B-PTQ1_0.gguf
+          key: bonsai2-27b-ptq1_0-fixture-v1
+      - name: Verify fresh archive, publisher libraries and original case tokens
+        run: python3 harness/scripts/bonsai-final-qa/run.py prepare --shard 0
+      - name: Original paired public case before fanout
+        timeout-minutes: 30
+        run: python3 harness/scripts/bonsai-final-qa/run.py block --shard 0 --block 0
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: final-bonsai-runtime-paired-preflight
+          path: out/
+          retention-days: 30
