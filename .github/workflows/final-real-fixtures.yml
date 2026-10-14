@@ -1,4 +1,4 @@
-name: Final frozen runtime real fixture completeness
+name: Composed core real fixture completeness
 on:
   push:
     branches: [fix/qwen-precision-proof]
@@ -25,13 +25,13 @@ jobs:
           java-version: '25.0.3'
       - name: Verify exact payload and configure all real fixtures
         env:
-          FIXTURE_PAYLOAD_URL: ${{ secrets.FINAL_REAL_FIXTURE_URL }}
-          MOBILE_FIXTURE_URL: ${{ secrets.FINAL_MOBILE_FIXTURE_URL }}
+          FIXTURE_PAYLOAD_URL: ${{ secrets.FINAL_COMPOSED_FIXTURE_URL }}
+          MOBILE_FIXTURE_URL: ${{ secrets.FINAL_COMPOSED_MOBILE_FIXTURE_URL }}
         run: |
           set -euo pipefail
           mkdir -p evidence
           curl --fail --silent --show-error --location "$FIXTURE_PAYLOAD_URL" -o payload.tar.gz
-          echo '5b7018607bf360e808c5aac928ccc699361af80e376b7edfa08f7028968bbed4  payload.tar.gz' | sha256sum -c -
+          echo '9561cf67731d093c250dbbc853ab1203ae267a9d58a4c34747cb33a708079b43  payload.tar.gz' | sha256sum -c -
           python3 - <<'PYCODE'
           import tarfile
           with tarfile.open('payload.tar.gz') as archive: archive.extractall('.', filter='data')
@@ -42,7 +42,7 @@ jobs:
       - uses: actions/upload-artifact@v7
         if: always()
         with:
-          name: final-real-fixtures-${{ matrix.runner }}
+          name: composed-real-fixtures-${{ matrix.runner }}
           path: |
             evidence/
             payload/protocol.json
