@@ -37,7 +37,7 @@ jobs:
         run: |
           set -euo pipefail
           curl --fail --silent --show-error --location "$PAYLOAD_URL" -o payload.tar.gz
-          echo '8ef2c13faf59f2cfb34456064a3fb871f7fde4ad25caee65a3186777906f9f59  payload.tar.gz' | sha256sum -c -
+          echo 'ec1a5caf4d679d0e000d57d539187f338c6d0e817ef67ac78665d86ccb18a975  payload.tar.gz' | sha256sum -c -
           tar -xzf payload.tar.gz -C harness
           python3 -m unittest discover -s harness/scripts/bonsai-final-qa -p 'test_*.py'
       - name: Admit N2, reconstruct exact sources, compile and freeze runtime once
