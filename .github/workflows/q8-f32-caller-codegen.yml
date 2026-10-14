@@ -1,0 +1,45 @@
+name: Q8 F32 actual parallel-caller compiler diagnostic
+on:
+  push:
+    branches: [fix/qwen-precision-proof]
+    paths: [.github/workflows/q8-f32-caller-codegen.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  compiler:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - runner: ubuntu-24.04
+            arch: x86
+          - runner: ubuntu-24.04-arm
+            arch: arm
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 20
+    steps:
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '25.0.3'
+      - name: Verify immutable retained-binary diagnostic payload
+        env:
+          PAYLOAD_URL: ${{ secrets.Q8_F32_CALLER_CODEGEN_URL }}
+        run: |
+          set -euo pipefail
+          curl --fail --silent --show-error --location "$PAYLOAD_URL" -o payload.tar.gz
+          echo '5833e1f55ee9bfe75dd1f444ad723dbb7f5297e1128fe77da17b77a5c52fbe7a  payload.tar.gz' | sha256sum -c -
+          python3 - <<'PYCODE'
+          import tarfile
+          with tarfile.open('payload.tar.gz') as archive:
+              archive.extractall('.', filter='data')
+          PYCODE
+      - name: Capture actual large parallel caller; instrumented timings are not qualification
+        run: python3 payload/run.py capture --arch '${{ matrix.arch }}'
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: q8-actual-caller-${{ matrix.arch }}
+          path: out/
+          retention-days: 30
