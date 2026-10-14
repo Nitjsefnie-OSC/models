@@ -1,0 +1,39 @@
+name: Q8 serial-dispatch actual-caller compiler diagnosis
+on:
+  push:
+    branches: [fix/qwen-precision-proof]
+    paths: [.github/workflows/q8-f32-serial-dispatch-codegen.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  compiler-diagnosis:
+    runs-on: ubuntu-24.04-arm
+    timeout-minutes: 10
+    steps:
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '25.0.3'
+      - name: Retrieve and verify exact full-bound and serial-dispatch binaries
+        env:
+          PAYLOAD_URL: ${{ secrets.Q8_F32_CLEANUP_COMPARISON_URL }}
+        run: |
+          set -euo pipefail
+          curl --fail --silent --show-error --location "$PAYLOAD_URL" -o payload.tar.gz
+          echo '2610554e4404f3455c62daed8368526d27ab0aedfafa1aa9df406bc6ae8c636f  payload.tar.gz' | sha256sum -c -
+          python3 - <<'PYCODE'
+          import tarfile
+          with tarfile.open('payload.tar.gz') as archive:
+              archive.extractall('.', filter='data')
+          PYCODE
+      - name: Validate diagnostic failure retention and process-group cleanup
+        run: python3 payload/test-diagnostic.py
+      - name: Admit N2, verify all owned outputs, retain every compiler version
+        run: python3 payload/run.py capture
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: serial-dispatch-n2-compiler
+          path: out/
+          retention-days: 30
