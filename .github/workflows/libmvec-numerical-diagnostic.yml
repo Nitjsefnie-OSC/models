@@ -49,18 +49,18 @@ jobs:
         run: |
           set -euo pipefail
           java --add-modules jdk.incubator.vector --enable-native-access=ALL-UNNAMED \
-            -Xms512m -Xmx512m -XX:UseAVX=2 -XX:MaxVectorSize=32 -XX:+PrintCompilation \
+            -Xms512m -Xmx512m -XX:UseAVX=2 -XX:MaxVectorSize=32 -XX:+UnlockDiagnosticVMOptions -XX:+LogCompilation -XX:LogFile=results/compilation.xml \
             -cp classes MathVectorProbe "$PWD/results/libdiagnostic.so" \
             > results/numerical.stdout 2> results/numerical.stderr
           python3 - <<'PYCODE'
-          import pathlib,json
+          import pathlib,json,xml.etree.ElementTree as ET
           p=pathlib.Path('results');s=(p/'numerical.stdout').read_text()
           rows=[json.loads(x) for x in s.splitlines() if x.startswith('{')]
           assert [r['operation'] for r in rows]==['exp-broad','log-positive-bits','exp-boundaries','log-boundaries']
           assert [r['values'] for r in rows]==[4194304,4194304,8192,8192]
-          # PrintCompilation records compilation level4 (C2); ensure both oracle methods reached it.
+          compiled=ET.parse(p/'compilation.xml').findall('.//nmethod')
           for method in ['jdkExp','jdkLog']:
-              assert any('MathVectorProbe::'+method in l and '4' in l.split()[:5] and 'made not entrant' not in l for l in s.splitlines()),method
+              assert any(e.get('compiler')=='c2' and e.get('method','').startswith('MathVectorProbe '+method+' ') for e in compiled),method
           (p/'summary.json').write_text(json.dumps({'executionComplete':True,'numericallyExact':all(r['mismatches']==0 for r in rows),'results':rows,'scope':'External numerical diagnostic only; no runtime adoption, model qualification, or license authorization.'},indent=2)+'\n')
           PYCODE
       - uses: actions/upload-artifact@v7
