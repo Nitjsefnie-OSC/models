@@ -1,5 +1,5 @@
 name: Prepared final Bonsai real-weight fixtures
-run-name: Prepared Bonsai fixtures (f3b32fbb + e249e914)
+run-name: Prepared Bonsai fixtures (f3b32fbb + final cc484 core)
 on:
   push:
     branches: [fix/qwen-precision-proof]
@@ -49,13 +49,13 @@ jobs:
           rustup component add --toolchain 1.96.0 clippy rustfmt
       - name: Fetch and verify immutable source and validation harness
         env:
-          PAYLOAD_URL: ${{ secrets.PREPARED_NATIVE_VALIDATION_PAYLOAD_URL }}
+          PAYLOAD_URL: ${{ secrets.FINAL_NATIVE_CC484_PAYLOAD_URL }}
         run: |
           python - <<'PYCODE'
           import hashlib, os, pathlib, tarfile, urllib.request
           path = pathlib.Path('payload.tar.gz')
           urllib.request.urlretrieve(os.environ['PAYLOAD_URL'], path)
-          assert hashlib.sha256(path.read_bytes()).hexdigest() == '8c690323d976ae32b054e37b9f08e0e135823235284374cdb01fdeb4a45e6186'
+          assert hashlib.sha256(path.read_bytes()).hexdigest() == '59270d7a9d48e01265e56d2af9ca3193d724266a112f5ffb3e92946fcd291d5b'
           pathlib.Path('harness').mkdir()
           with tarfile.open(path) as archive:
               archive.extractall('harness', filter='data')
