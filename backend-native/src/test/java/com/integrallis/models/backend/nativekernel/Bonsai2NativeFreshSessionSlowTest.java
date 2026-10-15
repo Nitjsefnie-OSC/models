@@ -20,6 +20,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import com.integrallis.models.api.BackendConfiguration;
 import com.integrallis.models.api.BatchInferenceBackend;
 import com.integrallis.models.backend.purejava.PureJavaBackend;
+import com.integrallis.vectors.core.VectorUtil;
 import com.integrallis.vectors.core.VectorizationProvider;
 import java.io.OutputStream;
 import java.nio.ByteBuffer;
@@ -58,6 +59,7 @@ class Bonsai2NativeFreshSessionSlowTest {
     // host numerical configuration before any logits are compared.
     System.out.printf(
         "Bonsai fresh-session vectors=%s%n", VectorizationProvider.runtimeCapabilities());
+    reportActivationColdHotStability();
     Path model =
         Path.of(
                 System.getProperty(
@@ -146,6 +148,63 @@ class Bonsai2NativeFreshSessionSlowTest {
     for (int token = 1; token < values.length; token++)
       if (values[token] > values[best]) best = token;
     return best;
+  }
+
+  /**
+   * Cold-versus-compiled stability of the two Java activation routes this model actually falls back
+   * to on x86, where the SLEEF native activations are not advertised. Reported rather than
+   * asserted: this is here to say which route moves on a runner whose sessions disagree, and the
+   * session comparison below is what fails. Every array is compared, so no assumption is made about
+   * which parameters the routes write.
+   */
+  private static void reportActivationColdHotStability() {
+    int length = 64;
+    System.out.printf(
+        "Bonsai activation cold/hot swiGlu=%s%n",
+        coldHotDifferences(
+            arrays -> VectorUtil.swiGlu(arrays[0], 0, arrays[1], 0, arrays[2], 0, length), 3));
+    System.out.printf(
+        "Bonsai activation cold/hot sigmoidAndScaledSoftplus=%s%n",
+        coldHotDifferences(
+            arrays ->
+                VectorUtil.sigmoidAndScaledSoftplus(
+                    arrays[0], 0, arrays[1], 0, arrays[2], 0, arrays[3], 0, arrays[4], 0, length),
+            5));
+  }
+
+  /**
+   * Runs {@code route} cold, warms it, runs it again from the same inputs, and diffs every array.
+   */
+  private static String coldHotDifferences(
+      java.util.function.Consumer<float[][]> route, int count) {
+    int length = 64;
+    try {
+      java.util.function.Supplier<float[][]> fresh =
+          () -> {
+            var random = new java.util.SplittableRandom(4242);
+            float[][] arrays = new float[count][length];
+            for (float[] array : arrays)
+              for (int i = 0; i < length; i++) array[i] = (float) random.nextDouble(0.05, 3.0);
+            return arrays;
+          };
+
+      float[][] cold = fresh.get();
+      route.accept(cold);
+
+      for (int i = 0; i < 200_000; i++) route.accept(fresh.get());
+
+      float[][] hot = fresh.get();
+      route.accept(hot);
+
+      int differing = 0;
+      for (int a = 0; a < count; a++)
+        for (int i = 0; i < length; i++)
+          if (Float.floatToRawIntBits(cold[a][i]) != Float.floatToRawIntBits(hot[a][i]))
+            differing++;
+      return differing == 0 ? "identical" : differing + " differing lanes of " + count * length;
+    } catch (RuntimeException failure) {
+      return "not probed: " + failure;
+    }
   }
 
   private static void assertBits(float[] expected, float[] actual, String label) {
