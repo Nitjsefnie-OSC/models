@@ -4,7 +4,7 @@ All notable changes to models are documented here.
 
 ## [Unreleased]
 
-## [0.3.59] - 2026-10-11
+## [0.3.59] - 2026-10-14
 
 ### Added and fixed
 
@@ -66,7 +66,7 @@ All notable changes to models are documented here.
 
 ### Dependencies and device evidence
 
-Consumes released Vectors 0.1.29. No CUDA numeric path changed and device gates were not rerun.
+Consumes released Vectors 0.1.30. No CUDA numeric path changed and device gates were not rerun.
 The last G1 result remains 1280/1280 exact token IDs on RTX 4090, Granite 4.1 3B Q4_K_M
 (`benchmark-results/2026-10-07-g1-parity`); G4 remains 6.184x on that host/model
 (`benchmark-results/2026-10-07-g4-dualpath`). This does not qualify Bonsai on CUDA.
