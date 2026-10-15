@@ -1607,10 +1607,8 @@ pub unsafe extern "C" fn jmodels_swiglu_f32(
     if out.is_null() || gate.is_null() || up.is_null() {
         return STATUS_NULL_POINTER;
     }
-    if len == 0
-        || (!cfg!(target_arch = "aarch64") && !len.is_multiple_of(4))
-        || !swiglu::supported()
-    {
+    // Off aarch64 `supported()` is a compile-time `false`, so this is the only reachable outcome.
+    if len == 0 || !swiglu::supported() {
         return STATUS_INVALID_SHAPE;
     }
     if u64::from(out_at) + u64::from(len) > out_len
@@ -1640,13 +1638,6 @@ pub unsafe extern "C" fn jmodels_swiglu_f32(
     // SAFETY: validated ranges, caller-owned live buffers; no mutable views are created.
     unsafe {
         let gate = gate.add(gate_at as usize);
-        #[cfg(not(target_arch = "aarch64"))]
-        for i in 0..len as usize {
-            let absolute = (*gate.add(i)).abs();
-            if absolute.is_nan() || absolute > 80.0 {
-                return STATUS_INVALID_SHAPE;
-            }
-        }
         match catch_unwind(AssertUnwindSafe(|| {
             swiglu::apply(
                 out.add(out_at as usize),

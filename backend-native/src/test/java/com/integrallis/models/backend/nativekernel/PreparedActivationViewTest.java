@@ -81,12 +81,12 @@ class PreparedActivationViewTest {
                   Arrays.fill(gate, .375f);
                   Arrays.fill(up, .75f);
                   float[] expected = new float[64];
-                  assertThat(kernel.trySwiGlu(expected, 0, gate, 0, up, 0, 64)).isTrue();
+                  boolean accepted = kernel.trySwiGlu(expected, 0, gate, 0, up, 0, 64);
                   var ov = kernel.prepareFloatArray(out);
                   var gv = kernel.prepareFloatArray(gate);
                   var uv = kernel.prepareFloatArray(up);
                   for (int i = 0; i < 100; i++) {
-                    assertThat(kernel.trySwiGlu(ov, 0, gv, 0, uv, 0, 64)).isTrue();
+                    assertThat(kernel.trySwiGlu(ov, 0, gv, 0, uv, 0, 64)).isEqualTo(accepted);
                     assertBits(expected, out);
                   }
                 }));

@@ -34,6 +34,7 @@ class SwiGluNativeKernelTest {
   @Test
   void actualProviderMatchesJavaForOffsetsTailsAndInPlaceAliases() {
     SplittableRandom random = new SplittableRandom(941772);
+    boolean advertised = swiGluAdvertised();
     try (var kernel = RustGgufBatchedMatrixKernel.open(libraryPath())) {
       for (int length : new int[] {4, 8, 12, 16, 32, 512, 14336}) {
         for (int alias = 0; alias < 4; alias++) {
@@ -50,10 +51,11 @@ class SwiGluNativeKernelTest {
           if (alias == 3) up = gate;
           float[] out = alias == 1 || alias == 3 ? gate : alias == 2 ? up : new float[gate.length];
           if (alias == 0) Arrays.fill(out, 42);
+          float[] before = out.clone();
           float[] expected = out.clone();
           VectorUtil.swiGlu(expected, 4, gate.clone(), 4, up.clone(), 4, length);
-          assertThat(kernel.trySwiGlu(out, 4, gate, 4, up, 4, length)).isTrue();
-          equalBits(expected, out);
+          assertThat(kernel.trySwiGlu(out, 4, gate, 4, up, 4, length)).isEqualTo(advertised);
+          equalBits(advertised ? expected : before, out);
         }
       }
     }
@@ -61,12 +63,14 @@ class SwiGluNativeKernelTest {
 
   @Test
   void backwardOverlapKeepsOriginalReadBeforeWriteBehavior() {
+    boolean advertised = swiGluAdvertised();
     try (var kernel = RustGgufBatchedMatrixKernel.open(libraryPath())) {
       for (boolean overlapGate : new boolean[] {true, false}) {
         float[] shared = new float[40];
         for (int i = 0; i < shared.length; i++) shared[i] = (i - 20) * .125f;
         float[] other = new float[40];
         Arrays.fill(other, .75f);
+        float[] before = shared.clone();
         float[] expected = shared.clone();
         VectorUtil.swiGlu(
             expected, 1, overlapGate ? expected : other, 4, overlapGate ? other : expected, 4, 32);
@@ -79,14 +83,15 @@ class SwiGluNativeKernelTest {
                     overlapGate ? other : shared,
                     4,
                     32))
-            .isTrue();
-        equalBits(expected, shared);
+            .isEqualTo(advertised);
+        equalBits(advertised ? expected : before, shared);
       }
     }
   }
 
   @Test
   void rejectedDomainsAndForwardAliasesLeaveEveryBufferUntouched() {
+    boolean advertised = swiGluAdvertised();
     try (var kernel = RustGgufBatchedMatrixKernel.open(libraryPath())) {
       for (float special :
           new float[] {
@@ -105,7 +110,7 @@ class SwiGluNativeKernelTest {
         Arrays.fill(out, 42);
         float[] gateBefore = gate.clone(), upBefore = up.clone(), outBefore = out.clone();
         boolean accepted = kernel.trySwiGlu(out, 2, gate, 2, up, 2, 16);
-        if (System.getProperty("os.arch").equals("aarch64")) {
+        if (advertised) {
           assertThat(accepted).isTrue();
           float[] expected = outBefore.clone();
           VectorUtil.swiGlu(expected, 2, gateBefore, 2, upBefore, 2, 16);
@@ -142,7 +147,7 @@ class SwiGluNativeKernelTest {
       float[] unchanged = {0f, -0f, 1f, -1f};
       float[] expectedTail = unchanged.clone();
       boolean tailAccepted = kernel.trySwiGlu(unchanged, 0, unchanged, 0, unchanged, 0, 3);
-      if (System.getProperty("os.arch").equals("aarch64")) {
+      if (advertised) {
         assertThat(tailAccepted).isTrue();
         VectorUtil.swiGlu(expectedTail, 0, expectedTail, 0, expectedTail, 0, 3);
       } else {
@@ -171,6 +176,7 @@ class SwiGluNativeKernelTest {
   void concurrentFirstUsePublishesAValidBindingAndKeepsCallerBuffersSeparate() throws Exception {
     try (var library = NativeKernelLibrary.open(libraryPath());
         var pool = Executors.newFixedThreadPool(4)) {
+      boolean advertised = library.supports(NativeKernelCapability.SWIGLU_F32);
       CountDownLatch ready = new CountDownLatch(4);
       CountDownLatch start = new CountDownLatch(1);
       var futures = new ArrayList<Future<?>>();
@@ -190,8 +196,9 @@ class SwiGluNativeKernelTest {
                     VectorUtil.swiGlu(expected, 0, gate, 0, up, 0, 64);
                     ready.countDown();
                     assertThat(start.await(10, TimeUnit.SECONDS)).isTrue();
-                    assertThat(library.trySwiGlu(actual, 0, gate, 0, up, 0, 64)).isTrue();
-                    equalBits(expected, actual);
+                    assertThat(library.trySwiGlu(actual, 0, gate, 0, up, 0, 64))
+                        .isEqualTo(advertised);
+                    equalBits(advertised ? expected : new float[64], actual);
                     return null;
                   }));
         }
@@ -210,6 +217,17 @@ class SwiGluNativeKernelTest {
         assertThat(Float.floatToRawIntBits(actual[i]))
             .as("index %s", i)
             .isEqualTo(Float.floatToRawIntBits(expected[i]));
+    }
+  }
+
+  /**
+   * Whether the loaded library advertises the native SwiGLU kernel. It is enabled only where the
+   * Java side runs the matching float polynomial -- aarch64 with a 128-bit float species -- so on
+   * every other host these tests assert the decline-and-leave-untouched contract instead.
+   */
+  private static boolean swiGluAdvertised() {
+    try (var library = NativeKernelLibrary.open(libraryPath())) {
+      return library.supports(NativeKernelCapability.SWIGLU_F32);
     }
   }
 
