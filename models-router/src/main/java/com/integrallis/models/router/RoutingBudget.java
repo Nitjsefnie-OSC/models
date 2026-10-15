@@ -46,12 +46,8 @@ public final class RoutingBudget {
   }
 
   static BigDecimal cost(ModelCandidate candidate, long input, long output) {
-    return BigDecimal.valueOf(candidate.costPerMillionInputTokens())
-        .multiply(BigDecimal.valueOf(input))
-        .add(
-            BigDecimal.valueOf(candidate.costPerMillionOutputTokens())
-                .multiply(BigDecimal.valueOf(output)))
-        .movePointLeft(6);
+    // Delegates to the public accessor so an application's ledger and this budget cannot drift.
+    return candidate.costOf(input, output);
   }
 
   private static BigDecimal nonNegative(BigDecimal value, String name) {

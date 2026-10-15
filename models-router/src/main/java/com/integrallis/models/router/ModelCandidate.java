@@ -15,6 +15,7 @@
  */
 package com.integrallis.models.router;
 
+import java.math.BigDecimal;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
@@ -124,6 +125,30 @@ public record ModelCandidate(
       return quality.values().stream().mapToDouble(Double::doubleValue).average().orElse(0.0);
     }
     return quality.getOrDefault(taskType, 0.0);
+  }
+
+  /**
+   * Prices one actual usage against this candidate's declared rates.
+   *
+   * <p>This is the same arithmetic the shared budget charges, exposed because an application that
+   * keeps its own ledger otherwise has to reimplement it and then drift from it. Local candidates
+   * declare zero prices, so this returns zero for them rather than needing a special case.
+   *
+   * @param inputTokens prompt tokens actually consumed
+   * @param outputTokens completion tokens actually produced
+   * @return the cost of that usage
+   * @throws IllegalArgumentException if either count is negative
+   */
+  public BigDecimal costOf(long inputTokens, long outputTokens) {
+    if (inputTokens < 0 || outputTokens < 0) {
+      throw new IllegalArgumentException("usage must not be negative");
+    }
+    return BigDecimal.valueOf(costPerMillionInputTokens)
+        .multiply(BigDecimal.valueOf(inputTokens))
+        .add(
+            BigDecimal.valueOf(costPerMillionOutputTokens)
+                .multiply(BigDecimal.valueOf(outputTokens)))
+        .movePointLeft(6);
   }
 
   /**
