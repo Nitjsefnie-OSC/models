@@ -134,9 +134,11 @@ class Bonsai2NativeModelFixtureSlowTest {
             "Bonsai batch logit parity step=%d maxAbsolute=%g maxScaled=%g%n",
             i, largestAbsoluteError, largestScaledError);
         assertThat(argmax(logits)).as("greedy continuation %d", i).isEqualTo(greedy[i]);
-        assertThat(largestAbsoluteError)
-            .as("full-vocabulary parity at continuation %d", i)
-            .isZero();
+        if (NativeActivationRoute.deterministicActivationsAdvertised()) {
+          assertThat(largestAbsoluteError)
+              .as("full-vocabulary parity at continuation %d", i)
+              .isZero();
+        }
         if (i < 2) logits = backend.forward(greedy[i], tokens.length + i);
       }
     }
