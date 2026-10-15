@@ -20,6 +20,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import com.integrallis.models.api.BackendConfiguration;
 import com.integrallis.models.api.BatchInferenceBackend;
 import com.integrallis.models.backend.purejava.PureJavaBackend;
+import com.integrallis.vectors.core.VectorizationProvider;
 import java.io.OutputStream;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
@@ -47,8 +48,16 @@ class Bonsai2NativeFreshSessionSlowTest {
         .as("the cold-session fixture requires four visible CPUs")
         .isEqualTo(4);
     System.out.printf(
-        "Bonsai fresh-session JVM=%s vendor=%s%n",
-        System.getProperty("java.runtime.version"), System.getProperty("java.vendor"));
+        "Bonsai fresh-session JVM=%s vendor=%s os.arch=%s cpus=%d%n",
+        System.getProperty("java.runtime.version"),
+        System.getProperty("java.vendor"),
+        System.getProperty("os.arch"),
+        Runtime.getRuntime().availableProcessors());
+    // The Java activation route follows the host vector width; the Rust kernels are compiled for
+    // a fixed one. When these disagree the two routes reduce in different widths, so record the
+    // host numerical configuration before any logits are compared.
+    System.out.printf(
+        "Bonsai fresh-session vectors=%s%n", VectorizationProvider.runtimeCapabilities());
     Path model =
         Path.of(
                 System.getProperty(
@@ -68,6 +77,9 @@ class Bonsai2NativeFreshSessionSlowTest {
     try (var backend = RustFfmBackend.load(model, configuration)) {
       assertThat(backend.diagnostics().environment())
           .containsEntry("native-quantized-decode", "true");
+      System.out.printf(
+          "Bonsai fresh-session nativeEnvironment=%s%n",
+          new java.util.TreeMap<>(backend.diagnostics().environment()));
       assertThat(backend.diagnostics().optimizations())
           .anySatisfy(
               optimization -> {

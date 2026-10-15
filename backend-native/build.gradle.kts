@@ -609,5 +609,10 @@ if (githubPackagesEnabled) {
     outputs.upToDateWhen { false }
     maxParallelForks = 1
     maxHeapSize = "4g"
+    // These tests print the host numerical configuration and a per-step logit digest. Without
+    // this, a divergence that only happens on one runner leaves nothing in the log to compare.
+    testLogging {
+        showStandardStreams = true
+    }
     extensions.configure<JacocoTaskExtension> { isEnabled = false }
 }
