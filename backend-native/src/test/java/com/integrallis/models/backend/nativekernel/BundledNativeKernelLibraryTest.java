@@ -115,6 +115,175 @@ class BundledNativeKernelLibraryTest {
     }
   }
 
+  @Test
+  void rejectsAnArtifactBuiltAgainstAnotherAbi() throws IOException {
+    NativeKernelPlatform platform = NativeKernelPlatform.detect("Linux", "amd64");
+    Path artifact =
+        createArtifactWithMetadata(
+            platform,
+            """
+            abi=%d
+            platform=%s
+            library=%s
+            sha256=%s
+            """
+                .formatted(
+                    NativeKernelLibrary.ABI_VERSION - 1,
+                    platform.id(),
+                    platform.libraryFileName(),
+                    sha256(LIBRARY_BYTES)));
+
+    try (URLClassLoader loader = classLoader(artifact)) {
+      assertThatThrownBy(
+              () ->
+                  BundledNativeKernelLibrary.resolve(
+                      loader, platform, temporaryDirectory.resolve("cache")))
+          .as("an artifact from an earlier ABI must not be loaded against this Java side")
+          .isInstanceOf(IllegalStateException.class)
+          .hasMessageContaining("ABI")
+          .hasMessageContaining(Integer.toString(NativeKernelLibrary.ABI_VERSION));
+    }
+  }
+
+  @Test
+  void rejectsMetadataNamingAnotherLibraryFile() throws IOException {
+    NativeKernelPlatform platform = NativeKernelPlatform.detect("Linux", "amd64");
+    Path artifact =
+        createArtifactWithMetadata(
+            platform,
+            """
+            abi=%d
+            platform=%s
+            library=libsomething_else.so
+            sha256=%s
+            """
+                .formatted(NativeKernelLibrary.ABI_VERSION, platform.id(), sha256(LIBRARY_BYTES)));
+
+    try (URLClassLoader loader = classLoader(artifact)) {
+      assertThatThrownBy(
+              () ->
+                  BundledNativeKernelLibrary.resolve(
+                      loader, platform, temporaryDirectory.resolve("cache")))
+          .isInstanceOf(IllegalStateException.class)
+          .hasMessageContaining("libsomething_else.so")
+          .hasMessageContaining(platform.libraryFileName());
+    }
+  }
+
+  @Test
+  void rejectsADigestThatIsNotLowercaseHexOfTheRightLength() throws IOException {
+    NativeKernelPlatform platform = NativeKernelPlatform.detect("Linux", "amd64");
+    for (String malformed :
+        new String[] {
+          sha256(LIBRARY_BYTES).toUpperCase(java.util.Locale.ROOT),
+          sha256(LIBRARY_BYTES).substring(1),
+          "z".repeat(64)
+        }) {
+      Path artifact =
+          createArtifactWithMetadata(
+              platform,
+              """
+              abi=%d
+              platform=%s
+              library=%s
+              sha256=%s
+              """
+                  .formatted(
+                      NativeKernelLibrary.ABI_VERSION,
+                      platform.id(),
+                      platform.libraryFileName(),
+                      malformed));
+
+      try (URLClassLoader loader = classLoader(artifact)) {
+        assertThatThrownBy(
+                () ->
+                    BundledNativeKernelLibrary.resolve(
+                        loader,
+                        platform,
+                        temporaryDirectory.resolve("cache-" + malformed.length())))
+            .as("digest %s", malformed)
+            .isInstanceOf(IllegalStateException.class)
+            .hasMessageContaining("SHA-256");
+      }
+      Files.delete(artifact);
+    }
+  }
+
+  @Test
+  void rejectsMetadataMissingARequiredProperty() throws IOException {
+    NativeKernelPlatform platform = NativeKernelPlatform.detect("Linux", "amd64");
+    Path artifact =
+        createArtifactWithMetadata(
+            platform,
+            """
+            abi=%d
+            platform=%s
+            library=%s
+            sha256=
+            """
+                .formatted(
+                    NativeKernelLibrary.ABI_VERSION, platform.id(), platform.libraryFileName()));
+
+    try (URLClassLoader loader = classLoader(artifact)) {
+      assertThatThrownBy(
+              () ->
+                  BundledNativeKernelLibrary.resolve(
+                      loader, platform, temporaryDirectory.resolve("cache")))
+          .as("a blank value is as missing as an absent key")
+          .isInstanceOf(IllegalStateException.class)
+          .hasMessageContaining("missing")
+          .hasMessageContaining("sha256");
+    }
+  }
+
+  /**
+   * The no-argument {@code resolve()} is the shipped entry point: it takes the host platform and
+   * the configured cache root for itself. Platform-classified kernel JARs are the usual thing
+   * missing from a deployment, so what it says when none is on the classpath is a real diagnostic
+   * and not an internal detail. It fails before reading the cache root, so this exercises both
+   * roots without writing anything outside the temporary directory.
+   */
+  @Test
+  void shippedResolutionNamesTheResourceItExpectedWhenNoKernelJarIsOnTheClasspath() {
+    String savedCache = System.getProperty(BundledNativeKernelLibrary.CACHE_DIRECTORY_PROPERTY);
+    NativeKernelPlatform platform = NativeKernelPlatform.current();
+    try {
+      for (String configuredCache :
+          new String[] {temporaryDirectory.resolve("configured-cache").toString(), null}) {
+        if (configuredCache == null) {
+          System.clearProperty(BundledNativeKernelLibrary.CACHE_DIRECTORY_PROPERTY);
+        } else {
+          System.setProperty(BundledNativeKernelLibrary.CACHE_DIRECTORY_PROPERTY, configuredCache);
+        }
+
+        assertThatThrownBy(BundledNativeKernelLibrary::resolve)
+            .as("configured cache %s", configuredCache)
+            .isInstanceOf(IllegalStateException.class)
+            .hasMessageContaining(platform.id())
+            .hasMessageContaining(BundledNativeKernelLibrary.METADATA_FILE_NAME);
+      }
+    } finally {
+      if (savedCache == null) {
+        System.clearProperty(BundledNativeKernelLibrary.CACHE_DIRECTORY_PROPERTY);
+      } else {
+        System.setProperty(BundledNativeKernelLibrary.CACHE_DIRECTORY_PROPERTY, savedCache);
+      }
+    }
+  }
+
+  private Path createArtifactWithMetadata(NativeKernelPlatform platform, String metadata)
+      throws IOException {
+    Path artifact = temporaryDirectory.resolve(platform.id() + "-" + metadata.hashCode() + ".jar");
+    try (JarOutputStream jar = new JarOutputStream(Files.newOutputStream(artifact))) {
+      addEntry(
+          jar,
+          platform.resourceDirectory() + BundledNativeKernelLibrary.METADATA_FILE_NAME,
+          metadata.getBytes(StandardCharsets.UTF_8));
+      addEntry(jar, platform.resourceDirectory() + platform.libraryFileName(), LIBRARY_BYTES);
+    }
+    return artifact;
+  }
+
   private Path createArtifact(NativeKernelPlatform platform, String digest, byte[] libraryBytes)
       throws IOException {
     Path artifact = temporaryDirectory.resolve(platform.id() + ".jar");
