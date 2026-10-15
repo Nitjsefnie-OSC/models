@@ -15,6 +15,7 @@
  */
 package com.integrallis.models.router;
 
+import java.math.BigDecimal;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
@@ -52,7 +53,8 @@ public record ModelCandidate(
     double tokensPerSecond,
     int contextWindow,
     Map<String, Double> quality,
-    double successRate) {
+    double successRate,
+    int maxOutputTokens) {
 
   /** Validates and defensively copies the descriptor. */
   public ModelCandidate {
@@ -60,6 +62,9 @@ public record ModelCandidate(
     tags = Set.copyOf(Objects.requireNonNull(tags, "tags"));
     capabilities = Set.copyOf(Objects.requireNonNull(capabilities, "capabilities"));
     quality = Map.copyOf(Objects.requireNonNull(quality, "quality"));
+    if (maxOutputTokens < 0) {
+      throw new IllegalArgumentException("maxOutputTokens must not be negative");
+    }
     requireNonNegative(costPerMillionInputTokens, "costPerMillionInputTokens");
     requireNonNegative(costPerMillionOutputTokens, "costPerMillionOutputTokens");
     if (timeToFirstTokenMillis < 0) {
@@ -114,6 +119,62 @@ public record ModelCandidate(
   }
 
   /**
+   * The previous arity, for callers that declare no output ceiling of their own.
+   *
+   * @param id stable model identifier
+   * @param local whether the weights run in this process
+   * @param tags task tags this model is restricted to, empty for none
+   * @param capabilities capabilities this model declares
+   * @param costPerMillionInputTokens prompt price, zero for local
+   * @param costPerMillionOutputTokens completion price, zero for local
+   * @param timeToFirstTokenMillis measured or declared time to first token
+   * @param tokensPerSecond measured or declared decode rate
+   * @param contextWindow largest prompt this model accepts
+   * @param quality per-task quality, between zero and one
+   * @param successRate observed success rate, between zero and one
+   */
+  public ModelCandidate(
+      String id,
+      boolean local,
+      Set<String> tags,
+      Set<String> capabilities,
+      double costPerMillionInputTokens,
+      double costPerMillionOutputTokens,
+      long timeToFirstTokenMillis,
+      double tokensPerSecond,
+      int contextWindow,
+      Map<String, Double> quality,
+      double successRate) {
+    this(
+        id,
+        local,
+        tags,
+        capabilities,
+        costPerMillionInputTokens,
+        costPerMillionOutputTokens,
+        timeToFirstTokenMillis,
+        tokensPerSecond,
+        contextWindow,
+        quality,
+        successRate,
+        0);
+  }
+
+  /**
+   * The completion ceiling this model can honour, or the execution's when it declares none.
+   *
+   * <p>One fleet-wide bound cannot describe a mixed fleet: a 360M model answering a liveness check
+   * in twenty tokens and a reasoning model that bills its reasoning as completion do not share a
+   * ceiling. A candidate that declares its own is measured against that.
+   *
+   * @param fallback the execution-wide bound, used when this candidate declares none
+   * @return the ceiling to hold this candidate to
+   */
+  public int effectiveMaxOutputTokens(int fallback) {
+    return maxOutputTokens > 0 ? maxOutputTokens : fallback;
+  }
+
+  /**
    * Returns the quality recorded for one task type.
    *
    * @param taskType task classification, may be null
@@ -124,6 +185,30 @@ public record ModelCandidate(
       return quality.values().stream().mapToDouble(Double::doubleValue).average().orElse(0.0);
     }
     return quality.getOrDefault(taskType, 0.0);
+  }
+
+  /**
+   * Prices one actual usage against this candidate's declared rates.
+   *
+   * <p>This is the same arithmetic the shared budget charges, exposed because an application that
+   * keeps its own ledger otherwise has to reimplement it and then drift from it. Local candidates
+   * declare zero prices, so this returns zero for them rather than needing a special case.
+   *
+   * @param inputTokens prompt tokens actually consumed
+   * @param outputTokens completion tokens actually produced
+   * @return the cost of that usage
+   * @throws IllegalArgumentException if either count is negative
+   */
+  public BigDecimal costOf(long inputTokens, long outputTokens) {
+    if (inputTokens < 0 || outputTokens < 0) {
+      throw new IllegalArgumentException("usage must not be negative");
+    }
+    return BigDecimal.valueOf(costPerMillionInputTokens)
+        .multiply(BigDecimal.valueOf(inputTokens))
+        .add(
+            BigDecimal.valueOf(costPerMillionOutputTokens)
+                .multiply(BigDecimal.valueOf(outputTokens)))
+        .movePointLeft(6);
   }
 
   /**
@@ -163,6 +248,7 @@ public record ModelCandidate(
 
   /** Fluent builder, so adding a dimension later does not break every call site. */
   public static final class Builder {
+    private int maxOutputTokens;
     private final String id;
     private boolean local;
     private Set<String> tags = Set.of();
@@ -283,6 +369,20 @@ public record ModelCandidate(
     }
 
     /**
+     * Declares the completion ceiling this model can honour.
+     *
+     * @param value maximum completion tokens, zero to defer to the execution's bound
+     * @return this builder
+     */
+    public Builder maxOutputTokens(int value) {
+      if (value < 0) {
+        throw new IllegalArgumentException("maxOutputTokens must not be negative");
+      }
+      this.maxOutputTokens = value;
+      return this;
+    }
+
+    /**
      * Builds the candidate.
      *
      * @return an immutable descriptor
@@ -299,7 +399,8 @@ public record ModelCandidate(
           tokensPerSecond,
           contextWindow,
           quality,
-          successRate);
+          successRate,
+          maxOutputTokens);
     }
   }
 }

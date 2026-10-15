@@ -63,6 +63,49 @@ class PretrainedTaskClassifierTest {
   }
 
   @Test
+  void separatesAWeakMatchFromNoMatchAtAll(@TempDir Path directory) {
+    // classify() returns null for both, which is why the similarity has to be reachable: a caller
+    // routing conversational filler needs to tell "unlike every exemplar" from "a weak but real
+    // match", and a bare null cannot say which it saw.
+    try (TaskIndex index = index(directory)) {
+      PretrainedTaskClassifier classifier = PretrainedTaskClassifier.using(index, EMBEDDER, 0.95);
+
+      var weak = classifier.match("implement binary search");
+      assertThat(weak).isPresent();
+      assertThat(weak.get().task()).isEqualTo("code");
+      assertThat(weak.get().similarity()).isGreaterThan(0.35);
+      assertThat(classifier.admits(weak.get()))
+          .as("below this classifier's 0.95 floor, so classify() withholds it")
+          .isFalse();
+      assertThat(classifier.classify("implement binary search")).isNull();
+
+      assertThat(classifier.match("")).isEmpty();
+      assertThat(classifier.match(null)).isEmpty();
+    }
+  }
+
+  @Test
+  void admitsExactlyWhatClassifyReturns(@TempDir Path directory) {
+    try (TaskIndex index = index(directory)) {
+      PretrainedTaskClassifier classifier = PretrainedTaskClassifier.using(index, EMBEDDER, 0.35);
+
+      for (String query :
+          new String[] {"implement binary search", "solve for x", "unrelated text"}) {
+        var match = classifier.match(query);
+        String classified = classifier.classify(query);
+        boolean admitted = match.isPresent() && classifier.admits(match.get());
+        assertThat(admitted)
+            .as("match/admits must agree with classify for %s", query)
+            .isEqualTo(classified != null);
+        if (admitted) {
+          assertThat(classified).isEqualTo(match.get().task());
+        }
+      }
+      assertThatThrownBy(() -> classifier.admits(null)).isInstanceOf(NullPointerException.class);
+    }
+  }
+
+  @Test
   void leavesAnUnfamiliarQueryUnclassified(@TempDir Path directory) {
     // Guessing a task for an unrecognised request would silently apply the wrong quality column;
     // null lets the router fall back to cost, latency and reliability.

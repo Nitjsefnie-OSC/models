@@ -17,6 +17,7 @@ package com.integrallis.models.router;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 /**
  * Classifies a query into a task type by similarity to a pre-built index of labelled prompts.
@@ -85,21 +86,43 @@ public final class PretrainedTaskClassifier implements TaskClassifier {
 
   @Override
   public String classify(String query) {
+    return match(query).filter(this::admits).map(TaskIndex.Match::task).orElse(null);
+  }
+
+  /**
+   * The nearest task and its similarity, whether or not it clears the floor.
+   *
+   * <p>{@link #classify} answers with a task or with nothing, which cannot distinguish a prompt
+   * unlike every exemplar from one that is a weak but real match. Short conversational traffic —
+   * "ok", "go on" — sits in that second group against an index of work-shaped prompts, and a caller
+   * that can see the similarity can treat the two differently instead of receiving the same null
+   * for both.
+   *
+   * @param query the prompt to classify
+   * @return the nearest match, or empty when there is nothing to compare
+   */
+  public Optional<TaskIndex.Match> match(String query) {
     if (query == null || query.isBlank()) {
-      return null;
+      return Optional.empty();
     }
     // The index records the prefix its exemplars were embedded with; applying it here is what keeps
     // the two sides comparable, rather than asking every caller to know the model's convention.
     String input = index.queryPrefix().map(prefix -> prefix + query).orElse(query);
     float[] embedding = embedder.embed(input);
     if (embedding == null || embedding.length == 0) {
-      return null;
+      return Optional.empty();
     }
-    return index
-        .nearest(embedding)
-        .filter(match -> match.similarity() >= minimumSimilarity)
-        .map(TaskIndex.Match::task)
-        .orElse(null);
+    return index.nearest(embedding);
+  }
+
+  /**
+   * Whether a match clears this classifier's similarity floor.
+   *
+   * @param match a match from {@link #match}
+   * @return true when {@link #classify} would return its task
+   */
+  public boolean admits(TaskIndex.Match match) {
+    return Objects.requireNonNull(match, "match").similarity() >= minimumSimilarity;
   }
 
   /**
