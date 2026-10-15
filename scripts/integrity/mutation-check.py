@@ -46,8 +46,30 @@ def append(path, text):
     return apply
 
 
+def oversized_tracked_path(root):
+    # The copied mutation tree deliberately has no Git metadata. Give this guard an actual index
+    # containing the historical Windows checkout failure, rather than failing for a missing repo.
+    subprocess.run(["git", "init", "-q", str(root)], check=True)
+    path = (
+        "benchmark-results/2026-10-12-bonsai-native-hotfix/"
+        "serial-allocation-expanded-github-38324642561/"
+        "bonsai-upstream-ubuntu-24.04-arm-jdk-25.0.3/test-results/bonsai2NativeSlowTest/"
+        "TEST-com.integrallis.models.backend.nativekernel.Bonsai2NativeFreshSessionSlowTest.xml"
+    )
+    target = root / path
+    target.parent.mkdir(parents=True, exist_ok=True)
+    target.write_text("<testsuite/>\n")
+    subprocess.run(["git", "add", "--force", "--", path], cwd=root, check=True)
+
+
 # name, guard command, the defect to inject, what the guard is supposed to notice
 MUTATIONS = [
+    (
+        "portable-paths/windows-checkout-limit",
+        ["python3", "scripts/integrity/check-portable-paths.py"],
+        oversized_tracked_path,
+        "historical benchmark XML whose tracked path prevented Windows checkout",
+    ),
     (
         "evidence-references/unresolvable-path",
         ["python3", "scripts/integrity/check-evidence-references.py"],

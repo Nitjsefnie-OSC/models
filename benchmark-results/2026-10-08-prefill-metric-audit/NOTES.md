@@ -154,11 +154,11 @@ Read in source, not measured (llama.cpp `a58222229`):
 ## 7. Decided next, in order
 
 1. ~~**Kernel and engine A/B against llama.cpp's own tools**~~ — **DONE 2026-10-08**, see
-   `experiments/prefill-repack-tile/RESULTS.md`. `GGML_CPU_REPACK` ON vs OFF, BLAS and Metal
+   [the archived tile decision](../../docs/findings/historical-experiment-decisions.md). `GGML_CPU_REPACK` ON vs OFF, BLAS and Metal
    compiled out of both arms, interleaved: **1.53x** (deepseek-coder-1.3B) and **1.87x**
    (HuatuoGPT-o1-7B) on AVX2, **1.73x** at p1024 and **1.49x** at p4096 on an AVX-512 Threadripper
    7960X. Every arm clears the registered 1.30x port threshold and its own kill criterion.
-   **Decision: port the interleaved tile.** The run also surfaced a second, unmeasured gap: our
+   **Historical decision: attempt the port. The later Models port did not establish a win and was removed.** The run also surfaced a second, unmeasured gap: our
    kernels gate on `avx2 && fma && f16c` and have no AVX-512 path, while theirs has an
    AVX512BW/DQ tier. Original plan text follows.
 

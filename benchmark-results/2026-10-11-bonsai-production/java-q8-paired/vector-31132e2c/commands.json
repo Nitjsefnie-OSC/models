@@ -1,0 +1,79 @@
+[
+  {
+    "name": "scalar-projections",
+    "command": [
+      "/opt/jdk/bin/java",
+      "--add-modules",
+      "jdk.incubator.vector",
+      "--enable-native-access=ALL-UNNAMED",
+      "-Xmx16g",
+      "-cp",
+      "/work/qa/lib/*:/home/ubuntu/bonsai-java-q8-probe",
+      "PtqJavaQ8Probe",
+      "/work/bonsai2.gguf",
+      "/work/qa/libjmodels_kernels.so",
+      "/work/java-q8-followup/scalar-projections.json",
+      "16"
+    ],
+    "startedAt": 1791752311.6564415,
+    "exitCode": 0,
+    "completedAt": 1791752320.096298
+  },
+  {
+    "name": "vector-projections",
+    "command": [
+      "/opt/jdk/bin/java",
+      "--add-modules",
+      "jdk.incubator.vector",
+      "--enable-native-access=ALL-UNNAMED",
+      "-Xmx16g",
+      "-cp",
+      "/work/vector/lib/*:/home/ubuntu/bonsai-java-q8-probe",
+      "PtqJavaQ8Probe",
+      "/work/bonsai2.gguf",
+      "/work/qa/libjmodels_kernels.so",
+      "/work/java-q8-followup/vector-projections.json",
+      "16"
+    ],
+    "startedAt": 1791752320.812073,
+    "exitCode": 0,
+    "completedAt": 1791752326.4458847
+  },
+  {
+    "name": "vector-inference",
+    "command": [
+      "/opt/jdk/bin/java",
+      "--add-modules",
+      "jdk.incubator.vector",
+      "-Xmx16g",
+      "-cp",
+      "/work/vector/lib/*",
+      "com.integrallis.models.bench.InferenceBenchmarkCli",
+      "--backend",
+      "pure-java",
+      "--backend-version",
+      "models-source@31132e2c;java-q8-vector;backend-java-only",
+      "--model-id",
+      "prism_ml_ternary_bonsai_2_27b_gguf_ptq1_0",
+      "--model",
+      "/work/bonsai2.gguf",
+      "--prompt",
+      "The quick brown fox",
+      "--max-tokens",
+      "16",
+      "--warmups",
+      "1",
+      "--iterations",
+      "3",
+      "--context",
+      "512",
+      "--threads",
+      "16",
+      "--output",
+      "/work/java-q8-followup/java-q8-vector.json"
+    ],
+    "startedAt": 1791752327.16192,
+    "exitCode": 0,
+    "completedAt": 1791752561.4393249
+  }
+]

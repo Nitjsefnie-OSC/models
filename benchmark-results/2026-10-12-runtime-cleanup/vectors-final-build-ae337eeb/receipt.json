@@ -1,0 +1,4350 @@
+{
+  "revision": "ae337eeb",
+  "command": "spotlessCheck build complianceCheck --max-workers=2 --no-daemon --init-script /tmp/vectors-worktree-docs.gradle",
+  "result": "BUILD SUCCESSFUL",
+  "elapsed": "54m 54s",
+  "tasks": 846,
+  "logSha256": "3c341407866b7df6f171c6b9e45f4a9f3777f714a9b1eb9019257dab44c78d65",
+  "xmlTotals": {
+    "tests": 4368,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 24
+  },
+  "xmlScope": "on-disk XML inventory; includes up-to-date task results",
+  "suites": [
+    {
+      "path": "projects/vectors-final-integration/vectors-vcr-junit5/build/test-results/test/TEST-com.integrallis.vectors.vcr.junit5.VCRModelWrapperUnitTest.xml",
+      "tests": 5,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-vcr-junit5/build/test-results/test/TEST-com.integrallis.vectors.vcr.junit5.VCRExtensionEngineTest.xml",
+      "tests": 5,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-cache-jcache/build/test-results/test/TEST-com.integrallis.vectors.cache.jcache.JCacheVectorCacheTest.xml",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-spring-ai/build/test-results/test/TEST-com.integrallis.vectors.spring.ai.JavaVectorsVectorStoreTest$CommitStrategy.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-spring-ai/build/test-results/test/TEST-com.integrallis.vectors.spring.ai.JavaVectorsVectorStoreTest$DeleteBehavior.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-spring-ai/build/test-results/test/TEST-com.integrallis.vectors.spring.ai.MetadataConverterTest$RoundTrip.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-spring-ai/build/test-results/test/TEST-com.integrallis.vectors.spring.ai.JavaVectorsVectorStoreTest$AddAndSearch.xml",
+      "tests": 8,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-spring-ai/build/test-results/test/TEST-com.integrallis.vectors.spring.ai.FilterConverterTest$Compound.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-spring-ai/build/test-results/test/TEST-com.integrallis.vectors.spring.ai.FilterConverterTest$NumericComparisons.xml",
+      "tests": 5,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-spring-ai/build/test-results/test/TEST-com.integrallis.vectors.spring.ai.FilterConverterTest$Membership.xml",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-spring-ai/build/test-results/test/TEST-com.integrallis.vectors.spring.ai.JavaVectorsVectorStoreTest$MetadataPreservation.xml",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-spring-ai/build/test-results/test/TEST-com.integrallis.vectors.spring.ai.MetadataConverterTest$ToJavaVectors.xml",
+      "tests": 11,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-spring-ai/build/test-results/test/TEST-com.integrallis.vectors.spring.ai.FilterConverterTest$NullAndEmpty.xml",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-spring-ai/build/test-results/test/TEST-com.integrallis.vectors.spring.ai.JavaVectorsVectorStoreTest$CloseAndLifecycle.xml",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-spring-ai/build/test-results/test/TEST-com.integrallis.vectors.spring.ai.JavaVectorsVectorStoreTest$IndexTypes.xml",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-spring-ai/build/test-results/test/TEST-com.integrallis.vectors.spring.ai.MetadataConverterTest$ToSpringAi.xml",
+      "tests": 7,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-spring-ai/build/test-results/test/TEST-com.integrallis.vectors.spring.ai.JavaVectorsVectorStoreTest$BuilderValidation.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-spring-ai/build/test-results/test/TEST-com.integrallis.vectors.spring.ai.FilterConverterTest$Equality.xml",
+      "tests": 5,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-spring-ai/build/test-results/test/TEST-com.integrallis.vectors.spring.ai.JavaVectorsVectorStoreTest$MmrDiversity.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-spring-ai/build/test-results/test/TEST-com.integrallis.vectors.spring.ai.FilterConverterTest$LogicalOperators.xml",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.PackedInt4GroupMatrixTest.xml",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.VectorUtilSupportTest$ExactStridedBatchDotProductTest.xml",
+      "tests": 33,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.Q5KColdHotDeterminismTest.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.MaxBitsSelectionTest.xml",
+      "tests": 9,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.BFloat16NestedDispatchTest.xml",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.PanamaGgufQuantizedDotTest.xml",
+      "tests": 47,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.PreparedCosineTest.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.BFloat16MatrixTest.xml",
+      "tests": 9,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.PanamaConstantsTest.xml",
+      "tests": 12,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.GgufBandGemmTest.xml",
+      "tests": 32,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.Mxfp4MatrixTest.xml",
+      "tests": 8,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.RotatedCodebookMatrixTest.xml",
+      "tests": 15,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.cluster.CentroidIndexTest.xml",
+      "tests": 14,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.CoreValueTypesTest.xml",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.ActivationColdHotTest.xml",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.VectorizationProviderTest.xml",
+      "tests": 11,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.cluster.VectorUtilSegmentBatchTest.xml",
+      "tests": 49,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.EmbeddingProvenanceTest.xml",
+      "tests": 12,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.cluster.VectorUtilBatchTest.xml",
+      "tests": 30,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.GgufQ8_0F32MatrixTest.xml",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.DocumentsTest.xml",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.VectorUtilSupportTest$VectorArithmeticTest.xml",
+      "tests": 332,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.VectorUtilSupportTest$FloatCosineTest.xml",
+      "tests": 134,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.VectorUtilSupportTest$L2NormalizeTest.xml",
+      "tests": 69,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.GgufParallelSupportTest.xml",
+      "tests": 18,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.VectorUtilSupportTest$MemorySegmentCosineTest.xml",
+      "tests": 18,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.ReproducibleActivationExpTest.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.Q4KColdHotDeterminismTest.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.F32ExecutionMatrixTest.xml",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.VectorEncodingTest.xml",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.GgufBatchDispatchTest.xml",
+      "tests": 8,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.VectorUtilSupportTest$FloatDotProductTest.xml",
+      "tests": 135,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.OffsetBatchCosineTest.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.VectorUtilSupportTest$ByteDistanceTest.xml",
+      "tests": 101,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.BFloat16MatrixAllocationTest.xml",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.FusedSimilarityTest.xml",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.VectorUtilSupportProviderTest.xml",
+      "tests": 11,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.BFloat16MatrixDispatchTest.xml",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.VectorUtilSupportTest$FloatSquareDistanceTest.xml",
+      "tests": 137,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.VectorUtilSupportTest$MemorySegmentTest.xml",
+      "tests": 16,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.F32ExecutionMatrixColdHotTest.xml",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.ScalarVectorUtilSupportTest.xml",
+      "tests": 13,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.Q6KColdHotDeterminismTest.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.GgufKQuantDequantTest.xml",
+      "tests": 27,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.VectorSpeciesConstantStructureTest.xml",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.Q6KReductionOrderContractTest.xml",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.FusedSimilaritySegmentTest.xml",
+      "tests": 12,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.Q8ColdHotDeterminismTest.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.TopKTest.xml",
+      "tests": 15,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.VectorUtilTest.xml",
+      "tests": 32,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.cluster.KMeansTest.xml",
+      "tests": 16,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.BFloat16MatrixColdHotTest.xml",
+      "tests": 12,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.VectorUtilSupportTest$HammingDistanceTest.xml",
+      "tests": 12,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.GgufQuantizedDotTest.xml",
+      "tests": 84,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.SimilarityFunctionTest.xml",
+      "tests": 14,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.OffsetBatchCosineBitsTest.xml",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.cluster.VectorUtilBatchCosineTest.xml",
+      "tests": 41,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-core/build/test-results/test/TEST-com.integrallis.vectors.core.CosineAllocationTest.xml",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-cache-semantic-spring-ai/build/test-results/test/TEST-com.integrallis.vectors.cache.semantic.springai.SemanticCachingChatModelTest.xml",
+      "tests": 13,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-vcr-spring-ai/build/test-results/test/TEST-com.integrallis.vectors.vcr.springai.SpringAIModelWrapperProviderTest.xml",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-vcr-spring-ai/build/test-results/test/TEST-com.integrallis.vectors.vcr.springai.VCRSpringAIChatModelTest.xml",
+      "tests": 8,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-vcr-spring-ai/build/test-results/test/TEST-com.integrallis.vectors.vcr.springai.VCRSpringAIEmbeddingModelTest.xml",
+      "tests": 9,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-vcr-spring-ai/build/test-results/test/TEST-com.integrallis.vectors.vcr.springai.VCRSpringAIStreamingChatModelTest.xml",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-cache-semantic-langchain4j/build/test-results/test/TEST-com.integrallis.vectors.cache.semantic.langchain4j.SemanticCachingChatModelTest.xml",
+      "tests": 9,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-vcr-semantic-db/build/test-results/test/TEST-com.integrallis.vectors.vcr.semantic.SemanticCassetteStoreTest.xml",
+      "tests": 9,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-gpu/build/test-results/test/TEST-com.integrallis.vectors.gpu.GpuProviderTest.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-gpu/build/test-results/test/TEST-com.integrallis.vectors.gpu.GpuDetectionTest.xml",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-vcr-langchain4j/build/test-results/test/TEST-com.integrallis.vectors.vcr.langchain4j.VCREmbeddingModelTest.xml",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-vcr-langchain4j/build/test-results/test/TEST-com.integrallis.vectors.vcr.langchain4j.VCRChatModelTest.xml",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-vcr-langchain4j/build/test-results/test/TEST-com.integrallis.vectors.vcr.langchain4j.LangChain4jModelWrapperProviderTest.xml",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-vcr-langchain4j/build/test-results/test/TEST-com.integrallis.vectors.vcr.langchain4j.VCREmbeddingInterceptorTest.xml",
+      "tests": 9,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-vcr-langchain4j/build/test-results/test/TEST-com.integrallis.vectors.vcr.langchain4j.VCRStreamingChatModelTest.xml",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-jakarta-batch/build/test-results/test/TEST-com.integrallis.vectors.jakarta.batch.ManifestMigrationBatchletTest.xml",
+      "tests": 10,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.HnswSearcherTest$MediumDatasetSearch.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.HnswGraphBuilderTest$MediumGraphConstruction.xml",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.QuantizedSearchTest$NodeScorerBasics.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.QuantizedSearchTest$QuantizationAttachment.xml",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.SearcherAllocationTest.xml",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.HnswSearcherTest$BasicSearch.xml",
+      "tests": 5,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.DistinctNeighborInsertTest.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.HnswSearcherMultiStartTest$Concurrency.xml",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.QuantizedSearchTest$RefactoredSearcher.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.HnswGraphBuilderTest$SsdPrefetchTests.xml",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.HnswGraphBuilderTest$SmallGraphConstruction.xml",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.QuantizedSearchTest$VectorDatasetBridge.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.AsyncVectorPrefetcherTest.xml",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.HnswGraphBuilderTest$ConcurrentBuild.xml",
+      "tests": 5,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.HnswSearcherMultiStartTest$ExceptionPropagation.xml",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.HnswSearcherTest$SmallDatasetSearch.xml",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.HnswSearcherMultiStartTest$EdgeCases.xml",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.HnswGraphDiagnosticsTest$HandBuilt.xml",
+      "tests": 5,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.HnswGraphBuilderTest$SingleNodeInsertion.xml",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.DataStructuresTest$NeighborArrayTests.xml",
+      "tests": 10,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.HnswSearcherMultiStartTest$Recall.xml",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.HnswGraphBuilderTest$NeighborSelectorTests.xml",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.VectorStoreVectorsTest.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.HnswSearcherTest$AllSimilarityFunctions.xml",
+      "tests": 8,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.QuantizedSearchTest$TwoPassAllSimilarityFunctions.xml",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.HnswGraphMergerTest.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.DataStructuresTest$HnswGraphTests.xml",
+      "tests": 7,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.ConcurrentHnswGraphBuilderSelfLoopTest.xml",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.DataStructuresTest$NodeQueueTests.xml",
+      "tests": 7,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.SharedVectorBuildTest.xml",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.HnswGraphDiagnosticsTest$RealBuilds.xml",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.HnswAppendOwnershipTest.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.HnswSearcherTest$HnswIndexApiTests.xml",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.HnswSegmentScoringRecallTest.xml",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.HnswGraphBuilderTest$RandomLevelGeneratorTests.xml",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.QuantizedSearchTest$TwoPassRecall.xml",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.ConcurrentHnswGraphBuilderAppendTest.xml",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.QuantizedSearchTest$TwoPassSearch.xml",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.QuantizedSearchTest$Rescore.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.PreparedQuerySearchTest.xml",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.ExactScoreCacheTest.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.HnswSearcherMultiStartTest$Identity.xml",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.HnswSearcherTest$FusedAdcSearch.xml",
+      "tests": 8,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-hnsw/build/test-results/test/TEST-com.integrallis.vectors.hnsw.ResultDrainTest.xml",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-text-h2/build/test-results/test/TEST-com.integrallis.vectors.text.h2.H2TextIndexTest$Concurrency.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-text-h2/build/test-results/test/TEST-com.integrallis.vectors.text.h2.H2TextIndexTest$BlobStorage.xml",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-text-h2/build/test-results/test/TEST-com.integrallis.vectors.text.h2.H2TextIndexTest$IndexAndSearch.xml",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-text-h2/build/test-results/test/TEST-com.integrallis.vectors.text.h2.H2TextIndexTest$HousekeepingFiles.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-text-h2/build/test-results/test/TEST-com.integrallis.vectors.text.h2.H2TextIndexTest$ServiceLoaderDiscovery.xml",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-text-h2/build/test-results/test/TEST-com.integrallis.vectors.text.h2.H2TextIndexTest$MetadataAndLifecycle.xml",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-router/build/test-results/test/TEST-com.integrallis.vectors.router.SemanticRouterTest$Routing.xml",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-router/build/test-results/test/TEST-com.integrallis.vectors.router.RouteTest$Builder.xml",
+      "tests": 5,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-router/build/test-results/test/TEST-com.integrallis.vectors.router.RouteTest$Immutability.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-router/build/test-results/test/TEST-com.integrallis.vectors.router.RouteMatchTest$Of.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-router/build/test-results/test/TEST-com.integrallis.vectors.router.SemanticRouterTest$Metadata.xml",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-router/build/test-results/test/TEST-com.integrallis.vectors.router.SemanticRouterTest$EdgeCases.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-router/build/test-results/test/TEST-com.integrallis.vectors.router.RouteMatchTest$NoMatch.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-router/build/test-results/test/TEST-com.integrallis.vectors.router.SemanticRouterTest$Validation.xml",
+      "tests": 7,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-router/build/test-results/test/TEST-com.integrallis.vectors.router.SemanticRouterTest.xml",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-optimizer/build/test-results/test/TEST-com.integrallis.vectors.optimizer.study.RouterThresholdStudyTest.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-optimizer/build/test-results/test/TEST-com.integrallis.vectors.optimizer.sampler.GridSamplerTest.xml",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-optimizer/build/test-results/test/TEST-com.integrallis.vectors.optimizer.study.IndexMemoryEstimatorTest.xml",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-optimizer/build/test-results/test/TEST-com.integrallis.vectors.optimizer.sampler.RandomSamplerTest.xml",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-optimizer/build/test-results/test/TEST-com.integrallis.vectors.optimizer.space.SearchSpaceTest.xml",
+      "tests": 5,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-optimizer/build/test-results/test/TEST-com.integrallis.vectors.optimizer.study.IndexStudySingleTrialTest.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-optimizer/build/test-results/test/TEST-com.integrallis.vectors.optimizer.sampler.TpeSamplerTest.xml",
+      "tests": 5,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-optimizer/build/test-results/test/TEST-com.integrallis.vectors.optimizer.data.MetadataQrelsDeriverTest.xml",
+      "tests": 5,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-optimizer/build/test-results/test/TEST-com.integrallis.vectors.optimizer.study.CacheThresholdStudyTest.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-optimizer/build/test-results/test/TEST-com.integrallis.vectors.optimizer.space.ParamSpecTest.xml",
+      "tests": 7,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-optimizer/build/test-results/test/TEST-com.integrallis.vectors.optimizer.eval.MetricsTest.xml",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-optimizer/build/test-results/test/TEST-com.integrallis.vectors.optimizer.data.QrelsLoaderTest.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-optimizer/build/test-results/test/TEST-com.integrallis.vectors.optimizer.persist.StudyStoreTest.xml",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-optimizer/build/test-results/test/TEST-com.integrallis.vectors.optimizer.objective.ObjectiveTest.xml",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-optimizer/build/test-results/test/TEST-com.integrallis.vectors.optimizer.study.IndexStudyTest.xml",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-hybrid/build/test-results/test/TEST-com.integrallis.vectors.hybrid.text.TextIndexSpiFactoryTest.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-hybrid/build/test-results/test/TEST-com.integrallis.vectors.hybrid.HybridSearchTest.xml",
+      "tests": 5,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-hybrid/build/test-results/test/TEST-com.integrallis.vectors.hybrid.ScoredIdTest.xml",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-hybrid/build/test-results/test/TEST-com.integrallis.vectors.hybrid.MaximalMarginalRelevanceTest.xml",
+      "tests": 9,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-hybrid/build/test-results/test/TEST-com.integrallis.vectors.hybrid.RRFFusionTest.xml",
+      "tests": 7,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-hybrid/build/test-results/test/TEST-com.integrallis.vectors.hybrid.WeightedFusionTest.xml",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-cache-spring-ai/build/test-results/test/TEST-com.integrallis.vectors.cache.springai.CachingEmbeddingModelTest.xml",
+      "tests": 7,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-cache-spring-ai/build/test-results/test/TEST-com.integrallis.vectors.cache.springai.CachingChatModelTest.xml",
+      "tests": 7,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-distributed/build/test-results/test/TEST-com.integrallis.vectors.distributed.TestDistributedClusterFactoryTest$ClusterCreation.xml",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-distributed/build/test-results/test/TEST-com.integrallis.vectors.distributed.TopKMergerTest.xml",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-distributed/build/test-results/test/TEST-com.integrallis.vectors.distributed.TestDistributedClusterFactoryTest$ScatterGatherSearch.xml",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-distributed/build/test-results/test/TEST-com.integrallis.vectors.distributed.ScatterGatherExecutorTest.xml",
+      "tests": 5,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-distributed/build/test-results/test/TEST-com.integrallis.vectors.distributed.DistributedVectorCollectionTest.xml",
+      "tests": 11,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-distributed/build/test-results/test/TEST-com.integrallis.vectors.distributed.DistributedAggregateFaultToleranceTest.xml",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-spring-boot-starter/build/test-results/test/TEST-com.integrallis.vectors.spring.boot.JavaVectorsAutoConfigurationTest$AutoConfigurationTests.xml",
+      "tests": 17,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-studio-distributed/build/test-results/test/TEST-com.integrallis.vectors.studio.distributed.DistributedConnectionParserTest.xml",
+      "tests": 9,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-studio-distributed/build/test-results/test/TEST-com.integrallis.vectors.studio.distributed.search.RrfFuserTest.xml",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-spring-batch/build/test-results/test/TEST-com.integrallis.vectors.spring.batch.ManifestMigrationBatchTest.xml",
+      "tests": 13,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-studio-sidecart/build/test-results/test/TEST-com.integrallis.vectors.studio.sidecart.sources.D1SidecartSourceTest.xml",
+      "tests": 8,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-studio-sidecart/build/test-results/test/TEST-com.integrallis.vectors.studio.sidecart.sources.FileSidecartSourceTest.xml",
+      "tests": 5,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-studio-sidecart/build/test-results/test/TEST-com.integrallis.vectors.studio.sidecart.sources.H2SidecartWriterTest.xml",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-studio-sidecart/build/test-results/test/TEST-com.integrallis.vectors.studio.sidecart.SidecartRegistryTest.xml",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-studio-sidecart/build/test-results/test/TEST-com.integrallis.vectors.studio.sidecart.ingest.SidecartWriterSinkTest.xml",
+      "tests": 5,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-studio-sidecart/build/test-results/test/TEST-com.integrallis.vectors.studio.sidecart.sources.H2SidecartSourceTest.xml",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-vamana/build/test-results/test/TEST-com.integrallis.vectors.vamana.VamanaSegmentScoringTest.xml",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-vamana/build/test-results/test/TEST-com.integrallis.vectors.vamana.DataStructuresTest$InMemoryVectorsTests.xml",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-vamana/build/test-results/test/TEST-com.integrallis.vectors.vamana.VamanaSearcherTest$AllSimilarityFunctions.xml",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-vamana/build/test-results/test/TEST-com.integrallis.vectors.vamana.VamanaQuantizedSearchTest$NodeScorerBasics.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-vamana/build/test-results/test/TEST-com.integrallis.vectors.vamana.VamanaGraphBuilderTest$MedoidComputation.xml",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-vamana/build/test-results/test/TEST-com.integrallis.vectors.vamana.VamanaGraphBuilderTest$MediumGraphConstruction.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-vamana/build/test-results/test/TEST-com.integrallis.vectors.vamana.RobustPrunerTest$AlphaEffect.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-vamana/build/test-results/test/TEST-com.integrallis.vectors.vamana.VamanaGraphBuilderTest$RandomInitialization.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-vamana/build/test-results/test/TEST-com.integrallis.vectors.vamana.VamanaQuantizedSearchTest$QuantizationAttachment.xml",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-vamana/build/test-results/test/TEST-com.integrallis.vectors.vamana.DataStructuresTest$SearchResultTests.xml",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-vamana/build/test-results/test/TEST-com.integrallis.vectors.vamana.VamanaGraphBuilderTest$SmallGraphConstruction.xml",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-vamana/build/test-results/test/TEST-com.integrallis.vectors.vamana.VamanaSearcherTest$BasicSearch.xml",
+      "tests": 5,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-vamana/build/test-results/test/TEST-com.integrallis.vectors.vamana.VamanaQuantizedSearchTest$RefactoredSearcher.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-vamana/build/test-results/test/TEST-com.integrallis.vectors.vamana.DataStructuresTest$NeighborArrayTests.xml",
+      "tests": 8,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-vamana/build/test-results/test/TEST-com.integrallis.vectors.vamana.VamanaGraphBuilderTest$ConcurrentBuild.xml",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-vamana/build/test-results/test/TEST-com.integrallis.vectors.vamana.RobustPrunerTest$BasicPruning.xml",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-vamana/build/test-results/test/TEST-com.integrallis.vectors.vamana.DataStructuresTest$NodeQueueTests.xml",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-vamana/build/test-results/test/TEST-com.integrallis.vectors.vamana.VamanaSearcherTest$RecallTests.xml",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-vamana/build/test-results/test/TEST-com.integrallis.vectors.vamana.VamanaQuantizedSearchTest$TwoPassRecall.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-vamana/build/test-results/test/TEST-com.integrallis.vectors.vamana.VamanaQuantizedSearchTest$VectorDatasetBridge.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-vamana/build/test-results/test/TEST-com.integrallis.vectors.vamana.VamanaSharedBufferBuildTest.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-vamana/build/test-results/test/TEST-com.integrallis.vectors.vamana.RobustPrunerTest$EdgeCases.xml",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-vamana/build/test-results/test/TEST-com.integrallis.vectors.vamana.VamanaQuantizedSearchTest$TwoPassSearch.xml",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-vamana/build/test-results/test/TEST-com.integrallis.vectors.vamana.VamanaQuantizedSearchTest$Rescore.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-vamana/build/test-results/test/TEST-com.integrallis.vectors.vamana.VamanaQuantizedSearchTest$TwoPassAllSimilarityFunctions.xml",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-vamana/build/test-results/test/TEST-com.integrallis.vectors.vamana.VamanaIndexTest$BuilderAPI.xml",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-studio-core/build/test-results/test/TEST-com.integrallis.vectors.studio.core.dataset.DatasetLoaderTest.xml",
+      "tests": 5,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-studio-core/build/test-results/test/TEST-com.integrallis.vectors.studio.core.recommender.HeuristicRecommenderTest.xml",
+      "tests": 5,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-studio-core/build/test-results/test/TEST-com.integrallis.vectors.studio.core.projection.SmilePcaProjectionTest.xml",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-studio-core/build/test-results/test/TEST-com.integrallis.vectors.studio.core.projection.SmileProgressHeartbeatTest.xml",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-cache/build/test-results/test/TEST-com.integrallis.vectors.cache.SemanticCacheTest.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-cache/build/test-results/test/TEST-com.integrallis.vectors.cache.NoOpVectorCacheTest.xml",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-cache/build/test-results/test/TEST-com.integrallis.vectors.cache.CacheAdmissionPolicyTest.xml",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-cache/build/test-results/test/TEST-com.integrallis.vectors.cache.LLMResponseFiltersTest.xml",
+      "tests": 22,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-cache/build/test-results/test/TEST-com.integrallis.vectors.cache.CacheFilterTest.xml",
+      "tests": 5,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-cache/build/test-results/test/TEST-com.integrallis.vectors.cache.CaffeineVectorCacheTest.xml",
+      "tests": 10,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-bench/build/test-results/test/TEST-com.integrallis.vectors.bench.BigAnnLoaderTest$Synthetic.xml",
+      "tests": 5,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-bench/build/test-results/test/TEST-com.integrallis.vectors.bench.jvm.Q8TiledMatmulKernelsTest.xml",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-bench/build/test-results/test/TEST-com.integrallis.vectors.bench.TieredIvfRecallQpsBenchmarkTest.xml",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-bench/build/test-results/test/TEST-com.integrallis.vectors.bench.DefaultCollectionReplayBenchmarkTest.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-bench/build/test-results/test/TEST-com.integrallis.vectors.bench.BigAnnLoaderTest$PublishedFiles.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-bench/build/test-results/test/TEST-com.integrallis.vectors.bench.jvm.SignedByteDotProductKernelsTest.xml",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-bench/build/test-results/test/TEST-com.integrallis.vectors.bench.jvm.PairwiseMultiplyAddKernelsTest.xml",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-bench/build/test-results/test/TEST-com.integrallis.vectors.bench.q8.PreparedQ8WeightsTest.xml",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-bench/build/test-results/test/TEST-com.integrallis.vectors.bench.CheckpointStoreTest.xml",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-langchain4j/build/test-results/test/TEST-com.integrallis.vectors.langchain4j.JavaVectorsEmbeddingStoreTest$MetadataPreservation.xml",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-langchain4j/build/test-results/test/TEST-com.integrallis.vectors.langchain4j.JavaVectorsEmbeddingStoreTest$Search.xml",
+      "tests": 5,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-langchain4j/build/test-results/test/TEST-com.integrallis.vectors.langchain4j.FilterConverterTest$Compound.xml",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-langchain4j/build/test-results/test/TEST-com.integrallis.vectors.langchain4j.FilterConverterTest$NumericComparisons.xml",
+      "tests": 5,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-langchain4j/build/test-results/test/TEST-com.integrallis.vectors.langchain4j.MetadataConverterTest$ToJavaVectors.xml",
+      "tests": 9,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-langchain4j/build/test-results/test/TEST-com.integrallis.vectors.langchain4j.JavaVectorsEmbeddingStoreTest$Lifecycle.xml",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-langchain4j/build/test-results/test/TEST-com.integrallis.vectors.langchain4j.MetadataConverterTest$ToLangChain4j.xml",
+      "tests": 7,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-langchain4j/build/test-results/test/TEST-com.integrallis.vectors.langchain4j.JavaVectorsEmbeddingStoreTest$CommitStrategy.xml",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-langchain4j/build/test-results/test/TEST-com.integrallis.vectors.langchain4j.MetadataConverterTest$RoundTrip.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-langchain4j/build/test-results/test/TEST-com.integrallis.vectors.langchain4j.JavaVectorsEmbeddingStoreTest$AddSingleEmbedding.xml",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-langchain4j/build/test-results/test/TEST-com.integrallis.vectors.langchain4j.FilterConverterTest$NullFilter.xml",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-langchain4j/build/test-results/test/TEST-com.integrallis.vectors.langchain4j.FilterConverterTest$Unsupported.xml",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-langchain4j/build/test-results/test/TEST-com.integrallis.vectors.langchain4j.JavaVectorsEmbeddingStoreTest$RemoveOperations.xml",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-langchain4j/build/test-results/test/TEST-com.integrallis.vectors.langchain4j.FilterConverterTest$Equality.xml",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-langchain4j/build/test-results/test/TEST-com.integrallis.vectors.langchain4j.JavaVectorsEmbeddingStoreTest$AddBatch.xml",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-langchain4j/build/test-results/test/TEST-com.integrallis.vectors.langchain4j.FilterConverterTest$Membership.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-langchain4j/build/test-results/test/TEST-com.integrallis.vectors.langchain4j.FilterConverterTest$LogicalOperators.xml",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-langchain4j/build/test-results/test/TEST-com.integrallis.vectors.langchain4j.JavaVectorsEmbeddingStoreTest$IndexTypes.xml",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-langchain4j/build/test-results/test/TEST-com.integrallis.vectors.langchain4j.JavaVectorsEmbeddingStoreTest$MmrDiversity.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-vcr-serde-jackson/build/test-results/test/TEST-com.integrallis.vectors.vcr.serde.jackson.JacksonCassetteSerializerTest.xml",
+      "tests": 10,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-cluster/build/test-results/test/TEST-com.integrallis.vectors.cluster.ClusterPartialCommitRecoveryTest.xml",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-cluster/build/test-results/test/TEST-com.integrallis.vectors.cluster.ClusterVectorCollectionTest.xml",
+      "tests": 9,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-cluster/build/test-results/test/TEST-com.integrallis.vectors.cluster.ConsistentHashRouterTest.xml",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-vcr-serde-avaje/build/test-results/test/TEST-com.integrallis.vectors.vcr.serde.avaje.AvajeCassetteSerializerTest.xml",
+      "tests": 5,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-vcr-testng/build/test-results/test/TEST-com.integrallis.vectors.vcr.testng.VCRListenerTest.xml",
+      "tests": 5,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-ivf/build/test-results/test/TEST-com.integrallis.vectors.ivf.TieredClusterReadThroughRaceTest.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-ivf/build/test-results/test/TEST-com.integrallis.vectors.ivf.SubBuoyTreeTest.xml",
+      "tests": 8,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-ivf/build/test-results/test/TEST-com.integrallis.vectors.ivf.IvfIndexIntegrationTest$CodecTests.xml",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-ivf/build/test-results/test/TEST-com.integrallis.vectors.ivf.IvfIndexIntegrationTest.xml",
+      "tests": 7,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-ivf/build/test-results/test/TEST-com.integrallis.vectors.ivf.BuoyIndexTest.xml",
+      "tests": 17,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-ivf/build/test-results/test/TEST-com.integrallis.vectors.ivf.HyperDoorEvictionTest.xml",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-ivf/build/test-results/test/TEST-com.integrallis.vectors.ivf.TieredClusterTest.xml",
+      "tests": 14,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-ivf/build/test-results/test/TEST-com.integrallis.vectors.ivf.DistributedVectorCollectionTest.xml",
+      "tests": 12,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-ivf/build/test-results/test/TEST-com.integrallis.vectors.ivf.ClusterSplitterTest.xml",
+      "tests": 12,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-ivf/build/test-results/test/TEST-com.integrallis.vectors.ivf.IvfPqTest.xml",
+      "tests": 10,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-ivf/build/test-results/test/TEST-com.integrallis.vectors.ivf.DistributedVectorCollectionManifestTest.xml",
+      "tests": 7,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-ivf/build/test-results/test/TEST-com.integrallis.vectors.ivf.TierPolicyTest.xml",
+      "tests": 11,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-ivf/build/test-results/test/TEST-com.integrallis.vectors.ivf.IvfIndexIntegrationTest$HarmonyTests.xml",
+      "tests": 5,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-ivf/build/test-results/test/TEST-com.integrallis.vectors.ivf.IvfCosineZeroNormTest.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-ivf/build/test-results/test/TEST-com.integrallis.vectors.ivf.HyperDoorTest.xml",
+      "tests": 11,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-cache-langchain4j/build/test-results/test/TEST-com.integrallis.vectors.cache.langchain4j.CachingEmbeddingModelTest.xml",
+      "tests": 8,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-cache-langchain4j/build/test-results/test/TEST-com.integrallis.vectors.cache.langchain4j.CachingEmbeddingStoreTest.xml",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-cache-langchain4j/build/test-results/test/TEST-com.integrallis.vectors.cache.langchain4j.CachingChatModelTest.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-vcr-core/build/test-results/test/TEST-com.integrallis.vectors.vcr.RequestSignatureTest.xml",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-vcr-core/build/test-results/test/TEST-com.integrallis.vectors.vcr.VCRContextTest.xml",
+      "tests": 7,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-vcr-core/build/test-results/test/TEST-com.integrallis.vectors.vcr.CassetteKeyTest.xml",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-vcr-core/build/test-results/test/TEST-com.integrallis.vectors.vcr.VCRReplayPolicyTest.xml",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-vcr-core/build/test-results/test/TEST-com.integrallis.vectors.vcr.VCRRegistryTest.xml",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-vcr-core/build/test-results/test/TEST-com.integrallis.vectors.vcr.TrackingCassetteStoreTest.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-vcr-core/build/test-results/test/TEST-com.integrallis.vectors.vcr.VCRContextConcurrencyTest.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-vcr-core/build/test-results/test/TEST-com.integrallis.vectors.vcr.ExactCassetteStoreTest.xml",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-vcr-core/build/test-results/test/TEST-com.integrallis.vectors.vcr.CassetteTreeCodecTest.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-vcr-core/build/test-results/test/TEST-com.integrallis.vectors.vcr.VCRModelWrapperTest.xml",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-vcr-core/build/test-results/test/TEST-com.integrallis.vectors.vcr.CassetteContractTest.xml",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-studio-web/build/test-results/test/TEST-com.integrallis.vectors.studio.web.optimize.OptimizeJobManagerTest.xml",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-studio-web/build/test-results/test/TEST-com.integrallis.vectors.studio.web.projection.ProjectionJobManagerTest.xml",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-studio-web/build/test-results/test/TEST-com.integrallis.vectors.studio.web.embed.ProviderRegistryTest.xml",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-storage/build/test-results/test/TEST-com.integrallis.vectors.storage.store.MappedVectorStoreTest$Float32Vectors.xml",
+      "tests": 13,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-storage/build/test-results/test/TEST-com.integrallis.vectors.storage.memory.AlignmentUtilTest.xml",
+      "tests": 33,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-storage/build/test-results/test/TEST-com.integrallis.vectors.storage.store.MappedVectorStoreTest$CustomAlignment.xml",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-storage/build/test-results/test/TEST-com.integrallis.vectors.storage.io.MappedSegmentInputTest.xml",
+      "tests": 9,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-storage/build/test-results/test/TEST-com.integrallis.vectors.storage.store.MappedVectorStoreTest$WriterValidation.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-storage/build/test-results/test/TEST-com.integrallis.vectors.storage.manifest.StorageManifestTest.xml",
+      "tests": 5,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-storage/build/test-results/test/TEST-com.integrallis.vectors.storage.memory.SlabAllocatorTest.xml",
+      "tests": 8,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-storage/build/test-results/test/TEST-com.integrallis.vectors.storage.backend.S3LiveStorageBackendIT.xml",
+      "tests": 24,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 24
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-storage/build/test-results/test/TEST-com.integrallis.vectors.storage.store.MappedVectorStoreTest$FileValidation.xml",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-storage/build/test-results/test/TEST-com.integrallis.vectors.storage.manifest.ManifestGenerationPublisherTest.xml",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-storage/build/test-results/test/TEST-com.integrallis.vectors.storage.manifest.ManifestStoreTest.xml",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-storage/build/test-results/test/TEST-com.integrallis.vectors.storage.io.ChannelOutputTest.xml",
+      "tests": 12,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-storage/build/test-results/test/TEST-com.integrallis.vectors.storage.store.MappedVectorStoreTest$Int8Vectors.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-storage/build/test-results/test/TEST-com.integrallis.vectors.storage.store.MappedVectorStoreTest$ConcurrentAccess.xml",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-storage/build/test-results/test/TEST-com.integrallis.vectors.storage.wal.WriteAheadLogContractTest.xml",
+      "tests": 28,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-storage/build/test-results/test/TEST-com.integrallis.vectors.storage.backend.LocalFileStorageBackendContractTest.xml",
+      "tests": 26,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-storage/build/test-results/test/TEST-com.integrallis.vectors.storage.StorageLayoutsTest.xml",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-storage/build/test-results/test/TEST-com.integrallis.vectors.storage.backend.HeapStorageBackendContractTest.xml",
+      "tests": 25,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-storage/build/test-results/test/TEST-com.integrallis.vectors.storage.store.MappedVectorStoreTest$BinaryVectors.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-storage/build/test-results/test/TEST-com.integrallis.vectors.storage.wal.WriteAheadLogTest.xml",
+      "tests": 12,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-storage/build/test-results/test/TEST-com.integrallis.vectors.storage.wal.ManifestTest.xml",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-storage/build/test-results/test/TEST-com.integrallis.vectors.storage.io.MadviseUtilTest.xml",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-ingest/build/test-results/test/TEST-com.integrallis.vectors.ingest.EmbeddedDocTest.xml",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-ingest/build/test-results/test/TEST-com.integrallis.vectors.ingest.IngestResultTest.xml",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-ingest/build/test-results/test/TEST-com.integrallis.vectors.ingest.IngestDocTest.xml",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-ingest/build/test-results/test/TEST-com.integrallis.vectors.ingest.BulkIngestorTest.xml",
+      "tests": 7,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-ingest/build/test-results/test/TEST-com.integrallis.vectors.ingest.RetryPolicyTest.xml",
+      "tests": 7,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-ingest/build/test-results/test/TEST-com.integrallis.vectors.ingest.IngestPipelineErrorTest.xml",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-ingest/build/test-results/test/TEST-com.integrallis.vectors.ingest.BatchPolicyTest.xml",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-ingest/build/test-results/test/TEST-com.integrallis.vectors.ingest.BatchAccumulatorTest.xml",
+      "tests": 8,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-ingest/build/test-results/test/TEST-com.integrallis.vectors.ingest.sources.JsonlSourceTest.xml",
+      "tests": 8,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-ingest/build/test-results/test/TEST-com.integrallis.vectors.ingest.IngestPipelineTest.xml",
+      "tests": 9,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-ingest/build/test-results/test/TEST-com.integrallis.vectors.ingest.sources.DirectorySourceTest.xml",
+      "tests": 10,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-ingest/build/test-results/test/TEST-com.integrallis.vectors.ingest.cursor.InMemoryCursorTest.xml",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-ingest/build/test-results/test/TEST-com.integrallis.vectors.ingest.IngestMetricsTest.xml",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-ingest/build/test-results/test/TEST-com.integrallis.vectors.ingest.sinks.DistributedVectorSinkTest.xml",
+      "tests": 8,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-ingest/build/test-results/test/TEST-com.integrallis.vectors.ingest.embedders.PrecomputedEmbedderTest.xml",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-ingest/build/test-results/test/TEST-com.integrallis.vectors.ingest.BatchTest.xml",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-ingest/build/test-results/test/TEST-com.integrallis.vectors.ingest.cursor.R2KeyCursorTest.xml",
+      "tests": 11,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-ingest/build/test-results/test/TEST-com.integrallis.vectors.ingest.embedders.LangChain4jEmbedderTest.xml",
+      "tests": 7,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-ingest/build/test-results/test/TEST-com.integrallis.vectors.ingest.sources.IterableSourceTest.xml",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-ingest/build/test-results/test/TEST-com.integrallis.vectors.ingest.sinks.DistributedVectorSinkPipelineTest.xml",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-server/build/test-results/test/TEST-com.integrallis.vectors.server.dto.CreateCollectionRequestTest.xml",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-server/build/test-results/test/TEST-com.integrallis.vectors.server.AuthTest.xml",
+      "tests": 5,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-server/build/test-results/test/TEST-com.integrallis.vectors.server.CollectionsRoutesTest.xml",
+      "tests": 8,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-server/build/test-results/test/TEST-com.integrallis.vectors.server.dto.SearchQueryTest.xml",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-server/build/test-results/test/TEST-com.integrallis.vectors.server.routing.SearchRoutesTest.xml",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-server/build/test-results/test/TEST-com.integrallis.vectors.server.VectorsServerHealthTest.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-server/build/test-results/test/TEST-com.integrallis.vectors.server.CollectionRegistryLockTest.xml",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-server/build/test-results/test/TEST-com.integrallis.vectors.server.HnswEndToEndTest.xml",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-server/build/test-results/test/TEST-com.integrallis.vectors.server.DocumentsAndSearchTest.xml",
+      "tests": 10,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-server/build/test-results/test/TEST-com.integrallis.vectors.server.filter.FilterParserTest.xml",
+      "tests": 22,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-server/build/test-results/test/TEST-com.integrallis.vectors.server.ObservabilityTest.xml",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-server/build/test-results/test/TEST-com.integrallis.vectors.server.PersistenceTest.xml",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-server/build/test-results/test/TEST-com.integrallis.vectors.server.BulkRoutesTest.xml",
+      "tests": 10,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-server/build/test-results/test/TEST-com.integrallis.vectors.server.routing.BulkRoutesTest.xml",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-server/build/test-results/test/TEST-com.integrallis.vectors.server.SseEventsTest.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-cache-semantic-db/build/test-results/test/TEST-com.integrallis.vectors.cache.semantic.VectorDbSemanticCacheTest.xml",
+      "tests": 15,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-cache-semantic-db/build/test-results/test/TEST-com.integrallis.vectors.cache.semantic.VectorDbSemanticCacheTest$AdmissionPolicyTests.xml",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.index.MappedFlatScanAdapterTest$ThreadSafety.xml",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.index.IvfPersistentOverQueryRecallTest.xml",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.VectorDbFilteredSearchTest$PersistentFiltered.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.VectorDbMultiStartTest$ConcurrencySmoke.xml",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.VectorDbCuVsTest.xml",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.VectorDbDeletionTest$DeleteWhere.xml",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.VectorDbFilteredSearchTest$AcornPreFilter.xml",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.index.VamanaIndexAdapterTest$InputValidation.xml",
+      "tests": 5,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.index.VamanaIndexAdapterTest$CloseSemantics.xml",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.filter.FilterExecutorTest$AllFilter.xml",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.index.IndexSpiSearchBatchTest.xml",
+      "tests": 7,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.VectorDbVamanaPersistenceTest$CommitOpenFailureRecoveryVamana.xml",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.VectorDbIntegrationTest$FilterExecution.xml",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.storage.ObjectStoreQueryPathTest.xml",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.VectorDbQuantizationTest$PersistentHnswQuantized.xml",
+      "tests": 10,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.VectorDbConcurrencyTest$ReadersNeverBlockedByCommit.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.storage.MappedIdMapperTest$Validation.xml",
+      "tests": 7,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.storage.VamanaGraphCodecTest$EncodeValidation.xml",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.storage.TombstoneCodecTest$Validation.xml",
+      "tests": 5,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.StoredRecipeAnchorOrderingTest.xml",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.storage.QuantizedVectorsCodecTest$ExtendedRaBitQRoundTrip.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.storage.GenerationDirectoryTest$EmptyDirectoryBootstrap.xml",
+      "tests": 5,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.storage.MappedMetadataStoreTest$ReadOnly.xml",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.storage.QuantizedVectorsCodecTest$SQ4RoundTrip.xml",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.storage.MappedVamanaPagedIndexAdapterTest.xml",
+      "tests": 7,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.VectorDbMultiStartTest$NonHnswBackends.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.index.PreparedFlatScanTest.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.storage.MemorySegmentRandomAccessVectorsTest$NullGuards.xml",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.GenerationCompactionTest.xml",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.filter.FilterExecutorTest$InFilter.xml",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.storage.GenerationDirectoryTest$CrashRecovery.xml",
+      "tests": 13,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.storage.MappedHnswIndexAdapterTest$CloseSemantics.xml",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.storage.GenerationDirectoryTest$ReadCurrent.xml",
+      "tests": 5,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.index.VamanaIndexAdapterTest$BuildAndSearch.xml",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.storage.MappedIdMapperTest$ReadOnly.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.index.HnswIndexAdapterTest$Accessors.xml",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.storage.MappedHnswIndexAdapterTest$BuildPath.xml",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.testing.VectorSearchTestSupportTest$RecallComputation.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.VectorDbIntegrationTest$Lifecycle.xml",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.VectorDbHnswPersistenceTest$ConcurrencyHnsw.xml",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.VamanaPreFilterRecallTest.xml",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.storage.QuantizedVectorsCodecStreamingTest.xml",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.VectorDbPersistenceTest$SimulatedKill9.xml",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.VectorDbQvCacheTest$QvCacheIntegrationTests.xml",
+      "tests": 10,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.storage.FileFormatTest$Varint.xml",
+      "tests": 9,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.VectorDbVamanaPersistenceTest$ConcurrencyVamana.xml",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.storage.ManifestTest$RoundTrip.xml",
+      "tests": 5,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.VectorDbDeletionTest$SizeVsPhysicalSize.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.index.MappedFlatScanAdapterTest$Construction.xml",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.storage.TombstoneCodecTest$RoundTrip.xml",
+      "tests": 7,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.VectorDbQvCacheTest$QvCacheUnitTests.xml",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.VectorDbVamanaPersistenceTest$InMemoryVamana.xml",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.VectorDbDeletionTest$CombinedOperations.xml",
+      "tests": 5,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.storage.VamanaGraphCodecTest$HeaderValidation.xml",
+      "tests": 10,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.internal.StagingBufferTest.xml",
+      "tests": 16,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.storage.MappedMetadataStoreTest$BulkRead.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.VectorDbVamanaPersistenceTest$PersistentVamana.xml",
+      "tests": 7,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.id.InMemoryIdMapperTest.xml",
+      "tests": 5,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.storage.QuantizedVectorsCodecTest$SQ8RoundTrip.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.storage.ObservabilityJfrTest.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.VectorDbHnswPersistenceTest$InMemoryHnsw.xml",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.storage.QuantizedVectorsCodecTest$PQRoundTrip.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.storage.MappedHnswIndexAdapterTest$Search.xml",
+      "tests": 5,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.testing.VectorSearchTestSupportTest$DocumentGeneration.xml",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.index.CompositionWrappersTest$ShardsWrapper.xml",
+      "tests": 5,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.storage.GenerationDirectoryTest$WriteCurrentAtomic.xml",
+      "tests": 5,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.storage.HnswGraphCodecStreamingTest.xml",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.VectorDbIntegrationTest$SearchRequestDefaults.xml",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.TombstonePersistReopenTest.xml",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.storage.ForeignManifestVersionTest.xml",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.transfer.SegmentTransferTest.xml",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.VamanaDefaultSeedDeterminismTest.xml",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.storage.ManifestMigrationTest.xml",
+      "tests": 8,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.VectorDbQuantizationTest$FlatQuantization.xml",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.index.MappedFlatScanAdapterTest$TopKEdgeCases.xml",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.index.HnswIndexAdapterTest$EmptyState.xml",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.VectorDbIntegrationTest$DocumentRoundTrip.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.storage.GenerationDirectoryTest$WriteGenerationValidation.xml",
+      "tests": 9,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.index.MappedFlatScanAdapterTest$ThousandVectorAgreement.xml",
+      "tests": 9,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.VectorDbFilteredSearchTest$HnswFiltered.xml",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.testing.VectorConfigVariationsTest$BuilderDefaults.xml",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.storage.MemorySegmentRandomAccessVectorsTest$SharedBufferContract.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.VectorDbMultiStartTest$MappedHnswMultiStart.xml",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.storage.VamanaGraphCodecTest$RoundTrip.xml",
+      "tests": 8,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.storage.MappedMetadataStoreTest$RoundTrip.xml",
+      "tests": 8,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.storage.QuantizedVectorsCodecTest$BQRoundTrip.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.VectorDbPersistenceTest$CommitOpenFailureRecovery.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.AppendToDecodedGraphTest.xml",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.VectorDbIntegrationTest$BatchSearch.xml",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.storage.HnswGraphCodecTest$NullGuard.xml",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.storage.MemorySegmentRandomAccessVectorsTest$Basics.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.storage.ChunkedGraphBlobTest.xml",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.storage.MemorySegmentVectorsTest$RoundTrip.xml",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.filter.FilterExecutorTest$NumericRangeFilter.xml",
+      "tests": 7,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.VectorDbConcurrencyTest$WriterSerialization.xml",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.storage.VamanaGraphCodecTest$BodyValidation.xml",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.storage.MappedIdMapperTest$RoundTrip.xml",
+      "tests": 5,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.VectorDbHnswPersistenceTest$SimulatedKill9Hnsw.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.VectorDbPersistenceTest$FlushSemantics.xml",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.index.HnswIndexAdapterTest$CloseSemantics.xml",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.QuantizedOnlyCollectionTest.xml",
+      "tests": 5,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.index.MappedFlatScanAdapterTest$InputValidation.xml",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.storage.CoLocatedBlockCodecTest.xml",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.CommitMemoryFootprintTest.xml",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.storage.MappedMetadataStoreTest$Validation.xml",
+      "tests": 7,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.CommitAppendsHnswGraphTest.xml",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.storage.FileFormatTest$Magic.xml",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.storage.MemorySegmentVectorsTest$ThreadSafety.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.metadata.InMemoryMetadataStoreTest.xml",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.VectorDbConcurrencyTest$CloseDuringWrite.xml",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.VectorDbVamanaPersistenceTest$SimulatedKill9Vamana.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.VectorDbIntegrationTest$BuilderValidation.xml",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.VectorDbQuantizationTest$PersistentVamanaQuantized.xml",
+      "tests": 7,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.filter.FilterExecutorTest$EdgeCases.xml",
+      "tests": 5,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.ObjectStoreCollectionTest.xml",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.storage.QuantizedVectorsCodecTest$TurboQuantRoundTrip.xml",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.VectorDbFilteredSearchTest$FlatFiltered.xml",
+      "tests": 21,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.storage.QuantizedVectorsCodecTest$Validation.xml",
+      "tests": 7,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.SearchDuringWriteTest.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.storage.HnswGraphCodecTest$HeaderValidation.xml",
+      "tests": 10,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.storage.RecipeStoreTest.xml",
+      "tests": 9,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.VectorDbConcurrencyTest$MonotonicObservedSize.xml",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.VectorDbIntegrationTest$AutoCommit.xml",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.storage.ManifestTest$ConstructorValidation.xml",
+      "tests": 11,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.storage.MappedHnswIndexAdapterTest$ThreadSafety.xml",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.index.VamanaIndexAdapterTest$Accessors.xml",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.storage.MemorySegmentVectorsTest$Validation.xml",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.event.VectorEventCodecTest.xml",
+      "tests": 8,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.VectorDbFilteredSearchTest$VamanaFiltered.xml",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.testing.VectorSearchTestSupportTest$RandomizedConfig.xml",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.index.HnswIndexAdapterTest$Construction.xml",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.storage.MappedHnswIndexAdapterTest$Construction.xml",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.index.CompositionWrappersTest$ReplicasWrapper.xml",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.VectorDbQuantizationTest$InMemoryHnswQuantized.xml",
+      "tests": 10,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.index.HnswIndexAdapterTest$BuildAndSearch.xml",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.storage.GenerationDirectoryTest$ConcurrentWriteProtocol.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.storage.MemorySegmentRandomAccessVectorsTest$ThreadIsolation.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.index.CuVsResultDecoderTest$DistanceNegation.xml",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.AsyncBatchIngestorTest.xml",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.index.HnswIndexAdapterTest$ThreadSafety.xml",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.GenerationShippingFailureVisibilityTest.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.index.HnswIndexAdapterTest$InputValidation.xml",
+      "tests": 5,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.VectorDbPersistenceTest$RoundTrip.xml",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.index.MappedFlatScanAdapterTest$BitEquivalenceWithFlatScan.xml",
+      "tests": 10,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.EmbeddingRecipeLifecycleTest.xml",
+      "tests": 7,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.VectorDbQvCacheTest$QvCacheDotProductTests.xml",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.VectorDbIntegrationTest$FlatScanSearch.xml",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.storage.MemorySegmentRandomAccessVectorsTest$Bounds.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.VectorDbDeletionTest$Upsert.xml",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.VectorDbPersistenceTest$FusedSuccessorMaterialization.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.VectorDbDeletionTest$Compact.xml",
+      "tests": 8,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.storage.VamanaGraphCodecTest$NullGuard.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.storage.HnswGraphCodecTest$RoundTrip.xml",
+      "tests": 8,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.storage.MappedBuildVectorsTest.xml",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.VectorDbHnswPersistenceTest$PersistentHnsw.xml",
+      "tests": 8,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.VectorDbArrowIpcTest$ArrowIpcTests.xml",
+      "tests": 12,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.VectorDbIvfPqTest.xml",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.index.CuVsResultDecoderTest$EdgeCases.xml",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.internal.HamtTest.xml",
+      "tests": 15,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.FlatCollectionBatchTest.xml",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.storage.FileFormatTest$GenerationDirNames.xml",
+      "tests": 7,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.storage.ObjectStoreQueryableIndexTest.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.WriterGraphLifecycleTest.xml",
+      "tests": 17,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.VectorCollectionFluentAddTest.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.filter.FilterExecutorTest$EqualityFilter.xml",
+      "tests": 8,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.VectorDbPersistenceTest$StorageRootValidation.xml",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.VectorDbConcurrencyTest$AutoCommitOnThreshold.xml",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.storage.HnswGraphCodecTest$EncodeValidation.xml",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.index.MappedFlatScanAdapterTest$CloseSemantics.xml",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.internal.ChunkedListTest.xml",
+      "tests": 10,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.storage.QuantizedVectorsCodecTest$RaBitQRoundTrip.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.CommitAppendsVectorsFileTest.xml",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.index.ParallelFlatScanTest.xml",
+      "tests": 5,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.VectorDbPersistenceTest$MultiGeneration.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.storage.ObjectStoreRandomAccessVectorsTest.xml",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.index.VamanaIndexAdapterTest$ThreadSafety.xml",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.VectorDbIntegrationTest$DeterministicResults.xml",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.storage.MappedIdMapperTest$Reopen.xml",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.storage.ChecksumsTest.xml",
+      "tests": 9,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.WriterLockTimeoutTest.xml",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.testing.VectorConfigVariationsTest$DynamicTestGeneration.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.VectorDbDeletionTest$TombstoneOnlyCommit.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.VectorDbQuantizationTest$SimulatedKill9Quantized.xml",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.storage.ManifestTest$Validation.xml",
+      "tests": 8,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.storage.MemorySegmentVectorsTest$Bounds.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.storage.HnswGraphCodecTest$BodyValidation.xml",
+      "tests": 7,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.VectorDbDeletionTest$DeleteById.xml",
+      "tests": 18,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.VectorDbDeletionTest$IgtmMerge.xml",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.VectorDbDeletionTest$Persistence.xml",
+      "tests": 8,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.filter.FilterExecutorTest$LogicalOperators.xml",
+      "tests": 8,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.storage.QuantizedVectorsCodecTest$Fp16RoundTrip.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.storage.RecipeCodecContractTest.xml",
+      "tests": 7,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.index.VamanaIndexAdapterTest$Construction.xml",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.storage.MemorySegmentVectorsTest$CloseSemantics.xml",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.storage.VamanaGraphCodecTest$OffsetIndex.xml",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.index.VamanaIndexAdapterTest$EmptyState.xml",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.storage.QuantizedVectorsCodecTest$NVQRoundTrip.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.VectorDbIvfFlatTest.xml",
+      "tests": 8,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.SuccessorVectorOwnershipTest.xml",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.VectorDbMultiStartTest$InMemoryHnswMultiStart.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.storage.ManifestTest$Encoding.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.storage.MappedMetadataStoreTest$Reopen.xml",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.CosineNormalizationTest.xml",
+      "tests": 5,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.VectorDbHnswPersistenceTest$CommitOpenFailureRecoveryHnsw.xml",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.storage.Crc32CombineTest.xml",
+      "tests": 5,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.GenerationShippingTest.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.index.CompositionWrappersTest$RefineWrapper.xml",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.storage.GenerationDirectoryTest$HappyPath.xml",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.VectorDbQuantizationTest$InMemoryVamanaQuantized.xml",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-db/build/test-results/test/TEST-com.integrallis.vectors.db.VectorDbMultiStartTest$RequestDefaults.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.ProductQuantizerTest$Training.xml",
+      "tests": 12,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.RaBitQuantizerTest$BitOperations.xml",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.NVQuantizerTest$ScoringTests.xml",
+      "tests": 5,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.ProductQuantizerTest$CompressionRatio.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.LloydMaxCodebookTest$DifferentDimensions.xml",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.ScalarQuantizerTest$EncodeAndDecode.xml",
+      "tests": 13,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.Fp16QuantizerTest.xml",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.RotationTest$QuaternionRotationTests.xml",
+      "tests": 9,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.BinaryQuantizerTest$BitPacking.xml",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.LloydMaxCodebookTest$BasicProperties.xml",
+      "tests": 9,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.RaBitQuantizerTest$ScoringTests.xml",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.ScalarQuantizerTest$Training.xml",
+      "tests": 13,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.BinaryQuantizerTest$BbqEncoding.xml",
+      "tests": 8,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.ProductQuantizerTest$EncodeAndDecode.xml",
+      "tests": 12,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.ExtendedRaBitQRawScorerTest.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.TurboQuantizerTest$BitWidthTests.xml",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.NVQuantizerTest$EncodingTests.xml",
+      "tests": 7,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.RotationTest$RotationInterfaceTests.xml",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.TurboQuantizerTest$RotationStrategyTests.xml",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.ProductQuantizerTest$ADCScoring.xml",
+      "tests": 9,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.QuantizerFromStateTest$RaBitQuantizerFromState.xml",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.ScalarQuantizerTest$ArrayVectorDatasetTest.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.QuantizerFromStateTest$ProductQuantizerFromState.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.ExtendedRaBitQuantizerTest$EncodingTests.xml",
+      "tests": 12,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.ExtendedRaBitQuantizerTest$ScoringTests.xml",
+      "tests": 13,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.TurboQuantizerTest$EncodingTests.xml",
+      "tests": 8,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.LloydMaxCodebookTest$MSEOptimality.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.ExtendedRaBitQuantizerTest$CorrectionFactors.xml",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.QuantizerFromStateTest$RotationFromState.xml",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.RotationTest$GivensRotationTests.xml",
+      "tests": 9,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.ExtendedRaBitQuantizerTest$BitPacking.xml",
+      "tests": 9,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.BinaryQuantizerTest$SignBitEncoding.xml",
+      "tests": 7,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.NVQuantizerTest$NQTransformTests.xml",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.TurboQuantizerTest$UnbiasedProdTests.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.ScalarQuantizerTest$EdgeCases.xml",
+      "tests": 5,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.RaBitQuantizerTest$DefaultRotation.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.TurboQuantizerTest$ScoringTests.xml",
+      "tests": 9,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.ScalarQuantizerRepeatedValuesTest.xml",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.QuantizerFromStateTest$BinaryQuantizerFromState.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.QuantizerFromStateTest$NVQuantizerFromState.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.ExtendedRaBitQuantizerTest$DefaultRotation.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.BinaryQuantizerTest$BbqScoring.xml",
+      "tests": 7,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.ProductQuantizerTest$OptimizedPQTests.xml",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.RaBitQuantizerTest$EncodingTests.xml",
+      "tests": 9,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.ProductQuantizerTest$PipelineTests.xml",
+      "tests": 11,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.LloydMaxCodebookTest$QuantizeDequantize.xml",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.ScalarQuantizerTest$Scoring.xml",
+      "tests": 15,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.BinaryQuantizerTest$SignBitScoring.xml",
+      "tests": 7,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.NVQuantizerTest$SubvectorTests.xml",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.ExtendedRaBitQuantizerTest$RotationStrategies.xml",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.ProductQuantizerTest$GlobalCentroid.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.ScalarQuantizerTest$CompressionRatio.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.ScalarQuantizerTest$Int4Quantization.xml",
+      "tests": 26,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.ExtendedRaBitQuantizerTest$GreedyQuantizeTests.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.RaBitQuantizerTest$RotationTests.xml",
+      "tests": 7,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-quantization/build/test-results/test/TEST-com.integrallis.vectors.quantization.RaBitQuantizerTest$DistanceEstimation.xml",
+      "tests": 5,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "projects/vectors-final-integration/vectors-server-client/build/test-results/test/TEST-com.integrallis.vectors.server.client.VectorsServerClientTest.xml",
+      "tests": 10,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  ]
+}

@@ -1,5 +1,11 @@
+mod q51_reuse;
 // Copyright 2025-2026 Integrallis Software, LLC
 // SPDX-License-Identifier: Apache-2.0
+
+mod bfloat16;
+#[cfg(target_arch = "aarch64")]
+mod sleef_activations;
+mod swiglu;
 
 use std::panic::{AssertUnwindSafe, catch_unwind};
 use std::slice;
@@ -62,7 +68,7 @@ fn record_q6_k_single_horizontal_reduction() {
     Q6_K_SINGLE_HORIZONTAL_REDUCTIONS.with(|count| count.set(count.get() + 1));
 }
 
-const ABI_VERSION: u32 = 6;
+const ABI_VERSION: u32 = 7;
 const CAPABILITY_Q4_0_F32_BATCHED_MATMUL: u64 = 1;
 const CAPABILITY_Q4_0_F32_GROUPED_BATCHED_MATMUL: u64 = 1 << 1;
 const CAPABILITY_PERSISTENT_WORKER_CONTEXT: u64 = 1 << 2;
@@ -76,7 +82,7 @@ const CAPABILITY_MIXED_K_F32_GROUPED_BATCHED_MATMUL: u64 = 1 << 9;
 const CAPABILITY_Q5_K_F32_BATCHED_MATMUL: u64 = 1 << 10;
 const CAPABILITY_Q5_K_F32_GROUPED_BATCHED_MATMUL: u64 = 1 << 11;
 const CAPABILITY_Q5_0_F32_BATCHED_MATMUL: u64 = 1 << 12;
-const CAPABILITY_Q5_0_F32_GROUPED_BATCHED_MATMUL: u64 = 1 << 13;
+// Bit 13 is retired: Q5_0 grouping has no qualified production route.
 const CAPABILITY_K_QUANT_BATCH_WEIGHT_REUSE: u64 = 1 << 14;
 const CAPABILITY_Q4_K_BATCH_VECTOR_ACCUMULATION: u64 = 1 << 15;
 const CAPABILITY_MANY_GROUPED_BATCHED_MATMUL: u64 = 1 << 16;
@@ -100,6 +106,26 @@ const CAPABILITY_GROUPED_GATED_DELTA_NET_F32: u64 = 1 << 22;
 /// `PinnedReduction`'s pinned fold order. The parity test asserts equality, not closeness.
 const CAPABILITY_Q5_1_F32_BATCHED_MATMUL: u64 = 1 << 23;
 
+const CAPABILITY_BF16_F32_BATCHED_MATMUL: u64 = 1 << 25;
+const CAPABILITY_SWIGLU_F32: u64 = 1 << 26;
+const CAPABILITY_SLEEF_ACTIVATIONS_F32: u64 = 1 << 27;
+
+// Both kernels need the same physical SIMD/FMA features; their capability bits stay independent.
+fn supports_f32_fma_simd() -> bool {
+    #[cfg(target_arch = "x86_64")]
+    {
+        std::is_x86_feature_detected!("avx2") && std::is_x86_feature_detected!("fma")
+    }
+    #[cfg(target_arch = "aarch64")]
+    {
+        true
+    }
+    #[cfg(not(any(target_arch = "x86_64", target_arch = "aarch64")))]
+    {
+        false
+    }
+}
+
 const STATUS_OK: i32 = 0;
 const STATUS_NULL_POINTER: i32 = 1;
 const STATUS_INVALID_SHAPE: i32 = 2;
@@ -112,6 +138,9 @@ const Q8_K_SUM_BLOCK: usize = 16;
 const Q4_0_BLOCK_BYTES: usize = 18;
 const Q5_0_BLOCK_BYTES: usize = 22;
 const Q5_1_BLOCK_BYTES: usize = 24;
+const PTQ1_0_BLOCK_BYTES: usize = 28;
+const CAPABILITY_PTQ1_0_Q8_0_BATCHED_MATMUL: u64 = 1 << 24;
+mod ptq;
 const Q8_0_BLOCK_BYTES: usize = 34;
 const Q4_K_BLOCK_BYTES: usize = 144;
 const Q5_K_BLOCK_BYTES: usize = 176;
@@ -193,6 +222,11 @@ enum DotKernel {
     Q5_1,
     #[cfg(target_arch = "x86_64")]
     Q5_1Avx2,
+    Ptq,
+    #[cfg(target_arch = "x86_64")]
+    PtqAvx2,
+    #[cfg(target_arch = "aarch64")]
+    PtqNeon,
     Q8,
     #[cfg(target_arch = "x86_64")]
     Q8Avx2,
@@ -215,6 +249,7 @@ enum DotKernel {
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 enum WeightFormat {
+    Ptq,
     Q4_0,
     Q5_0,
     Q5_1,
@@ -242,6 +277,7 @@ impl WeightFormat {
             4 => Some(Self::Q5K),
             5 => Some(Self::Q5_0),
             6 => Some(Self::Q5_1),
+            7 => Some(Self::Ptq),
             _ => None,
         }
     }
@@ -251,6 +287,7 @@ impl WeightFormat {
             Self::Q4_0 => Q4_0_BLOCK_BYTES,
             Self::Q5_0 => Q5_0_BLOCK_BYTES,
             Self::Q5_1 => Q5_1_BLOCK_BYTES,
+            Self::Ptq => PTQ1_0_BLOCK_BYTES,
             Self::Q8_0 => Q8_0_BLOCK_BYTES,
             Self::Q4K => Q4_K_BLOCK_BYTES,
             Self::Q5K => Q5_K_BLOCK_BYTES,
@@ -260,6 +297,7 @@ impl WeightFormat {
 
     fn block_elements(self) -> usize {
         match self {
+            Self::Ptq => 128,
             Self::Q4_0 | Self::Q5_0 | Self::Q5_1 | Self::Q8_0 => QK_0,
             Self::Q4K | Self::Q5K | Self::Q6K => QK_K,
         }
@@ -267,7 +305,7 @@ impl WeightFormat {
 
     fn activation_format(self) -> ActivationFormat {
         match self {
-            Self::Q4_0 | Self::Q5_0 | Self::Q8_0 => ActivationFormat::Q8_0,
+            Self::Q4_0 | Self::Q5_0 | Self::Q8_0 | Self::Ptq => ActivationFormat::Q8_0,
             Self::Q5_1 => ActivationFormat::F32,
             Self::Q4K | Self::Q5K | Self::Q6K => ActivationFormat::Q8K,
         }
@@ -278,6 +316,17 @@ impl WeightFormat {
             Self::Q4_0 => selected_q4_kernel(),
             Self::Q5_0 => selected_q5_kernel(),
             Self::Q5_1 => selected_q5_1_kernel(),
+            Self::Ptq => {
+                #[cfg(target_arch = "x86_64")]
+                if is_x86_feature_detected!("avx2") && is_x86_feature_detected!("fma") {
+                    return DotKernel::PtqAvx2;
+                }
+                #[cfg(target_arch = "aarch64")]
+                if std::arch::is_aarch64_feature_detected!("neon") {
+                    return DotKernel::PtqNeon;
+                }
+                DotKernel::Ptq
+            }
             Self::Q8_0 => selected_q8_kernel(),
             Self::Q4K => selected_q4_k_kernel(),
             Self::Q5K => selected_q5_k_kernel(),
@@ -428,9 +477,6 @@ struct GatedDeltaNetJob {
     /// means branch `i` owns slot `i`. A group whose questions have unequal length stops feeding
     /// some branches before others, so the rows still running are not slots `0..rows`.
     state_index: usize,
-    /// Slots present in `state`, which is at least `branch_count` and is larger whenever some
-    /// branches have already finished.
-    state_slot_count: usize,
 }
 
 impl WorkerPool {
@@ -539,14 +585,10 @@ impl WorkerPool {
     }
 
     fn execute_gated_delta_net(&self, job: GatedDeltaNetJob) -> bool {
-        // One token of one sequence is decode, and waking the pool once per layer for it costs
-        // more than it saves. One token of MANY sequences is not decode: a group of questions
-        // answered together is branch_count x value_head_count independent recurrences, which is
-        // exactly the shape the pool exists for. Measured before this: a grouped answer ran the
-        // recurrence on one core and twenty questions took 13.3 s against 9.1 s asked one at a
-        // time, so grouping was slower than not grouping.
+        // Heads and branches own disjoint state. Prefix and decode work use the existing
+        // projection pool; a single unit needs no worker dispatch.
         let units = job.branch_count * job.value_head_count;
-        if self.workers.is_empty() || (job.token_count == 1 && job.branch_count == 1) || units < 2 {
+        if self.workers.is_empty() || units < 2 {
             return catch_unwind(AssertUnwindSafe(|| {
                 // SAFETY: the caller owns all recurrence buffers for this synchronous execution.
                 unsafe { execute_gated_delta_net_partition(job, 0, 1) }
@@ -883,20 +925,28 @@ unsafe fn execute_attention_partition(
             job.num_heads * job.key_length,
         )
     };
+    // Each worker must borrow only its own heads, not the entire shared output/scores.
+    let first_head = start_kv * group;
+    let owned_heads = (end_kv - start_kv) * group;
     let output = unsafe {
         slice::from_raw_parts_mut(
-            (job.output as *mut f32).add(job.output_offset),
-            job.num_heads * job.value_length,
+            (job.output as *mut f32).add(job.output_offset + first_head * job.value_length),
+            owned_heads * job.value_length,
         )
     };
     let scores = unsafe {
-        slice::from_raw_parts_mut(job.scores as *mut f32, job.num_heads * total_positions)
+        slice::from_raw_parts_mut(
+            (job.scores as *mut f32).add(first_head * total_positions),
+            owned_heads * total_positions,
+        )
     };
     let vectorized = gated_delta_net_avx2_available();
     for kv in start_kv..end_kv {
         for head in kv * group..(kv + 1) * group {
             let q = &query[head * job.key_length..(head + 1) * job.key_length];
-            let row_scores = &mut scores[head * total_positions..(head + 1) * total_positions];
+            let local_head = head - first_head;
+            let row_scores =
+                &mut scores[local_head * total_positions..(local_head + 1) * total_positions];
             let mut written = 0;
             for span in 0..2 {
                 let positions = job.positions[span];
@@ -917,7 +967,8 @@ unsafe fn execute_attention_partition(
                 written += positions;
             }
             attention_softmax(row_scores);
-            let out = &mut output[head * job.value_length..(head + 1) * job.value_length];
+            let out =
+                &mut output[local_head * job.value_length..(local_head + 1) * job.value_length];
             out.fill(0.0);
             let mut consumed = 0;
             for span in 0..2 {
@@ -1031,17 +1082,12 @@ unsafe fn execute_gated_delta_net_partition(
     let query_elements = branches * job.token_count * job.key_head_count * job.key_dimension;
     let value_elements = branches * job.token_count * job.value_head_count * job.value_dimension;
     let gate_elements = branches * job.token_count * job.value_head_count;
-    let state_slots = job.state_slot_count.max(branches);
-    let state_elements =
-        state_slots * job.value_head_count * job.key_dimension * job.value_dimension;
     // SAFETY: the exported entry point validates every buffer length before publishing the job.
     let query = unsafe { slice::from_raw_parts(job.query as *const f32, query_elements) };
     let key = unsafe { slice::from_raw_parts(job.key as *const f32, query_elements) };
     let value = unsafe { slice::from_raw_parts(job.value as *const f32, value_elements) };
     let log_decay = unsafe { slice::from_raw_parts(job.log_decay as *const f32, gate_elements) };
     let beta = unsafe { slice::from_raw_parts(job.beta as *const f32, gate_elements) };
-    let state = unsafe { slice::from_raw_parts_mut(job.state as *mut f32, state_elements) };
-    let output = unsafe { slice::from_raw_parts_mut(job.output as *mut f32, value_elements) };
     // Work is one recurrence per branch per head, so a group of questions partitions across the
     // pool even though each branch carries a single token.
     let units = branches * job.value_head_count;
@@ -1051,7 +1097,7 @@ unsafe fn execute_gated_delta_net_partition(
     if total_threads > 1 && start_unit < end_unit {
         GATED_DELTA_NET_PARALLEL_PARTITIONS.fetch_add(1, Ordering::Relaxed);
     }
-    let query_scale = 1.0_f32 / (job.key_dimension as f32).sqrt();
+    let query_scale = (1.0_f64 / (job.key_dimension as f64).sqrt()) as f32;
     let mut normalized_query = [0.0_f32; MAX_GATED_DELTA_NET_DIMENSION];
     let mut normalized_key = [0.0_f32; MAX_GATED_DELTA_NET_DIMENSION];
     let mut memory = [0.0_f32; MAX_GATED_DELTA_NET_DIMENSION];
@@ -1063,7 +1109,7 @@ unsafe fn execute_gated_delta_net_partition(
     let branch_gate = job.token_count * job.value_head_count;
     let branch_state = job.value_head_count * job.key_dimension * job.value_dimension;
 
-    if branches > 1 {
+    if branches > 1 || job.state_index != 0 {
         #[cfg(test)]
         if total_threads > 1 && start_unit < end_unit {
             GROUPED_GATED_DELTA_NET_PARALLEL_PARTITIONS.fetch_add(1, Ordering::Relaxed);
@@ -1084,10 +1130,13 @@ unsafe fn execute_gated_delta_net_partition(
                 None => branch,
                 Some(table) => table[branch] as usize,
             };
-            let state_offset =
-                slot * branch_state + head * job.key_dimension * job.value_dimension;
-            let head_state = &mut state
-                [state_offset..state_offset + job.key_dimension * job.value_dimension];
+            let state_offset = slot * branch_state + head * job.key_dimension * job.value_dimension;
+            let head_state = unsafe {
+                slice::from_raw_parts_mut(
+                    (job.state as *mut f32).add(state_offset),
+                    job.key_dimension * job.value_dimension,
+                )
+            };
             for token in 0..job.token_count {
                 let token_head = branch * branch_gate + token * job.value_head_count + head;
                 let query_offset = branch * branch_query
@@ -1101,7 +1150,12 @@ unsafe fn execute_gated_delta_net_partition(
                     log_decay[token_head],
                     beta[token_head],
                     head_state,
-                    &mut output[value_offset..value_offset + job.value_dimension],
+                    unsafe {
+                        slice::from_raw_parts_mut(
+                            (job.output as *mut f32).add(value_offset),
+                            job.value_dimension,
+                        )
+                    },
                     &mut normalized_query[..job.key_dimension],
                     &mut normalized_key[..job.key_dimension],
                     &mut memory[..job.value_dimension],
@@ -1118,26 +1172,6 @@ unsafe fn execute_gated_delta_net_partition(
 
     let start_head = start_unit;
     let end_head = end_unit;
-
-    if job.token_count >= GATED_DELTA_NET_CHUNK_MINIMUM {
-        // The chunked scan reads the recurrent state twice and writes it once per chunk rather
-        // than four times per token, which is the whole cost of a long prefill at this shape.
-        gated_delta_net_chunked_partition(
-            job,
-            start_head,
-            end_head,
-            query_scale,
-            query,
-            key,
-            value,
-            log_decay,
-            beta,
-            state,
-            output,
-            vectorized,
-        );
-        return;
-    }
 
     for head in start_head..end_head {
         let key_head = head % job.key_head_count;
@@ -1157,9 +1191,13 @@ unsafe fn execute_gated_delta_net_partition(
                 *query_value *= query_scale;
             }
 
-            let decay = log_decay[token_head].exp();
-            let head_state =
-                &mut state[state_offset..state_offset + job.key_dimension * job.value_dimension];
+            let decay = (log_decay[token_head] as f64).exp() as f32;
+            let head_state = unsafe {
+                slice::from_raw_parts_mut(
+                    (job.state as *mut f32).add(state_offset),
+                    job.key_dimension * job.value_dimension,
+                )
+            };
             gated_delta_net_scale(head_state, decay, vectorized);
 
             memory[..job.value_dimension].fill(0.0);
@@ -1190,11 +1228,22 @@ unsafe fn execute_gated_delta_net_partition(
                 );
             }
 
-            output[value_offset..value_offset + job.value_dimension].fill(0.0);
+            unsafe {
+                slice::from_raw_parts_mut(
+                    (job.output as *mut f32).add(value_offset),
+                    job.value_dimension,
+                )
+            }
+            .fill(0.0);
             for (row, &query_value) in normalized_query[..job.key_dimension].iter().enumerate() {
                 let row_offset = row * job.value_dimension;
                 gated_delta_net_add_scaled(
-                    &mut output[value_offset..value_offset + job.value_dimension],
+                    unsafe {
+                        slice::from_raw_parts_mut(
+                            (job.output as *mut f32).add(value_offset),
+                            job.value_dimension,
+                        )
+                    },
                     &head_state[row_offset..row_offset + job.value_dimension],
                     query_value,
                     vectorized,
@@ -1204,295 +1253,7 @@ unsafe fn execute_gated_delta_net_partition(
     }
 }
 
-/// Tokens folded into one associative scan step. The chunk boundary is where the recurrent state
-/// is read and written; everything inside the chunk is expressed as dense blocked products.
-const GATED_DELTA_NET_CHUNK: usize = 64;
-/// Below this token count the sequential recurrence wins: chunking only pays once the state
-/// traffic it removes exceeds the intra-chunk triangular work it adds.
-const GATED_DELTA_NET_CHUNK_MINIMUM: usize = 8;
-/// Tokens whose projection and readout accumulators are held resident while a state row streams.
-const GATED_DELTA_NET_TOKEN_BLOCK: usize = 8;
-/// State rows held resident while the chunk's update rows stream past them.
-const GATED_DELTA_NET_ROW_BLOCK: usize = 16;
-
-/// Chunked (associative-scan) Gated DeltaNet prefill.
-///
-/// The sequential recurrence touches the whole `key_dimension x value_dimension` state four times
-/// per token. At Qwen3.5-4B's shape that state is 256 KiB per head, so a thousand-token prefill
-/// moves hundreds of gigabytes through the cache hierarchy for a few tens of GFLOP of arithmetic.
-///
-/// Unrolling the recurrence over a chunk of `C` tokens gives, with `g_t = exp(sum_{j<=t} logdecay_j)`:
-///
-/// ```text
-///   u_t = beta_t (v_t - g_t (S_0^T k_t)) - sum_{i<t} beta_t (g_t/g_i)(k_i . k_t) u_i
-///   o_t = g_t (S_0^T q_t) + sum_{i<=t} (g_t/g_i)(k_i . q_t) u_i
-///   S_C = g_C S_0 + sum_i (g_C/g_i) k_i (x) u_i
-/// ```
-///
-/// which reads the state twice and writes it once per chunk instead of per token. Decay ratios are
-/// formed from cumulative log-decays so no product of decays is ever reconstructed by division.
-///
-/// This reassociates the arithmetic, so it is not bit-identical to the sequential path; it is held
-/// to a relative tolerance against it by `chunked_gated_delta_net_matches_the_sequential_recurrence`.
 #[allow(clippy::too_many_arguments)]
-fn gated_delta_net_chunked_partition(
-    job: GatedDeltaNetJob,
-    start_head: usize,
-    end_head: usize,
-    query_scale: f32,
-    query: &[f32],
-    key: &[f32],
-    value: &[f32],
-    log_decay: &[f32],
-    beta: &[f32],
-    state: &mut [f32],
-    output: &mut [f32],
-    vectorized: bool,
-) {
-    let key_dimension = job.key_dimension;
-    let value_dimension = job.value_dimension;
-    let chunk = GATED_DELTA_NET_CHUNK.min(job.token_count);
-
-    let mut normalized_key = vec![0.0_f32; chunk * key_dimension];
-    let mut normalized_query = vec![0.0_f32; chunk * key_dimension];
-    let mut decayed_key = vec![0.0_f32; chunk * key_dimension];
-    let mut decayed_query = vec![0.0_f32; chunk * key_dimension];
-    let mut carried_key = vec![0.0_f32; chunk * key_dimension];
-    let mut projection = vec![0.0_f32; chunk * value_dimension];
-    let mut readout = vec![0.0_f32; chunk * value_dimension];
-    let mut update = vec![0.0_f32; chunk * value_dimension];
-    let mut inner_key = vec![0.0_f32; chunk * chunk];
-    let mut inner_query = vec![0.0_f32; chunk * chunk];
-    let mut cumulative = vec![0.0_f32; chunk];
-
-    for head in start_head..end_head {
-        let key_head = head % job.key_head_count;
-        let state_offset = head * key_dimension * value_dimension;
-        let head_state = &mut state[state_offset..state_offset + key_dimension * value_dimension];
-        let mut base = 0;
-        while base < job.token_count {
-            let span = chunk.min(job.token_count - base);
-
-            let mut running = 0.0_f32;
-            for (local, decayed) in cumulative[..span].iter_mut().enumerate() {
-                let token = base + local;
-                let token_head = token * job.value_head_count + head;
-                let source = (token * job.key_head_count + key_head) * key_dimension;
-                let row = local * key_dimension;
-                normalize_gated_delta_net(
-                    &key[source..source + key_dimension],
-                    &mut normalized_key[row..row + key_dimension],
-                );
-                normalize_gated_delta_net(
-                    &query[source..source + key_dimension],
-                    &mut normalized_query[row..row + key_dimension],
-                );
-                for entry in &mut normalized_query[row..row + key_dimension] {
-                    *entry *= query_scale;
-                }
-                running += log_decay[token_head];
-                *decayed = running;
-            }
-            let tail = cumulative[span - 1];
-            for (local, &log_sum) in cumulative[..span].iter().enumerate() {
-                let row = local * key_dimension;
-                let decay = log_sum.exp();
-                let carry = (tail - log_sum).exp();
-                for index in 0..key_dimension {
-                    decayed_key[row + index] = normalized_key[row + index] * decay;
-                    decayed_query[row + index] = normalized_query[row + index] * decay;
-                    carried_key[row + index] = normalized_key[row + index] * carry;
-                }
-            }
-
-            // Both cross-chunk products read the same state row, so they share one streaming pass.
-            projection[..span * value_dimension].fill(0.0);
-            readout[..span * value_dimension].fill(0.0);
-            let mut block = 0;
-            while block < span {
-                let width = GATED_DELTA_NET_TOKEN_BLOCK.min(span - block);
-                for row in 0..key_dimension {
-                    let state_row = &head_state[row * value_dimension..(row + 1) * value_dimension];
-                    for local in block..block + width {
-                        let key_weight = decayed_key[local * key_dimension + row];
-                        if key_weight != 0.0 {
-                            gated_delta_net_add_scaled(
-                                &mut projection
-                                    [local * value_dimension..(local + 1) * value_dimension],
-                                state_row,
-                                key_weight,
-                                vectorized,
-                            );
-                        }
-                        let query_weight = decayed_query[local * key_dimension + row];
-                        if query_weight != 0.0 {
-                            gated_delta_net_add_scaled(
-                                &mut readout
-                                    [local * value_dimension..(local + 1) * value_dimension],
-                                state_row,
-                                query_weight,
-                                vectorized,
-                            );
-                        }
-                    }
-                }
-                block += width;
-            }
-
-            for target in 0..span {
-                let target_row = target * key_dimension;
-                let target_log = cumulative[target];
-                let gate = beta[(base + target) * job.value_head_count + head];
-                for source in 0..=target {
-                    let source_row = source * key_dimension;
-                    let scale = (target_log - cumulative[source]).exp();
-                    inner_query[target * chunk + source] = scale
-                        * gated_delta_net_dot(
-                            &normalized_query[target_row..target_row + key_dimension],
-                            &normalized_key[source_row..source_row + key_dimension],
-                            vectorized,
-                        );
-                    if source < target {
-                        inner_key[target * chunk + source] = gate
-                            * scale
-                            * gated_delta_net_dot(
-                                &normalized_key[target_row..target_row + key_dimension],
-                                &normalized_key[source_row..source_row + key_dimension],
-                                vectorized,
-                            );
-                    }
-                }
-            }
-
-            for target in 0..span {
-                let token_head = (base + target) * job.value_head_count + head;
-                let gate = beta[token_head];
-                let value_offset = token_head * value_dimension;
-                let target_row = target * value_dimension;
-                for index in 0..value_dimension {
-                    update[target_row + index] =
-                        (value[value_offset + index] - projection[target_row + index]) * gate;
-                }
-                let (earlier, current) = update.split_at_mut(target_row);
-                for source in 0..target {
-                    let weight = inner_key[target * chunk + source];
-                    if weight != 0.0 {
-                        gated_delta_net_add_scaled(
-                            &mut current[..value_dimension],
-                            &earlier[source * value_dimension..(source + 1) * value_dimension],
-                            -weight,
-                            vectorized,
-                        );
-                    }
-                }
-            }
-
-            for target in 0..span {
-                let target_row = target * value_dimension;
-                for source in 0..=target {
-                    let weight = inner_query[target * chunk + source];
-                    if weight != 0.0 {
-                        gated_delta_net_add_scaled(
-                            &mut readout[target_row..target_row + value_dimension],
-                            &update[source * value_dimension..(source + 1) * value_dimension],
-                            weight,
-                            vectorized,
-                        );
-                    }
-                }
-                let token_head = (base + target) * job.value_head_count + head;
-                let value_offset = token_head * value_dimension;
-                output[value_offset..value_offset + value_dimension]
-                    .copy_from_slice(&readout[target_row..target_row + value_dimension]);
-            }
-
-            let tail_decay = tail.exp();
-            let mut row_block = 0;
-            while row_block < key_dimension {
-                let rows = GATED_DELTA_NET_ROW_BLOCK.min(key_dimension - row_block);
-                for row in row_block..row_block + rows {
-                    gated_delta_net_scale(
-                        &mut head_state[row * value_dimension..(row + 1) * value_dimension],
-                        tail_decay,
-                        vectorized,
-                    );
-                }
-                for source in 0..span {
-                    let update_row =
-                        &update[source * value_dimension..(source + 1) * value_dimension];
-                    for row in row_block..row_block + rows {
-                        let weight = carried_key[source * key_dimension + row];
-                        if weight != 0.0 {
-                            gated_delta_net_add_scaled(
-                                &mut head_state[row * value_dimension..(row + 1) * value_dimension],
-                                update_row,
-                                weight,
-                                vectorized,
-                            );
-                        }
-                    }
-                }
-                row_block += rows;
-            }
-
-            base += span;
-        }
-    }
-}
-
-#[inline(always)]
-fn gated_delta_net_dot(left: &[f32], right: &[f32], vectorized: bool) -> f32 {
-    debug_assert_eq!(left.len(), right.len());
-    #[cfg(not(target_arch = "x86_64"))]
-    let _ = vectorized;
-    #[cfg(target_arch = "x86_64")]
-    if vectorized {
-        // SAFETY: runtime feature detection selected AVX2/FMA and both slices have equal lengths.
-        return unsafe { gated_delta_net_dot_avx2(left, right) };
-    }
-    let mut total = 0.0_f32;
-    for (&first, &second) in left.iter().zip(right) {
-        total = first.mul_add(second, total);
-    }
-    total
-}
-
-#[cfg(target_arch = "x86_64")]
-#[target_feature(enable = "avx2,fma")]
-unsafe fn gated_delta_net_dot_avx2(left: &[f32], right: &[f32]) -> f32 {
-    let mut first = _mm256_setzero_ps();
-    let mut second = _mm256_setzero_ps();
-    let vector_end = left.len() / 16 * 16;
-    for index in (0..vector_end).step_by(16) {
-        // SAFETY: equal slice lengths and vector_end reserve sixteen complete lanes in both slices.
-        unsafe {
-            first = _mm256_fmadd_ps(
-                _mm256_loadu_ps(left.as_ptr().add(index)),
-                _mm256_loadu_ps(right.as_ptr().add(index)),
-                first,
-            );
-            second = _mm256_fmadd_ps(
-                _mm256_loadu_ps(left.as_ptr().add(index + 8)),
-                _mm256_loadu_ps(right.as_ptr().add(index + 8)),
-                second,
-            );
-        }
-    }
-    let lanes = _mm256_add_ps(first, second);
-    let mut buffer = [0.0_f32; 8];
-    // SAFETY: the destination is an eight-lane f32 array matching the register width.
-    unsafe { _mm256_storeu_ps(buffer.as_mut_ptr(), lanes) };
-    let mut total = buffer.iter().sum::<f32>();
-    for (&one, &other) in left[vector_end..].iter().zip(&right[vector_end..]) {
-        total = one.mul_add(other, total);
-    }
-    total
-}
-
-/// One token of one head's recurrence, shared by the sequential and the grouped paths so a
-/// grouped answer runs the same arithmetic as the same question asked alone.
-#[allow(clippy::too_many_arguments)]
-#[inline]
 fn gated_delta_net_step(
     query: &[f32],
     key: &[f32],
@@ -1516,7 +1277,7 @@ fn gated_delta_net_step(
         *entry *= query_scale;
     }
 
-    gated_delta_net_scale(head_state, log_decay.exp(), vectorized);
+    gated_delta_net_scale(head_state, (log_decay as f64).exp() as f32, vectorized);
 
     memory.fill(0.0);
     for (row, &key_value) in normalized_key.iter().enumerate() {
@@ -1695,7 +1456,7 @@ fn normalize_gated_delta_net(source: &[f32], destination: &mut [f32]) {
     for &value in source {
         squared_norm += value * value;
     }
-    let inverse_norm = 1.0_f32 / (squared_norm + 1.0e-6_f32).sqrt();
+    let inverse_norm = (1.0_f64 / ((squared_norm + 1.0e-6_f32) as f64).sqrt()) as f32;
     for (output, &value) in destination.iter_mut().zip(source) {
         *output = value * inverse_norm;
     }
@@ -1733,8 +1494,8 @@ pub extern "C" fn jmodels_kernels_capabilities() -> u64 {
         | CAPABILITY_Q5_K_F32_BATCHED_MATMUL
         | CAPABILITY_Q5_K_F32_GROUPED_BATCHED_MATMUL
         | CAPABILITY_Q5_0_F32_BATCHED_MATMUL
-        | CAPABILITY_Q5_1_F32_BATCHED_MATMUL
-        | CAPABILITY_Q5_0_F32_GROUPED_BATCHED_MATMUL
+        | q5_1_simd_capability()
+        | CAPABILITY_PTQ1_0_Q8_0_BATCHED_MATMUL
         | CAPABILITY_K_QUANT_BATCH_WEIGHT_REUSE
         | CAPABILITY_Q4_K_BATCH_VECTOR_ACCUMULATION
         | CAPABILITY_MANY_GROUPED_BATCHED_MATMUL
@@ -1744,6 +1505,274 @@ pub extern "C" fn jmodels_kernels_capabilities() -> u64 {
         | CAPABILITY_GROUPED_ATTENTION_F32
         | CAPABILITY_POLL_BUDGET
         | CAPABILITY_GROUPED_GATED_DELTA_NET_F32
+        | if bfloat16::supported() {
+            CAPABILITY_BF16_F32_BATCHED_MATMUL
+        } else {
+            0
+        }
+        | if cfg!(target_arch = "aarch64") {
+            CAPABILITY_SLEEF_ACTIVATIONS_F32
+        } else {
+            0
+        }
+        | if swiglu::supported() {
+            CAPABILITY_SWIGLU_F32
+        } else {
+            0
+        }
+}
+
+/// Projects a measured fixed-shape BF16 matrix with the Java lane/FMA contract.
+///
+/// # Safety
+/// Pointers must reference live readable weights/input and writable F32-aligned output
+/// for the stated sizes. The output must not overlap either input. Shape, lengths and
+/// CPU support are checked before dereferencing; no pointer is retained after return.
+#[unsafe(no_mangle)]
+pub unsafe extern "C" fn jmodels_bf16_f32_batched_matmul(
+    weight: *const u16,
+    weight_bytes: u64,
+    input: *const f32,
+    input_len: u64,
+    output: *mut f32,
+    output_len: u64,
+    batch: u32,
+    rows: u32,
+    cols: u32,
+    lanes: u32,
+    fused: u32,
+) -> i32 {
+    if weight.is_null() || input.is_null() || output.is_null() {
+        return STATUS_NULL_POINTER;
+    }
+    if rows != 48
+        || cols != 5120
+        || !(1..=32).contains(&batch)
+        || !matches!(lanes, 4 | 8)
+        || fused > 1
+        || !bfloat16::supported()
+    {
+        return STATUS_INVALID_SHAPE;
+    }
+    let required_input = u64::from(batch) * 5120;
+    let required_output = u64::from(batch) * 48;
+    if weight_bytes < 48 * 5120 * 2 || input_len < required_input || output_len < required_output {
+        return STATUS_BUFFER_TOO_SMALL;
+    }
+    let output_start = output as usize;
+    let Some(output_end) = output_start.checked_add(required_output as usize * 4) else {
+        return STATUS_INVALID_SHAPE;
+    };
+    for (start, bytes) in [
+        (input as usize, required_input as usize * 4),
+        (weight as usize, 48 * 5120 * 2),
+    ] {
+        let Some(end) = start.checked_add(bytes) else {
+            return STATUS_INVALID_SHAPE;
+        };
+        if output_start < end && start < output_end {
+            return STATUS_INVALID_SHAPE;
+        }
+    }
+    match catch_unwind(AssertUnwindSafe(|| {
+        // SAFETY: caller supplies live buffers; validated shapes/features and disjoint output above.
+        unsafe {
+            bfloat16::multiply(weight, input, output, batch as usize, lanes, fused != 0);
+        }
+    })) {
+        Ok(()) => STATUS_OK,
+        Err(_) => STATUS_PANIC,
+    }
+}
+
+/// Applies float SwiGLU, preserving exact in-place aliases.
+/// ARM uses the full-domain SLEEF recipe; x86 retains its finite [-80,80] contract.
+/// Invalid shapes/domains return before writing output.
+///
+/// # Safety
+/// Buffers must be live and F32-aligned for the advertised capacities. No pointers are retained.
+#[unsafe(no_mangle)]
+pub unsafe extern "C" fn jmodels_swiglu_f32(
+    out: *mut f32,
+    out_len: u64,
+    out_at: u32,
+    gate: *const f32,
+    gate_len: u64,
+    gate_at: u32,
+    up: *const f32,
+    up_len: u64,
+    up_at: u32,
+    len: u32,
+) -> i32 {
+    if out.is_null() || gate.is_null() || up.is_null() {
+        return STATUS_NULL_POINTER;
+    }
+    // Off aarch64 `supported()` is a compile-time `false`, so this is the only reachable outcome.
+    if len == 0 || !swiglu::supported() {
+        return STATUS_INVALID_SHAPE;
+    }
+    if u64::from(out_at) + u64::from(len) > out_len
+        || u64::from(gate_at) + u64::from(len) > gate_len
+        || u64::from(up_at) + u64::from(len) > up_len
+    {
+        return STATUS_BUFFER_TOO_SMALL;
+    }
+    let span = len as usize * 4;
+    let Some(out_start) = (out as usize).checked_add(out_at as usize * 4) else {
+        return STATUS_INVALID_SHAPE;
+    };
+    if out_start.checked_add(span).is_none() {
+        return STATUS_INVALID_SHAPE;
+    }
+    for (ptr, offset) in [(gate, gate_at), (up, up_at)] {
+        let Some(start) = (ptr as usize).checked_add(offset as usize * 4) else {
+            return STATUS_INVALID_SHAPE;
+        };
+        let Some(end) = start.checked_add(span) else {
+            return STATUS_INVALID_SHAPE;
+        };
+        if out_start > start && out_start < end {
+            return STATUS_INVALID_SHAPE;
+        }
+    }
+    // SAFETY: validated ranges, caller-owned live buffers; no mutable views are created.
+    unsafe {
+        let gate = gate.add(gate_at as usize);
+        match catch_unwind(AssertUnwindSafe(|| {
+            swiglu::apply(
+                out.add(out_at as usize),
+                gate,
+                up.add(up_at as usize),
+                len as usize,
+            );
+        })) {
+            Ok(()) => STATUS_OK,
+            Err(_) => STATUS_PANIC,
+        }
+    }
+}
+
+fn activation_span<T>(ptr: *const T, capacity: u64, at: u32, count: u64) -> bool {
+    if ptr.is_null()
+        || u64::from(at)
+            .checked_add(count)
+            .is_none_or(|end| end > capacity)
+    {
+        return false;
+    }
+    let Some(end) = u64::from(at)
+        .checked_add(count)
+        .and_then(|n| n.checked_mul(4))
+    else {
+        return false;
+    };
+    end <= isize::MAX as u64 && (ptr as usize).checked_add(end as usize).is_some()
+}
+
+/// Computes in-place sigmoid and scaled softplus with the ARM SLEEF recipe.
+/// Invalid shapes return before any write; aliases retain four-lane load/store order.
+/// # Safety
+/// Every pointer must be live and F32-aligned for its advertised capacity. No pointer is retained.
+#[unsafe(no_mangle)]
+pub unsafe extern "C" fn jmodels_sigmoid_scaled_softplus_f32(
+    sigmoid: *mut f32,
+    sigmoid_len: u64,
+    sigmoid_at: u32,
+    softplus: *const f32,
+    softplus_len: u64,
+    softplus_at: u32,
+    bias: *const f32,
+    bias_len: u64,
+    bias_at: u32,
+    scale: *const f32,
+    scale_len: u64,
+    scale_at: u32,
+    out: *mut f32,
+    out_len: u64,
+    out_at: u32,
+    len: u32,
+) -> i32 {
+    if !cfg!(target_arch = "aarch64") || len == 0 {
+        return STATUS_INVALID_SHAPE;
+    }
+    for (ptr, capacity, at) in [
+        (sigmoid.cast_const(), sigmoid_len, sigmoid_at),
+        (softplus, softplus_len, softplus_at),
+        (bias, bias_len, bias_at),
+        (scale, scale_len, scale_at),
+        (out.cast_const(), out_len, out_at),
+    ] {
+        if ptr.is_null() {
+            return STATUS_NULL_POINTER;
+        }
+        if !activation_span(ptr, capacity, at, u64::from(len)) {
+            return STATUS_BUFFER_TOO_SMALL;
+        }
+    }
+    #[cfg(target_arch = "aarch64")]
+    unsafe {
+        sleef_activations::gates(
+            sigmoid.add(sigmoid_at as usize),
+            softplus.add(softplus_at as usize),
+            bias.add(bias_at as usize),
+            scale.add(scale_at as usize),
+            out.add(out_at as usize),
+            len as usize,
+        );
+    }
+    STATUS_OK
+}
+
+/// Advances causal convolution history and applies the ARM SLEEF SiLU recipe.
+/// Invalid shapes return before writes. Accumulation uses the caller's configured FMA policy;
+/// scalar accumulation tails remain unfused. Aliases retain the public four-lane operation order.
+/// # Safety
+/// Every pointer must be live and F32-aligned for its advertised capacity. No pointer is retained.
+#[unsafe(no_mangle)]
+pub unsafe extern "C" fn jmodels_causal_depthwise_conv_silu_f32(
+    values: *mut f32,
+    values_len: u64,
+    values_at: u32,
+    history: *mut f32,
+    history_len: u64,
+    history_at: u32,
+    weights: *const f32,
+    weights_len: u64,
+    weights_at: u32,
+    channels: u32,
+    kernel: u32,
+    fused: u32,
+) -> i32 {
+    if !cfg!(target_arch = "aarch64") || channels == 0 || kernel < 2 || fused > 1 {
+        return STATUS_INVALID_SHAPE;
+    }
+    let n = u64::from(channels);
+    let weights_count = n * u64::from(kernel);
+    let history_count = n * u64::from(kernel - 1);
+    for (ptr, capacity, at, count) in [
+        (values.cast_const(), values_len, values_at, n),
+        (history.cast_const(), history_len, history_at, history_count),
+        (weights, weights_len, weights_at, weights_count),
+    ] {
+        if ptr.is_null() {
+            return STATUS_NULL_POINTER;
+        }
+        if !activation_span(ptr, capacity, at, count) {
+            return STATUS_BUFFER_TOO_SMALL;
+        }
+    }
+    #[cfg(target_arch = "aarch64")]
+    unsafe {
+        sleef_activations::conv(
+            values.add(values_at as usize),
+            history.add(history_at as usize),
+            weights.add(weights_at as usize),
+            channels as usize,
+            kernel as usize,
+            fused as i32,
+        );
+    }
+    STATUS_OK
 }
 
 #[unsafe(no_mangle)]
@@ -2068,7 +2097,6 @@ pub unsafe extern "C" fn jmodels_gated_delta_net_f32_with_context(
             value_dimension,
             branch_count: 1,
             state_index: 0,
-            state_slot_count: 1,
         })
     })) {
         Ok(true) => STATUS_OK,
@@ -2159,6 +2187,10 @@ pub unsafe extern "C" fn jmodels_gated_delta_net_group_f32_with_context(
         if slots
             .iter()
             .any(|&slot| slot < 0 || slot as usize >= state_slot_count)
+            || slots
+                .iter()
+                .enumerate()
+                .any(|(row, slot)| slots[..row].contains(slot))
         {
             return STATUS_INVALID_SHAPE;
         }
@@ -2182,7 +2214,6 @@ pub unsafe extern "C" fn jmodels_gated_delta_net_group_f32_with_context(
             value_dimension,
             branch_count: row_count,
             state_index: row_state_slot as usize,
-            state_slot_count,
         })
     })) {
         Ok(true) => STATUS_OK,
@@ -2351,326 +2382,6 @@ pub unsafe extern "C" fn jmodels_quantized_f32_independent_batched_matmul_with_c
     }
 }
 
-#[unsafe(no_mangle)]
-/// # Safety
-///
-/// Every pointer must remain valid for its advertised length for the synchronous call. Output must
-/// be writable and must not alias either input.
-pub unsafe extern "C" fn jmodels_q4_0_f32_batched_matmul(
-    weights: *const u8,
-    weight_bytes: u64,
-    input: *const f32,
-    input_elements: u64,
-    output: *mut f32,
-    output_elements: u64,
-    batch_size: u32,
-    rows: u32,
-    cols: u32,
-) -> i32 {
-    match catch_unwind(AssertUnwindSafe(|| {
-        quantized_f32_batched_matmul(
-            None,
-            weights,
-            weight_bytes,
-            input,
-            input_elements,
-            output,
-            output_elements,
-            batch_size,
-            rows,
-            cols,
-            WeightFormat::Q4_0,
-        )
-    })) {
-        Ok(status) => status,
-        Err(_) => STATUS_PANIC,
-    }
-}
-
-#[unsafe(no_mangle)]
-/// # Safety
-///
-/// `context` must be a live kernel context. Every data pointer must remain valid for its advertised
-/// length for the synchronous call. Output must be writable and must not alias either input.
-pub unsafe extern "C" fn jmodels_q4_0_f32_batched_matmul_with_context(
-    context: *const KernelContext,
-    weights: *const u8,
-    weight_bytes: u64,
-    input: *const f32,
-    input_elements: u64,
-    output: *mut f32,
-    output_elements: u64,
-    batch_size: u32,
-    rows: u32,
-    cols: u32,
-) -> i32 {
-    if context.is_null() {
-        return STATUS_NULL_POINTER;
-    }
-    match catch_unwind(AssertUnwindSafe(|| {
-        // SAFETY: Java owns the context for the duration of this synchronous call.
-        let context = unsafe { &*context };
-        quantized_f32_batched_matmul(
-            Some(context),
-            weights,
-            weight_bytes,
-            input,
-            input_elements,
-            output,
-            output_elements,
-            batch_size,
-            rows,
-            cols,
-            WeightFormat::Q4_0,
-        )
-    })) {
-        Ok(status) => status,
-        Err(_) => STATUS_PANIC,
-    }
-}
-
-#[unsafe(no_mangle)]
-/// # Safety
-///
-/// Every pointer must remain valid for its advertised length for the synchronous call. Output must
-/// be writable and must not alias either input.
-pub unsafe extern "C" fn jmodels_q8_0_f32_batched_matmul(
-    weights: *const u8,
-    weight_bytes: u64,
-    input: *const f32,
-    input_elements: u64,
-    output: *mut f32,
-    output_elements: u64,
-    batch_size: u32,
-    rows: u32,
-    cols: u32,
-) -> i32 {
-    match catch_unwind(AssertUnwindSafe(|| {
-        quantized_f32_batched_matmul(
-            None,
-            weights,
-            weight_bytes,
-            input,
-            input_elements,
-            output,
-            output_elements,
-            batch_size,
-            rows,
-            cols,
-            WeightFormat::Q8_0,
-        )
-    })) {
-        Ok(status) => status,
-        Err(_) => STATUS_PANIC,
-    }
-}
-
-#[unsafe(no_mangle)]
-/// # Safety
-///
-/// `context` must be a live kernel context. Every data pointer must remain valid for its advertised
-/// length for the synchronous call. Output must be writable and must not alias either input.
-pub unsafe extern "C" fn jmodels_q8_0_f32_batched_matmul_with_context(
-    context: *const KernelContext,
-    weights: *const u8,
-    weight_bytes: u64,
-    input: *const f32,
-    input_elements: u64,
-    output: *mut f32,
-    output_elements: u64,
-    batch_size: u32,
-    rows: u32,
-    cols: u32,
-) -> i32 {
-    if context.is_null() {
-        return STATUS_NULL_POINTER;
-    }
-    match catch_unwind(AssertUnwindSafe(|| {
-        // SAFETY: Java owns the context for the duration of this synchronous call.
-        let context = unsafe { &*context };
-        quantized_f32_batched_matmul(
-            Some(context),
-            weights,
-            weight_bytes,
-            input,
-            input_elements,
-            output,
-            output_elements,
-            batch_size,
-            rows,
-            cols,
-            WeightFormat::Q8_0,
-        )
-    })) {
-        Ok(status) => status,
-        Err(_) => STATUS_PANIC,
-    }
-}
-
-#[unsafe(no_mangle)]
-/// # Safety
-///
-/// Metadata arrays must contain `matrix_count` entries. Every data pointer must remain valid for
-/// its advertised length for the synchronous call, and output must not alias any input.
-pub unsafe extern "C" fn jmodels_q4_0_f32_grouped_batched_matmul(
-    weight_pointers: *const *const u8,
-    weight_bytes: *const u64,
-    rows: *const u32,
-    matrix_count: u32,
-    input: *const f32,
-    input_elements: u64,
-    output: *mut f32,
-    output_elements: u64,
-    batch_size: u32,
-    cols: u32,
-) -> i32 {
-    match catch_unwind(AssertUnwindSafe(|| {
-        quantized_f32_grouped_batched_matmul(
-            None,
-            weight_pointers,
-            weight_bytes,
-            rows,
-            matrix_count,
-            input,
-            input_elements,
-            output,
-            output_elements,
-            batch_size,
-            cols,
-            WeightFormat::Q4_0,
-        )
-    })) {
-        Ok(status) => status,
-        Err(_) => STATUS_PANIC,
-    }
-}
-
-#[unsafe(no_mangle)]
-/// # Safety
-///
-/// `context` must be live, metadata arrays must contain `matrix_count` entries, and every data
-/// pointer must remain valid for its advertised length. Output must not alias any input.
-pub unsafe extern "C" fn jmodels_q4_0_f32_grouped_batched_matmul_with_context(
-    context: *const KernelContext,
-    weight_pointers: *const *const u8,
-    weight_bytes: *const u64,
-    rows: *const u32,
-    matrix_count: u32,
-    input: *const f32,
-    input_elements: u64,
-    output: *mut f32,
-    output_elements: u64,
-    batch_size: u32,
-    cols: u32,
-) -> i32 {
-    if context.is_null() {
-        return STATUS_NULL_POINTER;
-    }
-    match catch_unwind(AssertUnwindSafe(|| {
-        // SAFETY: Java owns the context for the duration of this synchronous call.
-        let context = unsafe { &*context };
-        quantized_f32_grouped_batched_matmul(
-            Some(context),
-            weight_pointers,
-            weight_bytes,
-            rows,
-            matrix_count,
-            input,
-            input_elements,
-            output,
-            output_elements,
-            batch_size,
-            cols,
-            WeightFormat::Q4_0,
-        )
-    })) {
-        Ok(status) => status,
-        Err(_) => STATUS_PANIC,
-    }
-}
-
-#[unsafe(no_mangle)]
-/// # Safety
-///
-/// Metadata arrays must contain `matrix_count` entries. Every data pointer must remain valid for
-/// its advertised length for the synchronous call, and output must not alias any input.
-pub unsafe extern "C" fn jmodels_q8_0_f32_grouped_batched_matmul(
-    weight_pointers: *const *const u8,
-    weight_bytes: *const u64,
-    rows: *const u32,
-    matrix_count: u32,
-    input: *const f32,
-    input_elements: u64,
-    output: *mut f32,
-    output_elements: u64,
-    batch_size: u32,
-    cols: u32,
-) -> i32 {
-    match catch_unwind(AssertUnwindSafe(|| {
-        quantized_f32_grouped_batched_matmul(
-            None,
-            weight_pointers,
-            weight_bytes,
-            rows,
-            matrix_count,
-            input,
-            input_elements,
-            output,
-            output_elements,
-            batch_size,
-            cols,
-            WeightFormat::Q8_0,
-        )
-    })) {
-        Ok(status) => status,
-        Err(_) => STATUS_PANIC,
-    }
-}
-
-#[unsafe(no_mangle)]
-/// # Safety
-///
-/// `context` must be live, metadata arrays must contain `matrix_count` entries, and every data
-/// pointer must remain valid for its advertised length. Output must not alias any input.
-pub unsafe extern "C" fn jmodels_q8_0_f32_grouped_batched_matmul_with_context(
-    context: *const KernelContext,
-    weight_pointers: *const *const u8,
-    weight_bytes: *const u64,
-    rows: *const u32,
-    matrix_count: u32,
-    input: *const f32,
-    input_elements: u64,
-    output: *mut f32,
-    output_elements: u64,
-    batch_size: u32,
-    cols: u32,
-) -> i32 {
-    if context.is_null() {
-        return STATUS_NULL_POINTER;
-    }
-    match catch_unwind(AssertUnwindSafe(|| {
-        // SAFETY: Java owns the context for the duration of this synchronous call.
-        let context = unsafe { &*context };
-        quantized_f32_grouped_batched_matmul(
-            Some(context),
-            weight_pointers,
-            weight_bytes,
-            rows,
-            matrix_count,
-            input,
-            input_elements,
-            output,
-            output_elements,
-            batch_size,
-            cols,
-            WeightFormat::Q8_0,
-        )
-    })) {
-        Ok(status) => status,
-        Err(_) => STATUS_PANIC,
-    }
-}
-
 #[allow(clippy::too_many_arguments)]
 fn quantized_f32_batched_matmul(
     context: Option<&KernelContext>,
@@ -2720,12 +2431,8 @@ fn quantized_f32_batched_matmul(
     let input = unsafe { slice::from_raw_parts(input, required_input_elements) };
     let output = unsafe { slice::from_raw_parts_mut(output, required_output_elements) };
 
-    // An F32 activation format prepares no per-block scales, so it must not reserve any: the
-    // scratch length is what the row kernel's bounds checks are written against.
-    let scale_elements = match format.activation_format() {
-        ActivationFormat::F32 => 0,
-        _ => batch_size * blocks_per_row,
-    };
+    // Weight blocks and activation blocks have independent widths (PTQ: 128 vs Q8: 32).
+    let scale_elements = activation_scale_elements(format.activation_format(), batch_size, cols);
     let sum_elements = activation_sum_elements(format.activation_format(), batch_size, cols);
     let succeeded = if let Some(context) = context {
         let mut scratch = lock(&context.scratch);
@@ -2803,41 +2510,6 @@ fn compute_with_scratch(
 }
 
 #[allow(clippy::too_many_arguments)]
-fn quantized_f32_grouped_batched_matmul(
-    context: Option<&KernelContext>,
-    weight_pointers: *const *const u8,
-    weight_bytes: *const u64,
-    rows: *const u32,
-    matrix_count: u32,
-    input: *const f32,
-    input_elements: u64,
-    output: *mut f32,
-    output_elements: u64,
-    batch_size: u32,
-    cols: u32,
-    format: WeightFormat,
-) -> i32 {
-    let formats = [format; MAX_GROUPED_MATRICES];
-    let matrix_count_usize = matrix_count as usize;
-    if !(2..=MAX_GROUPED_MATRICES).contains(&matrix_count_usize) {
-        return STATUS_INVALID_SHAPE;
-    }
-    quantized_f32_mixed_grouped_batched_matmul(
-        context,
-        weight_pointers,
-        weight_bytes,
-        rows,
-        &formats[..matrix_count_usize],
-        input,
-        input_elements,
-        output,
-        output_elements,
-        batch_size,
-        cols,
-    )
-}
-
-#[allow(clippy::too_many_arguments)]
 fn quantized_f32_mixed_grouped_batched_matmul(
     context: Option<&KernelContext>,
     weight_pointers: *const *const u8,
@@ -2867,9 +2539,9 @@ fn quantized_f32_mixed_grouped_batched_matmul(
     if formats
         .iter()
         .any(|format| format.activation_format() != activation_format)
-        || formats
-            .iter()
-            .any(|format| cols % format.block_elements() != 0)
+        || formats.iter().any(|format| {
+            matches!(format, WeightFormat::Q5_0) || cols % format.block_elements() != 0
+        })
     {
         return STATUS_INVALID_SHAPE;
     }
@@ -2917,8 +2589,7 @@ fn quantized_f32_mixed_grouped_batched_matmul(
     // buffers. Java retains every segment for this synchronous call and output does not alias.
     let input = unsafe { slice::from_raw_parts(input, required_input_elements) };
     let output = unsafe { slice::from_raw_parts_mut(output, required_output_elements) };
-    let activation_blocks = cols / formats[0].block_elements();
-    let scale_elements = batch_size * activation_blocks;
+    let scale_elements = activation_scale_elements(activation_format, batch_size, cols);
     let sum_elements = activation_sum_elements(activation_format, batch_size, cols);
     let succeeded = if let Some(context) = context {
         let mut scratch = lock(&context.scratch);
@@ -2988,9 +2659,9 @@ fn quantized_f32_independent_batched_matmul(
     if formats
         .iter()
         .any(|format| format.activation_format() != activation_format)
-        || formats
-            .iter()
-            .any(|format| cols % format.block_elements() != 0)
+        || formats.iter().any(|format| {
+            matches!(format, WeightFormat::Q5_0) || cols % format.block_elements() != 0
+        })
     {
         return STATUS_INVALID_SHAPE;
     }
@@ -3011,10 +2682,7 @@ fn quantized_f32_independent_batched_matmul(
         // A grouped job shares one quantized activation across its matrices, which is the whole
         // point of grouping; a format that dots against F32 activations has nothing to share and
         // is refused here rather than silently handed an empty activation slice.
-        if matches!(
-            formats[matrix].activation_format(),
-            ActivationFormat::F32
-        ) {
+        if matches!(formats[matrix].activation_format(), ActivationFormat::F32) {
             return STATUS_INVALID_SHAPE;
         }
         let Some(matrix_input_elements) = batch_size.checked_mul(cols) else {
@@ -3055,12 +2723,11 @@ fn quantized_f32_independent_batched_matmul(
     // synchronous call.
     let input = unsafe { slice::from_raw_parts(input, required_input_elements) };
     let output = unsafe { slice::from_raw_parts_mut(output, required_output_elements) };
-    let activation_blocks = cols / formats[0].block_elements();
     let mut required_scale_elements = 0_usize;
     let mut required_sum_elements = 0_usize;
     for &batch_size in batch_sizes {
         let batch_size = batch_size as usize;
-        required_scale_elements += batch_size * activation_blocks;
+        required_scale_elements += activation_scale_elements(activation_format, batch_size, cols);
         required_sum_elements += activation_sum_elements(activation_format, batch_size, cols);
     }
     let mut scratch = lock(&context.scratch);
@@ -3108,7 +2775,7 @@ fn compute_independent_with_scratch(
     for matrix in 0..formats.len() {
         let batch_size = batch_sizes[matrix] as usize;
         let input_elements = batch_size * cols;
-        let scale_elements = batch_size * (cols / formats[matrix].block_elements());
+        let scale_elements = activation_scale_elements(activation_format, batch_size, cols);
         let sum_elements = activation_sum_elements(activation_format, batch_size, cols);
         quantize_activation_batch(
             activation_format,
@@ -3349,6 +3016,42 @@ unsafe fn compute_batched_row_range(
     kernel: DotKernel,
 ) {
     match kernel {
+        #[cfg(target_arch = "aarch64")]
+        DotKernel::PtqNeon => {
+            for row in start_row..end_row {
+                for batch in 0..batch_size {
+                    // SAFETY: NEON and complete input shapes were checked; each output row
+                    // belongs exclusively to this worker.
+                    unsafe {
+                        *output.add(batch * rows + row) =
+                            ptq::dot_neon(weights, quantized, activation_scales, batch, row, cols);
+                    }
+                }
+            }
+        }
+        DotKernel::Ptq => {
+            for row in start_row..end_row {
+                for batch in 0..batch_size {
+                    let value =
+                        ptq::dot_scalar(weights, quantized, activation_scales, batch, row, cols);
+                    // SAFETY: this worker exclusively owns the assigned output rows.
+                    unsafe { *output.add(batch * rows + row) = value };
+                }
+            }
+        }
+        #[cfg(target_arch = "x86_64")]
+        DotKernel::PtqAvx2 => {
+            for row in start_row..end_row {
+                for batch in 0..batch_size {
+                    // SAFETY: AVX2/FMA and all complete Q8 activation rows were validated.
+                    let value = unsafe {
+                        ptq::dot_avx2(weights, quantized, activation_scales, batch, row, cols)
+                    };
+                    // SAFETY: this worker exclusively owns this output row.
+                    unsafe { *output.add(batch * rows + row) = value };
+                }
+            }
+        }
         DotKernel::Q5_1 => {
             // SAFETY: the caller assigns this worker an exclusive matrix-row range.
             unsafe {
@@ -4334,11 +4037,13 @@ unsafe fn compute_q4_k_batched_row_range_avx2(
     let sums_per_batch = cols / Q8_K_SUM_BLOCK;
     let nibble_mask = _mm256_set1_epi8(0x0f);
     batch_scratch!(sums, batch_size, _mm256_setzero_ps(), __m256);
+    batch_scratch!(minimum_sums, batch_size, 0_f32, f32);
     let mut decoded = [_mm256_setzero_si256(); 8];
     let mut group_scales = [0_i32; 8];
     let mut group_mins = [0_i32; 8];
     for row in start_row..end_row {
         sums.fill(_mm256_setzero_ps());
+        minimum_sums.fill(0_f32);
         for block in 0..blocks_per_row {
             record_k_quant_weight_block_decode();
             let weight_offset = (row * blocks_per_row + block) * Q4_K_BLOCK_BYTES;
@@ -4362,6 +4067,7 @@ unsafe fn compute_q4_k_batched_row_range_avx2(
                 group_scales[group] = qk_scale(scales, group);
                 group_mins[group] = qk_min(scales, group);
             }
+
             let minimum_values = _mm256_setr_epi32(
                 group_mins[0],
                 group_mins[1],
@@ -4392,24 +4098,28 @@ unsafe fn compute_q4_k_batched_row_range_avx2(
                     quantized_lanes =
                         _mm256_add_epi32(quantized_lanes, _mm256_madd_epi16(products, scale));
                 }
-                // SAFETY: each Q8_K activation block has sixteen signed group sums.
+                // Match the single-row reduction order: the minimum correction is a
+                // scalar FMA per block, added only after reducing the quantized lanes.
+                // Folding it into SIMD lanes changes rounding when prefill batch size changes.
+                // Integer summation is exact here: eight groups of 32 signed bytes
+                // multiplied by six-bit minima cannot overflow i32. Vectorize this
+                // portion without changing the scalar floating-point FMA contract.
+                // SAFETY: one Q8_K block contains sixteen complete i16 group sums.
                 let activation_sum_values =
                     unsafe { _mm256_loadu_si256(activation_sums.as_ptr().add(sum_offset).cast()) };
                 let paired_sums = _mm256_madd_epi16(activation_sum_values, _mm256_set1_epi16(1));
-                let minimum_lanes = _mm256_mullo_epi32(minimum_values, paired_sums);
+                let block_minimum_sum =
+                    horizontal_sum_i32_avx2(_mm256_mullo_epi32(minimum_values, paired_sums));
                 let activation_scale = activation_scales[batch * blocks_per_row + block];
                 let d = weight_scale * activation_scale;
                 let d_min = weight_min_scale * activation_scale;
-                let accumulated = _mm256_fmadd_ps(
-                    _mm256_cvtepi32_ps(quantized_lanes),
+                sums[batch] = _mm256_fmadd_ps(
                     _mm256_set1_ps(d),
+                    _mm256_cvtepi32_ps(quantized_lanes),
                     sums[batch],
                 );
-                sums[batch] = _mm256_fmadd_ps(
-                    _mm256_cvtepi32_ps(minimum_lanes),
-                    _mm256_set1_ps(-d_min),
-                    accumulated,
-                );
+                minimum_sums[batch] =
+                    (-d_min).mul_add(block_minimum_sum as f32, minimum_sums[batch]);
             }
         }
         for (batch, &sum) in sums.iter().enumerate() {
@@ -4418,7 +4128,7 @@ unsafe fn compute_q4_k_batched_row_range_avx2(
             unsafe {
                 output
                     .add(batch * rows + row)
-                    .write(horizontal_sum_f32_avx2(sum));
+                    .write(horizontal_sum_f32_avx2(sum) + minimum_sums[batch]);
             }
         }
     }
@@ -4755,6 +4465,19 @@ fn compute_output_range(
                     dot_q5_0_q8_0_row_avx2(weights, quantized, activation_scales, batch, row, cols)
                 }
             }
+            DotKernel::Ptq => {
+                ptq::dot_scalar(weights, quantized, activation_scales, batch, row, cols)
+            }
+            #[cfg(target_arch = "aarch64")]
+            DotKernel::PtqNeon => {
+                // SAFETY: NEON was detected when selecting this kernel; shapes are validated.
+                unsafe { ptq::dot_neon(weights, quantized, activation_scales, batch, row, cols) }
+            }
+            #[cfg(target_arch = "x86_64")]
+            DotKernel::PtqAvx2 => {
+                // SAFETY: dispatch requires AVX2 and FMA; input shapes were validated.
+                unsafe { ptq::dot_avx2(weights, quantized, activation_scales, batch, row, cols) }
+            }
             DotKernel::Q5_1 => dot_q5_1_f32_row_scalar(weights, activations, batch, row, cols),
             #[cfg(target_arch = "x86_64")]
             DotKernel::Q5_1Avx2 => {
@@ -4915,6 +4638,20 @@ fn selected_q8_kernel() -> DotKernel {
         return DotKernel::Q8Neon;
     }
     DotKernel::Q8
+}
+
+// Advertise the Q5_1 route only where the measured SIMD implementation is available.
+// The scalar entry point remains usable by direct ABI correctness tests.
+fn q5_1_simd_capability() -> u64 {
+    #[cfg(target_arch = "x86_64")]
+    if matches!(selected_q5_1_kernel(), DotKernel::Q5_1Avx2) {
+        return CAPABILITY_Q5_1_F32_BATCHED_MATMUL;
+    }
+    #[cfg(target_arch = "aarch64")]
+    if neon::available() {
+        return CAPABILITY_Q5_1_F32_BATCHED_MATMUL;
+    }
+    0
 }
 
 fn selected_q5_1_kernel() -> DotKernel {
@@ -5392,8 +5129,8 @@ unsafe fn dot_q5_1_f32_row_avx2(
 ///
 /// Rows are the partition, as everywhere else here, so no two workers contribute to one reduction
 /// and the pinned fold order is untouched by how many threads run. This is also the only Q5_1
-/// kernel on a non-x86-64 host: the scalar routine is the normative one, so aarch64 is bit-exact
-/// with Java without a NEON variant, and claiming parity for one would require its own test.
+/// kernel on a non-x86-64 host. AArch64 uses the exact NEON row-reuse implementation
+/// when available; other targets retain the normative scalar implementation.
 #[allow(clippy::too_many_arguments)]
 unsafe fn compute_q5_1_batched_row_range_scalar(
     weights: &[u8],
@@ -5405,6 +5142,23 @@ unsafe fn compute_q5_1_batched_row_range_scalar(
     start_row: usize,
     end_row: usize,
 ) {
+    #[cfg(target_arch = "aarch64")]
+    if neon::available() {
+        // SAFETY: NEON detected, caller owns each output row and validates all shapes.
+        unsafe {
+            q51_reuse::compute_neon(
+                weights,
+                activations,
+                output,
+                batch_size,
+                rows,
+                cols,
+                start_row,
+                end_row,
+            );
+        }
+        return;
+    }
     for row in start_row..end_row {
         for batch in 0..batch_size {
             let value = dot_q5_1_f32_row_scalar(weights, activations, batch, row, cols);
@@ -5431,6 +5185,22 @@ unsafe fn compute_q5_1_batched_row_range_avx2(
     start_row: usize,
     end_row: usize,
 ) {
+    if batch_size > 1 {
+        // SAFETY: AVX2/FMA/F16C detected, caller owns each row and validates shapes.
+        unsafe {
+            q51_reuse::compute_avx2(
+                weights,
+                activations,
+                output,
+                batch_size,
+                rows,
+                cols,
+                start_row,
+                end_row,
+            );
+        }
+        return;
+    }
     for row in start_row..end_row {
         for batch in 0..batch_size {
             // SAFETY: the caller selected this only after AVX2, FMA and F16C detection.
@@ -5995,6 +5765,14 @@ fn qk_min(scales: &[u8], group: usize) -> i32 {
     (low | (high << 4)) as i32
 }
 
+fn activation_scale_elements(format: ActivationFormat, batch_size: usize, cols: usize) -> usize {
+    match format {
+        ActivationFormat::F32 => 0,
+        ActivationFormat::Q8_0 => batch_size * (cols / QK_0),
+        ActivationFormat::Q8K => batch_size * (cols / QK_K),
+    }
+}
+
 fn activation_sum_elements(format: ActivationFormat, batch_size: usize, cols: usize) -> usize {
     match format {
         ActivationFormat::Q8_0 | ActivationFormat::F32 => 0,
@@ -6370,7 +6148,7 @@ mod tests {
 
     #[test]
     fn exports_stable_abi_and_capabilities() {
-        assert_eq!(jmodels_kernels_abi_version(), 6);
+        assert_eq!(jmodels_kernels_abi_version(), 7);
         assert_eq!(
             jmodels_kernels_capabilities(),
             CAPABILITY_Q4_0_F32_BATCHED_MATMUL
@@ -6386,8 +6164,8 @@ mod tests {
                 | CAPABILITY_Q5_K_F32_BATCHED_MATMUL
                 | CAPABILITY_Q5_K_F32_GROUPED_BATCHED_MATMUL
                 | CAPABILITY_Q5_0_F32_BATCHED_MATMUL
-                | CAPABILITY_Q5_0_F32_GROUPED_BATCHED_MATMUL
-                | CAPABILITY_Q5_1_F32_BATCHED_MATMUL
+                | q5_1_simd_capability()
+                | CAPABILITY_PTQ1_0_Q8_0_BATCHED_MATMUL
                 | CAPABILITY_K_QUANT_BATCH_WEIGHT_REUSE
                 | CAPABILITY_Q4_K_BATCH_VECTOR_ACCUMULATION
                 | CAPABILITY_MANY_GROUPED_BATCHED_MATMUL
@@ -6397,6 +6175,21 @@ mod tests {
                 | CAPABILITY_GROUPED_ATTENTION_F32
                 | CAPABILITY_POLL_BUDGET
                 | CAPABILITY_GROUPED_GATED_DELTA_NET_F32
+                | if bfloat16::supported() {
+                    CAPABILITY_BF16_F32_BATCHED_MATMUL
+                } else {
+                    0
+                }
+                | if cfg!(target_arch = "aarch64") {
+                    CAPABILITY_SLEEF_ACTIVATIONS_F32
+                } else {
+                    0
+                }
+                | if swiglu::supported() {
+                    CAPABILITY_SWIGLU_F32
+                } else {
+                    0
+                }
         );
     }
 
@@ -6866,14 +6659,14 @@ mod tests {
     fn grouped_projection_uses_one_worker_generation() {
         let context = jmodels_kernels_context_create(2);
         assert!(!context.is_null());
-        let weights: [Vec<u8>; 3] = std::array::from_fn(|_| vec![0_u8; 64 * Q5_0_BLOCK_BYTES]);
+        let weights: [Vec<u8>; 3] = std::array::from_fn(|_| vec![0_u8; 64 * Q4_0_BLOCK_BYTES]);
         let weight_pointers = [
             weights[0].as_ptr(),
             weights[1].as_ptr(),
             weights[2].as_ptr(),
         ];
-        let weight_bytes = [(64 * Q5_0_BLOCK_BYTES) as u64; 3];
-        let formats = [5_u32; 3];
+        let weight_bytes = [(64 * Q4_0_BLOCK_BYTES) as u64; 3];
+        let formats = [0_u32; 3];
         let rows = [64_u32; 3];
         let input = [0.25_f32; QK_0];
         let mut output = [0_f32; 64 * 3];
@@ -6919,6 +6712,29 @@ mod tests {
         );
 
         assert_eq!(after.wrapping_sub(before), 1);
+        // Q5_0 grouping was retired after the supported-host real-model gate rejected it.
+        let retired_formats = [5_u32; 3];
+        // SAFETY: all metadata and buffers are valid; the format is rejected before dereferencing
+        // its weight layout, so this cannot dispatch a worker job.
+        assert_eq!(
+            unsafe {
+                jmodels_quantized_f32_grouped_batched_matmul_with_context(
+                    context,
+                    retired_formats.as_ptr(),
+                    weight_pointers.as_ptr(),
+                    weight_bytes.as_ptr(),
+                    rows.as_ptr(),
+                    3,
+                    input.as_ptr(),
+                    input.len() as u64,
+                    output.as_mut_ptr(),
+                    output.len() as u64,
+                    1,
+                    QK_0 as u32,
+                )
+            },
+            STATUS_INVALID_SHAPE
+        );
         // SAFETY: the test consumes the unique context pointer exactly once.
         assert_eq!(
             unsafe { jmodels_kernels_context_destroy(context) },
@@ -7051,6 +6867,75 @@ mod tests {
             unsafe { jmodels_kernels_context_destroy(context) },
             STATUS_OK
         );
+    }
+
+    #[cfg(target_arch = "x86_64")]
+    #[test]
+    fn q4_k_avx2_preserves_single_row_rounding_across_batch_sizes() {
+        if !(std::arch::is_x86_feature_detected!("avx2")
+            && std::arch::is_x86_feature_detected!("fma")
+            && std::arch::is_x86_feature_detected!("f16c"))
+        {
+            return;
+        }
+        const ROWS: usize = 3;
+        const BLOCKS: usize = 4;
+        const COLS: usize = BLOCKS * QK_K;
+        let mut weights = vec![0_u8; ROWS * BLOCKS * Q4_K_BLOCK_BYTES];
+        for block in 0..ROWS * BLOCKS {
+            let offset = block * Q4_K_BLOCK_BYTES;
+            weights[offset..offset + 2]
+                .copy_from_slice(&f32_to_f16(0.0137 * (block + 1) as f32).to_le_bytes());
+            weights[offset + 2..offset + 4]
+                .copy_from_slice(&f32_to_f16(0.0093 * (block + 1) as f32).to_le_bytes());
+            for (index, value) in weights[offset + 4..offset + Q4_K_BLOCK_BYTES]
+                .iter_mut()
+                .enumerate()
+            {
+                *value = (index * 19 + block * 7 + 3) as u8;
+            }
+        }
+        // Non-power-of-two scales expose rounding differences hidden by binary-exact fixtures.
+        for batch_size in [1, 3, 8, 32, 33] {
+            let quantized: Vec<i8> = (0..batch_size * COLS)
+                .map(|index| (((index * 17 + 11) % 255) as i32 - 127) as i8)
+                .collect();
+            let scales: Vec<f32> = (0..batch_size * BLOCKS)
+                .map(|index| 0.00371 * (index + 1) as f32)
+                .collect();
+            let sums: Vec<i16> = quantized
+                .chunks_exact(Q8_K_SUM_BLOCK)
+                .map(|values| values.iter().map(|&value| value as i16).sum())
+                .collect();
+            let mut actual = vec![f32::NAN; batch_size * ROWS];
+            // SAFETY: CPU features are checked above and all complete fixture buffers are disjoint.
+            unsafe {
+                compute_q4_k_batched_row_range_avx2(
+                    &weights,
+                    &quantized,
+                    &scales,
+                    &sums,
+                    actual.as_mut_ptr(),
+                    batch_size,
+                    ROWS,
+                    COLS,
+                    0,
+                    ROWS,
+                );
+                for batch in 0..batch_size {
+                    for row in 0..ROWS {
+                        let expected = dot_q4_k_q8_k_row_avx2(
+                            &weights, &quantized, &scales, &sums, batch, row, COLS,
+                        );
+                        assert_eq!(
+                            actual[batch * ROWS + row].to_bits(),
+                            expected.to_bits(),
+                            "batch size {batch_size}, batch {batch}, row {row}"
+                        );
+                    }
+                }
+            }
+        }
     }
 
     #[test]
@@ -7684,9 +7569,13 @@ mod tests {
         let weights = [0_u8; Q4_0_BLOCK_BYTES];
         let input = [0_f32; QK_0];
         let mut output = [0_f32; 1];
-        // SAFETY: all test arrays remain live and non-aliasing for the synchronous call.
+        let context = jmodels_kernels_context_create(1);
+        assert!(!context.is_null());
+        // SAFETY: the context and test arrays remain live for the synchronous call.
         let status = unsafe {
-            jmodels_q4_0_f32_batched_matmul(
+            jmodels_quantized_f32_batched_matmul_with_context(
+                context,
+                0,
                 weights.as_ptr(),
                 weights.len() as u64,
                 input.as_ptr(),
@@ -7698,6 +7587,11 @@ mod tests {
                 31,
             )
         };
+        // SAFETY: this test owns the context and all synchronous work has completed.
+        assert_eq!(
+            unsafe { jmodels_kernels_context_destroy(context) },
+            STATUS_OK
+        );
         assert_eq!(status, STATUS_INVALID_SHAPE);
     }
 
@@ -7809,8 +7703,8 @@ mod tests {
         let mut expected_state = initial.clone();
         for row in 0..ROWS {
             let slot = slots[row] as usize;
-            let mut row_state = expected_state[slot * STATE_PER_SLOT..(slot + 1) * STATE_PER_SLOT]
-                .to_vec();
+            let mut row_state =
+                expected_state[slot * STATE_PER_SLOT..(slot + 1) * STATE_PER_SLOT].to_vec();
             let mut row_output = vec![0.0_f32; VALUE_HEADS * DIMENSION];
             let query_span = KEY_HEADS * DIMENSION;
             let value_span = VALUE_HEADS * DIMENSION;
@@ -7865,7 +7759,10 @@ mod tests {
         }
 
         // SAFETY: the context was created above and is not used after this call.
-        assert_eq!(unsafe { jmodels_kernels_context_destroy(context) }, STATUS_OK);
+        assert_eq!(
+            unsafe { jmodels_kernels_context_destroy(context) },
+            STATUS_OK
+        );
     }
 
     /// A slot outside the state buffer is rejected rather than written on a worker thread.
@@ -7903,11 +7800,14 @@ mod tests {
             STATUS_INVALID_SHAPE
         );
         // SAFETY: the context was created above and is not used after this call.
-        assert_eq!(unsafe { jmodels_kernels_context_destroy(context) }, STATUS_OK);
+        assert_eq!(
+            unsafe { jmodels_kernels_context_destroy(context) },
+            STATUS_OK
+        );
     }
 
     #[test]
-    fn chunked_gated_delta_net_matches_the_sequential_recurrence() {
+    fn gated_delta_net_prefix_matches_token_steps_exactly() {
         let context = jmodels_kernels_context_create(3);
         assert!(!context.is_null());
         let tokens = 40;
@@ -7929,8 +7829,8 @@ mod tests {
             .collect::<Vec<_>>();
         let initial = gated_delta_net_fixture(6, value_heads * key_dimension * value_dimension);
 
-        let mut chunked_state = initial.clone();
-        let mut chunked_output = vec![0.0_f32; tokens * value_heads * value_dimension];
+        let mut prefix_state = initial.clone();
+        let mut prefix_output = vec![0.0_f32; tokens * value_heads * value_dimension];
         // SAFETY: every fixture outlives the call and none of the buffers alias one another.
         assert_eq!(
             unsafe {
@@ -7946,10 +7846,10 @@ mod tests {
                     log_decay.len() as u64,
                     beta.as_ptr(),
                     beta.len() as u64,
-                    chunked_state.as_mut_ptr(),
-                    chunked_state.len() as u64,
-                    chunked_output.as_mut_ptr(),
-                    chunked_output.len() as u64,
+                    prefix_state.as_mut_ptr(),
+                    prefix_state.len() as u64,
+                    prefix_output.as_mut_ptr(),
+                    prefix_output.len() as u64,
                     tokens as u32,
                     key_heads as u32,
                     value_heads as u32,
@@ -7996,20 +7896,8 @@ mod tests {
             );
         }
 
-        let tolerance = 2.0e-4_f32;
-        for (index, (actual, expected)) in chunked_output.iter().zip(&sequential_output).enumerate()
-        {
-            assert!(
-                (actual - expected).abs() <= tolerance * expected.abs().max(1.0),
-                "output[{index}] chunked {actual} vs sequential {expected}"
-            );
-        }
-        for (index, (actual, expected)) in chunked_state.iter().zip(&sequential_state).enumerate() {
-            assert!(
-                (actual - expected).abs() <= tolerance * expected.abs().max(1.0),
-                "state[{index}] chunked {actual} vs sequential {expected}"
-            );
-        }
+        assert_eq!(prefix_output, sequential_output);
+        assert_eq!(prefix_state, sequential_state);
         // SAFETY: the test consumes the unique context pointer exactly once.
         assert_eq!(
             unsafe { jmodels_kernels_context_destroy(context) },
@@ -8283,10 +8171,75 @@ mod tests {
             0,
             "an F32 activation format prepares no sums"
         );
-        assert_ne!(
+        assert_eq!(
             jmodels_kernels_capabilities() & CAPABILITY_Q5_1_F32_BATCHED_MATMUL,
-            0,
-            "the capability must be advertised or Java will never route to it"
+            q5_1_simd_capability(),
+            "Q5_1 is advertised only on the measured SIMD hardware route"
+        );
+    }
+    #[test]
+    fn q5_1_reuse_matches_scalar_through_real_worker_dispatch() {
+        let context = jmodels_kernels_context_create(4);
+        assert!(!context.is_null());
+        // SAFETY: this test owns the context until the single final destroy.
+        let c = unsafe { &*context };
+        let before = job_generation(c.workers.shared.generation.0.load(Ordering::Acquire));
+        for cols in [32_usize, 96, 896, 4864] {
+            let rows = 17;
+            let weights = q5_1_rows(rows, cols / 32, 0x81c6_1437 ^ cols as u32);
+            for batch in [1_usize, 2, 3, 8, 32, 1] {
+                let input = q5_1_activations(batch * cols, 0x9876_5431 ^ batch as u32);
+                let mut expected = Vec::new();
+                for b in 0..batch {
+                    for row in 0..rows {
+                        expected.push(
+                            dot_q5_1_f32_row_scalar(&weights, &input, b, row, cols).to_bits(),
+                        );
+                    }
+                }
+                let mut output = vec![f32::NAN; batch * rows + 2];
+                output[0] = 19.0;
+                output[batch * rows + 1] = 23.0;
+                // SAFETY: all buffers are live, disjoint, and correctly sized; output has sentinels.
+                let status = unsafe {
+                    jmodels_quantized_f32_batched_matmul_with_context(
+                        context,
+                        6,
+                        weights.as_ptr(),
+                        weights.len() as u64,
+                        input.as_ptr(),
+                        input.len() as u64,
+                        output.as_mut_ptr().add(1),
+                        (batch * rows) as u64,
+                        batch as u32,
+                        rows as u32,
+                        cols as u32,
+                    )
+                };
+                assert_eq!(status, STATUS_OK);
+                assert_eq!(output[0], 19.0);
+                assert_eq!(output[batch * rows + 1], 23.0);
+                assert_eq!(
+                    output[1..batch * rows + 1]
+                        .iter()
+                        .map(|v| v.to_bits())
+                        .collect::<Vec<_>>(),
+                    expected,
+                    "cols {cols} batch {batch}"
+                );
+                assert_eq!(
+                    c.workers.shared.partitions.0.load(Ordering::Acquire),
+                    4,
+                    "immutable activation gate"
+                );
+            }
+        }
+        let after = job_generation(c.workers.shared.generation.0.load(Ordering::Acquire));
+        assert!(after > before, "test must actually publish worker jobs");
+        // SAFETY: consumes the unique live context once.
+        assert_eq!(
+            unsafe { jmodels_kernels_context_destroy(context) },
+            STATUS_OK
         );
     }
 }

@@ -268,43 +268,6 @@ final class Deepseek2Weights {
     GgufTensorValues.dequantizeRow(tokenEmbedding, tokenEmbeddingType, token, embeddingDim, output);
   }
 
-  /**
-   * The widest input any projection takes, which is what the quantized-activation scratch holds.
-   */
-  int widestProjectionInput() {
-    int widest = embeddingDim;
-    for (LayerWeights layer : layers) {
-      for (Matrix matrix : layerMatrices(layer)) {
-        widest = Math.max(widest, matrix.columns());
-      }
-    }
-    return widest;
-  }
-
-  /** Every projection a layer holds, dense or routed. Asked of the layer, never assumed. */
-  private static java.util.List<Matrix> layerMatrices(LayerWeights layer) {
-    java.util.List<Matrix> matrices = new java.util.ArrayList<>();
-    matrices.add(layer.query());
-    matrices.add(layer.keyValueCompress());
-    matrices.add(layer.keyValueDecompress());
-    matrices.add(layer.attentionOutput());
-    if (layer.moe() == null) {
-      matrices.add(layer.ffnGate());
-      matrices.add(layer.ffnUp());
-      matrices.add(layer.ffnDown());
-      return matrices;
-    }
-    MoeFeedForward moe = layer.moe();
-    matrices.add(moe.router());
-    matrices.addAll(Arrays.asList(moe.gate()));
-    matrices.addAll(Arrays.asList(moe.up()));
-    matrices.addAll(Arrays.asList(moe.down()));
-    matrices.add(moe.sharedGate());
-    matrices.add(moe.sharedUp());
-    matrices.add(moe.sharedDown());
-    return matrices;
-  }
-
   private static Matrix matrix(GgufFile file, String name, int rows, int columns) {
     GgufTensorData tensor = matrixTensor(file, name, rows, columns);
     return new Matrix(tensor.dataSegment(), tensor.type(), rows, columns);

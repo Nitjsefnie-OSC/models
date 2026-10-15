@@ -1,0 +1,28 @@
+WARNING: Using incubator modules: jdk.incubator.vector
+Oct 11, 2026 7:49:44 PM com.integrallis.vectors.core.PanamaVectorUtilSupportProvider create
+INFO: vectors-core: Using Panama Vector API SIMD provider (vector bits: 256)
+Oct 11, 2026 7:49:44 PM com.integrallis.vectors.core.VectorizationProvider logActiveToggles
+INFO: vectors-core: provider=PanamaVectorUtilSupport panama=true maxBits=256 preferredBits=256 fastVectorFMA=true fastScalarFMA=true sve=false ggufParallel=true ggufParallelThreshold=1048576 ggufExecutor=persistent ggufThreads=8 ggufChunksPerThread=2 mappedKQuantLongOffsets=auto(q4=true,q5=false,q6=false) q4ShortPairwiseSupported=true q4UnsignedPairwiseSupported=true toggles=[(defaults — no -Dvectors.* overrides)]
+	Command being timed: "taskset -c 0-7 /opt/jdk/bin/java -XX:ActiveProcessorCount=8 -Dmodels.native.kernels.library=/work/candidate-src/backend-native/src/main/rust/model-kernels/target/release/libjmodels_kernels.so --add-modules jdk.incubator.vector --enable-native-access=ALL-UNNAMED -Xmx16g -cp /work/batch/lib/* -cp /work/batch/lib/*:/work/candidate-src/benchmark-results/2026-10-11-bonsai-production PtqProjectionBenchmark /work/bonsai2.gguf /work/candidate-src/backend-native/src/main/rust/model-kernels/target/release/libjmodels_kernels.so /work/thread8-out/projection-abba.json"
+	User time (seconds): 10.96
+	System time (seconds): 0.39
+	Percent of CPU this job got: 209%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:05.42
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 816068
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 1
+	Minor (reclaiming a frame) page faults: 135237
+	Voluntary context switches: 3891
+	Involuntary context switches: 486
+	Swaps: 0
+	File system inputs: 64
+	File system outputs: 80
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

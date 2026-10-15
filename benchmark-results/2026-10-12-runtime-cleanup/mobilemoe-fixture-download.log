@@ -1,0 +1,29 @@
+Downloading hf-xet (3.6MiB)
+ Downloaded hf-xet
+Installed 15 packages in 151ms
+httpx2.HTTPStatusError: Client error '401 Unauthorized' for url 'https://huggingface.co/facebook/MobileMoE-S-QAT/resolve/afda132cad380ac47da5ef055f186884d1c12f65/config.json'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "<stdin>", line 9, in <module>
+  File "/Users/briansam-bodden/.cache/uv/archive-v0/mkU4OMAfnLVZ44GR/lib/python3.13/site-packages/huggingface_hub/utils/_validators.py", line 89, in _inner_fn
+    return fn(*args, **kwargs)
+  File "/Users/briansam-bodden/.cache/uv/archive-v0/mkU4OMAfnLVZ44GR/lib/python3.13/site-packages/huggingface_hub/utils/_http.py", line 276, in _inner
+    return fn(*args, **kwargs)
+  File "/Users/briansam-bodden/.cache/uv/archive-v0/mkU4OMAfnLVZ44GR/lib/python3.13/site-packages/huggingface_hub/file_download.py", line 1047, in hf_hub_download
+    return _hf_hub_download_to_cache_dir(
+        # Destination
+    ...<15 lines>...
+        dry_run=dry_run,
+    )
+  File "/Users/briansam-bodden/.cache/uv/archive-v0/mkU4OMAfnLVZ44GR/lib/python3.13/site-packages/huggingface_hub/file_download.py", line 1194, in _hf_hub_download_to_cache_dir
+    _raise_on_head_call_error(head_call_error, force_download, local_files_only)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/briansam-bodden/.cache/uv/archive-v0/mkU4OMAfnLVZ44GR/lib/python3.13/site-packages/huggingface_hub/file_download.py", line 1953, in _raise_on_head_call_error
+    raise head_call_error
+huggingface_hub.errors.GatedRepoError: 401 Client Error. (Request ID: Root=1-6acd32d2-01b1d6c856378d1c629d5c85;0c4ab56f-90d3-4722-8dcb-1887db6242b3)
+
+Cannot access gated repo for url https://huggingface.co/facebook/MobileMoE-S-QAT/resolve/afda132cad380ac47da5ef055f186884d1c12f65/config.json.
+Access to model facebook/MobileMoE-S-QAT is restricted. You must have access to it and be authenticated to access it. Please log in.

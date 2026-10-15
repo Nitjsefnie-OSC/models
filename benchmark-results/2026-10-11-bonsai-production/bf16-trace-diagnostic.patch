@@ -1,0 +1,52 @@
+diff --git a/backend-java/src/main/java/com/integrallis/models/backend/purejava/qwen35/Qwen35ForwardPass.java b/backend-java/src/main/java/com/integrallis/models/backend/purejava/qwen35/Qwen35ForwardPass.java
+index dd18cdf3..034502b7 100644
+--- a/backend-java/src/main/java/com/integrallis/models/backend/purejava/qwen35/Qwen35ForwardPass.java
++++ b/backend-java/src/main/java/com/integrallis/models/backend/purejava/qwen35/Qwen35ForwardPass.java
+@@ -1252,6 +1252,15 @@ public final class Qwen35ForwardPass {
+         batch.projectionScratch);
+   }
+ 
++  private static int traceNumber;
++  private static void trace(String mode, float[]... arrays) {
++    StringBuilder text = new StringBuilder("[");
++    for (int i = 0; i < arrays.length; i++) { if (i > 0) text.append(','); text.append(Arrays.toString(arrays[i])); }
++    text.append(']');
++    try { java.nio.file.Files.writeString(java.nio.file.Path.of("/tmp/bonsai-trace-" + traceNumber++ + "-" + mode + ".json"), text); }
++    catch (java.io.IOException error) { throw new RuntimeException(error); }
++  }
++
+   private void gatedDeltaNetBatched(
+       float[] output,
+       float[] input,
+@@ -1319,6 +1328,7 @@ public final class Qwen35ForwardPass {
+           valueHeads);
+     }
+ 
++    if (layer == 0) trace("batch-before", batch.gdnQuery, batch.gdnKey, batch.gdnValue, batch.beta, batch.alpha, batch.logDecay);
+     applyGatedDeltaNetRecurrence(
+         batch.gdnQuery,
+         batch.gdnKey,
+@@ -1336,6 +1346,7 @@ public final class Qwen35ForwardPass {
+         valueHeads,
+         headDimension,
+         headDimension);
++    if (layer == 0) trace("batch-after", batch.recurrent, session.recurrentState[layer]);
+     for (int token = 0; token < batchSize; token++) {
+       int valueBase = token * valueDimension;
+       for (int head = 0; head < valueHeads; head++) {
+@@ -1581,6 +1592,7 @@ public final class Qwen35ForwardPass {
+         beta, 0, alpha, 0, weights.timeStepBias(), 0, weights.decay(), 0, logDecay, 0, heads);
+ 
+     float[] recurrent = workspace.recurrent;
++    if (layer == 0) trace("single-before", query, key, value, beta, alpha, logDecay);
+     applyGatedDeltaNetRecurrence(
+         query,
+         key,
+@@ -1598,6 +1610,7 @@ public final class Qwen35ForwardPass {
+         heads,
+         headDimension,
+         headDimension);
++    if (layer == 0) trace("single-after", recurrent, session.recurrentState[layer]);
+     for (int head = 0; head < heads; head++) {
+       int offset = head * headDimension;
+       TensorOps.rmsNorm(

@@ -1,0 +1,410 @@
+[
+  {
+    "modelId": "eurollm_1_7b_instruct_q4_k_m",
+    "caseId": "berlin-sicherung",
+    "oldGroundingPolicy": "trusted-provenance-clause-anchors-extractive-fallback-v4",
+    "currentGroundingPolicy": "bounded-context-injection-screened-citation-safe-statement-grounding-v23",
+    "old": [
+      {
+        "promptSha256": "30f5af2e5fbf378e5411197dbea1b73557521cf9c3c86ecf6853f2b2ddaf2dc8",
+        "raw": "Die Berliner Sicherung startet um 02:00 Uhr. Die Daten bleiben 14 Tage gespeichert.",
+        "grounded": "Die Berliner Sicherung startet um 02:00 Uhr. Die Daten bleiben 14 Tage gespeichert. [multi-berlin-backup]",
+        "decision": "MODEL_ANSWER_WITH_DERIVED_CITATIONS",
+        "evaluation": {
+          "retrievalRecall": 1.0,
+          "reciprocalRank": 1.0,
+          "factCoverage": 1.0,
+          "citationRecall": 1.0,
+          "citationPrecision": 1.0,
+          "abstained": false,
+          "correct": true
+        }
+      },
+      {
+        "promptSha256": "30f5af2e5fbf378e5411197dbea1b73557521cf9c3c86ecf6853f2b2ddaf2dc8",
+        "raw": "Die Berliner Sicherung startet um 02:00 Uhr. Die Daten bleiben 14 Tage gespeichert.",
+        "grounded": "Die Berliner Sicherung startet um 02:00 Uhr. Die Daten bleiben 14 Tage gespeichert. [multi-berlin-backup]",
+        "decision": "MODEL_ANSWER_WITH_DERIVED_CITATIONS",
+        "evaluation": {
+          "retrievalRecall": 1.0,
+          "reciprocalRank": 1.0,
+          "factCoverage": 1.0,
+          "citationRecall": 1.0,
+          "citationPrecision": 1.0,
+          "abstained": false,
+          "correct": true
+        }
+      },
+      {
+        "promptSha256": "30f5af2e5fbf378e5411197dbea1b73557521cf9c3c86ecf6853f2b2ddaf2dc8",
+        "raw": "Die Berliner Sicherung startet um 02:00 Uhr. Die Daten bleiben 14 Tage gespeichert.",
+        "grounded": "Die Berliner Sicherung startet um 02:00 Uhr. Die Daten bleiben 14 Tage gespeichert. [multi-berlin-backup]",
+        "decision": "MODEL_ANSWER_WITH_DERIVED_CITATIONS",
+        "evaluation": {
+          "retrievalRecall": 1.0,
+          "reciprocalRank": 1.0,
+          "factCoverage": 1.0,
+          "citationRecall": 1.0,
+          "citationPrecision": 1.0,
+          "abstained": false,
+          "correct": true
+        }
+      }
+    ],
+    "current": {
+      "promptSha256": "30f5af2e5fbf378e5411197dbea1b73557521cf9c3c86ecf6853f2b2ddaf2dc8",
+      "raw": "Die Berliner Sicherung startet um 02:00 Uhr.",
+      "grounded": "Die Berliner Sicherung startet um 02:00 Uhr. [multi-berlin-backup]",
+      "decision": "MODEL_ANSWER_WITH_DERIVED_CITATIONS",
+      "evaluation": {
+        "retrievalRecall": 1.0,
+        "reciprocalRank": 1.0,
+        "factCoverage": 0.5,
+        "citationRecall": 1.0,
+        "citationPrecision": 1.0,
+        "abstained": false,
+        "correct": false
+      }
+    }
+  },
+  {
+    "modelId": "umarfarookm_umartransit_1b_q4_k_m",
+    "caseId": "amber-route-frequency",
+    "oldGroundingPolicy": "trusted-provenance-clause-anchors-explicit-abstention-v6",
+    "currentGroundingPolicy": "bounded-context-injection-screened-citation-safe-statement-grounding-v23",
+    "old": [
+      {
+        "promptSha256": "6fc721070a12d42e396052294556a8118a6515ef93bc8381aba0ab60d4d1ae59",
+        "raw": "Amber route A12 connects Central Station and River Park. It runs every 12 minutes at peak.",
+        "grounded": "Amber route A12 runs from Central Station to River Park. Peak service operates every 12 minutes. [transit-amber-route]",
+        "decision": "EXTRACTIVE_FALLBACK",
+        "evaluation": {
+          "retrievalRecall": 1.0,
+          "reciprocalRank": 1.0,
+          "factCoverage": 1.0,
+          "citationRecall": 1.0,
+          "citationPrecision": 1.0,
+          "abstained": false,
+          "correct": true
+        }
+      },
+      {
+        "promptSha256": "6fc721070a12d42e396052294556a8118a6515ef93bc8381aba0ab60d4d1ae59",
+        "raw": "Amber route A12 connects Central Station and River Park. It runs every 12 minutes at peak.",
+        "grounded": "Amber route A12 runs from Central Station to River Park. Peak service operates every 12 minutes. [transit-amber-route]",
+        "decision": "EXTRACTIVE_FALLBACK",
+        "evaluation": {
+          "retrievalRecall": 1.0,
+          "reciprocalRank": 1.0,
+          "factCoverage": 1.0,
+          "citationRecall": 1.0,
+          "citationPrecision": 1.0,
+          "abstained": false,
+          "correct": true
+        }
+      },
+      {
+        "promptSha256": "6fc721070a12d42e396052294556a8118a6515ef93bc8381aba0ab60d4d1ae59",
+        "raw": "Amber route A12 connects Central Station and River Park. It runs every 12 minutes at peak.",
+        "grounded": "Amber route A12 runs from Central Station to River Park. Peak service operates every 12 minutes. [transit-amber-route]",
+        "decision": "EXTRACTIVE_FALLBACK",
+        "evaluation": {
+          "retrievalRecall": 1.0,
+          "reciprocalRank": 1.0,
+          "factCoverage": 1.0,
+          "citationRecall": 1.0,
+          "citationPrecision": 1.0,
+          "abstained": false,
+          "correct": true
+        }
+      }
+    ],
+    "current": {
+      "promptSha256": "6fc721070a12d42e396052294556a8118a6515ef93bc8381aba0ab60d4d1ae59",
+      "raw": "Amber route A12 connects Central Station and River Park. It runs every 12 minutes at peak.",
+      "grounded": "Amber route A12 connects Central Station and River Park. It runs every 12 minutes at peak. [transit-amber-route]",
+      "decision": "MODEL_ANSWER_WITH_DERIVED_CITATIONS",
+      "evaluation": {
+        "retrievalRecall": 1.0,
+        "reciprocalRank": 1.0,
+        "factCoverage": 0.5,
+        "citationRecall": 1.0,
+        "citationPrecision": 1.0,
+        "abstained": false,
+        "correct": false
+      }
+    }
+  },
+  {
+    "modelId": "smollm2_360m_instruct_q8_0",
+    "caseId": "telemedicine-benefit",
+    "oldGroundingPolicy": "trusted-citation-lexical-entailment-extractive-fallback-v2",
+    "currentGroundingPolicy": "bounded-context-injection-screened-citation-safe-statement-grounding-v23",
+    "old": [
+      {
+        "promptSha256": "290caf9ba6dd0884e016c25d019a1f7649214f0c3ff6f594bb25c7ef3a525685",
+        "raw": "[health-telemedicine] Behavioral health telemedicine\nIn-network behavioral health telemedicine visits do not require a referral. The member copay is 15 dollars per visit and the annual visit count is unlimited.",
+        "grounded": "[health-telemedicine] Behavioral health telemedicine\nIn-network behavioral health telemedicine visits do not require a referral. The member copay is 15 dollars per visit and the annual visit count is unlimited.",
+        "decision": "MODEL_ANSWER",
+        "evaluation": {
+          "retrievalRecall": 1.0,
+          "reciprocalRank": 1.0,
+          "factCoverage": 1.0,
+          "citationRecall": 1.0,
+          "citationPrecision": 1.0,
+          "abstained": false,
+          "correct": true
+        }
+      },
+      {
+        "promptSha256": "290caf9ba6dd0884e016c25d019a1f7649214f0c3ff6f594bb25c7ef3a525685",
+        "raw": "[health-telemedicine] Behavioral health telemedicine\nIn-network behavioral health telemedicine visits do not require a referral. The member copay is 15 dollars per visit and the annual visit count is unlimited.",
+        "grounded": "[health-telemedicine] Behavioral health telemedicine\nIn-network behavioral health telemedicine visits do not require a referral. The member copay is 15 dollars per visit and the annual visit count is unlimited.",
+        "decision": "MODEL_ANSWER",
+        "evaluation": {
+          "retrievalRecall": 1.0,
+          "reciprocalRank": 1.0,
+          "factCoverage": 1.0,
+          "citationRecall": 1.0,
+          "citationPrecision": 1.0,
+          "abstained": false,
+          "correct": true
+        }
+      },
+      {
+        "promptSha256": "290caf9ba6dd0884e016c25d019a1f7649214f0c3ff6f594bb25c7ef3a525685",
+        "raw": "[health-telemedicine] Behavioral health telemedicine\nIn-network behavioral health telemedicine visits do not require a referral. The member copay is 15 dollars per visit and the annual visit count is unlimited.",
+        "grounded": "[health-telemedicine] Behavioral health telemedicine\nIn-network behavioral health telemedicine visits do not require a referral. The member copay is 15 dollars per visit and the annual visit count is unlimited.",
+        "decision": "MODEL_ANSWER",
+        "evaluation": {
+          "retrievalRecall": 1.0,
+          "reciprocalRank": 1.0,
+          "factCoverage": 1.0,
+          "citationRecall": 1.0,
+          "citationPrecision": 1.0,
+          "abstained": false,
+          "correct": true
+        }
+      }
+    ],
+    "current": {
+      "promptSha256": "d8ac07be5ecbf49c6e3987c048195ef6675271932ca9553d9e96508db29d477d",
+      "raw": "INSUFFICIENT_CONTEXT",
+      "grounded": "INSUFFICIENT_CONTEXT",
+      "decision": "MODEL_ABSTENTION",
+      "evaluation": {
+        "retrievalRecall": 1.0,
+        "reciprocalRank": 1.0,
+        "factCoverage": 0.0,
+        "citationRecall": 0.0,
+        "citationPrecision": 0.0,
+        "abstained": true,
+        "correct": false
+      }
+    }
+  },
+  {
+    "modelId": "huggingfacetb_smollm2_1_7b_instruct_gguf_q4_k_m",
+    "caseId": "chargeback-evidence",
+    "oldGroundingPolicy": "trusted-title-provenance-statement-anchors-safe-discourse-explicit-abstention-v18",
+    "currentGroundingPolicy": "bounded-context-injection-screened-citation-safe-statement-grounding-v23",
+    "old": [
+      {
+        "promptSha256": "2c3474424e6ad74d141ff736bdad09e820bb4d67be4aa7ad3eeaa78d0c95cb72",
+        "raw": "Merchants must submit chargeback evidence within 7 calendar days of notification and upload it as a PDF under 10 MB in the Disputes console.",
+        "grounded": "Merchants must submit chargeback evidence within 7 calendar days of notification and upload it as a PDF under 10 MB in the Disputes console. [payments-chargeback]",
+        "decision": "MODEL_ANSWER_WITH_DERIVED_CITATIONS",
+        "evaluation": {
+          "retrievalRecall": 1.0,
+          "reciprocalRank": 1.0,
+          "factCoverage": 1.0,
+          "citationRecall": 1.0,
+          "citationPrecision": 1.0,
+          "abstained": false,
+          "correct": true
+        }
+      },
+      {
+        "promptSha256": "2c3474424e6ad74d141ff736bdad09e820bb4d67be4aa7ad3eeaa78d0c95cb72",
+        "raw": "Merchants must submit chargeback evidence within 7 calendar days of notification and upload it as a PDF under 10 MB in the Disputes console.",
+        "grounded": "Merchants must submit chargeback evidence within 7 calendar days of notification and upload it as a PDF under 10 MB in the Disputes console. [payments-chargeback]",
+        "decision": "MODEL_ANSWER_WITH_DERIVED_CITATIONS",
+        "evaluation": {
+          "retrievalRecall": 1.0,
+          "reciprocalRank": 1.0,
+          "factCoverage": 1.0,
+          "citationRecall": 1.0,
+          "citationPrecision": 1.0,
+          "abstained": false,
+          "correct": true
+        }
+      },
+      {
+        "promptSha256": "2c3474424e6ad74d141ff736bdad09e820bb4d67be4aa7ad3eeaa78d0c95cb72",
+        "raw": "Merchants must submit chargeback evidence within 7 calendar days of notification and upload it as a PDF under 10 MB in the Disputes console.",
+        "grounded": "Merchants must submit chargeback evidence within 7 calendar days of notification and upload it as a PDF under 10 MB in the Disputes console. [payments-chargeback]",
+        "decision": "MODEL_ANSWER_WITH_DERIVED_CITATIONS",
+        "evaluation": {
+          "retrievalRecall": 1.0,
+          "reciprocalRank": 1.0,
+          "factCoverage": 1.0,
+          "citationRecall": 1.0,
+          "citationPrecision": 1.0,
+          "abstained": false,
+          "correct": true
+        }
+      }
+    ],
+    "current": {
+      "promptSha256": "2c3474424e6ad74d141ff736bdad09e820bb4d67be4aa7ad3eeaa78d0c95cb72",
+      "raw": "7 calendar days and 10 MB",
+      "grounded": "7 calendar days and 10 MB [payments-chargeback]",
+      "decision": "MODEL_ANSWER_WITH_DERIVED_CITATIONS",
+      "evaluation": {
+        "retrievalRecall": 1.0,
+        "reciprocalRank": 1.0,
+        "factCoverage": 0.5,
+        "citationRecall": 1.0,
+        "citationPrecision": 1.0,
+        "abstained": false,
+        "correct": false
+      }
+    }
+  },
+  {
+    "modelId": "qwen2_5_coder_1_5b_instruct_q8_0",
+    "caseId": "http-retry-rules",
+    "oldGroundingPolicy": "trusted-provenance-clause-anchors-extractive-fallback-v4",
+    "currentGroundingPolicy": "bounded-context-injection-screened-citation-safe-statement-grounding-v23",
+    "old": [
+      {
+        "promptSha256": "405012124f162cb48dd5e0057e3c58ad3519b7e2d114068830287259b1052f17",
+        "raw": "GET, HEAD, and POST are retried up to three attempts. A POST is retried only when it carries an Idempotency-Key header.",
+        "grounded": "The SDK retries GET and HEAD requests up to three attempts. A POST is retried only when it carries an Idempotency-Key header. [http-retry-idempotency]",
+        "decision": "EXTRACTIVE_FALLBACK",
+        "evaluation": {
+          "retrievalRecall": 1.0,
+          "reciprocalRank": 1.0,
+          "factCoverage": 1.0,
+          "citationRecall": 1.0,
+          "citationPrecision": 1.0,
+          "abstained": false,
+          "correct": true
+        }
+      },
+      {
+        "promptSha256": "405012124f162cb48dd5e0057e3c58ad3519b7e2d114068830287259b1052f17",
+        "raw": "GET, HEAD, and POST are retried up to three attempts. A POST is retried only when it carries an Idempotency-Key header.",
+        "grounded": "The SDK retries GET and HEAD requests up to three attempts. A POST is retried only when it carries an Idempotency-Key header. [http-retry-idempotency]",
+        "decision": "EXTRACTIVE_FALLBACK",
+        "evaluation": {
+          "retrievalRecall": 1.0,
+          "reciprocalRank": 1.0,
+          "factCoverage": 1.0,
+          "citationRecall": 1.0,
+          "citationPrecision": 1.0,
+          "abstained": false,
+          "correct": true
+        }
+      },
+      {
+        "promptSha256": "405012124f162cb48dd5e0057e3c58ad3519b7e2d114068830287259b1052f17",
+        "raw": "GET, HEAD, and POST are retried up to three attempts. A POST is retried only when it carries an Idempotency-Key header.",
+        "grounded": "The SDK retries GET and HEAD requests up to three attempts. A POST is retried only when it carries an Idempotency-Key header. [http-retry-idempotency]",
+        "decision": "EXTRACTIVE_FALLBACK",
+        "evaluation": {
+          "retrievalRecall": 1.0,
+          "reciprocalRank": 1.0,
+          "factCoverage": 1.0,
+          "citationRecall": 1.0,
+          "citationPrecision": 1.0,
+          "abstained": false,
+          "correct": true
+        }
+      }
+    ],
+    "current": {
+      "promptSha256": "4ea3dc42b106de0bb4c45e222130132afa8397ca251c7a87bdee115d4af3b697",
+      "raw": "GET, HEAD, and POST are retried up to three attempts. A POST is retried only when it carries an Idempotency-Key header.",
+      "grounded": "GET, HEAD, and POST are retried up to three attempts. A POST is retried only when it carries an Idempotency-Key header. [http-retry-idempotency]",
+      "decision": "MODEL_ANSWER_WITH_DERIVED_CITATIONS",
+      "evaluation": {
+        "retrievalRecall": 1.0,
+        "reciprocalRank": 1.0,
+        "factCoverage": 0.5,
+        "citationRecall": 1.0,
+        "citationPrecision": 1.0,
+        "abstained": false,
+        "correct": false
+      }
+    }
+  },
+  {
+    "modelId": "qwen2_5_coder_1_5b_instruct_q4_0",
+    "caseId": "http-retry-rules",
+    "oldGroundingPolicy": "trusted-provenance-clause-anchors-extractive-fallback-v4",
+    "currentGroundingPolicy": "bounded-context-injection-screened-citation-safe-statement-grounding-v23",
+    "old": [
+      {
+        "promptSha256": "405012124f162cb48dd5e0057e3c58ad3519b7e2d114068830287259b1052f17",
+        "raw": "GET, HEAD, and POST are retried up to three attempts, and POST is retried only when it carries an Idempotency-Key header.",
+        "grounded": "The SDK retries GET and HEAD requests up to three attempts. A POST is retried only when it carries an Idempotency-Key header. [http-retry-idempotency]",
+        "decision": "EXTRACTIVE_FALLBACK",
+        "evaluation": {
+          "retrievalRecall": 1.0,
+          "reciprocalRank": 1.0,
+          "factCoverage": 1.0,
+          "citationRecall": 1.0,
+          "citationPrecision": 1.0,
+          "abstained": false,
+          "correct": true
+        }
+      },
+      {
+        "promptSha256": "405012124f162cb48dd5e0057e3c58ad3519b7e2d114068830287259b1052f17",
+        "raw": "GET, HEAD, and POST are retried up to three attempts, and POST is retried only when it carries an Idempotency-Key header.",
+        "grounded": "The SDK retries GET and HEAD requests up to three attempts. A POST is retried only when it carries an Idempotency-Key header. [http-retry-idempotency]",
+        "decision": "EXTRACTIVE_FALLBACK",
+        "evaluation": {
+          "retrievalRecall": 1.0,
+          "reciprocalRank": 1.0,
+          "factCoverage": 1.0,
+          "citationRecall": 1.0,
+          "citationPrecision": 1.0,
+          "abstained": false,
+          "correct": true
+        }
+      },
+      {
+        "promptSha256": "405012124f162cb48dd5e0057e3c58ad3519b7e2d114068830287259b1052f17",
+        "raw": "GET, HEAD, and POST are retried up to three attempts, and POST is retried only when it carries an Idempotency-Key header.",
+        "grounded": "The SDK retries GET and HEAD requests up to three attempts. A POST is retried only when it carries an Idempotency-Key header. [http-retry-idempotency]",
+        "decision": "EXTRACTIVE_FALLBACK",
+        "evaluation": {
+          "retrievalRecall": 1.0,
+          "reciprocalRank": 1.0,
+          "factCoverage": 1.0,
+          "citationRecall": 1.0,
+          "citationPrecision": 1.0,
+          "abstained": false,
+          "correct": true
+        }
+      }
+    ],
+    "current": {
+      "promptSha256": "4ea3dc42b106de0bb4c45e222130132afa8397ca251c7a87bdee115d4af3b697",
+      "raw": "GET, HEAD, and POST are retried up to three attempts, and POST is retried only when it carries an Idempotency-Key header.",
+      "grounded": "GET, HEAD, and POST are retried up to three attempts, and POST is retried only when it carries an Idempotency-Key header. [http-retry-idempotency]",
+      "decision": "MODEL_ANSWER_WITH_DERIVED_CITATIONS",
+      "evaluation": {
+        "retrievalRecall": 1.0,
+        "reciprocalRank": 1.0,
+        "factCoverage": 0.5,
+        "citationRecall": 1.0,
+        "citationPrecision": 1.0,
+        "abstained": false,
+        "correct": false
+      }
+    }
+  }
+]

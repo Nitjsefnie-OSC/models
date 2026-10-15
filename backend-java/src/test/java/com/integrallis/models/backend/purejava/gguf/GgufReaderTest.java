@@ -30,13 +30,6 @@ import org.junit.jupiter.api.Test;
 @Tag("unit")
 class GgufReaderTest {
 
-  private MemorySegment segmentFrom(byte[] data) {
-    var arena = Arena.ofConfined();
-    MemorySegment segment = arena.allocate(data.length);
-    MemorySegment.copy(data, 0, segment, ValueLayout.JAVA_BYTE, 0, data.length);
-    return segment;
-  }
-
   @Nested
   class ReadU32 {
 

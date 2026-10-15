@@ -1,0 +1,18 @@
+WARNING: Using incubator modules: jdk.incubator.vector
+Oct 11, 2026 9:47:09 PM com.integrallis.vectors.core.PanamaVectorUtilSupportProvider create
+INFO: vectors-core: Using Panama Vector API SIMD provider (vector bits: 256)
+Oct 11, 2026 9:47:09 PM com.integrallis.vectors.core.VectorizationProvider logActiveToggles
+INFO: vectors-core: provider=PanamaVectorUtilSupport panama=true maxBits=256 preferredBits=256 fastVectorFMA=true fastScalarFMA=true sve=false ggufParallel=true ggufParallelThreshold=1048576 ggufExecutor=persistent ggufThreads=16 ggufChunksPerThread=2 mappedKQuantLongOffsets=auto(q4=true,q5=false,q6=false) q4ShortPairwiseSupported=true q4UnsignedPairwiseSupported=true toggles=[(defaults — no -Dvectors.* overrides)]
+Oct 11, 2026 9:47:10 PM org.apache.lucene.internal.vectorization.PanamaVectorizationProvider <init>
+INFO: Java vector incubator API enabled; uses preferredBitSize=256; FMA enabled
+iteration 1/1 case=list-copy-null-handling correct=true retrieval=27.1ms ttft=2745.2ms decode=26.05 tok/s e2e=3748.1ms
+iteration 1/1 case=compute-if-absent-null correct=true retrieval=3.3ms ttft=894.6ms decode=28.28 tok/s e2e=1926.3ms
+iteration 1/1 case=virtual-thread-executor correct=true retrieval=5.6ms ttft=801.1ms decode=28.54 tok/s e2e=1581.4ms
+iteration 1/1 case=record-compact-validation correct=true retrieval=3.9ms ttft=770.8ms decode=25.96 tok/s e2e=1396.1ms
+iteration 1/1 case=gradle-java-25 correct=true retrieval=4.8ms ttft=906.2ms decode=28.84 tok/s e2e=2057.2ms
+iteration 1/1 case=http-retry-rules correct=false retrieval=2.8ms ttft=1083.6ms decode=24.93 tok/s e2e=2293.2ms
+iteration 1/1 case=migration-lock-expiry correct=true retrieval=2.0ms ttft=878.7ms decode=24.63 tok/s e2e=1857.5ms
+iteration 1/1 case=jackson-module-and-feature correct=true retrieval=1.8ms ttft=854.6ms decode=23.16 tok/s e2e=2154.0ms
+iteration 1/1 case=unsupported-cuda-kernel correct=true retrieval=3.7ms ttft=861.0ms decode=26.38 tok/s e2e=1439.4ms
+plain-java/rust-ffm/qwen2_5_coder_1_5b_instruct_q4_0: tier=FAILED_QUALITY success=9/9 p95-retrieval=18.5ms p95-ttft=2080.5ms p50-decode=26.05 tok/s p95-e2e=3166.2ms correct=88.9% model-answered=77.8% of-those-correct=85.7% extractive-fallback=11.1% truncated=0.0%
+report: /work/out/qwen2_5_coder_1_5b_instruct_q4_0.json

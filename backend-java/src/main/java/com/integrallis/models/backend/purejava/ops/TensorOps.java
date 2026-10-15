@@ -24,6 +24,7 @@ import com.integrallis.models.backend.purejava.quant.TernaryDequantizer;
 import com.integrallis.vectors.core.BFloat16Matrix;
 import com.integrallis.vectors.core.GgufQ4Kernel;
 import com.integrallis.vectors.core.GgufQ6BatchedKernel;
+import com.integrallis.vectors.core.GgufStagePlan;
 import com.integrallis.vectors.core.PanamaConstants;
 import com.integrallis.vectors.core.VectorUtil;
 import java.lang.foreign.MemorySegment;
@@ -64,6 +65,10 @@ public final class TensorOps {
     FIRST_THIRD,
     SECOND_THIRD
   }
+
+  private static final Thread EXACT_ACCESS_PROBE = Thread.ofPlatform().unstarted(() -> {});
+  private static final ThreadLocal<float[]> EXACT_WEIGHT_ROW =
+      ThreadLocal.withInitial(() -> new float[0]);
 
   private TensorOps() {}
 
@@ -181,7 +186,6 @@ public final class TensorOps {
       float[] out, float[] x, MemorySegment qWeight, GgufTensorType type, int rows, int cols) {
     if (type == GgufTensorType.Q4_0
         || type == GgufTensorType.Q5_0
-        || type == GgufTensorType.Q5_1
         || type == GgufTensorType.Q8_0
         || type == GgufTensorType.Q4_K
         || type == GgufTensorType.Q5_K
@@ -228,7 +232,7 @@ public final class TensorOps {
         cols,
         quantizedActivation,
         quantizedActivationScales,
-        new int[(cols + 3) / 4],
+        type == GgufTensorType.Q5_1 ? null : new int[(cols + 3) / 4],
         type == GgufTensorType.Q4_K || type == GgufTensorType.Q5_K
             ? new short[(cols + 15) / 16]
             : null,
@@ -296,8 +300,18 @@ public final class TensorOps {
 
   private static void ptqMatmul(
       float[] out, float[] input, MemorySegment weight, int rows, int columns) {
-    if (columns % 128 != 0)
-      throw new IllegalArgumentException("PTQ1_0 row width must be a multiple of 128");
+    ptqBatchedMatmul(out, input, weight, 1, rows, columns);
+  }
+
+  private static void ptqBatchedMatmul(
+      float[] out, float[] input, MemorySegment weight, int batchSize, int rows, int columns) {
+    if (batchSize < 1 || rows < 1 || columns < 128 || columns % 128 != 0)
+      throw new IllegalArgumentException("PTQ1_0 requires positive dimensions and 128-wide blocks");
+    Objects.checkFromIndexSize(0, Math.multiplyExact(batchSize, rows), out.length);
+    Objects.checkFromIndexSize(0, Math.multiplyExact(batchSize, columns), input.length);
+    byte[] quants = new byte[Math.multiplyExact(batchSize, columns)];
+    float[] scales = new float[quants.length / 32];
+    TernaryDequantizer.quantizePtqActivations(input, quants.length, quants, scales);
     long rowBytes = (long) (columns / 128) * 28;
     int threads = packedProjectionThreads(rows, rowBytes, weight);
     int chunk = (rows + threads - 1) / threads;
@@ -307,9 +321,12 @@ public final class TensorOps {
       int to = Math.min(rows, first + chunk);
       pending.add(
           PackedProjectionThreads.EXECUTOR.submit(
-              () -> ptqRows(out, input, weight, rowBytes, columns, from, to)));
+              () ->
+                  ptqRows(
+                      out, quants, scales, weight, rowBytes, batchSize, rows, columns, from, to)));
     }
-    ptqRows(out, input, weight, rowBytes, columns, 0, Math.min(rows, chunk));
+    ptqRows(
+        out, quants, scales, weight, rowBytes, batchSize, rows, columns, 0, Math.min(rows, chunk));
     for (Future<?> future : pending) {
       try {
         future.get();
@@ -324,14 +341,21 @@ public final class TensorOps {
 
   private static void ptqRows(
       float[] out,
-      float[] input,
+      byte[] input,
+      float[] scales,
       MemorySegment weight,
       long rowBytes,
+      int batchSize,
+      int rows,
       int columns,
       int from,
       int to) {
     for (int index = from; index < to; index++) {
-      out[index] = TernaryDequantizer.dotProductPtq1_0(weight, index * rowBytes, input, 0, columns);
+      for (int batch = 0; batch < batchSize; batch++) {
+        out[batch * rows + index] =
+            TernaryDequantizer.dotProductPtq1_0Q8_0(
+                weight, index * rowBytes, input, scales, batch * columns, columns);
+      }
     }
   }
 
@@ -366,7 +390,7 @@ public final class TensorOps {
       throw new IllegalArgumentException(
           type + " row length must be a multiple of " + blockSize + ", but was " + cols);
     }
-    ggufExactBatchedMatmul(out, x, qWeight, type, 1, rows, cols, new float[cols]);
+    ggufExactBatchedMatmul(out, x, qWeight, type, 1, rows, cols, exactCallerScratch(type, cols));
   }
 
   /**
@@ -1475,6 +1499,7 @@ public final class TensorOps {
   /** Returns whether the mapped tensor type has a weight-reusing batched prefill kernel. */
   public static boolean supportsBatchedMatmul(GgufTensorType type) {
     return type == GgufTensorType.F16
+        || type == GgufTensorType.PTQ1_0
         || type == GgufTensorType.Q4_0
         || type == GgufTensorType.Q4_1
         || type == GgufTensorType.BF16
@@ -1511,7 +1536,54 @@ public final class TensorOps {
       throw new IllegalArgumentException(
           "decoded weight row is too small: " + decodedWeightRow.length + " < " + columns);
     }
-    for (int row = 0; row < rows; row++) {
+    // Preserve the F32 reduction while sharing one decoded weight row across the batch.
+    // Use the existing GGUF executor and threshold; confined segments stay on their owner.
+    if (type == GgufTensorType.Q5_1
+        && rows > 1
+        && (long) batchSize * rows * columns
+            >= Math.max(1L, Long.getLong("vectors.gguf.parallelThreshold", 131_072L))
+        && weights.isAccessibleBy(EXACT_ACCESS_PROBE)) {
+      GgufStagePlan.of(
+              GgufStagePlan.stage(
+                  rows,
+                  (from, to) -> {
+                    float[] local = exactQ51Scratch(columns);
+                    exactRows(
+                        output, input, weights, type, batchSize, rows, columns, local, from, to);
+                  }))
+          .execute();
+      return;
+    }
+    exactRows(output, input, weights, type, batchSize, rows, columns, decodedWeightRow, 0, rows);
+  }
+
+  private static float[] exactCallerScratch(GgufTensorType type, int columns) {
+    // Q4_1 retains its existing lifetime. Q5_1 shares the same per-thread scratch policy
+    // for serial calls and executor callbacks; exactRows invokes no nested projections.
+    return type == GgufTensorType.Q5_1 ? exactQ51Scratch(columns) : new float[columns];
+  }
+
+  private static float[] exactQ51Scratch(int columns) {
+    float[] local = EXACT_WEIGHT_ROW.get();
+    if (local.length < columns) {
+      local = new float[columns];
+      EXACT_WEIGHT_ROW.set(local);
+    }
+    return local;
+  }
+
+  private static void exactRows(
+      float[] output,
+      float[] input,
+      MemorySegment weights,
+      GgufTensorType type,
+      int batchSize,
+      int rows,
+      int columns,
+      float[] decodedWeightRow,
+      int from,
+      int to) {
+    for (int row = from; row < to; row++) {
       GgufTensorValues.dequantizeRow(weights, type, row, columns, decodedWeightRow);
       for (int batch = 0; batch < batchSize; batch++) {
         output[batch * rows + row] =
@@ -1575,6 +1647,7 @@ public final class TensorOps {
     }
     switch (type) {
       case F16 -> multiplyF16Batch(out, x, qWeight, batchSize, rows, cols);
+      case PTQ1_0 -> ptqBatchedMatmul(out, x, qWeight, batchSize, rows, cols);
       case BF16 -> BFloat16Matrix.of(qWeight, rows, cols).multiplyBatch(x, 0, batchSize, out, 0);
       case Q4_0 ->
           VectorUtil.ggufQ4_0Q8_0BatchedMatmul(
@@ -1645,11 +1718,12 @@ public final class TensorOps {
       // Q5_1 carries a per-block minimum rather than a centred quant, so it has no Qx-by-Q8
       // kernel: the Q8 activation path folds a bias it cannot express. It therefore takes the
       // exact mapped-weight route, dequantizing one weight row at a time against F32 activations.
-      // Correct and allocation-free, and it is what makes the mixed-quantization embedding
+      // Reuses Q5_1 row scratch after its first allocation, and makes mixed-quantization embedding
       // artifacts loadable at all -- all-MiniLM-L6-v2 and granite-embedding-107m carry Q5_1
       // attention tensors at Q4_K_S, Q5_K_S and Q5_K_M.
       case Q4_1, Q5_1 ->
-          ggufExactBatchedMatmul(out, x, qWeight, type, batchSize, rows, cols, new float[cols]);
+          ggufExactBatchedMatmul(
+              out, x, qWeight, type, batchSize, rows, cols, exactCallerScratch(type, cols));
       default -> throw new AssertionError("unhandled batched matmul type: " + type);
     }
   }

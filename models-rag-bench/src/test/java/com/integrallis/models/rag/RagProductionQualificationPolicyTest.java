@@ -16,6 +16,7 @@
 package com.integrallis.models.rag;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import com.integrallis.models.api.BackendDiagnostics;
 import java.util.ArrayList;
@@ -24,6 +25,110 @@ import java.util.Map;
 import org.junit.jupiter.api.Test;
 
 class RagProductionQualificationPolicyTest {
+
+  @Test
+  void invalidDecodeMeasurementsCannotPassTheRelativeFloor() {
+    var reference = RagPublisherReference.BONSAI2_PTQ1_0;
+    var candidate = publisherReport("rust-ffm", "candidate", 100, 1000);
+    for (double invalid : new double[] {0, -1, Double.NaN, Double.POSITIVE_INFINITY}) {
+      var baseline = publisherReport("llama.cpp", reference.backendVersion(), invalid, 1000);
+      assertThat(
+              RagProductionQualificationPolicy.assessPublisherReference(
+                      candidate, List.of(baseline), reference)
+                  .qualified())
+          .isFalse();
+    }
+  }
+
+  @Test
+  void publisherReferenceRequiresExplicitPolicyAndKeepsStrictRelativeThresholds() {
+    var reference = RagPublisherReference.BONSAI2_PTQ1_0;
+    var candidate = publisherReport("rust-ffm", "candidate", 80, 1500);
+    var baseline = publisherReport("llama.cpp", reference.backendVersion(), 100, 1000);
+    assertThat(RagProductionQualificationPolicy.assess(candidate, List.of(baseline)).qualified())
+        .isFalse();
+    assertThat(
+            RagProductionQualificationPolicy.assessPublisherReference(
+                    candidate, List.of(baseline), reference)
+                .qualified())
+        .isTrue();
+    for (var failing :
+        List.of(
+            publisherReport("rust-ffm", "candidate", 79.99, 1500),
+            publisherReport("rust-ffm", "candidate", 80, 1500.01))) {
+      assertThat(
+              RagProductionQualificationPolicy.assessPublisherReference(
+                      failing, List.of(baseline), reference)
+                  .verdict())
+          .isEqualTo(RagQualificationVerdict.FAILED_RELATIVE_GATE);
+    }
+  }
+
+  @Test
+  void publisherReferenceRejectsWrongIdentityVersionArtifactAndHost() {
+    var reference = RagPublisherReference.BONSAI2_PTQ1_0;
+    var candidate = publisherReport("rust-ffm", "candidate", 100, 1000);
+    for (var baseline :
+        List.of(
+            publisherReport("llama.cpp", "unversioned", 100, 1000),
+            publisherReport("ollama", reference.backendVersion(), 100, 1000),
+            withEnvironment(
+                publisherReport("llama.cpp", reference.backendVersion(), 100, 1000),
+                environment("other-host")))) {
+      assertThat(
+              RagProductionQualificationPolicy.assessPublisherReference(
+                      candidate, List.of(baseline), reference)
+                  .verdict())
+          .isEqualTo(RagQualificationVerdict.NO_COMPARABLE_BASELINE);
+    }
+    assertThatThrownBy(
+            () ->
+                RagProductionQualificationPolicy.assessPublisherReference(
+                    report("rust-ffm", "different-artifact", 100, 1000), List.of(), reference))
+        .isInstanceOf(IllegalArgumentException.class)
+        .hasMessageContaining("candidate does not match");
+    assertThatThrownBy(() -> RagPublisherReference.fromId("unreviewed"))
+        .isInstanceOf(IllegalArgumentException.class);
+  }
+
+  @Test
+  void publisherReferenceCannotOverrideQualityFailure() {
+    var reference = RagPublisherReference.BONSAI2_PTQ1_0;
+    var candidate =
+        withSummary(
+            publisherReport("rust-ffm", "candidate", 100, 1000),
+            summary(100, 1000, .8, 1, RagPerformanceTier.FAILED_QUALITY));
+    var baseline = publisherReport("llama.cpp", reference.backendVersion(), 100, 1000);
+    assertThat(
+            RagProductionQualificationPolicy.assessPublisherReference(
+                    candidate, List.of(baseline), reference)
+                .verdict())
+        .isEqualTo(RagQualificationVerdict.FAILED_ABSOLUTE_GATE);
+  }
+
+  private static RagBenchmarkReport publisherReport(
+      String backend, String version, double throughput, double latency) {
+    var r = report(backend, "placeholder", throughput, latency);
+    var reference = RagPublisherReference.BONSAI2_PTQ1_0;
+    return new RagBenchmarkReport(
+        r.schemaVersion(),
+        r.generatedAt(),
+        r.framework(),
+        backend,
+        version,
+        reference.modelId(),
+        r.model(),
+        reference.artifactSha256(),
+        reference.artifactSizeBytes(),
+        r.settings(),
+        r.environment(),
+        r.backendDiagnostics(),
+        r.hostedApiPricing(),
+        r.summary(),
+        r.performanceTier(),
+        r.runs(),
+        r.failures());
+  }
 
   @Test
   void qwenQualifiesAgainstBothSameHostComparators() {

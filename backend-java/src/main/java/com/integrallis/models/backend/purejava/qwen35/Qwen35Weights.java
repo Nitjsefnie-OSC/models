@@ -375,11 +375,6 @@ final class Qwen35Weights {
         : new Matrix(tokenEmbedding, tokenEmbeddingType, vocabSize, embeddingDim);
   }
 
-  /** Whether this model carries its own output head rather than tying it to the embedding. */
-  boolean hasUntiedOutputHead() {
-    return outputHead != null;
-  }
-
   float[] outputNorm() {
     return outputNorm;
   }

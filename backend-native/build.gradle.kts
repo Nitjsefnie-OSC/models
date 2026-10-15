@@ -12,7 +12,7 @@ import org.gradle.jvm.tasks.Jar
 
 apply(plugin = "maven-publish")
 
-val nativeAbi = 6
+val nativeAbi = 7
 
 dependencies {
     api(project(":models-api"))
@@ -204,6 +204,9 @@ val nativePlatformJar by tasks.registering(Jar::class) {
     archiveBaseName.set("models-kernels-${nativePlatform.id}")
     destinationDirectory.set(layout.buildDirectory.dir("native-artifacts"))
     from(nativeResourceRoot)
+    from("src/main/resources") {
+        include("META-INF/NOTICE", "META-INF/licenses/arm-optimized-routines.txt")
+    }
     isPreserveFileTimestamps = false
     isReproducibleFileOrder = true
     manifest {
@@ -227,6 +230,9 @@ artifacts {
 fun verifyNativeArtifact(artifact: File, platform: NativePlatformSpec) {
     require(artifact.isFile) { "Missing native artifact: ${artifact.absolutePath}" }
     JarFile(artifact).use { jar ->
+        for (notice in listOf("META-INF/NOTICE", "META-INF/licenses/arm-optimized-routines.txt")) {
+            require(jar.getJarEntry(notice) != null) { "${artifact.name} is missing $notice" }
+        }
         val resourceDirectory = "META-INF/models/native/${platform.id}/"
         val metadataEntry =
             jar.getJarEntry("${resourceDirectory}native.properties")
@@ -579,4 +585,34 @@ if (githubPackagesEnabled) {
     }.configureEach {
         dependsOn(nativeVerification, bundleVerification)
     }
+}
+
+
+ tasks.register<Test>("bonsai2NativeSlowTest") {
+    group = "verification"
+    description = "Run the exact Bonsai PTQ1_0 oracle and session tests through Rust/FFM"
+    testClassesDirs = sourceSets["test"].output.classesDirs
+    classpath = sourceSets["test"].runtimeClasspath
+    useJUnitPlatform { includeTags("slow") }
+    filter {
+        includeTestsMatching("*Bonsai2NativeModelFixtureSlowTest")
+        includeTestsMatching("*Bonsai2NativeFreshSessionSlowTest")
+    }
+    include(
+        "**/Bonsai2NativeModelFixtureSlowTest.class",
+        "**/Bonsai2NativeFreshSessionSlowTest.class",
+    )
+    // A new JVM per class preserves the first-session baseline before any other fixture warms it.
+    forkEvery = 1
+    jvmArgs("-XX:ActiveProcessorCount=4")
+    dependsOn(project(":backend-java").tasks.named("downloadBonsai2Ptq10Model"))
+    outputs.upToDateWhen { false }
+    maxParallelForks = 1
+    maxHeapSize = "4g"
+    // These tests print the host numerical configuration and a per-step logit digest. Without
+    // this, a divergence that only happens on one runner leaves nothing in the log to compare.
+    testLogging {
+        showStandardStreams = true
+    }
+    extensions.configure<JacocoTaskExtension> { isEnabled = false }
 }

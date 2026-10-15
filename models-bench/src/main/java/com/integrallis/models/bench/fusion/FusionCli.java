@@ -31,7 +31,6 @@ import com.integrallis.models.bench.fusion.ReportModel.Summary;
 import com.integrallis.models.bench.fusion.ReportModel.Timings;
 import java.io.IOException;
 import java.io.PrintStream;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.Instant;
@@ -525,10 +524,6 @@ public final class FusionCli {
       }
     }
     return List.copyOf(parts);
-  }
-
-  static String readString(Path path) throws IOException {
-    return Files.readString(path, StandardCharsets.UTF_8);
   }
 
   static Map<String, Object> map(Object... keyValues) {

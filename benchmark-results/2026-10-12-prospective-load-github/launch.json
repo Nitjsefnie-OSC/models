@@ -1,0 +1,12 @@
+{
+  "createdAt": "2026-10-12T23:46:51Z",
+  "databaseId": 38323913262,
+  "headSha": "6b2325d6ba842c81ef6a49de3b3837f44e4bbeab",
+  "status": "in_progress",
+  "url": "https://github.com/integrallis/models/actions/runs/38323913262",
+  "models": "qwen-bf16 only; Bonsai held",
+  "pairsPerArchitecture": 400,
+  "vectorsRevision": "6893a587d7f1d8fd2cd58e85310ef87579b42b25",
+  "originalMacroRun": 38321278750,
+  "independentPhase": true
+}

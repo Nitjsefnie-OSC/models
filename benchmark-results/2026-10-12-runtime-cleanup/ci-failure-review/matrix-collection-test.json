@@ -1,0 +1,12 @@
+[
+  {
+    "firstAuditExit": 0,
+    "matrixExit": 0,
+    "executedAudits": 5
+  },
+  {
+    "firstAuditExit": 1,
+    "matrixExit": 1,
+    "executedAudits": 5
+  }
+]

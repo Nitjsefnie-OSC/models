@@ -1,0 +1,15 @@
+{
+  "run": 38308197116,
+  "source": "b99ac282",
+  "failure": "Gradle docs plugin classpath could not find jackson-annotations:2.14.2 before any model fixture executed",
+  "verification": "Both exact searched repository URLs returned HTTP200 with identical6209-byte POM",
+  "pomSha256": "84ae0341837d7696a61043d809e43260a5eb077232d1dcaa464c8da549cd9ea0",
+  "otherJobs": "Same-source native Linux x86/ARM and macOS ARM completed successfully; full local build also resolved artifact",
+  "action": "Rerun failed job on unchanged source; no retry wrapper, dependency replacement or repository change",
+  "logSha256": "af382f756d15761565c7f846a6ddd8bf5569d3066238b13c61d92ba93ee912ba",
+  "unchangedRerun": {
+    "conclusion": "success",
+    "completedAt": "2026-10-12T21:17:44Z",
+    "url": "https://github.com/integrallis/models/actions/runs/38308197116"
+  }
+}

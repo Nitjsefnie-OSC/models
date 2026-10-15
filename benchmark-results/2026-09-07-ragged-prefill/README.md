@@ -16,12 +16,18 @@ cross-user attention mask because every session owns its attention and KV state.
 - Context capacity: 512 tokens per session
 - Concurrency: 4 independent sessions with intentionally unequal prompt lengths
 - Warmup: 2 rounds
-- Measurement: 5 rounds in fresh JVM processes
+- Measurement: 5 iterations per mode, with each mode run in a separate JVM process
 - Timed work: prompt prefill only
 - Correctness after the clock: argmax of every final logit row plus one retained-session continuation
 - Artifact identity: exact SHA-256 is stored in each JSON report
 
 ## Results
+
+The retained reports are [MiniCPM sequential](minicpm5-sequential.json),
+[MiniCPM ragged](minicpm5-ragged.json), [Qwen sequential](qwen3-0.6b-sequential.json),
+and [Qwen ragged](qwen3-0.6b-ragged.json). The complete generation-session comparison uses
+[chunked scheduling](minicpm5-runtime-chunked.json) and [ragged scheduling](minicpm5-runtime-ragged.json).
+The throughput, memory and matching output hashes below can be checked directly in those files.
 
 | Model | Sequential | Ragged | Change | Correctness |
 | --- | ---: | ---: | ---: | --- |
@@ -50,6 +56,7 @@ together, improving tail fairness at the expense of the first rows. The output h
 Run each mode in a separate JVM, replacing `<MODEL>` with the exact GGUF path:
 
 ```shell
+mkdir -p build/ragged-prefill
 ./gradlew :models-bench:run --args='profile-ragged-prefill \
   --model <MODEL> \
   --mode sequential \
@@ -58,10 +65,10 @@ Run each mode in a separate JVM, replacing `<MODEL>` with the exact GGUF path:
   --warmups 2 \
   --iterations 5 \
   --prompt "Explain why a Java application should isolate request state." \
-  --output ../benchmark-results/2026-09-07-ragged-prefill/result.json' \
+  --output ../build/ragged-prefill/result.json' \
   --no-daemon
 ```
 
-Use `--mode ragged` for the candidate. Compare `artifactSha256`, `promptTokens`, and
+The output path above creates a new observation; it is not a missing retained report. Use separate output filenames for each mode. Use `--mode ragged` for the candidate. Compare `artifactSha256`, `promptTokens`, and
 `outputSha256` before comparing throughput. The reports also retain process memory, CPU, GC, JVM,
 and backend optimization diagnostics.

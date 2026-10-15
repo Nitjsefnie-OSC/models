@@ -1,13 +1,18 @@
 # Reproducing the Rust PTX arm
 
-Campaign: `benchmark-results/2026-09-18-gpu-large-model/PREREGISTRATION.md` (Amendment 1).
+This is a historical reproduction note, not a current device qualification. The original
+preregistration and raw September capability report are not retained in this directory, so the
+recorded capability pass and its numbers below cannot be independently verified here. Later
+October device reports are separate experiments and are not replacements for the missing files.
+The parity and decode sections explicitly record that those device measurements had not run.
+Any new run must record its own source, binaries, device and outputs.
 Arm (c): our own minimal Rust kernels compiled to PTX. Branch `feat/native-cuda-kernels`.
 
-**Every command below has been executed.** Which host it was executed on is marked per step, and
+The original note recorded executions on the hosts listed below; the missing raw reports limit verification of those historical claims. The host distinction remains relevant, and
 that distinction is the point of this file. The previous revision of this guide contained commands
 that had never been run — `compare --model ... --prompts ...` and `profile-decode --warmups ...
 --iterations ...` accept none of those options — and a GPU host sat idle at $1.09/hr while that was
-discovered by hand. Nothing goes in here now that has not been run somewhere.
+discovered by hand. These historical command forms must be checked against the selected runtime before reuse.
 
 | step | what it is | run on |
 | --- | --- | --- |
@@ -103,15 +108,16 @@ Ran clean on the L40S pod, 2026-09-18.
 ## Step 2. Capability gate — device, kernel identity, readiness (G2 scaffolding, G5)
 
 ```bash
+mkdir -p build/cuda-reproduction
 ./gradlew :models-bench:installDist
 models-bench/build/install/models-bench/bin/models-bench cuda-kernel-gate \
   --mode capability \
   --require-device true \
-  --report benchmark-results/2026-09-18-gpu-large-model/rust-ptx-capability.json \
+  --report build/cuda-reproduction/rust-ptx-capability.json \
   --models-revision "$(git rev-parse HEAD)"
 ```
 
-**Measured on the L40S pod, 2026-09-18: PASSED.** Compute capability 8.9, driver 595.91.07, kernel
+**Historical note: capability was reported PASSED on the L40S pod, 2026-09-18; its raw report is missing.** Compute capability 8.9, driver 595.91.07, kernel
 id `8f6fcdb39837`, readiness 525 ms against a 120,000 ms ceiling. The module loads on the device,
 all three kernels resolve.
 
@@ -147,7 +153,7 @@ models-bench/build/install/models-bench/bin/models-bench cuda-kernel-gate \
   --max-tokens 64 \
   --context 4096 \
   --require-device true \
-  --report benchmark-results/2026-09-18-gpu-large-model/rust-ptx-parity.json \
+  --report build/cuda-reproduction/rust-ptx-parity.json \
   --models-revision "$(git rev-parse HEAD)"
 ```
 
@@ -202,7 +208,7 @@ models-bench/build/install/models-bench/bin/models-bench cuda-kernel-gate \
   --context 4096 \
   --arm both \
   --require-device true \
-  --report benchmark-results/2026-09-18-gpu-large-model/rust-ptx-decode.json \
+  --report build/cuda-reproduction/rust-ptx-decode.json \
   --models-revision "$(git rev-parse HEAD)"
 ```
 
@@ -246,7 +252,7 @@ models-bench/build/install/models-bench/bin/models-bench cuda-kernel-gate \
   --model "$GEMMA4_Q4KM_GGUF" \
   --prompts benchmark-results/2026-09-18-gpu-large-model/prompts.txt \
   --max-tokens 64 --warmup-tokens 16 --context 4096 \
-  --report benchmark-results/2026-09-18-gpu-large-model/cpu-control-module-present.json \
+  --report build/cuda-reproduction/cpu-control-module-present.json \
   --models-revision "$(git rev-parse HEAD)"
 
 # and the same run from a build without :backend-cuda on the classpath
@@ -309,9 +315,11 @@ not chat behaviour — so nothing about answer quality should be read out of a g
 
 ## What a complete result set looks like
 
+The command output paths under `build/cuda-reproduction/` create new observations. They are not citations of retained September reports.
+
 | file | gate | status |
 | --- | --- | --- |
-| `rust-ptx-capability.json` | G2 scaffolding, G5 | measured on the L40S, PASSED |
+| `rust-ptx-capability.json` | G2 scaffolding, G5 | reported on the L40S; raw report unavailable |
 | `rust-ptx-parity.json` | G1 | not yet run on a device |
 | `rust-ptx-decode.json` | G4, and the overhead term | not yet run on a device |
 | `cpu-control-module-present.json` | G3 | not yet run on a device |

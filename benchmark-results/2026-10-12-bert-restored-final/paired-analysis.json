@@ -1,0 +1,98 @@
+[
+  {
+    "arch": "x86",
+    "phase": "bert",
+    "metric": "nanos",
+    "pairs": 10,
+    "ratio": 0.9983984895511986,
+    "ci95": [
+      0.9848853125044635,
+      1.0117678787422888
+    ],
+    "complete": true
+  },
+  {
+    "arch": "x86",
+    "phase": "bert",
+    "metric": "allocatedBytes",
+    "pairs": 10,
+    "ratio": 0.08271642766794488,
+    "ci95": [
+      0.08271627165225587,
+      0.08271673970020565
+    ],
+    "complete": true
+  },
+  {
+    "arch": "x86",
+    "phase": "bert",
+    "metric": "loadNanos",
+    "pairs": 10,
+    "ratio": 0.9938643306918062,
+    "ci95": [
+      0.9752916385658824,
+      1.0128290165888352
+    ],
+    "complete": true
+  },
+  {
+    "arch": "x86",
+    "phase": "bert",
+    "metric": "peakRssKb",
+    "pairs": 10,
+    "ratio": 1.004266119426964,
+    "ci95": [
+      0.9286376765993333,
+      1.082335570018393
+    ],
+    "complete": true
+  },
+  {
+    "arch": "arm",
+    "phase": "bert",
+    "metric": "nanos",
+    "pairs": 10,
+    "ratio": 0.9823585782058378,
+    "ci95": [
+      0.9768500125886956,
+      0.9878323760279861
+    ],
+    "complete": true
+  },
+  {
+    "arch": "arm",
+    "phase": "bert",
+    "metric": "allocatedBytes",
+    "pairs": 10,
+    "ratio": 0.30901174536069015,
+    "ci95": [
+      0.3088710320451964,
+      0.30922227324057955
+    ],
+    "complete": true
+  },
+  {
+    "arch": "arm",
+    "phase": "bert",
+    "metric": "loadNanos",
+    "pairs": 10,
+    "ratio": 1.003773479191536,
+    "ci95": [
+      0.9959813715490369,
+      1.0130108223337513
+    ],
+    "complete": true
+  },
+  {
+    "arch": "arm",
+    "phase": "bert",
+    "metric": "peakRssKb",
+    "pairs": 10,
+    "ratio": 1.0046998716067197,
+    "ci95": [
+      0.9950453303691428,
+      1.0140578045746145
+    ],
+    "complete": true
+  }
+]

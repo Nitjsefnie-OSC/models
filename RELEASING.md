@@ -43,12 +43,14 @@ evidence, and a changed upstream version invalidates the downstream dependency r
 API numeric kernels. The release workflow builds and tests the Models-owned
 Rust kernels on every supported native platform and compiles the Apple
 Foundation Models bridge on macOS before staging the signed Maven artifacts.
-Models ships **one** GPU implementation, `backend-cuda`. The TornadoVM arm was removed in 0.3.53:
-measured on the same RTX 4090 and the same model, `backend-cuda` reached exact token parity and
-31.26 tok/s decode where TornadoVM managed 6.49 tok/s over 36 failed `cuLaunchKernel` calls, and it
-required a separately installed runtime that the Maven artifact could not carry. The release
+Models ships **one** GPU implementation, `backend-cuda`. The TornadoVM arm was removed in 0.3.53.
+On the recorded RTX 4090/model comparison, `backend-cuda` reached exact token parity and
+31.26 tok/s decode. The TornadoVM attempt recorded 36 failed `cuLaunchKernel` calls and did not
+reach the exact-token gate; its reported 6.49 tok/s is not valid throughput for working inference.
+It also required a separately installed runtime that the Maven artifact could not carry. Those
+results reject that implementation, not every possible Java-authored device kernel. The release
 precondition that pointed at `models-accelerator-bench/results/` went with it; `backend-cuda`'s
-gates are `cuda-kernel-gate --mode capability|parity|decode` and need no external runtime.
+gates are `cuda-kernel-gate --mode capability|parity|decode` and need no external inference runtime.
 
 The workflow uses the same Maven Central and GPG secrets as `mfcqi-java`:
 `MAVENCENTRAL_USERNAME`, `MAVENCENTRAL_PASSWORD`, `GPG_PUBLIC_KEY`,

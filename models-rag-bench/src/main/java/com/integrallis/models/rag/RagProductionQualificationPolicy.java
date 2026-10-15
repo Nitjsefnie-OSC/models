@@ -25,6 +25,7 @@ import java.util.Set;
 /** Production gate combining grounded RAG SLOs with same-host local-engine comparisons. */
 public final class RagProductionQualificationPolicy {
   public static final String POLICY_ID = "production-rag-model-contribution-v6";
+  public static final String PUBLISHER_POLICY_ID = "production-rag-publisher-reference-v1";
   public static final double MINIMUM_MODEL_ANSWER_RATE = 1.0 / 3.0;
   public static final double MINIMUM_MODEL_ANSWER_CORRECT_RATE = 0.90;
 
@@ -41,6 +42,26 @@ public final class RagProductionQualificationPolicy {
 
   public static RagProductionQualification assess(
       RagBenchmarkReport candidate, List<RagBenchmarkReport> baselines) {
+    return assess(candidate, baselines, null);
+  }
+
+  /** Uses a reviewed, exact-artifact publisher reference under a separate, stricter policy ID. */
+  public static RagProductionQualification assessPublisherReference(
+      RagBenchmarkReport candidate,
+      List<RagBenchmarkReport> baselines,
+      RagPublisherReference reference) {
+    Objects.requireNonNull(reference, "reference");
+    if (!reference.matchesArtifact(Objects.requireNonNull(candidate, "candidate"))) {
+      throw new IllegalArgumentException(
+          "candidate does not match publisher reference " + reference.id());
+    }
+    return assess(candidate, baselines, reference);
+  }
+
+  private static RagProductionQualification assess(
+      RagBenchmarkReport candidate,
+      List<RagBenchmarkReport> baselines,
+      RagPublisherReference reference) {
     Objects.requireNonNull(candidate, "candidate");
     Objects.requireNonNull(baselines, "baselines");
 
@@ -80,7 +101,13 @@ public final class RagProductionQualificationPolicy {
     Map<String, String> exclusions = new LinkedHashMap<>();
     for (RagBenchmarkReport baseline : baselines) {
       Objects.requireNonNull(baseline, "baseline");
-      RelativeThreshold threshold = THRESHOLDS.get(baseline.backend());
+      if (reference != null && !reference.matchesComparator(baseline)) {
+        exclusions.put(
+            baseline.backend(), "comparator does not match the pinned publisher reference");
+        continue;
+      }
+      RelativeThreshold threshold =
+          reference == null ? THRESHOLDS.get(baseline.backend()) : new RelativeThreshold(0.80, 1.5);
       if (threshold == null) {
         exclusions.put(baseline.backend(), "unsupported comparator backend");
         continue;
@@ -110,7 +137,12 @@ public final class RagProductionQualificationPolicy {
             .map(RagComparatorAssessment::comparatorBackend)
             .toList();
     RagQualificationVerdict verdict =
-        qualifyingComparators.stream().noneMatch(AUTHORITATIVE_ENGINES::contains)
+        qualifyingComparators.stream()
+                .noneMatch(
+                    backend ->
+                        reference == null
+                            ? AUTHORITATIVE_ENGINES.contains(backend)
+                            : "llama.cpp".equals(backend))
             ? RagQualificationVerdict.FAILED_RELATIVE_GATE
             : RagQualificationVerdict.QUALIFIED;
     return result(
@@ -263,7 +295,7 @@ public final class RagProductionQualificationPolicy {
         ratio(candidate.summary().ttftMillis().p95(), baseline.summary().ttftMillis().p95());
 
     List<String> failures = new ArrayList<>();
-    if (decodeRatio < threshold.minimumDecodeRatio()) {
+    if (!Double.isFinite(decodeRatio) || decodeRatio < threshold.minimumDecodeRatio()) {
       failures.add("decode throughput below relative floor");
     }
     if (endToEndRatio > threshold.maximumEndToEndRatio()) {

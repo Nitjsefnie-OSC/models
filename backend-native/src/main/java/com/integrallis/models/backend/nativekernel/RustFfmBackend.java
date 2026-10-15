@@ -39,8 +39,8 @@ import java.util.Map;
 import java.util.Objects;
 
 /**
- * GGUF backend that keeps transformer execution in Java and delegates qualified matrix kernels to
- * Models-owned Rust code through FFM.
+ * GGUF backend that keeps transformer execution in Java and delegates eligible operations to
+ * Models-owned Rust kernels through FFM.
  */
 public final class RustFfmBackend
     implements GroupedDecisionBackend,
@@ -49,7 +49,7 @@ public final class RustFfmBackend
         BatchInferenceBackend {
   public static final String LIBRARY_PATH_PROPERTY = "models.native.kernels.library";
   public static final String LIBRARY_PATH_ENV = "MODELS_NATIVE_KERNELS_LIBRARY";
-  public static final String PLAN_VERSION = "rust-ffm-v13";
+  public static final String PLAN_VERSION = "rust-ffm-v14";
 
   /** The recorded decision this backend's grouping break-even turns on. */
   private static final String NATIVE_DECODE_ENVIRONMENT_KEY = "native-quantized-decode";
@@ -377,6 +377,18 @@ public final class RustFfmBackend
     environment.put("native-q5-0-grouped", "false");
     environment.put("native-gated-delta-net", Boolean.toString(kernel.supportsGatedDeltaNet()));
     List<OptimizationDecision> optimizations = new ArrayList<>(javaDiagnostics.optimizations());
+    boolean ptq =
+        kernel.supports(com.integrallis.models.backend.purejava.gguf.GgufTensorType.PTQ1_0);
+    environment.put("ptq-activation-contract", "q8_0-f16-scales-nearest-even");
+    optimizations.add(
+        new OptimizationDecision(
+            "rust-ptq1-0-q8-0-batched-matmul",
+            ptq ? OptimizationStatus.ENABLED : OptimizationStatus.DISABLED,
+            ptq
+                ? "eligible PTQ1_0 projections use Q8_0 activations with the Java fallback's pinned FMA order"
+                : "native PTQ1_0 capability absent; use the Java Q8_0 activation contract",
+            Map.of("activation", "Q8_0", "weight", "PTQ1_0", "transformer", "java")));
+
     optimizations.add(
         nativeQuantizedDecision(
             "rust-q4-0-batched-matmul",
@@ -408,11 +420,12 @@ public final class RustFfmBackend
     optimizations.add(
         new OptimizationDecision(
             "rust-gated-delta-net",
-            OptimizationStatus.DISABLED,
-            "the Qwen 3.5 recurrence stays in Java: the shim's chunked recurrence agrees only to"
-                + " 2.0e-4 relative, every certified Qwen 3.5 record was produced with the Java one,"
-                + " and whether the shim is faster here is unmeasured. Adopting it is an epoch"
-                + " change, not a setting",
+            kernel.supportsGatedDeltaNet()
+                ? OptimizationStatus.ENABLED
+                : OptimizationStatus.DISABLED,
+            kernel.supportsGatedDeltaNet()
+                ? "sequential recurrent heads share the projection worker pool; dimensions up to 256"
+                : "the native recurrence is unavailable or incompatible with the Java fused arithmetic contract",
             Map.of(
                 "abi",
                 Integer.toString(NativeKernelLibrary.ABI_VERSION),
@@ -423,9 +436,12 @@ public final class RustFfmBackend
     optimizations.add(
         new OptimizationDecision(
             "rust-grouped-gated-delta-net",
-            OptimizationStatus.DISABLED,
-            "unrouted for the same reason as rust-gated-delta-net: adopting it would change the"
-                + " bytes published Qwen 3.5 records claim",
+            kernel.supportsGroupedGatedDeltaNet()
+                ? OptimizationStatus.ENABLED
+                : OptimizationStatus.DISABLED,
+            kernel.supportsGroupedGatedDeltaNet()
+                ? "independent recurrent state slots share one native worker dispatch"
+                : "the grouped native recurrence is unavailable or incompatible with the Java fused arithmetic contract",
             Map.of(
                 "abi",
                 Integer.toString(NativeKernelLibrary.ABI_VERSION),
@@ -437,16 +453,17 @@ public final class RustFfmBackend
         new OptimizationDecision(
             "rust-q5-0-grouped-matmul",
             OptimizationStatus.DISABLED,
-            "Q5_0 projections run independently: grouping them decoded slower on the controlled"
-                + " Qwen2.5-0.5B x86-64 profile, 37.33 against 38.94 tokens/s. Not a setting --"
-                + " the slower route is simply not taken",
-            Map.of("evidence", "backend-native/README.md", "raw-artifact", "none-committed")));
+            "Q5_0 grouped projections use Java; the unqualified native grouped capability was"
+                + " removed after supported-host whole-model comparisons",
+            Map.of("evidence", "benchmark-results/2026-10-12-q5-production/")));
+
     optimizations.add(
         new OptimizationDecision(
             "rust-quantized-decode",
             OptimizationStatus.ENABLED,
-            "single-token projections execute in the Models Rust kernel for every tensor type it"
-                + " supports; the per-type decisions above report any type it does not",
+            "eligible single-token projections execute in the Models Rust kernel; the per-type"
+                + " decisions above report hardware and operation eligibility, with Java handling"
+                + " the remaining projections",
             Map.of("transformer", "java")));
     return new BackendDiagnostics("rust-ffm", PLAN_VERSION, environment, optimizations);
   }

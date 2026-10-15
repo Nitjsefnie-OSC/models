@@ -1,0 +1,177 @@
++ STATUS=STARTED
++ say 'boot shard=893 payload=models-rag-bench-0.3.58-bonsai-catalog-baseline.tar'
++ tee -a /var/log/smoke-worker.log
+++ date -u +%H:%M:%S
++ printf '[smoke %s] %s\n' 21:49:07 'boot shard=893 payload=models-rag-bench-0.3.58-bonsai-catalog-baseline.tar'
+[smoke 21:49:07] boot shard=893 payload=models-rag-bench-0.3.58-bonsai-catalog-baseline.tar
++ trap finish EXIT
++ mkdir -p /work/models /work/out /opt/jdk
+++ curl -s -o /dev/null -w '%{http_code}' --max-time 25 https://s3.amazonaws.com
++ EGRESS_CODE=307
++ '[' 307 = 000 ']'
++ '[' -z 307 ']'
++ say 'egress ok (s3 root http=307)'
++ tee -a /var/log/smoke-worker.log
+++ date -u +%H:%M:%S
++ printf '[smoke %s] %s\n' 21:49:07 'egress ok (s3 root http=307)'
+[smoke 21:49:07] egress ok (s3 root http=307)
++ export DEBIAN_FRONTEND=noninteractive
++ DEBIAN_FRONTEND=noninteractive
++ apt-get update -qq
++ apt-get install -y -qq unzip python3
++ command -v aws
++ command -v aws
++ command -v python3
++ curl -sfL https://api.adoptium.net/v3/binary/latest/25/ga/linux/x64/jdk/hotspot/normal/eclipse -o /tmp/jdk.tgz
++ tar xzf /tmp/jdk.tgz -C /opt/jdk --strip-components=1
++ export JAVA_HOME=/opt/jdk
++ JAVA_HOME=/opt/jdk
++ export PATH=/opt/jdk/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/snap/bin
++ PATH=/opt/jdk/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/snap/bin
++ '[' -x /opt/jdk/bin/java ']'
+++ /opt/jdk/bin/java -version
+++ head -1
++ say 'jdk openjdk version "25.0.4.1" 2026-08-18 LTS'
++ tee -a /var/log/smoke-worker.log
+++ date -u +%H:%M:%S
++ printf '[smoke %s] %s\n' 21:49:11 'jdk openjdk version "25.0.4.1" 2026-08-18 LTS'
+[smoke 21:49:11] jdk openjdk version "25.0.4.1" 2026-08-18 LTS
++ cd /work
++ aws s3 cp s3://models-qual-077051030817/payload/models-rag-bench-0.3.58-bonsai-catalog-baseline.tar . --only-show-errors
++ aws s3 cp s3://models-qual-077051030817/payload/smoke-shard-893.json /work/shard.json --only-show-errors
++ '[' -s models-rag-bench-0.3.58-bonsai-catalog-baseline.tar ']'
++ '[' -s /work/shard.json ']'
++ printf '%s  %s\n' 2be778670a91d8e1908342a8b35429d166e6e1a618ebc4095f01db6dd7ee9acd models-rag-bench-0.3.58-bonsai-catalog-baseline.tar
++ sha256sum --check --status
++ tar xf models-rag-bench-0.3.58-bonsai-catalog-baseline.tar
+++ ls -d /work/models-rag-bench-0.3.58-bonsai-catalog-baseline/
+++ head -1
++ DIST=/work/models-rag-bench-0.3.58-bonsai-catalog-baseline/
++ '[' -n /work/models-rag-bench-0.3.58-bonsai-catalog-baseline/ ']'
++ CP='/work/models-rag-bench-0.3.58-bonsai-catalog-baseline//lib/*'
+++ ls /work/models-rag-bench-0.3.58-bonsai-catalog-baseline//lib/backend-native-0.3.58.jar
+++ head -1
++ NATIVE_JAR=/work/models-rag-bench-0.3.58-bonsai-catalog-baseline//lib/backend-native-0.3.58.jar
++ python3 - models@0.3.58+b85cd653a3549b1f468be95409a46fc68bae3a8c models-rag-bench-0.3.58-bonsai-catalog-baseline.tar /work/models-rag-bench-0.3.58-bonsai-catalog-baseline//lib/backend-native-0.3.58.jar
++ '[' 0 -eq 0 ']'
++ unzip -l /work/models-rag-bench-0.3.58-bonsai-catalog-baseline//lib/backend-native-0.3.58.jar
++ grep -q linux-x86_64/libjmodels_kernels.so
++ say 'dist carries the linux-x86_64 kernel'
++ tee -a /var/log/smoke-worker.log
+++ date -u +%H:%M:%S
++ printf '[smoke %s] %s\n' 21:49:12 'dist carries the linux-x86_64 kernel'
+[smoke 21:49:12] dist carries the linux-x86_64 kernel
+++ python3 -c 'import json;print(len(json.load(open('\''/work/shard.json'\''))))'
++ JOBS=1
++ for var in JAVA_TOOL_OPTIONS JAVA_OPTS JDK_JAVA_OPTIONS _JAVA_OPTIONS
+++ printenv JAVA_TOOL_OPTIONS
+++ true
++ val=
++ case "$val" in
++ for var in JAVA_TOOL_OPTIONS JAVA_OPTS JDK_JAVA_OPTIONS _JAVA_OPTIONS
+++ printenv JAVA_OPTS
+++ true
++ val=
++ case "$val" in
++ for var in JAVA_TOOL_OPTIONS JAVA_OPTS JDK_JAVA_OPTIONS _JAVA_OPTIONS
+++ printenv JDK_JAVA_OPTIONS
+++ true
++ val=
++ case "$val" in
++ for var in JAVA_TOOL_OPTIONS JAVA_OPTS JDK_JAVA_OPTIONS _JAVA_OPTIONS
+++ printenv _JAVA_OPTIONS
+++ true
++ val=
++ case "$val" in
++ say 'environment clean: no models.* property in any JVM options variable'
++ tee -a /var/log/smoke-worker.log
+++ date -u +%H:%M:%S
++ printf '[smoke %s] %s\n' 21:49:12 'environment clean: no models.* property in any JVM options variable'
+[smoke 21:49:12] environment clean: no models.* property in any JVM options variable
++ say 'payload ok, 1 jobs, backend-version=models@0.3.58+b85cd653a3549b1f468be95409a46fc68bae3a8c'
++ tee -a /var/log/smoke-worker.log
+++ date -u +%H:%M:%S
++ printf '[smoke %s] %s\n' 21:49:12 'payload ok, 1 jobs, backend-version=models@0.3.58+b85cd653a3549b1f468be95409a46fc68bae3a8c'
+[smoke 21:49:12] payload ok, 1 jobs, backend-version=models@0.3.58+b85cd653a3549b1f468be95409a46fc68bae3a8c
++ STATUS=RUNNING
+++ date +%s
++ T_START=1791755352
++ cat
++ python3 /work/fetch-smoke-artifact.py --validate-shard /work/shard.json
++ cat
++ done_n=0
++ '[' 0 -lt 1 ']'
+++ date +%s
++ '[' 1 -ge 3000 ']'
+++ python3 -c 'import json;print(json.dumps(json.load(open('\''/work/shard.json'\''))[0]))'
++ job='{"id": "umarfarookm_umartransit_1b_q4_k_m", "format": "gguf", "backend": "rust-ffm", "revision": "086c12aadfee08963ed70ab73ae2cb3997dbde3a", "wl": "transportation", "tpl": "chatml", "context": 2048, "threads": 8, "mt": 64, "topK": 1, "settingsSource": {"modelId": "umartransit-1b-q4-k-m", "report": "benchmark-results/certified-20260725/rag/umartransit-1b-q4_k_m/models-rust-ffm.json", "reportSha256": "1c1f56cc2c83cb0405004d8a37dedd6483ad1fde1bb62877cb0d243a37b5152b"}, "files": [{"path": "model.gguf", "sha256": "db1a4489626110145274f508b3fa30439516a47b4e721fe02d67df4679db5b9a", "sizeBytes": 986048096, "uri": "https://huggingface.co/umarfarookm/UmarTransit-1B/resolve/086c12aadfee08963ed70ab73ae2cb3997dbde3a/UmarTransit-1B.Q4_K_M.gguf"}]}'
+++ python3 -c 'import json,sys;print(json.loads(sys.argv[1])['\''id'\''])' '{"id": "umarfarookm_umartransit_1b_q4_k_m", "format": "gguf", "backend": "rust-ffm", "revision": "086c12aadfee08963ed70ab73ae2cb3997dbde3a", "wl": "transportation", "tpl": "chatml", "context": 2048, "threads": 8, "mt": 64, "topK": 1, "settingsSource": {"modelId": "umartransit-1b-q4-k-m", "report": "benchmark-results/certified-20260725/rag/umartransit-1b-q4_k_m/models-rust-ffm.json", "reportSha256": "1c1f56cc2c83cb0405004d8a37dedd6483ad1fde1bb62877cb0d243a37b5152b"}, "files": [{"path": "model.gguf", "sha256": "db1a4489626110145274f508b3fa30439516a47b4e721fe02d67df4679db5b9a", "sizeBytes": 986048096, "uri": "https://huggingface.co/umarfarookm/UmarTransit-1B/resolve/086c12aadfee08963ed70ab73ae2cb3997dbde3a/UmarTransit-1B.Q4_K_M.gguf"}]}'
++ id=umarfarookm_umartransit_1b_q4_k_m
+++ python3 -c 'import json,sys;print(json.loads(sys.argv[1])['\''tpl'\''])' '{"id": "umarfarookm_umartransit_1b_q4_k_m", "format": "gguf", "backend": "rust-ffm", "revision": "086c12aadfee08963ed70ab73ae2cb3997dbde3a", "wl": "transportation", "tpl": "chatml", "context": 2048, "threads": 8, "mt": 64, "topK": 1, "settingsSource": {"modelId": "umartransit-1b-q4-k-m", "report": "benchmark-results/certified-20260725/rag/umartransit-1b-q4_k_m/models-rust-ffm.json", "reportSha256": "1c1f56cc2c83cb0405004d8a37dedd6483ad1fde1bb62877cb0d243a37b5152b"}, "files": [{"path": "model.gguf", "sha256": "db1a4489626110145274f508b3fa30439516a47b4e721fe02d67df4679db5b9a", "sizeBytes": 986048096, "uri": "https://huggingface.co/umarfarookm/UmarTransit-1B/resolve/086c12aadfee08963ed70ab73ae2cb3997dbde3a/UmarTransit-1B.Q4_K_M.gguf"}]}'
++ tpl=chatml
+++ python3 -c 'import json,sys;print(json.loads(sys.argv[1])['\''wl'\''])' '{"id": "umarfarookm_umartransit_1b_q4_k_m", "format": "gguf", "backend": "rust-ffm", "revision": "086c12aadfee08963ed70ab73ae2cb3997dbde3a", "wl": "transportation", "tpl": "chatml", "context": 2048, "threads": 8, "mt": 64, "topK": 1, "settingsSource": {"modelId": "umartransit-1b-q4-k-m", "report": "benchmark-results/certified-20260725/rag/umartransit-1b-q4_k_m/models-rust-ffm.json", "reportSha256": "1c1f56cc2c83cb0405004d8a37dedd6483ad1fde1bb62877cb0d243a37b5152b"}, "files": [{"path": "model.gguf", "sha256": "db1a4489626110145274f508b3fa30439516a47b4e721fe02d67df4679db5b9a", "sizeBytes": 986048096, "uri": "https://huggingface.co/umarfarookm/UmarTransit-1B/resolve/086c12aadfee08963ed70ab73ae2cb3997dbde3a/UmarTransit-1B.Q4_K_M.gguf"}]}'
++ wl=transportation
+++ python3 -c 'import json,sys;print(json.loads(sys.argv[1])['\''backend'\''])' '{"id": "umarfarookm_umartransit_1b_q4_k_m", "format": "gguf", "backend": "rust-ffm", "revision": "086c12aadfee08963ed70ab73ae2cb3997dbde3a", "wl": "transportation", "tpl": "chatml", "context": 2048, "threads": 8, "mt": 64, "topK": 1, "settingsSource": {"modelId": "umartransit-1b-q4-k-m", "report": "benchmark-results/certified-20260725/rag/umartransit-1b-q4_k_m/models-rust-ffm.json", "reportSha256": "1c1f56cc2c83cb0405004d8a37dedd6483ad1fde1bb62877cb0d243a37b5152b"}, "files": [{"path": "model.gguf", "sha256": "db1a4489626110145274f508b3fa30439516a47b4e721fe02d67df4679db5b9a", "sizeBytes": 986048096, "uri": "https://huggingface.co/umarfarookm/UmarTransit-1B/resolve/086c12aadfee08963ed70ab73ae2cb3997dbde3a/UmarTransit-1B.Q4_K_M.gguf"}]}'
++ bk=rust-ffm
+++ python3 -c 'import json,sys;print(json.loads(sys.argv[1]).get('\''stopSequence'\'', '\'''\''))' '{"id": "umarfarookm_umartransit_1b_q4_k_m", "format": "gguf", "backend": "rust-ffm", "revision": "086c12aadfee08963ed70ab73ae2cb3997dbde3a", "wl": "transportation", "tpl": "chatml", "context": 2048, "threads": 8, "mt": 64, "topK": 1, "settingsSource": {"modelId": "umartransit-1b-q4-k-m", "report": "benchmark-results/certified-20260725/rag/umartransit-1b-q4_k_m/models-rust-ffm.json", "reportSha256": "1c1f56cc2c83cb0405004d8a37dedd6483ad1fde1bb62877cb0d243a37b5152b"}, "files": [{"path": "model.gguf", "sha256": "db1a4489626110145274f508b3fa30439516a47b4e721fe02d67df4679db5b9a", "sizeBytes": 986048096, "uri": "https://huggingface.co/umarfarookm/UmarTransit-1B/resolve/086c12aadfee08963ed70ab73ae2cb3997dbde3a/UmarTransit-1B.Q4_K_M.gguf"}]}'
++ stop_sequence=
++ stop_args=()
++ [[ -n '' ]]
++ read -r context threads mt topk
+++ python3 -c 'import json,sys;j=json.loads(sys.argv[1]);print(j['\''context'\''],j['\''threads'\''],j['\''mt'\''],j['\''topK'\''])' '{"id": "umarfarookm_umartransit_1b_q4_k_m", "format": "gguf", "backend": "rust-ffm", "revision": "086c12aadfee08963ed70ab73ae2cb3997dbde3a", "wl": "transportation", "tpl": "chatml", "context": 2048, "threads": 8, "mt": 64, "topK": 1, "settingsSource": {"modelId": "umartransit-1b-q4-k-m", "report": "benchmark-results/certified-20260725/rag/umartransit-1b-q4_k_m/models-rust-ffm.json", "reportSha256": "1c1f56cc2c83cb0405004d8a37dedd6483ad1fde1bb62877cb0d243a37b5152b"}, "files": [{"path": "model.gguf", "sha256": "db1a4489626110145274f508b3fa30439516a47b4e721fe02d67df4679db5b9a", "sizeBytes": 986048096, "uri": "https://huggingface.co/umarfarookm/UmarTransit-1B/resolve/086c12aadfee08963ed70ab73ae2cb3997dbde3a/UmarTransit-1B.Q4_K_M.gguf"}]}'
++ artifact_dir=/work/models/umarfarookm_umartransit_1b_q4_k_m
+++ date +%s
++ T0=1791755353
++ say 'start umarfarookm_umartransit_1b_q4_k_m (backend=rust-ffm template=chatml workload=transportation)'
++ tee -a /var/log/smoke-worker.log
+++ date -u +%H:%M:%S
++ printf '[smoke %s] %s\n' 21:49:13 'start umarfarookm_umartransit_1b_q4_k_m (backend=rust-ffm template=chatml workload=transportation)'
+[smoke 21:49:13] start umarfarookm_umartransit_1b_q4_k_m (backend=rust-ffm template=chatml workload=transportation)
+++ date +%s
++ remaining=2999
++ '[' 2999 -le 0 ']'
+++ timeout --kill-after=30 2999 python3 /work/fetch-smoke-artifact.py --job-json '{"id": "umarfarookm_umartransit_1b_q4_k_m", "format": "gguf", "backend": "rust-ffm", "revision": "086c12aadfee08963ed70ab73ae2cb3997dbde3a", "wl": "transportation", "tpl": "chatml", "context": 2048, "threads": 8, "mt": 64, "topK": 1, "settingsSource": {"modelId": "umartransit-1b-q4-k-m", "report": "benchmark-results/certified-20260725/rag/umartransit-1b-q4_k_m/models-rust-ffm.json", "reportSha256": "1c1f56cc2c83cb0405004d8a37dedd6483ad1fde1bb62877cb0d243a37b5152b"}, "files": [{"path": "model.gguf", "sha256": "db1a4489626110145274f508b3fa30439516a47b4e721fe02d67df4679db5b9a", "sizeBytes": 986048096, "uri": "https://huggingface.co/umarfarookm/UmarTransit-1B/resolve/086c12aadfee08963ed70ab73ae2cb3997dbde3a/UmarTransit-1B.Q4_K_M.gguf"}]}' --root /work/models --receipt /work/out/umarfarookm_umartransit_1b_q4_k_m.inputs.json
++ artifact=/work/models/umarfarookm_umartransit_1b_q4_k_m/model.gguf
+++ date +%s
++ remaining=2985
++ '[' 2985 -le 0 ']'
++ timeout --kill-after=30 2985 java --add-modules jdk.incubator.vector --enable-native-access=ALL-UNNAMED -cp '/work/models-rag-bench-0.3.58-bonsai-catalog-baseline//lib/*' com.integrallis.models.rag.RagBenchmarkCli --framework plain-java --backend rust-ffm --backend-version models@0.3.58+b85cd653a3549b1f468be95409a46fc68bae3a8c --model /work/models/umarfarookm_umartransit_1b_q4_k_m/model.gguf --model-id umarfarookm_umartransit_1b_q4_k_m --workload transportation --prompt-template chatml --context 2048 --threads 8 --max-tokens 64 --top-k 1 --warmups 0 --iterations 1 --output /work/out/umarfarookm_umartransit_1b_q4_k_m.json
++ rc=0
++ verdict=RUN_FAILED_rc0
++ '[' 0 -eq 0 ']'
++ '[' -s /work/out/umarfarookm_umartransit_1b_q4_k_m.json ']'
+++ python3 /work/gate.py /work/out/umarfarookm_umartransit_1b_q4_k_m.json
++ verdict=FAIL:correctAnswerRate=0.8888888888888888
+++ date +%s
++ printf '%s\t%s\t%s\n' umarfarookm_umartransit_1b_q4_k_m FAIL:correctAnswerRate=0.8888888888888888 28
+++ date +%s
++ say 'done umarfarookm_umartransit_1b_q4_k_m -> FAIL:correctAnswerRate=0.8888888888888888 in 28s'
++ tee -a /var/log/smoke-worker.log
+++ date -u +%H:%M:%S
++ printf '[smoke %s] %s\n' 21:49:41 'done umarfarookm_umartransit_1b_q4_k_m -> FAIL:correctAnswerRate=0.8888888888888888 in 28s'
+[smoke 21:49:41] done umarfarookm_umartransit_1b_q4_k_m -> FAIL:correctAnswerRate=0.8888888888888888 in 28s
++ aws s3 cp /work/out/umarfarookm_umartransit_1b_q4_k_m.inputs.json s3://models-qual-077051030817/results/shard-893/ --only-show-errors
++ aws s3 cp /work/out/umarfarookm_umartransit_1b_q4_k_m.json s3://models-qual-077051030817/results/shard-893/ --only-show-errors
++ aws s3 cp /work/out/umarfarookm_umartransit_1b_q4_k_m.log s3://models-qual-077051030817/results/shard-893/ --only-show-errors
++ aws s3 cp /work/out/progress.tsv s3://models-qual-077051030817/results/shard-893/ --only-show-errors
++ rm -rf /work/models/umarfarookm_umartransit_1b_q4_k_m
++ done_n=1
++ '[' 1 -lt 1 ']'
++ '[' RUNNING = DEADLINE ']'
++ STATUS=SHARD_COMPLETE
++ say 'shard finished: 1/1'
++ tee -a /var/log/smoke-worker.log
+++ date -u +%H:%M:%S
++ printf '[smoke %s] %s\n' 21:49:45 'shard finished: 1/1'
+[smoke 21:49:45] shard finished: 1/1
++ finish
++ rc=0
++ say 'FINAL_STATUS=SHARD_COMPLETE exit=0'
++ tee -a /var/log/smoke-worker.log
+++ date -u +%H:%M:%S
++ printf '[smoke %s] %s\n' 21:49:46 'FINAL_STATUS=SHARD_COMPLETE exit=0'
+[smoke 21:49:46] FINAL_STATUS=SHARD_COMPLETE exit=0
++ command -v aws
++ echo SHARD_COMPLETE
++ aws s3 cp /work/out/STATUS s3://models-qual-077051030817/results/shard-893/ --only-show-errors
++ aws s3 cp /var/log/smoke-worker.log s3://models-qual-077051030817/results/shard-893/smoke-worker-893.log --only-show-errors

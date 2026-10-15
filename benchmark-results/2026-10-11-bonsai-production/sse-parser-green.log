@@ -1,0 +1,59 @@
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by net.rubygrapefruit.platform.internal.NativeLibraryLoader in an unnamed module (file:/Users/briansam-bodden/.gradle/wrapper/dists/gradle-9.4.1-all/eckclv9s5vi9exbmnyvpg2a3h/gradle-9.4.1/lib/native-platform-0.22-milestone-29.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+> Task :spotlessInternalRegisterDependencies UP-TO-DATE
+> Task :models-rag-bench:spotlessJava
+> Task :models-rag-bench:spotlessJavaApply
+> Task :models-rag-bench:spotlessApply
+> Task :models-api:compileJava UP-TO-DATE
+> Task :backend-java:compileJava UP-TO-DATE
+> Task :backend-native:compileJava UP-TO-DATE
+> Task :models-runtime:compileJava UP-TO-DATE
+> Task :models-router:compileJava UP-TO-DATE
+> Task :models-langchain4j:compileJava UP-TO-DATE
+> Task :models-rag:compileJava UP-TO-DATE
+> Task :models-spring-ai:compileJava UP-TO-DATE
+> Task :models-rag-bench:compileJava
+> Task :models-rag-bench:processResources UP-TO-DATE
+> Task :models-rag-bench:classes
+> Task :models-rag-bench:jar
+> Task :writeReleaseDependencyManifest UP-TO-DATE
+> Task :backend-java:processResources UP-TO-DATE
+> Task :backend-java:classes UP-TO-DATE
+> Task :backend-java:jar UP-TO-DATE
+> Task :backend-native:processResources UP-TO-DATE
+> Task :backend-native:classes UP-TO-DATE
+> Task :backend-native:jar UP-TO-DATE
+> Task :models-api:processResources UP-TO-DATE
+> Task :models-api:classes UP-TO-DATE
+> Task :models-api:jar UP-TO-DATE
+> Task :models-langchain4j:processResources UP-TO-DATE
+> Task :models-langchain4j:classes UP-TO-DATE
+> Task :models-langchain4j:jar UP-TO-DATE
+> Task :models-rag:processResources UP-TO-DATE
+> Task :models-rag:classes UP-TO-DATE
+> Task :models-rag:jar UP-TO-DATE
+> Task :models-rag-bench:compileTestJava UP-TO-DATE
+> Task :models-rag-bench:processTestResources NO-SOURCE
+> Task :models-rag-bench:testClasses UP-TO-DATE
+> Task :models-router:processResources UP-TO-DATE
+> Task :models-router:classes UP-TO-DATE
+> Task :models-router:jar UP-TO-DATE
+> Task :models-runtime:processResources UP-TO-DATE
+> Task :models-runtime:classes UP-TO-DATE
+> Task :models-runtime:jar UP-TO-DATE
+> Task :models-spring-ai:processResources UP-TO-DATE
+> Task :models-spring-ai:classes UP-TO-DATE
+> Task :models-spring-ai:jar UP-TO-DATE
+
+> Task :models-rag-bench:test
+WARNING: Using incubator modules: jdk.incubator.vector
+
+> Task :models-rag-bench:startScripts
+> Task :models-rag-bench:installDist
+
+BUILD SUCCESSFUL in 18s
+35 actionable tasks: 7 executed, 28 up-to-date
+Consider enabling configuration cache to speed up this build: https://docs.gradle.org/9.4.1/userguide/configuration_cache_enabling.html

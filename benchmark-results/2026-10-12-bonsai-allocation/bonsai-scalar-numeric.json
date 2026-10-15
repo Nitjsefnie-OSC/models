@@ -1,0 +1,6 @@
+{
+  "exact": true,
+  "requests": 7,
+  "scalarRequests": 7,
+  "scope": "diagnostic only"
+}

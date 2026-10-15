@@ -1,0 +1,18 @@
+[
+  {
+    "worktree": "/Users/briansam-bodden/Code/java-ai/projects/models-gdn-production",
+    "preservedHead": "d52bf31040be00333e1de1da52edb8883e6d28cf",
+    "archiveTag": "archive/gdn-native-reviewed-20261012",
+    "cleanBeforeRemoval": true,
+    "ignoredBuildFiles": 2625,
+    "productionDisposition": "patch-equivalent to integrated source"
+  },
+  {
+    "worktree": "/Users/briansam-bodden/Code/java-ai/projects/models-gdn-java-production",
+    "preservedHead": "bcf7e7df752d86cab070e86bbe25f9dc0c795f7d",
+    "archiveTag": "archive/gdn-java-rejected-20261012",
+    "cleanBeforeRemoval": true,
+    "ignoredBuildFiles": 1603,
+    "productionDisposition": "rejected alternative preserved; not merged"
+  }
+]

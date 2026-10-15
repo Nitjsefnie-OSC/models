@@ -18,8 +18,6 @@ package com.integrallis.models.backend.purejava.lfm2;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import com.integrallis.models.backend.purejava.gguf.GgufFile;
-import java.util.LinkedHashMap;
-import java.util.Map;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
@@ -111,9 +109,5 @@ class Lfm2ForwardPassTest {
   private static Lfm2Config config() {
     GgufFile file = Lfm2ToyModel.file(30, 40);
     return Lfm2Config.fromMetadata(file.metadata());
-  }
-
-  private static Map<String, float[]> unused() {
-    return new LinkedHashMap<>();
   }
 }

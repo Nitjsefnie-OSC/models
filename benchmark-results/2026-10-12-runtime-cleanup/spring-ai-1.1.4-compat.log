@@ -1,0 +1,117 @@
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by net.rubygrapefruit.platform.internal.NativeLibraryLoader in an unnamed module (file:/Users/briansam-bodden/.gradle/wrapper/dists/gradle-9.4.1-all/eckclv9s5vi9exbmnyvpg2a3h/gradle-9.4.1/lib/native-platform-0.22-milestone-29.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/9.4.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+> Task :models-api:compileJava
+> Task :backend-java:compileJava
+> Task :writeReleaseDependencyManifest
+> Task :backend-java:processResources
+> Task :backend-java:classes
+> Task :backend-java:jar
+> Task :models-api:processResources
+> Task :models-api:classes
+> Task :models-api:jar
+> Task :models-runtime:compileJava
+> Task :models-router:compileJava
+> Task :models-router:processResources
+> Task :models-router:classes
+> Task :models-router:jar
+> Task :models-runtime:processResources
+> Task :models-runtime:classes
+> Task :models-runtime:jar
+> Task :models-spring-ai:compileJava
+> Task :models-spring-ai:processResources
+> Task :models-spring-ai:classes
+> Task :models-spring-ai:compileTestJava
+> Task :models-spring-ai:processTestResources NO-SOURCE
+> Task :models-spring-ai:testClasses
+
+> Task :models-spring-ai:test
+WARNING: Using incubator modules: jdk.incubator.vector
+WARNING: Using incubator modules: jdk.incubator.vector
+WARNING: Using incubator modules: jdk.incubator.vector
+
+ModelsSpringAiToolCallingTest$ChatClientExecution > activatedAdapterFiniteGrammarDoesNotForceAnIrrelevantToolCall() PASSED
+
+ModelsSpringAiToolCallingTest$ConstrainedDecoding > usesDeterministicSamplingForNeedleToolSelection() PASSED
+
+ModelsSpringAiToolCallingTest$ConstrainedDecoding > fallsBackWhenASchemaRequiresOpenTextArguments() PASSED
+
+ModelsSpringAiToolCallingTest$ConstrainedDecoding > passesASchemaConstraintToConstrainedModelsWhenToolsAreDeclared() PASSED
+
+ModelsSpringAiToolCallingTest$Recovery > surfacesAToolCallOnTheAssistantMessage() PASSED
+
+ModelsSpringAiToolCallingTest$Recovery > plainAnswersCarryNoToolCalls() PASSED
+
+ModelsSpringAiToolCallingTest$Recovery > recoversAGptOssHarmonyCallFromTheGeneratedHeaderContinuation() PASSED
+
+ModelsSpringAiToolCallingTest$Recovery > recoversMiniCpmTaggedArgumentsThroughTheDeclaredSpringSchema() PASSED
+
+ModelsSpringAiToolCallingTest$Recovery > doesNotScanForCallsWhenNoToolsWereDeclared() PASSED
+
+ModelsSpringAiToolCallingTest$Recovery > keepsProseAlongsideTheCall() PASSED
+
+ModelsSpringAiToolCallingTest$ChatClientExecution > streamingChatClientExecutesTheToolAndReturnsTheFollowUpAnswer() PASSED
+
+ModelsSpringAiToolCallingTest$ChatClientExecution > defaultToolsExecutesTheUsersHyphenatedZipcodeToolAndReturnsTheFollowUpAnswer() PASSED
+
+ModelsSpringAiToolCallingTest$ChatClientExecution > gptOssHarmonyExecutesTheUsersToolAndReturnsOnlyTheFinalChannel() PASSED
+
+ModelsSpringAiToolCallingTest$ChatClientExecution > activatedAdapterContinuesToolSelectionAcrossConsecutiveDependentCalls() PASSED
+
+ModelsSpringAiToolCallingTest$ChatClientExecution > stopsARepeatingInternalToolLoop() PASSED
+
+ModelsSpringAiToolCallingTest$ChatClientExecution > activatedAdapterExecutesTheToolThenSynthesizesWithItsSharedBaseBranch() PASSED
+
+ModelsSpringAiToolCallingTest$ChatClientExecution > chatClientExecutesTheToolAndReturnsTheFollowUpAnswer() PASSED
+
+ModelsSpringAiToolCallingTest$ChatClientExecution > activatedAdapterStreamsAfterConsecutiveToolSelections() PASSED
+
+ModelsSpringAiToolCallingTest$ChatClientExecution > activatedAdapterStreamsTheBaseAnswerAfterExecutingItsTool() PASSED
+
+ModelsSpringAiToolCallingTest$ChatClientExecution > activatedAdapterReportsBothGenerationsAndTheirSharedCacheReads() PASSED
+
+ModelsSpringAiToolCallingTest$Declaration > acceptsToolsWhenTheArtifactWasQualifiedForToolCalling() PASSED
+
+ModelsSpringAiToolCallingTest$Declaration > rendersDeclaredToolsIntoThePrompt() PASSED
+
+ModelsSpringAiToolCallingTest$Declaration > retrievesToolsBeforeRenderingAStreamingRequest() PASSED
+
+ModelsSpringAiToolCallingTest$Declaration > refusesToolsWhenTheTemplateCannotExpressThem() PASSED
+
+ModelsSpringAiToolCallingTest$Declaration > withoutToolsRendersThePlainEnvelope() PASSED
+
+ModelsSpringAiToolCallingTest$Declaration > retrievesFiveRelevantToolsAndCachesTheirSchemaEmbeddings() PASSED
+
+ModelsSpringAiToolCallingTest$Declaration > refusesToolsWhenTheArtifactWasNotQualifiedForToolCalling() PASSED
+
+ModelsSpringAiToolCallingTest$ResultsComingBack > doesNotReuseAnOldNeedleToolResultForANewUserTurn() PASSED
+
+ModelsSpringAiToolCallingTest$ResultsComingBack > preservesTheToolNameForGptOssHarmonyResults() PASSED
+
+ModelsSpringAiToolCallingTest$ResultsComingBack > returnsNeedleToolResultsDirectlyWithoutStartingAnotherToolSelectionTurn() PASSED
+
+ModelsSpringAiToolCallingTest$ResultsComingBack > hidesNeedleReasoningAndEmptyToolProtocolForANoActionTurn() PASSED
+
+ModelsSpringAiToolCallingTest$ResultsComingBack > streamsTheCompletedNeedleToolResultWithoutSelectingAnotherAction() PASSED
+
+ModelsSpringAiToolCallingTest$ResultsComingBack > mapsToolResponsesIntoTheConversation() PASSED
+
+ModelsSpringAiToolCallingTest$ResultsComingBack > requiresANeedleToolResultPolicyInsteadOfMistakingJsonForAChatAnswer() PASSED
+
+ModelsSpringAiToolCallingTest$ResultsComingBack > rendersANeedleToolResultThroughARegisteredJavaType() PASSED
+Persisted dependency lock state for buildscript of root project 'models'
+Persisted dependency lock state for project ':backend-java'
+Persisted dependency lock state for project ':models-api'
+Persisted dependency lock state for project ':models-router'
+Persisted dependency lock state for project ':models-runtime'
+Persisted dependency lock state for project ':models-spring-ai'
+Persisted dependency lock state for buildscript of project ':docs'
+Persisted dependency lock state for buildscript of project ':models-bench'
+
+BUILD SUCCESSFUL in 1m 42s
+17 actionable tasks: 17 executed
+Consider enabling configuration cache to speed up this build: https://docs.gradle.org/9.4.1/userguide/configuration_cache_enabling.html

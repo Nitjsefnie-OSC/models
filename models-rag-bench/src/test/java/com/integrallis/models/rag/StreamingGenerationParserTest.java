@@ -46,6 +46,27 @@ class StreamingGenerationParserTest {
   }
 
   @Test
+  void ignoresSseKeepalivesWithoutCountingThemAsTheFirstToken() throws Exception {
+    LlamaCppGenerationParser parser = new LlamaCppGenerationParser(mapper);
+    parser.accept(": keepalive", 30_000);
+    parser.accept(":", 60_000);
+    parser.accept("event: message", 60_001);
+    parser.accept("id: 7", 60_002);
+    parser.accept("retry: 1000", 60_003);
+    parser.accept("data: {\"content\":\"Answer\",\"stop\":false}", 70_000);
+    parser.accept(": keepalive", 70_001);
+    parser.accept(
+        "data: {\"content\":\"\",\"stop\":true,\"timings\":{"
+            + "\"prompt_n\":200,\"predicted_n\":1,\"prompt_ms\":70000.0}}",
+        70_010);
+    ParsedStreamingGeneration result = parser.result();
+    assertThat(result.text()).isEqualTo("Answer");
+    assertThat(result.firstTokenMillis()).isEqualTo(70_000);
+    assertThat(result.inputTokens()).isEqualTo(200);
+    assertThat(result.outputTokens()).isEqualTo(1);
+  }
+
+  @Test
   void parsesLlamaCppSseAndMillisecondTimingMetadata() throws Exception {
     LlamaCppGenerationParser parser = new LlamaCppGenerationParser(mapper);
 

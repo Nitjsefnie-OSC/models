@@ -144,43 +144,6 @@ final class GatedDeltaNetRecurrence {
         false);
   }
 
-  /** Applies grouped query/key recurrence while retaining a caller-owned state array. */
-  static Result forwardInPlace(
-      float[] query,
-      float[] key,
-      float[] value,
-      float[] logDecay,
-      float[] beta,
-      float[] mutableState,
-      int tokenCount,
-      int keyHeadCount,
-      int valueHeadCount,
-      int keyDimension,
-      int valueDimension) {
-    Objects.requireNonNull(mutableState, "mutableState");
-    return execute(
-        query,
-        key,
-        value,
-        logDecay,
-        beta,
-        mutableState,
-        0,
-        false,
-        tokenCount,
-        keyHeadCount,
-        valueHeadCount,
-        keyDimension,
-        valueDimension,
-        true,
-        null,
-        null,
-        null,
-        null,
-        null,
-        false);
-  }
-
   /** Applies grouped recurrence into caller-owned state and workspace arrays. */
   static void forwardInPlace(
       float[] query,

@@ -1,0 +1,21 @@
+warning: no usable GPU found, --gpu-layers option will be ignored
+warning: one possible reason is that llama.cpp was compiled without GPU support
+warning: consult docs/build.md for compilation instructions
+0.00.002.557 I cmn  common_param: common_params_print_info: verbosity = 3 (adjust with the `-lv N` CLI arg)
+0.00.002.907 W srv  llama_server: -----------------
+0.00.002.912 W srv  llama_server: CORS is set to allow all origins ('*') and no API key is set
+0.00.002.912 W srv  llama_server: this can be a security risk (cross-origin attacks)
+0.00.002.913 W srv  llama_server: more info: https://github.com/ggml-org/llama.cpp/pull/25655
+0.00.002.913 W srv  llama_server: -----------------
+0.00.004.175 I srv    load_model: loading model '/work/bonsai2.gguf'
+0.01.467.034 I cmn          init: llama threadpool init, n_threads = 16
+0.02.225.279 I srv    load_model: initializing, n_slots = 1, n_ctx_slot = 2048, kv_unified = 'false'
+0.02.229.571 I srv          init: chat template supports preserving reasoning, consider enabling it via --reasoning-preserve
+0.02.229.617 I srv  llama_server: model loaded
+0.02.229.624 I srv  llama_server: listening on http://127.0.0.1:8080
+0.02.229.625 W srv  llama_server: NOTICE: server default port will be changed to :9931 in a future release
+0.02.229.625 W srv  llama_server:         ref: https://github.com/ggml-org/llama.cpp/pull/26508
+0.03.065.014 I slot get_availabl: id  0 | task -1 | selected slot by LRU, t_last = -1
+0.03.065.074 I slot launch_slot_: id  0 | task 0 | processing task, is_child = 0
+0.34.068.694 W srv          stop: cancel task, id_task = 0
+1.02.048.167 I srv    operator(): operator(): cleaning up before exit...

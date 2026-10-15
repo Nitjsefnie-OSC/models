@@ -36,7 +36,14 @@ final class LlamaCppGenerationParser {
   }
 
   void accept(String line, double elapsedMillis) throws IOException {
-    if (line == null || line.isBlank()) {
+    // Publishers can keep a long prefill alive with SSE comments before any JSON data arrives.
+    // Metadata is not generated text and must not establish time to first token.
+    if (line == null
+        || line.isBlank()
+        || line.startsWith(":")
+        || line.startsWith("event:")
+        || line.startsWith("id:")
+        || line.startsWith("retry:")) {
       return;
     }
     String payload =

@@ -1,0 +1,9 @@
+{
+  "elapsedSeconds": 13.153375568,
+  "alias": "facebook_mobilemoe_s_qat_int4_g32",
+  "sha256": "1a54d8eb2adf19c296a1c129f9cd7d7395c21f5facfc6d13d2945e002d55e37d",
+  "cached": false,
+  "path": "/home/runner/work/_temp/mobilemoe-smoke/cache/sha256/1a/1a54d8eb2adf19c296a1c129f9cd7d7395c21f5facfc6d13d2945e002d55e37d",
+  "sizeBytes": 718167282,
+  "coordinate": "org.modeljars.huggingface:facebook.mobilemoe-s-qat.int4_g32:1.0.0-int4_g32.1"
+}

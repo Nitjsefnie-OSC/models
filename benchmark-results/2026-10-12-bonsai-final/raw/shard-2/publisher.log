@@ -1,0 +1,16 @@
+case=50 dataset=squad2 stop=EOS error=None millis=108085
+case=51 dataset=squad2 stop=EOS error=None millis=92515
+case=52 dataset=squad2 stop=EOS error=None millis=90496
+case=53 dataset=squad2 stop=EOS error=None millis=80069
+case=54 dataset=boolq stop=EOS error=None millis=52207
+case=55 dataset=squad2 stop=EOS error=None millis=66955
+case=56 dataset=squad2 stop=EOS error=None millis=96004
+case=57 dataset=squad2 stop=EOS error=None millis=69762
+case=58 dataset=squad2 stop=EOS error=None millis=84995
+case=59 dataset=squad2 stop=EOS error=None millis=86355
+case=60 dataset=squad2 stop=EOS error=None millis=56893
+case=61 dataset=squad2 stop=EOS error=None millis=110975
+case=62 dataset=squad2 stop=EOS error=None millis=75568
+case=63 dataset=squad2 stop=EOS error=None millis=76515
+case=64 dataset=squad2 stop=EOS error=None millis=72078
+case=65 dataset=squad2 stop=EOS error=None millis=64670

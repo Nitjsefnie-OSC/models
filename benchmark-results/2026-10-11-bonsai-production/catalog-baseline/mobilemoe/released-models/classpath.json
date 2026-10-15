@@ -1,0 +1,381 @@
+[
+  {
+    "file": "HdrHistogram-2.2.2.jar",
+    "origin": "resolved external dependency",
+    "sha256": "22d1d4316c4ec13a68b559e98c8256d69071593731da96136640f864fa14fad8",
+    "sizeBytes": 177206
+  },
+  {
+    "file": "ST4-4.3.4.jar",
+    "origin": "resolved external dependency",
+    "sha256": "f927ac384c46d749f8b5ec68972a53aed21e00313509299616edb73bfa15ff33",
+    "sizeBytes": 251081
+  },
+  {
+    "file": "antlr-runtime-3.5.3.jar",
+    "origin": "resolved external dependency",
+    "sha256": "68bf9f5a33dfcb34033495c587e6236bef4e37aa6612919f5b1e843b90669fb9",
+    "sizeBytes": 173220
+  },
+  {
+    "file": "antlr4-runtime-4.13.1.jar",
+    "origin": "resolved external dependency",
+    "sha256": "54665d2838cc66458343468efc539e454fc95b46a8a04b13c6ac43fc9be63505",
+    "sizeBytes": 326305
+  },
+  {
+    "file": "backend-java-0.3.58.jar",
+    "origin": "Maven Central",
+    "url": "https://repo.maven.apache.org/maven2/com/integrallis/backend-java/0.3.58/backend-java-0.3.58.jar",
+    "centralSha1": "14d7f4f105683e6ef90b310c3a27c991b1947910",
+    "sha256": "51c6a69803604c7b115f55de4bb797cd2b4a65aaf07b2869a29b4b0155bfd28a",
+    "sizeBytes": 992403
+  },
+  {
+    "file": "backend-native-0.3.58.jar",
+    "origin": "Maven Central",
+    "url": "https://repo.maven.apache.org/maven2/com/integrallis/backend-native/0.3.58/backend-native-0.3.58.jar",
+    "centralSha1": "cfebbc58b7c70601fcf9c42afb1c808d1695e51f",
+    "sha256": "f33512a5de32bd8eb9e212969e76630358c1357bf57abacedfa5a9a499c58cb5",
+    "sizeBytes": 1202238
+  },
+  {
+    "file": "classmate-1.7.2.jar",
+    "origin": "resolved external dependency",
+    "sha256": "a9bbe12ffbe65a68acc4df47485fe2391c3071cc261c2038efe6438fc17aac00",
+    "sizeBytes": 68424
+  },
+  {
+    "file": "commons-logging-1.3.5.jar",
+    "origin": "resolved external dependency",
+    "sha256": "6d7a744e4027649fbb50895df9497d109f98c766a637062fe8d2eabbb3140ba4",
+    "sizeBytes": 73737
+  },
+  {
+    "file": "context-propagation-1.2.1.jar",
+    "origin": "resolved external dependency",
+    "sha256": "5b69e2100640879ccf4b20673ced86de560b8e217b55542f85a53d3563b72aaa",
+    "sizeBytes": 35890
+  },
+  {
+    "file": "itu-1.14.0.jar",
+    "origin": "resolved external dependency",
+    "sha256": "5cf40ab0cc77828ab2b875b1f3ecd71c8295d7721933476abc2e08fddcea164a",
+    "sizeBytes": 57633
+  },
+  {
+    "file": "jackson-annotations-2.22.jar",
+    "origin": "resolved external dependency",
+    "sha256": "21ddb598807d3a51a876704eb979d9296e1c6a6f47ab1826ff88c6d6a127a2d0",
+    "sizeBytes": 84211
+  },
+  {
+    "file": "jackson-core-2.22.3.jar",
+    "origin": "resolved external dependency",
+    "sha256": "8a501126a385b25841915d839508f8a66e2a0dbc8a6709d055ef3b3e852b094c",
+    "sizeBytes": 594776
+  },
+  {
+    "file": "jackson-core-3.1.4.jar",
+    "origin": "resolved external dependency",
+    "sha256": "3bda1cd6eff0a8d47bdfcaeae7c2bd5311d6c8ed494ef5f3e51029bb44aa9bdf",
+    "sizeBytes": 598562
+  },
+  {
+    "file": "jackson-databind-2.22.3.jar",
+    "origin": "resolved external dependency",
+    "sha256": "556db5439e206114346043f68d200497dc96a0bca62a360a81784092ebd0e0a9",
+    "sizeBytes": 1709604
+  },
+  {
+    "file": "jackson-databind-3.1.4.jar",
+    "origin": "resolved external dependency",
+    "sha256": "14034bfdf392b6ebec1b4bb6c1de29d604f0aa97251259a19d5f19af8719bb20",
+    "sizeBytes": 1940679
+  },
+  {
+    "file": "json-schema-validator-3.0.1.jar",
+    "origin": "resolved external dependency",
+    "sha256": "271e37c705eea7d0fd9b95d3a601ab9531a0ca49a86beba2e2b792583670494b",
+    "sizeBytes": 579543
+  },
+  {
+    "file": "jsonschema-generator-5.0.0.jar",
+    "origin": "resolved external dependency",
+    "sha256": "dc17156260641870fd0f2dcbda5866f7d2fdffc668a41928487b1008ae3335c0",
+    "sizeBytes": 165536
+  },
+  {
+    "file": "jsonschema-module-jackson-5.0.0.jar",
+    "origin": "resolved external dependency",
+    "sha256": "5c0d08b4696fd734b314c1b9dd517d932de4055f1cf9a074eafc95a580bb8da2",
+    "sizeBytes": 35298
+  },
+  {
+    "file": "jsonschema-module-swagger-2-5.0.0.jar",
+    "origin": "resolved external dependency",
+    "sha256": "5c4d6931de56b4b58917c7b9bd3e801b041744ecce1bfed14b0e525379e570c3",
+    "sizeBytes": 19252
+  },
+  {
+    "file": "jspecify-1.0.0.jar",
+    "origin": "resolved external dependency",
+    "sha256": "1fad6e6be7557781e4d33729d49ae1cdc8fdda6fe477bb0cc68ce351eafdfbab",
+    "sizeBytes": 3819
+  },
+  {
+    "file": "jtokkit-1.1.0.jar",
+    "origin": "resolved external dependency",
+    "sha256": "1501ce0259ab897c6746ccfafa1d208acd404fb17e1ac62e157172f2678b1183",
+    "sizeBytes": 3246331
+  },
+  {
+    "file": "langchain4j-1.17.2.jar",
+    "origin": "resolved external dependency",
+    "sha256": "d3d584b1539edae6d936622024d89567ba9d06c8834c3b0c93d884812bdd873a",
+    "sizeBytes": 321226
+  },
+  {
+    "file": "langchain4j-core-1.17.2.jar",
+    "origin": "resolved external dependency",
+    "sha256": "dfb88213918302a55c42f3c78803363a07815d5798e16dac9bf77520c01e8eef",
+    "sizeBytes": 585053
+  },
+  {
+    "file": "lucene-core-10.4.0.jar",
+    "origin": "resolved external dependency",
+    "sha256": "8f894d211a8123938ccb9ff6827d136747e0eb6b1782ada6ac9086aa911b52e2",
+    "sizeBytes": 4596517
+  },
+  {
+    "file": "micrometer-commons-1.17.0.jar",
+    "origin": "resolved external dependency",
+    "sha256": "03919dc71e2417ec4b5c254c4ba924963c972e124190f73cdcb68ed51c6eede6",
+    "sizeBytes": 51805
+  },
+  {
+    "file": "micrometer-core-1.17.0.jar",
+    "origin": "resolved external dependency",
+    "sha256": "73503e701a377fafeaf33b71b9b8910a8d7884cbba88ab27971b33b3753b65aa",
+    "sizeBytes": 915149
+  },
+  {
+    "file": "micrometer-observation-1.17.0.jar",
+    "origin": "resolved external dependency",
+    "sha256": "2fc95a327578d3b2a81c3ff40e646a4a21e46b0153ccbbf91690142bf80d9661",
+    "sizeBytes": 84304
+  },
+  {
+    "file": "models-api-0.3.58.jar",
+    "origin": "Maven Central",
+    "url": "https://repo.maven.apache.org/maven2/com/integrallis/models-api/0.3.58/models-api-0.3.58.jar",
+    "centralSha1": "ec83c4bdc5abfc728e1f20147b5902ba17b8790d",
+    "sha256": "f2dbd2bc50f5592cceb05dc71a7030ffa4e14bfa41e6b3cbf79baf6eb504d37e",
+    "sizeBytes": 73028
+  },
+  {
+    "file": "models-langchain4j-0.3.58.jar",
+    "origin": "Maven Central",
+    "url": "https://repo.maven.apache.org/maven2/com/integrallis/models-langchain4j/0.3.58/models-langchain4j-0.3.58.jar",
+    "centralSha1": "a438cd282d479450cdc5445df58dc37eba9bc8b4",
+    "sha256": "209e20597bedf2057823b33165b4169f604de3edd7835715dcee83c5a6a8203b",
+    "sizeBytes": 67519
+  },
+  {
+    "file": "models-rag-0.3.58.jar",
+    "origin": "Maven Central",
+    "url": "https://repo.maven.apache.org/maven2/com/integrallis/models-rag/0.3.58/models-rag-0.3.58.jar",
+    "centralSha1": "73efa8849ebeb31a66ffa6a67c60b1548021c6f7",
+    "sha256": "0c8037dd5745c1b7a9962cbe93a5fd3905651e9982fc77587e61379b3566efd3",
+    "sizeBytes": 24371
+  },
+  {
+    "file": "models-rag-bench-0.3.58.jar",
+    "origin": "source-built measurement harness",
+    "sourceRevision": "0a26256d9cea1acfa7c2a9db806bf0cc051da66a",
+    "sha256": "0907a36d591f48ccfaa7e88c0e8967356b0296cfb2652f978137c18b367cf88c",
+    "sizeBytes": 183806
+  },
+  {
+    "file": "models-router-0.3.58.jar",
+    "origin": "Maven Central",
+    "url": "https://repo.maven.apache.org/maven2/com/integrallis/models-router/0.3.58/models-router-0.3.58.jar",
+    "centralSha1": "2c82edc5bdb31f03c2f67368dd780ba07f135e1f",
+    "sha256": "61985cb27ba2c895f6e7ac4489d8663e67aa36c9af03925005a5ab559bee04eb",
+    "sizeBytes": 795554
+  },
+  {
+    "file": "models-runtime-0.3.58.jar",
+    "origin": "Maven Central",
+    "url": "https://repo.maven.apache.org/maven2/com/integrallis/models-runtime/0.3.58/models-runtime-0.3.58.jar",
+    "centralSha1": "f9648bd24406041e83145d96f6a6d14daf626002",
+    "sha256": "d3b9cc7c5239c754b3fb389ca67e24f46b666b5473926bed1de6ade22f422883",
+    "sizeBytes": 226953
+  },
+  {
+    "file": "models-spring-ai-0.3.58.jar",
+    "origin": "Maven Central",
+    "url": "https://repo.maven.apache.org/maven2/com/integrallis/models-spring-ai/0.3.58/models-spring-ai-0.3.58.jar",
+    "centralSha1": "9a2e28fd71862d2cb4aa425b958c679ba3fd2b82",
+    "sha256": "c0446517a6fa70dffbe3be7b4f8b631f9a50092a5ed2e9688cf0b52b8145c76a",
+    "sizeBytes": 52317
+  },
+  {
+    "file": "opennlp-tools-2.5.9.jar",
+    "origin": "resolved external dependency",
+    "sha256": "bc2d28082607b211fdf3185c1496ea8e130fa1fe1bead85622d38487920017e2",
+    "sizeBytes": 1396264
+  },
+  {
+    "file": "reactive-streams-1.0.4.jar",
+    "origin": "resolved external dependency",
+    "sha256": "f75ca597789b3dac58f61857b9ac2e1034a68fa672db35055a8fb4509e325f28",
+    "sizeBytes": 11640
+  },
+  {
+    "file": "reactor-core-3.8.6.jar",
+    "origin": "resolved external dependency",
+    "sha256": "ffc646b225465efce55d3ea350f1bcd1d27d4a56e912323e316dd8e6d04bff11",
+    "sizeBytes": 1938752
+  },
+  {
+    "file": "slf4j-api-2.0.20.jar",
+    "origin": "resolved external dependency",
+    "sha256": "7e1446499b359675d8aabe6af2de86b85e72ae8a2a932c0b40d0e5ba57097439",
+    "sizeBytes": 70255
+  },
+  {
+    "file": "spring-ai-client-chat-2.0.0.jar",
+    "origin": "resolved external dependency",
+    "sha256": "cb0e199611d1397eec67f8992c0b16a626d316547cf709d483a90d73fc47aeba",
+    "sizeBytes": 149121
+  },
+  {
+    "file": "spring-ai-commons-2.0.0.jar",
+    "origin": "resolved external dependency",
+    "sha256": "ebf49507c65302069abfa425ed573ef944f3a937b8afa20c6ffa2700f80f39fc",
+    "sizeBytes": 82988
+  },
+  {
+    "file": "spring-ai-model-2.0.0.jar",
+    "origin": "resolved external dependency",
+    "sha256": "23d91239aa950445d25e269faaed53facf66ff48dcba5284659e59ca62e5e9dc",
+    "sizeBytes": 407834
+  },
+  {
+    "file": "spring-ai-rag-2.0.0.jar",
+    "origin": "resolved external dependency",
+    "sha256": "e486b2b3c150027ac7d847e443e150f29b195988a163a236aca048c3c738b4e6",
+    "sizeBytes": 49016
+  },
+  {
+    "file": "spring-ai-template-st-2.0.0.jar",
+    "origin": "resolved external dependency",
+    "sha256": "65704f0a2b0f808420b8c4a0fb36760eaa514a55fd143ddfa2086d0bccbc94da",
+    "sizeBytes": 8557
+  },
+  {
+    "file": "spring-ai-vector-store-2.0.0.jar",
+    "origin": "resolved external dependency",
+    "sha256": "75ccdddb9bc8bd558bbbb418d0e1d23945ff98ea328bf2234eeaa2e4cd55ff84",
+    "sizeBytes": 131042
+  },
+  {
+    "file": "spring-aop-7.0.8.jar",
+    "origin": "resolved external dependency",
+    "sha256": "1178f039e087884174e2affc46e484f4a8bd7f2a4e011d33dd9137709f740f80",
+    "sizeBytes": 426204
+  },
+  {
+    "file": "spring-beans-7.0.8.jar",
+    "origin": "resolved external dependency",
+    "sha256": "6ec2e361a8872a71d8b1ff66f1bcb8cfa29fcc437931998919da7cecfb59b45b",
+    "sizeBytes": 928037
+  },
+  {
+    "file": "spring-context-7.0.8.jar",
+    "origin": "resolved external dependency",
+    "sha256": "1eb7d552414ebac00e30ab3e809138d810785f6d2c4271db77cdf0181f308f19",
+    "sizeBytes": 1398484
+  },
+  {
+    "file": "spring-core-7.0.8.jar",
+    "origin": "resolved external dependency",
+    "sha256": "726ba2a5130833644bdf267a55ff26e1f52e8dcc9aa1ffa06904ca9c14619f25",
+    "sizeBytes": 2035553
+  },
+  {
+    "file": "spring-expression-7.0.8.jar",
+    "origin": "resolved external dependency",
+    "sha256": "3c97c38ab59c77ee886e08ccf8096f6bb58a1245f68dfed7a40e93f41c435f9a",
+    "sizeBytes": 325993
+  },
+  {
+    "file": "spring-messaging-7.0.8.jar",
+    "origin": "resolved external dependency",
+    "sha256": "0f96694ebb88fed6bf4aef608010c23ee922a476dd71e0fab76ca9ed0eaa70b0",
+    "sizeBytes": 613599
+  },
+  {
+    "file": "swagger-annotations-jakarta-2.2.38.jar",
+    "origin": "resolved external dependency",
+    "sha256": "cf15aa4ab7e8c747d7b3d979660a49320ea56c0dc88b7021e48cc909c13b997b",
+    "sizeBytes": 50578
+  },
+  {
+    "file": "vectors-core-0.1.29.jar",
+    "origin": "Maven Central",
+    "url": "https://repo.maven.apache.org/maven2/com/integrallis/vectors-core/0.1.29/vectors-core-0.1.29.jar",
+    "centralSha1": "9a9831f6b838978ea5cbca052e6045573f556390",
+    "sha256": "21eeae4fcaa56fa26ed45d99610142f794cdec0e1d852894e637263f5bd0b40c",
+    "sizeBytes": 286525
+  },
+  {
+    "file": "vectors-db-0.1.29.jar",
+    "origin": "Maven Central",
+    "url": "https://repo.maven.apache.org/maven2/com/integrallis/vectors-db/0.1.29/vectors-db-0.1.29.jar",
+    "centralSha1": "8949eef3cd7c6969e3f9df7acc2f5f94d1fdcd5e",
+    "sha256": "d6ac2e6f03cced3c8f5a57d8c97fc678886f0946ac709af1c26bc3d4cfb8b9b5",
+    "sizeBytes": 353510
+  },
+  {
+    "file": "vectors-hnsw-0.1.29.jar",
+    "origin": "Maven Central",
+    "url": "https://repo.maven.apache.org/maven2/com/integrallis/vectors-hnsw/0.1.29/vectors-hnsw-0.1.29.jar",
+    "centralSha1": "aaee26a4def1846755e01eecfe6f430c0bbd4111",
+    "sha256": "9dfcfd2e4457c3cb0d1031516bdcf7e92dcb57f9369cd0a2eb772c485c9dacce",
+    "sizeBytes": 69643
+  },
+  {
+    "file": "vectors-ivf-0.1.29.jar",
+    "origin": "Maven Central",
+    "url": "https://repo.maven.apache.org/maven2/com/integrallis/vectors-ivf/0.1.29/vectors-ivf-0.1.29.jar",
+    "centralSha1": "f06f898a6b7b0ed3b1a0e07e576cbfefe4684997",
+    "sha256": "06eb621153278f5ced4851c50c6a5ec293210213ea3f73c6d6afc9e654fb05ff",
+    "sizeBytes": 60517
+  },
+  {
+    "file": "vectors-quantization-0.1.29.jar",
+    "origin": "Maven Central",
+    "url": "https://repo.maven.apache.org/maven2/com/integrallis/vectors-quantization/0.1.29/vectors-quantization-0.1.29.jar",
+    "centralSha1": "0a7e67d4dd4cdc156e6afe06a31c3a6b8d33c1f9",
+    "sha256": "d4c9e4b679590c33d9aad16834e07b5e908d1aefd25951ca0850071a1fe32406",
+    "sizeBytes": 118868
+  },
+  {
+    "file": "vectors-storage-0.1.29.jar",
+    "origin": "Maven Central",
+    "url": "https://repo.maven.apache.org/maven2/com/integrallis/vectors-storage/0.1.29/vectors-storage-0.1.29.jar",
+    "centralSha1": "0d7092a013b48be5b6afcc02e6aa8568c8f07627",
+    "sha256": "ca7e303ae7e693945537b692eb88939ba56018a0a8f71249e5f494add3a3412e",
+    "sizeBytes": 85989
+  },
+  {
+    "file": "vectors-vamana-0.1.29.jar",
+    "origin": "Maven Central",
+    "url": "https://repo.maven.apache.org/maven2/com/integrallis/vectors-vamana/0.1.29/vectors-vamana-0.1.29.jar",
+    "centralSha1": "96c7e741d3e039eac0d280ada706feb3137b4c38",
+    "sha256": "15b80d088fef22ce53898d8c10afba60c6884d500f591db00bf497f8861b0de0",
+    "sizeBytes": 39459
+  }
+]

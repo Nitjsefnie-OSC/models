@@ -1,0 +1,26 @@
+[
+  {
+    "path": "raw-archives/load-arm-qwen-bf16-0.tar.gz",
+    "sha256": "c720631014a2ef6e53fd089125b74ca16f42a1cb3dd803e8dd32d519caa3fb5c",
+    "sizeBytes": 303489,
+    "rawFiles": 1413
+  },
+  {
+    "path": "raw-archives/load-arm-qwen-bf16-1.tar.gz",
+    "sha256": "e93321977dacb8d0e9f9af95a3143cd694673b96144c4caae6bcf3ef6c53ef1e",
+    "sizeBytes": 301861,
+    "rawFiles": 1413
+  },
+  {
+    "path": "raw-archives/load-x86-qwen-bf16-0.tar.gz",
+    "sha256": "011045bc24a20159d4d134ad687d48d700b5f16f340e963ff7ba3752a0e07e1e",
+    "sizeBytes": 298533,
+    "rawFiles": 1413
+  },
+  {
+    "path": "raw-archives/load-x86-qwen-bf16-1.tar.gz",
+    "sha256": "e6394bc534dc9007e3a72de8ce263395dba58329e8df7f7b6796f091e03a7703",
+    "sizeBytes": 299210,
+    "rawFiles": 1413
+  }
+]

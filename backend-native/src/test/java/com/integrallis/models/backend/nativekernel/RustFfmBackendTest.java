@@ -41,7 +41,7 @@ class RustFfmBackendTest {
 
   @Test
   void versionsAutomaticNativeProfileSelection() {
-    assertThat(RustFfmBackend.PLAN_VERSION).isEqualTo("rust-ffm-v13");
+    assertThat(RustFfmBackend.PLAN_VERSION).isEqualTo("rust-ffm-v14");
   }
 
   @Test
@@ -187,6 +187,10 @@ class RustFfmBackendTest {
     RustGgufBatchedMatrixKernel kernel = mock(RustGgufBatchedMatrixKernel.class);
     when(kernel.implementation()).thenReturn("rust-test");
     when(kernel.threadCount()).thenReturn(4);
+    when(kernel.supportsGatedDeltaNet()).thenReturn(true);
+    when(kernel.supportsGroupedGatedDeltaNet()).thenReturn(true);
+    when(kernel.supports(com.integrallis.models.backend.purejava.gguf.GgufTensorType.PTQ1_0))
+        .thenReturn(true);
     BackendDiagnostics javaDiagnostics =
         new BackendDiagnostics("pure-java", "java-plan", Map.of("model", "nano"), List.of());
 
@@ -209,15 +213,20 @@ class RustFfmBackendTest {
     assertThat(diagnostics.optimization("rust-quantized-decode"))
         .hasValueSatisfying(
             decision -> assertThat(decision.status()).isEqualTo(OptimizationStatus.ENABLED));
+    assertThat(diagnostics.environment())
+        .containsEntry("ptq-activation-contract", "q8_0-f16-scales-nearest-even");
+    assertThat(diagnostics.optimization("rust-ptq1-0-q8-0-batched-matmul"))
+        .hasValueSatisfying(
+            decision -> assertThat(decision.status()).isEqualTo(OptimizationStatus.ENABLED));
     assertThat(diagnostics.optimization("rust-q6-k-batched-matmul"))
         .hasValueSatisfying(
             decision -> assertThat(decision.status()).isEqualTo(OptimizationStatus.ENABLED));
     assertThat(diagnostics.optimization("rust-gated-delta-net"))
-        .as("the recurrence stays in Java until an epoch change adopts the shim's")
+        .as("diagnostics describe the provider selected by the runtime")
         .hasValueSatisfying(
             decision -> {
-              assertThat(decision.status()).isEqualTo(OptimizationStatus.DISABLED);
-              assertThat(decision.reason()).contains("2.0e-4");
+              assertThat(decision.status()).isEqualTo(OptimizationStatus.ENABLED);
+              assertThat(decision.reason()).contains("projection worker pool");
             });
   }
 
@@ -236,14 +245,17 @@ class RustFfmBackendTest {
         .hasValueSatisfying(
             decision -> {
               assertThat(decision.status()).isEqualTo(OptimizationStatus.DISABLED);
-              assertThat(decision.reason()).contains("run independently");
+              assertThat(decision.reason()).contains("use Java", "capability was removed");
             });
     assertThat(diagnostics.optimization("rust-gated-delta-net"))
         .hasValueSatisfying(
             decision -> {
               assertThat(decision.status()).isEqualTo(OptimizationStatus.DISABLED);
-              assertThat(decision.reason()).contains("epoch change");
+              assertThat(decision.reason()).contains("unavailable or incompatible");
             });
+    assertThat(diagnostics.optimization("rust-ptq1-0-q8-0-batched-matmul"))
+        .hasValueSatisfying(
+            decision -> assertThat(decision.status()).isEqualTo(OptimizationStatus.DISABLED));
     // Decode is no longer something a setting can switch off, so it is never reported DISABLED.
     assertThat(diagnostics.optimization("rust-quantized-decode"))
         .hasValueSatisfying(

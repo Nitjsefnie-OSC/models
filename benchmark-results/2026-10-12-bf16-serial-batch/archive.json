@@ -1,0 +1,9 @@
+{
+  "sourceRepository": "https://github.com/integrallis/vectors",
+  "sourceRevision": "c3378b7cdcc47b6f23a13e26b5364b0b8586e38a",
+  "sourcePath": "benchmark-results/2026-10-12-bf16-serial-batch",
+  "rawFiles": 232,
+  "archive": "raw-evidence.tar.gz",
+  "archiveSha256": "9cea8c31f13d8336e1074b053c4589e95d95d2656b36d6beb7b5c50ee22ec544",
+  "scope": "Failed fixed control comparison retained; not a published-baseline qualification"
+}

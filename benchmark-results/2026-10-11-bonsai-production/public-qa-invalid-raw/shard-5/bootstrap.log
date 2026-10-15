@@ -1,0 +1,28 @@
+Selecting previously unselected package libgomp1:amd64.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 79226 files and directories currently installed.)
+Preparing to unpack .../libgomp1_14.2.0-4ubuntu2~24.04.1_amd64.deb ...
+Unpacking libgomp1:amd64 (14.2.0-4ubuntu2~24.04.1) ...
+Selecting previously unselected package unzip.
+Preparing to unpack .../unzip_6.0-28ubuntu4.1_amd64.deb ...
+Unpacking unzip (6.0-28ubuntu4.1) ...
+Setting up unzip (6.0-28ubuntu4.1) ...
+Setting up libgomp1:amd64 (14.2.0-4ubuntu2~24.04.1) ...
+Processing triggers for libc-bin (2.39-0ubuntu8.9) ...
+Processing triggers for man-db (2.12.0-4build2) ...
+
+Running kernel seems to be up-to-date.
+
+No services need to be restarted.
+
+No containers need to be restarted.
+
+No user sessions are running outdated binaries.
+
+No VM guests are running outdated hypervisor (qemu) binaries on this host.
+You can now run: /usr/local/bin/aws --version
+Tip: run 'aws configure agent-toolkit' to set up AWS skills and the AWS MCP server for your AI coding agent(s).
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100  1110  100  1110    0     0  29595      0 --:--:-- --:--:-- --:--:-- 30000
+  0 5671M    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  5 5671M    5  328M    0     0   245M      0  0:00:23  0:00:01  0:00:22  351M 11 5671M   11  678M    0     0   289M      0  0:00:19  0:00:02  0:00:17  350M 18 5671M   18 1061M    0     0   317M      0  0:00:17  0:00:03  0:00:14  361M 25 5671M   25 1425M    0     0   328M      0  0:00:17  0:00:04  0:00:13  362M 32 5671M   32 1829M    0     0   342M      0  0:00:16  0:00:05  0:00:11  370M 38 5671M   38 2179M    0     0   343M      0  0:00:16  0:00:06  0:00:10  370M 44 5671M   44 2542M    0     0   346M      0  0:00:16  0:00:07  0:00:09  373M 50 5671M   50 2882M    0     0   345M      0  0:00:16  0:00:08  0:00:08  364M 57 5671M   57 3240M    0     0   347M      0  0:00:16  0:00:09  0:00:07  363M 63 5671M   63 3609M    0     0   349M      0  0:00:16  0:00:10  0:00:06  355M 70 5671M   70 3989M    0     0   351M      0  0:00:16  0:00:11  0:00:05  361M 76 5671M   76 4352M    0     0   352M      0  0:00:16  0:00:12  0:00:04  361M 82 5671M   82 4687M    0     0   351M      0  0:00:16  0:00:13  0:00:03  361M 88 5671M   88 5027M    0     0   350M      0  0:00:16  0:00:14  0:00:02  357M 94 5671M   94 5383M    0     0   350M      0  0:00:16  0:00:15  0:00:01  354M100 5671M  100 5671M    0     0   350M      0  0:00:16  0:00:16 --:--:--  347M
+bonsai2.gguf: OK

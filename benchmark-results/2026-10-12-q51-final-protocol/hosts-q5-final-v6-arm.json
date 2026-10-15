@@ -1,0 +1,50 @@
+{
+  "maximumCombinedUsd": 0.5,
+  "maximumSecondsPerHost": 1200,
+  "payload": "s3://models-qual-077051030817/payload/q5-final-v6-aa5c9c2249367f67e248916c188d7fac9eb695bc9e7668b53bcfd1432b387b2f.tar.gz",
+  "payloadSha256": "aa5c9c2249367f67e248916c188d7fac9eb695bc9e7668b53bcfd1432b387b2f",
+  "quota": 192.0,
+  "usedVcpus": 96,
+  "rates": {
+    "arm": 0.6528
+  },
+  "hosts": [
+    {
+      "arch": "arm",
+      "instanceId": "i-09345d516c520e257",
+      "instanceType": "m7g.4xlarge",
+      "deadline": "2026-10-12T22:22:31.252178+00:00",
+      "resultUri": "s3://models-qual-077051030817/results/gdn-proof-q5-final-v6/arm/",
+      "launchCommand": [
+        "aws",
+        "ec2",
+        "run-instances",
+        "--region",
+        "us-east-1",
+        "--image-id",
+        "ami-03dac6c363b33b131",
+        "--instance-type",
+        "m7g.4xlarge",
+        "--key-name",
+        "qual-milan",
+        "--iam-instance-profile",
+        "Name=models-qual-worker",
+        "--security-group-ids",
+        "sg-0e9ff523da4140d55",
+        "--subnet-id",
+        "subnet-08fcc910aba0d5b23",
+        "--block-device-mappings",
+        "[{\"DeviceName\": \"/dev/sda1\", \"Ebs\": {\"VolumeSize\": 40, \"VolumeType\": \"gp3\", \"DeleteOnTermination\": true}}]",
+        "--instance-initiated-shutdown-behavior",
+        "terminate",
+        "--metadata-options",
+        "HttpTokens=required,HttpEndpoint=enabled",
+        "--user-data",
+        "file:///Users/briansam-bodden/Code/java-ai/projects/models-gdn-proof/benchmark-results/2026-10-11-gdn-proof/arm-q5-final-v6-worker.sh",
+        "--tag-specifications",
+        "ResourceType=instance,Tags=[{Key=Name,Value=models-gdn-proof-q5-final-v6-arm},{Key=project,Value=models-qualification},{Key=delete-after,Value=2026-10-12T22:22:31.252178+00:00}]"
+      ],
+      "userDataSha256": "952190f7583a36816330f8f76476958efa2568fbc7559cad85394f32d8347f20"
+    }
+  ]
+}

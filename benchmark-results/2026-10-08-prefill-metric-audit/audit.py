@@ -115,7 +115,7 @@ print(f"csv                                        : {os.path.relpath(out, ROOT)
 # --------------------------------------------------------------------------------------------
 # PROJECTION, NOT A MEASUREMENT.
 #
-# The tile A/B (experiments/prefill-repack-tile) measured 1.49-1.87x on the Q4_K prefill kernel.
+# The historical llama.cpp tile A/B measured 1.49-1.87x; see docs/findings/historical-experiment-decisions.md.
 # The rows above show our implied prefill time is ~95% of our measured TTFT, so a prefill win
 # should pass through to TTFT nearly one-for-one. This block states what that would mean IF the
 # port lands the lower end of the measured range. It is arithmetic on measured inputs, not an

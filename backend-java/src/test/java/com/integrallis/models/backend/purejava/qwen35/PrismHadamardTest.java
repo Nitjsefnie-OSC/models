@@ -38,6 +38,26 @@ import org.junit.jupiter.api.Test;
 @Tag("unit")
 class PrismHadamardTest {
   @Test
+  void offsetTransformsKeepBatchRowsAndGuardValuesIndependent() {
+    int width = 12;
+    var transform = new PrismHadamard.Transform(4, width, null, 2, 6);
+    float[] input = new float[3 * width + 5];
+    for (int i = 0; i < input.length; i++) input[i] = i - 17.25f;
+    float[] output = new float[3 * width + 7];
+    Arrays.fill(output, 9876.5f);
+    for (int batch = 0; batch < 3; batch++) {
+      float[] expected = new float[width];
+      transform.forward(
+          Arrays.copyOfRange(input, 2 + batch * width, 2 + (batch + 1) * width), expected);
+      transform.forward(input, 2 + batch * width, output, 3 + batch * width);
+      assertThat(Arrays.copyOfRange(output, 3 + batch * width, 3 + (batch + 1) * width))
+          .containsExactly(expected);
+    }
+    assertThat(Arrays.copyOfRange(output, 0, 3)).containsOnly(9876.5f);
+    assertThat(Arrays.copyOfRange(output, 3 + 3 * width, output.length)).containsOnly(9876.5f);
+  }
+
+  @Test
   void metadataRequiresEveryDeclaredProjectionToUseTheTransform() {
     var hadamard = PrismHadamard.load(file(metadata()), config());
     assertThat(hadamard.projection("output.weight")).isNotNull();

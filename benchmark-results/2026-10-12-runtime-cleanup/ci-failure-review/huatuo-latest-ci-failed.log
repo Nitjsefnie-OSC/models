@@ -1,0 +1,145 @@
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	﻿2026-10-12T22:05:42.2861412Z ##[group]Run scripts/run-purejava-determinism-matrix.sh "$HOME/.jvllm/models/HuatuoGPT-o1-7B-Q4_K_M.gguf" huatuogpt-o1-7b-q4_k_m
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:05:42.2862181Z ^[[36;1mscripts/run-purejava-determinism-matrix.sh "$HOME/.jvllm/models/HuatuoGPT-o1-7B-Q4_K_M.gguf" huatuogpt-o1-7b-q4_k_m^[[0m
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:05:42.2896385Z shell: /usr/bin/bash -e {0}
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:05:42.2896720Z env:
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:05:42.2897028Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:05:42.2897468Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:05:42.2897820Z   MAVEN_ARGS: -ntp
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:05:42.2898095Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:05:42.2898378Z   GRADLE_USER_HOME: /home/runner/.gradle
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:05:42.2898654Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:05:42.2899038Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:05:42.2899444Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:05:42.2899849Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:05:42.2900343Z   AUDIT_PROMPT: Question: Which organ pumps blood through the human body?
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	Answer:
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:05:42.2900707Z   AUDIT_TOKENS: 4
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:05:42.2900911Z   AUDIT_ITERATIONS: 3
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:05:42.2901150Z   AUDIT_CONTEXT: 128
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:05:42.2901730Z ##[endgroup]
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:05:42.5848835Z WARNING: A restricted method in java.lang.System has been called
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:05:42.5850588Z WARNING: java.lang.System::load has been called by net.rubygrapefruit.platform.internal.NativeLibraryLoader in an unnamed module (file:/home/runner/.gradle/wrapper/dists/gradle-9.4.1-all/eckclv9s5vi9exbmnyvpg2a3h/gradle-9.4.1/lib/native-platform-0.22-milestone-29.jar)
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:05:42.5852177Z WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:05:42.5853013Z WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:05:42.5853556Z 
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:05:42.8096164Z To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/9.4.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:05:43.4086029Z Daemon will be stopped at the end of the build 
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:05:49.4115877Z > Task :models-api:compileJava UP-TO-DATE
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:05:49.5100083Z > Task :backend-java:compileJava UP-TO-DATE
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:05:50.2077212Z > Task :backend-cuda:compileJava
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:05:50.2115622Z > Task :writeReleaseDependencyManifest UP-TO-DATE
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:05:50.2116511Z > Task :backend-cuda:verifyRustToolchain
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:05:52.2076709Z 
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:05:52.2082113Z     Updating crates.io index
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:05:52.2082736Z  Downloading crates ...
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:05:52.2083206Z   Downloaded getopts v0.2.24
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:05:52.2083848Z   Downloaded rustc-literal-escaper v0.0.8
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:05:52.2084629Z   Downloaded cfg-if v1.0.4
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:05:52.2085140Z   Downloaded foldhash v0.2.0
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:05:52.2085558Z   Downloaded rustc-demangle v0.1.28
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:05:52.2086010Z   Downloaded hashbrown v0.17.1
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:05:52.2086504Z > Task :backend-cuda:compilePtx
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:05:52.2086841Z   Downloaded libc v0.2.189
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:05:52.2087462Z    Compiling compiler_builtins v0.1.160 (/home/runner/.rustup/toolchains/nightly-2026-09-17-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/compiler-builtins/compiler-builtins)
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:05:52.2088251Z    Compiling core v0.0.0 (/home/runner/.rustup/toolchains/nightly-2026-09-17-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core)
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:06:01.7077000Z    Compiling models-cuda-kernels v0.3.46 (/home/runner/work/models/models/models/backend-cuda/src/main/rust/models-cuda-kernels)
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:06:06.1076759Z     Finished `release` profile [optimized] target(s) in 15.82s
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:06:06.1078043Z 
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:06:06.1078494Z > Task :backend-cuda:preparePtxResources
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:06:06.1079039Z > Task :backend-cuda:processResources
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:06:06.1079513Z > Task :backend-cuda:classes
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:06:06.2096476Z > Task :backend-cuda:jar
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:06:06.2097380Z > Task :backend-java:processResources UP-TO-DATE
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:06:06.2100688Z > Task :backend-java:classes UP-TO-DATE
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:06:06.3101011Z > Task :backend-java:jar
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:06:06.3105465Z > Task :models-api:processResources UP-TO-DATE
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:06:06.3106100Z > Task :models-api:classes UP-TO-DATE
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:06:06.3106674Z > Task :models-api:jar UP-TO-DATE
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:06:06.3107184Z > Task :models-runtime:compileJava UP-TO-DATE
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:06:07.8098580Z > Task :models-router:compileJava
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:06:10.4077642Z > Task :models-bench:compileJava
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:06:10.4078612Z > Task :models-bench:processResources
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:06:10.4079228Z > Task :models-bench:classes
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:06:10.7076965Z > Task :models-bench:jar
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:06:10.7077760Z > Task :models-router:processResources
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:06:10.7078526Z > Task :models-router:classes
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:06:10.7078986Z > Task :models-router:jar
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:06:10.7079582Z > Task :models-runtime:processResources UP-TO-DATE
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:06:10.7080087Z > Task :models-runtime:classes UP-TO-DATE
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:06:10.7080634Z > Task :models-runtime:jar UP-TO-DATE
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:06:11.5096726Z > Task :models-bench:startScripts
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:06:11.5097778Z > Task :models-bench:installDist
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:06:11.5098628Z gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/__run_2-1791842744799.json
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:06:11.5099229Z 
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:06:11.5099485Z BUILD SUCCESSFUL in 29s
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:06:11.5099909Z 24 actionable tasks: 15 executed, 9 up-to-date
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:06:11.5100754Z Consider enabling configuration cache to speed up this build: https://docs.gradle.org/9.4.1/userguide/configuration_cache_enabling.html
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:06:11.6131652Z auditing panama-default with JAVA_OPTS=''
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:06:11.6569047Z WARNING: Using incubator modules: jdk.incubator.vector
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:06:12.2807047Z Oct 12, 2026 10:06:12 PM com.integrallis.vectors.core.PanamaVectorUtilSupportProvider create
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:06:12.2808482Z INFO: vectors-core: Using Panama Vector API SIMD provider (vector bits: 256 (capped from hardware-preferred 512; raise with -Dvectors.maxBits))
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:06:12.2834961Z Oct 12, 2026 10:06:12 PM com.integrallis.vectors.core.VectorizationProvider logActiveToggles
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:06:12.2837862Z INFO: vectors-core: provider=PanamaVectorUtilSupport panama=true maxBits=256 preferredBits=512 fastVectorFMA=true fastScalarFMA=true sve=false ggufParallel=true ggufParallelThreshold=1048576 ggufExecutor=persistent ggufThreads=4 ggufChunksPerThread=2 mappedKQuantLongOffsets=auto(q4=true,q5=false,q6=false) q4ShortPairwiseSupported=true q4UnsignedPairwiseSupported=true toggles=[(defaults — no -Dvectors.* overrides)]
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:07:14.3083258Z trial 1/3: tokens=[576,4746,374,279] min-margin=0.501605988 hash=0b0d83645ff602e7513396640fbd9211c8a0aad01742ae9071fd5d5d746852df
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:07:14.3084632Z trial 2/3: tokens=[576,4746,374,279] min-margin=0.529335022 hash=5cc9e10949f60568506d8f0138193c3bef0e0712a4812a90f9b6fe54f1b27662
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:07:14.3085788Z trial 3/3: tokens=[576,4746,374,279] min-margin=0.529335022 hash=5cc9e10949f60568506d8f0138193c3bef0e0712a4812a90f9b6fe54f1b27662
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:07:14.3086886Z deterministic=false provider=PanamaVectorUtilSupport panama=true report=/home/runner/work/models/models/models/build/reports/determinism/huatuogpt-o1-7b-q4_k_m/panama-default.json
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:07:14.3110855Z ##[error]Exception in thread "main" java.lang.IllegalStateException: exact logits were not deterministic; see /home/runner/work/models/models/models/build/reports/determinism/huatuogpt-o1-7b-q4_k_m/panama-default.json
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:07:14.3116875Z 	at com.integrallis.models.bench.DeterminismAuditCli.run(DeterminismAuditCli.java:80)
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:07:14.3117799Z 	at com.integrallis.models.bench.InferenceBenchmarkCli.main(InferenceBenchmarkCli.java:99)
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:07:14.3447091Z determinism audit failed: panama-default
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:07:14.3447620Z auditing panama-serial with JAVA_OPTS='-Dvectors.gguf.parallel=false'
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:07:14.3867343Z WARNING: Using incubator modules: jdk.incubator.vector
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:07:14.4936257Z Oct 12, 2026 10:07:14 PM com.integrallis.vectors.core.PanamaVectorUtilSupportProvider create
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:07:14.4951395Z INFO: vectors-core: Using Panama Vector API SIMD provider (vector bits: 256 (capped from hardware-preferred 512; raise with -Dvectors.maxBits))
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:07:14.4974047Z Oct 12, 2026 10:07:14 PM com.integrallis.vectors.core.VectorizationProvider logActiveToggles
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:07:14.4976396Z INFO: vectors-core: provider=PanamaVectorUtilSupport panama=true maxBits=256 preferredBits=512 fastVectorFMA=true fastScalarFMA=true sve=false ggufParallel=false ggufParallelThreshold=1048576 ggufExecutor=persistent ggufThreads=4 ggufChunksPerThread=2 mappedKQuantLongOffsets=auto(q4=true,q5=false,q6=false) q4ShortPairwiseSupported=true q4UnsignedPairwiseSupported=true toggles=[vectors.gguf.parallel=false]
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:09:30.5754198Z trial 1/3: tokens=[576,4746,374,279] min-margin=0.501605988 hash=0b0d83645ff602e7513396640fbd9211c8a0aad01742ae9071fd5d5d746852df
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:09:30.5758456Z trial 2/3: tokens=[576,4746,374,279] min-margin=0.529335022 hash=5cc9e10949f60568506d8f0138193c3bef0e0712a4812a90f9b6fe54f1b27662
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:09:30.5766928Z ##[error]Exception in thread "main" java.lang.IllegalStateException: exact logits were not deterministic; see /home/runner/work/models/models/models/build/reports/determinism/huatuogpt-o1-7b-q4_k_m/panama-serial.json
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:09:30.5768919Z 	at com.integrallis.models.bench.DeterminismAuditCli.run(DeterminismAuditCli.java:80)
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:09:30.5769725Z 	at com.integrallis.models.bench.InferenceBenchmarkCli.main(InferenceBenchmarkCli.java:99)
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:09:30.5770617Z trial 3/3: tokens=[576,4746,374,279] min-margin=0.529335022 hash=5cc9e10949f60568506d8f0138193c3bef0e0712a4812a90f9b6fe54f1b27662
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:09:30.5771711Z deterministic=false provider=PanamaVectorUtilSupport panama=true report=/home/runner/work/models/models/models/build/reports/determinism/huatuogpt-o1-7b-q4_k_m/panama-serial.json
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:09:30.5837099Z determinism audit failed: panama-serial
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:09:30.5837914Z auditing panama-no-fma with JAVA_OPTS='-Dvectors.gguf.parallel=false -Dvectors.useVectorFMA=false -Dvectors.useScalarFMA=false'
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:09:30.6356296Z WARNING: Using incubator modules: jdk.incubator.vector
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:09:30.7461484Z Oct 12, 2026 10:09:30 PM com.integrallis.vectors.core.PanamaVectorUtilSupportProvider create
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:09:30.7462693Z INFO: vectors-core: Using Panama Vector API SIMD provider (vector bits: 256 (capped from hardware-preferred 512; raise with -Dvectors.maxBits))
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:09:30.7485887Z Oct 12, 2026 10:09:30 PM com.integrallis.vectors.core.VectorizationProvider logActiveToggles
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:09:30.7488056Z INFO: vectors-core: provider=PanamaVectorUtilSupport panama=true maxBits=256 preferredBits=512 fastVectorFMA=false fastScalarFMA=false sve=false ggufParallel=false ggufParallelThreshold=1048576 ggufExecutor=persistent ggufThreads=4 ggufChunksPerThread=2 mappedKQuantLongOffsets=auto(q4=true,q5=false,q6=false) q4ShortPairwiseSupported=true q4UnsignedPairwiseSupported=true toggles=[vectors.useVectorFMA=false, vectors.useScalarFMA=false, vectors.gguf.parallel=false]
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:11:48.9521001Z trial 1/3: tokens=[576,4746,374,279] min-margin=0.373426437 hash=d2f1e455d33a5740bd2f1b1f9ecd923db77ae59a49463db266f5de4790839d24
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:11:48.9522493Z trial 2/3: tokens=[576,4746,374,279] min-margin=0.289415359 hash=c86582fef723fb1950856ef82394026bf9dab4b9e84c0cbaf4e589b60ffe36be
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:11:48.9523764Z trial 3/3: tokens=[576,4746,374,279] min-margin=0.289415359 hash=c86582fef723fb1950856ef82394026bf9dab4b9e84c0cbaf4e589b60ffe36be
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:11:48.9525974Z deterministic=false provider=PanamaVectorUtilSupport panama=true report=/home/runner/work/models/models/models/build/reports/determinism/huatuogpt-o1-7b-q4_k_m/panama-no-fma.json
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:11:48.9529005Z ##[error]Exception in thread "main" java.lang.IllegalStateException: exact logits were not deterministic; see /home/runner/work/models/models/models/build/reports/determinism/huatuogpt-o1-7b-q4_k_m/panama-no-fma.json
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:11:48.9532034Z 	at com.integrallis.models.bench.DeterminismAuditCli.run(DeterminismAuditCli.java:80)
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:11:48.9534714Z 	at com.integrallis.models.bench.InferenceBenchmarkCli.main(InferenceBenchmarkCli.java:99)
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:11:48.9611675Z determinism audit failed: panama-no-fma
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:11:48.9613018Z auditing panama-128 with JAVA_OPTS='-Dvectors.gguf.parallel=false -Dvectors.maxBits=128'
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:11:49.0058919Z WARNING: Using incubator modules: jdk.incubator.vector
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:11:49.1246380Z Oct 12, 2026 10:11:49 PM com.integrallis.vectors.core.PanamaVectorUtilSupportProvider create
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:11:49.1250503Z INFO: vectors-core: Using Panama Vector API SIMD provider (vector bits: 128 (capped from hardware-preferred 512; raise with -Dvectors.maxBits))
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:11:49.1264010Z Oct 12, 2026 10:11:49 PM com.integrallis.vectors.core.VectorizationProvider logActiveToggles
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:11:49.1266484Z INFO: vectors-core: provider=PanamaVectorUtilSupport panama=true maxBits=128 preferredBits=512 fastVectorFMA=true fastScalarFMA=true sve=false ggufParallel=false ggufParallelThreshold=1048576 ggufExecutor=persistent ggufThreads=4 ggufChunksPerThread=2 mappedKQuantLongOffsets=auto(q4=true,q5=false,q6=false) q4ShortPairwiseSupported=false q4UnsignedPairwiseSupported=false toggles=[vectors.maxBits=128, vectors.gguf.parallel=false]
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:15:23.5662330Z trial 1/3: tokens=[576,4746,374,279] min-margin=0.566049576 hash=47464227e82613ad9750c92eb537176bad4c026ae3cf94919923fa77d15c64aa
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:15:23.5663382Z trial 2/3: tokens=[576,4746,374,279] min-margin=0.460433960 hash=cc11f5b935c035b9ebeae575c7503b7db9c07f2aeab308053b2c79e530e9a0f0
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:15:23.5665985Z trial 3/3: tokens=[576,4746,374,279] min-margin=0.460433960 hash=cc11f5b935c035b9ebeae575c7503b7db9c07f2aeab308053b2c79e530e9a0f0
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:15:23.5666871Z deterministic=false provider=PanamaVectorUtilSupport panama=true report=/home/runner/work/models/models/models/build/reports/determinism/huatuogpt-o1-7b-q4_k_m/panama-128.json
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:15:23.5670259Z ##[error]Exception in thread "main" java.lang.IllegalStateException: exact logits were not deterministic; see /home/runner/work/models/models/models/build/reports/determinism/huatuogpt-o1-7b-q4_k_m/panama-128.json
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:15:23.5672144Z 	at com.integrallis.models.bench.DeterminismAuditCli.run(DeterminismAuditCli.java:80)
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:15:23.5673029Z 	at com.integrallis.models.bench.InferenceBenchmarkCli.main(InferenceBenchmarkCli.java:99)
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:15:23.5726912Z determinism audit failed: panama-128
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:15:23.5727793Z auditing scalar with JAVA_OPTS='-Dvectors.forceScalar=true -Dvectors.gguf.parallel=false'
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:15:23.6131323Z WARNING: Using incubator modules: jdk.incubator.vector
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:15:23.6755867Z Oct 12, 2026 10:15:23 PM com.integrallis.vectors.core.VectorizationProvider selectProvider
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:15:23.6776343Z INFO: vectors-core: Forced scalar mode via -Dvectors.forceScalar=true
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:15:23.6938803Z Oct 12, 2026 10:15:23 PM com.integrallis.vectors.core.VectorizationProvider logActiveToggles
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:15:23.6940711Z INFO: vectors-core: provider=ScalarVectorUtilSupport panama=false maxBits=256 preferredBits=512 fastVectorFMA=true fastScalarFMA=true sve=false ggufParallel=false ggufParallelThreshold=1048576 ggufExecutor=persistent ggufThreads=4 ggufChunksPerThread=2 mappedKQuantLongOffsets=auto(q4=true,q5=false,q6=false) q4ShortPairwiseSupported=false q4UnsignedPairwiseSupported=false toggles=[vectors.forceScalar=true, vectors.gguf.parallel=false]
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:19:44.1766621Z trial 1/3: tokens=[576,4746,374,279] min-margin=0.427078247 hash=aff1e651e655125d7639a20c57906b54de9c6514cabccfd2fd0080539d5cb44e
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:19:44.1769170Z trial 2/3: tokens=[576,4746,374,279] min-margin=0.427078247 hash=aff1e651e655125d7639a20c57906b54de9c6514cabccfd2fd0080539d5cb44e
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:19:44.1769879Z trial 3/3: tokens=[576,4746,374,279] min-margin=0.427078247 hash=aff1e651e655125d7639a20c57906b54de9c6514cabccfd2fd0080539d5cb44e
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:19:44.1770720Z deterministic=true provider=ScalarVectorUtilSupport panama=false report=/home/runner/work/models/models/models/build/reports/determinism/huatuogpt-o1-7b-q4_k_m/scalar.json
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:19:44.1826476Z determinism evidence: /home/runner/work/models/models/models/build/reports/determinism/huatuogpt-o1-7b-q4_k_m
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:19:44.1826963Z 4 determinism audit(s) failed
+HuatuoGPT-o1-7B exact determinism	Run fresh-JVM determinism matrix	2026-10-12T22:19:44.1836390Z ##[error]Process completed with exit code 1.

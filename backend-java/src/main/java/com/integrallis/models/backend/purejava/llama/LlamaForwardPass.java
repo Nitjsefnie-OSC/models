@@ -35,6 +35,7 @@ import com.integrallis.models.backend.purejava.plan.PureJavaPlanConfiguration;
 import com.integrallis.models.backend.purejava.plan.RuntimeFingerprint;
 import com.integrallis.models.backend.purejava.spi.BatchedCausalAttentionKernel;
 import com.integrallis.models.backend.purejava.spi.GgufBatchedMatrixKernel;
+import com.integrallis.models.backend.purejava.spi.GgufBatchedMatrixKernel.FloatArrayView;
 import com.integrallis.vectors.core.GgufQ4Kernel;
 import com.integrallis.vectors.core.GgufQ6BatchedKernel;
 import com.integrallis.vectors.core.GgufQ8BlockMajorKernel;
@@ -188,6 +189,8 @@ public final class LlamaForwardPass {
   private final ThreadLocal<float[]> attentionScratch;
   private final boolean nativeGroupedAttention;
 
+  private final boolean attentionTemperatureScaling;
+
   /**
    * Whether attention runs through the fused {@link GroupedQueryAttentionKernel} (grouped score
    * pass, vector softmax, paired-head value pass). The fused kernel is qualified for Granite only:
@@ -196,8 +199,6 @@ public final class LlamaForwardPass {
    * 0.6B on the Rust arm, measured 2026-09-16). Every other architecture keeps the head-by-head
    * path its oracles were recorded on.
    */
-  private final boolean attentionTemperatureScaling;
-
   private final boolean fusedGroupedAttention;
 
   private float[] nativeAttentionScores;
@@ -229,14 +230,20 @@ public final class LlamaForwardPass {
   private final float[] attentionScores;
   private final float[] attnProjected;
   private final float[] ffnGate;
+  private final FloatArrayView ffnGateView;
   private final float[] ffnUp;
+  private final FloatArrayView ffnUpView;
   private final float[] ffnOut;
+  private final FloatArrayView ffnOutView;
   private final float[] ffnProjected;
   private final float[] moeRouterLogits;
   private final float[] moeInput;
   private final float[] moeGate;
+  private final FloatArrayView moeGateView;
   private final float[] moeUp;
+  private final FloatArrayView moeUpView;
   private final float[] moeActivated;
+  private final FloatArrayView moeActivatedView;
   private final float[] moeExpertOut;
   private final int[] moeSelected;
   private final float[] moeRoutingWeights;
@@ -256,8 +263,11 @@ public final class LlamaForwardPass {
   private final float[] batchAttnOut;
   private final float[] batchAttnProjected;
   private final float[] batchFfnGate;
+  private final FloatArrayView batchFfnGateView;
   private final float[] batchFfnUp;
+  private final FloatArrayView batchFfnUpView;
   private final float[] batchFfnOut;
+  private final FloatArrayView batchFfnOutView;
   private final float[] batchFfnProjected;
   private final Session[] batchSessions;
   private final int[] batchTokens;
@@ -500,8 +510,11 @@ public final class LlamaForwardPass {
     this.attentionScores = new float[cache.maxSeqLen()];
     this.attnProjected = new float[dim];
     this.ffnGate = new float[hiddenDim];
+    this.ffnGateView = prepareActivationArray(ffnGate);
     this.ffnUp = new float[hiddenDim];
+    this.ffnUpView = prepareActivationArray(ffnUp);
     this.ffnOut = new float[hiddenDim];
+    this.ffnOutView = prepareActivationArray(ffnOut);
     this.ffnProjected = new float[dim];
     // Zero-length on a dense model: numExperts, numExpertsUsed and expertHiddenDim are all zero
     // together or all set together, which LlamaConfig validates.
@@ -509,8 +522,11 @@ public final class LlamaForwardPass {
     this.moeRouterLogits = new float[config.numExperts()];
     this.moeInput = new float[config.usesMixtureOfExperts() ? dim : 0];
     this.moeGate = new float[expertHiddenDim];
+    this.moeGateView = prepareActivationArray(moeGate);
     this.moeUp = new float[expertHiddenDim];
+    this.moeUpView = prepareActivationArray(moeUp);
     this.moeActivated = new float[expertHiddenDim];
+    this.moeActivatedView = prepareActivationArray(moeActivated);
     this.moeExpertOut = new float[config.usesMixtureOfExperts() ? dim : 0];
     this.moeSelected = new int[config.numExpertsUsed()];
     this.moeRoutingWeights = new float[config.numExpertsUsed()];
@@ -545,8 +561,11 @@ public final class LlamaForwardPass {
     this.batchAttnOut = batchBuffer(prefillBatchCapacity, config.attentionOutputDim());
     this.batchAttnProjected = batchBuffer(prefillBatchCapacity, dim);
     this.batchFfnGate = batchBuffer(prefillBatchCapacity, hiddenDim);
+    this.batchFfnGateView = prepareActivationArray(batchFfnGate);
     this.batchFfnUp = batchBuffer(prefillBatchCapacity, hiddenDim);
+    this.batchFfnUpView = prepareActivationArray(batchFfnUp);
     this.batchFfnOut = batchBuffer(prefillBatchCapacity, hiddenDim);
+    this.batchFfnOutView = prepareActivationArray(batchFfnOut);
     this.batchFfnProjected = batchBuffer(prefillBatchCapacity, dim);
     this.batchSessions = new Session[prefillBatchCapacity];
     int attentionGroupSize = config.numHeads() / config.numKvHeads();
@@ -993,44 +1012,57 @@ public final class LlamaForwardPass {
       remaining = Math.addExact(remaining, tokens.length);
     }
 
-    while (remaining > 0) {
-      Arrays.fill(chunkCounts, 0);
-      int batchSize = 0;
-      boolean admitted = true;
-      while (batchSize < prefillBatchCapacity && admitted) {
-        admitted = false;
-        for (int sessionIndex = 0;
-            sessionIndex < sessionCount && batchSize < prefillBatchCapacity;
-            sessionIndex++) {
-          int promptIndex = consumed[sessionIndex];
-          if (promptIndex >= tokenBatches[sessionIndex].length) {
-            continue;
+    try {
+      // Validation already established that every complete prompt fits its session context.
+      // Reserve once instead of repeatedly copying all layers as individual rows arrive.
+      for (int index = 0; index < sessionCount; index++) {
+        sessions[index].cache.reserveSequenceCapacity(
+            Math.addExact(sessions[index].nextPosition, tokenBatches[index].length));
+      }
+      while (remaining > 0) {
+        Arrays.fill(chunkCounts, 0);
+        int batchSize = 0;
+        boolean admitted = true;
+        while (batchSize < prefillBatchCapacity && admitted) {
+          admitted = false;
+          for (int sessionIndex = 0;
+              sessionIndex < sessionCount && batchSize < prefillBatchCapacity;
+              sessionIndex++) {
+            int promptIndex = consumed[sessionIndex];
+            if (promptIndex >= tokenBatches[sessionIndex].length) {
+              continue;
+            }
+            batchSessions[batchSize] = sessions[sessionIndex];
+            batchTokens[batchSize] = tokenBatches[sessionIndex][promptIndex];
+            batchSessionIndexes[batchSize] = sessionIndex;
+            batchPromptIndexes[batchSize] = promptIndex;
+            batchPositions[batchSize] =
+                sessions[sessionIndex].nextPosition + chunkCounts[sessionIndex];
+            consumed[sessionIndex]++;
+            chunkCounts[sessionIndex]++;
+            batchSize++;
+            remaining--;
+            admitted = true;
           }
-          batchSessions[batchSize] = sessions[sessionIndex];
-          batchTokens[batchSize] = tokenBatches[sessionIndex][promptIndex];
-          batchSessionIndexes[batchSize] = sessionIndex;
-          batchPromptIndexes[batchSize] = promptIndex;
-          batchPositions[batchSize] =
-              sessions[sessionIndex].nextPosition + chunkCounts[sessionIndex];
-          consumed[sessionIndex]++;
-          chunkCounts[sessionIndex]++;
-          batchSize++;
-          remaining--;
-          admitted = true;
+        }
+
+        advanceIndependentSessionRows(batchSessions, batchTokens, batchSize);
+        for (int row = 0; row < batchSize; row++) {
+          int sessionIndex = batchSessionIndexes[row];
+          if (batchPromptIndexes[row] + 1 == tokenBatches[sessionIndex].length) {
+            System.arraycopy(batchX, row * dim, finalStates, sessionIndex * dim, dim);
+          }
+        }
+        for (int sessionIndex = 0; sessionIndex < sessionCount; sessionIndex++) {
+          sessions[sessionIndex].nextPosition += chunkCounts[sessionIndex];
+          advanceActivatedInvocation(sessions[sessionIndex], chunkCounts[sessionIndex]);
         }
       }
 
-      advanceIndependentSessionRows(batchSessions, batchTokens, batchSize);
-      for (int row = 0; row < batchSize; row++) {
-        int sessionIndex = batchSessionIndexes[row];
-        if (batchPromptIndexes[row] + 1 == tokenBatches[sessionIndex].length) {
-          System.arraycopy(batchX, row * dim, finalStates, sessionIndex * dim, dim);
-        }
-      }
-      for (int sessionIndex = 0; sessionIndex < sessionCount; sessionIndex++) {
-        sessions[sessionIndex].nextPosition += chunkCounts[sessionIndex];
-        advanceActivatedInvocation(sessions[sessionIndex], chunkCounts[sessionIndex]);
-      }
+    } finally {
+      // The caller owns these sessions. Scratch storage must not keep their KV caches alive
+      // after a request, including stale tail slots and exceptional exits.
+      Arrays.fill(batchSessions, null);
     }
 
     return finalStates;
@@ -1300,7 +1332,10 @@ public final class LlamaForwardPass {
                 hiddenOffset,
                 batchFfnUp,
                 hiddenOffset,
-                hiddenDim);
+                hiddenDim,
+                batchFfnOutView,
+                batchFfnGateView,
+                batchFfnUpView);
           }
           batchedMatmulDispatch(
               batchFfnProjected,
@@ -1510,7 +1545,8 @@ public final class LlamaForwardPass {
         refuseFfnAdapter(layer, sessions[batch].adapterActive);
         routedFfn(batchFfnProjected, batch * dim, batchXNorm, batch * dim, lw.moe());
       }
-    } else if (!hasActivatedAdapter(sessions, batchSize)
+    } else if (batchSize > 1
+        && !hasActivatedAdapter(sessions, batchSize)
         && stagedQuantizedFfn
         && stagedQuantizedPlan != null
         && stagedQuantizedPlan.supportsFfn(lw)) {
@@ -1578,7 +1614,10 @@ public final class LlamaForwardPass {
           hiddenOffset,
           batchFfnUp,
           hiddenOffset,
-          hiddenDim);
+          hiddenDim,
+          batchFfnOutView,
+          batchFfnGateView,
+          batchFfnUpView);
     }
   }
 
@@ -1920,7 +1959,17 @@ public final class LlamaForwardPass {
         }
         addActivatedAdapter(layer, Projection.FFN_GATE, ffnGate, xNorm, adapterActive);
         addActivatedAdapter(layer, Projection.FFN_UP, ffnUp, xNorm, adapterActive);
-        activateFfn(ffnOut, 0, ffnGate, 0, ffnUp, 0, config.hiddenDim());
+        activateFfn(
+            ffnOut,
+            0,
+            ffnGate,
+            0,
+            ffnUp,
+            0,
+            config.hiddenDim(),
+            ffnOutView,
+            ffnGateView,
+            ffnUpView);
 
         // Down projection
         matmulDispatch(
@@ -2227,7 +2276,7 @@ public final class LlamaForwardPass {
         matmulDispatch(ffnGate, xNorm, layer.ffnGate(), layer.ffnGateType(), hiddenDim, dim);
         matmulDispatch(ffnUp, xNorm, layer.ffnUp(), layer.ffnUpType(), hiddenDim, dim);
       }
-      activateFfn(ffnOut, 0, ffnGate, 0, ffnUp, 0, hiddenDim);
+      activateFfn(ffnOut, 0, ffnGate, 0, ffnUp, 0, hiddenDim, ffnOutView, ffnGateView, ffnUpView);
       matmulDispatch(ffnProjected, ffnOut, layer.ffnDown(), layer.ffnDownType(), dim, hiddenDim);
     }
     normalizeProjection(ffnProjected, layer.ffnPostNorm(), dim);
@@ -2288,7 +2337,8 @@ public final class LlamaForwardPass {
       matmulDispatch(moeUp, moeInput, moe.up()[expert], moe.upType(), hidden, dim);
       // The same activation policy as the dense path, so a routed model honours usesGeluFfn and the
       // Granite sigmoid rather than hardcoding SwiGLU here.
-      activateFfn(moeActivated, 0, moeGate, 0, moeUp, 0, hidden);
+      activateFfn(
+          moeActivated, 0, moeGate, 0, moeUp, 0, hidden, moeActivatedView, moeGateView, moeUpView);
       matmulDispatch(moeExpertOut, moeActivated, moe.down()[expert], moe.downType(), dim, hidden);
       for (int index = 0; index < dim; index++) {
         destination[destinationOffset + index] += weight * moeExpertOut[index];
@@ -2701,15 +2751,15 @@ public final class LlamaForwardPass {
   }
 
   /**
-   * One grouped-query group. Fused ({@link #fusedGroupedAttention}, the default for every model
-   * whose group size exceeds one): scores for every head sharing {@code kvHead} in one pass over
-   * the cached keys, a vector softmax per head, then one pass over the cached values, so the K and
-   * V rows are read once instead of {@code groupSize} times. That is the whole point on a decode
-   * step, which is bound by how many bytes of cache it touches rather than by arithmetic.
+   * One grouped-query group. With {@link #fusedGroupedAttention}, scores for every head sharing
+   * {@code kvHead} use one pass over the cached keys, vector softmax per head, then one pass over
+   * the cached values. The K and V rows are read once instead of {@code groupSize} times. Automatic
+   * selection enables this route for Granite; other architectures retain the head-by-head route on
+   * which their numerical and model-output contracts were established.
    *
-   * <p>With the knob off: the head-by-head loop -- per-head scores, scalar softmax, per-head
-   * values. It is kept as the reference the fused path is measured against, not as a fallback for
-   * architectures the fused path cannot serve; there are none.
+   * <p>When fused attention is disabled, each head computes its own scores, scalar softmax and
+   * weighted values. This remains an active production route, including Qwen. Changing its
+   * selection requires numerical and whole-model validation for the affected architecture.
    */
   private void attendGroup(
       AttentionView view,
@@ -2910,18 +2960,32 @@ public final class LlamaForwardPass {
       int gateOffset,
       float[] up,
       int upOffset,
-      int size) {
+      int size,
+      FloatArrayView outView,
+      FloatArrayView gateView,
+      FloatArrayView upView) {
     if (config.usesGeluFfn()) {
       TensorOps.geluGlu(out, outOffset, gate, gateOffset, up, upOffset, size);
     } else if (config.usesGraniteScaling()) {
-      // Granite: the tier-stable vector sigmoid; vectors-core's swiGlu resolves lanewise EXP to
-      // the vector math library only once compiled and would differ by JIT tier.
+      // Granite retains its distinct sigmoid arithmetic; it does not use the Qwen activation.
+      // Routing this branch through the optional Qwen kernel would change that contract.
       GroupedQueryAttentionKernel.swiGlu(out, outOffset, gate, gateOffset, up, upOffset, size);
     } else if (usesVectorizedSwiGlu()) {
-      VectorUtil.swiGlu(out, outOffset, gate, gateOffset, up, upOffset, size);
+      boolean accepted =
+          outView != null && gateView != null && upView != null
+              ? batchedMatrixKernel.trySwiGlu(
+                  outView, outOffset, gateView, gateOffset, upView, upOffset, size)
+              : batchedMatrixKernel.trySwiGlu(out, outOffset, gate, gateOffset, up, upOffset, size);
+      if (!accepted) {
+        VectorUtil.swiGlu(out, outOffset, gate, gateOffset, up, upOffset, size);
+      }
     } else {
       TensorOps.swiGlu(out, outOffset, gate, gateOffset, up, upOffset, size);
     }
+  }
+
+  private FloatArrayView prepareActivationArray(float[] values) {
+    return usesVectorizedSwiGlu() ? batchedMatrixKernel.prepareFloatArray(values) : null;
   }
 
   private boolean usesVectorizedSwiGlu() {

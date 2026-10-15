@@ -15,60 +15,25 @@
  */
 package com.integrallis.models.backend.purejava.qwen35;
 
+import com.integrallis.models.backend.purejava.spi.GgufBatchedMatrixKernel;
+import com.integrallis.models.backend.purejava.spi.GgufBatchedMatrixKernel.FloatArrayView;
+
 /**
  * State for answering several questions about one piece of evidence in lockstep.
  *
- * <p>MEASURED 2026-09-24, Harriet on a Hetzner CCX33 (8 vCPU, EPYC Milan, 4 physical cores): twenty
- * questions over one contract cost 8.95 s one at a time, a flat 0.45 s each. Answering them
- * together costs 8.63 s. The gain is 4%.
- *
- * <p>That is worth writing down plainly, because this class was built expecting far more. The
- * expectation was that a decision is bandwidth bound -- that reading 2.55 GiB of weights dominates,
- * that a question's dozen tokens ride along for free, and that N questions therefore pay for the
- * weights N times over. <b>On this hardware that is false.</b> A batched prefill measures 18.5 ms
- * per token, dead linear from 17 tokens to 143 with no fixed cost, and it halves from one thread to
- * two and again from two to four before saturating at the box's four physical cores. It is compute
- * bound and already at the arithmetic ceiling. N questions cost N questions' arithmetic however
- * they are arranged, and no amount of batching changes that.
- *
- * <p>What grouping does still save is the single-token step at the end of each question, which
- * <em>is</em> bandwidth bound -- 65 ms, and flat in thread count past two. One per question becomes
- * one per group. Twenty questions save nineteen of them, about 1.2 s, which is the 4% observed and
- * very nearly all of it. With the native decode kernel switched off that step costs more and the
- * same grouping is worth 1.69x, which is the same finding seen from the other side.
- *
- * <p>So the honest summary: grouping trades a bandwidth-bound step per question for one per group,
- * and it is a wash unless that step is expensive. It loses below about ten questions, where the
- * lockstep walk's own narrow batches are themselves bandwidth bound.
- *
- * <p>What cannot be shared is anything carrying sequence identity:
- *
- * <ul>
- *   <li><b>Gated DeltaNet state.</b> A running summary of everything read so far. Each question
- *       needs its own, forked from the evidence, or question two would answer having silently read
- *       question one. This is the expensive part -- 16 heads x 256 x 256 floats per layer over 24
- *       layers, about 100 MiB per question.
- *   <li><b>Key and value cache for the eight full-attention layers.</b> The evidence's half is
- *       identical for every question and is read, never written, so it is shared. Only the
- *       question's own dozen positions are private, which is under a megabyte each.
- * </ul>
- *
- * <p>Concatenating the questions into one sequence would be far cheaper and is wrong: causal
- * attention lets a later question read an earlier one's instructions, and the recurrent state
- * carries that contamination even further. Isolation is the whole contract of a typed decision, so
- * each question gets its own state and the weights are what get shared.
- *
- * <p>Group size is bounded because the recurrent state is not free: twenty questions at once is
- * about 2 GiB.
+ * <p>Each branch owns its convolution history and attention cache. The evidence prefix is copied
+ * into each branch before the question is appended, so one question cannot change another's state.
+ * The forward pass supplies the shared step position and manages recurrent state separately. Memory
+ * use depends on the model dimensions, prefix and suffix capacities, and branch count.
  */
 final class Qwen35GroupedDecision {
 
   /** The private state one question needs while the evidence's state is shared. */
   static final class Branch {
     private final float[][] convolutionHistory;
+    private FloatArrayView[] convolutionHistoryViews;
     private final float[][] suffixKeys;
     private final float[][] suffixValues;
-    private int position;
 
     private Branch(Qwen35Config config, int prefixCapacity, int suffixCapacity) {
       int layers = config.numLayers();
@@ -78,9 +43,7 @@ final class Qwen35GroupedDecision {
       suffixValues = new float[layers][];
       for (int layer = 0; layer < layers; layer++) {
         if (config.usesFullAttention(layer)) {
-          // Prefix and suffix in one array. The prefix half is ~10 MiB a branch against the 100 MiB
-          // of recurrent state, so copying it buys an ordinary single-region attention rather than
-          // a two-region one, and the saving would have been noise.
+          // Prefix and suffix occupy one owned region for ordinary single-region attention.
           int entries = Math.multiplyExact(span, config.attentionKeyDim());
           suffixKeys[layer] = new float[entries];
           suffixValues[layer] = new float[entries];
@@ -89,6 +52,16 @@ final class Qwen35GroupedDecision {
               new float[Math.multiplyExact(config.gdnConvDim(), config.gdnConvKernel() - 1)];
         }
       }
+    }
+
+    FloatArrayView convolutionHistoryView(int layer, GgufBatchedMatrixKernel kernel) {
+      if (!kernel.supportsRecurrentActivations()) return null;
+      if (convolutionHistoryViews == null)
+        convolutionHistoryViews = new FloatArrayView[convolutionHistory.length];
+      if (convolutionHistoryViews[layer] == null) {
+        convolutionHistoryViews[layer] = kernel.prepareFloatArray(convolutionHistory[layer]);
+      }
+      return convolutionHistoryViews[layer];
     }
 
     float[] convolutionHistory(int layer) {
@@ -103,19 +76,11 @@ final class Qwen35GroupedDecision {
       return suffixValues[layer];
     }
 
-    int position() {
-      return position;
-    }
-
-    void advance() {
-      position++;
-    }
-
     /**
      * Forks this branch from the evidence's state.
      *
-     * <p>Copied rather than referenced: the recurrence writes the state in place as it reads, so
-     * two questions sharing one buffer would answer each other's evidence.
+     * <p>Copying the prefix keeps subsequent convolution and attention writes private to this
+     * question.
      */
     void forkFrom(
         float[][] evidenceConvolution,
@@ -131,7 +96,6 @@ final class Qwen35GroupedDecision {
           System.arraycopy(evidenceValues[layer], 0, suffixValues[layer], 0, prefixEntries);
         }
       }
-      position = prefixLength;
     }
 
     private static void copyEach(float[][] source, float[][] destination) {
@@ -143,7 +107,6 @@ final class Qwen35GroupedDecision {
     }
   }
 
-  private final Qwen35Config config;
   private final Branch[] branches;
   private final int suffixCapacity;
 
@@ -168,7 +131,6 @@ final class Qwen35GroupedDecision {
     if (suffixCapacity < 1) {
       throw new IllegalArgumentException("suffixCapacity must be >= 1: " + suffixCapacity);
     }
-    this.config = config;
     this.suffixCapacity = suffixCapacity;
     this.branches = new Branch[groupSize];
     for (int index = 0; index < groupSize; index++) {
@@ -233,23 +195,5 @@ final class Qwen35GroupedDecision {
 
   Branch branch(int index) {
     return branches[index];
-  }
-
-  Qwen35Config config() {
-    return config;
-  }
-
-  /** Bytes of private state a group holds, which is what bounds how many questions run at once. */
-  long stateBytes() {
-    long bytes = 0L;
-    for (float[] layer : recurrentState) {
-      bytes += layer == null ? 0L : (long) layer.length * Float.BYTES;
-    }
-    for (Branch branch : branches) {
-      for (float[] layer : branch.suffixKeys) {
-        bytes += layer == null ? 0L : 2L * layer.length * Float.BYTES;
-      }
-    }
-    return bytes;
   }
 }

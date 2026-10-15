@@ -1,0 +1,367 @@
+{
+  "schemaVersion" : 2,
+  "generatedAt" : "2026-10-12T21:59:51.545812Z",
+  "modelId" : "huatuogpt-o1-7b-q4_k_m",
+  "artifact" : "/Users/briansam-bodden/.jvllm/models/HuatuoGPT-o1-7B-Q4_K_M.gguf",
+  "artifactSha256" : "4643521a184cb26df0f7c57da9aead0c632b286a9aff103c9f9dca4dc059abd7",
+  "artifactSizeBytes" : 4683074720,
+  "loadMillis" : 2655.995083,
+  "promptSha256" : "238db30ac3cc16d5b85698c5efe839aa6d4e341f5d84959c3b6f421901389758",
+  "prompt" : "Question: Which organ pumps blood through the human body?\nAnswer:",
+  "generatedTokens" : 4,
+  "iterations" : 3,
+  "contextLength" : 128,
+  "promptMode" : "SEQUENTIAL",
+  "environment" : {
+    "host" : "Brians-MacBook-Pro.local",
+    "osName" : "Mac OS X",
+    "osVersion" : "26.6.2",
+    "architecture" : "x86_64",
+    "cpuModel" : "Intel(R) Core(TM) i7-9750H CPU @ 2.60GHz",
+    "processors" : 12,
+    "physicalMemoryBytes" : 34359738368,
+    "maxHeapBytes" : 6442450944,
+    "javaVersion" : "25.0.3",
+    "javaVendor" : "Eclipse Adoptium",
+    "vmName" : "OpenJDK 64-Bit Server VM"
+  },
+  "execution" : {
+    "provider" : "PanamaVectorUtilSupport",
+    "panama" : true,
+    "panamaFailure" : null,
+    "maxVectorBits" : 256,
+    "preferredVectorBits" : 256,
+    "fastVectorFma" : true,
+    "fastScalarFma" : true,
+    "groupedProjections" : true,
+    "prefillBatchSize" : 32,
+    "ggufParallel" : true,
+    "ggufParallelThreshold" : 1048576,
+    "ggufExecutor" : "persistent",
+    "ggufThreads" : 12,
+    "ggufChunksPerThread" : 2,
+    "configuredProperties" : {
+      "vectors.forceScalar" : "(default)",
+      "vectors.gguf.parallelThreshold" : "(default)",
+      "vectors.gguf.chunksPerThread" : "(default)",
+      "vectors.useScalarFMA" : "(default)",
+      "vectors.gguf.threads" : "(default)",
+      "models.purejava.groupedProjections" : "(default)",
+      "vectors.gguf.parallel" : "(default)",
+      "vectors.gguf.executor" : "(default)",
+      "vectors.useVectorFMA" : "(default)",
+      "vectors.maxBits" : "(default)",
+      "models.purejava.prefillBatchSize" : "(default)"
+    }
+  },
+  "backendDiagnostics" : {
+    "backend" : "pure-java",
+    "planVersion" : "pure-java-v20",
+    "environment" : {
+      "gguf-threads" : "12",
+      "sve" : "false",
+      "preferred-vector-bits" : "256",
+      "q4-short-pairwise-supported" : "true",
+      "tokenizer.pre.implemented" : "true",
+      "architecture" : "x86_64",
+      "q4-unsigned-pairwise-supported" : "true",
+      "tokenizer.pre" : "qwen2",
+      "java-feature" : "25",
+      "vm-vendor" : "Eclipse Adoptium",
+      "gguf-chunks-per-thread" : "2",
+      "model-architecture" : "qwen2",
+      "gguf-parallel" : "true",
+      "compiler" : "hotspot-c2",
+      "end-of-generation.chat-template" : "resolved:151645",
+      "active-vector-bits" : "256",
+      "vector-api" : "true",
+      "os" : "Mac OS X",
+      "vector-provider" : "PanamaVectorUtilSupport",
+      "end-of-generation.151645" : "tokenizer.ggml.eos_token_id,vocabulary-text,chat-template-end-of-turn",
+      "fast-scalar-fma" : "true",
+      "processors" : "12",
+      "end-of-generation.151643" : "vocabulary-text",
+      "performance-cliff.fused-grouped-attention-disabled" : "architecture=qwen2, group-size=7",
+      "vm-name" : "OpenJDK 64-Bit Server VM",
+      "java-version" : "25.0.3",
+      "vm-version" : "25.0.3+9-LTS",
+      "fast-vector-fma" : "true",
+      "gguf-executor" : "persistent",
+      "performance-cliffs" : "fused-grouped-attention-disabled",
+      "cpu-model" : "unknown",
+      "projection-layers" : "28",
+      "end-of-generation-token-ids" : "151643,151645"
+    },
+    "optimizations" : [ {
+      "id" : "grouped-projections",
+      "status" : "ENABLED",
+      "reason" : "loaded tensor topology has a retained grouped projection kernel",
+      "settings" : {
+        "implementation" : "vector-api",
+        "gate-up" : "grouped",
+        "qkv" : "grouped"
+      }
+    }, {
+      "id" : "mixed-k-projections",
+      "status" : "ENABLED",
+      "reason" : "eligible projections share one Q8_K quantization and row dispatch",
+      "settings" : {
+        "eligible-layers" : "14",
+        "formats" : "Q4_K,Q4_K,Q6_K"
+      }
+    }, {
+      "id" : "q4-kernel",
+      "status" : "UNSUPPORTED",
+      "reason" : "the loaded model has no Q4_0 projection tensors",
+      "settings" : {
+        "unsigned-supported" : "true",
+        "os" : "Mac OS X",
+        "architecture" : "x86_64",
+        "compiler" : "hotspot-c2",
+        "requested" : "widened",
+        "short-supported" : "true",
+        "java-feature" : "25",
+        "active-vector-bits" : "256"
+      }
+    }, {
+      "id" : "batched-prefill",
+      "status" : "ENABLED",
+      "reason" : "all loaded projection tensors have retained batched kernels",
+      "settings" : {
+        "batch-size" : "32"
+      }
+    }, {
+      "id" : "q6-batched-kernel",
+      "status" : "DISABLED",
+      "reason" : "models.purejava.q6BatchedKernel selects one-query blocks",
+      "settings" : {
+        "batch-size" : "32",
+        "active-vector-bits" : "256",
+        "requested-kernel" : "one-query-block",
+        "kernel" : "one-query-block",
+        "architecture" : "x86_64"
+      }
+    }, {
+      "id" : "final-layer-prefill-pruning",
+      "status" : "UNSUPPORTED",
+      "reason" : "the final-layer FFN layout has no controlled exactness and performance gate",
+      "settings" : {
+        "formats" : "Q4_K,Q4_K,Q6_K",
+        "output-rows" : "all"
+      }
+    }, {
+      "id" : "final-layer-kv-only-prefill",
+      "status" : "UNSUPPORTED",
+      "reason" : "the final-layer attention layout has no controlled exactness and performance gate",
+      "settings" : {
+        "unused-rows" : "full-attention",
+        "formats" : "Q4_K,Q4_K,Q6_K,Q4_K"
+      }
+    }, {
+      "id" : "batched-attention-scores",
+      "status" : "ENABLED",
+      "reason" : "the model profile selected exact two-row key scoring",
+      "settings" : {
+        "rows-per-group" : "2"
+      }
+    }, {
+      "id" : "batched-attention-values",
+      "status" : "ENABLED",
+      "reason" : "the model profile selected four-row value accumulation",
+      "settings" : {
+        "rows-per-group" : "4"
+      }
+    }, {
+      "id" : "fused-grouped-attention",
+      "status" : "DISABLED",
+      "reason" : "disabled by models.purejava.fusedGroupedAttention",
+      "settings" : {
+        "cache-passes-per-group" : "group-size"
+      }
+    }, {
+      "id" : "staged-quantized-ffn",
+      "status" : "UNSUPPORTED",
+      "reason" : "loaded tensor topology has no supported Q4_0/Q8_0 FFN layer",
+      "settings" : {
+        "eligible-layers" : "0",
+        "parallel" : "true",
+        "stages" : "2",
+        "executor" : "persistent"
+      }
+    }, {
+      "id" : "staged-quantized-layer",
+      "status" : "UNSUPPORTED",
+      "reason" : "loaded tensor topology has no supported Q4_0/Q8_0 output-and-FFN layer",
+      "settings" : {
+        "eligible-layers" : "0",
+        "parallel" : "true",
+        "stages" : "7",
+        "executor" : "persistent"
+      }
+    }, {
+      "id" : "block-major-q8-activations",
+      "status" : "UNSUPPORTED",
+      "reason" : "loaded staged projection topology has no Q8_0 consumer",
+      "settings" : {
+        "prefill-batch-size" : "32",
+        "layout" : "block-major-bytes"
+      }
+    }, {
+      "id" : "q8-block-major-kernel",
+      "status" : "UNSUPPORTED",
+      "reason" : "loaded staged projection topology has no Q8_0 consumer",
+      "settings" : {
+        "floating-point-order" : "scalar-block-order",
+        "compiler" : "hotspot-c2",
+        "active-vector-bits" : "256",
+        "requested-kernel" : "scattered",
+        "kernel" : "scattered"
+      }
+    }, {
+      "id" : "parallel-q8-ffn-preparation",
+      "status" : "UNSUPPORTED",
+      "reason" : "every staged layer requires Q8_0 gate and up projections",
+      "settings" : {
+        "partition" : "batch-rows",
+        "partitions" : "12",
+        "eligible-layers" : "0",
+        "staged-layers" : "0"
+      }
+    }, {
+      "id" : "mapped-model-weights",
+      "status" : "ENABLED",
+      "reason" : "model tensors remain mapped for model-scale streaming locality",
+      "settings" : {
+        "storage" : "memory-segment",
+        "artifact-format" : "gguf"
+      }
+    }, {
+      "id" : "vector-fma",
+      "status" : "ENABLED",
+      "reason" : "vectors-core selected deterministic vector FMA for this platform",
+      "settings" : {
+        "fast-scalar-fma" : "true"
+      }
+    }, {
+      "id" : "persistent-row-executor",
+      "status" : "ENABLED",
+      "reason" : "vectors-core selected reusable GGUF row workers",
+      "settings" : {
+        "threads" : "12",
+        "chunks-per-thread" : "2",
+        "executor" : "persistent"
+      }
+    } ]
+  },
+  "deterministic" : true,
+  "promptTokens" : [ 14582, 25, 15920, 2872, 42775, 6543, 1526, 279, 3738, 2487, 5267, 16141, 25 ],
+  "trials" : [ {
+    "index" : 0,
+    "sequenceSha256" : "3fd340e90eaca6e4ed13f4e779f3e4f29d6610754fb41c201a19661c243516f4",
+    "steps" : [ {
+      "index" : 0,
+      "winnerToken" : 576,
+      "winnerLogit" : 22.926186,
+      "runnerUpToken" : 4746,
+      "runnerUpLogit" : 22.193,
+      "margin" : 0.7331848,
+      "logitsSha256" : "e6ac95af1dd501d0c9936880cb137a8a635b198481dd0a86821386ed14432c16"
+    }, {
+      "index" : 1,
+      "winnerToken" : 4746,
+      "winnerLogit" : 24.065414,
+      "runnerUpToken" : 3738,
+      "runnerUpLogit" : 20.030907,
+      "margin" : 4.0345078,
+      "logitsSha256" : "4ecb25e7e9c30b5596c9fffb7c241052a50ddbc6e6212c8593b5f54e143b3dff"
+    }, {
+      "index" : 2,
+      "winnerToken" : 374,
+      "winnerLogit" : 25.947388,
+      "runnerUpToken" : 42775,
+      "runnerUpLogit" : 25.56784,
+      "margin" : 0.37954712,
+      "logitsSha256" : "60a90cc0cc8e762d3e6a5d2fd43c34eee94d332abd75287a79d74bec7a33f090"
+    }, {
+      "index" : 3,
+      "winnerToken" : 279,
+      "winnerLogit" : 26.815933,
+      "runnerUpToken" : 264,
+      "runnerUpLogit" : 24.948381,
+      "margin" : 1.8675518,
+      "logitsSha256" : "abce082412c8bd795700bcd5aa290b954aee2021675538f6ded193f4e57a43bb"
+    } ]
+  }, {
+    "index" : 1,
+    "sequenceSha256" : "3fd340e90eaca6e4ed13f4e779f3e4f29d6610754fb41c201a19661c243516f4",
+    "steps" : [ {
+      "index" : 0,
+      "winnerToken" : 576,
+      "winnerLogit" : 22.926186,
+      "runnerUpToken" : 4746,
+      "runnerUpLogit" : 22.193,
+      "margin" : 0.7331848,
+      "logitsSha256" : "e6ac95af1dd501d0c9936880cb137a8a635b198481dd0a86821386ed14432c16"
+    }, {
+      "index" : 1,
+      "winnerToken" : 4746,
+      "winnerLogit" : 24.065414,
+      "runnerUpToken" : 3738,
+      "runnerUpLogit" : 20.030907,
+      "margin" : 4.0345078,
+      "logitsSha256" : "4ecb25e7e9c30b5596c9fffb7c241052a50ddbc6e6212c8593b5f54e143b3dff"
+    }, {
+      "index" : 2,
+      "winnerToken" : 374,
+      "winnerLogit" : 25.947388,
+      "runnerUpToken" : 42775,
+      "runnerUpLogit" : 25.56784,
+      "margin" : 0.37954712,
+      "logitsSha256" : "60a90cc0cc8e762d3e6a5d2fd43c34eee94d332abd75287a79d74bec7a33f090"
+    }, {
+      "index" : 3,
+      "winnerToken" : 279,
+      "winnerLogit" : 26.815933,
+      "runnerUpToken" : 264,
+      "runnerUpLogit" : 24.948381,
+      "margin" : 1.8675518,
+      "logitsSha256" : "abce082412c8bd795700bcd5aa290b954aee2021675538f6ded193f4e57a43bb"
+    } ]
+  }, {
+    "index" : 2,
+    "sequenceSha256" : "3fd340e90eaca6e4ed13f4e779f3e4f29d6610754fb41c201a19661c243516f4",
+    "steps" : [ {
+      "index" : 0,
+      "winnerToken" : 576,
+      "winnerLogit" : 22.926186,
+      "runnerUpToken" : 4746,
+      "runnerUpLogit" : 22.193,
+      "margin" : 0.7331848,
+      "logitsSha256" : "e6ac95af1dd501d0c9936880cb137a8a635b198481dd0a86821386ed14432c16"
+    }, {
+      "index" : 1,
+      "winnerToken" : 4746,
+      "winnerLogit" : 24.065414,
+      "runnerUpToken" : 3738,
+      "runnerUpLogit" : 20.030907,
+      "margin" : 4.0345078,
+      "logitsSha256" : "4ecb25e7e9c30b5596c9fffb7c241052a50ddbc6e6212c8593b5f54e143b3dff"
+    }, {
+      "index" : 2,
+      "winnerToken" : 374,
+      "winnerLogit" : 25.947388,
+      "runnerUpToken" : 42775,
+      "runnerUpLogit" : 25.56784,
+      "margin" : 0.37954712,
+      "logitsSha256" : "60a90cc0cc8e762d3e6a5d2fd43c34eee94d332abd75287a79d74bec7a33f090"
+    }, {
+      "index" : 3,
+      "winnerToken" : 279,
+      "winnerLogit" : 26.815933,
+      "runnerUpToken" : 264,
+      "runnerUpLogit" : 24.948381,
+      "margin" : 1.8675518,
+      "logitsSha256" : "abce082412c8bd795700bcd5aa290b954aee2021675538f6ded193f4e57a43bb"
+    } ]
+  } ]
+}

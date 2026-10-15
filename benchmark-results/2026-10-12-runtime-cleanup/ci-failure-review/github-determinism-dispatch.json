@@ -1,0 +1,7 @@
+{
+  "runId": 38314297480,
+  "url": "https://github.com/integrallis/models/actions/runs/38314297480",
+  "ref": "qualification/bonsai2-production",
+  "sourceAtDispatch": "48ba8325",
+  "purpose": "Verify updated Models in the same GitHub workflow/JDK family; local host passes both published and candidate core so does not reproduce scheduled failure"
+}

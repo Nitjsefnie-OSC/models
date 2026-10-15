@@ -1,0 +1,9 @@
+WARNING: Using incubator modules: jdk.incubator.vector
+Oct 12, 2026 2:56:20 PM com.integrallis.vectors.core.PanamaVectorUtilSupportProvider create
+INFO: vectors-core: Using Panama Vector API SIMD provider (vector bits: 256)
+Oct 12, 2026 2:56:20 PM com.integrallis.vectors.core.VectorizationProvider logActiveToggles
+INFO: vectors-core: provider=PanamaVectorUtilSupport panama=true maxBits=256 preferredBits=256 fastVectorFMA=true fastScalarFMA=true sve=false ggufParallel=true ggufParallelThreshold=1048576 ggufExecutor=persistent ggufThreads=12 ggufChunksPerThread=2 mappedKQuantLongOffsets=auto(q4=true,q5=false,q6=false) q4ShortPairwiseSupported=true q4UnsignedPairwiseSupported=true toggles=[(defaults — no -Dvectors.* overrides)]
+trial 1/3: tokens=[576,4746,374,279] min-margin=0.379547119 hash=3fd340e90eaca6e4ed13f4e779f3e4f29d6610754fb41c201a19661c243516f4
+trial 2/3: tokens=[576,4746,374,279] min-margin=0.379547119 hash=3fd340e90eaca6e4ed13f4e779f3e4f29d6610754fb41c201a19661c243516f4
+trial 3/3: tokens=[576,4746,374,279] min-margin=0.379547119 hash=3fd340e90eaca6e4ed13f4e779f3e4f29d6610754fb41c201a19661c243516f4
+deterministic=true provider=PanamaVectorUtilSupport panama=true report=/Users/briansam-bodden/Code/java-ai/projects/models-final-integration/benchmark-results/2026-10-12-runtime-cleanup/ci-failure-review/huatuo-published-core-control/report.json

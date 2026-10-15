@@ -1,0 +1,16 @@
+{
+  "native": {
+    "totalClasses": 2939,
+    "q51Decoder": [
+      "[0.681s][info][class,load] com.integrallis.models.backend.purejava.quant.Q5_1Dequantizer source: file:/work/lib/native/backend-java-0.3.59.jar"
+    ],
+    "lazyHolder": [],
+    "sha256": "eebac2d18aa65c45dd81e339352a63b77083105b00e93adb252b19de5566660d"
+  },
+  "lazy": {
+    "totalClasses": 2934,
+    "q51Decoder": [],
+    "lazyHolder": [],
+    "sha256": "0ecd4053bbd9d8049090644a495359656eacad3184bbe634826c1729fa13efe9"
+  }
+}

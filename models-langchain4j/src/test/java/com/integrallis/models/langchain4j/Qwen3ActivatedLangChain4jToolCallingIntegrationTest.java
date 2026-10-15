@@ -48,13 +48,17 @@ class Qwen3ActivatedLangChain4jToolCallingIntegrationTest {
 
     @Tool(name = "get-weather-for-zipcode", value = "Gets weather for a given zipcode")
     Weather getWeatherForZipcode(@P("The zipcode to get weather for") String zipcode) {
-      invocations.incrementAndGet();
+      assertThat(invocations.incrementAndGet())
+          .as("the fixture must execute exactly one weather tool call")
+          .isEqualTo(1);
       lastZipcode.set(zipcode);
       return new Weather(zipcode, "Raining cats and dogs", 78);
     }
   }
 
   @Test
+  // LangChain4j 1.0 in our compatibility matrix predates maxToolCallingRoundTrips.
+  @SuppressWarnings("deprecation")
   void invokesOneToolNarratesItsResultAndAbstainsOnOrdinaryChat() {
     Path modelPath = fixture("models.fixtures.qwen317b", false);
     Path adapterPath = fixture("models.fixtures.activatedLoraDirectory", true);
@@ -66,7 +70,11 @@ class Qwen3ActivatedLangChain4jToolCallingIntegrationTest {
             SamplingOptions.builder().temperature(0.0f).maxTokens(128).build())) {
       WeatherTools weatherTools = new WeatherTools();
       Assistant assistant =
-          AiServices.builder(Assistant.class).chatModel(adapter).tools(weatherTools).build();
+          AiServices.builder(Assistant.class)
+              .chatModel(adapter)
+              .tools(weatherTools)
+              .maxSequentialToolsInvocations(1)
+              .build();
 
       String weather = assistant.chat("What is the weather for 88252?");
       String greeting = assistant.chat("Reply with exactly: READY");

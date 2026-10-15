@@ -1,0 +1,587 @@
+{
+  "modelsRevision": "b85cd653a3549b1f468be95409a46fc68bae3a8c",
+  "vectorsVersion": "0.1.29",
+  "ciRun": "https://github.com/integrallis/models/actions/runs/38177312332",
+  "firstDivergentOperation": "BF16 ssm_alpha / ssm_beta projection, before layer-zero recurrent state",
+  "nativePtqQueryKeyValueProjection": "bit-identical for all 16 tested tokens",
+  "coldWarmProbe": "BonsaiBatchStateProbe.java",
+  "suspectedReduction": "BFloat16Matrix.finishRow reduceLanes(ADD)",
+  "trace": [
+    {
+      "token": 0,
+      "operation": "query",
+      "differentValues": 0,
+      "maxAbsoluteDifference": 0.0
+    },
+    {
+      "token": 0,
+      "operation": "key",
+      "differentValues": 0,
+      "maxAbsoluteDifference": 0.0
+    },
+    {
+      "token": 0,
+      "operation": "value",
+      "differentValues": 0,
+      "maxAbsoluteDifference": 0.0
+    },
+    {
+      "token": 0,
+      "operation": "beta",
+      "differentValues": 1,
+      "maxAbsoluteDifference": 1.9999999989472883e-08
+    },
+    {
+      "token": 0,
+      "operation": "alpha",
+      "differentValues": 30,
+      "maxAbsoluteDifference": 4.999999996257998e-07
+    },
+    {
+      "token": 0,
+      "operation": "logDecay",
+      "differentValues": 5,
+      "maxAbsoluteDifference": 9.999999992515995e-07
+    },
+    {
+      "token": 1,
+      "operation": "query",
+      "differentValues": 0,
+      "maxAbsoluteDifference": 0.0
+    },
+    {
+      "token": 1,
+      "operation": "key",
+      "differentValues": 0,
+      "maxAbsoluteDifference": 0.0
+    },
+    {
+      "token": 1,
+      "operation": "value",
+      "differentValues": 0,
+      "maxAbsoluteDifference": 0.0
+    },
+    {
+      "token": 1,
+      "operation": "beta",
+      "differentValues": 5,
+      "maxAbsoluteDifference": 1.0000000005838672e-07
+    },
+    {
+      "token": 1,
+      "operation": "alpha",
+      "differentValues": 17,
+      "maxAbsoluteDifference": 7.000000001866624e-07
+    },
+    {
+      "token": 1,
+      "operation": "logDecay",
+      "differentValues": 5,
+      "maxAbsoluteDifference": 1.0000000005838672e-07
+    },
+    {
+      "token": 2,
+      "operation": "query",
+      "differentValues": 0,
+      "maxAbsoluteDifference": 0.0
+    },
+    {
+      "token": 2,
+      "operation": "key",
+      "differentValues": 0,
+      "maxAbsoluteDifference": 0.0
+    },
+    {
+      "token": 2,
+      "operation": "value",
+      "differentValues": 0,
+      "maxAbsoluteDifference": 0.0
+    },
+    {
+      "token": 2,
+      "operation": "beta",
+      "differentValues": 0,
+      "maxAbsoluteDifference": 0.0
+    },
+    {
+      "token": 2,
+      "operation": "alpha",
+      "differentValues": 0,
+      "maxAbsoluteDifference": 0.0
+    },
+    {
+      "token": 2,
+      "operation": "logDecay",
+      "differentValues": 0,
+      "maxAbsoluteDifference": 0.0
+    },
+    {
+      "token": 3,
+      "operation": "query",
+      "differentValues": 0,
+      "maxAbsoluteDifference": 0.0
+    },
+    {
+      "token": 3,
+      "operation": "key",
+      "differentValues": 0,
+      "maxAbsoluteDifference": 0.0
+    },
+    {
+      "token": 3,
+      "operation": "value",
+      "differentValues": 0,
+      "maxAbsoluteDifference": 0.0
+    },
+    {
+      "token": 3,
+      "operation": "beta",
+      "differentValues": 0,
+      "maxAbsoluteDifference": 0.0
+    },
+    {
+      "token": 3,
+      "operation": "alpha",
+      "differentValues": 0,
+      "maxAbsoluteDifference": 0.0
+    },
+    {
+      "token": 3,
+      "operation": "logDecay",
+      "differentValues": 0,
+      "maxAbsoluteDifference": 0.0
+    },
+    {
+      "token": 4,
+      "operation": "query",
+      "differentValues": 0,
+      "maxAbsoluteDifference": 0.0
+    },
+    {
+      "token": 4,
+      "operation": "key",
+      "differentValues": 0,
+      "maxAbsoluteDifference": 0.0
+    },
+    {
+      "token": 4,
+      "operation": "value",
+      "differentValues": 0,
+      "maxAbsoluteDifference": 0.0
+    },
+    {
+      "token": 4,
+      "operation": "beta",
+      "differentValues": 0,
+      "maxAbsoluteDifference": 0.0
+    },
+    {
+      "token": 4,
+      "operation": "alpha",
+      "differentValues": 0,
+      "maxAbsoluteDifference": 0.0
+    },
+    {
+      "token": 4,
+      "operation": "logDecay",
+      "differentValues": 0,
+      "maxAbsoluteDifference": 0.0
+    },
+    {
+      "token": 5,
+      "operation": "query",
+      "differentValues": 0,
+      "maxAbsoluteDifference": 0.0
+    },
+    {
+      "token": 5,
+      "operation": "key",
+      "differentValues": 0,
+      "maxAbsoluteDifference": 0.0
+    },
+    {
+      "token": 5,
+      "operation": "value",
+      "differentValues": 0,
+      "maxAbsoluteDifference": 0.0
+    },
+    {
+      "token": 5,
+      "operation": "beta",
+      "differentValues": 0,
+      "maxAbsoluteDifference": 0.0
+    },
+    {
+      "token": 5,
+      "operation": "alpha",
+      "differentValues": 0,
+      "maxAbsoluteDifference": 0.0
+    },
+    {
+      "token": 5,
+      "operation": "logDecay",
+      "differentValues": 0,
+      "maxAbsoluteDifference": 0.0
+    },
+    {
+      "token": 6,
+      "operation": "query",
+      "differentValues": 0,
+      "maxAbsoluteDifference": 0.0
+    },
+    {
+      "token": 6,
+      "operation": "key",
+      "differentValues": 0,
+      "maxAbsoluteDifference": 0.0
+    },
+    {
+      "token": 6,
+      "operation": "value",
+      "differentValues": 0,
+      "maxAbsoluteDifference": 0.0
+    },
+    {
+      "token": 6,
+      "operation": "beta",
+      "differentValues": 0,
+      "maxAbsoluteDifference": 0.0
+    },
+    {
+      "token": 6,
+      "operation": "alpha",
+      "differentValues": 0,
+      "maxAbsoluteDifference": 0.0
+    },
+    {
+      "token": 6,
+      "operation": "logDecay",
+      "differentValues": 0,
+      "maxAbsoluteDifference": 0.0
+    },
+    {
+      "token": 7,
+      "operation": "query",
+      "differentValues": 0,
+      "maxAbsoluteDifference": 0.0
+    },
+    {
+      "token": 7,
+      "operation": "key",
+      "differentValues": 0,
+      "maxAbsoluteDifference": 0.0
+    },
+    {
+      "token": 7,
+      "operation": "value",
+      "differentValues": 0,
+      "maxAbsoluteDifference": 0.0
+    },
+    {
+      "token": 7,
+      "operation": "beta",
+      "differentValues": 0,
+      "maxAbsoluteDifference": 0.0
+    },
+    {
+      "token": 7,
+      "operation": "alpha",
+      "differentValues": 0,
+      "maxAbsoluteDifference": 0.0
+    },
+    {
+      "token": 7,
+      "operation": "logDecay",
+      "differentValues": 0,
+      "maxAbsoluteDifference": 0.0
+    },
+    {
+      "token": 8,
+      "operation": "query",
+      "differentValues": 0,
+      "maxAbsoluteDifference": 0.0
+    },
+    {
+      "token": 8,
+      "operation": "key",
+      "differentValues": 0,
+      "maxAbsoluteDifference": 0.0
+    },
+    {
+      "token": 8,
+      "operation": "value",
+      "differentValues": 0,
+      "maxAbsoluteDifference": 0.0
+    },
+    {
+      "token": 8,
+      "operation": "beta",
+      "differentValues": 0,
+      "maxAbsoluteDifference": 0.0
+    },
+    {
+      "token": 8,
+      "operation": "alpha",
+      "differentValues": 0,
+      "maxAbsoluteDifference": 0.0
+    },
+    {
+      "token": 8,
+      "operation": "logDecay",
+      "differentValues": 0,
+      "maxAbsoluteDifference": 0.0
+    },
+    {
+      "token": 9,
+      "operation": "query",
+      "differentValues": 0,
+      "maxAbsoluteDifference": 0.0
+    },
+    {
+      "token": 9,
+      "operation": "key",
+      "differentValues": 0,
+      "maxAbsoluteDifference": 0.0
+    },
+    {
+      "token": 9,
+      "operation": "value",
+      "differentValues": 0,
+      "maxAbsoluteDifference": 0.0
+    },
+    {
+      "token": 9,
+      "operation": "beta",
+      "differentValues": 0,
+      "maxAbsoluteDifference": 0.0
+    },
+    {
+      "token": 9,
+      "operation": "alpha",
+      "differentValues": 0,
+      "maxAbsoluteDifference": 0.0
+    },
+    {
+      "token": 9,
+      "operation": "logDecay",
+      "differentValues": 0,
+      "maxAbsoluteDifference": 0.0
+    },
+    {
+      "token": 10,
+      "operation": "query",
+      "differentValues": 0,
+      "maxAbsoluteDifference": 0.0
+    },
+    {
+      "token": 10,
+      "operation": "key",
+      "differentValues": 0,
+      "maxAbsoluteDifference": 0.0
+    },
+    {
+      "token": 10,
+      "operation": "value",
+      "differentValues": 0,
+      "maxAbsoluteDifference": 0.0
+    },
+    {
+      "token": 10,
+      "operation": "beta",
+      "differentValues": 0,
+      "maxAbsoluteDifference": 0.0
+    },
+    {
+      "token": 10,
+      "operation": "alpha",
+      "differentValues": 0,
+      "maxAbsoluteDifference": 0.0
+    },
+    {
+      "token": 10,
+      "operation": "logDecay",
+      "differentValues": 0,
+      "maxAbsoluteDifference": 0.0
+    },
+    {
+      "token": 11,
+      "operation": "query",
+      "differentValues": 0,
+      "maxAbsoluteDifference": 0.0
+    },
+    {
+      "token": 11,
+      "operation": "key",
+      "differentValues": 0,
+      "maxAbsoluteDifference": 0.0
+    },
+    {
+      "token": 11,
+      "operation": "value",
+      "differentValues": 0,
+      "maxAbsoluteDifference": 0.0
+    },
+    {
+      "token": 11,
+      "operation": "beta",
+      "differentValues": 0,
+      "maxAbsoluteDifference": 0.0
+    },
+    {
+      "token": 11,
+      "operation": "alpha",
+      "differentValues": 0,
+      "maxAbsoluteDifference": 0.0
+    },
+    {
+      "token": 11,
+      "operation": "logDecay",
+      "differentValues": 0,
+      "maxAbsoluteDifference": 0.0
+    },
+    {
+      "token": 12,
+      "operation": "query",
+      "differentValues": 0,
+      "maxAbsoluteDifference": 0.0
+    },
+    {
+      "token": 12,
+      "operation": "key",
+      "differentValues": 0,
+      "maxAbsoluteDifference": 0.0
+    },
+    {
+      "token": 12,
+      "operation": "value",
+      "differentValues": 0,
+      "maxAbsoluteDifference": 0.0
+    },
+    {
+      "token": 12,
+      "operation": "beta",
+      "differentValues": 0,
+      "maxAbsoluteDifference": 0.0
+    },
+    {
+      "token": 12,
+      "operation": "alpha",
+      "differentValues": 0,
+      "maxAbsoluteDifference": 0.0
+    },
+    {
+      "token": 12,
+      "operation": "logDecay",
+      "differentValues": 0,
+      "maxAbsoluteDifference": 0.0
+    },
+    {
+      "token": 13,
+      "operation": "query",
+      "differentValues": 0,
+      "maxAbsoluteDifference": 0.0
+    },
+    {
+      "token": 13,
+      "operation": "key",
+      "differentValues": 0,
+      "maxAbsoluteDifference": 0.0
+    },
+    {
+      "token": 13,
+      "operation": "value",
+      "differentValues": 0,
+      "maxAbsoluteDifference": 0.0
+    },
+    {
+      "token": 13,
+      "operation": "beta",
+      "differentValues": 0,
+      "maxAbsoluteDifference": 0.0
+    },
+    {
+      "token": 13,
+      "operation": "alpha",
+      "differentValues": 0,
+      "maxAbsoluteDifference": 0.0
+    },
+    {
+      "token": 13,
+      "operation": "logDecay",
+      "differentValues": 0,
+      "maxAbsoluteDifference": 0.0
+    },
+    {
+      "token": 14,
+      "operation": "query",
+      "differentValues": 0,
+      "maxAbsoluteDifference": 0.0
+    },
+    {
+      "token": 14,
+      "operation": "key",
+      "differentValues": 0,
+      "maxAbsoluteDifference": 0.0
+    },
+    {
+      "token": 14,
+      "operation": "value",
+      "differentValues": 0,
+      "maxAbsoluteDifference": 0.0
+    },
+    {
+      "token": 14,
+      "operation": "beta",
+      "differentValues": 0,
+      "maxAbsoluteDifference": 0.0
+    },
+    {
+      "token": 14,
+      "operation": "alpha",
+      "differentValues": 0,
+      "maxAbsoluteDifference": 0.0
+    },
+    {
+      "token": 14,
+      "operation": "logDecay",
+      "differentValues": 0,
+      "maxAbsoluteDifference": 0.0
+    },
+    {
+      "token": 15,
+      "operation": "query",
+      "differentValues": 0,
+      "maxAbsoluteDifference": 0.0
+    },
+    {
+      "token": 15,
+      "operation": "key",
+      "differentValues": 0,
+      "maxAbsoluteDifference": 0.0
+    },
+    {
+      "token": 15,
+      "operation": "value",
+      "differentValues": 0,
+      "maxAbsoluteDifference": 0.0
+    },
+    {
+      "token": 15,
+      "operation": "beta",
+      "differentValues": 0,
+      "maxAbsoluteDifference": 0.0
+    },
+    {
+      "token": 15,
+      "operation": "alpha",
+      "differentValues": 0,
+      "maxAbsoluteDifference": 0.0
+    },
+    {
+      "token": 15,
+      "operation": "logDecay",
+      "differentValues": 0,
+      "maxAbsoluteDifference": 0.0
+    }
+  ]
+}

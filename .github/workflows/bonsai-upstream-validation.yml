@@ -1,0 +1,80 @@
+name: Bonsai upstream correction validation
+
+on:
+  workflow_call:
+    inputs:
+      vectors_revision:
+        required: true
+        type: string
+  workflow_dispatch:
+    inputs:
+      vectors_revision:
+        description: "Exact Vectors commit to validate before publishing the dependency"
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  bonsai:
+    name: Bonsai fixtures (${{ matrix.runner }}, JDK ${{ matrix.java }})
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 120
+    strategy:
+      fail-fast: false
+      matrix:
+        runner: [ubuntu-24.04, ubuntu-24.04-arm]
+        java: ["25.0.3", "25"]
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          path: models
+      - name: Validate immutable revision
+        env:
+          REVISION: ${{ inputs.vectors_revision }}
+        run: '[[ "$REVISION" =~ ^[0-9a-f]{40}$ ]]'
+      - uses: actions/checkout@v5
+        with:
+          repository: integrallis/vectors
+          ref: ${{ inputs.vectors_revision }}
+          path: vectors
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: ${{ matrix.java }}
+      - uses: gradle/actions/setup-gradle@v6
+      - name: Build the upstream correction
+        working-directory: vectors
+        env:
+          REVISION: ${{ inputs.vectors_revision }}
+        run: |
+          [[ "$(git rev-parse HEAD)" == "$REVISION" ]]
+          ./gradlew :vectors-core:jar --no-daemon --stacktrace
+          mapfile -t jars < <(find "$PWD/vectors-core/build/libs" -maxdepth 1 -name 'vectors-core-*.jar' ! -name '*-sources.jar' ! -name '*-javadoc.jar' -type f)
+          [[ ${#jars[@]} -eq 1 ]]
+          echo "BONSAI_UPSTREAM_JAR=${jars[0]}" >> "$GITHUB_ENV"
+          echo "BONSAI_UPSTREAM_REVISION=$REVISION" >> "$GITHUB_ENV"
+      - name: Install pinned Rust toolchain
+        run: rustup toolchain install 1.96.0 --profile minimal --no-self-update
+      - name: Cache exact Bonsai fixture
+        uses: actions/cache@v5
+        with:
+          path: ~/.jvllm/models/Ternary-Bonsai-2-27B-PTQ1_0.gguf
+          key: bonsai2-27b-ptq1_0-fixture-v1
+      - name: Run unchanged real-weight assertions
+        working-directory: models
+        run: >-
+          ./gradlew :backend-native:bonsai2NativeSlowTest
+          --init-script scripts/bonsai-upstream-validation.init.gradle
+          --no-daemon --stacktrace
+      - name: Retain results and dependency provenance
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: bonsai-upstream-${{ matrix.runner }}-jdk-${{ matrix.java }}
+          path: |
+            models/backend-native/build/test-results/bonsai2NativeSlowTest/
+            models/backend-native/build/reports/tests/bonsai2NativeSlowTest/
+            models/backend-native/build/reports/bonsai-upstream.json
+          retention-days: 30

@@ -1,0 +1,182 @@
+[
+  {
+    "phase": "q50-wholemodel-v1",
+    "arch": "x86",
+    "baseline": "baseline",
+    "candidate": "candidate",
+    "metric": "modelNanos",
+    "pairs": 10,
+    "requests": 30,
+    "geometricRatio": 1.0086224266473633,
+    "bootstrap95": [
+      0.9828383381974357,
+      1.0283246170483593
+    ],
+    "resampling": "whole process-pair clusters; seed724;10000draws"
+  },
+  {
+    "phase": "q50-wholemodel-v1",
+    "arch": "x86",
+    "baseline": "baseline",
+    "candidate": "candidate",
+    "metric": "decodeNanos",
+    "pairs": 10,
+    "requests": 30,
+    "geometricRatio": 1.0480925974194766,
+    "bootstrap95": [
+      1.012511395042212,
+      1.0766989850660944
+    ],
+    "resampling": "whole process-pair clusters; seed724;10000draws"
+  },
+  {
+    "phase": "q51-simd-v2",
+    "arch": "x86",
+    "baseline": "native",
+    "candidate": "java",
+    "metric": "nanos",
+    "pairs": 10,
+    "requests": 240,
+    "geometricRatio": 0.8328079208885346,
+    "bootstrap95": [
+      0.7915794323740815,
+      0.8733078519468102
+    ],
+    "resampling": "whole process-pair clusters; seed724;10000draws"
+  },
+  {
+    "phase": "q51-simd-v2",
+    "arch": "x86",
+    "baseline": "native",
+    "candidate": "java",
+    "metric": "allocatedBytes",
+    "pairs": 10,
+    "requests": 240,
+    "geometricRatio": 11.011513965755244,
+    "bootstrap95": [
+      11.004158753692584,
+      11.019338594827971
+    ],
+    "resampling": "whole process-pair clusters; seed724;10000draws"
+  },
+  {
+    "phase": "q50-wholemodel-v1",
+    "arch": "arm",
+    "baseline": "baseline",
+    "candidate": "candidate",
+    "metric": "modelNanos",
+    "pairs": 10,
+    "requests": 30,
+    "geometricRatio": 1.0191075297468022,
+    "bootstrap95": [
+      1.0085075090795876,
+      1.0315232475008487
+    ],
+    "resampling": "whole process-pair clusters; seed724;10000draws"
+  },
+  {
+    "phase": "q50-wholemodel-v1",
+    "arch": "arm",
+    "baseline": "baseline",
+    "candidate": "candidate",
+    "metric": "decodeNanos",
+    "pairs": 10,
+    "requests": 30,
+    "geometricRatio": 1.038442051990599,
+    "bootstrap95": [
+      1.0211926267663063,
+      1.0573818765305936
+    ],
+    "resampling": "whole process-pair clusters; seed724;10000draws"
+  },
+  {
+    "phase": "q51-simd-v2",
+    "arch": "arm",
+    "baseline": "native",
+    "candidate": "java",
+    "metric": "nanos",
+    "pairs": 10,
+    "requests": 240,
+    "geometricRatio": 0.7605748955772765,
+    "bootstrap95": [
+      0.7351134959201265,
+      0.7873332791881064
+    ],
+    "resampling": "whole process-pair clusters; seed724;10000draws"
+  },
+  {
+    "phase": "q51-simd-v2",
+    "arch": "arm",
+    "baseline": "native",
+    "candidate": "java",
+    "metric": "allocatedBytes",
+    "pairs": 10,
+    "requests": 240,
+    "geometricRatio": 10.991275998158205,
+    "bootstrap95": [
+      10.98565708545861,
+      10.998729200061211
+    ],
+    "resampling": "whole process-pair clusters; seed724;10000draws"
+  },
+  {
+    "phase": "q50-ablation-v2",
+    "arch": "arm",
+    "baseline": "baseline",
+    "candidate": "dual",
+    "metric": "modelNanos",
+    "pairs": 10,
+    "requests": 30,
+    "geometricRatio": 1.135406877549561,
+    "bootstrap95": [
+      1.1229802784685692,
+      1.148504652328456
+    ],
+    "resampling": "whole process-pair clusters; seed724;10000draws"
+  },
+  {
+    "phase": "q50-ablation-v2",
+    "arch": "arm",
+    "baseline": "baseline",
+    "candidate": "dual",
+    "metric": "decodeNanos",
+    "pairs": 10,
+    "requests": 30,
+    "geometricRatio": 1.7418112634494063,
+    "bootstrap95": [
+      1.7079238080598462,
+      1.7796499184416348
+    ],
+    "resampling": "whole process-pair clusters; seed724;10000draws"
+  },
+  {
+    "phase": "q50-ablation-v2",
+    "arch": "arm",
+    "baseline": "baseline",
+    "candidate": "triple",
+    "metric": "modelNanos",
+    "pairs": 10,
+    "requests": 30,
+    "geometricRatio": 2.7779671140360933,
+    "bootstrap95": [
+      2.4669862342540547,
+      3.2150321850203354
+    ],
+    "resampling": "whole process-pair clusters; seed724;10000draws"
+  },
+  {
+    "phase": "q50-ablation-v2",
+    "arch": "arm",
+    "baseline": "baseline",
+    "candidate": "triple",
+    "metric": "decodeNanos",
+    "pairs": 10,
+    "requests": 30,
+    "geometricRatio": 10.28190165803213,
+    "bootstrap95": [
+      8.991728191700544,
+      12.387976440137951
+    ],
+    "resampling": "whole process-pair clusters; seed724;10000draws"
+  }
+]

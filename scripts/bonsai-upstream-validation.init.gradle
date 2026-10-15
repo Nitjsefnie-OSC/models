@@ -1,0 +1,49 @@
+// Pre-publication diagnostic only. Normal CI and publication still resolve released dependencies.
+import groovy.json.JsonOutput
+import java.security.MessageDigest
+import org.gradle.api.tasks.testing.Test
+
+def jarPath = System.getenv('BONSAI_UPSTREAM_JAR')
+def revision = System.getenv('BONSAI_UPSTREAM_REVISION')
+if (!jarPath || !(revision ==~ /[0-9a-f]{40}/)) {
+    throw new GradleException('An existing BONSAI_UPSTREAM_JAR and exact BONSAI_UPSTREAM_REVISION are required')
+}
+def candidate = new File(jarPath).canonicalFile
+if (!candidate.isFile()) {
+    throw new GradleException("Missing upstream candidate: $candidate")
+}
+gradle.projectsEvaluated {
+    if (gradle.startParameter.taskNames != [':backend-native:bonsai2NativeSlowTest']) {
+        throw new GradleException('The upstream diagnostic must run only :backend-native:bonsai2NativeSlowTest')
+    }
+    def nativeProject = gradle.rootProject.project(':backend-native')
+    nativeProject.tasks.named('bonsai2NativeSlowTest', Test).configure {
+        def original = classpath
+        def released = original.filter { it.name.startsWith('vectors-core-') && it.name.endsWith('.jar') }
+        classpath = nativeProject.files(candidate) + (original - released)
+        inputs.property('upstreamRevision', revision)
+        doFirst {
+            if (released.files.size() != 1) {
+                throw new GradleException("Expected one released core, found ${released.files}")
+            }
+            def hash = { File file ->
+                def digest = MessageDigest.getInstance('SHA-256')
+                file.withInputStream { stream ->
+                    byte[] buffer = new byte[65536]
+                    int count
+                    while ((count = stream.read(buffer)) != -1) digest.update(buffer, 0, count)
+                }
+                digest.digest().encodeHex().toString()
+            }
+            def report = nativeProject.layout.buildDirectory.file('reports/bonsai-upstream.json').get().asFile
+            report.parentFile.mkdirs()
+            report.text = JsonOutput.prettyPrint(JsonOutput.toJson([
+                scope: 'Unchanged Bonsai fixture with an unpublished upstream correction; not a release gate',
+                vectorsRevision: revision,
+                candidate: [path: candidate.path, sha256: hash(candidate)],
+                replaced: released.files.collect { [path: it.path, sha256: hash(it)] },
+                classpath: classpath.files.collect { it.path }
+            ])) + '\n'
+        }
+    }
+}

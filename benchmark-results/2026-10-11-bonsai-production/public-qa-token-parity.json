@@ -1,0 +1,19 @@
+{
+  "at": "2026-10-11T21:02:44.962852+00:00",
+  "cases": 200,
+  "allTokenIdsMatch": true,
+  "maximumPromptTokens": 433,
+  "publisherRevision": "e8fd209c975c80aa7fb36a8423571ff3b1b7e955",
+  "publisherTokenizerBinarySha256": "05228f2f84d6dad8485996dfafd421982425a239fff51ba6ff6b5b6ac85cc17c",
+  "files": {
+    "PublicQaProbe.java": "eec7224da6d104bfeb632e59e8943551cda4cd189b3a51489edc87f41757176a",
+    "PublicQaTokens.cpp": "e249f37a928c14ca30292becae0eb4bda7cd0fcfbd92db4f6f85c7d67db38c3a",
+    "public-qa-cases.json": "e1616ea8765a15bd569c38ab8a4367cefac9fa98756e976040fbbe0874270a7b",
+    "public-qa-model-tokens-v2.jsonl": "1b845256443f7fdc6e109f563fc9ffacb731169711f06b1ce4ead26c69d66397",
+    "public-qa-reference-tokens.jsonl": "4df8361556da3422491540a754109351c50472faa1ef3c115f9f549bee9dc3a1"
+  },
+  "case125": {
+    "invalidOrdinaryTextTokens": 295,
+    "correctedBothArmsTokens": 268
+  }
+}

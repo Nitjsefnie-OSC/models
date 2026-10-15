@@ -1,0 +1,190 @@
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by net.rubygrapefruit.platform.internal.NativeLibraryLoader in an unnamed module (file:/Users/briansam-bodden/.gradle/wrapper/dists/gradle-9.4.1-all/eckclv9s5vi9exbmnyvpg2a3h/gradle-9.4.1/lib/native-platform-0.22-milestone-29.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/9.4.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+> Task :spotlessInternalRegisterDependencies
+> Task :backend-java:spotlessJava
+> Task :backend-java:spotlessJavaApply
+> Task :backend-java:spotlessApply
+> Task :backend-native:spotlessJava
+> Task :backend-native:spotlessJavaApply
+> Task :backend-native:spotlessApply
+> Task :models-api:compileJava
+> Task :backend-java:compileJava
+> Task :writeReleaseDependencyManifest
+> Task :backend-java:processResources
+> Task :backend-java:classes
+> Task :backend-java:jar
+> Task :models-runtime:compileJava
+> Task :backend-java:compileTestJava
+> Task :backend-java:processTestResources
+> Task :backend-java:testClasses
+> Task :models-api:processResources
+> Task :models-api:classes
+> Task :models-api:jar
+> Task :models-runtime:processResources
+> Task :models-runtime:classes
+> Task :models-runtime:jar
+
+> Task :backend-java:test
+WARNING: Using incubator modules: jdk.incubator.vector
+WARNING: Using incubator modules: jdk.incubator.vector
+
+ExactQ51ParallelTest > sharedParallelAndConfinedSerialKeepEveryFloatBitAcrossRepeatedBatches() PASSED
+
+ExactQ51ParallelTest > oversizedDecodedScratchRetainsItsUnusedTail() PASSED
+
+TernaryDequantizerTest > dequantizeTq1_0MatchesTheReference() PASSED
+
+TernaryDequantizerTest > packedPtqProductAgreesWithScalarUnpackingAcrossOffsetsAndScales() PASSED
+
+TernaryDequantizerTest > refusesACountThatIsNotAWholeNumberOfBlocks() PASSED
+
+TernaryDequantizerTest > dequantizeTq2_0MatchesTheReference() PASSED
+
+TernaryDequantizerTest > dequantizePq2_0MatchesTheReference() PASSED
+
+TernaryDequantizerTest > theFourthTwoBitCodeIsPlusTwoNotClampedToOne() PASSED
+
+TernaryDequantizerTest > dequantizePtq1_0MatchesTheReference() PASSED
+
+DequantizerTest > Q5_1 > readsTheFifthBitFromTheHighWordForBothHalves() PASSED
+
+DequantizerTest > Q5_1 > vectorExpansionMatchesScalarFormulaAcrossOffsetsAndFiniteHeaders() PASSED
+
+DequantizerTest > Q5_1 > appliesMinimumRatherThanCentringTheQuant() PASSED
+
+DequantizerTest > Q5_1 > reachesTheFullFiveBitRange() PASSED
+
+DequantizerTest > Q4_1 > appliesMinimumRatherThanCentringTheQuant() PASSED
+
+DequantizerTest > Q4_1 > splitsLowAndHighNibblesAcrossTheBlockHalves() PASSED
+
+DequantizerTest > Q4_1 > reachesTheFullFourBitRangeAndIsUnsigned() PASSED
+
+DequantizerTest > F16 > dequantizesKnownValues() PASSED
+
+DequantizerTest > Q8_0 > knownScaleAndQuants() PASSED
+
+DequantizerTest > Q8_0 > rejectsPartialBlocksInsteadOfSilentlyDroppingValues() PASSED
+
+DequantizerTest > Q8_0 > zeroScaleProducesZeros() PASSED
+
+DequantizerTest > Q4_0 > multiBlockDequantization() PASSED
+
+DequantizerTest > Q4_0 > rejectsPartialBlocksInsteadOfSilentlyDroppingValues() PASSED
+
+DequantizerTest > Q4_0 > knownNibblePatternWithScale() PASSED
+
+DequantizerTest > Q4_0 > allZeroBlockProducesNegativeEights() PASSED
+
+Mxfp4DequantizerTest > blockGeometryMatchesTheFormat() PASSED
+
+Mxfp4DequantizerTest > theDotProductAgreesWithDequantisingThenMultiplying() PASSED
+
+Mxfp4DequantizerTest > refusesACountThatIsNotAWholeNumberOfBlocks() PASSED
+
+Mxfp4DequantizerTest > aRunThatIsNotAWholeNumberOfBlocksIsRefused() PASSED
+
+Mxfp4DequantizerTest > theTwoNibblesOfAByteAreSixteenElementsApartNotAdjacent() PASSED
+
+Mxfp4DequantizerTest > everyCodeMapsToTheDoubledE2m1MagnitudeWithSignInTheHighBit() PASSED
+
+Mxfp4DequantizerTest > theScaleIsHalvedAndKeepsItsDenormalsAtTheBottomOfTheRange() PASSED
+
+Mxfp4DequantizerTest > theDotProductIsExactForASingleKnownBlock() PASSED
+
+> Task :backend-native:compileJava
+> Task :backend-native:processResources
+> Task :backend-native:classes
+> Task :backend-native:jar
+
+> Task :backend-native:cargoBuildRelease
+   Compiling jmodels-kernels v0.3.59 (/Users/briansam-bodden/Code/java-ai/projects/models-q5-final/backend-native/src/main/rust/model-kernels)
+    Finished `release` profile [optimized] target(s) in 48.79s
+
+> Task :backend-native:compileTestJava
+> Task :backend-native:verifyNativeBuildPlatform
+> Task :backend-native:prepareNativePlatformResources
+> Task :backend-native:nativePlatformJar
+> Task :backend-native:processTestResources NO-SOURCE
+> Task :backend-native:testClasses
+
+> Task :backend-native:test
+WARNING: Using incubator modules: jdk.incubator.vector
+WARNING: Using incubator modules: jdk.incubator.vector
+
+NativeKernelLibraryTest > groupedKernelSharesInputAcrossTwoQ8ProjectionsWithinReductionTolerance() PASSED
+
+BundledNativeKernelLibraryTest > packagedHostArtifactCanBeExtractedAndOpened() PASSED
+
+BundledNativeKernelLibraryTest > rejectsMetadataForAnotherPlatform() PASSED
+
+NativeKernelLibraryTest > groupedKernelSharesOneQ8KActivationAcrossEightQ4KProjections() PASSED
+
+BundledNativeKernelLibraryTest > verifiesAndExtractsTheCurrentPlatformLibraryOnce() PASSED
+
+NativeKernelLibraryTest > reusableGgufKernelComputesQ5_1SingleTokenProjectionExactly() PASSED
+
+NativeKernelLibraryTest > reusableGgufKernelComputesQ5_0BatchedMatrixMultiplicationWithinReductionTolerance() PASSED
+
+NativeKernelLibraryTest > groupedRecurrenceRejectsDuplicateSlotsBeforeMutatingState() PASSED
+
+BundledNativeKernelLibraryTest > rejectsAnArtifactWhoseLibraryDoesNotMatchItsDigest() PASSED
+
+NativeKernelLibraryTest > profiledSettingsConfigureTheWorkerCount() PASSED
+
+NativeKernelLibraryTest > groupedKernelMatchesVectorSemanticsForMixedQ4_KQ5_KQ6_KProjections() PASSED
+
+NativeKernelLibraryTest > reusableGgufKernelComputesQ5_0SingleTokenProjectionWithinQuantizedTolerance() PASSED
+
+NativeKernelLibraryTest > reusableGgufKernelComputesQ8_0BatchedMatrixMultiplicationWithinReductionTolerance() PASSED
+
+NativeKernelLibraryTest > reusableGgufKernelComputesAcrossWorkspaceGrowth() PASSED
+
+NativeKernelLibraryTest > groupedGatedDeltaNetTreatsANullSlotTableAsTheIdentity() PASSED
+
+NativeKernelLibraryTest > computesQ4_0BatchedMatrixMultiplication() PASSED
+
+NativeKernelLibraryTest > raggedIndependentKernelPreservesEachProjectionBatchSize() PASSED
+
+NativeKernelLibraryTest > groupedKernelSharesInputAcrossThreeExactQ4Projections() PASSED
+
+NativeKernelLibraryTest > singleTokenProjectionsAreAlwaysEligible() PASSED
+
+NativeKernelLibraryTest > groupedGatedDeltaNetMatchesEachRowAdvancedAlone() PASSED
+
+NativeKernelLibraryTest > decodeThreadCountLimitsSingleTokenWorkersWithoutChangingResults() PASSED
+
+NativeKernelLibraryTest > decodeThreadCountMustFitThePool() PASSED
+
+NativeKernelLibraryTest > reusableGgufKernelComputesQ5_1BatchedMatrixMultiplicationExactly() PASSED
+
+NativeKernelLibraryTest > groupedKernelSharesInputAcrossTwoExactQ4Projections() PASSED
+
+NativeKernelLibraryTest > q5_0ProjectionsAreNeverGrouped() PASSED
+
+NativeKernelLibraryTest > independentKernelExecutesEightQ4KProjectionsInOneDispatch() PASSED
+
+NativeKernelLibraryTest > gatedDeltaNetMatchesThePinnedFreeTokenRecurrence() PASSED
+
+NativeKernelLibraryTest > rejectsInvalidShapesBeforeCrossingTheNativeBoundary() PASSED
+
+NativeKernelLibraryTest > groupedAttentionMatchesTheJavaKernelAcrossTwoSpans() PASSED
+
+NativeKernelLibraryTest > groupedGatedDeltaNetRejectsASlotOutsideTheState() PASSED
+
+NativeKernelLibraryTest > groupedGatedDeltaNetRejectsArgumentsItCannotServe() PASSED
+
+NativeKernelLibraryTest > reusableGgufKernelMatchesVectorSemanticsForKQuantizedBatchedMultiplication() PASSED
+
+NativeKernelLibraryTest > exposesVersionedQuantizedKernelCapabilities() PASSED
+
+NativeKernelLibraryTest > recurrentWritesCannotAliasInputsOrEachOther() PASSED
+
+BUILD SUCCESSFUL in 3m
+27 actionable tasks: 27 executed
+Consider enabling configuration cache to speed up this build: https://docs.gradle.org/9.4.1/userguide/configuration_cache_enabling.html

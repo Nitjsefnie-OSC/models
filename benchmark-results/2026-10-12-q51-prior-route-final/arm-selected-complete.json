@@ -1,0 +1,37 @@
+{
+  "reason": "Prospective shard assignment complete: original ARM owns pairs0\u20134, v6 ARM owns5\u20139. Extra original pairs excluded regardless of values.",
+  "instanceId": "i-0b6d3054c3420e0f7",
+  "at": "2026-10-12T22:20:19.403459+00:00",
+  "requiredSuccessfulCommands": [
+    "causal-correctness-candidate",
+    "causal-correctness-prior",
+    "causal-timing-0-candidate",
+    "causal-timing-0-prior",
+    "causal-timing-1-candidate",
+    "causal-timing-1-prior",
+    "causal-timing-2-candidate",
+    "causal-timing-2-prior",
+    "causal-timing-3-candidate",
+    "causal-timing-3-prior",
+    "causal-timing-4-candidate",
+    "causal-timing-4-prior"
+  ],
+  "numericCases": 148,
+  "exact": true,
+  "commandsSha256": "e4e8f3de4245f7a5849d166a41ee9347f130372e9b40c40640d41c40fde088a1",
+  "termination": {
+    "TerminatingInstances": [
+      {
+        "InstanceId": "i-0b6d3054c3420e0f7",
+        "CurrentState": {
+          "Code": 32,
+          "Name": "shutting-down"
+        },
+        "PreviousState": {
+          "Code": 16,
+          "Name": "running"
+        }
+      }
+    ]
+  }
+}

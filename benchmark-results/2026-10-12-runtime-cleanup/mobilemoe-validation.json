@@ -1,0 +1,21 @@
+{
+  "workflow": "https://github.com/ModelJars/modeljars/actions/runs/38298839254",
+  "fixtureSourceRevision": "9809314730e4d8c1ef2127df3f3b2ea99c3324a8",
+  "workflowRevision": "08a8e84",
+  "counts": {
+    "tests": 7,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "raw": {
+    "mobilemoe-fixture-authenticated.log": "b0f12bc3e58e74926984f4992659b731ea9900fcef09126e35eb286f7bf906b6",
+    "mobilemoe-TEST-com.integrallis.models.backend.purejava.mobilemoe.MobileMoeForwardPassIntegrationTest.xml": "7b315ff34d9f5fef2b3f01c03854e1ec48f0eefc94fccfbc4a0961eefd88ea3e",
+    "mobilemoe-released-smoke.json": "81f6672c6d3134d6c8f119995e9b266b94bb207460da600214ce59f21213aee0",
+    "mobilemoe-TEST-com.integrallis.models.backend.purejava.mobilemoe.MobileMoeQatLayoutIntegrationTest.xml": "1dbf9ace2d47b65169d604ef7f26c1706e2ced63b4d860f0086531c969255c83",
+    "mobilemoe-fixture-download.log": "18a0d6bba4a95be92e0549de565360efb7846ce6ddbd33b0e6dd6c4469783ca0",
+    "mobilemoe-TEST-com.integrallis.models.backend.purejava.MobileMoeHuggingFaceBackendIntegrationTest.xml": "6d96499186122672a3f7f22bbc8e7b23331cac1a71d89d60607bc31a052b16e7",
+    "mobilemoe-oracle-provenance.json": "d108dd7584d3bce83fe244f53516afe8b2311289856b65470c66a02b835e4ab1",
+    "mobilemoe-TEST-com.integrallis.models.backend.purejava.mobilemoe.MobileMoeTokenizerIntegrationTest.xml": "3469d51e288099111049483fe7f64ec9f5f55f9146c49c2c64af5b7bc92887cb"
+  }
+}

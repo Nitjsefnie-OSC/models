@@ -83,14 +83,6 @@ final class MobileMoePackedInt4Matrix {
         packed, scales, rows, columns, groupSize, groupsPerRow, null);
   }
 
-  int rows() {
-    return rows;
-  }
-
-  int columns() {
-    return columns;
-  }
-
   float value(int row, int column) {
     if (row < 0 || row >= rows || column < 0 || column >= columns) {
       throw new IndexOutOfBoundsException("matrix index (" + row + ", " + column + ")");

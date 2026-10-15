@@ -1,0 +1,26 @@
+WARNING: Using incubator modules: jdk.incubator.vector
+Oct 11, 2026 8:21:26 PM com.integrallis.vectors.core.PanamaVectorUtilSupportProvider create
+INFO: vectors-core: Using Panama Vector API SIMD provider (vector bits: 256)
+Oct 11, 2026 8:21:26 PM com.integrallis.vectors.core.VectorizationProvider logActiveToggles
+INFO: vectors-core: provider=PanamaVectorUtilSupport panama=true maxBits=256 preferredBits=256 fastVectorFMA=true fastScalarFMA=true sve=false ggufParallel=true ggufParallelThreshold=1048576 ggufExecutor=persistent ggufThreads=16 ggufChunksPerThread=2 mappedKQuantLongOffsets=auto(q4=true,q5=false,q6=false) q4ShortPairwiseSupported=true q4UnsignedPairwiseSupported=true toggles=[(defaults — no -Dvectors.* overrides)]
+case=75 dataset=squad2 error=null stop=EOS millis=181669.336194
+case=76 dataset=squad2 error=null stop=MAX_TOKENS millis=84866.454865
+case=77 dataset=squad2 error=null stop=EOS millis=178136.436969
+case=78 dataset=squad2 error=null stop=MAX_TOKENS millis=105493.341159
+case=79 dataset=squad2 error=null stop=MAX_TOKENS millis=103359.088217
+case=80 dataset=squad2 error=null stop=EOS millis=86078.200945
+case=81 dataset=squad2 error=null stop=MAX_TOKENS millis=138024.027581
+case=82 dataset=squad2 error=null stop=MAX_TOKENS millis=111539.700949
+case=83 dataset=boolq error=null stop=EOS millis=53665.584857
+case=84 dataset=boolq error=null stop=EOS millis=64793.060147
+case=85 dataset=boolq error=null stop=EOS millis=101777.83907
+case=86 dataset=boolq error=null stop=EOS millis=134461.495478
+case=87 dataset=squad2 error=null stop=MAX_TOKENS millis=110750.891287
+case=88 dataset=boolq error=null stop=EOS millis=52174.021381
+case=89 dataset=squad2 error=null stop=MAX_TOKENS millis=130682.677198
+case=90 dataset=squad2 error=null stop=EOS millis=71714.567793
+case=91 dataset=boolq error=null stop=EOS millis=60140.992749
+case=92 dataset=boolq error=null stop=EOS millis=75111.57733
+case=93 dataset=squad2 error=null stop=EOS millis=138745.85666
+case=94 dataset=squad2 error=null stop=EOS millis=173874.470633
+case=95 dataset=squad2 error=null stop=EOS millis=116523.62588

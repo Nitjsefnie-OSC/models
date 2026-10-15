@@ -1,0 +1,33 @@
+WARNING: Using incubator modules: jdk.incubator.vector
+Oct 11, 2026 9:17:52 PM com.integrallis.vectors.core.PanamaVectorUtilSupportProvider create
+INFO: vectors-core: Using Panama Vector API SIMD provider (vector bits: 256)
+Oct 11, 2026 9:17:52 PM com.integrallis.vectors.core.VectorizationProvider logActiveToggles
+INFO: vectors-core: provider=PanamaVectorUtilSupport panama=true maxBits=256 preferredBits=256 fastVectorFMA=true fastScalarFMA=true sve=true ggufParallel=true ggufParallelThreshold=1048576 ggufExecutor=persistent ggufThreads=16 ggufChunksPerThread=2 mappedKQuantLongOffsets=auto(q4=false,q5=false,q6=false) q4ShortPairwiseSupported=true q4UnsignedPairwiseSupported=true toggles=[(defaults — no -Dvectors.* overrides)]
+trial 1/3: ok ttft=79109.1ms decode=0.24 tok/s
+trial 2/3: ok ttft=83256.9ms decode=0.24 tok/s
+trial 3/3: ok ttft=71305.7ms decode=0.24 tok/s
+prism_ml_ternary_bonsai_2_27b_gguf_ptq1_0 pure-java: tier=FAILED load=673.5ms p95-ttft=83256.9ms p50-decode=0.24 tok/s p95-tpot=4206.7ms peak-rss=6560088064 bytes
+report: /work/out/scalar-inference.json
+	Command being timed: "/opt/jdk/bin/java --add-modules jdk.incubator.vector --enable-native-access=ALL-UNNAMED -Dmodels.native.kernels.library=/work/arm/libjmodels_kernels.so -Xmx16g -cp /work/arm/scalar/lib/*:/work/arm/classes com.integrallis.models.bench.InferenceBenchmarkCli --backend pure-java --backend-version models-source@8b5c0b29;arm-scalar --model-id prism_ml_ternary_bonsai_2_27b_gguf_ptq1_0 --model /work/bonsai2.gguf --prompt The quick brown fox --max-tokens 8 --warmups 1 --iterations 3 --context 512 --threads 16 --output /work/out/scalar-inference.json"
+	User time (seconds): 6787.74
+	System time (seconds): 2.98
+	Percent of CPU this job got: 1536%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 7:21.85
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 6405236
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 305396
+	Voluntary context switches: 319992
+	Involuntary context switches: 33831
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 1128
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

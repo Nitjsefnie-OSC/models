@@ -1,0 +1,17 @@
+{
+  "runtimeSourceRevision": "8b5c0b29d25bfce0e54659778e08ca65dcbd322b",
+  "label": "source candidate; not a released Central artifact",
+  "commands": [
+    "./gradlew :backend-native:bonsai2NativeSlowTest",
+    "./gradlew spotlessCheck build complianceCheck -x :docs:build"
+  ],
+  "realWeightChecks": [
+    "exact eight-token publisher oracle",
+    "fresh-session and reset isolation",
+    "full-vocabulary sequential/batched logits at three continuation steps; maximum absolute error zero"
+  ],
+  "reports": {
+    "native-q8-contract.xml": "fe101e988356446f3d9e52531d808fa86ecac4f45a47e6abaf2ba191ffcbddd0",
+    "native-q8-real-fixtures.xml": "3d29d56e9198340403e37dbd517ab207ac723569e83aeebc8a13dd35b3a35783"
+  }
+}

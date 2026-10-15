@@ -1,0 +1,7 @@
+{
+  "publisherRevision" : "e8fd209c975c80aa7fb36a8423571ff3b1b7e955",
+  "freshSessionMatches" : true,
+  "allTokensMatch" : true,
+  "backend" : "pure-java",
+  "expectedTokens" : [ 33075, 888, 279, 15217, 5388, 13, 271, 760 ]
+}

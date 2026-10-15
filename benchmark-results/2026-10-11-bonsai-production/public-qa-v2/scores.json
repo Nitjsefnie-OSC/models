@@ -1,0 +1,97 @@
+{
+  "inputReports": {
+    "models": {
+      "file": "models.jsonl",
+      "sha256": "17f311ade1863df58c845319363ba62eb509006cba41295d92a124e4ef5f7b32"
+    },
+    "publisher": {
+      "file": "publisher.jsonl",
+      "sha256": "35e0b308fb7e4d137dab4dbd4d9f9fe88d7b51fc585bc3cef1cf159dc499f7e5"
+    }
+  },
+  "protocol": "bonsai-production-public-qa-v1",
+  "caseSha256": "e1616ea8765a15bd569c38ab8a4367cefac9fa98756e976040fbbe0874270a7b",
+  "complete": true,
+  "datasets": {
+    "squad2": {
+      "models": {
+        "count": 100,
+        "present": 100,
+        "exactMatch": 0.77,
+        "tokenF1": 0.800297619047619,
+        "exactMatchWilson95": [
+          0.6784561697712622,
+          0.8415673411969654
+        ],
+        "failures": 0,
+        "truncations": 0,
+        "unanswerableAccuracy": 0.74
+      },
+      "publisher": {
+        "count": 100,
+        "present": 100,
+        "exactMatch": 0.77,
+        "tokenF1": 0.800297619047619,
+        "exactMatchWilson95": [
+          0.6784561697712622,
+          0.8415673411969654
+        ],
+        "failures": 0,
+        "truncations": 0,
+        "unanswerableAccuracy": 0.74
+      },
+      "modelsMinusPublisher": 0.0,
+      "descriptiveRegressionRulePassed": true
+    },
+    "boolq": {
+      "models": {
+        "count": 100,
+        "present": 100,
+        "exactMatch": 0.9,
+        "tokenF1": 0.9,
+        "exactMatchWilson95": [
+          0.8256343384950865,
+          0.9447708629393249
+        ],
+        "failures": 0,
+        "truncations": 0
+      },
+      "publisher": {
+        "count": 100,
+        "present": 100,
+        "exactMatch": 0.9,
+        "tokenF1": 0.9,
+        "exactMatchWilson95": [
+          0.8256343384950865,
+          0.9447708629393249
+        ],
+        "failures": 0,
+        "truncations": 0
+      },
+      "modelsMinusPublisher": 0.0,
+      "descriptiveRegressionRulePassed": true
+    }
+  },
+  "disagreements": [
+    {
+      "index": 89,
+      "dataset": "squad2",
+      "id": "57293e221d046914007791d5",
+      "models": {
+        "exact": 1.0,
+        "f1": 1.0,
+        "prediction": "substantially increasing atmospheric concentrations",
+        "failed": false,
+        "truncated": false
+      },
+      "publisher": {
+        "exact": 1.0,
+        "f1": 1.0,
+        "prediction": "substantially increasing atmospheric concentrations of greenhouse gases",
+        "failed": false,
+        "truncated": false
+      }
+    }
+  ],
+  "descriptiveRegressionRulePassed": true
+}

@@ -431,15 +431,6 @@ public record ModelTopology(
         + finalLayer.attentionOutput();
   }
 
-  String qkvMode() {
-    boolean anyGrouped = layers.stream().anyMatch(layer -> !"independent".equals(layer.qkvMode()));
-    boolean allGrouped = layers.stream().allMatch(layer -> "grouped".equals(layer.qkvMode()));
-    if (allGrouped) {
-      return "grouped";
-    }
-    return anyGrouped ? "partial" : "independent";
-  }
-
   String qkvMode(GgufBatchedMatrixKernel kernel) {
     Objects.requireNonNull(kernel, "kernel");
     boolean anyGrouped =
@@ -449,14 +440,6 @@ public record ModelTopology(
       return "grouped";
     }
     return anyGrouped ? "partial" : "independent";
-  }
-
-  String gateUpMode() {
-    long grouped = layers.stream().filter(LayerTopology::groupsGateUp).count();
-    if (grouped == layers.size()) {
-      return "grouped";
-    }
-    return grouped > 0 ? "partial" : "independent";
   }
 
   String gateUpMode(GgufBatchedMatrixKernel kernel) {

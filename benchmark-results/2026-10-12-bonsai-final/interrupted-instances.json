@@ -1,0 +1,206 @@
+{
+    "Reservations": [
+        {
+            "ReservationId": "r-042a942a599278753",
+            "OwnerId": "077051030817",
+            "Groups": [],
+            "Instances": [
+                {
+                    "Architecture": "x86_64",
+                    "BlockDeviceMappings": [],
+                    "ClientToken": "d6e75194-d43d-4cb5-b920-59a946c5b574",
+                    "EbsOptimized": false,
+                    "EnaSupport": true,
+                    "Hypervisor": "xen",
+                    "InstanceLifecycle": "spot",
+                    "NetworkInterfaces": [],
+                    "RootDeviceName": "/dev/sda1",
+                    "RootDeviceType": "ebs",
+                    "SecurityGroups": [],
+                    "SpotInstanceRequestId": "sir-rg2fpryj",
+                    "StateReason": {
+                        "Code": "Server.SpotInstanceTermination",
+                        "Message": "Server.SpotInstanceTermination: Spot instance termination"
+                    },
+                    "Tags": [
+                        {
+                            "Key": "project",
+                            "Value": "models-qualification"
+                        },
+                        {
+                            "Key": "Name",
+                            "Value": "bonsai-final-qa-2163f9eb-0"
+                        },
+                        {
+                            "Key": "delete-after",
+                            "Value": "2026-10-12T21:44:17.824687+00:00"
+                        }
+                    ],
+                    "VirtualizationType": "hvm",
+                    "CpuOptions": {
+                        "CoreCount": 8,
+                        "ThreadsPerCore": 2
+                    },
+                    "CapacityReservationSpecification": {
+                        "CapacityReservationPreference": "open"
+                    },
+                    "HibernationOptions": {
+                        "Configured": false
+                    },
+                    "MetadataOptions": {
+                        "State": "pending",
+                        "HttpTokens": "required",
+                        "HttpPutResponseHopLimit": 2,
+                        "HttpEndpoint": "enabled",
+                        "HttpProtocolIpv6": "disabled",
+                        "InstanceMetadataTags": "disabled"
+                    },
+                    "EnclaveOptions": {
+                        "Enabled": false
+                    },
+                    "BootMode": "uefi-preferred",
+                    "PlatformDetails": "Linux/UNIX",
+                    "UsageOperation": "RunInstances",
+                    "UsageOperationUpdateTime": "2026-10-12T20:14:21+00:00",
+                    "MaintenanceOptions": {
+                        "AutoRecovery": "default",
+                        "RebootMigration": "default"
+                    },
+                    "CurrentInstanceBootMode": "uefi",
+                    "NetworkPerformanceOptions": {
+                        "BandwidthWeighting": "default"
+                    },
+                    "Operator": {
+                        "Managed": false,
+                        "HiddenByDefault": false
+                    },
+                    "SecondaryInterfaces": [],
+                    "InstanceId": "i-0cf8dfe5f7fd6d7e4",
+                    "ImageId": "ami-0045d7fc2ad003464",
+                    "State": {
+                        "Code": 48,
+                        "Name": "terminated"
+                    },
+                    "PrivateDnsName": "",
+                    "PublicDnsName": "",
+                    "StateTransitionReason": "Service initiated (2026-10-12 21:04:04 GMT)",
+                    "KeyName": "qual-milan",
+                    "AmiLaunchIndex": 0,
+                    "ProductCodes": [],
+                    "InstanceType": "m6a.4xlarge",
+                    "LaunchTime": "2026-10-12T20:14:21+00:00",
+                    "Placement": {
+                        "AvailabilityZoneId": "use1-az2",
+                        "GroupName": "",
+                        "Tenancy": "default",
+                        "AvailabilityZone": "us-east-1b"
+                    },
+                    "Monitoring": {
+                        "State": "disabled"
+                    }
+                }
+            ]
+        },
+        {
+            "ReservationId": "r-0b9dfd69dcbaa8231",
+            "OwnerId": "077051030817",
+            "Groups": [],
+            "Instances": [
+                {
+                    "Architecture": "x86_64",
+                    "BlockDeviceMappings": [],
+                    "ClientToken": "261012b7-12be-49b7-b0b6-ca46b6fd7c1f",
+                    "EbsOptimized": false,
+                    "EnaSupport": true,
+                    "Hypervisor": "xen",
+                    "InstanceLifecycle": "spot",
+                    "NetworkInterfaces": [],
+                    "RootDeviceName": "/dev/sda1",
+                    "RootDeviceType": "ebs",
+                    "SecurityGroups": [],
+                    "SpotInstanceRequestId": "sir-x9jzmafk",
+                    "StateReason": {
+                        "Code": "Server.SpotInstanceTermination",
+                        "Message": "Server.SpotInstanceTermination: Spot instance termination"
+                    },
+                    "Tags": [
+                        {
+                            "Key": "project",
+                            "Value": "models-qualification"
+                        },
+                        {
+                            "Key": "Name",
+                            "Value": "bonsai-final-qa-2163f9eb-2"
+                        },
+                        {
+                            "Key": "delete-after",
+                            "Value": "2026-10-12T21:44:27.893151+00:00"
+                        }
+                    ],
+                    "VirtualizationType": "hvm",
+                    "CpuOptions": {
+                        "CoreCount": 8,
+                        "ThreadsPerCore": 2
+                    },
+                    "CapacityReservationSpecification": {
+                        "CapacityReservationPreference": "open"
+                    },
+                    "HibernationOptions": {
+                        "Configured": false
+                    },
+                    "MetadataOptions": {
+                        "State": "pending",
+                        "HttpTokens": "required",
+                        "HttpPutResponseHopLimit": 2,
+                        "HttpEndpoint": "enabled",
+                        "HttpProtocolIpv6": "disabled",
+                        "InstanceMetadataTags": "disabled"
+                    },
+                    "EnclaveOptions": {
+                        "Enabled": false
+                    },
+                    "BootMode": "uefi-preferred",
+                    "PlatformDetails": "Linux/UNIX",
+                    "UsageOperation": "RunInstances",
+                    "UsageOperationUpdateTime": "2026-10-12T20:14:31+00:00",
+                    "MaintenanceOptions": {
+                        "AutoRecovery": "default",
+                        "RebootMigration": "default"
+                    },
+                    "CurrentInstanceBootMode": "uefi",
+                    "NetworkPerformanceOptions": {
+                        "BandwidthWeighting": "default"
+                    },
+                    "Operator": {
+                        "Managed": false,
+                        "HiddenByDefault": false
+                    },
+                    "SecondaryInterfaces": [],
+                    "InstanceId": "i-0fdba02d7b25d31a2",
+                    "ImageId": "ami-0045d7fc2ad003464",
+                    "State": {
+                        "Code": 48,
+                        "Name": "terminated"
+                    },
+                    "PrivateDnsName": "",
+                    "PublicDnsName": "",
+                    "StateTransitionReason": "Service initiated (2026-10-12 21:15:31 GMT)",
+                    "KeyName": "qual-milan",
+                    "AmiLaunchIndex": 0,
+                    "ProductCodes": [],
+                    "InstanceType": "m6a.4xlarge",
+                    "LaunchTime": "2026-10-12T20:14:31+00:00",
+                    "Placement": {
+                        "AvailabilityZoneId": "use1-az2",
+                        "GroupName": "",
+                        "Tenancy": "default",
+                        "AvailabilityZone": "us-east-1b"
+                    },
+                    "Monitoring": {
+                        "State": "disabled"
+                    }
+                }
+            ]
+        }
+    ]
+}

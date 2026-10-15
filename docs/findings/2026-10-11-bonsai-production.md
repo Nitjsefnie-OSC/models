@@ -1,0 +1,210 @@
+# Bonsai production qualification and sequential intake
+
+User mandate: finish production-quality Bonsai first, then process the outstanding
+model queue one at a time. A passing build is not completion of qualification.
+
+## Bonsai execution plan
+
+1. Freeze the exact PTQ1_0 artifact and publisher reference already recorded in
+   `2026-10-11-model-onboarding.md`; retain all earlier results unchanged.
+2. Measure the released runtime and pinned publisher CPU reference on one isolated
+   host. Record complete commands, hashes, process memory, prompts, and raw outputs.
+   Profile the Java arm before choosing an optimization.
+3. Repair runtime defects and measured bottlenecks with Java correctness as the
+   reference. Require real-weight parity, session isolation, kernel checks, and
+   same-host before/after measurements. No unmeasured optimization ships.
+4. Resolve comparator admission explicitly: the current v6 policy requires Ollama
+   or Transformers, neither of which presently executes this exact packed artifact.
+   The publisher's fork must retain its real identity. Any additional reference
+   policy must be separately versioned, justify the reference's provenance, retain
+   the 0.80 throughput / 1.5 latency thresholds and all correctness gates, and leave
+   historical qualifications unchanged. Collect measurements before deciding it.
+5. Complete the default smoke and controlled paired RAG qualification, plus
+   public task evidence from more than one dataset. Record model contribution,
+   failures, truncation, memory and limitations separately from pipeline fallback.
+6. Release any runtime repair, repeat with downloaded Central runtime artifacts,
+   then follow ModelJars' marker verification, Central publication and site process.
+   Do not claim qualification or publication before its gate completes.
+
+## First isolated experiment
+
+- Provider: AWS us-east-1, one m6a.4xlarge, 16 vCPU / 64 GiB, 100 GiB gp3.
+- Duration: at most four hours from boot, with automatic instance termination.
+- Cost ceiling: USD 5 for this experiment, including disk; query live price before launch.
+- Purpose: baseline CPU profiling and exact-artifact publisher comparison.
+- Stop conditions: artifact mismatch, setup failure, invalid output, or deadline.
+- Evidence: `benchmark-results/2026-10-11-bonsai-production/` and immutable S3 prefix.
+- No other account resource may be changed; inventory found one unrelated stopped
+  `ribbon-catches-bloom` instance, which is left untouched.
+
+## Sequential queue after Bonsai
+
+Process one target at a time; retain a concrete result and next action for every
+artifact. Within a family, proceed smallest-first. Existing successful qualifications
+are retained; failed tool gates are not reclassified as untested.
+
+1. Whisper tiny, then base and small: finish frontend/encoder/cross-attention and ASR gate.
+2. Qwen3-VL 2B: verified projector, vision tower, mRoPE/deepstack and vision gate.
+3. OCR: LightOnOCR-3, GLM-OCR, Surya OCR 2, smallest supported artifact first.
+4. Safety: Granite Guardian 3.0 2B, Llama Guard 3 1B, ShieldGemma 2B; classification gate.
+5. Speech: Qwen3-TTS 0.6B CustomVoice, dots.tts-mf; family-specific voice gates.
+6. Text intake: LFM2-1.2B-RAG, S1-mini, Phi-4-mini, Gemma 4 E4B, then remaining
+   DeepSeek/Qwen coder, Fin-R1, SQLCoder, Gemma 3n and KAT-Coder candidates.
+7. Tool intake: FunctionGemma 270M, xLAM 1B, Granite 3.3 2B; revisit rejected
+   Qwen3 0.6B, SmolLM3, MiniCPM5, Llama 3.2 3B and Hammer only through a declared
+   new experiment, preserving their existing negative evidence.
+
+Sources: ModelJars `docs/MODALITY-ROADMAP.md`, `docs/model-candidates-20260803.md`,
+Models `docs/proposals/model-intake-formats-and-kv-research.md`, and the workspace's
+`tool-calling-small-model-candidates-2026-09-02.md`.
+
+Status: paired source RAG passes and the measured ARM NEON repair is retained. Public QA completes all 200 pairs with identical dataset scores and no execution failures or
+truncations. New x86/ARM real-weight CI exposed BF16 cold/compiled drift in Vectors; the local
+fix passes both real-weight tests. Vectors release, downstream CI and final-runtime task gates
+remain required. Nothing newly qualified or published by this plan.
+
+## Publisher-reference admission (new policy, historical v6 unchanged)
+
+The proposed `production-rag-publisher-reference-v1` path is opt-in through
+`--publisher-reference prism-bonsai2-ptq1_0`. It admits only the exact recorded
+Bonsai artifact and the pinned `PrismML-Eng/llama.cpp` source revision. The backend
+remains named `llama.cpp`; it is never called Ollama. Unknown references, other
+artifacts, unspecified revisions, different hosts or workloads are rejected.
+Quality, model contribution, 0.80 decode and 1.5 end-to-end ratio gates remain.
+The existing v6 path is unchanged and still cannot qualify against llama.cpp alone.
+
+Authority is the publisher's own format implementation, linked by the exact
+[model card](https://huggingface.co/prism-ml/Ternary-Bonsai-2-27B-gguf/blob/b072e1d3b35a0a630cece372c2127528e0994386/README.md).
+It is required for PTQ1_0 plus the declared Hadamard transform; stock comparator
+support is not assumed. Admission does not assert the model passes any gate.
+
+## Numerical and performance experiments
+
+Released float-activation baseline: 1.364 median decode tokens/second on the
+isolated m6a host. First Rust translation: 1.260; rejected. Inlining the tail to
+avoid libc `fmaf` calls: 1.734. Independent row pairs: 1.610; rejected. A compact
+trit lookup: 1.440; rejected. Sixteen-bit trit extraction plus batched transformed
+prompts: 1.844 decode and 3.173 short-prompt prefill tokens/second. The sequential
+prefill ablation gave 1.953 prefill tokens/second. Eight pinned physical workers
+were slower than sixteen logical workers. Splitting ternary multiply/add also
+regressed, to 1.757 decode tokens/second. Every raw report is retained.
+
+The publisher uses Q8_0 activations. This is now a separate numerical-contract
+experiment, not a claim of equivalence to the previous float-activation route.
+A scalar Java oracle independently quantizes activations, expands the packed trits,
+and folds integer block products. Rust scalar/SIMD and public FFI tests require
+bit equality to that oracle. The activation scratch allocator now sizes scales by
+activation block width, independently of weight block width (32 versus 128).
+No Q8 default is released without real-weight checks and paired qualification.
+
+The longer sequential/batched full-logit test exposed a difference missed by the
+short oracle continuation. Its original exact-array assertion spent minutes in
+AssertJ's quadratic difference formatting; that process was stopped after retaining
+a thread dump. The test now reports the maximum absolute and scaled error, requires
+identical greedy continuation, and sets a pre-measurement scaled-logit bound of
+2e-4 (`abs(actual-expected)/(1+abs(expected))`). This is a new batch-contract check,
+not a statement that the two graph paths are bit-identical. If it fails, investigate
+and fix the route; do not silently widen the threshold.
+
+The 200-case public QA window and its descriptive regression rule are frozen in
+`benchmark-results/2026-10-11-bonsai-production/public-qa-protocol.md`. All 200 prompts
+fit context 2048 without truncation in tokenization-only validation. No model quality
+result has yet been inferred from that validation.
+
+The Q8 native whole-model experiment measured 2.445 median decode tokens/second
+against 2.625 in the publisher reference on the same m6a host/context/workload
+(0.931 ratio). Median short-prompt prefill was 2.695 versus 3.019. All three trials
+succeeded. This is a performance experiment, not RAG qualification.
+
+The Q8 sequential/batched real-weight logits were exactly equal at all three
+continuation steps. The test now requires zero maximum absolute error using a linear
+scan, avoiding the earlier assertion library's pathological array diff. The earlier
+float experiment's tolerance is not the shipped Q8 contract. Java PTQ projections
+now use the same Q8 activation contract; randomized independent-oracle tests check
+both production Java and Rust outputs bit for bit across rows, batches and workers.
+The explicit float dot remains available for accuracy ablations, not backend fallback.
+Backend diagnostics record the PTQ contract and the native plan advances to v14.
+
+## Release preparation and further findings
+
+- Models draft PR 266 prepares the next release; the complete local build and compliance checks
+  passed. The public-QA workers run source `8b5c0b29`, not a claimed Central release.
+- Reject nonfinite decode ratios: a zero/invalid comparator throughput previously yielded infinity,
+  which passed a lower-bound-only check. A reproducing test failed before the repair and now passes;
+  the certified historical RAG evidence still passes.
+- ModelJars draft PR 217 preserves entry-specific policy identities, verifies a hashed publisher
+  verdict against both raw reports and retains the existing contribution and relative thresholds.
+- Direct loading can allocate Bonsai's entire advertised context, reproducing the earlier article's
+  heap exhaustion. New RAG records can carry their tested context; the loader uses that session
+  capacity, with explicit deployment settings retaining precedence. Legacy records retain their
+  previous behavior. The final Bonsai entry must carry context 2048 and the released ModelJars
+  smoke must assert that capacity through the public API.
+- The Java Q8 fallback has a bit-exact SIMD candidate. A separate one-hour, USD 1 maximum m6a host
+  measures scalar versus SIMD with the same arithmetic; no simultaneous inference shares that host.
+  Its provenance and termination deadline are in `java-q8-host.json`. No speed claim is made yet.
+
+The Java fallback comparison is now complete: SIMD measured 4.338x decode and 4.601x prefill
+against scalar Q8 on the same host, with all output hashes equal and exact actual-tensor checks.
+The frozen retention rule passed. The local real-weight continuation and fresh-session test
+also passed with the retained SIMD code. The host terminated after uploading its results.
+
+The first public-QA fleet exposed a harness defect: raw String generation correctly treated
+ChatML control spellings as ordinary text, unlike the publisher's raw completion endpoint.
+Case 125 had 295 versus 268 input tokens. All eight hosts were stopped and partial outputs
+retained as invalid. The corrected harness uses the trusted frozen template API and requires
+exact publisher token arrays; all 200 match in the token-only preflight. No case, character
+prompt, output budget or scoring rule changed. The replacement repeats both complete arms.
+
+The source Models RAG arm completed 27/27 attempts: twelve correct model answers, twelve
+extractive fallbacks and three correct abstentions, with no truncations. Model answer rate is
+0.444 and correctness among those answers is 1.0. The paired publisher arm is still required.
+
+The first publisher RAG attempt failed during warmup: its 30-second SSE keepalive (`:\n\n`)
+was parsed as JSON. A reproducing parser test failed, then passed after comments and SSE metadata
+were ignored without moving the first-token timestamp. All RAG benchmark tests pass. Only the
+publisher client harness was replaced; the candidate report, host, workload and generation controls
+remain unchanged. The replacement reference arm retains the failed attempt and new JAR digest.
+
+An additional ARM route check uses one m7g.4xlarge (16 cores, 64 GiB), a 90-minute termination
+deadline and USD 2 ceiling. It compares scalar Java, SIMD Java and native Q8 on the same host;
+real projection parity and the pinned continuation accompany whole-model timings. Both rates must
+improve by 5% with identical outputs to retain either replacement. This is route validation,
+not an ARM RAG qualification. The native artifact is from CI run 38175035675; its synthetic merge
+tree matches source `75ec53de`, and every payload byte is recorded in `arm-q8-payload-provenance.json`.
+
+Publication order is Vectors repair/release and dependency verification, Models, downloaded-artifact
+Bonsai qualification/default smoke, ModelJars library/CLI, marker Central publication and site.
+Vectors now requires the BF16 fixed-order reduction repair. Preserve the exact source provenance of the public QA;
+changing artifact versions does not turn source results into released-runtime measurements.
+
+All discovered regressions are release blockers: repair and verify each one before publishing.
+The ARM projection check found scalar native PTQ slower than retained Java SIMD. An isolated
+NEON experiment at `42185aa7` is therefore measured on a second bounded m7g host; it does not
+ride the release branch before whole-model evidence. Its actual tensor checks are bit exact.
+On this host the native up/down projections improve from about 9 ms to 1.35 ms and the output
+projection from 123 ms to 16 ms. These component results do not replace whole-model measurements.
+
+The released-runtime regression manifest covers all 65 existing qualified RAG models, including
+both Safetensors directories. Every workload and artifact is bound to its hashed published report;
+four models retain their explicit stop sequence. MobileMoE requires authenticated access to its
+pinned upstream snapshot. It must be measured rather than counted as passing on download failure.
+
+The ARM repair is now retained: all short-probe outputs and the pinned oracle match; NEON improves
+whole-model decode 6.109x and prefill 6.539x over scalar native, and 2.538x/2.610x over Java SIMD.
+The same-host reports are in `arm-neon-paired/`. CI now runs the native real-weight continuation,
+fresh-session and complete batched-logit tests on both Linux x86 and ARM. Publication still waits
+for CI, complete public QA and the RAG gates; component speed alone does not qualify Bonsai.
+
+The new CI run `38177312332` fails exact full-vocabulary parity on x86 and ARM. Local tracing
+finds the first divergence in BF16 alpha/beta projections; a second sequential session differs
+too. Vectors' `reduceLanes(ADD)` changes its summation order after compilation. Reusing its
+fixed-order reduction makes all fresh-JVM BF16 checks and both full native Bonsai fixture tests
+pass locally, without changing their equality requirements. The local diagnostic classpath is
+explicitly recorded; Central artifacts and both CI architectures must verify the final fix.
+
+The completed source RAG pair passes the publisher policy: decode ratio 0.900553, end-to-end
+latency ratio 1.132929, model answer rate 12/27 and all twelve direct model answers correct.
+It predates the BF16 repair and therefore cannot stand in for final-runtime qualification.
+The source RAG host terminated. The separate authenticated MobileMoE baseline smoke passes
+9/9 in ModelJars CI; six older catalog smoke failures reproduce with released Models 0.3.58.
+Those unresolved failures remain recorded and require investigation rather than being omitted.

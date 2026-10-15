@@ -1,0 +1,205 @@
+{
+  "scope": "Original Bonsai JUnit assertions with explicit candidate core replacement; not published dependency validation",
+  "results": [
+    {
+      "experiment": "broad-core-github-38319081991",
+      "runUrl": "https://github.com/integrallis/models/actions/runs/38319081991",
+      "platform": "ubuntu-24.04",
+      "vectorsRevision": "6893a587d7f1d8fd2cd58e85310ef87579b42b25",
+      "candidateSha256": "e3e7b0ab79d0630bcad65c4cbe9fd356cf589dd159eba8e6c0aa402db24bd33c",
+      "baselineSha256": "21eeae4fcaa56fa26ed45d99610142f794cdec0e1d852894e637263f5bd0b40c",
+      "counts": {
+        "tests": 2,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "cases": [
+        {
+          "name": "releasedArtifactOracleAndFreshSessionSurviveNativeProjectionRouting()",
+          "failures": []
+        },
+        {
+          "name": "transformedBatchesMatchSequentialRealWeightLogitsAcrossChunkBoundaries()",
+          "failures": []
+        }
+      ]
+    },
+    {
+      "experiment": "broad-core-github-38319081991",
+      "runUrl": "https://github.com/integrallis/models/actions/runs/38319081991",
+      "platform": "ubuntu-24.04-arm",
+      "vectorsRevision": "6893a587d7f1d8fd2cd58e85310ef87579b42b25",
+      "candidateSha256": "e3e7b0ab79d0630bcad65c4cbe9fd356cf589dd159eba8e6c0aa402db24bd33c",
+      "baselineSha256": "21eeae4fcaa56fa26ed45d99610142f794cdec0e1d852894e637263f5bd0b40c",
+      "counts": {
+        "tests": 2,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "cases": [
+        {
+          "name": "releasedArtifactOracleAndFreshSessionSurviveNativeProjectionRouting()",
+          "failures": []
+        },
+        {
+          "name": "transformedBatchesMatchSequentialRealWeightLogitsAcrossChunkBoundaries()",
+          "failures": []
+        }
+      ]
+    },
+    {
+      "experiment": "bf16-only-github-38319438508",
+      "runUrl": "https://github.com/integrallis/models/actions/runs/38319438508",
+      "platform": "ubuntu-24.04",
+      "vectorsRevision": "cb3dab3dd35c7f3209b41d833c878a744620e77c",
+      "candidateSha256": "107b807f5dfd3ec420ebbdfd72c3e825240b224861fcb2f7d940683c5843fd96",
+      "baselineSha256": "21eeae4fcaa56fa26ed45d99610142f794cdec0e1d852894e637263f5bd0b40c",
+      "counts": {
+        "tests": 2,
+        "failures": 1,
+        "errors": 0,
+        "skipped": 0
+      },
+      "cases": [
+        {
+          "name": "releasedArtifactOracleAndFreshSessionSurviveNativeProjectionRouting()",
+          "failures": []
+        },
+        {
+          "name": "transformedBatchesMatchSequentialRealWeightLogitsAcrossChunkBoundaries()",
+          "failures": [
+            "org.opentest4j.AssertionFailedError: [full-vocabulary parity at continuation 0] \nexpected: 0.0\n but was: 0.12134552001953125"
+          ]
+        }
+      ]
+    },
+    {
+      "experiment": "bf16-only-github-38319438508",
+      "runUrl": "https://github.com/integrallis/models/actions/runs/38319438508",
+      "platform": "ubuntu-24.04-arm",
+      "vectorsRevision": "cb3dab3dd35c7f3209b41d833c878a744620e77c",
+      "candidateSha256": "107b807f5dfd3ec420ebbdfd72c3e825240b224861fcb2f7d940683c5843fd96",
+      "baselineSha256": "21eeae4fcaa56fa26ed45d99610142f794cdec0e1d852894e637263f5bd0b40c",
+      "counts": {
+        "tests": 2,
+        "failures": 1,
+        "errors": 0,
+        "skipped": 0
+      },
+      "cases": [
+        {
+          "name": "releasedArtifactOracleAndFreshSessionSurviveNativeProjectionRouting()",
+          "failures": []
+        },
+        {
+          "name": "transformedBatchesMatchSequentialRealWeightLogitsAcrossChunkBoundaries()",
+          "failures": [
+            "org.opentest4j.AssertionFailedError: [full-vocabulary parity at continuation 0] \nexpected: 0.0\n but was: 0.09646987915039062"
+          ]
+        }
+      ]
+    },
+    {
+      "experiment": "swiglu-only-github-38320444703",
+      "runUrl": "https://github.com/integrallis/models/actions/runs/38320444703",
+      "platform": "ubuntu-24.04",
+      "vectorsRevision": "3f4db6c80c59bdb228c82b7dfb2cddf103fa91da",
+      "candidateSha256": "f2d4e7a23ca4cae79cf8795acf06f98c6a56f412cd0e8078312c9377d01e2c6f",
+      "baselineSha256": "21eeae4fcaa56fa26ed45d99610142f794cdec0e1d852894e637263f5bd0b40c",
+      "counts": {
+        "tests": 2,
+        "failures": 1,
+        "errors": 0,
+        "skipped": 0
+      },
+      "cases": [
+        {
+          "name": "releasedArtifactOracleAndFreshSessionSurviveNativeProjectionRouting()",
+          "failures": []
+        },
+        {
+          "name": "transformedBatchesMatchSequentialRealWeightLogitsAcrossChunkBoundaries()",
+          "failures": [
+            "org.opentest4j.AssertionFailedError: [full-vocabulary parity at continuation 0] \nexpected: 0.0\n but was: 0.10480070114135742"
+          ]
+        }
+      ]
+    },
+    {
+      "experiment": "swiglu-only-github-38320444703",
+      "runUrl": "https://github.com/integrallis/models/actions/runs/38320444703",
+      "platform": "ubuntu-24.04-arm",
+      "vectorsRevision": "3f4db6c80c59bdb228c82b7dfb2cddf103fa91da",
+      "candidateSha256": "f2d4e7a23ca4cae79cf8795acf06f98c6a56f412cd0e8078312c9377d01e2c6f",
+      "baselineSha256": "21eeae4fcaa56fa26ed45d99610142f794cdec0e1d852894e637263f5bd0b40c",
+      "counts": {
+        "tests": 2,
+        "failures": 1,
+        "errors": 0,
+        "skipped": 0
+      },
+      "cases": [
+        {
+          "name": "releasedArtifactOracleAndFreshSessionSurviveNativeProjectionRouting()",
+          "failures": []
+        },
+        {
+          "name": "transformedBatchesMatchSequentialRealWeightLogitsAcrossChunkBoundaries()",
+          "failures": [
+            "org.opentest4j.AssertionFailedError: [full-vocabulary parity at continuation 0] \nexpected: 0.0\n but was: 0.11671257019042969"
+          ]
+        }
+      ]
+    },
+    {
+      "experiment": "all-activation-github-38321333816",
+      "runUrl": "https://github.com/integrallis/models/actions/runs/38321333816",
+      "platform": "ubuntu-24.04",
+      "vectorsRevision": "8495fbf9ea7e151f25853dedbcf413f811cc24ce",
+      "candidateSha256": "4d447d40ee0c5dd3942d0f9045f1d7edb4fa31a11b9029d1d6a512089cce7c58",
+      "baselineSha256": "21eeae4fcaa56fa26ed45d99610142f794cdec0e1d852894e637263f5bd0b40c",
+      "counts": {
+        "tests": 2,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "cases": [
+        {
+          "name": "releasedArtifactOracleAndFreshSessionSurviveNativeProjectionRouting()",
+          "failures": []
+        },
+        {
+          "name": "transformedBatchesMatchSequentialRealWeightLogitsAcrossChunkBoundaries()",
+          "failures": []
+        }
+      ]
+    },
+    {
+      "experiment": "all-activation-github-38321333816",
+      "runUrl": "https://github.com/integrallis/models/actions/runs/38321333816",
+      "platform": "ubuntu-24.04-arm",
+      "vectorsRevision": "8495fbf9ea7e151f25853dedbcf413f811cc24ce",
+      "candidateSha256": "4d447d40ee0c5dd3942d0f9045f1d7edb4fa31a11b9029d1d6a512089cce7c58",
+      "baselineSha256": "21eeae4fcaa56fa26ed45d99610142f794cdec0e1d852894e637263f5bd0b40c",
+      "counts": {
+        "tests": 2,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "cases": [
+        {
+          "name": "releasedArtifactOracleAndFreshSessionSurviveNativeProjectionRouting()",
+          "failures": []
+        },
+        {
+          "name": "transformedBatchesMatchSequentialRealWeightLogitsAcrossChunkBoundaries()",
+          "failures": []
+        }
+      ]
+    }
+  ]
+}

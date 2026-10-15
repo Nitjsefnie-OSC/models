@@ -34,11 +34,6 @@ final class SpringAiToolCallConstraint {
   private SpringAiToolCallConstraint() {}
 
   static Optional<TokenConstraint> compile(
-      Tokenizer tokenizer, ToolSyntax syntax, List<ToolSpec> tools) {
-    return compile(tokenizer, syntax, tools, List.of());
-  }
-
-  static Optional<TokenConstraint> compile(
       Tokenizer tokenizer,
       ToolSyntax syntax,
       List<ToolSpec> tools,

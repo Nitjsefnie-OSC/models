@@ -1,0 +1,12 @@
+gradle.projectsEvaluated {
+    def project = gradle.rootProject.project(':backend-native')
+    project.tasks.named('bonsai2NativeSlowTest').configure {
+        def candidate = project.files('/tmp/bonsai-fresh-regression-artifacts/combined-vectors-core.jar')
+        classpath = candidate + classpath.filter {
+            !(it.name.startsWith('vectors-core-') && it.name.endsWith('.jar'))
+        }
+        doFirst {
+            new File('/tmp/bonsai-fresh-regression-artifacts/combined-classpath.txt').text = classpath.asPath
+        }
+    }
+}

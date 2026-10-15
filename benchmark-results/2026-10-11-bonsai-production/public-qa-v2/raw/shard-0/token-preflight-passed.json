@@ -1,0 +1,7 @@
+{
+  "first": 0,
+  "count": 25,
+  "tokenizationMode": "trusted-frozen-chatml-v2",
+  "allTokenIdsMatch": true,
+  "publisherOracleSha256": "4df8361556da3422491540a754109351c50472faa1ef3c115f9f549bee9dc3a1"
+}

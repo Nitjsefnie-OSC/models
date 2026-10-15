@@ -1,0 +1,386 @@
+[
+  {
+    "arch": "x86",
+    "control": "baseline",
+    "candidate": "candidate",
+    "metric": "latency",
+    "pairs": 5,
+    "ratio": 0.7783355666988205,
+    "ci95": [
+      0.7649164663505799,
+      0.7932925614928547
+    ]
+  },
+  {
+    "arch": "x86",
+    "control": "baseline",
+    "candidate": "candidate",
+    "metric": "allocation",
+    "pairs": 5,
+    "ratio": 0.12299655981600877,
+    "ci95": [
+      0.12299220940256313,
+      0.12299900480187612
+    ]
+  },
+  {
+    "arch": "x86",
+    "control": "baseline",
+    "candidate": "candidate",
+    "metric": "peakRss",
+    "pairs": 5,
+    "ratio": 1.1496242987581324,
+    "ci95": [
+      1.054056841252741,
+      1.2538565061864886
+    ]
+  },
+  {
+    "arch": "x86",
+    "control": "baseline",
+    "candidate": "candidate",
+    "metric": "load",
+    "pairs": 5,
+    "ratio": 1.0027786972957011,
+    "ci95": [
+      0.9767304786436956,
+      1.030142411142111
+    ]
+  },
+  {
+    "arch": "x86",
+    "control": "baseline",
+    "candidate": "scalar-parallel",
+    "metric": "latency",
+    "pairs": 5,
+    "ratio": 0.7894017250573967,
+    "ci95": [
+      0.7812211874171063,
+      0.7982028026803647
+    ]
+  },
+  {
+    "arch": "x86",
+    "control": "baseline",
+    "candidate": "scalar-parallel",
+    "metric": "allocation",
+    "pairs": 5,
+    "ratio": 0.12250724571578114,
+    "ci95": [
+      0.12152748735757896,
+      0.12300071663765605
+    ]
+  },
+  {
+    "arch": "x86",
+    "control": "baseline",
+    "candidate": "scalar-parallel",
+    "metric": "peakRss",
+    "pairs": 5,
+    "ratio": 1.1079586791398877,
+    "ci95": [
+      0.9645740406712995,
+      1.242434517697312
+    ]
+  },
+  {
+    "arch": "x86",
+    "control": "baseline",
+    "candidate": "scalar-parallel",
+    "metric": "load",
+    "pairs": 5,
+    "ratio": 1.0000333181055805,
+    "ci95": [
+      0.9751694681774329,
+      1.024978983524579
+    ]
+  },
+  {
+    "arch": "x86",
+    "control": "baseline",
+    "candidate": "simd-serial",
+    "metric": "latency",
+    "pairs": 5,
+    "ratio": 0.8549316192960431,
+    "ci95": [
+      0.8485629417580168,
+      0.8629557577021877
+    ]
+  },
+  {
+    "arch": "x86",
+    "control": "baseline",
+    "candidate": "simd-serial",
+    "metric": "allocation",
+    "pairs": 5,
+    "ratio": 0.08549994991329328,
+    "ci95": [
+      0.08549959959349142,
+      0.08550050074696382
+    ]
+  },
+  {
+    "arch": "x86",
+    "control": "baseline",
+    "candidate": "simd-serial",
+    "metric": "peakRss",
+    "pairs": 5,
+    "ratio": 1.0894917815754044,
+    "ci95": [
+      0.9963810667641999,
+      1.1913035902771307
+    ]
+  },
+  {
+    "arch": "x86",
+    "control": "baseline",
+    "candidate": "simd-serial",
+    "metric": "load",
+    "pairs": 5,
+    "ratio": 1.0038140281604164,
+    "ci95": [
+      0.9719275977710566,
+      1.0326339447951436
+    ]
+  },
+  {
+    "arch": "x86",
+    "control": "baseline",
+    "candidate": "scalar-serial",
+    "metric": "latency",
+    "pairs": 5,
+    "ratio": 0.99351582837847,
+    "ci95": [
+      0.9820912439133129,
+      1.0050733140694659
+    ]
+  },
+  {
+    "arch": "x86",
+    "control": "baseline",
+    "candidate": "scalar-serial",
+    "metric": "allocation",
+    "pairs": 5,
+    "ratio": 0.08549969946590255,
+    "ci95": [
+      0.08549959959349142,
+      0.08549974940215185
+    ]
+  },
+  {
+    "arch": "x86",
+    "control": "baseline",
+    "candidate": "scalar-serial",
+    "metric": "peakRss",
+    "pairs": 5,
+    "ratio": 0.9884486114484011,
+    "ci95": [
+      0.8936695312324745,
+      1.1172285573509406
+    ]
+  },
+  {
+    "arch": "x86",
+    "control": "baseline",
+    "candidate": "scalar-serial",
+    "metric": "load",
+    "pairs": 5,
+    "ratio": 1.0001726991688984,
+    "ci95": [
+      0.9922126180569103,
+      1.0071180923839576
+    ]
+  },
+  {
+    "arch": "arm",
+    "control": "baseline",
+    "candidate": "candidate",
+    "metric": "latency",
+    "pairs": 5,
+    "ratio": 0.673101177117933,
+    "ci95": [
+      0.6542873551793928,
+      0.7072622875101562
+    ]
+  },
+  {
+    "arch": "arm",
+    "control": "baseline",
+    "candidate": "candidate",
+    "metric": "allocation",
+    "pairs": 5,
+    "ratio": 0.4363901443499892,
+    "ci95": [
+      0.43364292293482876,
+      0.44081838130852363
+    ]
+  },
+  {
+    "arch": "arm",
+    "control": "baseline",
+    "candidate": "candidate",
+    "metric": "peakRss",
+    "pairs": 5,
+    "ratio": 1.7707719616299122,
+    "ci95": [
+      1.6106557207453234,
+      2.0544187609269304
+    ]
+  },
+  {
+    "arch": "arm",
+    "control": "baseline",
+    "candidate": "candidate",
+    "metric": "load",
+    "pairs": 5,
+    "ratio": 1.0039495873699806,
+    "ci95": [
+      0.9842296135572001,
+      1.0240646695617615
+    ]
+  },
+  {
+    "arch": "arm",
+    "control": "baseline",
+    "candidate": "scalar-parallel",
+    "metric": "latency",
+    "pairs": 5,
+    "ratio": 0.6678775415003766,
+    "ci95": [
+      0.6599162700471173,
+      0.6777195930671447
+    ]
+  },
+  {
+    "arch": "arm",
+    "control": "baseline",
+    "candidate": "scalar-parallel",
+    "metric": "allocation",
+    "pairs": 5,
+    "ratio": 0.43364113353588074,
+    "ci95": [
+      0.4333247224568874,
+      0.4339575478963104
+    ]
+  },
+  {
+    "arch": "arm",
+    "control": "baseline",
+    "candidate": "scalar-parallel",
+    "metric": "peakRss",
+    "pairs": 5,
+    "ratio": 1.103467170153216,
+    "ci95": [
+      1.0754542616815592,
+      1.1337650543954654
+    ]
+  },
+  {
+    "arch": "arm",
+    "control": "baseline",
+    "candidate": "scalar-parallel",
+    "metric": "load",
+    "pairs": 5,
+    "ratio": 1.007531898049221,
+    "ci95": [
+      0.9863162737027742,
+      1.025389258571884
+    ]
+  },
+  {
+    "arch": "arm",
+    "control": "baseline",
+    "candidate": "simd-serial",
+    "metric": "latency",
+    "pairs": 5,
+    "ratio": 0.8864225426167492,
+    "ci95": [
+      0.8737801284305964,
+      0.8992478754013615
+    ]
+  },
+  {
+    "arch": "arm",
+    "control": "baseline",
+    "candidate": "simd-serial",
+    "metric": "allocation",
+    "pairs": 5,
+    "ratio": 0.3192666935071311,
+    "ci95": [
+      0.31926550691996136,
+      0.3192685639143478
+    ]
+  },
+  {
+    "arch": "arm",
+    "control": "baseline",
+    "candidate": "simd-serial",
+    "metric": "peakRss",
+    "pairs": 5,
+    "ratio": 1.4538944962098508,
+    "ci95": [
+      1.4369236376248973,
+      1.4684742638641628
+    ]
+  },
+  {
+    "arch": "arm",
+    "control": "baseline",
+    "candidate": "simd-serial",
+    "metric": "load",
+    "pairs": 5,
+    "ratio": 1.0060479073318762,
+    "ci95": [
+      0.9986805207091976,
+      1.0128165118903005
+    ]
+  },
+  {
+    "arch": "arm",
+    "control": "baseline",
+    "candidate": "scalar-serial",
+    "metric": "latency",
+    "pairs": 5,
+    "ratio": 0.9982663400136756,
+    "ci95": [
+      0.9880677605195476,
+      1.0072224308506976
+    ]
+  },
+  {
+    "arch": "arm",
+    "control": "baseline",
+    "candidate": "scalar-serial",
+    "metric": "allocation",
+    "pairs": 5,
+    "ratio": 0.31926482311087206,
+    "ci95": [
+      0.3192634554970871,
+      0.31926550691996136
+    ]
+  },
+  {
+    "arch": "arm",
+    "control": "baseline",
+    "candidate": "scalar-serial",
+    "metric": "peakRss",
+    "pairs": 5,
+    "ratio": 0.9921240965850397,
+    "ci95": [
+      0.987318188917403,
+      0.9969201872914755
+    ]
+  },
+  {
+    "arch": "arm",
+    "control": "baseline",
+    "candidate": "scalar-serial",
+    "metric": "load",
+    "pairs": 5,
+    "ratio": 0.9960645918644968,
+    "ci95": [
+      0.981440171694294,
+      1.013854768247617
+    ]
+  }
+]

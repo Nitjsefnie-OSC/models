@@ -1,0 +1,73 @@
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by net.rubygrapefruit.platform.internal.NativeLibraryLoader in an unnamed module (file:/Users/briansam-bodden/.gradle/wrapper/dists/gradle-9.4.1-all/eckclv9s5vi9exbmnyvpg2a3h/gradle-9.4.1/lib/native-platform-0.22-milestone-29.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/9.4.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+> Task :models-api:compileJava UP-TO-DATE
+> Task :backend-java:compileJava
+> Task :writeReleaseDependencyManifest UP-TO-DATE
+> Task :backend-java:processResources UP-TO-DATE
+> Task :backend-java:classes
+> Task :models-runtime:compileJava UP-TO-DATE
+> Task :backend-java:compileTestJava
+> Task :backend-java:processTestResources UP-TO-DATE
+> Task :backend-java:testClasses
+> Task :models-api:processResources UP-TO-DATE
+> Task :models-api:classes UP-TO-DATE
+> Task :models-api:jar UP-TO-DATE
+> Task :models-runtime:processResources UP-TO-DATE
+> Task :models-runtime:classes UP-TO-DATE
+> Task :models-runtime:jar UP-TO-DATE
+
+> Task :backend-java:downloadQwen317BQ80Model
+/Users/briansam-bodden/.jvllm/models/Qwen3-1.7B-Q8_0.gguf
+
+> Task :backend-java:jar
+> Task :models-router:compileJava UP-TO-DATE
+> Task :models-langchain4j:compileJava UP-TO-DATE
+> Task :models-langchain4j:processResources UP-TO-DATE
+> Task :models-langchain4j:classes UP-TO-DATE
+> Task :models-langchain4j:compileTestJava
+> Task :models-langchain4j:processTestResources NO-SOURCE
+> Task :models-langchain4j:testClasses
+> Task :models-router:processResources UP-TO-DATE
+> Task :models-router:classes UP-TO-DATE
+> Task :models-router:jar UP-TO-DATE
+
+> Task :models-langchain4j:qwen3ActivatedLangChain4jToolCallingIntegrationTest
+WARNING: Using incubator modules: jdk.incubator.vector
+
+Qwen3ActivatedLangChain4jToolCallingIntegrationTest > invokesOneToolNarratesItsResultAndAbstainsOnOrdinaryChat() FAILED
+    java.io.UncheckedIOException: Failed to load model: /Users/briansam-bodden/.jvllm/models/Qwen3-1.7B-Q8_0.gguf
+        at com.integrallis.models.backend.purejava.PureJavaBackend.load(PureJavaBackend.java:553)
+        at com.integrallis.models.backend.purejava.PureJavaBackend.loadActivatedAdapter(PureJavaBackend.java:266)
+        at com.integrallis.models.backend.purejava.PureJavaBackend.loadActivatedAdapter(PureJavaBackend.java:249)
+        at com.integrallis.models.backend.purejava.PureJavaBackend.loadActivatedAdapter(PureJavaBackend.java:243)
+        at com.integrallis.models.langchain4j.Qwen3ActivatedLangChain4jToolCallingIntegrationTest.invokesOneToolNarratesItsResultAndAbstainsOnOrdinaryChat(Qwen3ActivatedLangChain4jToolCallingIntegrationTest.java:64)
+
+        Caused by:
+        java.io.IOException: adapter metadata does not exist: /Users/briansam-bodden/.modeljars/experimental/qwen3-alora-r32-v2/adapter/models-activated-lora.json
+            at com.integrallis.models.backend.purejava.lora.ActivatedLoraAdapter.readMetadata(ActivatedLoraAdapter.java:455)
+            at com.integrallis.models.backend.purejava.lora.ActivatedLoraAdapter.open(ActivatedLoraAdapter.java:250)
+            at com.integrallis.models.backend.purejava.lora.ActivatedLoraAdapter.open(ActivatedLoraAdapter.java:236)
+            at com.integrallis.models.backend.purejava.PureJavaBackend.loadLlama(PureJavaBackend.java:828)
+            at com.integrallis.models.backend.purejava.PureJavaBackend.load(PureJavaBackend.java:522)
+            ... 4 more
+
+1 test completed, 1 failed
+
+> Task :models-langchain4j:qwen3ActivatedLangChain4jToolCallingIntegrationTest FAILED
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':models-langchain4j:qwen3ActivatedLangChain4jToolCallingIntegrationTest'.
+> There were failing tests. See the report at: file:///Users/briansam-bodden/Code/java-ai/projects/models-final-integration/models-langchain4j/build/reports/tests/qwen3ActivatedLangChain4jToolCallingIntegrationTest/index.html
+
+* Try:
+> Run with --scan to get full insights from a Build Scan (powered by Develocity).
+
+BUILD FAILED in 3m 3s
+20 actionable tasks: 6 executed, 14 up-to-date

@@ -1,0 +1,52 @@
+[
+  {
+    "id": "smollm2_360m_instruct_q8_0",
+    "format": "gguf",
+    "backend": "rust-ffm",
+    "revision": "593b5a2e04c8f3e4ee880263f93e0bd2901ad47f",
+    "wl": "general",
+    "tpl": "chatml",
+    "context": 2048,
+    "threads": 8,
+    "mt": 64,
+    "topK": 1,
+    "settingsSource": {
+      "modelId": "smollm2-360m-instruct-q8_0",
+      "report": "benchmark-results/certified-20260724/rag/native-q8-prefix-cache/smollm2-360m-q8_0/smollm2-360m-rust-ffm-prefix-cache-grounded.json",
+      "reportSha256": "879f95209b4a25a3047affe492b679e56addf7bf361baaa28643879d525178b3"
+    },
+    "files": [
+      {
+        "path": "model.gguf",
+        "sha256": "48ab3034d0dd401fbc721eb1df3217902fee7dab9078992d66431f09b7750201",
+        "sizeBytes": 386404992,
+        "uri": "https://huggingface.co/HuggingFaceTB/SmolLM2-360M-Instruct-GGUF/resolve/593b5a2e04c8f3e4ee880263f93e0bd2901ad47f/smollm2-360m-instruct-q8_0.gguf"
+      }
+    ]
+  },
+  {
+    "id": "huggingfacetb_smollm2_1_7b_instruct_gguf_q4_k_m",
+    "format": "gguf",
+    "backend": "rust-ffm",
+    "revision": "2d4a76a30b4af41ecd395c35725ac11688d4cfe4",
+    "wl": "general",
+    "tpl": "chatml",
+    "context": 2048,
+    "threads": 8,
+    "mt": 64,
+    "topK": 1,
+    "settingsSource": {
+      "modelId": "huggingfacetb_smollm2_1_7b_instruct_gguf_q4_k_m",
+      "report": "benchmark-results/certified-20260726/rag/smollm2-1.7b-q4_k_m/models-rust-ffm.json",
+      "reportSha256": "128dce8b4c8b5eae1e1c1be7cca8c155b144506e33c37b1cb0479dd928af0968"
+    },
+    "files": [
+      {
+        "path": "model.gguf",
+        "sha256": "decd2598bc2c8ed08c19adc3c8fdd461ee19ed5708679d1c54ef54a5a30d4f33",
+        "sizeBytes": 1055609536,
+        "uri": "https://huggingface.co/HuggingFaceTB/SmolLM2-1.7B-Instruct-GGUF/resolve/2d4a76a30b4af41ecd395c35725ac11688d4cfe4/smollm2-1.7b-instruct-q4_k_m.gguf"
+      }
+    ]
+  }
+]

@@ -1,0 +1,73 @@
+[
+  {
+    "region": "us-west-2",
+    "instances": [
+      {
+        "instanceId": "i-037eb9151ca8fb5cf",
+        "state": "terminated",
+        "reason": "User initiated"
+      }
+    ]
+  },
+  {
+    "region": "us-east-1",
+    "instances": [
+      {
+        "instanceId": "i-00d5e691b5ecdc973",
+        "state": "terminated",
+        "reason": "User initiated"
+      },
+      {
+        "instanceId": "i-0cc1b68fafdbc3777",
+        "state": "terminated",
+        "reason": "User initiated"
+      },
+      {
+        "instanceId": "i-0a0b2d06bc54fd8d4",
+        "state": "terminated",
+        "reason": "User initiated"
+      },
+      {
+        "instanceId": "i-0518c7cbc180ebf4d",
+        "state": "terminated",
+        "reason": "User initiated"
+      },
+      {
+        "instanceId": "i-0d1a47f1a7a56128f",
+        "state": "terminated",
+        "reason": "User initiated"
+      },
+      {
+        "instanceId": "i-0c8ff35b58086f767",
+        "state": "terminated",
+        "reason": "User initiated"
+      },
+      {
+        "instanceId": "i-084c9cac9bb3bfb32",
+        "state": "terminated",
+        "reason": "User initiated"
+      },
+      {
+        "instanceId": "i-0fdba02d7b25d31a2",
+        "state": "terminated",
+        "reason": "Service initiated (2026-10-12 21:15:31 GMT)"
+      }
+    ]
+  },
+  {
+    "region": "us-east-1",
+    "observation": "previous terminal observation retained because describe-instances no longer returns this expired terminated instance",
+    "source": "interrupted-instances.json",
+    "sourceSha256": "84ba10a7aee89e788cdc99a926965d018c6e99778fc24a7c8a738594be814f9c",
+    "instances": [
+      {
+        "instanceId": "i-0cf8dfe5f7fd6d7e4",
+        "state": "terminated",
+        "reason": {
+          "Code": "Server.SpotInstanceTermination",
+          "Message": "Server.SpotInstanceTermination: Spot instance termination"
+        }
+      }
+    ]
+  }
+]

@@ -1,0 +1,139 @@
+[ {
+  "tensor" : "blk.0.ffn_up.weight",
+  "rows" : 17408,
+  "columns" : 5120,
+  "javaReferenceContract" : "PTQ1_0 x F32",
+  "nativeContract" : "PTQ1_0 x Q8_0",
+  "sampledQ8OracleBitExact" : true,
+  "f32Cosine" : 0.9999934064032892,
+  "f32MaxAbsoluteError" : 0.0067875683307647705,
+  "trials" : [ {
+    "arm" : "java",
+    "millis" : 4.079133
+  }, {
+    "arm" : "native",
+    "millis" : 2.351012
+  }, {
+    "arm" : "native",
+    "millis" : 2.354192
+  }, {
+    "arm" : "java",
+    "millis" : 3.200227
+  }, {
+    "arm" : "java",
+    "millis" : 3.750111
+  }, {
+    "arm" : "native",
+    "millis" : 2.447398
+  }, {
+    "arm" : "native",
+    "millis" : 1.819917
+  }, {
+    "arm" : "java",
+    "millis" : 3.302473
+  }, {
+    "arm" : "java",
+    "millis" : 2.839283
+  }, {
+    "arm" : "native",
+    "millis" : 5.081288
+  }, {
+    "arm" : "native",
+    "millis" : 1.869951
+  }, {
+    "arm" : "java",
+    "millis" : 2.930049
+  } ]
+}, {
+  "tensor" : "blk.0.ffn_down.weight",
+  "rows" : 5120,
+  "columns" : 17408,
+  "javaReferenceContract" : "PTQ1_0 x F32",
+  "nativeContract" : "PTQ1_0 x Q8_0",
+  "sampledQ8OracleBitExact" : true,
+  "f32Cosine" : 0.9999935109434989,
+  "f32MaxAbsoluteError" : 0.010301783680915833,
+  "trials" : [ {
+    "arm" : "java",
+    "millis" : 2.571245
+  }, {
+    "arm" : "native",
+    "millis" : 1.820697
+  }, {
+    "arm" : "native",
+    "millis" : 1.994009
+  }, {
+    "arm" : "java",
+    "millis" : 2.781539
+  }, {
+    "arm" : "java",
+    "millis" : 3.450752
+  }, {
+    "arm" : "native",
+    "millis" : 1.896032
+  }, {
+    "arm" : "native",
+    "millis" : 2.133118
+  }, {
+    "arm" : "java",
+    "millis" : 3.388038
+  }, {
+    "arm" : "java",
+    "millis" : 3.353916
+  }, {
+    "arm" : "native",
+    "millis" : 2.285667
+  }, {
+    "arm" : "native",
+    "millis" : 2.401034
+  }, {
+    "arm" : "java",
+    "millis" : 4.178139
+  } ]
+}, {
+  "tensor" : "output.weight",
+  "rows" : 248320,
+  "columns" : 5120,
+  "javaReferenceContract" : "PTQ1_0 x F32",
+  "nativeContract" : "PTQ1_0 x Q8_0",
+  "sampledQ8OracleBitExact" : true,
+  "f32Cosine" : 0.9999934531357271,
+  "f32MaxAbsoluteError" : 0.010028228163719177,
+  "trials" : [ {
+    "arm" : "java",
+    "millis" : 27.764468
+  }, {
+    "arm" : "native",
+    "millis" : 17.419123
+  }, {
+    "arm" : "native",
+    "millis" : 17.364208
+  }, {
+    "arm" : "java",
+    "millis" : 27.568047
+  }, {
+    "arm" : "java",
+    "millis" : 27.646259
+  }, {
+    "arm" : "native",
+    "millis" : 17.149106
+  }, {
+    "arm" : "native",
+    "millis" : 17.741724
+  }, {
+    "arm" : "java",
+    "millis" : 28.191779
+  }, {
+    "arm" : "java",
+    "millis" : 37.17668
+  }, {
+    "arm" : "native",
+    "millis" : 17.582893
+  }, {
+    "arm" : "native",
+    "millis" : 17.000836
+  }, {
+    "arm" : "java",
+    "millis" : 37.267034
+  } ]
+} ]

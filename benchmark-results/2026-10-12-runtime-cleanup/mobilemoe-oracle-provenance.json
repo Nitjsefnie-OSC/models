@@ -1,0 +1,35 @@
+{
+  "publisherRevision": "afda132cad380ac47da5ef055f186884d1c12f65",
+  "inputs": {
+    "model.safetensors": "1a54d8eb2adf19c296a1c129f9cd7d7395c21f5facfc6d13d2945e002d55e37d",
+    "config.json": "0eb5d6e97360bf2480a4c45ed263f8d85e361b65db73ced1d25494caf4c3015d",
+    "modeling_mobilemoe.py": "3787c8481f94a1aed652695031865c5696dbfaaa7f0e6a208ecc0aa81b65fde9",
+    "configuration_mobilemoe.py": "00d11a52e3fcfdb674bc623341cb6eaefbb70b77cb5e337dabf40bc354bf29f5"
+  },
+  "outputs": {
+    "bos.f32le": {
+      "sha256": "00699bb2c70f22dc25eb2ed813708398718793389892326db15ee7ecb2ffd2bf",
+      "tokens": [
+        128000
+      ],
+      "count": 128256,
+      "argmax": 128005
+    },
+    "bos_hello.f32le": {
+      "sha256": "543c7a3c749a6aede587889e050ef794c468bbd9694e02ab8adc524fd10ef9b5",
+      "tokens": [
+        128000,
+        9906
+      ],
+      "count": 128256,
+      "argmax": 11
+    }
+  },
+  "packages": {
+    "torch": "2.8.0+cpu",
+    "transformers": "4.57.6",
+    "tokenizers": "0.22.2",
+    "safetensors": "0.7.0",
+    "numpy": "2.2.6"
+  }
+}

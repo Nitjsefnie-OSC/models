@@ -1,0 +1,328 @@
+{
+  "complete": true,
+  "pending": [],
+  "scope": "Independent cloned prefill plus eight decode vectors per case. Java/native exactness and published label changes are separate assertions; accuracy decreases are not relabeled as passes.",
+  "results": [
+    {
+      "architecture": "x86",
+      "model": "qwen-0.8b",
+      "completedArms": [
+        "baseline",
+        "native",
+        "published"
+      ],
+      "correctLabels": {
+        "baseline": 86,
+        "native": 86,
+        "published": 89
+      },
+      "javaNativeDifferences": [],
+      "publishedLabelChanges": [
+        {
+          "id": "easy-intent-02",
+          "dataset": "jevbench",
+          "expected": "change_address",
+          "native": "track_order",
+          "published": "change_address",
+          "transition": "correct-to-wrong"
+        },
+        {
+          "id": "easy-intent-10",
+          "dataset": "jevbench",
+          "expected": "turn_off_lights",
+          "native": "set_alarm",
+          "published": "turn_off_lights",
+          "transition": "correct-to-wrong"
+        },
+        {
+          "id": "easy-tool_selection-05",
+          "dataset": "jevbench",
+          "expected": "create_calendar_event",
+          "native": "get_weather",
+          "published": "create_calendar_event",
+          "transition": "correct-to-wrong"
+        },
+        {
+          "id": "original-policy-02-0",
+          "dataset": "jevbench",
+          "expected": "yes",
+          "native": "yes",
+          "published": "no",
+          "transition": "wrong-to-correct"
+        },
+        {
+          "id": "original-policy-02-1",
+          "dataset": "jevbench",
+          "expected": "yes",
+          "native": "yes",
+          "published": "no",
+          "transition": "wrong-to-correct"
+        },
+        {
+          "id": "original-policy-03-1",
+          "dataset": "jevbench",
+          "expected": "yes",
+          "native": "no",
+          "published": "yes",
+          "transition": "correct-to-wrong"
+        },
+        {
+          "id": "original-policy-05-1",
+          "dataset": "jevbench",
+          "expected": "no",
+          "native": "yes",
+          "published": "no",
+          "transition": "correct-to-wrong"
+        },
+        {
+          "id": "original-intent-06-1",
+          "dataset": "jevbench",
+          "expected": "status",
+          "native": "cancel",
+          "published": "status",
+          "transition": "correct-to-wrong"
+        },
+        {
+          "id": "original-ordinal-04-0",
+          "dataset": "jevbench",
+          "expected": "3",
+          "native": "2",
+          "published": "1",
+          "transition": "wrong-to-wrong"
+        },
+        {
+          "id": "original-routing-03-1",
+          "dataset": "jevbench",
+          "expected": "coding_agent",
+          "native": "coding_agent",
+          "published": "coding",
+          "transition": "wrong-to-correct"
+        },
+        {
+          "id": "original-routing-06-0",
+          "dataset": "jevbench",
+          "expected": "general",
+          "native": "math",
+          "published": "coding_agent",
+          "transition": "wrong-to-wrong"
+        },
+        {
+          "id": "snips-AddToPlaylist-1",
+          "dataset": "snips",
+          "expected": "AddToPlaylist",
+          "native": "PlayMusic",
+          "published": "AddToPlaylist",
+          "transition": "correct-to-wrong"
+        },
+        {
+          "id": "snips-BookRestaurant-3",
+          "dataset": "snips",
+          "expected": "BookRestaurant",
+          "native": "BookRestaurant",
+          "published": "AddToPlaylist",
+          "transition": "wrong-to-correct"
+        }
+      ],
+      "publishedTransitionCounts": {
+        "correct-to-wrong": 7,
+        "wrong-to-correct": 4,
+        "wrong-to-wrong": 2
+      },
+      "publishedDifferentFullLogitCases": 148
+    },
+    {
+      "architecture": "x86",
+      "model": "qwen-4b",
+      "completedArms": [
+        "baseline",
+        "native",
+        "published"
+      ],
+      "correctLabels": {
+        "baseline": 128,
+        "native": 128,
+        "published": 130
+      },
+      "javaNativeDifferences": [],
+      "publishedLabelChanges": [
+        {
+          "id": "original-adequacy-05-1",
+          "dataset": "jevbench",
+          "expected": "no",
+          "native": "yes",
+          "published": "no",
+          "transition": "correct-to-wrong"
+        },
+        {
+          "id": "original-routing-06-0",
+          "dataset": "jevbench",
+          "expected": "general",
+          "native": "coding_agent",
+          "published": "general",
+          "transition": "correct-to-wrong"
+        }
+      ],
+      "publishedTransitionCounts": {
+        "correct-to-wrong": 2
+      },
+      "publishedDifferentFullLogitCases": 148
+    },
+    {
+      "architecture": "arm",
+      "model": "qwen-0.8b",
+      "completedArms": [
+        "baseline",
+        "native",
+        "published"
+      ],
+      "correctLabels": {
+        "baseline": 89,
+        "native": 89,
+        "published": 90
+      },
+      "javaNativeDifferences": [],
+      "publishedLabelChanges": [
+        {
+          "id": "easy-intent-10",
+          "dataset": "jevbench",
+          "expected": "turn_off_lights",
+          "native": "turn_off_lights",
+          "published": "set_alarm",
+          "transition": "wrong-to-correct"
+        },
+        {
+          "id": "easy-tool_selection-05",
+          "dataset": "jevbench",
+          "expected": "create_calendar_event",
+          "native": "get_weather",
+          "published": "create_calendar_event",
+          "transition": "correct-to-wrong"
+        },
+        {
+          "id": "original-policy-02-1",
+          "dataset": "jevbench",
+          "expected": "yes",
+          "native": "no",
+          "published": "yes",
+          "transition": "correct-to-wrong"
+        },
+        {
+          "id": "original-policy-03-1",
+          "dataset": "jevbench",
+          "expected": "yes",
+          "native": "no",
+          "published": "yes",
+          "transition": "correct-to-wrong"
+        },
+        {
+          "id": "original-ordinal-01-0",
+          "dataset": "jevbench",
+          "expected": "0",
+          "native": "1",
+          "published": "3",
+          "transition": "wrong-to-wrong"
+        },
+        {
+          "id": "original-ordinal-02-1",
+          "dataset": "jevbench",
+          "expected": "1",
+          "native": "2",
+          "published": "0",
+          "transition": "wrong-to-wrong"
+        },
+        {
+          "id": "original-ordinal-05-0",
+          "dataset": "jevbench",
+          "expected": "0",
+          "native": "2",
+          "published": "3",
+          "transition": "wrong-to-wrong"
+        },
+        {
+          "id": "original-extraction-01-1",
+          "dataset": "jevbench",
+          "expected": "pickup",
+          "native": "pickup",
+          "published": "unknown",
+          "transition": "wrong-to-correct"
+        },
+        {
+          "id": "original-routing-06-0",
+          "dataset": "jevbench",
+          "expected": "general",
+          "native": "math",
+          "published": "coding",
+          "transition": "wrong-to-wrong"
+        },
+        {
+          "id": "snips-GetWeather-1",
+          "dataset": "snips",
+          "expected": "GetWeather",
+          "native": "GetWeather",
+          "published": "AddToPlaylist",
+          "transition": "wrong-to-correct"
+        },
+        {
+          "id": "snips-RateBook-0",
+          "dataset": "snips",
+          "expected": "RateBook",
+          "native": "AddToPlaylist",
+          "published": "PlayMusic",
+          "transition": "wrong-to-wrong"
+        },
+        {
+          "id": "snips-RateBook-3",
+          "dataset": "snips",
+          "expected": "RateBook",
+          "native": "AddToPlaylist",
+          "published": "RateBook",
+          "transition": "correct-to-wrong"
+        }
+      ],
+      "publishedTransitionCounts": {
+        "wrong-to-correct": 3,
+        "correct-to-wrong": 4,
+        "wrong-to-wrong": 5
+      },
+      "publishedDifferentFullLogitCases": 148
+    },
+    {
+      "architecture": "arm",
+      "model": "qwen-4b",
+      "completedArms": [
+        "baseline",
+        "native",
+        "published"
+      ],
+      "correctLabels": {
+        "baseline": 128,
+        "native": 128,
+        "published": 129
+      },
+      "javaNativeDifferences": [],
+      "publishedLabelChanges": [
+        {
+          "id": "original-routing-06-0",
+          "dataset": "jevbench",
+          "expected": "general",
+          "native": "coding_agent",
+          "published": "general",
+          "transition": "correct-to-wrong"
+        },
+        {
+          "id": "snips-RateBook-0",
+          "dataset": "snips",
+          "expected": "RateBook",
+          "native": "SearchCreativeWork",
+          "published": "PlayMusic",
+          "transition": "wrong-to-wrong"
+        }
+      ],
+      "publishedTransitionCounts": {
+        "correct-to-wrong": 1,
+        "wrong-to-wrong": 1
+      },
+      "publishedDifferentFullLogitCases": 148
+    }
+  ]
+}

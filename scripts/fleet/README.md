@@ -27,6 +27,9 @@ Linux native library; do not append another kernel JAR. `DEADLINE_SECONDS` defau
 set a shorter bound for the single Qwen job. Follow the runbook's quota, ownership and release gates
 before launching. This manifest is prepared input, not evidence that the next release has passed.
 
+Jobs may carry `stopSequence` using the CLI's escaped spelling (for example `\\n`). Preserve it
+from the recorded workload: the worker passes it as one argument, including leading spaces.
+
 CI runs `smoke_worker_test.py`: tiny synthetic snapshots exercise the deployed downloader and shell
 job loop, including the directory passed to Java and refusal to start Java on tokenizer corruption.
 The tests download no weights and run no inference on the developer machine.

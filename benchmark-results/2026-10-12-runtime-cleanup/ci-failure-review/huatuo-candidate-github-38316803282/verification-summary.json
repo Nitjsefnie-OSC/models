@@ -1,0 +1,585 @@
+{
+  "scope": "Correctness evidence for explicit unpublished core overlays; no release or cross-configuration numerical equivalence claim",
+  "huatuo": [
+    {
+      "variant": "panama-128",
+      "exactWithinConfiguration": true,
+      "trials": 3,
+      "stepsPerTrial": 4,
+      "modelSha256": "4643521a184cb26df0f7c57da9aead0c632b286a9aff103c9f9dca4dc059abd7",
+      "promptSha256": "238db30ac3cc16d5b85698c5efe839aa6d4e341f5d84959c3b6f421901389758",
+      "environment": {
+        "host": "runnervmmprz5",
+        "osName": "Linux",
+        "osVersion": "6.17.0-1022-azure",
+        "architecture": "amd64",
+        "cpuModel": "AMD EPYC 9V45 96-Core Processor",
+        "processors": 4,
+        "physicalMemoryBytes": 16766414848,
+        "maxHeapBytes": 4192206848,
+        "javaVersion": "25.0.4.1",
+        "javaVendor": "Eclipse Adoptium",
+        "vmName": "OpenJDK 64-Bit Server VM"
+      },
+      "execution": {
+        "provider": "PanamaVectorUtilSupport",
+        "panama": true,
+        "panamaFailure": null,
+        "maxVectorBits": 128,
+        "preferredVectorBits": 512,
+        "fastVectorFma": true,
+        "fastScalarFma": true,
+        "groupedProjections": true,
+        "prefillBatchSize": 32,
+        "ggufParallel": false,
+        "ggufParallelThreshold": 1048576,
+        "ggufExecutor": "persistent",
+        "ggufThreads": 4,
+        "ggufChunksPerThread": 2,
+        "configuredProperties": {
+          "models.purejava.groupedProjections": "(default)",
+          "vectors.gguf.threads": "(default)",
+          "vectors.useScalarFMA": "(default)",
+          "vectors.gguf.chunksPerThread": "(default)",
+          "vectors.gguf.parallelThreshold": "(default)",
+          "vectors.forceScalar": "(default)",
+          "models.purejava.prefillBatchSize": "(default)",
+          "vectors.maxBits": "128",
+          "vectors.useVectorFMA": "(default)",
+          "vectors.gguf.executor": "(default)",
+          "vectors.gguf.parallel": "false"
+        }
+      }
+    },
+    {
+      "variant": "panama-default",
+      "exactWithinConfiguration": true,
+      "trials": 3,
+      "stepsPerTrial": 4,
+      "modelSha256": "4643521a184cb26df0f7c57da9aead0c632b286a9aff103c9f9dca4dc059abd7",
+      "promptSha256": "238db30ac3cc16d5b85698c5efe839aa6d4e341f5d84959c3b6f421901389758",
+      "environment": {
+        "host": "runnervmmprz5",
+        "osName": "Linux",
+        "osVersion": "6.17.0-1022-azure",
+        "architecture": "amd64",
+        "cpuModel": "AMD EPYC 7763 64-Core Processor",
+        "processors": 4,
+        "physicalMemoryBytes": 16766414848,
+        "maxHeapBytes": 4192206848,
+        "javaVersion": "25.0.4.1",
+        "javaVendor": "Eclipse Adoptium",
+        "vmName": "OpenJDK 64-Bit Server VM"
+      },
+      "execution": {
+        "provider": "PanamaVectorUtilSupport",
+        "panama": true,
+        "panamaFailure": null,
+        "maxVectorBits": 256,
+        "preferredVectorBits": 256,
+        "fastVectorFma": true,
+        "fastScalarFma": true,
+        "groupedProjections": true,
+        "prefillBatchSize": 32,
+        "ggufParallel": true,
+        "ggufParallelThreshold": 1048576,
+        "ggufExecutor": "persistent",
+        "ggufThreads": 4,
+        "ggufChunksPerThread": 2,
+        "configuredProperties": {
+          "vectors.gguf.parallelThreshold": "(default)",
+          "vectors.gguf.chunksPerThread": "(default)",
+          "vectors.useScalarFMA": "(default)",
+          "vectors.gguf.threads": "(default)",
+          "models.purejava.groupedProjections": "(default)",
+          "vectors.gguf.parallel": "(default)",
+          "vectors.gguf.executor": "(default)",
+          "vectors.useVectorFMA": "(default)",
+          "vectors.maxBits": "(default)",
+          "models.purejava.prefillBatchSize": "(default)",
+          "vectors.forceScalar": "(default)"
+        }
+      }
+    },
+    {
+      "variant": "panama-no-fma",
+      "exactWithinConfiguration": true,
+      "trials": 3,
+      "stepsPerTrial": 4,
+      "modelSha256": "4643521a184cb26df0f7c57da9aead0c632b286a9aff103c9f9dca4dc059abd7",
+      "promptSha256": "238db30ac3cc16d5b85698c5efe839aa6d4e341f5d84959c3b6f421901389758",
+      "environment": {
+        "host": "runnervmmprz5",
+        "osName": "Linux",
+        "osVersion": "6.17.0-1022-azure",
+        "architecture": "amd64",
+        "cpuModel": "INTEL(R) XEON(R) PLATINUM 8573C",
+        "processors": 4,
+        "physicalMemoryBytes": 16765374464,
+        "maxHeapBytes": 4192206848,
+        "javaVersion": "25.0.4.1",
+        "javaVendor": "Eclipse Adoptium",
+        "vmName": "OpenJDK 64-Bit Server VM"
+      },
+      "execution": {
+        "provider": "PanamaVectorUtilSupport",
+        "panama": true,
+        "panamaFailure": null,
+        "maxVectorBits": 256,
+        "preferredVectorBits": 512,
+        "fastVectorFma": false,
+        "fastScalarFma": false,
+        "groupedProjections": true,
+        "prefillBatchSize": 32,
+        "ggufParallel": false,
+        "ggufParallelThreshold": 1048576,
+        "ggufExecutor": "persistent",
+        "ggufThreads": 4,
+        "ggufChunksPerThread": 2,
+        "configuredProperties": {
+          "vectors.gguf.threads": "(default)",
+          "vectors.useScalarFMA": "false",
+          "vectors.gguf.chunksPerThread": "(default)",
+          "vectors.gguf.parallelThreshold": "(default)",
+          "vectors.forceScalar": "(default)",
+          "models.purejava.prefillBatchSize": "(default)",
+          "vectors.maxBits": "(default)",
+          "vectors.useVectorFMA": "false",
+          "vectors.gguf.executor": "(default)",
+          "vectors.gguf.parallel": "false",
+          "models.purejava.groupedProjections": "(default)"
+        }
+      }
+    },
+    {
+      "variant": "panama-serial",
+      "exactWithinConfiguration": true,
+      "trials": 3,
+      "stepsPerTrial": 4,
+      "modelSha256": "4643521a184cb26df0f7c57da9aead0c632b286a9aff103c9f9dca4dc059abd7",
+      "promptSha256": "238db30ac3cc16d5b85698c5efe839aa6d4e341f5d84959c3b6f421901389758",
+      "environment": {
+        "host": "runnervmmprz5",
+        "osName": "Linux",
+        "osVersion": "6.17.0-1022-azure",
+        "architecture": "amd64",
+        "cpuModel": "AMD EPYC 9V74 80-Core Processor",
+        "processors": 4,
+        "physicalMemoryBytes": 16766410752,
+        "maxHeapBytes": 4192206848,
+        "javaVersion": "25.0.4.1",
+        "javaVendor": "Eclipse Adoptium",
+        "vmName": "OpenJDK 64-Bit Server VM"
+      },
+      "execution": {
+        "provider": "PanamaVectorUtilSupport",
+        "panama": true,
+        "panamaFailure": null,
+        "maxVectorBits": 256,
+        "preferredVectorBits": 512,
+        "fastVectorFma": true,
+        "fastScalarFma": true,
+        "groupedProjections": true,
+        "prefillBatchSize": 32,
+        "ggufParallel": false,
+        "ggufParallelThreshold": 1048576,
+        "ggufExecutor": "persistent",
+        "ggufThreads": 4,
+        "ggufChunksPerThread": 2,
+        "configuredProperties": {
+          "models.purejava.prefillBatchSize": "(default)",
+          "vectors.forceScalar": "(default)",
+          "vectors.gguf.parallelThreshold": "(default)",
+          "vectors.gguf.chunksPerThread": "(default)",
+          "vectors.useScalarFMA": "(default)",
+          "vectors.gguf.threads": "(default)",
+          "models.purejava.groupedProjections": "(default)",
+          "vectors.gguf.parallel": "false",
+          "vectors.gguf.executor": "(default)",
+          "vectors.useVectorFMA": "(default)",
+          "vectors.maxBits": "(default)"
+        }
+      }
+    },
+    {
+      "variant": "scalar",
+      "exactWithinConfiguration": true,
+      "trials": 3,
+      "stepsPerTrial": 4,
+      "modelSha256": "4643521a184cb26df0f7c57da9aead0c632b286a9aff103c9f9dca4dc059abd7",
+      "promptSha256": "238db30ac3cc16d5b85698c5efe839aa6d4e341f5d84959c3b6f421901389758",
+      "environment": {
+        "host": "runnervmmprz5",
+        "osName": "Linux",
+        "osVersion": "6.17.0-1022-azure",
+        "architecture": "amd64",
+        "cpuModel": "AMD EPYC 9V74 80-Core Processor",
+        "processors": 4,
+        "physicalMemoryBytes": 16766414848,
+        "maxHeapBytes": 4192206848,
+        "javaVersion": "25.0.4.1",
+        "javaVendor": "Eclipse Adoptium",
+        "vmName": "OpenJDK 64-Bit Server VM"
+      },
+      "execution": {
+        "provider": "ScalarVectorUtilSupport",
+        "panama": false,
+        "panamaFailure": null,
+        "maxVectorBits": 256,
+        "preferredVectorBits": 256,
+        "fastVectorFma": true,
+        "fastScalarFma": true,
+        "groupedProjections": true,
+        "prefillBatchSize": 32,
+        "ggufParallel": false,
+        "ggufParallelThreshold": 1048576,
+        "ggufExecutor": "persistent",
+        "ggufThreads": 4,
+        "ggufChunksPerThread": 2,
+        "configuredProperties": {
+          "vectors.gguf.threads": "(default)",
+          "vectors.useScalarFMA": "(default)",
+          "vectors.gguf.chunksPerThread": "(default)",
+          "vectors.gguf.parallelThreshold": "(default)",
+          "vectors.forceScalar": "true",
+          "models.purejava.prefillBatchSize": "(default)",
+          "vectors.maxBits": "(default)",
+          "vectors.useVectorFMA": "(default)",
+          "vectors.gguf.executor": "(default)",
+          "vectors.gguf.parallel": "false",
+          "models.purejava.groupedProjections": "(default)"
+        }
+      }
+    }
+  ],
+  "githubRuns": [
+    {
+      "conclusion": "success",
+      "event": "workflow_dispatch",
+      "headSha": "91d5fa0787b99bf12831fb97da40d9c91e296da5",
+      "jobs": [
+        {
+          "name": "HuatuoGPT-o1-7B exact determinism (scalar)",
+          "conclusion": "success",
+          "status": "completed",
+          "url": "https://github.com/integrallis/models/actions/runs/38316803282/job/115035274279",
+          "startedAt": "2026-10-12T22:27:58Z",
+          "completedAt": "2026-10-12T22:41:07Z"
+        },
+        {
+          "name": "HuatuoGPT-o1-7B exact determinism (panama-128)",
+          "conclusion": "success",
+          "status": "completed",
+          "url": "https://github.com/integrallis/models/actions/runs/38316803282/job/115035274467",
+          "startedAt": "2026-10-12T22:27:58Z",
+          "completedAt": "2026-10-12T22:35:31Z"
+        },
+        {
+          "name": "HuatuoGPT-o1-7B exact determinism (panama-no-fma)",
+          "conclusion": "success",
+          "status": "completed",
+          "url": "https://github.com/integrallis/models/actions/runs/38316803282/job/115035274518",
+          "startedAt": "2026-10-12T22:27:58Z",
+          "completedAt": "2026-10-12T22:34:43Z"
+        },
+        {
+          "name": "HuatuoGPT-o1-7B exact determinism (panama-serial)",
+          "conclusion": "success",
+          "status": "completed",
+          "url": "https://github.com/integrallis/models/actions/runs/38316803282/job/115035274632",
+          "startedAt": "2026-10-12T22:27:58Z",
+          "completedAt": "2026-10-12T22:33:58Z"
+        },
+        {
+          "name": "HuatuoGPT-o1-7B exact determinism (panama-default)",
+          "conclusion": "success",
+          "status": "completed",
+          "url": "https://github.com/integrallis/models/actions/runs/38316803282/job/115035274635",
+          "startedAt": "2026-10-12T22:27:57Z",
+          "completedAt": "2026-10-12T22:34:06Z"
+        }
+      ],
+      "url": "https://github.com/integrallis/models/actions/runs/38316803282",
+      "runId": 38316803282
+    },
+    {
+      "conclusion": "failure",
+      "event": "pull_request",
+      "headSha": "4f3d3e9a548bf3781ab3d002ff37df0875760e49",
+      "jobs": [
+        {
+          "name": "Bonsai native real weights (ubuntu-24.04-arm)",
+          "conclusion": "failure",
+          "status": "completed",
+          "url": "https://github.com/integrallis/models/actions/runs/38319088829/job/115042622081",
+          "startedAt": "2026-10-12T22:52:21Z",
+          "completedAt": "2026-10-12T22:56:36Z"
+        },
+        {
+          "name": "Bonsai native real weights (ubuntu-24.04)",
+          "conclusion": "failure",
+          "status": "completed",
+          "url": "https://github.com/integrallis/models/actions/runs/38319088829/job/115042622391",
+          "startedAt": "2026-10-12T22:52:19Z",
+          "completedAt": "2026-10-12T22:57:22Z"
+        },
+        {
+          "name": "Qwen3 8B pure-Java slow test",
+          "conclusion": "success",
+          "status": "completed",
+          "url": "https://github.com/integrallis/models/actions/runs/38319088829/job/115042622431",
+          "startedAt": "2026-10-12T22:52:19Z",
+          "completedAt": "2026-10-12T22:56:00Z"
+        },
+        {
+          "name": "Fin-R1 7B pure-Java slow test",
+          "conclusion": "success",
+          "status": "completed",
+          "url": "https://github.com/integrallis/models/actions/runs/38319088829/job/115042622437",
+          "startedAt": "2026-10-12T22:52:19Z",
+          "completedAt": "2026-10-12T23:37:18Z"
+        },
+        {
+          "name": "DeepSeek-R1-Distill-Qwen-7B pure-Java slow test",
+          "conclusion": "success",
+          "status": "completed",
+          "url": "https://github.com/integrallis/models/actions/runs/38319088829/job/115042622522",
+          "startedAt": "2026-10-12T22:52:19Z",
+          "completedAt": "2026-10-12T22:57:20Z"
+        },
+        {
+          "name": "Bonsai 2 27B PTQ1_0 pure-Java slow test",
+          "conclusion": "success",
+          "status": "completed",
+          "url": "https://github.com/integrallis/models/actions/runs/38319088829/job/115042622583",
+          "startedAt": "2026-10-12T22:52:19Z",
+          "completedAt": "2026-10-12T22:57:21Z"
+        },
+        {
+          "name": "SQLCoder-7B-2 pure-Java slow test",
+          "conclusion": "success",
+          "status": "completed",
+          "url": "https://github.com/integrallis/models/actions/runs/38319088829/job/115042622588",
+          "startedAt": "2026-10-12T22:52:19Z",
+          "completedAt": "2026-10-12T22:58:36Z"
+        },
+        {
+          "name": "HuatuoGPT-o1-7B pure-Java slow test",
+          "conclusion": "success",
+          "status": "completed",
+          "url": "https://github.com/integrallis/models/actions/runs/38319088829/job/115042622613",
+          "startedAt": "2026-10-12T22:52:19Z",
+          "completedAt": "2026-10-12T22:58:44Z"
+        },
+        {
+          "name": "DeepSeek-Coder 6.7B pure-Java slow test",
+          "conclusion": "success",
+          "status": "completed",
+          "url": "https://github.com/integrallis/models/actions/runs/38319088829/job/115042622628",
+          "startedAt": "2026-10-12T22:52:19Z",
+          "completedAt": "2026-10-12T23:04:56Z"
+        },
+        {
+          "name": "SmolLM3 3B pure-Java slow test",
+          "conclusion": "success",
+          "status": "completed",
+          "url": "https://github.com/integrallis/models/actions/runs/38319088829/job/115042622750",
+          "startedAt": "2026-10-12T22:52:20Z",
+          "completedAt": "2026-10-12T22:55:43Z"
+        },
+        {
+          "name": "Qwen2.5-Coder 7B pure-Java slow test",
+          "conclusion": "success",
+          "status": "completed",
+          "url": "https://github.com/integrallis/models/actions/runs/38319088829/job/115042622794",
+          "startedAt": "2026-10-12T22:52:19Z",
+          "completedAt": "2026-10-12T22:56:21Z"
+        },
+        {
+          "name": "bonsai-upstream-correction",
+          "conclusion": "skipped",
+          "status": "completed",
+          "url": "https://github.com/integrallis/models/actions/runs/38319088829/job/115042623713",
+          "startedAt": "2026-10-12T22:52:17Z",
+          "completedAt": "2026-10-12T22:52:17Z"
+        }
+      ],
+      "url": "https://github.com/integrallis/models/actions/runs/38319088829",
+      "runId": 38319088829
+    },
+    {
+      "conclusion": "success",
+      "event": "workflow_dispatch",
+      "headSha": "6b372df631f3ea3b2da3d86409231e86026cb253",
+      "jobs": [
+        {
+          "name": "bonsai-upstream-correction / Bonsai fixtures (ubuntu-24.04-arm, JDK 25.0.3)",
+          "conclusion": "success",
+          "status": "completed",
+          "url": "https://github.com/integrallis/models/actions/runs/38323006687/job/115055174621",
+          "startedAt": "2026-10-12T23:36:23Z",
+          "completedAt": "2026-10-12T23:42:43Z"
+        },
+        {
+          "name": "bonsai-upstream-correction / Bonsai fixtures (ubuntu-24.04, JDK 25)",
+          "conclusion": "success",
+          "status": "completed",
+          "url": "https://github.com/integrallis/models/actions/runs/38323006687/job/115055174936",
+          "startedAt": "2026-10-12T23:36:21Z",
+          "completedAt": "2026-10-12T23:43:48Z"
+        },
+        {
+          "name": "bonsai-upstream-correction / Bonsai fixtures (ubuntu-24.04-arm, JDK 25)",
+          "conclusion": "success",
+          "status": "completed",
+          "url": "https://github.com/integrallis/models/actions/runs/38323006687/job/115055174942",
+          "startedAt": "2026-10-12T23:36:23Z",
+          "completedAt": "2026-10-12T23:43:24Z"
+        },
+        {
+          "name": "bonsai-upstream-correction / Bonsai fixtures (ubuntu-24.04, JDK 25.0.3)",
+          "conclusion": "success",
+          "status": "completed",
+          "url": "https://github.com/integrallis/models/actions/runs/38323006687/job/115055174959",
+          "startedAt": "2026-10-12T23:36:21Z",
+          "completedAt": "2026-10-12T23:43:45Z"
+        },
+        {
+          "name": "${{ matrix.name }} pure-Java slow test",
+          "conclusion": "skipped",
+          "status": "completed",
+          "url": "https://github.com/integrallis/models/actions/runs/38323006687/job/115055175386",
+          "startedAt": "2026-10-12T23:36:19Z",
+          "completedAt": "2026-10-12T23:36:19Z"
+        },
+        {
+          "name": "Bonsai native real weights (${{ matrix.runner }}, JDK ${{ matrix.java }})",
+          "conclusion": "skipped",
+          "status": "completed",
+          "url": "https://github.com/integrallis/models/actions/runs/38323006687/job/115055175650",
+          "startedAt": "2026-10-12T23:36:19Z",
+          "completedAt": "2026-10-12T23:36:19Z"
+        }
+      ],
+      "url": "https://github.com/integrallis/models/actions/runs/38323006687",
+      "runId": 38323006687
+    }
+  ],
+  "expandedBonsai": [
+    {
+      "configuration": "bonsai-upstream-ubuntu-24.04-arm-jdk-25",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "vectorsRevision": "4e8d1374e71788adef07be395560771c12d10f73",
+      "jarSha256": "e3e7b0ab79d0630bcad65c4cbe9fd356cf589dd159eba8e6c0aa402db24bd33c",
+      "sourceReceipts": {
+        "benchmark-results/2026-10-12-bonsai-native-hotfix/combined-expanded-github-38323006687/bonsai-upstream-ubuntu-24.04-arm-jdk-25/reports/bonsai-upstream.json": "75e9d1587d6e2efbe107617ed01857efdca217065b16dc4d1edb64a2530571d5",
+        "benchmark-results/2026-10-12-bonsai-native-hotfix/combined-expanded-github-38323006687/bonsai-upstream-ubuntu-24.04-arm-jdk-25/test-results/bonsai2NativeSlowTest/TEST-com.integrallis.models.backend.nativekernel.Bonsai2NativeFreshSessionSlowTest.xml": "99572b192b90e846ce21d5903bb3d722367858bf3d16cdc22761ad5923c38ed2",
+        "benchmark-results/2026-10-12-bonsai-native-hotfix/combined-expanded-github-38323006687/bonsai-upstream-ubuntu-24.04-arm-jdk-25/test-results/bonsai2NativeSlowTest/TEST-com.integrallis.models.backend.nativekernel.Bonsai2NativeModelFixtureSlowTest.xml": "39718ddd29983f85d17724f6b1fd376b217544664079fca82fabee40a83ef2cf"
+      }
+    },
+    {
+      "configuration": "bonsai-upstream-ubuntu-24.04-arm-jdk-25.0.3",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "vectorsRevision": "4e8d1374e71788adef07be395560771c12d10f73",
+      "jarSha256": "e3e7b0ab79d0630bcad65c4cbe9fd356cf589dd159eba8e6c0aa402db24bd33c",
+      "sourceReceipts": {
+        "benchmark-results/2026-10-12-bonsai-native-hotfix/combined-expanded-github-38323006687/bonsai-upstream-ubuntu-24.04-arm-jdk-25.0.3/reports/bonsai-upstream.json": "75e9d1587d6e2efbe107617ed01857efdca217065b16dc4d1edb64a2530571d5",
+        "benchmark-results/2026-10-12-bonsai-native-hotfix/combined-expanded-github-38323006687/bonsai-upstream-ubuntu-24.04-arm-jdk-25.0.3/test-results/bonsai2NativeSlowTest/TEST-com.integrallis.models.backend.nativekernel.Bonsai2NativeFreshSessionSlowTest.xml": "b0782245cdf828ef2b6f8b0e8287d3dd9cea8f6fa5c412ae4dc18080245fae7e",
+        "benchmark-results/2026-10-12-bonsai-native-hotfix/combined-expanded-github-38323006687/bonsai-upstream-ubuntu-24.04-arm-jdk-25.0.3/test-results/bonsai2NativeSlowTest/TEST-com.integrallis.models.backend.nativekernel.Bonsai2NativeModelFixtureSlowTest.xml": "6584f85fc23396a103acf704bf8b72bca59e74267a196312edbb69848804e888"
+      }
+    },
+    {
+      "configuration": "bonsai-upstream-ubuntu-24.04-jdk-25",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "vectorsRevision": "4e8d1374e71788adef07be395560771c12d10f73",
+      "jarSha256": "e3e7b0ab79d0630bcad65c4cbe9fd356cf589dd159eba8e6c0aa402db24bd33c",
+      "sourceReceipts": {
+        "benchmark-results/2026-10-12-bonsai-native-hotfix/combined-expanded-github-38323006687/bonsai-upstream-ubuntu-24.04-jdk-25/reports/bonsai-upstream.json": "75e9d1587d6e2efbe107617ed01857efdca217065b16dc4d1edb64a2530571d5",
+        "benchmark-results/2026-10-12-bonsai-native-hotfix/combined-expanded-github-38323006687/bonsai-upstream-ubuntu-24.04-jdk-25/test-results/bonsai2NativeSlowTest/TEST-com.integrallis.models.backend.nativekernel.Bonsai2NativeFreshSessionSlowTest.xml": "e203c1a062ceb23dbbe446ffc7d0c7d87becc35702f406b82ca675d8bb03724b",
+        "benchmark-results/2026-10-12-bonsai-native-hotfix/combined-expanded-github-38323006687/bonsai-upstream-ubuntu-24.04-jdk-25/test-results/bonsai2NativeSlowTest/TEST-com.integrallis.models.backend.nativekernel.Bonsai2NativeModelFixtureSlowTest.xml": "7287916f999aaa32e5b98d2e17bc710a6dabe337ee1662a58a454164c7c58235"
+      }
+    },
+    {
+      "configuration": "bonsai-upstream-ubuntu-24.04-jdk-25.0.3",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "vectorsRevision": "4e8d1374e71788adef07be395560771c12d10f73",
+      "jarSha256": "e3e7b0ab79d0630bcad65c4cbe9fd356cf589dd159eba8e6c0aa402db24bd33c",
+      "sourceReceipts": {
+        "benchmark-results/2026-10-12-bonsai-native-hotfix/combined-expanded-github-38323006687/bonsai-upstream-ubuntu-24.04-jdk-25.0.3/reports/bonsai-upstream.json": "75e9d1587d6e2efbe107617ed01857efdca217065b16dc4d1edb64a2530571d5",
+        "benchmark-results/2026-10-12-bonsai-native-hotfix/combined-expanded-github-38323006687/bonsai-upstream-ubuntu-24.04-jdk-25.0.3/test-results/bonsai2NativeSlowTest/TEST-com.integrallis.models.backend.nativekernel.Bonsai2NativeFreshSessionSlowTest.xml": "d252b023cbd21d0c49b6bff1df49e750219e38ec796cacf5b24a3e39511db512",
+        "benchmark-results/2026-10-12-bonsai-native-hotfix/combined-expanded-github-38323006687/bonsai-upstream-ubuntu-24.04-jdk-25.0.3/test-results/bonsai2NativeSlowTest/TEST-com.integrallis.models.backend.nativekernel.Bonsai2NativeModelFixtureSlowTest.xml": "2460faf79f770b05835467eebde54ddd834d45dcfd6d8032bd652aa8ab2dcdee"
+      }
+    }
+  ],
+  "localMatrixScope": "The exit124 serial,128 andscalar attempts timed out; no completed verdict. These remain distinct from completed GitHub candidate jobs.",
+  "retainedOriginalFiles": {
+    "huatuo-candidate-github-38316803282/huatuogpt-o1-7b-determinism-panama-128/huatuogpt-o1-7b-q4_k_m/panama-128.json": {
+      "bytes": 12801,
+      "sha256": "c96804d8f46fd29c08af17f9f27cd4a7f1189c17e74c315c4d47a9d7caa4c90a"
+    },
+    "huatuo-candidate-github-38316803282/huatuogpt-o1-7b-determinism-panama-128/huatuogpt-o1-7b-q4_k_m/diagnostic-core.json": {
+      "bytes": 903,
+      "sha256": "ff313c3960575df3057dce3d3511be56c6e352f4b6eb8b6886bc3732cfa35c6d"
+    },
+    "huatuo-candidate-github-38316803282/huatuogpt-o1-7b-determinism-panama-no-fma/huatuogpt-o1-7b-q4_k_m/diagnostic-core.json": {
+      "bytes": 906,
+      "sha256": "2d7c1af5cbd146da4b5fe2c15bb5d998902a044c8a4a3a7422e10a2b970be238"
+    },
+    "huatuo-candidate-github-38316803282/huatuogpt-o1-7b-determinism-panama-no-fma/huatuogpt-o1-7b-q4_k_m/panama-no-fma.json": {
+      "bytes": 12789,
+      "sha256": "8ad9223a6a5090490910a2c46746e8e81f755860ba9384ec11f3f5a196a0fd50"
+    },
+    "huatuo-candidate-github-38316803282/huatuogpt-o1-7b-determinism-panama-serial/huatuogpt-o1-7b-q4_k_m/panama-serial.json": {
+      "bytes": 12794,
+      "sha256": "b6bb282bd286a2d54ab102f636c133f9b81e78fb26dac712af2b4bc6564712b1"
+    },
+    "huatuo-candidate-github-38316803282/huatuogpt-o1-7b-determinism-panama-serial/huatuogpt-o1-7b-q4_k_m/diagnostic-core.json": {
+      "bytes": 906,
+      "sha256": "67ac8f2adffe6eaff89f690254deb14c2a47895db13c97038cc0420cf013acb9"
+    },
+    "huatuo-candidate-github-38316803282/huatuogpt-o1-7b-determinism-panama-default/huatuogpt-o1-7b-q4_k_m/diagnostic-core.json": {
+      "bytes": 907,
+      "sha256": "fc26b2a697485a4ba35c8ce92055daf928fa11d1dc75f947cdf9f3e89c96e94c"
+    },
+    "huatuo-candidate-github-38316803282/huatuogpt-o1-7b-determinism-panama-default/huatuogpt-o1-7b-q4_k_m/panama-default.json": {
+      "bytes": 12500,
+      "sha256": "49f8337a67247df5122557d45b5d6931de16146bdd6a9ad3abdedf1afb6a3468"
+    },
+    "huatuo-candidate-github-38316803282/huatuogpt-o1-7b-determinism-scalar/huatuogpt-o1-7b-q4_k_m/diagnostic-core.json": {
+      "bytes": 899,
+      "sha256": "a15ebb640cd742c8857033b564ac3d50d012fbf063b28e37eba27312351af6bb"
+    },
+    "huatuo-candidate-github-38316803282/huatuogpt-o1-7b-determinism-scalar/huatuogpt-o1-7b-q4_k_m/scalar.json": {
+      "bytes": 12781,
+      "sha256": "08724859ba77f72df95cd32aa52e3baecd713ed4f25dcd05ca7152d83bba899d"
+    },
+    "huatuo-scalar/exit.json": {
+      "bytes": 82,
+      "sha256": "156927f6b99f6699d270b571ca0268f756be32bf56368204fb567c483dff0392"
+    },
+    "huatuo-scalar/run.log": {
+      "bytes": 746,
+      "sha256": "ea4062b3b0fe6bbf14eac6747dba11b12c29623126d5a9a91c624a342c855092"
+    },
+    "huatuo-scalar/command.json": {
+      "bytes": 3304,
+      "sha256": "82124f6b24eff4deb41cc3ddd9e1130f76373a8e9d846fe46e43f9af74671ba6"
+    },
+    "huatuo-matrix-results.json": {
+      "bytes": 539,
+      "sha256": "79a46a224f52c91abde48ac359475578f40f4c2db99ab2dc8a4e4956f310be51"
+    }
+  }
+}

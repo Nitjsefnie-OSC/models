@@ -1,0 +1,27 @@
+[
+  {
+    "id": "eurollm_1_7b_instruct_q4_k_m",
+    "format": "gguf",
+    "backend": "rust-ffm",
+    "revision": "2951f08f66429c934c8b01a94347161362430808",
+    "wl": "multilingual",
+    "tpl": "chatml",
+    "context": 2048,
+    "threads": 8,
+    "mt": 64,
+    "topK": 1,
+    "settingsSource": {
+      "modelId": "eurollm-1.7b-q4-k-m",
+      "report": "benchmark-results/certified-20260725/rag/eurollm-1.7b-q4_k_m/models-rust-ffm.json",
+      "reportSha256": "9b70d6095eaecfa62aea08b6de9f96fff782a21c2143fa42806a749d3bccf1e2"
+    },
+    "files": [
+      {
+        "path": "model.gguf",
+        "sha256": "1cade17f491ea46a686dbee51fbd52442e0f001f102380c3b9d66b4a77f84093",
+        "sizeBytes": 1045157088,
+        "uri": "https://huggingface.co/mradermacher/EuroLLM-1.7B-Instruct-GGUF/resolve/2951f08f66429c934c8b01a94347161362430808/EuroLLM-1.7B-Instruct.Q4_K_M.gguf"
+      }
+    ]
+  }
+]

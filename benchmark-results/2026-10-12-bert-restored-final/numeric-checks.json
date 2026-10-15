@@ -1,0 +1,10 @@
+{
+  "x86": {
+    "embeddings": 82,
+    "exact": true
+  },
+  "arm": {
+    "embeddings": 82,
+    "exact": true
+  }
+}

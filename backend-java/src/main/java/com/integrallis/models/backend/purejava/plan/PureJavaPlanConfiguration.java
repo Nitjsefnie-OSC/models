@@ -236,34 +236,28 @@ public record PureJavaPlanConfiguration(
   }
 
   /**
-   * Reads {@value #BATCHED_ATTENTION_SCORES_PROPERTY}.
+   * Reads {@value #BATCHED_ATTENTION_SCORES_PROPERTY}; enabled when unset.
    *
-   * <p><b>Unset means enabled.</b> It used to mean disabled, which cost users a faster path for
-   * nothing: measured 2026-10-08 with {@code :backend-java:defaultOffParityTest} and {@code
-   * :backend-native:nativeAttentionParityTest}, enabling it generates <b>byte-identical tokens</b>
-   * on Q4_0, Q8_0 and Q4_K artifacts, on both the pure-Java and the rust-ffm path. Every arm
-   * asserted the planner reported the optimization ENABLED first, so these are measurements and not
-   * silent no-ops.
+   * <p>The default-off parity checks retained identical generated tokens for Q4_0, Q8_0 and Q4_K
+   * artifacts. They asserted that the selected optimization executed. These correctness checks do
+   * not establish a latency, allocation, or memory advantage on other workloads or hosts.
    *
    * @param configured the raw property value, or null when unset
-   * @return whether to use the faster route
+   * @return whether to batch attention score calculations
    */
   static boolean batchedAttentionScores(String configured) {
     return booleanProperty(BATCHED_ATTENTION_SCORES_PROPERTY, configured);
   }
 
   /**
-   * Reads {@value #BATCHED_ATTENTION_VALUES_PROPERTY}.
+   * Reads {@value #BATCHED_ATTENTION_VALUES_PROPERTY}; enabled when unset.
    *
-   * <p><b>Unset means enabled.</b> It used to mean disabled, which cost users a faster path for
-   * nothing: measured 2026-10-08 with {@code :backend-java:defaultOffParityTest} and {@code
-   * :backend-native:nativeAttentionParityTest}, enabling it generates <b>byte-identical tokens</b>
-   * on Q4_0, Q8_0 and Q4_K artifacts, on both the pure-Java and the rust-ffm path. Every arm
-   * asserted the planner reported the optimization ENABLED first, so these are measurements and not
-   * silent no-ops.
+   * <p>The default-off parity checks retained identical generated tokens for Q4_0, Q8_0 and Q4_K
+   * artifacts. They asserted that the selected optimization executed. These correctness checks do
+   * not establish a latency, allocation, or memory advantage on other workloads or hosts.
    *
    * @param configured the raw property value, or null when unset
-   * @return whether to use the faster route
+   * @return whether to batch attention value calculations
    */
   static boolean batchedAttentionValues(String configured) {
     return booleanProperty(BATCHED_ATTENTION_VALUES_PROPERTY, configured);
@@ -300,54 +294,45 @@ public record PureJavaPlanConfiguration(
   }
 
   /**
-   * Reads {@value #STAGED_QUANTIZED_FFN_PROPERTY}.
+   * Reads {@value #STAGED_QUANTIZED_FFN_PROPERTY}; enabled when unset.
    *
-   * <p><b>Unset means enabled.</b> It used to mean disabled, which cost users a faster path for
-   * nothing: measured 2026-10-08 with {@code :backend-java:defaultOffParityTest} and {@code
-   * :backend-native:nativeAttentionParityTest}, enabling it generates <b>byte-identical tokens</b>
-   * on the Q4_0 and Q8_0 artifacts that support it; the rust-ffm path still forces it false through
-   * RustGgufBatchedMatrixKernel, because the shim already owns those projections. Every arm
-   * asserted the planner reported the optimization ENABLED first, so these are measurements and not
-   * silent no-ops.
+   * <p>The default-off parity checks retained identical generated tokens for supported Q4_0 and
+   * Q8_0 artifacts. They asserted that the selected optimization executed. These correctness checks
+   * do not establish a latency, allocation, or memory advantage on other workloads or hosts. Native
+   * projections retain their own execution plan.
    *
    * @param configured the raw property value, or null when unset
-   * @return whether to use the faster route
+   * @return whether to use staged quantized feed-forward calculations
    */
   static boolean stagedQuantizedFfn(String configured) {
     return booleanProperty(STAGED_QUANTIZED_FFN_PROPERTY, configured);
   }
 
   /**
-   * Reads {@value #STAGED_QUANTIZED_LAYER_PROPERTY}.
+   * Reads {@value #STAGED_QUANTIZED_LAYER_PROPERTY}; enabled when unset.
    *
-   * <p><b>Unset means enabled.</b> It used to mean disabled, which cost users a faster path for
-   * nothing: measured 2026-10-08 with {@code :backend-java:defaultOffParityTest} and {@code
-   * :backend-native:nativeAttentionParityTest}, enabling it generates <b>byte-identical tokens</b>
-   * on the Q4_0 and Q8_0 artifacts that support it; the rust-ffm path still forces it false through
-   * RustGgufBatchedMatrixKernel, because the shim already owns those projections. Every arm
-   * asserted the planner reported the optimization ENABLED first, so these are measurements and not
-   * silent no-ops.
+   * <p>The default-off parity checks retained identical generated tokens for supported Q4_0 and
+   * Q8_0 artifacts. They asserted that the selected optimization executed. These correctness checks
+   * do not establish a latency, allocation, or memory advantage on other workloads or hosts. Native
+   * projections retain their own execution plan.
    *
    * @param configured the raw property value, or null when unset
-   * @return whether to use the faster route
+   * @return whether to use a staged quantized layer plan
    */
   static boolean stagedQuantizedLayer(String configured) {
     return booleanProperty(STAGED_QUANTIZED_LAYER_PROPERTY, configured);
   }
 
   /**
-   * Reads {@value #BLOCK_MAJOR_Q8_ACTIVATIONS_PROPERTY}.
+   * Reads {@value #BLOCK_MAJOR_Q8_ACTIVATIONS_PROPERTY}; enabled when unset.
    *
-   * <p><b>Unset means enabled.</b> It used to mean disabled, which cost users a faster path for
-   * nothing: measured 2026-10-08 with {@code :backend-java:defaultOffParityTest} and {@code
-   * :backend-native:nativeAttentionParityTest}, enabling it generates <b>byte-identical tokens</b>
-   * on the Q8_0 artifact that supports it, measured with its prerequisites (a retained staged plan
-   * and batched prefill) supplied, since it reports DISABLED without them. Every arm asserted the
-   * planner reported the optimization ENABLED first, so these are measurements and not silent
-   * no-ops.
+   * <p>The default-off parity checks retained identical generated tokens for the Q8_0 artifact with
+   * a staged plan and batched prefill. They asserted that the selected optimization executed. These
+   * correctness checks do not establish a latency, allocation, or memory advantage on other
+   * workloads or hosts.
    *
    * @param configured the raw property value, or null when unset
-   * @return whether to use the faster route
+   * @return whether to prepare Q8 activations in block-major order
    */
   static boolean blockMajorQ8Activations(String configured) {
     return booleanProperty(BLOCK_MAJOR_Q8_ACTIVATIONS_PROPERTY, configured);
@@ -370,18 +355,15 @@ public record PureJavaPlanConfiguration(
   }
 
   /**
-   * Reads {@value #PARALLEL_Q8_FFN_PREPARATION_PROPERTY}.
+   * Reads {@value #PARALLEL_Q8_FFN_PREPARATION_PROPERTY}; enabled when unset.
    *
-   * <p><b>Unset means enabled.</b> It used to mean disabled, which cost users a faster path for
-   * nothing: measured 2026-10-08 with {@code :backend-java:defaultOffParityTest} and {@code
-   * :backend-native:nativeAttentionParityTest}, enabling it generates <b>byte-identical tokens</b>
-   * on the Q8_0 artifact that supports it, measured with its prerequisites (the staged layer plan
-   * and block-major activations) supplied, since it reports DISABLED without them. Every arm
-   * asserted the planner reported the optimization ENABLED first, so these are measurements and not
-   * silent no-ops.
+   * <p>The default-off parity checks retained identical generated tokens for the Q8_0 artifact with
+   * a staged layer plan and block-major activations. They asserted that the selected optimization
+   * executed. These correctness checks do not establish a latency, allocation, or memory advantage
+   * on other workloads or hosts.
    *
    * @param configured the raw property value, or null when unset
-   * @return whether to use the faster route
+   * @return whether to prepare Q8 feed-forward activations in parallel
    */
   static boolean parallelQ8FfnPreparation(String configured) {
     return booleanProperty(PARALLEL_Q8_FFN_PREPARATION_PROPERTY, configured);

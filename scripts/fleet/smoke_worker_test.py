@@ -156,6 +156,7 @@ class SmokeWorkerTest(unittest.TestCase):
     def test_job_loop_passes_directory_to_java_only_after_all_files_verify(self):
         # Run the actual shell job loop. Replace network and Java with tiny local fixtures;
         # record what the CLI receives before the worker removes its downloaded snapshot.
+        self.job["stopSequence"] = r"\n"
         for corrupt in (False, True):
             with self.subTest(corrupt=corrupt), tempfile.TemporaryDirectory() as directory:
                 root = Path(directory)
@@ -207,7 +208,8 @@ output.write_text(json.dumps({'summary': {'correctAnswerRate': 1, 'abstentionAcc
                     self.assertEqual(sorted(self.contents), invocation["files"])
                     args = invocation["args"]
                     for flag, value in {"--backend": "pure-java", "--context": "2048",
-                                        "--threads": "8", "--max-tokens": "64"}.items():
+                                        "--threads": "8", "--max-tokens": "64",
+                                        "--stop-sequence": r"\n"}.items():
                         self.assertEqual(value, args[args.index(flag) + 1])
                     self.assertIn("\tPASS\t", progress)
 

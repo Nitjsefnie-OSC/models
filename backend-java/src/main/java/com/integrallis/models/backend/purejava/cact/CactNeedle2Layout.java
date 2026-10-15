@@ -27,9 +27,6 @@ import java.util.Objects;
 /** Validated names over the positional tensor layout exported by Needle 2. */
 public final class CactNeedle2Layout {
 
-  private static final int TENSORS_PER_LAYER = 14;
-  private static final int MHC_TENSORS = 9;
-  private static final int TENSORS_PER_ENGRAM_SITE = 4;
   private static final int CONTRASTIVE_HEAD = 1;
   private static final int CONFIDENCE_HEAD = 2;
   private static final ValueLayout.OfShort LE_SHORT =

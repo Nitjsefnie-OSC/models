@@ -1,0 +1,2 @@
+qwen2_5_coder_1_5b_instruct_q4_0	FAIL:correctAnswerRate=0.8888888888888888	33
+qwen2_5_coder_1_5b_instruct_q8_0	FAIL:correctAnswerRate=0.8888888888888888	38

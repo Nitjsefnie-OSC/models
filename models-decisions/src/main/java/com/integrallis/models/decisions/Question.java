@@ -76,10 +76,6 @@ public final class Question {
     return temperature;
   }
 
-  int tokenCount() {
-    return tokens.length;
-  }
-
   int[] tokensInternal() {
     return tokens;
   }

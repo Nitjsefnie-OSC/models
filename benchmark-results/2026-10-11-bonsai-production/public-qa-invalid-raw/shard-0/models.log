@@ -1,0 +1,28 @@
+WARNING: Using incubator modules: jdk.incubator.vector
+Oct 11, 2026 8:19:32 PM com.integrallis.vectors.core.PanamaVectorUtilSupportProvider create
+INFO: vectors-core: Using Panama Vector API SIMD provider (vector bits: 256)
+Oct 11, 2026 8:19:32 PM com.integrallis.vectors.core.VectorizationProvider logActiveToggles
+INFO: vectors-core: provider=PanamaVectorUtilSupport panama=true maxBits=256 preferredBits=256 fastVectorFMA=true fastScalarFMA=true sve=false ggufParallel=true ggufParallelThreshold=1048576 ggufExecutor=persistent ggufThreads=16 ggufChunksPerThread=2 mappedKQuantLongOffsets=auto(q4=true,q5=false,q6=false) q4ShortPairwiseSupported=true q4UnsignedPairwiseSupported=true toggles=[(defaults — no -Dvectors.* overrides)]
+case=0 dataset=squad2 error=null stop=MAX_TOKENS millis=114617.955633
+case=1 dataset=boolq error=null stop=EOS millis=97156.61426
+case=2 dataset=boolq error=null stop=EOS millis=67703.983701
+case=3 dataset=squad2 error=null stop=EOS millis=96354.775498
+case=4 dataset=squad2 error=null stop=MAX_TOKENS millis=105079.343322
+case=5 dataset=squad2 error=null stop=EOS millis=92915.820538
+case=6 dataset=boolq error=null stop=EOS millis=77320.203043
+case=7 dataset=squad2 error=null stop=MAX_TOKENS millis=169622.752612
+case=8 dataset=squad2 error=null stop=EOS millis=86774.035428
+case=9 dataset=squad2 error=null stop=EOS millis=124126.414831
+case=10 dataset=squad2 error=null stop=EOS millis=126067.166843
+case=11 dataset=boolq error=null stop=EOS millis=49345.571493
+case=12 dataset=squad2 error=null stop=EOS millis=92776.781904
+case=13 dataset=squad2 error=null stop=MAX_TOKENS millis=104760.665041
+case=14 dataset=squad2 error=null stop=MAX_TOKENS millis=128023.698338
+case=15 dataset=squad2 error=null stop=EOS millis=112238.297078
+case=16 dataset=squad2 error=null stop=EOS millis=89856.029138
+case=17 dataset=squad2 error=null stop=EOS millis=100921.739081
+case=18 dataset=boolq error=null stop=EOS millis=62869.825636
+case=19 dataset=squad2 error=null stop=EOS millis=109083.887942
+case=20 dataset=squad2 error=null stop=MAX_TOKENS millis=184925.352635
+case=21 dataset=squad2 error=null stop=EOS millis=93039.621465
+case=22 dataset=squad2 error=null stop=MAX_TOKENS millis=101636.739695

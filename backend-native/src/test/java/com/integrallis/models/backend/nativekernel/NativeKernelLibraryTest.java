@@ -18,10 +18,13 @@ package com.integrallis.models.backend.nativekernel;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.Assertions.within;
+import static org.mockito.Mockito.mockStatic;
+import static org.mockito.Mockito.times;
 
 import com.integrallis.models.backend.purejava.gguf.GgufTensorType;
 import com.integrallis.models.backend.purejava.ops.TensorOps;
 import com.integrallis.models.backend.purejava.plan.PureJavaPlanConfiguration;
+import com.integrallis.vectors.core.VectorUtil;
 import java.lang.foreign.Arena;
 import java.lang.foreign.MemorySegment;
 import java.lang.foreign.ValueLayout;
@@ -45,7 +48,6 @@ class NativeKernelLibraryTest {
       assertThat(kernels.abiVersion()).isEqualTo(NativeKernelLibrary.ABI_VERSION);
       assertThat(kernels.supports(NativeKernelCapability.Q4_0_F32_BATCHED_MATMUL)).isTrue();
       assertThat(kernels.supports(NativeKernelCapability.Q5_0_F32_BATCHED_MATMUL)).isTrue();
-      assertThat(kernels.supports(NativeKernelCapability.Q5_0_F32_GROUPED_BATCHED_MATMUL)).isTrue();
       assertThat(kernels.supports(NativeKernelCapability.Q5_1_F32_BATCHED_MATMUL)).isTrue();
       assertThat(kernels.supports(NativeKernelCapability.Q8_0_F32_BATCHED_MATMUL)).isTrue();
       assertThat(kernels.supports(NativeKernelCapability.Q8_0_F32_GROUPED_BATCHED_MATMUL)).isTrue();
@@ -201,6 +203,104 @@ class NativeKernelLibraryTest {
           .isInstanceOf(IllegalArgumentException.class)
           .hasMessageContaining("state");
     }
+  }
+
+  @Test
+  void recurrentWritesCannotAliasInputsOrEachOther() {
+    try (NativeKernelLibrary kernels = NativeKernelLibrary.open(libraryPath(), 2)) {
+      for (int alias = 0; alias < 6; alias++) {
+        float[][] buffers = new float[7][8];
+        buffers[6] = buffers[alias];
+        assertThatThrownBy(
+                () ->
+                    kernels.gatedDeltaNetF32(
+                        buffers[0],
+                        buffers[1],
+                        buffers[2],
+                        buffers[3],
+                        buffers[4],
+                        buffers[5],
+                        buffers[6],
+                        1,
+                        1,
+                        1,
+                        2,
+                        2))
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessageContaining("alias");
+        assertThatThrownBy(
+                () ->
+                    kernels.groupedGatedDeltaNetF32(
+                        buffers[0],
+                        buffers[1],
+                        buffers[2],
+                        buffers[3],
+                        buffers[4],
+                        buffers[5],
+                        buffers[6],
+                        null,
+                        1,
+                        1,
+                        1,
+                        1,
+                        2,
+                        2))
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessageContaining("alias");
+      }
+      for (int alias = 0; alias < 5; alias++) {
+        float[][] buffers = new float[7][8];
+        buffers[5] = buffers[alias];
+        assertThatThrownBy(
+                () ->
+                    kernels.gatedDeltaNetF32(
+                        buffers[0],
+                        buffers[1],
+                        buffers[2],
+                        buffers[3],
+                        buffers[4],
+                        buffers[5],
+                        buffers[6],
+                        1,
+                        1,
+                        1,
+                        2,
+                        2))
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessageContaining("alias");
+        assertThatThrownBy(
+                () ->
+                    kernels.groupedGatedDeltaNetF32(
+                        buffers[0],
+                        buffers[1],
+                        buffers[2],
+                        buffers[3],
+                        buffers[4],
+                        buffers[5],
+                        buffers[6],
+                        null,
+                        1,
+                        1,
+                        1,
+                        1,
+                        2,
+                        2))
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessageContaining("alias");
+      }
+    }
+  }
+
+  @Test
+  void groupedRecurrenceRejectsDuplicateSlotsBeforeMutatingState() {
+    float[] state = fixture(77, 8);
+    float[] before = state.clone();
+    try (NativeKernelLibrary kernels = NativeKernelLibrary.open(libraryPath(), 2)) {
+      assertThatThrownBy(() -> call(kernels, state, new int[] {1, 1}, 2, 2, 1, 1, 2, 2))
+          .isInstanceOf(IllegalStateException.class)
+          .hasMessageContaining("invalid shape");
+    }
+    assertThat(state).containsExactly(before);
   }
 
   /** A null slot table means row i owns slot i, which must agree with spelling that out. */
@@ -639,7 +739,7 @@ class NativeKernelLibraryTest {
 
         assertThat(actual).containsExactly(expected);
       }
-      assertThat(kernel.implementation()).isEqualTo("rust-ffm-quantized-v13");
+      assertThat(kernel.implementation()).isEqualTo("rust-ffm-quantized-v14");
       // Batch one is decode. It used to be ineligible unless models.native.quantizedDecode was
       // set, which sent every decode step to the Java path at 6.2x the cost; the setting is gone
       // and the shim serves any batch size for a type it supports.
@@ -649,6 +749,19 @@ class NativeKernelLibraryTest {
           .containsEntry(PureJavaPlanConfiguration.GROUPED_PROJECTIONS_PROPERTY, "true")
           .containsEntry(PureJavaPlanConfiguration.MIXED_K_PROJECTIONS_PROPERTY, "true")
           .containsEntry(PureJavaPlanConfiguration.STAGED_QUANTIZED_LAYER_PROPERTY, "false");
+    }
+  }
+
+  @Test
+  void q51EligibilitySelectsTheMeasuredHardwareAndBatchRoute() {
+    try (RustGgufBatchedMatrixKernel kernel = RustGgufBatchedMatrixKernel.open(libraryPath())) {
+      boolean simd = kernel.supports(GgufTensorType.Q5_1);
+      for (int batch : new int[] {1, 2, 3, 8, 32}) {
+        assertThat(kernel.isEligible(GgufTensorType.Q5_1, batch, 896, 4864)).isEqualTo(simd);
+      }
+      for (int batch : new int[] {-1, 0, 33, 64}) {
+        assertThat(kernel.isEligible(GgufTensorType.Q5_1, batch, 4864, 896)).isFalse();
+      }
     }
   }
 
@@ -675,15 +788,37 @@ class NativeKernelLibraryTest {
   @Test
   void profiledSettingsConfigureTheWorkerCount() {
     NativeKernelSettings settings = new NativeKernelSettings(4);
+    var capabilities = VectorUtil.runtimeCapabilities();
+    boolean recurrenceEligible =
+        capabilities.fastScalarFma() && (!capabilities.vectorApi() || capabilities.fastVectorFma());
 
     try (RustGgufBatchedMatrixKernel kernel =
         RustGgufBatchedMatrixKernel.open(libraryPath(), settings)) {
       assertThat(kernel.threadCount()).isEqualTo(4);
-      // Capability, not configuration, decides what the shim serves -- with two routes deliberately
-      // not taken: the recurrence, because adopting it would change bytes published records claim,
-      // and grouped Q5_0, because it measured slower. Both are decisions in code, not settings.
-      assertThat(kernel.supportsQ5_0Grouped()).as("the shim has the kernel").isTrue();
-      assertThat(kernel.supportsGatedDeltaNet()).as("but it is not routed to").isFalse();
+      assertThat(kernel.supportsGatedDeltaNet()).isEqualTo(recurrenceEligible);
+      assertThat(kernel.supportsGroupedGatedDeltaNet()).isEqualTo(recurrenceEligible);
+      assertThat(kernel.supportsGatedDeltaNet(128, 128)).isEqualTo(recurrenceEligible);
+      assertThat(kernel.supportsGatedDeltaNet(257, 128)).isFalse();
+      assertThat(kernel.supportsGatedDeltaNet(128, 257)).isFalse();
+    }
+  }
+
+  @Test
+  void recurrentEligibilityReusesTheImmutableCapabilitySnapshot() {
+    var capabilities = VectorUtil.runtimeCapabilities();
+    boolean expected =
+        capabilities.fastScalarFma() && (!capabilities.vectorApi() || capabilities.fastVectorFma());
+    try (var vectors = mockStatic(VectorUtil.class)) {
+      vectors.when(VectorUtil::runtimeCapabilities).thenReturn(capabilities);
+      try (var kernel = RustGgufBatchedMatrixKernel.open(libraryPath())) {
+        for (int repetition = 0; repetition < 100; repetition++) {
+          assertThat(kernel.supportsGatedDeltaNet()).isEqualTo(expected);
+          assertThat(kernel.supportsGroupedGatedDeltaNet()).isEqualTo(expected);
+          assertThat(kernel.supportsGatedDeltaNet(128, 128)).isEqualTo(expected);
+          assertThat(kernel.supportsGatedDeltaNet(257, 128)).isFalse();
+        }
+        vectors.verify(VectorUtil::runtimeCapabilities, times(1));
+      }
     }
   }
 
@@ -691,9 +826,8 @@ class NativeKernelLibraryTest {
   void q5_0ProjectionsAreNeverGrouped() {
     try (RustGgufBatchedMatrixKernel kernel = RustGgufBatchedMatrixKernel.open(libraryPath())) {
       assertThat(kernel.supports(GgufTensorType.Q5_0)).isTrue();
-      // The shim can group Q5_0; we do not, because grouping it decoded slower than independent
-      // projections on the controlled profile. One route, chosen by measurement.
-      assertThat(kernel.supportsQ5_0Grouped()).isTrue();
+      // The supported-host real-model comparison did not qualify Q5_0 grouping.
+      // Single projections stay supported; the unused grouped capability was removed.
       assertThat(kernel.supportsDual(GgufTensorType.Q5_0, GgufTensorType.Q5_0)).isFalse();
       assertThat(
               kernel.supportsTriple(GgufTensorType.Q5_0, GgufTensorType.Q5_0, GgufTensorType.Q5_0))
@@ -1049,66 +1183,6 @@ class NativeKernelLibraryTest {
   }
 
   @Test
-  void groupedKernelSharesInputAcrossThreeQ5_0ProjectionsWithinReductionTolerance() {
-    int batchSize = 4;
-    int cols = 64;
-    int[] rowCounts = {3, 5, 7};
-    float[] input = inputs(batchSize, cols);
-
-    try (Arena arena = Arena.ofConfined();
-        RustGgufBatchedMatrixKernel kernel = RustGgufBatchedMatrixKernel.open(libraryPath())) {
-      MemorySegment[] weights = new MemorySegment[rowCounts.length];
-      float[][] expected = new float[rowCounts.length][];
-      float[][] actual = new float[rowCounts.length][];
-      for (int index = 0; index < rowCounts.length; index++) {
-        int rows = rowCounts[index];
-        weights[index] = arena.allocate(rows * cols / 32L * 22L);
-        fillQ5_0Weights(weights[index], rows, cols);
-        expected[index] = new float[batchSize * rows];
-        actual[index] = new float[batchSize * rows];
-        referenceQ5_0F32BatchedMatmul(
-            weights[index], input, batchSize, rows, cols, expected[index]);
-      }
-
-      // The grouped Q5_0 kernel is correct, which the numerics below check, but the shipping path
-      // does not route to it: grouping Q5_0 decoded slower than independent projections on the
-      // controlled profile. The kernel is a deletion candidate once that measurement is re-run
-      // with a committed artifact.
-      assertThat(
-              kernel.isTripleEligible(
-                  GgufTensorType.Q5_0,
-                  rowCounts[0],
-                  GgufTensorType.Q5_0,
-                  rowCounts[1],
-                  GgufTensorType.Q5_0,
-                  rowCounts[2],
-                  batchSize,
-                  cols))
-          .isFalse();
-      kernel.multiplyTriple(
-          actual[0],
-          weights[0],
-          GgufTensorType.Q5_0,
-          rowCounts[0],
-          actual[1],
-          weights[1],
-          GgufTensorType.Q5_0,
-          rowCounts[1],
-          actual[2],
-          weights[2],
-          GgufTensorType.Q5_0,
-          rowCounts[2],
-          input,
-          batchSize,
-          cols);
-
-      assertClose(actual[0], expected[0], BLOCK_QUANT_REDUCTION_TOLERANCE);
-      assertClose(actual[1], expected[1], BLOCK_QUANT_REDUCTION_TOLERANCE);
-      assertClose(actual[2], expected[2], BLOCK_QUANT_REDUCTION_TOLERANCE);
-    }
-  }
-
-  @Test
   void groupedKernelMatchesVectorSemanticsForMixedQ4_KQ5_KQ6_KProjections() {
     int batchSize = 3;
     int cols = 512;
@@ -1279,6 +1353,71 @@ class NativeKernelLibraryTest {
       for (int index = 0; index < matrixCount; index++) {
         assertClose(actual[index], expected[index], K_QUANT_REDUCTION_TOLERANCE);
       }
+    }
+  }
+
+  @Test
+  void genericIndependentBlockFormatsReuseTheContextAcrossBatchGrowth() {
+    int cols = 64;
+    int[] rowCounts = {192, 193, 65};
+    for (GgufTensorType type : new GgufTensorType[] {GgufTensorType.Q4_0, GgufTensorType.Q8_0}) {
+      try (Arena arena = Arena.ofConfined();
+          RustGgufBatchedMatrixKernel kernel = RustGgufBatchedMatrixKernel.open(libraryPath(), 4)) {
+        MemorySegment[] weights = new MemorySegment[rowCounts.length];
+        GgufTensorType[] types = new GgufTensorType[rowCounts.length];
+        Arrays.fill(types, type);
+        for (int matrix = 0; matrix < rowCounts.length; matrix++) {
+          int rows = rowCounts[matrix];
+          weights[matrix] =
+              arena.allocate((long) rows * cols / 32 * (type == GgufTensorType.Q4_0 ? 18 : 34));
+          if (type == GgufTensorType.Q4_0) fillWeights(weights[matrix], rows, cols);
+          else fillQ8_0Weights(weights[matrix], rows, cols);
+        }
+        for (int batch : new int[] {1, 3, 1}) {
+          float[][] input = new float[rowCounts.length][];
+          float[][] output = new float[rowCounts.length][];
+          float[][] expected = new float[rowCounts.length][];
+          for (int matrix = 0; matrix < rowCounts.length; matrix++) {
+            input[matrix] = inputs(batch, cols);
+            for (int index = 0; index < input[matrix].length; index++)
+              input[matrix][index] += matrix * 0.03125f;
+            output[matrix] = new float[batch * rowCounts[matrix]];
+            expected[matrix] = new float[output[matrix].length];
+            if (type == GgufTensorType.Q4_0)
+              referenceQ4_0F32BatchedMatmul(
+                  weights[matrix], input[matrix], batch, rowCounts[matrix], cols, expected[matrix]);
+            else
+              referenceQ8_0F32BatchedMatmul(
+                  weights[matrix], input[matrix], batch, rowCounts[matrix], cols, expected[matrix]);
+          }
+          assertThat(kernel.isIndependentEligible(types, rowCounts, rowCounts.length, batch, cols))
+              .isTrue();
+          kernel.multiplyIndependent(
+              output, weights, types, rowCounts, rowCounts.length, input, batch, cols);
+          for (int matrix = 0; matrix < rowCounts.length; matrix++) {
+            if (type == GgufTensorType.Q4_0)
+              assertThat(output[matrix]).containsExactly(expected[matrix]);
+            else assertClose(output[matrix], expected[matrix], BLOCK_QUANT_REDUCTION_TOLERANCE);
+          }
+        }
+      }
+    }
+  }
+
+  @Test
+  void genericProjectionRejectsAClosedContextAndClosingTwiceIsSafe() {
+    try (Arena arena = Arena.ofConfined()) {
+      MemorySegment weights = arena.allocate(18);
+      fillWeights(weights, 1, 32);
+      NativeKernelLibrary library = NativeKernelLibrary.open(libraryPath(), 2);
+      library.close();
+      library.close();
+      float[] output = {42f};
+      assertThatThrownBy(
+              () -> library.q4_0F32BatchedMatmul(weights, inputs(1, 32), 1, 1, 32, output))
+          .isInstanceOf(IllegalStateException.class)
+          .hasMessageContaining("closed");
+      assertThat(output).containsExactly(42f);
     }
   }
 

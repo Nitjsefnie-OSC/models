@@ -1,5 +1,16 @@
 # Catalogue-wide default-configuration smoke on Models 0.3.54
 
+> Audit correction, 2026-10-11: equal failures on 0.3.53 and 0.3.54 only show that 0.3.54 did
+> not introduce them. They do not rule out an earlier regression or establish a model-quality
+> cause. All six also fail on Central 0.3.58. Comparison with their original passing reports
+> shows changed raw answers for EuroLLM and SmolLM2 1.7B despite identical prompt hashes;
+> UmarTransit and both Qwen coders retain their raw answers but changed grounding decisions.
+> SmolLM2 360M's prompt hash changed. These remain unresolved, and the categorical statements
+> below that they are not regressions or independently license republication are superseded.
+> See `../2026-10-11-bonsai-production/catalog-baseline/raw-output-comparison.json`.
+>
+> The remainder records the original analysis and raw measurements, not the current disposition.
+
 > Audit correction, 2026-10-10: the diagnosis below that Qwen BF16 has a bad catalog URI was not
 > supported. ModelJars `v0.1.54` already declares `qwen_qwen2_5_0_5b_instruct_bf16` as Safetensors,
 > with four pinned files. The single-file worker instead saved its weights as `$id.gguf` and omitted

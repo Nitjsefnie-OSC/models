@@ -26,7 +26,12 @@ import pathlib
 import re
 import sys
 
-REFERENCE = re.compile(r"((?:benchmark-results|experiments)/[A-Za-z0-9_][A-Za-z0-9_./-]*)")
+# Match whole directory names, never a suffix such as "rejected-experiments/" in an external
+# archive name. Preserve relative module prefixes: stripping ../models-bench/ can
+# falsely reject retained evidence or accept an unrelated file at the repository root.
+REFERENCE = re.compile(
+    r"(?<![A-Za-z0-9_./$-])((?:(?:\.\.?|[A-Za-z0-9_-]+)/)*"
+    r"(?:benchmark-results|experiments)/[A-Za-z0-9_][A-Za-z0-9_./-]*)")
 # A reference whose last segment is a bare prefix is prose describing a family of directories
 # ("benchmark-results/certified-*"), not a citation of one file.
 PROSE_TAIL = re.compile(r"[-/]$")
@@ -44,6 +49,10 @@ def references(root: pathlib.Path):
         for match in REFERENCE.finditer(text):
             path = match.group(1).rstrip(".,);:`'\"")
             if PROSE_TAIL.search(path) or "*" in path:
+                continue
+            # These archives live in the parent workspace, outside this repository.
+            parts = [part for part in pathlib.PurePosixPath(path).parts if part not in (".", "..")]
+            if parts and parts[0] == "audit-artifacts":
                 continue
             yield doc, path
 

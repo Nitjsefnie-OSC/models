@@ -1,0 +1,40 @@
+{
+  "modelId": "huggingfacetb_smollm2_1_7b_instruct_gguf_q4_k_m",
+  "format": "gguf",
+  "modelPath": "/work/models/huggingfacetb_smollm2_1_7b_instruct_gguf_q4_k_m/model.gguf",
+  "job": {
+    "id": "huggingfacetb_smollm2_1_7b_instruct_gguf_q4_k_m",
+    "format": "gguf",
+    "backend": "rust-ffm",
+    "revision": "2d4a76a30b4af41ecd395c35725ac11688d4cfe4",
+    "wl": "general",
+    "tpl": "chatml",
+    "context": 2048,
+    "threads": 8,
+    "mt": 64,
+    "topK": 1,
+    "settingsSource": {
+      "modelId": "huggingfacetb_smollm2_1_7b_instruct_gguf_q4_k_m",
+      "report": "benchmark-results/certified-20260726/rag/smollm2-1.7b-q4_k_m/models-rust-ffm.json",
+      "reportSha256": "128dce8b4c8b5eae1e1c1be7cca8c155b144506e33c37b1cb0479dd928af0968"
+    },
+    "files": [
+      {
+        "path": "model.gguf",
+        "sha256": "decd2598bc2c8ed08c19adc3c8fdd461ee19ed5708679d1c54ef54a5a30d4f33",
+        "sizeBytes": 1055609536,
+        "uri": "https://huggingface.co/HuggingFaceTB/SmolLM2-1.7B-Instruct-GGUF/resolve/2d4a76a30b4af41ecd395c35725ac11688d4cfe4/smollm2-1.7b-instruct-q4_k_m.gguf"
+      }
+    ]
+  },
+  "files": [
+    {
+      "path": "model.gguf",
+      "sha256": "decd2598bc2c8ed08c19adc3c8fdd461ee19ed5708679d1c54ef54a5a30d4f33",
+      "sizeBytes": 1055609536,
+      "uri": "https://huggingface.co/HuggingFaceTB/SmolLM2-1.7B-Instruct-GGUF/resolve/2d4a76a30b4af41ecd395c35725ac11688d4cfe4/smollm2-1.7b-instruct-q4_k_m.gguf",
+      "verifiedSha256": "decd2598bc2c8ed08c19adc3c8fdd461ee19ed5708679d1c54ef54a5a30d4f33",
+      "verifiedSizeBytes": 1055609536
+    }
+  ]
+}

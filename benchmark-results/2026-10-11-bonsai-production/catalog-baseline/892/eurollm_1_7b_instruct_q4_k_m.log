@@ -1,0 +1,18 @@
+WARNING: Using incubator modules: jdk.incubator.vector
+Oct 11, 2026 9:47:21 PM com.integrallis.vectors.core.PanamaVectorUtilSupportProvider create
+INFO: vectors-core: Using Panama Vector API SIMD provider (vector bits: 256)
+Oct 11, 2026 9:47:21 PM com.integrallis.vectors.core.VectorizationProvider logActiveToggles
+INFO: vectors-core: provider=PanamaVectorUtilSupport panama=true maxBits=256 preferredBits=256 fastVectorFMA=true fastScalarFMA=true sve=false ggufParallel=true ggufParallelThreshold=1048576 ggufExecutor=persistent ggufThreads=16 ggufChunksPerThread=2 mappedKQuantLongOffsets=auto(q4=true,q5=false,q6=false) q4ShortPairwiseSupported=true q4UnsignedPairwiseSupported=true toggles=[(defaults — no -Dvectors.* overrides)]
+Oct 11, 2026 9:47:21 PM org.apache.lucene.internal.vectorization.PanamaVectorizationProvider <init>
+INFO: Java vector incubator API enabled; uses preferredBitSize=256; FMA enabled
+iteration 1/1 case=lisboa-horario correct=true retrieval=24.9ms ttft=2024.5ms decode=26.55 tok/s e2e=2816.1ms
+iteration 1/1 case=madrid-linea correct=true retrieval=3.1ms ttft=489.6ms decode=27.18 tok/s e2e=901.0ms
+iteration 1/1 case=lyon-code-livraison correct=true retrieval=4.0ms ttft=524.7ms decode=27.69 tok/s e2e=1471.4ms
+iteration 1/1 case=berlin-sicherung correct=false retrieval=2.1ms ttft=476.0ms decode=27.88 tok/s e2e=947.1ms
+iteration 1/1 case=roma-museo correct=true retrieval=2.9ms ttft=401.7ms decode=28.39 tok/s e2e=1042.0ms
+iteration 1/1 case=utrecht-kanaal correct=true retrieval=1.8ms ttft=416.5ms decode=26.59 tok/s e2e=1135.3ms
+iteration 1/1 case=krakow-location correct=true retrieval=2.0ms ttft=482.5ms decode=28.67 tok/s e2e=1150.5ms
+iteration 1/1 case=bucuresti-support correct=true retrieval=2.1ms ttft=542.1ms decode=28.94 tok/s e2e=1687.1ms
+iteration 1/1 case=unsupported-oslo-office correct=true retrieval=1.4ms ttft=544.8ms decode=20.81 tok/s e2e=1510.3ms
+plain-java/rust-ffm/eurollm_1_7b_instruct_q4_k_m: tier=FAILED_QUALITY success=9/9 p95-retrieval=16.5ms p95-ttft=1432.6ms p50-decode=27.69 tok/s p95-e2e=2364.5ms correct=88.9% model-answered=77.8% of-those-correct=85.7% extractive-fallback=11.1% truncated=0.0%
+report: /work/out/eurollm_1_7b_instruct_q4_k_m.json

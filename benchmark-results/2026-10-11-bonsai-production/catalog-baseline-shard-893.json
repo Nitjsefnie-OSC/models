@@ -1,0 +1,27 @@
+[
+  {
+    "id": "umarfarookm_umartransit_1b_q4_k_m",
+    "format": "gguf",
+    "backend": "rust-ffm",
+    "revision": "086c12aadfee08963ed70ab73ae2cb3997dbde3a",
+    "wl": "transportation",
+    "tpl": "chatml",
+    "context": 2048,
+    "threads": 8,
+    "mt": 64,
+    "topK": 1,
+    "settingsSource": {
+      "modelId": "umartransit-1b-q4-k-m",
+      "report": "benchmark-results/certified-20260725/rag/umartransit-1b-q4_k_m/models-rust-ffm.json",
+      "reportSha256": "1c1f56cc2c83cb0405004d8a37dedd6483ad1fde1bb62877cb0d243a37b5152b"
+    },
+    "files": [
+      {
+        "path": "model.gguf",
+        "sha256": "db1a4489626110145274f508b3fa30439516a47b4e721fe02d67df4679db5b9a",
+        "sizeBytes": 986048096,
+        "uri": "https://huggingface.co/umarfarookm/UmarTransit-1B/resolve/086c12aadfee08963ed70ab73ae2cb3997dbde3a/UmarTransit-1B.Q4_K_M.gguf"
+      }
+    ]
+  }
+]

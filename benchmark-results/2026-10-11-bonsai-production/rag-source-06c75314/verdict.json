@@ -1,0 +1,37 @@
+{
+  "schemaVersion" : 1,
+  "policyId" : "production-rag-publisher-reference-v1",
+  "candidate" : {
+    "path" : "benchmark-results/2026-10-11-bonsai-production/rag-source-06c75314/models-rag.json",
+    "sha256" : "e639ed7d1c895e66fab8794790cfce0cd609aaf89bd62837fbf9a8ed0deb5b9a"
+  },
+  "comparators" : [ {
+    "path" : "benchmark-results/2026-10-11-bonsai-production/rag-source-06c75314/reference-sse-fixed/reference-rag.json",
+    "sha256" : "a76c89d764c5d5337ad8f5274cc038baca7073148dff724ec8b634c5a12858a9"
+  } ],
+  "qualification" : {
+    "modelId" : "prism_ml_ternary_bonsai_2_27b_gguf_ptq1_0",
+    "candidateBackend" : "rust-ffm",
+    "artifactSha256" : "53107f530aa52eb00912263ab1ee29bd199261c87cd7b4ad4ca1318c1fe33ee3",
+    "absoluteTier" : "PERFORMANCE_REDUCED",
+    "verdict" : "QUALIFIED",
+    "qualified" : true,
+    "modelAnswerCount" : 12,
+    "modelAnswerRate" : 0.4444444444444444,
+    "modelAnswerCorrectRate" : 1.0,
+    "minimumModelAnswerRate" : 0.3333333333333333,
+    "minimumModelAnswerCorrectRate" : 0.9,
+    "qualifyingComparators" : [ "llama.cpp" ],
+    "comparisons" : [ {
+      "comparatorBackend" : "llama.cpp",
+      "decodeThroughputRatio" : 0.9005525338459496,
+      "endToEndLatencyRatio" : 1.1329293002428331,
+      "timeToFirstTokenRatio" : 1.1448975646524002,
+      "minimumDecodeThroughputRatio" : 0.8,
+      "maximumEndToEndLatencyRatio" : 1.5,
+      "qualified" : true,
+      "failures" : [ ]
+    } ],
+    "exclusions" : { }
+  }
+}

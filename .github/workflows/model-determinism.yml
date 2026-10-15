@@ -2,6 +2,12 @@ name: Pure-Java Determinism
 
 on:
   workflow_dispatch:
+    inputs:
+      vectors_core_revision:
+        description: "Diagnostic Vectors core commit (40 hexadecimal characters); empty uses released dependencies"
+        required: false
+        default: ""
+        type: string
   schedule:
     - cron: "37 5 * * 1"
 
@@ -10,7 +16,11 @@ permissions:
 
 jobs:
   huatuo-determinism:
-    name: HuatuoGPT-o1-7B exact determinism
+    name: HuatuoGPT-o1-7B exact determinism (${{ matrix.variant }})
+    strategy:
+      fail-fast: false
+      matrix:
+        variant: [panama-default, panama-serial, panama-no-fma, panama-128, scalar]
     runs-on: ubuntu-latest
     timeout-minutes: 120
     steps:
@@ -34,6 +44,37 @@ jobs:
         with:
           working-directory: models
 
+      - name: Validate diagnostic revision
+        env:
+          VECTORS_CORE_REVISION: ${{ inputs.vectors_core_revision }}
+        run: |
+          if [[ -n "$VECTORS_CORE_REVISION" && ! "$VECTORS_CORE_REVISION" =~ ^[0-9a-fA-F]{40}$ ]]; then
+            echo "vectors_core_revision must be an immutable 40-character commit SHA" >&2
+            exit 1
+          fi
+
+      - name: Checkout diagnostic Vectors core
+        if: inputs.vectors_core_revision != ''
+        uses: actions/checkout@v5
+        with:
+          repository: integrallis/vectors
+          ref: ${{ inputs.vectors_core_revision }}
+          path: vectors-audit
+
+      - name: Build diagnostic Vectors core
+        if: inputs.vectors_core_revision != ''
+        working-directory: vectors-audit
+        env:
+          VECTORS_CORE_REVISION: ${{ inputs.vectors_core_revision }}
+        run: |
+          actual_revision=$(git rev-parse HEAD)
+          [[ "${actual_revision,,}" == "${VECTORS_CORE_REVISION,,}" ]]
+          ./gradlew :vectors-core:jar --no-daemon --stacktrace
+          mapfile -t core_jars < <(find "$PWD/vectors-core/build/libs" -maxdepth 1 -name 'vectors-core-*.jar' ! -name '*-sources.jar' ! -name '*-javadoc.jar' -type f)
+          [[ ${#core_jars[@]} -eq 1 ]]
+          echo "AUDIT_VECTORS_CORE_JAR=${core_jars[0]}" >> "$GITHUB_ENV"
+          echo "AUDIT_VECTORS_CORE_REVISION=$actual_revision" >> "$GITHUB_ENV"
+
       - name: Cache HuatuoGPT fixture
         uses: actions/cache@v5
         with:
@@ -54,6 +95,7 @@ jobs:
           AUDIT_PROMPT: |-
             Question: Which organ pumps blood through the human body?
             Answer:
+          AUDIT_VARIANT: ${{ matrix.variant }}
           AUDIT_TOKENS: 4
           AUDIT_ITERATIONS: 3
           AUDIT_CONTEXT: 128
@@ -66,6 +108,6 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v7
         with:
-          name: huatuogpt-o1-7b-determinism
+          name: huatuogpt-o1-7b-determinism-${{ matrix.variant }}
           path: models/build/reports/determinism/
           retention-days: 30

@@ -4,6 +4,73 @@ All notable changes to models are documented here.
 
 ## [Unreleased]
 
+## [0.3.59] - 2026-10-14
+
+### Added and fixed
+
+- Correct native Q4_K batch rounding, disjoint attention/recurrence worker views, and the
+  shrinking-group DeltaNet state slot. Stage the corrected sequential recurrence on compatible
+  FMA hosts and dimensions; remove the approximate chunked implementation and revise the native
+  ABI. Whole-model release qualification remains pending.
+- Remove the unreachable grouped Q5_0 capability and dispatch after reproducing slowdown and
+  divergent x86 continuations. Reserve the retired capability bit; preserve single Q5_0 kernels.
+- Route Q5_1 prefill and ARM execution through improved Java arithmetic; retain native x86
+  single-token execution as the measured candidate. Share the stateless Java decoder rather
+  than relying on escape analysis to remove per-row allocations.
+- Avoid recurrence eligibility diagnostics on every call and adapt array arguments inside the
+  native method handle. Component checks preserve full recurrent state and output while
+  eliminating measured call allocations; final whole-model resource gates remain pending.
+- Correct shared-prefix FFN dispatch for single-row tails. Real adapter fixture tasks now use
+  JUnit Platform and reject repeated tool calls immediately; missing adapters remain explicit.
+- Add a native-shim dispatch/evidence inventory and mutation checks. Unresolved JVM-cause proof
+  remains labelled unproven rather than inferred from historical native speedups.
+- Native PTQ1_0 projections for Bonsai, with independent Java/Rust scalar/SIMD conformance tests.
+  Both production backends now use Q8_0 activations with binary16-rounded scales and a pinned FMA
+  order. This changes the earlier float-activation arithmetic; loading a native library preserves
+  the new Java contract. Signed Hadamard transforms, the graph and recurrent state remain in Java.
+- Batched Hadamard/PTQ prompt processing, with real-weight session isolation and exact full-logit
+  parity across sequential and batched prompts **where the native activation route is present**;
+  see the activation-determinism note below for what x86 guarantees instead. Native
+  activation-scale scratch now follows the activation block width independently of the weight
+  format's block width.
+- SIMD Q8 fallback and ARM NEON PTQ products preserve exact scalar outputs. The ARM repair passes
+  same-host component and whole-model comparisons against both scalar native and Java SIMD;
+  native real-weight CI now exercises Linux x86 and ARM.
+- Native SLEEF activations (`sigmoid`/scaled-softplus and the causal convolution) on aarch64,
+  which makes a model's full logits reproducible from one session to the next on that platform.
+  **Full-logit session and batched/sequential determinism is guaranteed only where that route is
+  advertised.** On x86 the activations keep the released Vectors Java bodies, and
+  `sigmoidAndScaledSoftplus` is not bit-stable across HotSpot's compilation of it: it computes
+  softplus through the vector LOG and EXP operations, whose interpreted results differ from the
+  compiled intrinsic. Measured as 3 differing lanes of 320 on two separate runners (AMD EPYC 7763
+  and EPYC 9V45, both at `activeVectorBits=256`), while `swiGlu` was bit-identical on the same
+  hosts. This is not a change from `v0.3.58`, which carries no native activations on any platform
+  and therefore ran the same Java route on x86; it is the same narrowing Vectors 0.1.30 states for
+  its own cold/hot activation contract, surfaced here by new tests. Greedy token continuations are
+  exact on every platform and are asserted as such; where the bit contract is not guaranteed the
+  real-weight tests report the differing-lane counts rather than asserting zero.
+- The native SwiGLU kernel is advertised on aarch64 only. Its fused operations correspond to the
+  Java float polynomial rather than to the vector EXP intrinsic that x86 keeps under Vectors
+  0.1.30, so while it was advertised on x86 the two routes disagreed by 1 ULP. x86 keeps the Java
+  route it ran before the kernel existed, and the unreachable x86 algorithm is removed rather than
+  left in place.
+- Explicit, artifact- and revision-bound publisher-reference RAG policy for Bonsai. It retains the
+  0.80 relative decode floor, 1.5 latency ceiling and existing quality/contribution gates. Historical
+  v6 qualifications are unchanged. Reject nonfinite decode ratios instead of letting an invalid
+  comparator measurement pass the relative floor.
+- The publisher comparison client ignores SSE keepalive comments during long prefills while
+  retaining the first generated token as its time-to-first-token measurement.
+- Bonsai catalog admission and public QA are still pending in this release preparation; the
+  measurements and unsuccessful kernel experiments are retained under
+  `benchmark-results/2026-10-11-bonsai-production`.
+
+### Dependencies and device evidence
+
+Consumes released Vectors 0.1.30. No CUDA numeric path changed and device gates were not rerun.
+The last G1 result remains 1280/1280 exact token IDs on RTX 4090, Granite 4.1 3B Q4_K_M
+(`benchmark-results/2026-10-07-g1-parity`); G4 remains 6.184x on that host/model
+(`benchmark-results/2026-10-07-g4-dualpath`). This does not qualify Bonsai on CUDA.
+
 ## [0.3.58] - 2026-10-11
 
 ### Added
@@ -192,7 +259,7 @@ kill switch on top of that.
   catalogue edit able to reach a marker already on Maven Central.
 
 - **The `loadWarmup` prefill is gone with its setting.** Its experiment returned VOID
-  (`experiments/loadwarmup-first-generation/`), so it bought no measured speed while costing load
+  ([historical decision](docs/findings/historical-experiment-decisions.md)), so it bought no measured speed while costing load
   time against the readiness gate.
 
 - **Q5_0 projections always run independently**, and that is a decision rather than a setting:

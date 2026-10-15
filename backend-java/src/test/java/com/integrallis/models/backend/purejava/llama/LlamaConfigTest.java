@@ -38,16 +38,6 @@ class LlamaConfigTest {
         .isInstanceOf(NoSuchMethodException.class);
   }
 
-  private GgufMetadata createLlamaMetadata(
-      int embeddingDim, int blockCount, int headCount, int headCountKv) {
-    Map<String, GgufMetadataValue> entries = new LinkedHashMap<>();
-    entries.put("llama.embedding_length", new GgufMetadataValue.Uint32Value(embeddingDim));
-    entries.put("llama.block_count", new GgufMetadataValue.Uint32Value(blockCount));
-    entries.put("llama.attention.head_count", new GgufMetadataValue.Uint32Value(headCount));
-    entries.put("llama.attention.head_count_kv", new GgufMetadataValue.Uint32Value(headCountKv));
-    return new GgufMetadata(entries);
-  }
-
   @Nested
   class LongRope {
 

@@ -42,6 +42,9 @@ public final class RustGgufBatchedMatrixKernel implements GgufBatchedMatrixKerne
           "false");
 
   private final NativeKernelLibrary library;
+  private final boolean gatedDeltaNetSupported;
+  private final int bfloat16Lanes;
+  private final boolean bfloat16Fused;
   private Arena scratchArena;
   private MemorySegment nativeInput = MemorySegment.NULL;
   private MemorySegment nativeOutput = MemorySegment.NULL;
@@ -58,6 +61,16 @@ public final class RustGgufBatchedMatrixKernel implements GgufBatchedMatrixKerne
 
   private RustGgufBatchedMatrixKernel(NativeKernelLibrary library) {
     this.library = Objects.requireNonNull(library, "library");
+    // Runtime arithmetic capabilities and the loaded native ABI are immutable for this provider.
+    // Resolve once: the diagnostic capability snapshot constructs strings and must not allocate
+    // in every recurrent layer/token eligibility check.
+    var capabilities = VectorUtil.runtimeCapabilities();
+    bfloat16Lanes = capabilities.vectorApi() ? capabilities.activeVectorBits() / Float.SIZE : 0;
+    bfloat16Fused = capabilities.fastVectorFma();
+    gatedDeltaNetSupported =
+        library.supports(NativeKernelCapability.GATED_DELTA_NET_F32)
+            && capabilities.fastScalarFma()
+            && (!capabilities.vectorApi() || capabilities.fastVectorFma());
   }
 
   /** Opens a Rust kernel provider from an explicit platform library. */
@@ -104,6 +117,9 @@ public final class RustGgufBatchedMatrixKernel implements GgufBatchedMatrixKerne
 
   @Override
   public String implementation() {
+    if (library.supports(NativeKernelCapability.PTQ1_0_Q8_0_BATCHED_MATMUL)) {
+      return "rust-ffm-quantized-v14";
+    }
     if (library.supports(NativeKernelCapability.GATED_DELTA_NET_F32)) {
       return "rust-ffm-quantized-v13";
     }
@@ -123,39 +139,19 @@ public final class RustGgufBatchedMatrixKernel implements GgufBatchedMatrixKerne
     return PLAN_RECOMMENDATIONS;
   }
 
-  /**
-   * Whether the Qwen 3.5 recurrence runs in the shim. It does not, and that is a decision rather
-   * than a setting.
-   *
-   * <p>This was {@code models.native.gatedDeltaNet}, default off. Removing the veto would have made
-   * the shim recurrence unconditional, and that is an epoch change, not a speed-up:
-   *
-   * <ul>
-   *   <li>Every certified Qwen 3.5 record — {@code qwen3.5-0.8b}, {@code qwen3.5-2b} — was produced
-   *       with {@code native-gated-delta-net = false}, so the published bytes come from the Java
-   *       recurrence.
-   *   <li>The shim's chunked recurrence is validated to a <em>2.0e-4 relative</em> tolerance, not
-   *       bit-identically. Greedy decoding is a discrete argmax, and a perturbation of 1.4e-6 was
-   *       already measured to change 2 of 9 generated answers for grouped attention. 2.0e-4 is a
-   *       hundred times larger.
-   *   <li>Whether it is even faster than the Java recurrence is <em>unmeasured</em>. The one
-   *       committed comparison (2026-09-23) times the shim's sequential against its own chunked
-   *       variant, 3.920 against 3.585 ms, and never against Java.
-   * </ul>
-   *
-   * <p>So: an unmeasured benefit against a known byte-level divergence in published records. It
-   * stays unrouted until someone re-runs every pinned greedy oracle and re-derives the tier bands
-   * on it, which is a deliberate epoch change and not a default to flip. The kernel and its parity
-   * tests are kept because that decision needs them.
-   */
+  /** Whether the loaded recurrence preserves this Java runtime's fused arithmetic contract. */
   @Override
   public boolean supportsGatedDeltaNet() {
-    return false;
+    return gatedDeltaNetSupported;
   }
 
-  /** Whether the loaded shim can share one activation quantization across grouped Q5_0 rows. */
-  boolean supportsQ5_0Grouped() {
-    return library.supports(NativeKernelCapability.Q5_0_F32_GROUPED_BATCHED_MATMUL);
+  @Override
+  public boolean supportsGatedDeltaNet(int keyDimension, int valueDimension) {
+    return supportsGatedDeltaNet()
+        && keyDimension > 0
+        && keyDimension <= 256
+        && valueDimension > 0
+        && valueDimension <= 256;
   }
 
   @Override
@@ -188,12 +184,10 @@ public final class RustGgufBatchedMatrixKernel implements GgufBatchedMatrixKerne
         valueDimension);
   }
 
-  /**
-   * False for the same reason as {@link #supportsGatedDeltaNet()}: it would change published bytes.
-   */
+  /** Whether independent recurrent state slots can share one native worker dispatch. */
   @Override
   public boolean supportsGroupedGatedDeltaNet() {
-    return false;
+    return supportsGatedDeltaNet() && library.supportsGroupedGatedDeltaNet();
   }
 
   @Override
@@ -311,14 +305,175 @@ public final class RustGgufBatchedMatrixKernel implements GgufBatchedMatrixKerne
   }
 
   @Override
+  public boolean supportsRecurrentActivations() {
+    return bfloat16Lanes == 4 && library.supports(NativeKernelCapability.SLEEF_ACTIVATIONS_F32);
+  }
+
+  @Override
+  public synchronized boolean trySigmoidAndScaledSoftplus(
+      float[] sigmoid,
+      int sigmoidAt,
+      float[] softplus,
+      int softplusAt,
+      float[] bias,
+      int biasAt,
+      float[] scale,
+      int scaleAt,
+      float[] out,
+      int outAt,
+      int length) {
+    requireOpen();
+    return bfloat16Lanes == 4
+        && library.trySigmoidAndScaledSoftplus(
+            sigmoid,
+            sigmoidAt,
+            softplus,
+            softplusAt,
+            bias,
+            biasAt,
+            scale,
+            scaleAt,
+            out,
+            outAt,
+            length);
+  }
+
+  @Override
+  public synchronized boolean tryCausalDepthwiseConv1dSilu(
+      float[] values,
+      int valuesAt,
+      float[] history,
+      int historyAt,
+      float[] weights,
+      int weightsAt,
+      int channels,
+      int kernel) {
+    requireOpen();
+    return bfloat16Lanes == 4
+        && library.tryCausalDepthwiseConv1dSilu(
+            values,
+            valuesAt,
+            history,
+            historyAt,
+            weights,
+            weightsAt,
+            channels,
+            kernel,
+            bfloat16Fused);
+  }
+
+  @Override
+  public synchronized boolean trySigmoidAndScaledSoftplus(
+      FloatArrayView sigmoid,
+      int sigmoidAt,
+      FloatArrayView softplus,
+      int softplusAt,
+      FloatArrayView bias,
+      int biasAt,
+      FloatArrayView scale,
+      int scaleAt,
+      FloatArrayView out,
+      int outAt,
+      int length) {
+    requireOpen();
+    if (!(sigmoid instanceof NativeFloatArrayView s)
+        || !(softplus instanceof NativeFloatArrayView p)
+        || !(bias instanceof NativeFloatArrayView b)
+        || !(scale instanceof NativeFloatArrayView m)
+        || !(out instanceof NativeFloatArrayView o)) return false;
+    return bfloat16Lanes == 4
+        && library.trySigmoidAndScaledSoftplus(
+            s.segment(),
+            sigmoidAt,
+            p.segment(),
+            softplusAt,
+            b.segment(),
+            biasAt,
+            m.segment(),
+            scaleAt,
+            o.segment(),
+            outAt,
+            length);
+  }
+
+  @Override
+  public synchronized boolean tryCausalDepthwiseConv1dSilu(
+      FloatArrayView values,
+      int valuesAt,
+      FloatArrayView history,
+      int historyAt,
+      FloatArrayView weights,
+      int weightsAt,
+      int channels,
+      int kernel) {
+    requireOpen();
+    if (!(values instanceof NativeFloatArrayView v)
+        || !(history instanceof NativeFloatArrayView h)
+        || !(weights instanceof NativeFloatArrayView w)) return false;
+    return bfloat16Lanes == 4
+        && library.tryCausalDepthwiseConv1dSilu(
+            v.segment(),
+            valuesAt,
+            h.segment(),
+            historyAt,
+            w.segment(),
+            weightsAt,
+            channels,
+            kernel,
+            bfloat16Fused);
+  }
+
+  private record NativeFloatArrayView(float[] values, MemorySegment segment)
+      implements FloatArrayView {}
+
+  @Override
+  public synchronized FloatArrayView prepareFloatArray(float[] values) {
+    requireOpen();
+    Objects.requireNonNull(values, "values");
+    if (bfloat16Lanes < 4) return null;
+    return new NativeFloatArrayView(values, MemorySegment.ofArray(values));
+  }
+
+  @Override
+  public synchronized boolean trySwiGlu(
+      FloatArrayView out,
+      int outAt,
+      FloatArrayView gate,
+      int gateAt,
+      FloatArrayView up,
+      int upAt,
+      int length) {
+    requireOpen();
+    if (!(out instanceof NativeFloatArrayView o)
+        || !(gate instanceof NativeFloatArrayView g)
+        || !(up instanceof NativeFloatArrayView u)) return false;
+    return bfloat16Lanes >= 4
+        && (!library.supports(NativeKernelCapability.SLEEF_ACTIVATIONS_F32) || bfloat16Lanes == 4)
+        && library.trySwiGlu(o.segment(), outAt, g.segment(), gateAt, u.segment(), upAt, length);
+  }
+
+  @Override
+  public synchronized boolean trySwiGlu(
+      float[] out, int outAt, float[] gate, int gateAt, float[] up, int upAt, int length) {
+    requireOpen();
+    return bfloat16Lanes >= 4
+        && (!library.supports(NativeKernelCapability.SLEEF_ACTIVATIONS_F32) || bfloat16Lanes == 4)
+        && library.trySwiGlu(out, outAt, gate, gateAt, up, upAt, length);
+  }
+
+  @Override
   public boolean supports(GgufTensorType type) {
     if (type == null) {
       return false;
     }
     return switch (type) {
+      case BF16 ->
+          library.supports(NativeKernelCapability.BF16_F32_BATCHED_MATMUL)
+              && (bfloat16Lanes == 4 || bfloat16Lanes == 8);
       case Q4_0 -> library.supports(NativeKernelCapability.Q4_0_F32_BATCHED_MATMUL);
       case Q5_0 -> library.supports(NativeKernelCapability.Q5_0_F32_BATCHED_MATMUL);
       case Q5_1 -> library.supports(NativeKernelCapability.Q5_1_F32_BATCHED_MATMUL);
+      case PTQ1_0 -> library.supports(NativeKernelCapability.PTQ1_0_Q8_0_BATCHED_MATMUL);
       case Q8_0 -> library.supports(NativeKernelCapability.Q8_0_F32_BATCHED_MATMUL);
       case Q4_K -> library.supports(NativeKernelCapability.Q4_K_F32_BATCHED_MATMUL);
       case Q5_K -> library.supports(NativeKernelCapability.Q5_K_F32_BATCHED_MATMUL);
@@ -329,7 +484,12 @@ public final class RustGgufBatchedMatrixKernel implements GgufBatchedMatrixKerne
 
   @Override
   public boolean isEligible(GgufTensorType type, int batchSize, int rows, int cols) {
-    return supports(type);
+    if (type == GgufTensorType.BF16)
+      return supports(type) && rows == 48 && cols == 5120 && batchSize >= 1 && batchSize <= 32;
+    // Q5_1 capability is advertised only with AVX2/FMA/F16C or NEON. The
+    // row-reuse comparison covers decode and batches through 32; retain Java
+    // outside that measured batch range. BERT does not install this provider.
+    return supports(type) && (type != GgufTensorType.Q5_1 || (batchSize >= 1 && batchSize <= 32));
   }
 
   @Override
@@ -664,6 +824,11 @@ public final class RustGgufBatchedMatrixKernel implements GgufBatchedMatrixKerne
     Objects.requireNonNull(output, "output");
     Objects.requireNonNull(input, "input");
     Objects.requireNonNull(weights, "weights");
+    if (type == GgufTensorType.BF16) {
+      library.bfloat16F32BatchedMatmul(
+          weights, input, output, batchSize, rows, cols, bfloat16Lanes, bfloat16Fused);
+      return;
+    }
     int blockElements = blockElements(type);
     if (batchSize < 1 || rows < 1 || cols < 1 || cols % blockElements != 0) {
       throw new IllegalArgumentException(
@@ -710,6 +875,17 @@ public final class RustGgufBatchedMatrixKernel implements GgufBatchedMatrixKerne
               cols);
       case Q5_1 ->
           library.q5_1F32BatchedMatmul(
+              weights,
+              weightBytes,
+              nativeInput,
+              inputElements,
+              nativeOutput,
+              outputElements,
+              batchSize,
+              rows,
+              cols);
+      case PTQ1_0 ->
+          library.ptq1_0F32BatchedMatmul(
               weights,
               weightBytes,
               nativeInput,
@@ -829,7 +1005,6 @@ public final class RustGgufBatchedMatrixKernel implements GgufBatchedMatrixKerne
     }
     return switch (type) {
       case Q4_0 -> library.supports(NativeKernelCapability.Q4_0_F32_GROUPED_BATCHED_MATMUL);
-      case Q5_0 -> library.supports(NativeKernelCapability.Q5_0_F32_GROUPED_BATCHED_MATMUL);
       case Q8_0 -> library.supports(NativeKernelCapability.Q8_0_F32_GROUPED_BATCHED_MATMUL);
       case Q4_K -> library.supports(NativeKernelCapability.Q4_K_F32_GROUPED_BATCHED_MATMUL);
       case Q5_K -> library.supports(NativeKernelCapability.Q5_K_F32_GROUPED_BATCHED_MATMUL);
@@ -958,6 +1133,7 @@ public final class RustGgufBatchedMatrixKernel implements GgufBatchedMatrixKerne
           case Q4_0 -> 18L;
           case Q5_0 -> 22L;
           case Q5_1 -> 24L;
+          case PTQ1_0 -> 28L;
           case Q8_0 -> 34L;
           case Q4_K -> 144L;
           case Q5_K -> 176L;
@@ -1011,7 +1187,6 @@ public final class RustGgufBatchedMatrixKernel implements GgufBatchedMatrixKerne
   private static NativeKernelCapability groupedCapability(GgufTensorType type) {
     return switch (type) {
       case Q4_0 -> NativeKernelCapability.Q4_0_F32_GROUPED_BATCHED_MATMUL;
-      case Q5_0 -> NativeKernelCapability.Q5_0_F32_GROUPED_BATCHED_MATMUL;
       case Q8_0 -> NativeKernelCapability.Q8_0_F32_GROUPED_BATCHED_MATMUL;
       case Q4_K -> NativeKernelCapability.Q4_K_F32_GROUPED_BATCHED_MATMUL;
       case Q5_K -> NativeKernelCapability.Q5_K_F32_GROUPED_BATCHED_MATMUL;
@@ -1036,6 +1211,7 @@ public final class RustGgufBatchedMatrixKernel implements GgufBatchedMatrixKerne
   private static int blockElements(GgufTensorType type) {
     return switch (type) {
       case Q4_0, Q5_0, Q5_1, Q8_0 -> 32;
+      case PTQ1_0 -> 128;
       case Q4_K, Q5_K, Q6_K -> 256;
       default -> throw new UnsupportedOperationException("unsupported GGUF type " + type);
     };

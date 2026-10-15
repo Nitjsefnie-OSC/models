@@ -1,0 +1,646 @@
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	﻿2026-10-12T05:52:26.8373117Z Current runner version: '2.337.0'
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:26.8398328Z ##[group]Runner Image Provisioner
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:26.8399256Z Hosted Compute Agent
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:26.8399846Z Version: 20261002.596
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:26.8400923Z Commit: c3d12f3313a95f25162a1503be624f3b0617f8c0
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:26.8401762Z Build Date: 2026-10-02T22:28:27Z
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:26.8402460Z Worker ID: {63c366ea-84e7-415d-8e26-b15688ba1513}
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:26.8403255Z Region: northcentralus
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:26.8403879Z Cloud: Azure
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:26.8404489Z ##[endgroup]
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:26.8406110Z ##[group]Operating System
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:26.8406742Z Ubuntu
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:26.8407320Z 24.04.5
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:26.8407852Z LTS
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:26.8408451Z ##[endgroup]
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:26.8409046Z ##[group]Runner Image
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:26.8409652Z Image: ubuntu-24.04
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:26.8410681Z Version: 20261004.327.1
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:26.8412003Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261004.327/images/ubuntu/Ubuntu2404-Readme.md
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:26.8413651Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261004.327
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:26.8414671Z ##[endgroup]
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:26.8416397Z ##[group]GITHUB_TOKEN Permissions
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:26.8419068Z Contents: read
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:26.8419790Z Metadata: read
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:26.8420675Z ##[endgroup]
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:26.8423082Z Secret source: Actions
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:26.8424195Z Cache mode: write
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:26.8425183Z Prepare workflow directory
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:26.8775064Z Prepare all required actions
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:26.8826897Z Getting action download info
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:27.1827597Z Download action repository 'actions/checkout@v5' (SHA:fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09)
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:27.2882010Z Download action repository 'actions/setup-java@v5' (SHA:b6effb05e454b25005698d916606bdc6ffcbf961)
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:27.7622863Z Download action repository 'gradle/actions@v6' (SHA:3f5f9adaf7d9fecd50b5935e54106014257a94e6)
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:28.7160479Z Download action repository 'actions/cache@v5' (SHA:caa296126883cff596d87d8935842f9db880ef25)
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:28.8884468Z Download action repository 'actions/upload-artifact@v7' (SHA:cf430e030ddbb5b0abf93d22962f4752f3646cd9)
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:29.3756312Z Complete job name: HuatuoGPT-o1-7B exact determinism
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:29.4495315Z ##[group]Run actions/checkout@v5
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:29.4495933Z with:
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:29.4496146Z   path: models
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:29.4496387Z   repository: integrallis/models
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:29.4499184Z   token: ***
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:29.4499395Z   ssh-strict: true
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:29.4499600Z   ssh-user: git
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:29.4499825Z   persist-credentials: true
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:29.4500066Z   clean: true
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:29.4500617Z   sparse-checkout-cone-mode: true
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:29.4500909Z   fetch-depth: 1
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:29.4501123Z   fetch-tags: false
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:29.4501335Z   show-progress: true
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:29.4501573Z   lfs: false
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:29.4501761Z   submodules: false
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:29.4501977Z   set-safe-directory: true
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:29.4502232Z   allow-unsafe-pr-checkout: false
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:29.4502847Z ##[endgroup]
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:29.5564871Z Syncing repository: integrallis/models
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:29.5566444Z ##[group]Getting Git version info
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:29.5567072Z Working directory is '/home/runner/work/models/models/models'
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:29.5567695Z [command]/usr/bin/git version
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:29.5636190Z git version 2.55.0
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:29.5657855Z ##[endgroup]
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:29.5672817Z Temporarily overriding HOME='/home/runner/work/_temp/536e2dd1-90f6-4dac-9b5d-202743dd64b5' before making global git config changes
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:29.5673874Z Adding repository directory to the temporary git global config as a safe directory
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:29.5678472Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/models/models/models
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:29.5725701Z ##[group]Initializing the repository
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:29.5730532Z [command]/usr/bin/git init /home/runner/work/models/models/models
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:29.5836642Z hint: Using 'master' as the name for the initial branch. This default branch name
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:29.5837394Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:29.5838005Z hint: to use in all of your new repositories, which will suppress this warning,
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:29.5838855Z hint: call:
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:29.5839212Z hint:
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:29.5839700Z hint: 	git config --global init.defaultBranch <name>
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:29.5840473Z hint:
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:29.5840831Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:29.5841478Z hint: 'development'. The just-created branch can be renamed via this command:
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:29.5842219Z hint:
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:29.5842587Z hint: 	git branch -m <name>
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:29.5842850Z hint:
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:29.5843215Z hint: Disable this message with "git config set advice.defaultBranchName false"
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:29.5843887Z Initialized empty Git repository in /home/runner/work/models/models/models/.git/
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:29.5851943Z [command]/usr/bin/git remote add origin https://github.com/integrallis/models
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:29.5898042Z ##[endgroup]
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:29.5898793Z ##[group]Disabling automatic garbage collection
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:29.5903266Z [command]/usr/bin/git config --local gc.auto 0
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:29.5932865Z ##[endgroup]
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:29.5933583Z ##[group]Setting up auth
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:29.5940954Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:29.5973320Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:29.6302832Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:29.6336063Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:29.6556913Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:29.6591668Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:29.6816412Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:29.6854893Z ##[endgroup]
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:29.6855717Z ##[group]Fetching the repository
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:29.6865797Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +3490dff4b848eb6221b47cbf5a81d247709c05aa:refs/remotes/origin/main
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:31.3324997Z From https://github.com/integrallis/models
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:31.3336075Z  * [new ref]         3490dff4b848eb6221b47cbf5a81d247709c05aa -> origin/main
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:31.3344393Z ##[endgroup]
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:31.3344805Z ##[group]Determining the checkout info
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:31.3345233Z ##[endgroup]
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:31.3345735Z [command]/usr/bin/git sparse-checkout disable
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:31.3385681Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:31.3417674Z ##[group]Checking out the ref
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:31.3424125Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:31.7460176Z Switched to a new branch 'main'
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:31.7463893Z branch 'main' set up to track 'origin/main'.
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:31.7487631Z ##[endgroup]
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:31.7531143Z [command]/usr/bin/git log -1 --format=%H
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:31.7553626Z 3490dff4b848eb6221b47cbf5a81d247709c05aa
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:31.7847155Z ##[group]Run actions/setup-java@v5
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:31.7847665Z with:
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:31.7847867Z   distribution: temurin
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:31.7848097Z   java-version: 25
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:31.7848309Z   java-package: jdk
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:31.7848530Z   check-latest: false
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:31.7848751Z   set-default: true
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:31.7848968Z   verify-signature: false
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:31.7849205Z   server-id: github
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:31.7849423Z   server-username: GITHUB_ACTOR
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:31.7849682Z   server-password: GITHUB_TOKEN
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:31.7849935Z   overwrite-settings: true
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:31.7850177Z   job-status: success
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:31.7853611Z   token: ***
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:31.7853865Z   show-download-progress: false
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:31.7854169Z ##[endgroup]
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:31.9377271Z ##[group]Installed distributions
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:31.9548127Z Resolved Java 25.0.4+1 from tool-cache
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:31.9548735Z Setting Java 25.0.4+1 as the default
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:31.9560573Z Creating toolchains.xml for JDK version 25 from temurin
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:31.9673806Z Writing to /home/runner/.m2/toolchains.xml
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:31.9674336Z 
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:31.9674717Z Java configuration:
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:31.9675139Z   Distribution: temurin
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:31.9675550Z   Version: 25.0.4+1
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:31.9676124Z   Path: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:31.9676655Z 
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:31.9677138Z ##[endgroup]
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:31.9707852Z Creating settings.xml with server-id: github
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:31.9708339Z Writing to /home/runner/.m2/settings.xml
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:31.9709116Z Configured MAVEN_ARGS to include -ntp to suppress Maven transfer progress logs. Set 'show-download-progress: true' to keep the download progress output.
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:31.9885145Z Prepare all required actions
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:31.9932185Z ##[group]Run ./models/.github/actions/ptx-toolchain
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:31.9932532Z with:
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:31.9932752Z   toolchain: nightly-2026-09-17
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:31.9933007Z env:
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:31.9933332Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:31.9933838Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:31.9934237Z   MAVEN_ARGS: -ntp
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:31.9934448Z ##[endgroup]
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:31.9992220Z ##[start-action display=Install pinned Rust nightly for the PTX kernels;id=__self.__run]
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:32.0050961Z ##[group]Run set -euo pipefail
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:32.0051367Z ^[[36;1mset -euo pipefail^[[0m
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:32.0051823Z ^[[36;1mrustup toolchain install "nightly-2026-09-17" --profile minimal --no-self-update^[[0m
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:32.0052366Z ^[[36;1mrustup component add --toolchain "nightly-2026-09-17" \^[[0m
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:32.0052881Z ^[[36;1m  clippy rustfmt rust-src llvm-bitcode-linker llvm-tools^[[0m
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:32.0053385Z ^[[36;1mrustup target add --toolchain "nightly-2026-09-17" nvptx64-nvidia-cuda^[[0m
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:32.0293188Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:32.0293635Z env:
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:32.0294012Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:32.0294627Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:32.0295113Z   MAVEN_ARGS: -ntp
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:32.0295363Z ##[endgroup]
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:32.1459223Z info: syncing channel updates for nightly-2026-09-17-x86_64-unknown-linux-gnu
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:32.4064997Z info: latest update on 2026-09-17 for version 1.100.0-nightly (923c95cdf 2026-09-16)
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:40.9008442Z info: downloading 3 components
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:40.9009090Z 
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:40.9076280Z   nightly-2026-09-17-x86_64-unknown-linux-gnu installed - rustc 1.100.0-nightly (923c95cdf 2026-09-16)
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:40.9076944Z 
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:41.0628665Z info: downloading 5 components
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:45.8132906Z info: downloading component rust-std
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:48.2719971Z ##[end-action id=__self.__run;outcome=success;conclusion=success;duration_ms=16272]
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:48.2926824Z ##[group]Run gradle/actions/setup-gradle@v6
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:48.2927146Z with:
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:48.2927350Z   cache-provider: enhanced
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:48.2927593Z   cache-disabled: false
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:48.2927821Z   cache-read-only: false
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:48.2928051Z   cache-write-only: false
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:48.2928305Z   cache-overwrite-existing: false
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:48.2928568Z   cache-cleanup: on-success
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:48.2928856Z   gradle-home-cache-includes: caches
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	notifications
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:48.2929178Z   add-job-summary: always
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:48.2929432Z   add-job-summary-as-pr-comment: never
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:48.2929710Z   dependency-graph: disabled
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:48.2930012Z   dependency-graph-report-dir: dependency-graph-reports
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:48.2930661Z   dependency-graph-continue-on-failure: true
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:48.2930974Z   build-scan-publish: false
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:48.2931219Z   validate-wrappers: true
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:48.2931525Z   allow-snapshot-wrappers: false
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:48.2931800Z   gradle-home-cache-strict-match: false
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:48.2932084Z   workflow-job-context: null
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:48.2934842Z   github-token: ***
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:48.2935055Z env:
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:48.2935354Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:48.2935861Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:48.2936242Z   MAVEN_ARGS: -ntp
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:48.2936457Z ##[endgroup]
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:50.4446841Z Merged default JDK locations into /home/runner/.m2/toolchains.xml
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:50.4452286Z Enhanced Caching: This build is using the proprietary 'gradle-actions-caching' provider for optimized caching support. See https://github.com/gradle/actions/blob/main/DISTRIBUTION.md for terms of use and opt-out instructions.
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:50.5276036Z ##[group]Restore Gradle state from cache
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:50.6345842Z Gradle User Home cache not found. Will initialize empty.
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:50.6346773Z ##[endgroup]
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:50.7071814Z ##[group]All Gradle Wrapper jars are valid
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:50.7073063Z ✓ Found known Gradle Wrapper JAR files:
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:50.7073817Z   2db75c40782f5e8ba1fc278a5574bab070adccb2d21ca5a6e5ed840888448046 models/gradle/wrapper/gradle-wrapper.jar
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:50.7074703Z ##[endgroup]
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:50.7200619Z Prepare all required actions
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:50.7233502Z ##[group]Run ./models/.github/actions/warm-gradle
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:50.7233816Z with:
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:50.7234028Z   working-directory: models
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:50.7234266Z env:
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:50.7234567Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:50.7235067Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:50.7235457Z   MAVEN_ARGS: -ntp
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:50.7235705Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:50.7236034Z   GRADLE_USER_HOME: /home/runner/.gradle
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:50.7236323Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:50.7236766Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:50.7237259Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:50.7237582Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:50.7237894Z ##[endgroup]
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:50.7241602Z ##[start-action display=Run set -uo pipefail;id=__self_2.__run]
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:50.7258345Z ##[group]Run set -uo pipefail
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:50.7258649Z ^[[36;1mset -uo pipefail^[[0m
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:50.7258897Z ^[[36;1mfor attempt in 1 2 3 4 5; do^[[0m
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:50.7259213Z ^[[36;1m  if ./gradlew --version > /dev/null 2>&1; then^[[0m
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:50.7259605Z ^[[36;1m    echo "Gradle distribution ready (attempt $attempt)."^[[0m
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:50.7259947Z ^[[36;1m    exit 0^[[0m
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:50.7260153Z ^[[36;1m  fi^[[0m
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:50.7260682Z ^[[36;1m  if [ "$attempt" -eq 5 ]; then^[[0m
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:50.7261298Z ^[[36;1m    echo "::error::Could not fetch the Gradle distribution after $attempt attempts."^[[0m
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:50.7261886Z ^[[36;1m    # Run once more without suppressing output so the log carries the real cause.^[[0m
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:50.7262317Z ^[[36;1m    ./gradlew --version^[[0m
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:50.7262565Z ^[[36;1m    exit 1^[[0m
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:50.7262770Z ^[[36;1m  fi^[[0m
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:50.7262977Z ^[[36;1m  delay=$((attempt * 15))^[[0m
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:50.7263400Z ^[[36;1m  echo "Gradle distribution fetch failed (attempt $attempt); retrying in ${delay}s."^[[0m
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:50.7263849Z ^[[36;1m  sleep "$delay"^[[0m
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:50.7264081Z ^[[36;1mdone^[[0m
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:50.7324932Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:50.7325271Z env:
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:50.7325577Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:50.7326065Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:50.7326465Z   MAVEN_ARGS: -ntp
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:50.7326715Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:50.7327026Z   GRADLE_USER_HOME: /home/runner/.gradle
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:50.7327320Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:50.7327774Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:50.7328266Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:50.7328582Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:50.7328845Z ##[endgroup]
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:58.4793550Z Gradle distribution ready (attempt 1).
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:58.4803875Z ##[end-action id=__self_2.__run;outcome=success;conclusion=success;duration_ms=7756]
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:58.4857271Z ##[group]Run actions/cache@v5
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:58.4857550Z with:
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:58.4857802Z   path: ~/.jvllm/models/HuatuoGPT-o1-7B-Q4_K_M.gguf
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:58.4858126Z   key: huatuogpt-o1-7b-q4_k_m-fixture-v1
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:58.4858424Z   enableCrossOsArchive: false
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:58.4858680Z   fail-on-cache-miss: false
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:58.4858922Z   lookup-only: false
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:58.4859134Z   save-always: false
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:58.4859330Z env:
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:58.4859627Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:58.4860131Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:58.4860985Z   MAVEN_ARGS: -ntp
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:58.4861239Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:58.4861552Z   GRADLE_USER_HOME: /home/runner/.gradle
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:58.4861842Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:58.4862342Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:58.4862822Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:58.4863139Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:58.4863406Z ##[endgroup]
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:58.7246402Z Cache not found for input keys: huatuogpt-o1-7b-q4_k_m-fixture-v1
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:58.7334900Z ##[group]Run ./gradlew :backend-java:downloadHuatuoGptO17BQ4KMModel --no-daemon --stacktrace
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:58.7335622Z ^[[36;1m./gradlew :backend-java:downloadHuatuoGptO17BQ4KMModel --no-daemon --stacktrace^[[0m
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:58.7398000Z shell: /usr/bin/bash -e {0}
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:58.7398270Z env:
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:58.7398592Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:58.7399126Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:58.7399532Z   MAVEN_ARGS: -ntp
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:58.7399783Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:58.7400103Z   GRADLE_USER_HOME: /home/runner/.gradle
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:58.7400678Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:58.7401149Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:58.7401849Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:58.7402217Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:58.7402497Z ##[endgroup]
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:59.1509913Z WARNING: A restricted method in java.lang.System has been called
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:59.1512614Z WARNING: java.lang.System::load has been called by net.rubygrapefruit.platform.internal.NativeLibraryLoader in an unnamed module (file:/home/runner/.gradle/wrapper/dists/gradle-9.4.1-all/eckclv9s5vi9exbmnyvpg2a3h/gradle-9.4.1/lib/native-platform-0.22-milestone-29.jar)
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:59.1515199Z WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:59.1516557Z WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:59.1517258Z 
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:52:59.4936095Z To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/9.4.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:53:01.0896580Z Daemon will be stopped at the end of the build 
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:54:28.9001276Z > Task :models-api:compileJava
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:54:34.0896430Z > Task :backend-java:compileJava
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:54:34.0919763Z > Task :writeReleaseDependencyManifest
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:54:34.0920882Z > Task :backend-java:processResources
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:54:34.0922899Z > Task :backend-java:classes
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:54:34.7896168Z > Task :models-runtime:compileJava
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:54:43.0921628Z > Task :backend-java:compileTestJava
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:54:43.0951486Z > Task :backend-java:processTestResources
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:54:43.0967543Z > Task :backend-java:testClasses
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:54:43.0970537Z > Task :models-api:processResources
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:54:43.0993450Z > Task :models-api:classes
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:54:43.0994205Z > Task :models-api:jar
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:54:43.0994830Z > Task :models-runtime:processResources
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:54:43.0995556Z > Task :models-runtime:classes
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:54:43.1896264Z > Task :models-runtime:jar
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:55:13.1896456Z > Task :backend-java:downloadHuatuoGptO17BQ4KMModel
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:55:55.8930878Z /home/runner/.jvllm/models/HuatuoGPT-o1-7B-Q4_K_M.gguf
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:55:55.8935505Z gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/__run-1791784385350.json
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:55:55.8961858Z 
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:55:55.8962261Z BUILD SUCCESSFUL in 2m 57s
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:55:55.8962925Z 12 actionable tasks: 12 executed
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:55:55.9538020Z Consider enabling configuration cache to speed up this build: https://docs.gradle.org/9.4.1/userguide/configuration_cache_enabling.html
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:55:56.0699911Z ##[group]Run scripts/run-purejava-determinism-matrix.sh "$HOME/.jvllm/models/HuatuoGPT-o1-7B-Q4_K_M.gguf" huatuogpt-o1-7b-q4_k_m
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:55:56.0701227Z ^[[36;1mscripts/run-purejava-determinism-matrix.sh "$HOME/.jvllm/models/HuatuoGPT-o1-7B-Q4_K_M.gguf" huatuogpt-o1-7b-q4_k_m^[[0m
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:55:56.0764091Z shell: /usr/bin/bash -e {0}
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:55:56.0764343Z env:
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:55:56.0764666Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:55:56.0765190Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:55:56.0765567Z   MAVEN_ARGS: -ntp
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:55:56.0765810Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:55:56.0766121Z   GRADLE_USER_HOME: /home/runner/.gradle
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:55:56.0766414Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:55:56.0766862Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:55:56.0767385Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:55:56.0767702Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:55:56.0768106Z   AUDIT_PROMPT: Question: Which organ pumps blood through the human body?
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	Answer:
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:55:56.0768500Z   AUDIT_TOKENS: 4
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:55:56.0768896Z   AUDIT_ITERATIONS: 3
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:55:56.0769105Z   AUDIT_CONTEXT: 128
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:55:56.0769306Z ##[endgroup]
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:55:56.5315844Z WARNING: A restricted method in java.lang.System has been called
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:55:56.5318605Z WARNING: java.lang.System::load has been called by net.rubygrapefruit.platform.internal.NativeLibraryLoader in an unnamed module (file:/home/runner/.gradle/wrapper/dists/gradle-9.4.1-all/eckclv9s5vi9exbmnyvpg2a3h/gradle-9.4.1/lib/native-platform-0.22-milestone-29.jar)
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:55:56.5321697Z WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:55:56.5323165Z WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:55:56.5324180Z 
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:55:56.7662428Z To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/9.4.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:55:57.7646871Z Daemon will be stopped at the end of the build 
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:56:06.2671619Z > Task :models-api:compileJava UP-TO-DATE
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:56:06.3663830Z > Task :backend-java:compileJava UP-TO-DATE
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:56:07.4653173Z > Task :backend-cuda:compileJava
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:56:07.4662068Z > Task :writeReleaseDependencyManifest UP-TO-DATE
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:56:07.4663011Z > Task :backend-cuda:verifyRustToolchain
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:56:09.4631687Z 
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:56:09.4632968Z > Task :backend-cuda:compilePtx
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:56:09.4634024Z     Updating crates.io index
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:56:09.4634916Z  Downloading crates ...
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:56:09.4635771Z   Downloaded cfg-if v1.0.4
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:56:09.4636703Z   Downloaded foldhash v0.2.0
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:56:09.4637565Z   Downloaded hashbrown v0.17.1
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:56:09.4638344Z   Downloaded rustc-literal-escaper v0.0.8
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:56:09.4639176Z   Downloaded getopts v0.2.24
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:56:09.4639917Z   Downloaded rustc-demangle v0.1.28
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:56:09.4640901Z   Downloaded libc v0.2.189
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:56:09.4643110Z    Compiling compiler_builtins v0.1.160 (/home/runner/.rustup/toolchains/nightly-2026-09-17-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/compiler-builtins/compiler-builtins)
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:56:09.4645280Z    Compiling core v0.0.0 (/home/runner/.rustup/toolchains/nightly-2026-09-17-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core)
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:56:21.9633399Z    Compiling models-cuda-kernels v0.3.46 (/home/runner/work/models/models/models/backend-cuda/src/main/rust/models-cuda-kernels)
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:56:27.6633792Z     Finished `release` profile [optimized] target(s) in 20.17s
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:56:27.6635269Z 
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:56:27.6635943Z > Task :backend-cuda:preparePtxResources
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:56:27.7641470Z > Task :backend-cuda:processResources
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:56:27.7671128Z > Task :backend-cuda:classes
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:56:27.7674818Z > Task :backend-cuda:jar
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:56:27.7676603Z > Task :backend-java:processResources UP-TO-DATE
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:56:27.7690660Z > Task :backend-java:classes UP-TO-DATE
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:56:27.9648199Z > Task :backend-java:jar
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:56:27.9669749Z > Task :models-api:processResources UP-TO-DATE
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:56:27.9677236Z > Task :models-api:classes UP-TO-DATE
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:56:27.9677887Z > Task :models-api:jar UP-TO-DATE
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:56:27.9681075Z > Task :models-runtime:compileJava UP-TO-DATE
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:56:29.7640575Z > Task :models-router:compileJava
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:56:33.7631341Z > Task :models-bench:compileJava
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:56:33.7632173Z > Task :models-bench:processResources
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:56:33.7632953Z > Task :models-bench:classes
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:56:34.0641557Z > Task :models-bench:jar
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:56:34.1632185Z > Task :models-router:processResources
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:56:34.1646021Z > Task :models-router:classes
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:56:34.1646771Z > Task :models-router:jar
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:56:34.1647601Z > Task :models-runtime:processResources UP-TO-DATE
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:56:34.1648686Z > Task :models-runtime:classes UP-TO-DATE
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:56:34.1649222Z > Task :models-runtime:jar UP-TO-DATE
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:56:35.0647207Z > Task :models-bench:startScripts
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:56:35.1640992Z > Task :models-bench:installDist
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:56:35.1664319Z gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/__run_2-1791784559707.json
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:56:35.1665709Z 
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:56:35.1666077Z BUILD SUCCESSFUL in 38s
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:56:35.1666734Z 24 actionable tasks: 15 executed, 9 up-to-date
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:56:35.2166295Z Consider enabling configuration cache to speed up this build: https://docs.gradle.org/9.4.1/userguide/configuration_cache_enabling.html
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:56:35.3112083Z auditing panama-default with JAVA_OPTS=''
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:56:35.3685628Z WARNING: Using incubator modules: jdk.incubator.vector
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:56:35.9152222Z Oct 12, 2026 5:56:35 AM com.integrallis.vectors.core.PanamaVectorUtilSupportProvider create
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:56:35.9153774Z INFO: vectors-core: Using Panama Vector API SIMD provider (vector bits: 256)
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:56:35.9191746Z Oct 12, 2026 5:56:35 AM com.integrallis.vectors.core.VectorizationProvider logActiveToggles
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:56:35.9196104Z INFO: vectors-core: provider=PanamaVectorUtilSupport panama=true maxBits=256 preferredBits=256 fastVectorFMA=true fastScalarFMA=true sve=false ggufParallel=true ggufParallelThreshold=1048576 ggufExecutor=persistent ggufThreads=4 ggufChunksPerThread=2 mappedKQuantLongOffsets=auto(q4=true,q5=false,q6=false) q4ShortPairwiseSupported=true q4UnsignedPairwiseSupported=true toggles=[(defaults — no -Dvectors.* overrides)]
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:57:54.7198748Z trial 1/3: tokens=[576,4746,374,279] min-margin=0.501605988 hash=0b0d83645ff602e7513396640fbd9211c8a0aad01742ae9071fd5d5d746852df
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:57:54.7201153Z trial 2/3: tokens=[576,4746,374,279] min-margin=0.529335022 hash=5cc9e10949f60568506d8f0138193c3bef0e0712a4812a90f9b6fe54f1b27662
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:57:54.7249056Z ##[error]Exception in thread "main" java.lang.IllegalStateException: exact logits were not deterministic; see /home/runner/work/models/models/models/build/reports/determinism/huatuogpt-o1-7b-q4_k_m/panama-default.json
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:57:54.7261826Z trial 3/3: tokens=[576,4746,374,279] min-margin=0.529335022 hash=5cc9e10949f60568506d8f0138193c3bef0e0712a4812a90f9b6fe54f1b27662
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:57:54.7263264Z 	at com.integrallis.models.bench.DeterminismAuditCli.run(DeterminismAuditCli.java:80)
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:57:54.7264522Z 	at com.integrallis.models.bench.InferenceBenchmarkCli.main(InferenceBenchmarkCli.java:99)
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:57:54.7266788Z deterministic=false provider=PanamaVectorUtilSupport panama=true report=/home/runner/work/models/models/models/build/reports/determinism/huatuogpt-o1-7b-q4_k_m/panama-default.json
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:57:54.7578394Z ##[error]Process completed with exit code 1.
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:57:54.7643190Z ##[group]Run actions/upload-artifact@v7
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:57:54.7643502Z with:
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:57:54.7643713Z   name: huatuogpt-o1-7b-determinism
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:57:54.7644032Z   path: models/build/reports/determinism/
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:57:54.7644307Z   retention-days: 30
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:57:54.7644526Z   if-no-files-found: warn
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:57:54.7644750Z   compression-level: 6
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:57:54.7644959Z   overwrite: false
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:57:54.7645170Z   include-hidden-files: false
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:57:54.7645398Z   archive: true
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:57:54.7645578Z env:
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:57:54.7645860Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:57:54.7646342Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:57:54.7646725Z   MAVEN_ARGS: -ntp
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:57:54.7646964Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:57:54.7647267Z   GRADLE_USER_HOME: /home/runner/.gradle
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:57:54.7647581Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:57:54.7648019Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:57:54.7648689Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:57:54.7649023Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:57:54.7649281Z ##[endgroup]
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:57:54.9105948Z With the provided path, there will be 1 file uploaded
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:57:54.9110914Z Artifact name is valid!
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:57:54.9111494Z Root directory input is valid!
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:57:55.1565089Z Uploading artifact: huatuogpt-o1-7b-determinism.zip
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:57:55.1624608Z Beginning upload of artifact content to blob storage
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:57:55.2982571Z Uploaded bytes 3424
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:57:55.3284463Z Finished uploading artifact content to blob storage!
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:57:55.3285551Z SHA256 digest of uploaded artifact is 190085889d7a7a4b383e112134ba8033d10e02be8b0525ec05cc6155b7626a85
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:57:55.3286568Z Finalizing artifact upload
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:57:55.5915563Z Artifact huatuogpt-o1-7b-determinism successfully finalized. Artifact ID 11729157642
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:57:55.5916561Z Artifact huatuogpt-o1-7b-determinism has been successfully uploaded! Final size is 3424 bytes. Artifact ID is 11729157642
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:57:55.5919268Z Artifact download URL: https://github.com/integrallis/models/actions/runs/38209858410/artifacts/11729157642
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:57:55.6139818Z Post job cleanup.
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:57:55.8787251Z In post-action step
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:57:55.8798010Z Enhanced Caching: This build is using the proprietary 'gradle-actions-caching' provider for optimized caching support. See https://github.com/gradle/actions/blob/main/DISTRIBUTION.md for terms of use and opt-out instructions.
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:57:55.9590123Z ##[group]Stopping Gradle daemons
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:57:55.9591859Z Stopping Gradle daemons for /home/runner/.gradle/wrapper/dists/gradle-9.4.1-all/eckclv9s5vi9exbmnyvpg2a3h/gradle-9.4.1
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:57:55.9612135Z [command]/home/runner/.gradle/wrapper/dists/gradle-9.4.1-all/eckclv9s5vi9exbmnyvpg2a3h/gradle-9.4.1/bin/gradle --stop
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:57:56.5380807Z No Gradle daemons are running.
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:57:56.5463073Z ##[endgroup]
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:57:56.5464476Z ##[group]Performing cache cleanup
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:57:58.3014099Z Removed 1096 files excluded from the cache (e.g. locks)
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:57:58.3014639Z Removing Gradle User Home content that was not used during the build
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:57:58.7815668Z Active Gradle versions: 9.4.1
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:57:58.7827619Z ##[endgroup]
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:57:58.7828763Z ##[group]Caching Gradle state
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:57:58.8076715Z [command]/usr/bin/tar --posix -cf cache.tzst --exclude cache.tzst -P -C /home/runner/work/models/models --files-from manifest.txt --use-compress-program zstdmt
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:57:58.8119894Z [command]/usr/bin/tar --posix -cf cache.tzst --exclude cache.tzst -P -C /home/runner/work/models/models --files-from manifest.txt --use-compress-program zstdmt
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:57:59.4617172Z [command]/usr/bin/tar --posix -cf cache.tzst --exclude cache.tzst -P -C /home/runner/work/models/models --files-from manifest.txt --use-compress-program zstdmt
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:57:59.5931119Z [command]/usr/bin/tar --posix -cf cache.tzst --exclude cache.tzst -P -C /home/runner/work/models/models --files-from manifest.txt --use-compress-program zstdmt
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:57:59.5994844Z [command]/usr/bin/tar --posix -cf cache.tzst --exclude cache.tzst -P -C /home/runner/work/models/models --files-from manifest.txt --use-compress-program zstdmt
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:57:59.8850978Z Sent 106172 of 106172 (100.0%), 0.5 MBs/sec
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:57:59.9083053Z Sent 162902 of 162902 (100.0%), 0.8 MBs/sec
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:00.0570967Z Sent 653974 of 653974 (100.0%), 3.4 MBs/sec
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:00.0597857Z Saved cache entry with key gradle-instrumented-jars-v2-418bbe590805cb8cea9ea88ae35eeced from /home/runner/.gradle/caches/jars-*/*/ in 651ms
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:00.0746531Z Saved cache entry with key gradle-groovy-dsl-v2-4ecde9d23d2c420173c679cbaba504ea from /home/runner/.gradle/caches/*/groovy-dsl/*/ in 541ms
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:00.2169753Z Saved cache entry with key gradle-kotlin-dsl-v2-7b7eb0678dab8ab7225997ef111adbcb from /home/runner/.gradle/caches/*/kotlin-dsl/accessors/*/,/home/runner/.gradle/caches/*/kotlin-dsl/scripts/*/ in 725ms
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:00.5469174Z [command]/usr/bin/tar --posix -cf cache.tzst --exclude cache.tzst -P -C /home/runner/work/models/models --files-from manifest.txt --use-compress-program zstdmt
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:00.6491148Z Sent 41895866 of 41895866 (100.0%), 45.4 MBs/sec
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:00.8005282Z Saved cache entry with key gradle-generated-gradle-jars-v2-8e79c31f3eb4e570a88142dd102a0a2f from /home/runner/.gradle/caches/9.4.1/generated-gradle-jars/gradle-api-9.4.1.jar in 1965ms
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:00.9412038Z [command]/usr/bin/tar --posix -cf cache.tzst --exclude cache.tzst -P -C /home/runner/work/models/models --files-from manifest.txt --use-compress-program zstdmt
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:02.1125862Z Sent 75300864 of 81970816 (91.9%), 71.8 MBs/sec
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:02.5063033Z Sent 43640312 of 43640312 (100.0%), 50.5 MBs/sec
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:02.5083962Z Sent 81970816 of 81970816 (100.0%), 56.0 MBs/sec
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:02.6388315Z Saved cache entry with key gradle-dependencies-v2-89512651ce46fe9d8015539adf09782f from /home/runner/.gradle/caches/modules-*/files-*/*/*/*/*/ in 3251ms
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:02.7688849Z Saved cache entry with key gradle-transforms-v2-3e4dcd0a2715a8416a811c6728ef617f from /home/runner/.gradle/caches/transforms-4/*/,/home/runner/.gradle/caches/*/transforms/*/ in 2650ms
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:03.1510746Z Sent 0 of 186405953 (0.0%), 0.0 MBs/sec
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:03.7257062Z Sent 186405953 of 186405953 (100.0%), 106.1 MBs/sec
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:03.8663082Z Saved cache entry with key gradle-wrapper-zips-v2-5938b372de8cf5a99f7f8dc48871e45e from /home/runner/.gradle/wrapper/dists/gradle-9.4.1-all/eckclv9s5vi9exbmnyvpg2a3h in 5075ms
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:05.9325138Z [command]/usr/bin/tar --posix -cf cache.tzst --exclude cache.tzst -P -C /home/runner/work/models/models --files-from manifest.txt --use-compress-program zstdmt
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.3662864Z Sent 1552431 of 1552431 (100.0%), 6.0 MBs/sec
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4852382Z Saved cache entry with key gradle-home-v2|Linux-X64|huatuo-determinism[e63b5badcb9ecf62ef6329751cbd0758]-3490dff4b848eb6221b47cbf5a81d247709c05aa from /home/runner/.gradle/caches,/home/runner/.gradle/notifications,/home/runner/.gradle/.setup-gradle in 565ms
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4855141Z ##[endgroup]
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4862680Z ##[group]Generating Job Summary
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4873244Z 
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4873356Z 
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4873578Z <table>
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4874032Z     <tr>
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4874473Z         <th>Gradle Root Project</th>
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4875052Z         <th>Requested Tasks</th>
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4875593Z         <th>Gradle Version</th>
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4876111Z         <th>Build Outcome</th>
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4876883Z         <th>Build&nbsp;Scan®</th>
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4877399Z     </tr>
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4877768Z     <tr>
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4878151Z         <td>models</td>
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4878767Z         <td>:backend-java:downloadHuatuoGptO17BQ4KMModel</td>
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4879565Z         <td align='center'>9.4.1 :information_source:</td>
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4880453Z         <td align='center'>:white_check_mark:</td>
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4881991Z         <td><a href="https://scans.gradle.com" rel="nofollow" target="_blank"><img src="https://img.shields.io/badge/Not%20published-lightgrey" alt="Build Scan not published" /></a></td>
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4883383Z     </tr>
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4883756Z     <tr>
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4884141Z         <td>models</td>
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4884633Z         <td>:models-bench:installDist</td>
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4885304Z         <td align='center'>9.4.1 :information_source:</td>
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4885990Z         <td align='center'>:white_check_mark:</td>
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4887481Z         <td><a href="https://scans.gradle.com" rel="nofollow" target="_blank"><img src="https://img.shields.io/badge/Not%20published-lightgrey" alt="Build Scan not published" /></a></td>
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4889129Z     </tr>
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4889498Z </table>
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4889716Z 
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4891735Z <p>:information_source: Gradle version is out of date — consider upgrading. See <a href="https://docs.gradle.org/current/userguide/feature_lifecycle.html#eol_support">Gradle release lifecycle</a></p>
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4893146Z 
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4893335Z ============================
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4893993Z <h4>Gradle State Caching - ⚡ Enhanced</h4>
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4894389Z 
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4896258Z **[Enhanced Caching](https://github.com/gradle/actions/blob/main/docs/setup-gradle.md#enhanced-caching)** uses the proprietary `gradle-actions-caching` provider. See [DISTRIBUTION.md](https://github.com/gradle/actions/blob/main/DISTRIBUTION.md) for terms of use and opt-out instructions.
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4898268Z 
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4898435Z <details>
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4899116Z <summary>Entries: 0 restored (0Mb), 8 saved (340Mb) - Expand for more details</summary>
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4900067Z 
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4902031Z [Cache was enabled](https://github.com/gradle/actions/blob/main/docs/setup-gradle.md#caching-build-state-between-jobs) — Gradle User Home was restored from the cache and saved for use by subsequent jobs.
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4903847Z 
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4904908Z [Cache cleanup](https://github.com/gradle/actions/blob/main/docs/setup-gradle.md#configuring-cache-cleanup) purged stale files from Gradle User Home before saving.
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4906116Z 
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4906292Z <table>
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4906896Z     <tr><td></td><th>Count</th><th>Total Size (Mb)</th><th>Total Time (ms)</th></tr>
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4907667Z     <tr><td>Entries Restored</td>
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4908187Z         <td>0</td>
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4908603Z         <td>0</td>
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4909011Z         <td>0</td>
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4909418Z     </tr>
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4909821Z     <tr><td>Entries Saved</td>
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4910643Z         <td>8</td>
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4911080Z         <td>340</td>
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4911509Z         <td>15423</td>
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4911935Z     </tr>
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4912308Z </table>
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4912521Z 
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4912684Z <pre>
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4913096Z Entry: Gradle User Home
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4914235Z     Requested Key : gradle-home-v2|Linux-X64|huatuo-determinism[e63b5badcb9ecf62ef6329751cbd0758]-3490dff4b848eb6221b47cbf5a81d247709c05aa
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4915424Z     Restored  Key : 
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4915853Z               Size: 
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4916268Z               Time: 
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4916755Z               (Entry not restored: no match found)
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4917980Z     Saved     Key : gradle-home-v2|Linux-X64|huatuo-determinism[e63b5badcb9ecf62ef6329751cbd0758]-3490dff4b848eb6221b47cbf5a81d247709c05aa
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4919229Z               Size: 1 MB (1552431 B)
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4919763Z               Time: 565 ms
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4920418Z               (Entry saved)
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4920891Z ---
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4921459Z Entry: caches/9.4.1/generated-gradle-jars/gradle-api-9.4.1.jar
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4922160Z     Requested Key : 
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4922603Z     Restored  Key : 
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4923032Z               Size: 
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4923445Z               Time: 
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4924091Z               (Entry not restored: not requested)
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4925050Z     Saved     Key : gradle-generated-gradle-jars-v2-8e79c31f3eb4e570a88142dd102a0a2f
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4925936Z               Size: 40 MB (41895866 B)
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4926471Z               Time: 1965 ms
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4926949Z               (Entry saved)
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4927392Z ---
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4927950Z Entry: wrapper/dists/gradle-9.4.1-all/eckclv9s5vi9exbmnyvpg2a3h
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4928661Z     Requested Key : 
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4929101Z     Restored  Key : 
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4929528Z               Size: 
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4929948Z               Time: 
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4931129Z               (Entry not restored: not requested)
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4931958Z     Saved     Key : gradle-wrapper-zips-v2-5938b372de8cf5a99f7f8dc48871e45e
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4932743Z               Size: 178 MB (186405953 B)
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4933292Z               Time: 5075 ms
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4933790Z               (Entry saved)
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4934243Z ---
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4934627Z Entry: dependencies
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4935077Z     Requested Key : 
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4935522Z     Restored  Key : 
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4935945Z               Size: 
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4936372Z               Time: 
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4936852Z               (Entry not restored: not requested)
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4937667Z     Saved     Key : gradle-dependencies-v2-89512651ce46fe9d8015539adf09782f
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4938445Z               Size: 78 MB (81970816 B)
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4939020Z               Time: 3251 ms
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4939505Z               (Entry saved)
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4939954Z ---
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4940556Z Entry: instrumented-jars
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4941052Z     Requested Key : 
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4941488Z     Restored  Key : 
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4941909Z               Size: 
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4942488Z               Time: 
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4942978Z               (Entry not restored: not requested)
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4943835Z     Saved     Key : gradle-instrumented-jars-v2-418bbe590805cb8cea9ea88ae35eeced
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4944665Z               Size: 0 MB (106172 B)
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4945189Z               Time: 651 ms
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4945662Z               (Entry saved)
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4946107Z ---
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4946486Z Entry: kotlin-dsl
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4946922Z     Requested Key : 
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4947353Z     Restored  Key : 
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4947777Z               Size: 
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4948195Z               Time: 
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4948670Z               (Entry not restored: not requested)
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4949480Z     Saved     Key : gradle-kotlin-dsl-v2-7b7eb0678dab8ab7225997ef111adbcb
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4950422Z               Size: 1 MB (653974 B)
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4950950Z               Time: 725 ms
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4951429Z               (Entry saved)
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4951880Z ---
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4952259Z Entry: groovy-dsl
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4952689Z     Requested Key : 
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4953127Z     Restored  Key : 
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4953552Z               Size: 
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4953972Z               Time: 
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4954444Z               (Entry not restored: not requested)
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4955242Z     Saved     Key : gradle-groovy-dsl-v2-4ecde9d23d2c420173c679cbaba504ea
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4955990Z               Size: 0 MB (162902 B)
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4956506Z               Time: 541 ms
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4956978Z               (Entry saved)
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4957426Z ---
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4957797Z Entry: transforms
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4958221Z     Requested Key : 
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4958659Z     Restored  Key : 
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4959090Z               Size: 
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4959498Z               Time: 
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4959967Z               (Entry not restored: not requested)
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4961055Z     Saved     Key : gradle-transforms-v2-3e4dcd0a2715a8416a811c6728ef617f
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4961806Z               Size: 42 MB (43640312 B)
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4962335Z               Time: 2650 ms
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4962811Z               (Entry saved)
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4963258Z </pre>
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4963628Z </details>
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4963854Z 
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4964371Z ##[endgroup]
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4979753Z ##[notice]Gradle 9.4.1 is out of date: consider updating to the latest Gradle version. See https://docs.gradle.org/current/userguide/feature_lifecycle.html#eol_support
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.4982353Z Completed post-action step
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.5141454Z Post job cleanup.
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.6674722Z Post job cleanup.
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.7761101Z [command]/usr/bin/git version
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.7802899Z git version 2.55.0
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.7844855Z Temporarily overriding HOME='/home/runner/work/_temp/8ea7d723-69b6-4955-be20-26db70abebe5' before making global git config changes
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.7846501Z Adding repository directory to the temporary git global config as a safe directory
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.7850662Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/models/models/models
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.7891923Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.7931090Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.8187444Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.8217383Z http.https://github.com/.extraheader
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.8229317Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.8265748Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.8522356Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.8553671Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+HuatuoGPT-o1-7B exact determinism	UNKNOWN STEP	2026-10-12T05:58:06.8965330Z Cleaning up orphan processes

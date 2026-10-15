@@ -1,0 +1,766 @@
+{
+  "architecture": "x86",
+  "model": "qwen-bf16",
+  "pairs": 10,
+  "fixtureExitCodes": [
+    {
+      "baseline": 1,
+      "candidate": 0
+    },
+    {
+      "baseline": 1,
+      "candidate": 0
+    }
+  ],
+  "baselineNumericDifferences": [
+    {
+      "pair": 0,
+      "id": "easy-intent-00",
+      "repeat": -4,
+      "fields": [
+        "fullLogitSha256"
+      ]
+    },
+    {
+      "pair": 0,
+      "id": "easy-intent-00",
+      "repeat": -3,
+      "fields": [
+        "fullLogitSha256"
+      ]
+    },
+    {
+      "pair": 0,
+      "id": "snips-AddToPlaylist-0",
+      "repeat": -2,
+      "fields": [
+        "fullLogitSha256"
+      ]
+    },
+    {
+      "pair": 0,
+      "id": "easy-intent-01",
+      "repeat": -1,
+      "fields": [
+        "fullLogitSha256"
+      ]
+    },
+    {
+      "pair": 0,
+      "id": "easy-intent-00",
+      "repeat": 0,
+      "fields": [
+        "fullLogitSha256"
+      ]
+    },
+    {
+      "pair": 0,
+      "id": "snips-AddToPlaylist-0",
+      "repeat": 1,
+      "fields": [
+        "fullLogitSha256"
+      ]
+    },
+    {
+      "pair": 0,
+      "id": "easy-intent-01",
+      "repeat": 2,
+      "fields": [
+        "fullLogitSha256"
+      ]
+    },
+    {
+      "pair": 1,
+      "id": "easy-intent-00",
+      "repeat": -4,
+      "fields": [
+        "fullLogitSha256"
+      ]
+    },
+    {
+      "pair": 1,
+      "id": "easy-intent-00",
+      "repeat": -3,
+      "fields": [
+        "fullLogitSha256"
+      ]
+    },
+    {
+      "pair": 1,
+      "id": "snips-AddToPlaylist-0",
+      "repeat": -2,
+      "fields": [
+        "fullLogitSha256"
+      ]
+    },
+    {
+      "pair": 1,
+      "id": "easy-intent-01",
+      "repeat": -1,
+      "fields": [
+        "fullLogitSha256"
+      ]
+    },
+    {
+      "pair": 1,
+      "id": "snips-AddToPlaylist-1",
+      "repeat": 0,
+      "fields": [
+        "fullLogitSha256"
+      ]
+    },
+    {
+      "pair": 1,
+      "id": "easy-intent-02",
+      "repeat": 1,
+      "fields": [
+        "fullLogitSha256"
+      ]
+    },
+    {
+      "pair": 1,
+      "id": "snips-AddToPlaylist-2",
+      "repeat": 2,
+      "fields": [
+        "fullLogitSha256"
+      ]
+    },
+    {
+      "pair": 2,
+      "id": "easy-intent-00",
+      "repeat": -4,
+      "fields": [
+        "fullLogitSha256"
+      ]
+    },
+    {
+      "pair": 2,
+      "id": "easy-intent-00",
+      "repeat": -3,
+      "fields": [
+        "fullLogitSha256"
+      ]
+    },
+    {
+      "pair": 2,
+      "id": "snips-AddToPlaylist-0",
+      "repeat": -2,
+      "fields": [
+        "fullLogitSha256"
+      ]
+    },
+    {
+      "pair": 2,
+      "id": "easy-intent-01",
+      "repeat": -1,
+      "fields": [
+        "fullLogitSha256"
+      ]
+    },
+    {
+      "pair": 2,
+      "id": "easy-intent-03",
+      "repeat": 0,
+      "fields": [
+        "fullLogitSha256"
+      ]
+    },
+    {
+      "pair": 2,
+      "id": "snips-AddToPlaylist-3",
+      "repeat": 1,
+      "fields": [
+        "fullLogitSha256"
+      ]
+    },
+    {
+      "pair": 2,
+      "id": "easy-intent-04",
+      "repeat": 2,
+      "fields": [
+        "fullLogitSha256"
+      ]
+    },
+    {
+      "pair": 3,
+      "id": "easy-intent-00",
+      "repeat": -4,
+      "fields": [
+        "fullLogitSha256"
+      ]
+    },
+    {
+      "pair": 3,
+      "id": "easy-intent-00",
+      "repeat": -3,
+      "fields": [
+        "fullLogitSha256"
+      ]
+    },
+    {
+      "pair": 3,
+      "id": "snips-AddToPlaylist-0",
+      "repeat": -2,
+      "fields": [
+        "fullLogitSha256"
+      ]
+    },
+    {
+      "pair": 3,
+      "id": "easy-intent-01",
+      "repeat": -1,
+      "fields": [
+        "fullLogitSha256"
+      ]
+    },
+    {
+      "pair": 3,
+      "id": "snips-BookRestaurant-0",
+      "repeat": 0,
+      "fields": [
+        "fullLogitSha256"
+      ]
+    },
+    {
+      "pair": 3,
+      "id": "easy-intent-05",
+      "repeat": 1,
+      "fields": [
+        "fullLogitSha256"
+      ]
+    },
+    {
+      "pair": 3,
+      "id": "snips-BookRestaurant-1",
+      "repeat": 2,
+      "fields": [
+        "fullLogitSha256"
+      ]
+    },
+    {
+      "pair": 4,
+      "id": "easy-intent-00",
+      "repeat": -4,
+      "fields": [
+        "fullLogitSha256"
+      ]
+    },
+    {
+      "pair": 4,
+      "id": "easy-intent-00",
+      "repeat": -3,
+      "fields": [
+        "fullLogitSha256"
+      ]
+    },
+    {
+      "pair": 4,
+      "id": "snips-AddToPlaylist-0",
+      "repeat": -2,
+      "fields": [
+        "fullLogitSha256"
+      ]
+    },
+    {
+      "pair": 4,
+      "id": "easy-intent-01",
+      "repeat": -1,
+      "fields": [
+        "fullLogitSha256"
+      ]
+    },
+    {
+      "pair": 4,
+      "id": "easy-intent-06",
+      "repeat": 0,
+      "fields": [
+        "fullLogitSha256"
+      ]
+    },
+    {
+      "pair": 4,
+      "id": "snips-BookRestaurant-2",
+      "repeat": 1,
+      "fields": [
+        "fullLogitSha256"
+      ]
+    },
+    {
+      "pair": 4,
+      "id": "easy-intent-07",
+      "repeat": 2,
+      "fields": [
+        "fullLogitSha256"
+      ]
+    },
+    {
+      "pair": 5,
+      "id": "easy-intent-00",
+      "repeat": -4,
+      "fields": [
+        "fullLogitSha256"
+      ]
+    },
+    {
+      "pair": 5,
+      "id": "easy-intent-00",
+      "repeat": -3,
+      "fields": [
+        "fullLogitSha256"
+      ]
+    },
+    {
+      "pair": 5,
+      "id": "snips-AddToPlaylist-0",
+      "repeat": -2,
+      "fields": [
+        "fullLogitSha256"
+      ]
+    },
+    {
+      "pair": 5,
+      "id": "easy-intent-01",
+      "repeat": -1,
+      "fields": [
+        "fullLogitSha256"
+      ]
+    },
+    {
+      "pair": 5,
+      "id": "snips-BookRestaurant-3",
+      "repeat": 0,
+      "fields": [
+        "fullLogitSha256"
+      ]
+    },
+    {
+      "pair": 5,
+      "id": "easy-intent-08",
+      "repeat": 1,
+      "fields": [
+        "fullLogitSha256"
+      ]
+    },
+    {
+      "pair": 5,
+      "id": "snips-GetWeather-0",
+      "repeat": 2,
+      "fields": [
+        "fullLogitSha256"
+      ]
+    },
+    {
+      "pair": 6,
+      "id": "easy-intent-00",
+      "repeat": -4,
+      "fields": [
+        "fullLogitSha256"
+      ]
+    },
+    {
+      "pair": 6,
+      "id": "easy-intent-00",
+      "repeat": -3,
+      "fields": [
+        "fullLogitSha256"
+      ]
+    },
+    {
+      "pair": 6,
+      "id": "snips-AddToPlaylist-0",
+      "repeat": -2,
+      "fields": [
+        "fullLogitSha256"
+      ]
+    },
+    {
+      "pair": 6,
+      "id": "easy-intent-01",
+      "repeat": -1,
+      "fields": [
+        "fullLogitSha256"
+      ]
+    },
+    {
+      "pair": 6,
+      "id": "easy-intent-09",
+      "repeat": 0,
+      "fields": [
+        "fullLogitSha256"
+      ]
+    },
+    {
+      "pair": 6,
+      "id": "snips-GetWeather-1",
+      "repeat": 1,
+      "fields": [
+        "fullLogitSha256"
+      ]
+    },
+    {
+      "pair": 6,
+      "id": "easy-intent-10",
+      "repeat": 2,
+      "fields": [
+        "fullLogitSha256"
+      ]
+    },
+    {
+      "pair": 7,
+      "id": "easy-intent-00",
+      "repeat": -4,
+      "fields": [
+        "fullLogitSha256"
+      ]
+    },
+    {
+      "pair": 7,
+      "id": "easy-intent-00",
+      "repeat": -3,
+      "fields": [
+        "fullLogitSha256"
+      ]
+    },
+    {
+      "pair": 7,
+      "id": "snips-AddToPlaylist-0",
+      "repeat": -2,
+      "fields": [
+        "fullLogitSha256"
+      ]
+    },
+    {
+      "pair": 7,
+      "id": "easy-intent-01",
+      "repeat": -1,
+      "fields": [
+        "fullLogitSha256"
+      ]
+    },
+    {
+      "pair": 7,
+      "id": "snips-GetWeather-2",
+      "repeat": 0,
+      "fields": [
+        "fullLogitSha256"
+      ]
+    },
+    {
+      "pair": 7,
+      "id": "easy-intent-11",
+      "repeat": 1,
+      "fields": [
+        "fullLogitSha256"
+      ]
+    },
+    {
+      "pair": 7,
+      "id": "snips-GetWeather-3",
+      "repeat": 2,
+      "fields": [
+        "fullLogitSha256"
+      ]
+    },
+    {
+      "pair": 8,
+      "id": "easy-intent-00",
+      "repeat": -4,
+      "fields": [
+        "fullLogitSha256"
+      ]
+    },
+    {
+      "pair": 8,
+      "id": "easy-intent-00",
+      "repeat": -3,
+      "fields": [
+        "fullLogitSha256"
+      ]
+    },
+    {
+      "pair": 8,
+      "id": "snips-AddToPlaylist-0",
+      "repeat": -2,
+      "fields": [
+        "fullLogitSha256"
+      ]
+    },
+    {
+      "pair": 8,
+      "id": "easy-intent-01",
+      "repeat": -1,
+      "fields": [
+        "fullLogitSha256"
+      ]
+    },
+    {
+      "pair": 8,
+      "id": "easy-fact-00",
+      "repeat": 0,
+      "fields": [
+        "fullLogitSha256"
+      ]
+    },
+    {
+      "pair": 8,
+      "id": "snips-PlayMusic-0",
+      "repeat": 1,
+      "fields": [
+        "fullLogitSha256"
+      ]
+    },
+    {
+      "pair": 8,
+      "id": "easy-fact-01",
+      "repeat": 2,
+      "fields": [
+        "fullLogitSha256"
+      ]
+    },
+    {
+      "pair": 9,
+      "id": "easy-intent-00",
+      "repeat": -4,
+      "fields": [
+        "fullLogitSha256"
+      ]
+    },
+    {
+      "pair": 9,
+      "id": "easy-intent-00",
+      "repeat": -3,
+      "fields": [
+        "fullLogitSha256"
+      ]
+    },
+    {
+      "pair": 9,
+      "id": "snips-AddToPlaylist-0",
+      "repeat": -2,
+      "fields": [
+        "fullLogitSha256"
+      ]
+    },
+    {
+      "pair": 9,
+      "id": "easy-intent-01",
+      "repeat": -1,
+      "fields": [
+        "fullLogitSha256"
+      ]
+    },
+    {
+      "pair": 9,
+      "id": "snips-PlayMusic-1",
+      "repeat": 0,
+      "fields": [
+        "fullLogitSha256"
+      ]
+    },
+    {
+      "pair": 9,
+      "id": "easy-fact-02",
+      "repeat": 1,
+      "fields": [
+        "fullLogitSha256"
+      ]
+    },
+    {
+      "pair": 9,
+      "id": "snips-PlayMusic-2",
+      "repeat": 2,
+      "fields": [
+        "fullLogitSha256"
+      ]
+    }
+  ],
+  "candidateRepeatedCaseHashesExact": true,
+  "quality": {
+    "baseline": {
+      "jevbench": {
+        "count": 15,
+        "correct": 10
+      },
+      "snips": {
+        "count": 15,
+        "correct": 14
+      }
+    },
+    "candidate": {
+      "jevbench": {
+        "count": 15,
+        "correct": 10
+      },
+      "snips": {
+        "count": 15,
+        "correct": 14
+      }
+    }
+  },
+  "qualityPass": true,
+  "metrics": {
+    "prefillNanos": {
+      "ratio": 0.7905416631391619,
+      "ci95": [
+        0.7841115514838554,
+        0.7994017032882881
+      ],
+      "limit": 1.0,
+      "precisionTargetMet": true,
+      "pass": true,
+      "status": "PASS",
+      "processRatios": [
+        0.7402410840372309,
+        0.7006589721769948,
+        0.6955917858663031,
+        0.7089578090087738,
+        0.7066853325777736,
+        0.8724590896660646,
+        0.882449543604007,
+        0.8815981296136115,
+        0.8863065198749625,
+        0.8767530517593988
+      ]
+    },
+    "decodeNanos": {
+      "ratio": 0.5271223108807048,
+      "ci95": [
+        0.48883382454001467,
+        0.5682504117763664
+      ],
+      "limit": 1.0,
+      "precisionTargetMet": false,
+      "pass": false,
+      "status": "UNRESOLVED",
+      "processRatios": [
+        0.6171900536949199,
+        0.4343742581558788,
+        0.5572440818330981,
+        0.6635144056965455,
+        0.4408028462136172,
+        0.4928237173579732,
+        0.5389178060783522,
+        0.5191450951276315,
+        0.5208407706551825,
+        0.5278164402237004
+      ]
+    },
+    "requestNanos": {
+      "ratio": 0.7308089396166897,
+      "ci95": [
+        0.7144186317207696,
+        0.7483136118687225
+      ],
+      "limit": 1.0,
+      "precisionTargetMet": false,
+      "pass": false,
+      "status": "UNRESOLVED",
+      "processRatios": [
+        0.7167252099970259,
+        0.6276950101540754,
+        0.667892600040914,
+        0.6990323803071289,
+        0.6357934788244193,
+        0.7860594922199463,
+        0.8190088631045827,
+        0.7995639211296276,
+        0.7977707671596014,
+        0.7923951989491685
+      ]
+    },
+    "coldRequestNanos": {
+      "ratio": 0.953661753711436,
+      "ci95": [
+        0.9375393690227496,
+        0.969889813870151
+      ],
+      "limit": 1.0,
+      "precisionTargetMet": false,
+      "pass": false,
+      "status": "UNRESOLVED",
+      "processRatios": [
+        0.9626958007769874,
+        0.8970416410885763,
+        0.9387127116096458,
+        0.9066257230323078,
+        0.8635148153440386,
+        1.0049198121529646,
+        0.9804086432783334,
+        1.0025540817086303,
+        1.0098914149413651,
+        0.9828571872960866
+      ]
+    },
+    "loadNanos": {
+      "ratio": 0.9592291253841098,
+      "ci95": [
+        0.9244672318861983,
+        0.9954546926175448
+      ],
+      "limit": 1.01,
+      "precisionTargetMet": false,
+      "pass": false,
+      "status": "UNRESOLVED",
+      "processRatios": [
+        1.0031183984793777,
+        0.8837519037238476,
+        0.8453282595589345,
+        0.917658973873938,
+        1.0159057847814268,
+        0.9740519073165919,
+        0.9131878964923554,
+        0.9993496509275082,
+        1.0265911733840745,
+        1.0344836594394697
+      ]
+    },
+    "peakRssKiB": {
+      "ratio": 0.9129946300872506,
+      "ci95": [
+        0.8984308625188793,
+        0.9270524300246883
+      ],
+      "limit": 1.01,
+      "precisionTargetMet": false,
+      "pass": false,
+      "status": "UNRESOLVED",
+      "processRatios": [
+        0.9191340683919226,
+        0.9163179567126736,
+        0.8787300724455316,
+        0.8619687303140372,
+        0.9167454377260112,
+        0.9087621088612496,
+        0.9338317045564574,
+        0.9497270879980498,
+        0.9539294441714387,
+        0.8950092180674122
+      ]
+    },
+    "javaAllocatedBytes": {
+      "ratio": 0.2687855705042983,
+      "ci95": [
+        0.2525710022746001,
+        0.28409893213205956
+      ],
+      "limit": 1.01,
+      "precisionTargetMet": false,
+      "pass": false,
+      "status": "UNRESOLVED",
+      "processRatios": [
+        0.2852437328688997,
+        0.29619891815071164,
+        0.2360521966990124,
+        0.2354740840753535,
+        0.2850890205939508,
+        0.2845191812241406,
+        0.2850354957268865,
+        0.27860516206763436,
+        0.2843647258295554,
+        0.22879835134929205
+      ]
+    }
+  },
+  "decodeThroughputRatio": 1.8970929125144051,
+  "pass": false
+}

@@ -30,7 +30,6 @@ public enum NativeKernelCapability {
   Q5_K_F32_BATCHED_MATMUL(1L << 10),
   Q5_K_F32_GROUPED_BATCHED_MATMUL(1L << 11),
   Q5_0_F32_BATCHED_MATMUL(1L << 12),
-  Q5_0_F32_GROUPED_BATCHED_MATMUL(1L << 13),
   K_QUANT_BATCH_WEIGHT_REUSE(1L << 14),
   Q4_K_BATCH_VECTOR_ACCUMULATION(1L << 15),
   MANY_GROUPED_BATCHED_MATMUL(1L << 16),
@@ -52,7 +51,15 @@ public enum NativeKernelCapability {
    * deliberately no grouped counterpart -- grouping exists to share one quantized activation
    * between matrices, and this format has none to share.
    */
-  Q5_1_F32_BATCHED_MATMUL(1L << 23);
+  Q5_1_F32_BATCHED_MATMUL(1L << 23),
+  /** PTQ1_0 packed ternary rows with Q8_0 activation quantization. */
+  PTQ1_0_Q8_0_BATCHED_MATMUL(1L << 24),
+  /** Fixed-tree BF16 projections for the supported shape and vector configuration. */
+  BF16_F32_BATCHED_MATMUL(1L << 25),
+  /** Deterministic float SwiGLU with checked finite gates. */
+  SWIGLU_F32(1L << 26),
+  /** Full-domain ARM128 SLEEF sigmoid, softplus and causal convolution activations. */
+  SLEEF_ACTIVATIONS_F32(1L << 27);
 
   private final long mask;
 

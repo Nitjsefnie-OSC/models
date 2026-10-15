@@ -67,6 +67,9 @@ tasks.register<Test>("qwen3ActivatedLangChain4jToolCallingIntegrationTest") {
     group = "verification"
     testClassesDirs = sourceSets["test"].output.classesDirs
     classpath = sourceSets["test"].runtimeClasspath
+    useJUnitPlatform {
+        includeTags("activated-integration")
+    }
     filter {
         includeTestsMatching(
             "com.integrallis.models.langchain4j.Qwen3ActivatedLangChain4jToolCallingIntegrationTest",

@@ -35,10 +35,6 @@ final class LangChain4jChatRequestMapper {
 
   private LangChain4jChatRequestMapper() {}
 
-  static ModelPrompt prompt(ChatRequest request, ChatTemplate template) {
-    return prompt(request, template, tools(request));
-  }
-
   static ModelPrompt prompt(ChatRequest request, ChatTemplate template, List<ToolSpec> tools) {
     ArrayList<com.integrallis.models.runtime.chat.ChatMessage> messages =
         new ArrayList<>(request.messages().size());

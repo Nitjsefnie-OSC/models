@@ -1,0 +1,21 @@
+{
+  "complete": true,
+  "outputHashesMatch": true,
+  "retentionRule": "complete; same outputs; both median rates improve by at least 5%",
+  "comparisons": {
+    "vectorOverScalar": {
+      "ratios": {
+        "p50DecodeTokensPerSecond": 4.0341360912239885,
+        "p50PrefillTokensPerSecond": 4.1680502773489945
+      },
+      "retain": true
+    },
+    "nativeOverVector": {
+      "ratios": {
+        "p50DecodeTokensPerSecond": 0.41443985776638725,
+        "p50PrefillTokensPerSecond": 0.3996205546289006
+      },
+      "retain": false
+    }
+  }
+}

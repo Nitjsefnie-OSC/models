@@ -1,0 +1,2 @@
+smollm2_360m_instruct_q8_0	FAIL:correctAnswerRate=0.8888888888888888	17
+huggingfacetb_smollm2_1_7b_instruct_gguf_q4_k_m	FAIL:correctAnswerRate=0.8888888888888888	31

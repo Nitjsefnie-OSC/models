@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.integrallis.models.backend.nativekernel.Bonsai2NativeFreshSessionSlowTest" tests="1" skipped="0" failures="1" errors="0" timestamp="2026-10-12T23:35:53.065Z" hostname="Brians-MacBook-Pro.local" time="54.164">
+  <properties/>
+  <testcase name="freshSessionsAndResetPreserveEveryLogitFromTheFirstColdSession()" classname="com.integrallis.models.backend.nativekernel.Bonsai2NativeFreshSessionSlowTest" time="54.146">
+    <failure message="java.lang.AssertionError: fresh session 1 step 0 token 0: expected=6.0864735, actual=6.103107, expectedBits=40c2c464, actualBits=40c34ca7" type="java.lang.AssertionError">java.lang.AssertionError: fresh session 1 step 0 token 0: expected=6.0864735, actual=6.103107, expectedBits=40c2c464, actualBits=40c34ca7
+	at com.integrallis.models.backend.nativekernel.Bonsai2NativeFreshSessionSlowTest.assertBits(Bonsai2NativeFreshSessionSlowTest.java:155)
+	at com.integrallis.models.backend.nativekernel.Bonsai2NativeFreshSessionSlowTest.freshSessionsAndResetPreserveEveryLogitFromTheFirstColdSession(Bonsai2NativeFreshSessionSlowTest.java:94)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+</failure>
+  </testcase>
+  <system-out><![CDATA[Bonsai fresh-session JVM=25.0.3+9-LTS vendor=Eclipse Adoptium
+Bonsai fresh-session repeat=0 step=0 fullLogitSha256=a10cbdb7dd539eefc096113b4f29a7182cdcd02c906d013d147f89b0b7508a91
+Bonsai fresh-session repeat=0 step=1 fullLogitSha256=5f6bf2c1e7ca980238edeae02dca0b5dceb9c84cee7df91478e6a2632ccfbbb9
+Bonsai fresh-session repeat=0 step=2 fullLogitSha256=0ca09b7982b9329da99476ee19c090bf5c2e51532c9b6944519f68f0454f863f
+Bonsai fresh-session repeat=0 step=3 fullLogitSha256=a79374ba9248a0a8a15ef6c70b0d24cb3c9951db9e9858e3590411afdeb1b339
+Bonsai fresh-session repeat=0 step=4 fullLogitSha256=493a2616eb91bb66eaf83aab22b8f15346906647bfc46488f48e8fcf7493afe1
+Bonsai fresh-session repeat=0 step=5 fullLogitSha256=98809e598d76666fd23de81ee65e853413d588a5d022867a53b364946d7f6909
+Bonsai fresh-session repeat=0 step=6 fullLogitSha256=752e7af26f9020f1917714c74a86a7f06b66bcb74b54c88e6c6df18ecbe24fd5
+Bonsai fresh-session repeat=0 step=7 fullLogitSha256=aee535c2f5cea2a9e723d5e4654a2063b0ab72374d23a617cfad6b1bdf58a3ed
+Bonsai fresh-session repeat=1 step=0 fullLogitSha256=1418f0c8da9d506ef4af71ba1a7639e0b5e3218d117081ab2ec86cc180a5f78c
+Bonsai fresh-session repeat=1 step=1 fullLogitSha256=59c9ab4ed016342063b10dbe234ab2ad80a2face6a202f57f3455b69ba9e4a46
+Bonsai fresh-session repeat=1 step=2 fullLogitSha256=7eb58bff5dc977e279f3a757393fdfed2d01aa226e955847bb2ebb2f7af7d1cd
+Bonsai fresh-session repeat=1 step=3 fullLogitSha256=d5778337e08d266cb6c042852c6e5a69d61ec27051eeea888cb732549ff4327a
+Bonsai fresh-session repeat=1 step=4 fullLogitSha256=781d74b0312c93e62c9be17b7894b1696a7a0fd9e7c8ebb1127e4808b95fe398
+Bonsai fresh-session repeat=1 step=5 fullLogitSha256=dd7ec83e5a737d75cf05d1b88679f8c2af33fd8c22d8cfff43a1aa92d4f869c0
+Bonsai fresh-session repeat=1 step=6 fullLogitSha256=d3618f9c7e3d5a107ce1177f5a7ddceecec1c2d7ba4376c822eb2b7f0cf1c0dd
+Bonsai fresh-session repeat=1 step=7 fullLogitSha256=0eb198da33dc414977076df90564890762dfd27413112eb779523374c1b193c5
+]]></system-out>
+  <system-err><![CDATA[Oct 12, 2026 4:36:12 PM com.integrallis.vectors.core.PanamaVectorUtilSupportProvider create
+INFO: vectors-core: Using Panama Vector API SIMD provider (vector bits: 256)
+Oct 12, 2026 4:36:12 PM com.integrallis.vectors.core.VectorizationProvider logActiveToggles
+INFO: vectors-core: provider=PanamaVectorUtilSupport panama=true maxBits=256 preferredBits=256 fastVectorFMA=true fastScalarFMA=true sve=false ggufParallel=true ggufParallelThreshold=1048576 ggufExecutor=persistent ggufThreads=4 ggufChunksPerThread=2 mappedKQuantLongOffsets=auto(q4=true,q5=false,q6=false) q4ShortPairwiseSupported=true q4UnsignedPairwiseSupported=true toggles=[(defaults — no -Dvectors.* overrides)]
+]]></system-err>
+</testsuite>

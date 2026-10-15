@@ -1,0 +1,11 @@
+{
+  "baselineSource": "8b5c0b29",
+  "candidateBackendJavaSource": "31132e2c",
+  "contract": "PTQ1_0 x Q8_0; exact Java/native output check in projection probes",
+  "decodeRatio": 4.337955118723788,
+  "prefillRatio": 4.600867321417844,
+  "outputHashesMatch": true,
+  "complete": true,
+  "retentionRule": "all three trials succeed; output hashes match; both median rates improve by at least 5%",
+  "retainVectorCandidate": true
+}

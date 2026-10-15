@@ -42,7 +42,6 @@ public final class FrozenTuning {
   private final String bestMember;
   private final Map<String, Double> temperatures;
   private final Set<String> devIds;
-  private final String devIdsSha256;
 
   private FrozenTuning(
       String path,
@@ -50,15 +49,13 @@ public final class FrozenTuning {
       Map<String, double[]> weights,
       String bestMember,
       Map<String, Double> temperatures,
-      Set<String> devIds,
-      String devIdsSha256) {
+      Set<String> devIds) {
     this.path = path;
     this.sha256 = sha256;
     this.weights = weights;
     this.bestMember = bestMember;
     this.temperatures = temperatures;
     this.devIds = devIds;
-    this.devIdsSha256 = devIdsSha256;
   }
 
   /** Loads the record after checking its sha256 against the value given on the command line. */
@@ -105,8 +102,7 @@ public final class FrozenTuning {
         weights,
         root.path("bestMember").path("name").asText(null),
         temperatures,
-        devIds,
-        root.path("devSplit").path("idsSha256").asText(null));
+        devIds);
   }
 
   static String key(List<String> members, FusionRule rule) {
@@ -155,9 +151,5 @@ public final class FrozenTuning {
 
   String sha256() {
     return sha256;
-  }
-
-  String devIdsSha256() {
-    return devIdsSha256;
   }
 }

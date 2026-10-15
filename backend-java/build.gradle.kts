@@ -18,7 +18,27 @@ val modelArtifactIntegrationClasses =
         "**/tokenizer/DebertaV2Tokenizer*.class",
     )
 
+// Hardware dispatch is fixed at class initialization. Exercise the 128-bit production route in
+// its own instrumented JVM so wide-host CI checks both implementations and records their coverage.
+// Allocation probes remain separate, uninstrumented child processes: coverage changes JIT costs.
+val narrowVectorTest = tasks.register<Test>("narrowVectorTest") {
+    description = "Verify numerical contracts through the 128-bit inference route"
+    group = "verification"
+    testClassesDirs = sourceSets["test"].output.classesDirs
+    classpath = sourceSets["test"].runtimeClasspath
+    useJUnitPlatform()
+    jvmArgs("-XX:MaxVectorSize=16")
+    filter {
+        includeTestsMatching("*.GroupedQueryAttentionKernelTest")
+        includeTestsMatching("*.PinnedAttentionWidthContractTest")
+        includeTestsMatching("*.PinnedReductionTest")
+        includeTestsMatching("*.TernaryDequantizerTest")
+    }
+}
+
 tasks.withType<JacocoReport>().configureEach {
+    dependsOn(narrowVectorTest)
+    executionData(narrowVectorTest.map { it.extensions.getByType<JacocoTaskExtension>().destinationFile })
     classDirectories.setFrom(
         files(classDirectories.files.map { directory ->
             fileTree(directory) { exclude(modelArtifactIntegrationClasses) }
@@ -27,6 +47,8 @@ tasks.withType<JacocoReport>().configureEach {
 }
 
 tasks.withType<JacocoCoverageVerification>().configureEach {
+    dependsOn(narrowVectorTest)
+    executionData(narrowVectorTest.map { it.extensions.getByType<JacocoTaskExtension>().destinationFile })
     classDirectories.setFrom(
         files(classDirectories.files.map { directory ->
             fileTree(directory) { exclude(modelArtifactIntegrationClasses) }

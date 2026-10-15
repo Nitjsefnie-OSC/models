@@ -151,6 +151,9 @@ def validate_job(job):
     for field in ("wl", "tpl"):
         if not isinstance(job[field], str) or not job[field]:
             raise ValueError(f"{field} is required")
+    if "stopSequence" in job and (not isinstance(job["stopSequence"], str)
+            or not job["stopSequence"] or any(c in job["stopSequence"] for c in "\0\n\r")):
+        raise ValueError("stopSequence must be a nonempty CLI-escaped string")
     paths = set()
     for entry in job["files"]:
         name = entry["path"]
@@ -265,6 +268,9 @@ while [ "$done_n" -lt "$JOBS" ]; do
   tpl=$(python3 -c "import json,sys;print(json.loads(sys.argv[1])['tpl'])" "$job")
   wl=$(python3 -c "import json,sys;print(json.loads(sys.argv[1])['wl'])" "$job")
   bk=$(python3 -c "import json,sys;print(json.loads(sys.argv[1])['backend'])" "$job")
+  stop_sequence=$(python3 -c "import json,sys;print(json.loads(sys.argv[1]).get('stopSequence', ''))" "$job")
+  stop_args=()
+  if [[ -n "$stop_sequence" ]]; then stop_args=(--stop-sequence "$stop_sequence"); fi
   read -r context threads mt topk < <(python3 -c \
     "import json,sys;j=json.loads(sys.argv[1]);print(j['context'],j['threads'],j['mt'],j['topK'])" "$job")
   artifact_dir="/work/models/$id"
@@ -284,6 +290,7 @@ while [ "$done_n" -lt "$JOBS" ]; do
       --framework plain-java --backend "$bk" --backend-version "$BACKEND_VERSION" \
       --model "$artifact" --model-id "$id" --workload "$wl" --prompt-template "$tpl" \
       --context "$context" --threads "$threads" --max-tokens "$mt" --top-k "$topk" \
+      "${stop_args[@]}" \
       --warmups 0 --iterations 1 \
       --output "/work/out/$id.json" > "/work/out/$id.log" 2>&1
     rc=$?

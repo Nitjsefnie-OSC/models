@@ -36,6 +36,13 @@ public final class GgufTensorValues {
   private static final ValueLayout.OfShort LE_SHORT =
       ValueLayout.JAVA_SHORT_UNALIGNED.withOrder(ByteOrder.LITTLE_ENDIAN);
 
+  // Stateless decoders can be shared. A per-row allocation depends on caller-specific
+  // escape analysis and survived compilation in the parallel Q5_1 worker path.
+  // Initialize its SIMD constants only when this format is actually decoded.
+  private static final class Q51DecoderHolder {
+    private static final Q5_1Dequantizer INSTANCE = new Q5_1Dequantizer();
+  }
+
   private GgufTensorValues() {}
 
   /** Materializes one small tensor as F32 values. */
@@ -47,7 +54,7 @@ public final class GgufTensorValues {
     return values;
   }
 
-  /** Dequantizes one matrix row into a caller-owned F32 buffer. */
+  /** Dequantizes one matrix row into the prefix of a caller-owned F32 buffer. */
   public static void dequantizeRow(
       MemorySegment segment, GgufTensorType type, int row, int columns, float[] output) {
     Objects.requireNonNull(segment, "segment");
@@ -60,9 +67,9 @@ public final class GgufTensorValues {
       throw new IllegalArgumentException(
           "columns must be a positive multiple of " + type.blockSize() + ": " + columns);
     }
-    if (output.length != columns) {
+    if (output.length < columns) {
       throw new IllegalArgumentException(
-          "output length must match columns: " + output.length + " != " + columns);
+          "output length is smaller than columns: " + output.length + " < " + columns);
     }
     long bytesPerRow = Math.multiplyExact((long) columns / type.blockSize(), type.typeSize());
     long sourceOffset = Math.multiplyExact(row, bytesPerRow);
@@ -90,7 +97,7 @@ public final class GgufTensorValues {
       case Q4_0 -> new Q4_0Dequantizer().dequantize(source, sourceOffset, output, 0, count);
       case Q5_0 -> VectorUtil.ggufQ5_0Dequantize(source, sourceOffset, output, 0, count);
       case Q4_1 -> new Q4_1Dequantizer().dequantize(source, sourceOffset, output, 0, count);
-      case Q5_1 -> new Q5_1Dequantizer().dequantize(source, sourceOffset, output, 0, count);
+      case Q5_1 -> Q51DecoderHolder.INSTANCE.dequantize(source, sourceOffset, output, 0, count);
       case Q8_0 -> new Q8_0Dequantizer().dequantize(source, sourceOffset, output, 0, count);
       case Q4_K -> VectorUtil.ggufQ4_KDequantize(source, sourceOffset, output, 0, count);
       case Q5_K -> VectorUtil.ggufQ5_KDequantize(source, sourceOffset, output, 0, count);

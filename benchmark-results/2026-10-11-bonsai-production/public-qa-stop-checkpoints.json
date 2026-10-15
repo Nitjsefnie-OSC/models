@@ -1,0 +1,50 @@
+[
+  {
+    "instanceId": "i-0f359d532db0899ff",
+    "exitCode": 0,
+    "stdout": "STOPPED_INVALID_PROMPT_TOKENIZATION\n",
+    "stderr": ""
+  },
+  {
+    "instanceId": "i-0e9382f7024aca304",
+    "exitCode": 0,
+    "stdout": "STOPPED_INVALID_PROMPT_TOKENIZATION\n",
+    "stderr": "Warning: Permanently added '32.192.237.123' (ED25519) to the list of known hosts.\n"
+  },
+  {
+    "instanceId": "i-00edd7a434e3d3091",
+    "exitCode": 0,
+    "stdout": "STOPPED_INVALID_PROMPT_TOKENIZATION\n",
+    "stderr": "Warning: Permanently added '100.60.77.235' (ED25519) to the list of known hosts.\n"
+  },
+  {
+    "instanceId": "i-0844e7ef8ac2367e7",
+    "exitCode": 0,
+    "stdout": "STOPPED_INVALID_PROMPT_TOKENIZATION\n",
+    "stderr": "Warning: Permanently added '3.208.92.229' (ED25519) to the list of known hosts.\n"
+  },
+  {
+    "instanceId": "i-0951f69a0bd2f5776",
+    "exitCode": 0,
+    "stdout": "STOPPED_INVALID_PROMPT_TOKENIZATION\n",
+    "stderr": "Warning: Permanently added '44.192.89.202' (ED25519) to the list of known hosts.\n"
+  },
+  {
+    "instanceId": "i-096f9679b8d0dadba",
+    "exitCode": 0,
+    "stdout": "STOPPED_INVALID_PROMPT_TOKENIZATION\n",
+    "stderr": "Warning: Permanently added '44.200.255.173' (ED25519) to the list of known hosts.\n"
+  },
+  {
+    "instanceId": "i-0d40fa006fe0d1ba9",
+    "exitCode": 0,
+    "stdout": "STOPPED_INVALID_PROMPT_TOKENIZATION\n",
+    "stderr": "Warning: Permanently added '44.204.114.127' (ED25519) to the list of known hosts.\n"
+  },
+  {
+    "instanceId": "i-0fa99250658b528c4",
+    "exitCode": 0,
+    "stdout": "STOPPED_INVALID_PROMPT_TOKENIZATION\n",
+    "stderr": "Warning: Permanently added '3.238.1.250' (ED25519) to the list of known hosts.\n"
+  }
+]

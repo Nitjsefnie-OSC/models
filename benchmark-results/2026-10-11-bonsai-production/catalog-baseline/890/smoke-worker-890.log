@@ -1,0 +1,233 @@
++ STATUS=STARTED
++ say 'boot shard=890 payload=models-rag-bench-0.3.58-bonsai-catalog-baseline.tar'
++ tee -a /var/log/smoke-worker.log
+++ date -u +%H:%M:%S
++ printf '[smoke %s] %s\n' 21:46:50 'boot shard=890 payload=models-rag-bench-0.3.58-bonsai-catalog-baseline.tar'
+[smoke 21:46:50] boot shard=890 payload=models-rag-bench-0.3.58-bonsai-catalog-baseline.tar
++ trap finish EXIT
++ mkdir -p /work/models /work/out /opt/jdk
+++ curl -s -o /dev/null -w '%{http_code}' --max-time 25 https://s3.amazonaws.com
++ EGRESS_CODE=307
++ '[' 307 = 000 ']'
++ '[' -z 307 ']'
++ say 'egress ok (s3 root http=307)'
++ tee -a /var/log/smoke-worker.log
+++ date -u +%H:%M:%S
++ printf '[smoke %s] %s\n' 21:46:50 'egress ok (s3 root http=307)'
+[smoke 21:46:50] egress ok (s3 root http=307)
++ export DEBIAN_FRONTEND=noninteractive
++ DEBIAN_FRONTEND=noninteractive
++ apt-get update -qq
++ apt-get install -y -qq unzip python3
++ command -v aws
++ command -v aws
++ command -v python3
++ curl -sfL https://api.adoptium.net/v3/binary/latest/25/ga/linux/x64/jdk/hotspot/normal/eclipse -o /tmp/jdk.tgz
++ tar xzf /tmp/jdk.tgz -C /opt/jdk --strip-components=1
++ export JAVA_HOME=/opt/jdk
++ JAVA_HOME=/opt/jdk
++ export PATH=/opt/jdk/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/snap/bin
++ PATH=/opt/jdk/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/snap/bin
++ '[' -x /opt/jdk/bin/java ']'
+++ /opt/jdk/bin/java -version
+++ head -1
++ say 'jdk openjdk version "25.0.4.1" 2026-08-18 LTS'
++ tee -a /var/log/smoke-worker.log
+++ date -u +%H:%M:%S
++ printf '[smoke %s] %s\n' 21:46:54 'jdk openjdk version "25.0.4.1" 2026-08-18 LTS'
+[smoke 21:46:54] jdk openjdk version "25.0.4.1" 2026-08-18 LTS
++ cd /work
++ aws s3 cp s3://models-qual-077051030817/payload/models-rag-bench-0.3.58-bonsai-catalog-baseline.tar . --only-show-errors
++ aws s3 cp s3://models-qual-077051030817/payload/smoke-shard-890.json /work/shard.json --only-show-errors
++ '[' -s models-rag-bench-0.3.58-bonsai-catalog-baseline.tar ']'
++ '[' -s /work/shard.json ']'
++ printf '%s  %s\n' 2be778670a91d8e1908342a8b35429d166e6e1a618ebc4095f01db6dd7ee9acd models-rag-bench-0.3.58-bonsai-catalog-baseline.tar
++ sha256sum --check --status
++ tar xf models-rag-bench-0.3.58-bonsai-catalog-baseline.tar
+++ ls -d /work/models-rag-bench-0.3.58-bonsai-catalog-baseline/
+++ head -1
++ DIST=/work/models-rag-bench-0.3.58-bonsai-catalog-baseline/
++ '[' -n /work/models-rag-bench-0.3.58-bonsai-catalog-baseline/ ']'
++ CP='/work/models-rag-bench-0.3.58-bonsai-catalog-baseline//lib/*'
+++ ls /work/models-rag-bench-0.3.58-bonsai-catalog-baseline//lib/backend-native-0.3.58.jar
+++ head -1
++ NATIVE_JAR=/work/models-rag-bench-0.3.58-bonsai-catalog-baseline//lib/backend-native-0.3.58.jar
++ python3 - models@0.3.58+b85cd653a3549b1f468be95409a46fc68bae3a8c models-rag-bench-0.3.58-bonsai-catalog-baseline.tar /work/models-rag-bench-0.3.58-bonsai-catalog-baseline//lib/backend-native-0.3.58.jar
++ '[' 0 -eq 0 ']'
++ unzip -l /work/models-rag-bench-0.3.58-bonsai-catalog-baseline//lib/backend-native-0.3.58.jar
++ grep -q linux-x86_64/libjmodels_kernels.so
++ say 'dist carries the linux-x86_64 kernel'
++ tee -a /var/log/smoke-worker.log
+++ date -u +%H:%M:%S
++ printf '[smoke %s] %s\n' 21:46:56 'dist carries the linux-x86_64 kernel'
+[smoke 21:46:56] dist carries the linux-x86_64 kernel
+++ python3 -c 'import json;print(len(json.load(open('\''/work/shard.json'\''))))'
++ JOBS=2
++ for var in JAVA_TOOL_OPTIONS JAVA_OPTS JDK_JAVA_OPTIONS _JAVA_OPTIONS
+++ printenv JAVA_TOOL_OPTIONS
+++ true
++ val=
++ case "$val" in
++ for var in JAVA_TOOL_OPTIONS JAVA_OPTS JDK_JAVA_OPTIONS _JAVA_OPTIONS
+++ printenv JAVA_OPTS
+++ true
++ val=
++ case "$val" in
++ for var in JAVA_TOOL_OPTIONS JAVA_OPTS JDK_JAVA_OPTIONS _JAVA_OPTIONS
+++ printenv JDK_JAVA_OPTIONS
+++ true
++ val=
++ case "$val" in
++ for var in JAVA_TOOL_OPTIONS JAVA_OPTS JDK_JAVA_OPTIONS _JAVA_OPTIONS
+++ printenv _JAVA_OPTIONS
+++ true
++ val=
++ case "$val" in
++ say 'environment clean: no models.* property in any JVM options variable'
++ tee -a /var/log/smoke-worker.log
+++ date -u +%H:%M:%S
++ printf '[smoke %s] %s\n' 21:46:56 'environment clean: no models.* property in any JVM options variable'
+[smoke 21:46:56] environment clean: no models.* property in any JVM options variable
++ say 'payload ok, 2 jobs, backend-version=models@0.3.58+b85cd653a3549b1f468be95409a46fc68bae3a8c'
++ tee -a /var/log/smoke-worker.log
+++ date -u +%H:%M:%S
++ printf '[smoke %s] %s\n' 21:46:56 'payload ok, 2 jobs, backend-version=models@0.3.58+b85cd653a3549b1f468be95409a46fc68bae3a8c'
+[smoke 21:46:56] payload ok, 2 jobs, backend-version=models@0.3.58+b85cd653a3549b1f468be95409a46fc68bae3a8c
++ STATUS=RUNNING
+++ date +%s
++ T_START=1791755216
++ cat
++ python3 /work/fetch-smoke-artifact.py --validate-shard /work/shard.json
++ cat
++ done_n=0
++ '[' 0 -lt 2 ']'
+++ date +%s
++ '[' 0 -ge 3000 ']'
+++ python3 -c 'import json;print(json.dumps(json.load(open('\''/work/shard.json'\''))[0]))'
++ job='{"id": "qwen2_5_coder_1_5b_instruct_q4_0", "format": "gguf", "backend": "rust-ffm", "revision": "f86cb2c1fa58255f8052cc32aeede1b7482d4361", "wl": "coding", "tpl": "chatml", "context": 2048, "threads": 8, "mt": 64, "topK": 1, "settingsSource": {"modelId": "qwen2.5-coder-1.5b-instruct-q4_0", "report": "benchmark-results/certified-20260724/rag/native-q4-profiled/qwen2.5-coder-1.5b-q4_0/qwen2.5-coder-1.5b-q4_0-rust-ffm-q4-unsigned-t4-coding-v4-grounded.json", "reportSha256": "9e98947ae5747ef7d433b88fc4b174863667f4a7b4b6b82ed4eeb448adf18e31"}, "files": [{"path": "model.gguf", "sha256": "aa8353e0d0fca3a0041828701e90db7635197400f040676d11d7798665fa316e", "sizeBytes": 1066227264, "uri": "https://huggingface.co/Qwen/Qwen2.5-Coder-1.5B-Instruct-GGUF/resolve/f86cb2c1fa58255f8052cc32aeede1b7482d4361/qwen2.5-coder-1.5b-instruct-q4_0.gguf"}]}'
+++ python3 -c 'import json,sys;print(json.loads(sys.argv[1])['\''id'\''])' '{"id": "qwen2_5_coder_1_5b_instruct_q4_0", "format": "gguf", "backend": "rust-ffm", "revision": "f86cb2c1fa58255f8052cc32aeede1b7482d4361", "wl": "coding", "tpl": "chatml", "context": 2048, "threads": 8, "mt": 64, "topK": 1, "settingsSource": {"modelId": "qwen2.5-coder-1.5b-instruct-q4_0", "report": "benchmark-results/certified-20260724/rag/native-q4-profiled/qwen2.5-coder-1.5b-q4_0/qwen2.5-coder-1.5b-q4_0-rust-ffm-q4-unsigned-t4-coding-v4-grounded.json", "reportSha256": "9e98947ae5747ef7d433b88fc4b174863667f4a7b4b6b82ed4eeb448adf18e31"}, "files": [{"path": "model.gguf", "sha256": "aa8353e0d0fca3a0041828701e90db7635197400f040676d11d7798665fa316e", "sizeBytes": 1066227264, "uri": "https://huggingface.co/Qwen/Qwen2.5-Coder-1.5B-Instruct-GGUF/resolve/f86cb2c1fa58255f8052cc32aeede1b7482d4361/qwen2.5-coder-1.5b-instruct-q4_0.gguf"}]}'
++ id=qwen2_5_coder_1_5b_instruct_q4_0
+++ python3 -c 'import json,sys;print(json.loads(sys.argv[1])['\''tpl'\''])' '{"id": "qwen2_5_coder_1_5b_instruct_q4_0", "format": "gguf", "backend": "rust-ffm", "revision": "f86cb2c1fa58255f8052cc32aeede1b7482d4361", "wl": "coding", "tpl": "chatml", "context": 2048, "threads": 8, "mt": 64, "topK": 1, "settingsSource": {"modelId": "qwen2.5-coder-1.5b-instruct-q4_0", "report": "benchmark-results/certified-20260724/rag/native-q4-profiled/qwen2.5-coder-1.5b-q4_0/qwen2.5-coder-1.5b-q4_0-rust-ffm-q4-unsigned-t4-coding-v4-grounded.json", "reportSha256": "9e98947ae5747ef7d433b88fc4b174863667f4a7b4b6b82ed4eeb448adf18e31"}, "files": [{"path": "model.gguf", "sha256": "aa8353e0d0fca3a0041828701e90db7635197400f040676d11d7798665fa316e", "sizeBytes": 1066227264, "uri": "https://huggingface.co/Qwen/Qwen2.5-Coder-1.5B-Instruct-GGUF/resolve/f86cb2c1fa58255f8052cc32aeede1b7482d4361/qwen2.5-coder-1.5b-instruct-q4_0.gguf"}]}'
++ tpl=chatml
+++ python3 -c 'import json,sys;print(json.loads(sys.argv[1])['\''wl'\''])' '{"id": "qwen2_5_coder_1_5b_instruct_q4_0", "format": "gguf", "backend": "rust-ffm", "revision": "f86cb2c1fa58255f8052cc32aeede1b7482d4361", "wl": "coding", "tpl": "chatml", "context": 2048, "threads": 8, "mt": 64, "topK": 1, "settingsSource": {"modelId": "qwen2.5-coder-1.5b-instruct-q4_0", "report": "benchmark-results/certified-20260724/rag/native-q4-profiled/qwen2.5-coder-1.5b-q4_0/qwen2.5-coder-1.5b-q4_0-rust-ffm-q4-unsigned-t4-coding-v4-grounded.json", "reportSha256": "9e98947ae5747ef7d433b88fc4b174863667f4a7b4b6b82ed4eeb448adf18e31"}, "files": [{"path": "model.gguf", "sha256": "aa8353e0d0fca3a0041828701e90db7635197400f040676d11d7798665fa316e", "sizeBytes": 1066227264, "uri": "https://huggingface.co/Qwen/Qwen2.5-Coder-1.5B-Instruct-GGUF/resolve/f86cb2c1fa58255f8052cc32aeede1b7482d4361/qwen2.5-coder-1.5b-instruct-q4_0.gguf"}]}'
++ wl=coding
+++ python3 -c 'import json,sys;print(json.loads(sys.argv[1])['\''backend'\''])' '{"id": "qwen2_5_coder_1_5b_instruct_q4_0", "format": "gguf", "backend": "rust-ffm", "revision": "f86cb2c1fa58255f8052cc32aeede1b7482d4361", "wl": "coding", "tpl": "chatml", "context": 2048, "threads": 8, "mt": 64, "topK": 1, "settingsSource": {"modelId": "qwen2.5-coder-1.5b-instruct-q4_0", "report": "benchmark-results/certified-20260724/rag/native-q4-profiled/qwen2.5-coder-1.5b-q4_0/qwen2.5-coder-1.5b-q4_0-rust-ffm-q4-unsigned-t4-coding-v4-grounded.json", "reportSha256": "9e98947ae5747ef7d433b88fc4b174863667f4a7b4b6b82ed4eeb448adf18e31"}, "files": [{"path": "model.gguf", "sha256": "aa8353e0d0fca3a0041828701e90db7635197400f040676d11d7798665fa316e", "sizeBytes": 1066227264, "uri": "https://huggingface.co/Qwen/Qwen2.5-Coder-1.5B-Instruct-GGUF/resolve/f86cb2c1fa58255f8052cc32aeede1b7482d4361/qwen2.5-coder-1.5b-instruct-q4_0.gguf"}]}'
++ bk=rust-ffm
+++ python3 -c 'import json,sys;print(json.loads(sys.argv[1]).get('\''stopSequence'\'', '\'''\''))' '{"id": "qwen2_5_coder_1_5b_instruct_q4_0", "format": "gguf", "backend": "rust-ffm", "revision": "f86cb2c1fa58255f8052cc32aeede1b7482d4361", "wl": "coding", "tpl": "chatml", "context": 2048, "threads": 8, "mt": 64, "topK": 1, "settingsSource": {"modelId": "qwen2.5-coder-1.5b-instruct-q4_0", "report": "benchmark-results/certified-20260724/rag/native-q4-profiled/qwen2.5-coder-1.5b-q4_0/qwen2.5-coder-1.5b-q4_0-rust-ffm-q4-unsigned-t4-coding-v4-grounded.json", "reportSha256": "9e98947ae5747ef7d433b88fc4b174863667f4a7b4b6b82ed4eeb448adf18e31"}, "files": [{"path": "model.gguf", "sha256": "aa8353e0d0fca3a0041828701e90db7635197400f040676d11d7798665fa316e", "sizeBytes": 1066227264, "uri": "https://huggingface.co/Qwen/Qwen2.5-Coder-1.5B-Instruct-GGUF/resolve/f86cb2c1fa58255f8052cc32aeede1b7482d4361/qwen2.5-coder-1.5b-instruct-q4_0.gguf"}]}'
++ stop_sequence=
++ stop_args=()
++ [[ -n '' ]]
++ read -r context threads mt topk
+++ python3 -c 'import json,sys;j=json.loads(sys.argv[1]);print(j['\''context'\''],j['\''threads'\''],j['\''mt'\''],j['\''topK'\''])' '{"id": "qwen2_5_coder_1_5b_instruct_q4_0", "format": "gguf", "backend": "rust-ffm", "revision": "f86cb2c1fa58255f8052cc32aeede1b7482d4361", "wl": "coding", "tpl": "chatml", "context": 2048, "threads": 8, "mt": 64, "topK": 1, "settingsSource": {"modelId": "qwen2.5-coder-1.5b-instruct-q4_0", "report": "benchmark-results/certified-20260724/rag/native-q4-profiled/qwen2.5-coder-1.5b-q4_0/qwen2.5-coder-1.5b-q4_0-rust-ffm-q4-unsigned-t4-coding-v4-grounded.json", "reportSha256": "9e98947ae5747ef7d433b88fc4b174863667f4a7b4b6b82ed4eeb448adf18e31"}, "files": [{"path": "model.gguf", "sha256": "aa8353e0d0fca3a0041828701e90db7635197400f040676d11d7798665fa316e", "sizeBytes": 1066227264, "uri": "https://huggingface.co/Qwen/Qwen2.5-Coder-1.5B-Instruct-GGUF/resolve/f86cb2c1fa58255f8052cc32aeede1b7482d4361/qwen2.5-coder-1.5b-instruct-q4_0.gguf"}]}'
++ artifact_dir=/work/models/qwen2_5_coder_1_5b_instruct_q4_0
+++ date +%s
++ T0=1791755216
++ say 'start qwen2_5_coder_1_5b_instruct_q4_0 (backend=rust-ffm template=chatml workload=coding)'
++ tee -a /var/log/smoke-worker.log
+++ date -u +%H:%M:%S
++ printf '[smoke %s] %s\n' 21:46:56 'start qwen2_5_coder_1_5b_instruct_q4_0 (backend=rust-ffm template=chatml workload=coding)'
+[smoke 21:46:56] start qwen2_5_coder_1_5b_instruct_q4_0 (backend=rust-ffm template=chatml workload=coding)
+++ date +%s
++ remaining=3000
++ '[' 3000 -le 0 ']'
+++ timeout --kill-after=30 3000 python3 /work/fetch-smoke-artifact.py --job-json '{"id": "qwen2_5_coder_1_5b_instruct_q4_0", "format": "gguf", "backend": "rust-ffm", "revision": "f86cb2c1fa58255f8052cc32aeede1b7482d4361", "wl": "coding", "tpl": "chatml", "context": 2048, "threads": 8, "mt": 64, "topK": 1, "settingsSource": {"modelId": "qwen2.5-coder-1.5b-instruct-q4_0", "report": "benchmark-results/certified-20260724/rag/native-q4-profiled/qwen2.5-coder-1.5b-q4_0/qwen2.5-coder-1.5b-q4_0-rust-ffm-q4-unsigned-t4-coding-v4-grounded.json", "reportSha256": "9e98947ae5747ef7d433b88fc4b174863667f4a7b4b6b82ed4eeb448adf18e31"}, "files": [{"path": "model.gguf", "sha256": "aa8353e0d0fca3a0041828701e90db7635197400f040676d11d7798665fa316e", "sizeBytes": 1066227264, "uri": "https://huggingface.co/Qwen/Qwen2.5-Coder-1.5B-Instruct-GGUF/resolve/f86cb2c1fa58255f8052cc32aeede1b7482d4361/qwen2.5-coder-1.5b-instruct-q4_0.gguf"}]}' --root /work/models --receipt /work/out/qwen2_5_coder_1_5b_instruct_q4_0.inputs.json
++ artifact=/work/models/qwen2_5_coder_1_5b_instruct_q4_0/model.gguf
+++ date +%s
++ remaining=2987
++ '[' 2987 -le 0 ']'
++ timeout --kill-after=30 2987 java --add-modules jdk.incubator.vector --enable-native-access=ALL-UNNAMED -cp '/work/models-rag-bench-0.3.58-bonsai-catalog-baseline//lib/*' com.integrallis.models.rag.RagBenchmarkCli --framework plain-java --backend rust-ffm --backend-version models@0.3.58+b85cd653a3549b1f468be95409a46fc68bae3a8c --model /work/models/qwen2_5_coder_1_5b_instruct_q4_0/model.gguf --model-id qwen2_5_coder_1_5b_instruct_q4_0 --workload coding --prompt-template chatml --context 2048 --threads 8 --max-tokens 64 --top-k 1 --warmups 0 --iterations 1 --output /work/out/qwen2_5_coder_1_5b_instruct_q4_0.json
++ rc=0
++ verdict=RUN_FAILED_rc0
++ '[' 0 -eq 0 ']'
++ '[' -s /work/out/qwen2_5_coder_1_5b_instruct_q4_0.json ']'
+++ python3 /work/gate.py /work/out/qwen2_5_coder_1_5b_instruct_q4_0.json
++ verdict=FAIL:correctAnswerRate=0.8888888888888888
+++ date +%s
++ printf '%s\t%s\t%s\n' qwen2_5_coder_1_5b_instruct_q4_0 FAIL:correctAnswerRate=0.8888888888888888 33
+++ date +%s
++ say 'done qwen2_5_coder_1_5b_instruct_q4_0 -> FAIL:correctAnswerRate=0.8888888888888888 in 33s'
++ tee -a /var/log/smoke-worker.log
+++ date -u +%H:%M:%S
++ printf '[smoke %s] %s\n' 21:47:29 'done qwen2_5_coder_1_5b_instruct_q4_0 -> FAIL:correctAnswerRate=0.8888888888888888 in 33s'
+[smoke 21:47:29] done qwen2_5_coder_1_5b_instruct_q4_0 -> FAIL:correctAnswerRate=0.8888888888888888 in 33s
++ aws s3 cp /work/out/qwen2_5_coder_1_5b_instruct_q4_0.inputs.json s3://models-qual-077051030817/results/shard-890/ --only-show-errors
++ aws s3 cp /work/out/qwen2_5_coder_1_5b_instruct_q4_0.json s3://models-qual-077051030817/results/shard-890/ --only-show-errors
++ aws s3 cp /work/out/qwen2_5_coder_1_5b_instruct_q4_0.log s3://models-qual-077051030817/results/shard-890/ --only-show-errors
++ aws s3 cp /work/out/progress.tsv s3://models-qual-077051030817/results/shard-890/ --only-show-errors
++ rm -rf /work/models/qwen2_5_coder_1_5b_instruct_q4_0
++ done_n=1
++ '[' 1 -lt 2 ']'
+++ date +%s
++ '[' 38 -ge 3000 ']'
+++ python3 -c 'import json;print(json.dumps(json.load(open('\''/work/shard.json'\''))[1]))'
++ job='{"id": "qwen2_5_coder_1_5b_instruct_q8_0", "format": "gguf", "backend": "rust-ffm", "revision": "f86cb2c1fa58255f8052cc32aeede1b7482d4361", "wl": "coding", "tpl": "chatml", "context": 2048, "threads": 8, "mt": 64, "topK": 1, "settingsSource": {"modelId": "qwen2.5-coder-1.5b-instruct-q8_0", "report": "benchmark-results/certified-20260724/rag/native-q8-prefix-cache/qwen2.5-coder-1.5b-q8_0/qwen2.5-coder-1.5b-q8_0-rust-ffm-coding-v4-grounded.json", "reportSha256": "8aae6eb24601b031acaaf33998f39e5c753eab106a27ec99242c2db2bd13db66"}, "files": [{"path": "model.gguf", "sha256": "507de59046601282ba768a9789900e6ccf60ed93ddf346730b7c68eb0715bc47", "sizeBytes": 1894532160, "uri": "https://huggingface.co/Qwen/Qwen2.5-Coder-1.5B-Instruct-GGUF/resolve/f86cb2c1fa58255f8052cc32aeede1b7482d4361/qwen2.5-coder-1.5b-instruct-q8_0.gguf"}]}'
+++ python3 -c 'import json,sys;print(json.loads(sys.argv[1])['\''id'\''])' '{"id": "qwen2_5_coder_1_5b_instruct_q8_0", "format": "gguf", "backend": "rust-ffm", "revision": "f86cb2c1fa58255f8052cc32aeede1b7482d4361", "wl": "coding", "tpl": "chatml", "context": 2048, "threads": 8, "mt": 64, "topK": 1, "settingsSource": {"modelId": "qwen2.5-coder-1.5b-instruct-q8_0", "report": "benchmark-results/certified-20260724/rag/native-q8-prefix-cache/qwen2.5-coder-1.5b-q8_0/qwen2.5-coder-1.5b-q8_0-rust-ffm-coding-v4-grounded.json", "reportSha256": "8aae6eb24601b031acaaf33998f39e5c753eab106a27ec99242c2db2bd13db66"}, "files": [{"path": "model.gguf", "sha256": "507de59046601282ba768a9789900e6ccf60ed93ddf346730b7c68eb0715bc47", "sizeBytes": 1894532160, "uri": "https://huggingface.co/Qwen/Qwen2.5-Coder-1.5B-Instruct-GGUF/resolve/f86cb2c1fa58255f8052cc32aeede1b7482d4361/qwen2.5-coder-1.5b-instruct-q8_0.gguf"}]}'
++ id=qwen2_5_coder_1_5b_instruct_q8_0
+++ python3 -c 'import json,sys;print(json.loads(sys.argv[1])['\''tpl'\''])' '{"id": "qwen2_5_coder_1_5b_instruct_q8_0", "format": "gguf", "backend": "rust-ffm", "revision": "f86cb2c1fa58255f8052cc32aeede1b7482d4361", "wl": "coding", "tpl": "chatml", "context": 2048, "threads": 8, "mt": 64, "topK": 1, "settingsSource": {"modelId": "qwen2.5-coder-1.5b-instruct-q8_0", "report": "benchmark-results/certified-20260724/rag/native-q8-prefix-cache/qwen2.5-coder-1.5b-q8_0/qwen2.5-coder-1.5b-q8_0-rust-ffm-coding-v4-grounded.json", "reportSha256": "8aae6eb24601b031acaaf33998f39e5c753eab106a27ec99242c2db2bd13db66"}, "files": [{"path": "model.gguf", "sha256": "507de59046601282ba768a9789900e6ccf60ed93ddf346730b7c68eb0715bc47", "sizeBytes": 1894532160, "uri": "https://huggingface.co/Qwen/Qwen2.5-Coder-1.5B-Instruct-GGUF/resolve/f86cb2c1fa58255f8052cc32aeede1b7482d4361/qwen2.5-coder-1.5b-instruct-q8_0.gguf"}]}'
++ tpl=chatml
+++ python3 -c 'import json,sys;print(json.loads(sys.argv[1])['\''wl'\''])' '{"id": "qwen2_5_coder_1_5b_instruct_q8_0", "format": "gguf", "backend": "rust-ffm", "revision": "f86cb2c1fa58255f8052cc32aeede1b7482d4361", "wl": "coding", "tpl": "chatml", "context": 2048, "threads": 8, "mt": 64, "topK": 1, "settingsSource": {"modelId": "qwen2.5-coder-1.5b-instruct-q8_0", "report": "benchmark-results/certified-20260724/rag/native-q8-prefix-cache/qwen2.5-coder-1.5b-q8_0/qwen2.5-coder-1.5b-q8_0-rust-ffm-coding-v4-grounded.json", "reportSha256": "8aae6eb24601b031acaaf33998f39e5c753eab106a27ec99242c2db2bd13db66"}, "files": [{"path": "model.gguf", "sha256": "507de59046601282ba768a9789900e6ccf60ed93ddf346730b7c68eb0715bc47", "sizeBytes": 1894532160, "uri": "https://huggingface.co/Qwen/Qwen2.5-Coder-1.5B-Instruct-GGUF/resolve/f86cb2c1fa58255f8052cc32aeede1b7482d4361/qwen2.5-coder-1.5b-instruct-q8_0.gguf"}]}'
++ wl=coding
+++ python3 -c 'import json,sys;print(json.loads(sys.argv[1])['\''backend'\''])' '{"id": "qwen2_5_coder_1_5b_instruct_q8_0", "format": "gguf", "backend": "rust-ffm", "revision": "f86cb2c1fa58255f8052cc32aeede1b7482d4361", "wl": "coding", "tpl": "chatml", "context": 2048, "threads": 8, "mt": 64, "topK": 1, "settingsSource": {"modelId": "qwen2.5-coder-1.5b-instruct-q8_0", "report": "benchmark-results/certified-20260724/rag/native-q8-prefix-cache/qwen2.5-coder-1.5b-q8_0/qwen2.5-coder-1.5b-q8_0-rust-ffm-coding-v4-grounded.json", "reportSha256": "8aae6eb24601b031acaaf33998f39e5c753eab106a27ec99242c2db2bd13db66"}, "files": [{"path": "model.gguf", "sha256": "507de59046601282ba768a9789900e6ccf60ed93ddf346730b7c68eb0715bc47", "sizeBytes": 1894532160, "uri": "https://huggingface.co/Qwen/Qwen2.5-Coder-1.5B-Instruct-GGUF/resolve/f86cb2c1fa58255f8052cc32aeede1b7482d4361/qwen2.5-coder-1.5b-instruct-q8_0.gguf"}]}'
++ bk=rust-ffm
+++ python3 -c 'import json,sys;print(json.loads(sys.argv[1]).get('\''stopSequence'\'', '\'''\''))' '{"id": "qwen2_5_coder_1_5b_instruct_q8_0", "format": "gguf", "backend": "rust-ffm", "revision": "f86cb2c1fa58255f8052cc32aeede1b7482d4361", "wl": "coding", "tpl": "chatml", "context": 2048, "threads": 8, "mt": 64, "topK": 1, "settingsSource": {"modelId": "qwen2.5-coder-1.5b-instruct-q8_0", "report": "benchmark-results/certified-20260724/rag/native-q8-prefix-cache/qwen2.5-coder-1.5b-q8_0/qwen2.5-coder-1.5b-q8_0-rust-ffm-coding-v4-grounded.json", "reportSha256": "8aae6eb24601b031acaaf33998f39e5c753eab106a27ec99242c2db2bd13db66"}, "files": [{"path": "model.gguf", "sha256": "507de59046601282ba768a9789900e6ccf60ed93ddf346730b7c68eb0715bc47", "sizeBytes": 1894532160, "uri": "https://huggingface.co/Qwen/Qwen2.5-Coder-1.5B-Instruct-GGUF/resolve/f86cb2c1fa58255f8052cc32aeede1b7482d4361/qwen2.5-coder-1.5b-instruct-q8_0.gguf"}]}'
++ stop_sequence=
++ stop_args=()
++ [[ -n '' ]]
++ read -r context threads mt topk
+++ python3 -c 'import json,sys;j=json.loads(sys.argv[1]);print(j['\''context'\''],j['\''threads'\''],j['\''mt'\''],j['\''topK'\''])' '{"id": "qwen2_5_coder_1_5b_instruct_q8_0", "format": "gguf", "backend": "rust-ffm", "revision": "f86cb2c1fa58255f8052cc32aeede1b7482d4361", "wl": "coding", "tpl": "chatml", "context": 2048, "threads": 8, "mt": 64, "topK": 1, "settingsSource": {"modelId": "qwen2.5-coder-1.5b-instruct-q8_0", "report": "benchmark-results/certified-20260724/rag/native-q8-prefix-cache/qwen2.5-coder-1.5b-q8_0/qwen2.5-coder-1.5b-q8_0-rust-ffm-coding-v4-grounded.json", "reportSha256": "8aae6eb24601b031acaaf33998f39e5c753eab106a27ec99242c2db2bd13db66"}, "files": [{"path": "model.gguf", "sha256": "507de59046601282ba768a9789900e6ccf60ed93ddf346730b7c68eb0715bc47", "sizeBytes": 1894532160, "uri": "https://huggingface.co/Qwen/Qwen2.5-Coder-1.5B-Instruct-GGUF/resolve/f86cb2c1fa58255f8052cc32aeede1b7482d4361/qwen2.5-coder-1.5b-instruct-q8_0.gguf"}]}'
++ artifact_dir=/work/models/qwen2_5_coder_1_5b_instruct_q8_0
+++ date +%s
++ T0=1791755254
++ say 'start qwen2_5_coder_1_5b_instruct_q8_0 (backend=rust-ffm template=chatml workload=coding)'
++ tee -a /var/log/smoke-worker.log
+++ date -u +%H:%M:%S
++ printf '[smoke %s] %s\n' 21:47:34 'start qwen2_5_coder_1_5b_instruct_q8_0 (backend=rust-ffm template=chatml workload=coding)'
+[smoke 21:47:34] start qwen2_5_coder_1_5b_instruct_q8_0 (backend=rust-ffm template=chatml workload=coding)
+++ date +%s
++ remaining=2962
++ '[' 2962 -le 0 ']'
+++ timeout --kill-after=30 2962 python3 /work/fetch-smoke-artifact.py --job-json '{"id": "qwen2_5_coder_1_5b_instruct_q8_0", "format": "gguf", "backend": "rust-ffm", "revision": "f86cb2c1fa58255f8052cc32aeede1b7482d4361", "wl": "coding", "tpl": "chatml", "context": 2048, "threads": 8, "mt": 64, "topK": 1, "settingsSource": {"modelId": "qwen2.5-coder-1.5b-instruct-q8_0", "report": "benchmark-results/certified-20260724/rag/native-q8-prefix-cache/qwen2.5-coder-1.5b-q8_0/qwen2.5-coder-1.5b-q8_0-rust-ffm-coding-v4-grounded.json", "reportSha256": "8aae6eb24601b031acaaf33998f39e5c753eab106a27ec99242c2db2bd13db66"}, "files": [{"path": "model.gguf", "sha256": "507de59046601282ba768a9789900e6ccf60ed93ddf346730b7c68eb0715bc47", "sizeBytes": 1894532160, "uri": "https://huggingface.co/Qwen/Qwen2.5-Coder-1.5B-Instruct-GGUF/resolve/f86cb2c1fa58255f8052cc32aeede1b7482d4361/qwen2.5-coder-1.5b-instruct-q8_0.gguf"}]}' --root /work/models --receipt /work/out/qwen2_5_coder_1_5b_instruct_q8_0.inputs.json
++ artifact=/work/models/qwen2_5_coder_1_5b_instruct_q8_0/model.gguf
+++ date +%s
++ remaining=2947
++ '[' 2947 -le 0 ']'
++ timeout --kill-after=30 2947 java --add-modules jdk.incubator.vector --enable-native-access=ALL-UNNAMED -cp '/work/models-rag-bench-0.3.58-bonsai-catalog-baseline//lib/*' com.integrallis.models.rag.RagBenchmarkCli --framework plain-java --backend rust-ffm --backend-version models@0.3.58+b85cd653a3549b1f468be95409a46fc68bae3a8c --model /work/models/qwen2_5_coder_1_5b_instruct_q8_0/model.gguf --model-id qwen2_5_coder_1_5b_instruct_q8_0 --workload coding --prompt-template chatml --context 2048 --threads 8 --max-tokens 64 --top-k 1 --warmups 0 --iterations 1 --output /work/out/qwen2_5_coder_1_5b_instruct_q8_0.json
++ rc=0
++ verdict=RUN_FAILED_rc0
++ '[' 0 -eq 0 ']'
++ '[' -s /work/out/qwen2_5_coder_1_5b_instruct_q8_0.json ']'
+++ python3 /work/gate.py /work/out/qwen2_5_coder_1_5b_instruct_q8_0.json
++ verdict=FAIL:correctAnswerRate=0.8888888888888888
+++ date +%s
++ printf '%s\t%s\t%s\n' qwen2_5_coder_1_5b_instruct_q8_0 FAIL:correctAnswerRate=0.8888888888888888 38
+++ date +%s
++ say 'done qwen2_5_coder_1_5b_instruct_q8_0 -> FAIL:correctAnswerRate=0.8888888888888888 in 38s'
++ tee -a /var/log/smoke-worker.log
+++ date -u +%H:%M:%S
++ printf '[smoke %s] %s\n' 21:48:12 'done qwen2_5_coder_1_5b_instruct_q8_0 -> FAIL:correctAnswerRate=0.8888888888888888 in 38s'
+[smoke 21:48:12] done qwen2_5_coder_1_5b_instruct_q8_0 -> FAIL:correctAnswerRate=0.8888888888888888 in 38s
++ aws s3 cp /work/out/qwen2_5_coder_1_5b_instruct_q8_0.inputs.json s3://models-qual-077051030817/results/shard-890/ --only-show-errors
++ aws s3 cp /work/out/qwen2_5_coder_1_5b_instruct_q8_0.json s3://models-qual-077051030817/results/shard-890/ --only-show-errors
++ aws s3 cp /work/out/qwen2_5_coder_1_5b_instruct_q8_0.log s3://models-qual-077051030817/results/shard-890/ --only-show-errors
++ aws s3 cp /work/out/progress.tsv s3://models-qual-077051030817/results/shard-890/ --only-show-errors
++ rm -rf /work/models/qwen2_5_coder_1_5b_instruct_q8_0
++ done_n=2
++ '[' 2 -lt 2 ']'
++ '[' RUNNING = DEADLINE ']'
++ STATUS=SHARD_COMPLETE
++ say 'shard finished: 2/2'
++ tee -a /var/log/smoke-worker.log
+++ date -u +%H:%M:%S
++ printf '[smoke %s] %s\n' 21:48:17 'shard finished: 2/2'
+[smoke 21:48:17] shard finished: 2/2
++ finish
++ rc=0
++ say 'FINAL_STATUS=SHARD_COMPLETE exit=0'
++ tee -a /var/log/smoke-worker.log
+++ date -u +%H:%M:%S
++ printf '[smoke %s] %s\n' 21:48:17 'FINAL_STATUS=SHARD_COMPLETE exit=0'
+[smoke 21:48:17] FINAL_STATUS=SHARD_COMPLETE exit=0
++ command -v aws
++ echo SHARD_COMPLETE
++ aws s3 cp /work/out/STATUS s3://models-qual-077051030817/results/shard-890/ --only-show-errors
++ aws s3 cp /var/log/smoke-worker.log s3://models-qual-077051030817/results/shard-890/smoke-worker-890.log --only-show-errors
