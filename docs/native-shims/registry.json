@@ -333,7 +333,7 @@
         },
         {
           "path": "docs/native-shims/bf16-swiglu-candidate-inventory.md",
-          "sha256": "e9f41a662c7e771c9cde620b18c416cf849890abb41f0ff719e4ed19742bc0d9",
+          "sha256": "19a07c14fb08d03b61f3c034e3bfa5fb27e11806bc3bd578150b89e734169997",
           "kind": "current"
         }
       ],
@@ -665,7 +665,7 @@
       "evidence": [
         {
           "path": "docs/native-shims/bf16-swiglu-candidate-inventory.md",
-          "sha256": "e9f41a662c7e771c9cde620b18c416cf849890abb41f0ff719e4ed19742bc0d9",
+          "sha256": "19a07c14fb08d03b61f3c034e3bfa5fb27e11806bc3bd578150b89e734169997",
           "kind": "current"
         }
       ],
@@ -709,7 +709,7 @@
       "evidence": [
         {
           "path": "docs/native-shims/bf16-swiglu-candidate-inventory.md",
-          "sha256": "e9f41a662c7e771c9cde620b18c416cf849890abb41f0ff719e4ed19742bc0d9",
+          "sha256": "19a07c14fb08d03b61f3c034e3bfa5fb27e11806bc3bd578150b89e734169997",
           "kind": "current"
         }
       ],
@@ -751,7 +751,7 @@
       "evidence": [
         {
           "path": "docs/native-shims/arm-sleef-candidate.md",
-          "sha256": "472b95b7551ff9bf0337d277f7ba1fcfc1acad63ada23bbcf10ed5255df5c1e5",
+          "sha256": "b1761859bf839e1190410ae0e7d935e3f80d6bf50c10845dfb0677ad34e2443c",
           "kind": "current"
         }
       ],
