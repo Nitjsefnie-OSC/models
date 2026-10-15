@@ -4,6 +4,38 @@ All notable changes to models are documented here.
 
 ## [Unreleased]
 
+## [0.3.60] - 2026-10-15
+
+### Added and fixed
+
+- `ModelCandidate.costOf(inputTokens, outputTokens)` prices usage against a candidate's declared
+  rates. This is the arithmetic the shared routing budget already charged, which was reachable only
+  from inside the package, so an application keeping its own token ledger had to reimplement it and
+  then keep the two in step by hand. `RoutingBudget` now delegates to the accessor, and a test
+  asserts that agreement rather than assuming it.
+- `PretrainedTaskClassifier.match(query)` returns the nearest task and its similarity whether or not
+  it clears the classifier's floor, and `admits(match)` reports whether `classify` would have
+  returned it. `classify` answers with a task or with nothing, which cannot separate a prompt unlike
+  every exemplar from a weak but real match; short conversational traffic sits in the second group
+  against an index of work-shaped prompts. `classify` is now expressed in terms of both, so the
+  three cannot diverge.
+- `ModelCandidate` accepts an optional `maxOutputTokens`, and `effectiveMaxOutputTokens(fallback)`
+  prefers it over the execution-wide bound. One `RoutingExecutionOptions.tokenBounds` pair cannot
+  describe a mixed fleet: a 360M model answering a liveness check in twenty tokens and a reasoning
+  model that bills its reasoning as completion do not share an output ceiling. The previous arity
+  remains as a constructor overload.
+- A token bound refused after a provider call no longer discards the completion that call was
+  billed for. `RoutingExecution.Attempt.settle` recorded the cost and threw, so
+  `ModelFleet.execute` never reached its result and the spend bought nothing.
+  `RoutingBudgetExceededException` now carries `billedResult()`, `billedUsage()` and `billedCost()`.
+  Fail-closed behaviour is unchanged: it still throws, still cancels the execution and still records
+  the cost. A bound refused *before* an attempt is unaffected and still costs nothing.
+
+Consumes released Vectors 0.1.30. No CUDA numeric path changed and device gates were not rerun.
+The last G1 result remains 1280/1280 exact token IDs on RTX 4090, Granite 4.1 3B Q4_K_M
+(`benchmark-results/2026-10-07-g1-parity`); G4 remains 6.184x on that host/model
+(`benchmark-results/2026-10-07-g4-dualpath`). No model qualification changed in this release.
+
 ## [0.3.59] - 2026-10-14
 
 ### Added and fixed
