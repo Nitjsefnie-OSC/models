@@ -242,7 +242,13 @@ public final class ModelFleet<T> {
           continue;
         }
         execution.checkActive();
-        reservation.settle(usage.apply(value));
+        try {
+          reservation.settle(usage.apply(value));
+        } catch (RoutingBudgetExceededException overrun) {
+          // Billed before it was refused, so the artifact travels with the refusal rather than
+          // being dropped on the floor along with the money that bought it.
+          throw overrun.withBilledResult(value);
+        }
         execution.checkActive();
         attempts.add(new RoutingAttempt(candidate.id(), elapsed(started), null, null));
         router.record(feedback(request, initial.taskType(), candidate.id(), true));

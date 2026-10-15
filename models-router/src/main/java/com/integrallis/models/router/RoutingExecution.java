@@ -210,13 +210,19 @@ public final class RoutingExecution implements AutoCloseable {
                 : RoutingBudget.cost(candidate, usage.inputTokens(), usage.outputTokens());
         if (first != null) first.settle(cost);
         if (second != null) second.settle(cost);
-        if (usage != null
-            && options.tokenBounds() != null
-            && (usage.inputTokens() > options.tokenBounds().inputTokens()
-                || usage.outputTokens() > options.tokenBounds().outputTokens())) {
-          cancelled = true;
-          throw new RoutingBudgetExceededException(
-              "provider usage exceeded declared token bounds; actual cost recorded");
+        if (usage != null && options.tokenBounds() != null) {
+          // The candidate's own ceiling wins where it declares one: a fleet-wide pair cannot hold
+          // a liveness model and a reasoning model to the same completion bound.
+          int outputBound =
+              candidate.effectiveMaxOutputTokens(options.tokenBounds().outputTokens());
+          if (usage.inputTokens() > options.tokenBounds().inputTokens()
+              || usage.outputTokens() > outputBound) {
+            cancelled = true;
+            // The charge has already been recorded above, so it carries out with the refusal.
+            // Losing the completion as well would protect nothing.
+            throw RoutingBudgetExceededException.charged(
+                "provider usage exceeded declared token bounds; actual cost recorded", usage, cost);
+          }
         }
       }
     }
