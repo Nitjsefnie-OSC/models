@@ -4,6 +4,35 @@ All notable changes to models are documented here.
 
 ## [Unreleased]
 
+## [0.4.1] - 2026-10-16
+
+### Added
+
+- `ModelCandidate.toBuilder()` returns a builder initialised from every component of an existing
+  candidate, and `ModelCandidate.Builder.addCapabilities(String...)` adds capability names to the
+  ones already set instead of replacing them.
+
+  `CatalogDiscovery` exists so that using the router does not begin with writing out a model's
+  context window, latency and quality by hand, and it already reports identity, locality, the
+  context window read from the artifact, and measured or estimated throughput. What it cannot
+  report is an application's own capability names -- `liveness`, `grounding` -- or its per-task
+  quality weights, because neither is a fact about the model. Adding either to a discovered
+  candidate meant rebuilding it component by component and keeping that copy in step by hand, and
+  since that costs more than declaring the model from scratch, the rational response was to stop
+  discovering and hand-write figures the catalog had already read correctly. The derivation is the
+  missing half of discovery, not a convenience.
+
+  Capabilities carry over as an explicit choice, so calling `tags(...)` on a derived builder does
+  not silently replace capabilities the candidate already had -- on a fresh builder `tags` seeds
+  `capabilities`, and on a derived one that would discard what the application just added.
+
+### Dependencies and device evidence
+
+Consumes released Vectors 0.1.30. No CUDA numeric path changed and device gates were not rerun.
+The last G1 result remains 1280/1280 exact token IDs on RTX 4090, Granite 4.1 3B Q4_K_M
+(`benchmark-results/2026-10-07-g1-parity`); G4 remains 6.184x on that host/model
+(`benchmark-results/2026-10-07-g4-dualpath`). No model qualification changed in this release.
+
 ## [0.4.0] - 2026-10-16
 
 ### Added
