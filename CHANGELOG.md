@@ -4,6 +4,39 @@ All notable changes to models are documented here.
 
 ## [Unreleased]
 
+## [0.4.0] - 2026-10-16
+
+### Added
+
+- `PricingTier` and `ModelCandidate.pricingTiers`, so a candidate can declare a rate that applies
+  from a prompt size upwards. A single pair of rates cannot describe a provider that charges in
+  steps: Anthropic's Haiku 5.5 is $0.10 and $0.50 per million below a 100,000-token prompt and
+  $0.50 and $2.50 at or above it. Declared flat, a 150,000-token request is priced five-fold low,
+  and because `RoutingBudget` charges what `ModelCandidate.costOf` reports, a budget declared that
+  way stops spending later than it was told to.
+- `ModelCandidate.tierFor(inputTokens)` returns the tier in force, and `costOf` applies it.
+  Crossing a threshold reprices the whole request, output included, rather than only the tokens
+  above the threshold. Thresholds are inclusive, so a provider's "above 100,000 tokens" is declared
+  as `100_001`; token counts are integers, which is why no separate inclusive/exclusive flag is
+  needed. Tiers are stored in threshold order whatever order they were declared in, and two tiers
+  may not start at the same size.
+
+### Unchanged on purpose
+
+- `blendedCostPerMillionTokens` still reports list price and routing still scores on it. Scoring
+  normalises cost across the eligible candidates, so a rate that moved with prompt size would make
+  a candidate's score jump at its threshold and its rank non-monotonic in the size of the request.
+  Accounting is where the actual tier must be right. This is the same line other gateways draw:
+  a dispatch is billed at the tier that served it while routing continues to score on list price.
+- Prices remain the operator's declaration. This library does not fetch a price map at startup;
+  that trades a network dependency and a third-party trust boundary for freshness, and the decision
+  belongs to the deployment rather than to the library.
+
+Consumes released Vectors 0.1.30. No CUDA numeric path changed and device gates were not rerun.
+The last G1 result remains 1280/1280 exact token IDs on RTX 4090, Granite 4.1 3B Q4_K_M
+(`benchmark-results/2026-10-07-g1-parity`); G4 remains 6.184x on that host/model
+(`benchmark-results/2026-10-07-g4-dualpath`). No model qualification changed in this release.
+
 ## [0.3.60] - 2026-10-15
 
 ### Added and fixed
