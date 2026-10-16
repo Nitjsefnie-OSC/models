@@ -332,6 +332,40 @@ public record ModelCandidate(
     return new Builder(id);
   }
 
+  /**
+   * Starts building a copy of this candidate.
+   *
+   * <p>Exists so that adjusting one field of a discovered candidate does not mean restating the
+   * twelve that were already right. {@link CatalogDiscovery} reports what a catalog knows -- the
+   * identity, the context window read from the artifact, measured or estimated throughput -- but it
+   * cannot know an application's own capability names or its per-task quality weights. Without a
+   * derivation the only way to add either was to rebuild the candidate component by component and
+   * keep that copy in step by hand, which costs more than declaring the model from scratch and is
+   * why a caller would reasonably decide not to discover at all.
+   *
+   * <p>Capabilities carry over as an explicit choice, so a later {@link Builder#tags(Set)} call on
+   * the returned builder does not silently replace capabilities this candidate already had.
+   *
+   * @return a builder initialised from every component of this candidate
+   */
+  public Builder toBuilder() {
+    Builder builder = new Builder(id);
+    builder.local = local;
+    builder.tags = tags;
+    builder.capabilities = capabilities;
+    builder.capabilitiesExplicit = true;
+    builder.inputCost = costPerMillionInputTokens;
+    builder.outputCost = costPerMillionOutputTokens;
+    builder.ttftMillis = timeToFirstTokenMillis;
+    builder.tokensPerSecond = tokensPerSecond;
+    builder.contextWindow = contextWindow;
+    builder.quality = quality;
+    builder.successRate = successRate;
+    builder.maxOutputTokens = maxOutputTokens;
+    builder.pricingTiers.addAll(pricingTiers);
+    return builder;
+  }
+
   private static String requireText(String value) {
     if (value == null || value.isBlank()) {
       throw new IllegalArgumentException("id must not be blank");
@@ -398,6 +432,25 @@ public record ModelCandidate(
       this.capabilities = Set.copyOf(Objects.requireNonNull(value, "capabilities"));
       this.capabilitiesExplicit = true;
       return this;
+    }
+
+    /**
+     * Adds capabilities to the ones already set, rather than replacing them.
+     *
+     * <p>The operation a discovered candidate usually needs: a catalog reports what the model is
+     * ({@code chat}), while an application routes on names only it defines ({@code liveness},
+     * {@code grounding}). Replacing would mean restating the catalog's own answer to keep it.
+     *
+     * @param values capability names to add
+     * @return this builder
+     */
+    public Builder addCapabilities(String... values) {
+      Objects.requireNonNull(values, "values");
+      Set<String> combined = new java.util.LinkedHashSet<>(this.capabilities);
+      for (String value : values) {
+        combined.add(Objects.requireNonNull(value, "capability"));
+      }
+      return capabilities(combined);
     }
 
     /**
