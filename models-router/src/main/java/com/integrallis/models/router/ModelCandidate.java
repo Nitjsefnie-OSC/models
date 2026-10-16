@@ -16,8 +16,11 @@
 package com.integrallis.models.router;
 
 import java.math.BigDecimal;
+import java.util.Comparator;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 
 /**
@@ -54,7 +57,8 @@ public record ModelCandidate(
     int contextWindow,
     Map<String, Double> quality,
     double successRate,
-    int maxOutputTokens) {
+    int maxOutputTokens,
+    List<PricingTier> pricingTiers) {
 
   /** Validates and defensively copies the descriptor. */
   public ModelCandidate {
@@ -64,6 +68,22 @@ public record ModelCandidate(
     quality = Map.copyOf(Objects.requireNonNull(quality, "quality"));
     if (maxOutputTokens < 0) {
       throw new IllegalArgumentException("maxOutputTokens must not be negative");
+    }
+    // List.copyOf of a sorted copy: the same immutability the other components get, and the idiom
+    // the static analysis recognises as a defensive copy.
+    pricingTiers =
+        pricingTiers == null
+            ? List.of()
+            : List.copyOf(
+                pricingTiers.stream()
+                    .sorted(Comparator.comparingLong(PricingTier::fromInputTokens))
+                    .toList());
+    for (int index = 1; index < pricingTiers.size(); index++) {
+      if (pricingTiers.get(index).fromInputTokens()
+          == pricingTiers.get(index - 1).fromInputTokens()) {
+        throw new IllegalArgumentException(
+            "two pricing tiers start at " + pricingTiers.get(index).fromInputTokens());
+      }
     }
     requireNonNegative(costPerMillionInputTokens, "costPerMillionInputTokens");
     requireNonNegative(costPerMillionOutputTokens, "costPerMillionOutputTokens");
@@ -161,6 +181,71 @@ public record ModelCandidate(
   }
 
   /**
+   * The previous arity, for callers that declare a single pair of rates.
+   *
+   * @param id stable model identifier
+   * @param local whether the weights run in this process
+   * @param tags task tags this model is restricted to, empty for none
+   * @param capabilities capabilities this model declares
+   * @param costPerMillionInputTokens prompt price, zero for local
+   * @param costPerMillionOutputTokens completion price, zero for local
+   * @param timeToFirstTokenMillis measured or declared time to first token
+   * @param tokensPerSecond measured or declared decode rate
+   * @param contextWindow largest prompt this model accepts
+   * @param quality per-task quality, between zero and one
+   * @param successRate observed success rate, between zero and one
+   * @param maxOutputTokens completion ceiling, zero to defer to the execution's bound
+   */
+  public ModelCandidate(
+      String id,
+      boolean local,
+      Set<String> tags,
+      Set<String> capabilities,
+      double costPerMillionInputTokens,
+      double costPerMillionOutputTokens,
+      long timeToFirstTokenMillis,
+      double tokensPerSecond,
+      int contextWindow,
+      Map<String, Double> quality,
+      double successRate,
+      int maxOutputTokens) {
+    this(
+        id,
+        local,
+        tags,
+        capabilities,
+        costPerMillionInputTokens,
+        costPerMillionOutputTokens,
+        timeToFirstTokenMillis,
+        tokensPerSecond,
+        contextWindow,
+        quality,
+        successRate,
+        maxOutputTokens,
+        List.of());
+  }
+
+  /**
+   * The rates that apply to a prompt of this size.
+   *
+   * <p>A tier replaces the candidate's own rates from its threshold upwards, which is how providers
+   * meter the step and how other gateways model it: crossing the threshold reprices the whole
+   * request rather than only the tokens above it.
+   *
+   * @param inputTokens prompt size the request will actually send
+   * @return the tier in force, or empty when the candidate's own rates apply
+   */
+  public Optional<PricingTier> tierFor(long inputTokens) {
+    PricingTier applicable = null;
+    for (PricingTier tier : pricingTiers) {
+      if (inputTokens >= tier.fromInputTokens()) {
+        applicable = tier;
+      }
+    }
+    return Optional.ofNullable(applicable);
+  }
+
+  /**
    * The completion ceiling this model can honour, or the execution's when it declares none.
    *
    * <p>One fleet-wide bound cannot describe a mixed fleet: a 360M model answering a liveness check
@@ -203,21 +288,35 @@ public record ModelCandidate(
     if (inputTokens < 0 || outputTokens < 0) {
       throw new IllegalArgumentException("usage must not be negative");
     }
-    return BigDecimal.valueOf(costPerMillionInputTokens)
+    double inputRate = costPerMillionInputTokens;
+    double outputRate = costPerMillionOutputTokens;
+    // A tier reprices the whole request, input and output alike, rather than only the tokens above
+    // its threshold. That is how providers meter the step and how other gateways model it.
+    var tier = tierFor(inputTokens);
+    if (tier.isPresent()) {
+      inputRate = tier.get().inputPerMillion();
+      outputRate = tier.get().outputPerMillion();
+    }
+    return BigDecimal.valueOf(inputRate)
         .multiply(BigDecimal.valueOf(inputTokens))
-        .add(
-            BigDecimal.valueOf(costPerMillionOutputTokens)
-                .multiply(BigDecimal.valueOf(outputTokens)))
+        .add(BigDecimal.valueOf(outputRate).multiply(BigDecimal.valueOf(outputTokens)))
         .movePointLeft(6);
   }
 
   /**
-   * Blended price used for cost comparison.
+   * Blended list price, used for comparing candidates while routing.
    *
    * <p>Weighted three-to-one toward output tokens, because completions dominate spend on the chat
    * and agent workloads this routes.
    *
-   * @return blended price per million tokens
+   * <p>Deliberately ignores {@link #pricingTiers()}. Scoring normalises cost across the eligible
+   * candidates, so a rate that moved with prompt size would make a candidate's score jump at its
+   * threshold and routing non-monotonic in the size of the request. Accounting is where the actual
+   * tier has to be right, and {@link #costOf} applies it. Production gateways draw the line in the
+   * same place: dispatch is billed at the tier that served it while routing continues to score on
+   * list price.
+   *
+   * @return blended list price per million tokens
    */
   public double blendedCostPerMillionTokens() {
     return (costPerMillionInputTokens + 3.0 * costPerMillionOutputTokens) / 4.0;
@@ -249,6 +348,7 @@ public record ModelCandidate(
   /** Fluent builder, so adding a dimension later does not break every call site. */
   public static final class Builder {
     private int maxOutputTokens;
+    private final java.util.List<PricingTier> pricingTiers = new java.util.ArrayList<>();
     private final String id;
     private boolean local;
     private Set<String> tags = Set.of();
@@ -369,6 +469,24 @@ public record ModelCandidate(
     }
 
     /**
+     * Adds a rate that applies from a prompt size upwards.
+     *
+     * <p>The threshold is inclusive, so a provider's "above 100,000 tokens" is declared as {@code
+     * 100_001}. Token counts are integers, which makes an explicit inclusive/exclusive flag
+     * unnecessary; gateways comparing floating-point thresholds need one.
+     *
+     * @param fromInputTokens smallest prompt this rate applies to, above zero
+     * @param inputPerMillion prompt price per million tokens at this tier
+     * @param outputPerMillion completion price per million tokens at this tier
+     * @return this builder
+     */
+    public Builder pricingTier(
+        long fromInputTokens, double inputPerMillion, double outputPerMillion) {
+      this.pricingTiers.add(new PricingTier(fromInputTokens, inputPerMillion, outputPerMillion));
+      return this;
+    }
+
+    /**
      * Declares the completion ceiling this model can honour.
      *
      * @param value maximum completion tokens, zero to defer to the execution's bound
@@ -400,7 +518,8 @@ public record ModelCandidate(
           contextWindow,
           quality,
           successRate,
-          maxOutputTokens);
+          maxOutputTokens,
+          pricingTiers);
     }
   }
 }
