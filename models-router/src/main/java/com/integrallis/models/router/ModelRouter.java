@@ -300,6 +300,14 @@ public final class ModelRouter {
             "no model declares required capabilities " + requirements.requiredCapabilities());
         continue;
       }
+      if (!candidate.features().containsAll(requirements.requiredFeatures())) {
+        rejections.add("no model declares required features " + requirements.requiredFeatures());
+        continue;
+      }
+      if (candidate.features().stream().anyMatch(requirements.excludedFeatures()::contains)) {
+        rejections.add("every model declares an excluded feature");
+        continue;
+      }
       if (candidate.contextWindow() < request.estimatedTokens()) {
         rejections.add("no model has a context window of " + request.estimatedTokens() + " tokens");
         continue;

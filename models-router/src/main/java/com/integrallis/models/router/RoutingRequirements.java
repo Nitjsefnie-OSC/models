@@ -28,9 +28,22 @@ import java.util.Set;
  * pretend to infer whether arbitrary text contains PII.
  */
 public record RoutingRequirements(
-    Set<String> requiredCapabilities, RoutingDataBoundary dataBoundary) {
+    Set<String> requiredCapabilities,
+    RoutingDataBoundary dataBoundary,
+    Set<String> requiredFeatures,
+    Set<String> excludedFeatures) {
   private static final RoutingRequirements NONE =
-      new RoutingRequirements(Set.of(), RoutingDataBoundary.REMOTE_ALLOWED);
+      new RoutingRequirements(Set.of(), RoutingDataBoundary.REMOTE_ALLOWED, Set.of(), Set.of());
+
+  /**
+   * The previous arity, which constrains nothing on features.
+   *
+   * @param requiredCapabilities capabilities a candidate must declare
+   * @param dataBoundary whether the request may leave this machine
+   */
+  public RoutingRequirements(Set<String> requiredCapabilities, RoutingDataBoundary dataBoundary) {
+    this(requiredCapabilities, dataBoundary, Set.of(), Set.of());
+  }
 
   /** Validates and defensively copies the requirements. */
   public RoutingRequirements {
@@ -42,6 +55,21 @@ public record RoutingRequirements(
       }
     }
     dataBoundary = Objects.requireNonNull(dataBoundary, "dataBoundary");
+    requiredFeatures = Set.copyOf(Objects.requireNonNull(requiredFeatures, "requiredFeatures"));
+    excludedFeatures = Set.copyOf(Objects.requireNonNull(excludedFeatures, "excludedFeatures"));
+    for (String feature : requiredFeatures) {
+      if (feature == null || feature.isBlank()) {
+        throw new IllegalArgumentException("required feature must not be blank");
+      }
+    }
+    for (String feature : excludedFeatures) {
+      if (feature == null || feature.isBlank()) {
+        throw new IllegalArgumentException("excluded feature must not be blank");
+      }
+      if (requiredFeatures.contains(feature)) {
+        throw new IllegalArgumentException("feature both required and excluded: " + feature);
+      }
+    }
   }
 
   /** Returns the backwards-compatible unconstrained requirement set. */
@@ -57,6 +85,8 @@ public record RoutingRequirements(
   /** Fluent builder. */
   public static final class Builder {
     private final Set<String> requiredCapabilities = new LinkedHashSet<>();
+    private final Set<String> requiredFeatures = new LinkedHashSet<>();
+    private final Set<String> excludedFeatures = new LinkedHashSet<>();
     private RoutingDataBoundary dataBoundary = RoutingDataBoundary.REMOTE_ALLOWED;
 
     private Builder() {}
@@ -70,6 +100,43 @@ public record RoutingRequirements(
       return this;
     }
 
+    /**
+     * Requires a catalog-declared feature, such as {@code long-context}.
+     *
+     * <p>Separate from {@link #requireCapability(String)} because the two answer different
+     * questions: a capability is what the model can be asked to do, a feature is something true
+     * about how it was built, quantized or licensed.
+     *
+     * @param value the feature name
+     * @return this builder
+     */
+    public Builder requireFeature(String value) {
+      if (value == null || value.isBlank()) {
+        throw new IllegalArgumentException("required feature must not be blank");
+      }
+      requiredFeatures.add(value);
+      return this;
+    }
+
+    /**
+     * Rules out any candidate declaring this feature.
+     *
+     * <p>The reason this exists alongside {@code requireFeature}: the useful predicates are often
+     * negative. {@code noncommercial-research-license} and {@code medical-use-warning} are the kind
+     * of thing a deployment needs to route away from, and an allow-list cannot express that without
+     * enumerating every acceptable feature a catalog might ever add.
+     *
+     * @param value the feature name
+     * @return this builder
+     */
+    public Builder excludeFeature(String value) {
+      if (value == null || value.isBlank()) {
+        throw new IllegalArgumentException("excluded feature must not be blank");
+      }
+      excludedFeatures.add(value);
+      return this;
+    }
+
     /** Sets the permitted data boundary for this request. */
     public Builder dataBoundary(RoutingDataBoundary value) {
       this.dataBoundary = Objects.requireNonNull(value, "dataBoundary");
@@ -78,7 +145,8 @@ public record RoutingRequirements(
 
     /** Builds immutable requirements. */
     public RoutingRequirements build() {
-      return new RoutingRequirements(requiredCapabilities, dataBoundary);
+      return new RoutingRequirements(
+          requiredCapabilities, dataBoundary, requiredFeatures, excludedFeatures);
     }
   }
 }
