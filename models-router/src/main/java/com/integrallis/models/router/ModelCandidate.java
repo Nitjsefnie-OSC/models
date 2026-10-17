@@ -59,7 +59,8 @@ public record ModelCandidate(
     double successRate,
     int maxOutputTokens,
     List<PricingTier> pricingTiers,
-    Set<String> features) {
+    Set<String> features,
+    int maxInputTokens) {
 
   /** Validates and defensively copies the descriptor. */
   public ModelCandidate {
@@ -70,6 +71,9 @@ public record ModelCandidate(
     features = Set.copyOf(Objects.requireNonNull(features, "features"));
     if (maxOutputTokens < 0) {
       throw new IllegalArgumentException("maxOutputTokens must not be negative");
+    }
+    if (maxInputTokens < 0) {
+      throw new IllegalArgumentException("maxInputTokens must not be negative");
     }
     // List.copyOf of a sorted copy: the same immutability the other components get, and the idiom
     // the static analysis recognises as a defensive copy.
@@ -225,7 +229,8 @@ public record ModelCandidate(
         successRate,
         maxOutputTokens,
         List.of(),
-        Set.of());
+        Set.of(),
+        0);
   }
 
   /**
@@ -260,6 +265,23 @@ public record ModelCandidate(
    */
   public int effectiveMaxOutputTokens(int fallback) {
     return maxOutputTokens > 0 ? maxOutputTokens : fallback;
+  }
+
+  /**
+   * The prompt ceiling this model can honour, or the execution's when it declares none.
+   *
+   * <p>The mirror of {@link #effectiveMaxOutputTokens(int)}, and needed for the same reason. A
+   * fleet-wide input bound cannot describe a mixed fleet either: a 360M model with an 8,192-token
+   * window and a provider that accepts 200,000 do not share a prompt ceiling. Without this the only
+   * way to admit a large prompt is to raise the fleet-wide bound, and because the execution takes
+   * {@code inputTokens + outputTokens} as the context every request must fit, raising it makes
+   * every small request demand a model large enough for the largest one.
+   *
+   * @param fallback the execution-wide bound, used when this candidate declares none
+   * @return the prompt ceiling to hold this candidate to
+   */
+  public int effectiveMaxInputTokens(int fallback) {
+    return maxInputTokens > 0 ? maxInputTokens : fallback;
   }
 
   /**
@@ -365,6 +387,7 @@ public record ModelCandidate(
     builder.quality = quality;
     builder.successRate = successRate;
     builder.maxOutputTokens = maxOutputTokens;
+    builder.maxInputTokens = maxInputTokens;
     builder.pricingTiers.addAll(pricingTiers);
     builder.features = features;
     return builder;
@@ -386,6 +409,7 @@ public record ModelCandidate(
   /** Fluent builder, so adding a dimension later does not break every call site. */
   public static final class Builder {
     private int maxOutputTokens;
+    private int maxInputTokens;
     private final java.util.List<PricingTier> pricingTiers = new java.util.ArrayList<>();
     private final String id;
     private boolean local;
@@ -570,6 +594,17 @@ public record ModelCandidate(
     }
 
     /**
+     * Sets the prompt ceiling this candidate can honour.
+     *
+     * @param value maximum input tokens, zero to defer to the execution's bound
+     * @return this builder
+     */
+    public Builder maxInputTokens(int value) {
+      this.maxInputTokens = value;
+      return this;
+    }
+
+    /**
      * Builds the candidate.
      *
      * @return an immutable descriptor
@@ -589,7 +624,8 @@ public record ModelCandidate(
           successRate,
           maxOutputTokens,
           pricingTiers,
-          features);
+          features,
+          maxInputTokens);
     }
   }
 }
