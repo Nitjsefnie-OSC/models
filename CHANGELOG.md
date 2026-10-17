@@ -4,6 +4,37 @@ All notable changes to models are documented here.
 
 ## [Unreleased]
 
+## [0.4.2] - 2026-10-16
+
+### Added
+
+- `DiscoveredModel.features()`, `ModelCandidate.features()` and
+  `RoutingRequirements.requireFeature(String)` / `excludeFeature(String)`, with a matching filter in
+  `ModelRouter.eligible`.
+
+  A catalog knows more about a model than what it can be asked to do. ModelJars declares
+  `long-context` on seven entries, `noncommercial-research-license` on one and
+  `medical-use-warning` on another, as *features* rather than capabilities -- a capability is what
+  you can ask of a model, a feature is something true about how it was built, quantized or
+  licensed. `DiscoveredModel` had no field for them, so every one was dropped at the discovery
+  boundary and no application could route on them. The only way to express "this needs a long
+  context" was to invent a capability name and hand-declare it, which is a label rather than a fact.
+
+  `excludeFeature` exists because the useful predicates are often negative: routing away from
+  `noncommercial-research-license` cannot be expressed by an allow-list without enumerating every
+  acceptable feature a catalog might ever add.
+
+  Populating the field needs a catalog provider that supplies it; ModelJars does so from 0.1.61.
+  Both previous `DiscoveredModel` arities and the previous `RoutingRequirements` arity remain, so
+  nothing breaks.
+
+### Dependencies and device evidence
+
+Consumes released Vectors 0.1.30. No CUDA numeric path changed and device gates were not rerun.
+The last G1 result remains 1280/1280 exact token IDs on RTX 4090, Granite 4.1 3B Q4_K_M
+(`benchmark-results/2026-10-07-g1-parity`); G4 remains 6.184x on that host/model
+(`benchmark-results/2026-10-07-g4-dualpath`). No model qualification changed in this release.
+
 ## [0.4.1] - 2026-10-16
 
 ### Added

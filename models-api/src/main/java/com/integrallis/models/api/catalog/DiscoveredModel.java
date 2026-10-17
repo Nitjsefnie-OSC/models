@@ -40,6 +40,10 @@ import java.util.Set;
  *     this hardware
  * @param quality per-task scores in [0, 1], keyed by the same labels as {@code tags}
  * @param successRate share of requests that completed, in [0, 1]
+ * @param features catalog-declared properties of the artifact and architecture, such as {@code
+ *     long-context} or {@code noncommercial-research-license}. Distinct from {@code capabilities}:
+ *     a capability says what the model can be asked to do, a feature says something true about how
+ *     it was built or licensed. A router may filter on either.
  */
 public record DiscoveredModel(
     String id,
@@ -52,7 +56,8 @@ public record DiscoveredModel(
     long sizeBytes,
     Performance performance,
     Map<String, Double> quality,
-    double successRate) {
+    double successRate,
+    Set<String> features) {
 
   /** Validates and defensively copies. */
   public DiscoveredModel {
@@ -63,6 +68,7 @@ public record DiscoveredModel(
     tags = Set.copyOf(Objects.requireNonNull(tags, "tags"));
     capabilities = Set.copyOf(Objects.requireNonNull(capabilities, "capabilities"));
     quality = Map.copyOf(Objects.requireNonNull(quality, "quality"));
+    features = Set.copyOf(Objects.requireNonNull(features, "features"));
     if (contextWindow < 1) {
       throw new IllegalArgumentException("contextWindow must be positive: " + contextWindow);
     }
@@ -88,6 +94,47 @@ public record DiscoveredModel(
       String id,
       boolean local,
       Set<String> tags,
+      Set<String> capabilities,
+      int contextWindow,
+      double costPerMillionInputTokens,
+      double costPerMillionOutputTokens,
+      long sizeBytes,
+      Performance performance,
+      Map<String, Double> quality,
+      double successRate) {
+    this(
+        id,
+        local,
+        tags,
+        capabilities,
+        contextWindow,
+        costPerMillionInputTokens,
+        costPerMillionOutputTokens,
+        sizeBytes,
+        performance,
+        quality,
+        successRate,
+        Set.of());
+  }
+
+  /**
+   * A model with no declared capabilities or features, which take the tags and nothing.
+   *
+   * @param id stable identifier
+   * @param local whether it runs in this process
+   * @param tags task labels
+   * @param contextWindow prompt capacity in tokens
+   * @param costPerMillionInputTokens prompt price
+   * @param costPerMillionOutputTokens completion price
+   * @param sizeBytes artifact size
+   * @param performance measured throughput, or null
+   * @param quality per-task scores
+   * @param successRate completion share
+   */
+  public DiscoveredModel(
+      String id,
+      boolean local,
+      Set<String> tags,
       int contextWindow,
       double costPerMillionInputTokens,
       double costPerMillionOutputTokens,
@@ -106,7 +153,8 @@ public record DiscoveredModel(
         sizeBytes,
         performance,
         quality,
-        successRate);
+        successRate,
+        Set.of());
   }
 
   /**

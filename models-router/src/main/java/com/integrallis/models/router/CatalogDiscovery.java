@@ -161,6 +161,7 @@ public final class CatalogDiscovery {
         .contextWindow(model.contextWindow())
         .quality(model.quality())
         .successRate(model.successRate())
+        .features(model.features())
         .build();
   }
 }

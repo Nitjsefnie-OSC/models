@@ -58,7 +58,8 @@ public record ModelCandidate(
     Map<String, Double> quality,
     double successRate,
     int maxOutputTokens,
-    List<PricingTier> pricingTiers) {
+    List<PricingTier> pricingTiers,
+    Set<String> features) {
 
   /** Validates and defensively copies the descriptor. */
   public ModelCandidate {
@@ -66,6 +67,7 @@ public record ModelCandidate(
     tags = Set.copyOf(Objects.requireNonNull(tags, "tags"));
     capabilities = Set.copyOf(Objects.requireNonNull(capabilities, "capabilities"));
     quality = Map.copyOf(Objects.requireNonNull(quality, "quality"));
+    features = Set.copyOf(Objects.requireNonNull(features, "features"));
     if (maxOutputTokens < 0) {
       throw new IllegalArgumentException("maxOutputTokens must not be negative");
     }
@@ -222,7 +224,8 @@ public record ModelCandidate(
         quality,
         successRate,
         maxOutputTokens,
-        List.of());
+        List.of(),
+        Set.of());
   }
 
   /**
@@ -363,6 +366,7 @@ public record ModelCandidate(
     builder.successRate = successRate;
     builder.maxOutputTokens = maxOutputTokens;
     builder.pricingTiers.addAll(pricingTiers);
+    builder.features = features;
     return builder;
   }
 
@@ -395,6 +399,7 @@ public record ModelCandidate(
     private int contextWindow = 8_192;
     private Map<String, Double> quality = Map.of();
     private double successRate = 1.0;
+    private Set<String> features = Set.of();
 
     private Builder(String id) {
       this.id = id;
@@ -424,6 +429,17 @@ public record ModelCandidate(
       if (!capabilitiesExplicit) {
         this.capabilities = this.tags;
       }
+      return this;
+    }
+
+    /**
+     * Sets catalog-declared features, which are filtered separately from capabilities.
+     *
+     * @param value feature names such as {@code long-context}
+     * @return this builder
+     */
+    public Builder features(Set<String> value) {
+      this.features = Set.copyOf(Objects.requireNonNull(value, "features"));
       return this;
     }
 
@@ -572,7 +588,8 @@ public record ModelCandidate(
           quality,
           successRate,
           maxOutputTokens,
-          pricingTiers);
+          pricingTiers,
+          features);
     }
   }
 }
