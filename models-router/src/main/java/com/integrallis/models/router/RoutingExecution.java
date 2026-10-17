@@ -215,8 +215,8 @@ public final class RoutingExecution implements AutoCloseable {
           // a liveness model and a reasoning model to the same completion bound.
           int outputBound =
               candidate.effectiveMaxOutputTokens(options.tokenBounds().outputTokens());
-          if (usage.inputTokens() > options.tokenBounds().inputTokens()
-              || usage.outputTokens() > outputBound) {
+          int inputBound = candidate.effectiveMaxInputTokens(options.tokenBounds().inputTokens());
+          if (usage.inputTokens() > inputBound || usage.outputTokens() > outputBound) {
             cancelled = true;
             // The charge has already been recorded above, so it carries out with the refusal.
             // Losing the completion as well would protect nothing.

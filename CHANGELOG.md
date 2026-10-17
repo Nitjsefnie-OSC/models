@@ -4,6 +4,32 @@ All notable changes to models are documented here.
 
 ## [Unreleased]
 
+## [0.4.3] - 2026-10-17
+
+### Added
+
+- `ModelCandidate.maxInputTokens`, `effectiveMaxInputTokens(fallback)` and a builder setter, and
+  `RoutingExecution` now holds a candidate to its own prompt ceiling where it declares one.
+
+  This is the mirror of what 0.3.60 did for completions, and it was left half-done. The post-call
+  guard already read `candidate.effectiveMaxOutputTokens(...)` for the output side but the
+  fleet-wide `tokenBounds().inputTokens()` for the input side, so a mixed fleet could not admit one
+  large prompt. Raising the fleet-wide bound is not a workaround: `RoutingExecution.account` takes
+  `inputTokens + outputTokens` as the context every request must fit, so a bound of 200,000 makes a
+  one-token liveness check demand a 200,512-token context window and match nothing local. With a
+  budget attached, bounds are mandatory, so there was no configuration that both admitted a
+  147,011-token prompt and left small requests routable.
+
+  A candidate that declares nothing still defers to the execution's bound, so existing fleets are
+  unaffected.
+
+### Dependencies and device evidence
+
+Consumes released Vectors 0.1.30. No CUDA numeric path changed and device gates were not rerun.
+The last G1 result remains 1280/1280 exact token IDs on RTX 4090, Granite 4.1 3B Q4_K_M
+(`benchmark-results/2026-10-07-g1-parity`); G4 remains 6.184x on that host/model
+(`benchmark-results/2026-10-07-g4-dualpath`). No model qualification changed in this release.
+
 ## [0.4.2] - 2026-10-16
 
 ### Added
