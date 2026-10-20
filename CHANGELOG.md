@@ -4,6 +4,53 @@ All notable changes to models are documented here.
 
 ## [Unreleased]
 
+## [0.5.0] - 2026-10-20
+
+### Changed
+
+- **An unmeasured model is no longer scored as a model that scored zero.** `ModelCandidate.qualityFor`
+  returned `0.0` for a task with no measurement, and the router scored that zero against a quality
+  weight of 0.40. `ModelJarsCatalog` leaves unmeasured quality absent on purpose -- "missing
+  measurements remain absent so the router can distinguish unknown from measured zero" -- and the
+  scoring layer erased exactly the distinction the catalog was preserving.
+
+  The consequence was not theoretical. A catalog that refused to guess could not win a route, so an
+  operator who wanted local routing had to type quality numbers in by hand. MEASURED 2026-10-20
+  against `gpt-5.1` on four public datasets, one demo's typed-in numbers were optimistic by 16 to 35
+  points: a 1B model declared at `0.70` for grounding scored 37.0 exact match on HotpotQA against
+  the frontier model's 60.0, and produced none of the 50 abstentions it was asked for. The library
+  asked for guesses and got them.
+
+  An unmeasured task now scores `ModelRouter.UNMEASURED_QUALITY_PRIOR`, a declared neutral `0.5`,
+  under its own `scoreBreakdown` key: `quality-unmeasured`. The separate key is the evidence trail,
+  because a bare `quality: 0.5` cannot say whether a number came from a measurement or from nobody
+  measuring. **This changes selections** for any fleet with partially measured candidates, which is
+  why it is a minor release: a candidate that was silently losing on an unearned zero now competes
+  on the evidence that exists.
+
+  Two other designs were tried and rejected against the new tests. Scoring absence as zero is the
+  defect. Dropping the quality term renormalises the remaining weights upward, which rewards
+  absence -- an unmeasured candidate beat a measured one outright, and the test that caught it is
+  kept as `droppingTheTermWouldHaveRewardedAbsence`. The neutral prior does neither, and matches
+  what the router already did for an unknown residency.
+
+- **`RoutingPolicy.withMinimumQuality` fails closed on an unmeasured candidate**, with a reason that
+  says which case applies. The old behaviour refused it too, by way of the unearned zero, and
+  reported that it had missed the floor. The distinction is what an operator acts on: "nobody
+  measured this model on this task" is fixed by measuring, and "it scored below the floor" is fixed
+  by routing elsewhere.
+
+### Added
+
+- `ModelCandidate.measuredQualityFor(taskType)` returns `OptionalDouble`, empty when there is no
+  measurement. `qualityFor` remains for callers that need a primitive, documented as lossy.
+
+- `UnmeasuredQualityDiscoveryIntegrationTest` exercises the whole path rather than a hand-built
+  candidate: a provider registered through the real `ServiceLoader` file, the real
+  `CatalogDiscovery`, and a routing decision. models-router carries no ModelJars dependency by
+  design, so a real GGUF-derived catalog is covered by an integration test in that repository.
+
+
 ## [0.4.3] - 2026-10-17
 
 ### Added
