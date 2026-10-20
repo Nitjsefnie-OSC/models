@@ -910,6 +910,10 @@ public final class ModelRouter {
         Set.of(
             "cost",
             "quality",
+            // Added with the key itself in 0.5.0 and missed then: this list is the only thing
+            // stopping a caller's scorer from colliding with a built-in part, and a collision is a
+            // silent overwrite in the parts map rather than an error.
+            "quality-unmeasured",
             "latency",
             "locality",
             "availability",

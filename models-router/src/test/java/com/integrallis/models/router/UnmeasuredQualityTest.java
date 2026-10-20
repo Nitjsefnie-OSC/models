@@ -151,6 +151,48 @@ final class UnmeasuredQualityTest {
         .hasMessageContaining("quality floor of 0.5");
   }
 
+  /**
+   * EVERY PART THE ROUTER EMITS MUST BE A RESERVED SCORER NAME.
+   *
+   * <p>The reserved list is the only thing stopping a caller's scorer from colliding with a
+   * built-in part, and a collision is a silent overwrite in the parts map rather than an error.
+   * Nothing tested that list, so adding the {@code quality-unmeasured} key in 0.5.0 left it
+   * unreserved and the omission shipped. This asserts the invariant instead of the membership: a
+   * key the router can emit must be refused as a scorer name, whatever that key is called.
+   */
+  @Test
+  void everyBreakdownKeyTheRouterEmitsIsRefusedAsAScorerName() {
+    var emitted = new java.util.TreeSet<String>();
+    var request = RoutingRequest.builder("anything").taskType("chat").build();
+    emitted.addAll(
+        ModelRouter.builder()
+            .candidates(List.of(UNMEASURED))
+            .build()
+            .route(request)
+            .scoreBreakdown()
+            .keySet());
+    emitted.addAll(
+        ModelRouter.builder()
+            .candidates(List.of(MEASURED))
+            .build()
+            .route(request)
+            .scoreBreakdown()
+            .keySet());
+
+    assertThat(emitted).contains("quality", "quality-unmeasured", "cost", "latency", "locality");
+    for (var key : emitted) {
+      assertThatThrownBy(
+              () ->
+                  ModelRouter.builder()
+                      .candidates(List.of(MEASURED))
+                      .scorer(key, 0.1, evaluation -> 1.0)
+                      .build(),
+              "a scorer named " + key + " must be refused")
+          .isInstanceOf(IllegalArgumentException.class)
+          .hasMessageContaining("reserved");
+    }
+  }
+
   @Test
   void aMeasuredCandidateIsNotBeatenByAnUnmeasuredOneOnQualityAlone() {
     var router = ModelRouter.builder().candidates(List.of(MEASURED, UNMEASURED)).build();
