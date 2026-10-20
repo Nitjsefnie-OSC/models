@@ -50,7 +50,110 @@ public record RoutingPolicy(
     OptionalDouble minimumQuality,
     OptionalDouble maximumCostPerMillionTokens,
     OptionalDouble maximumTimeToFirstTokenMillis,
-    boolean localOnly) {
+    boolean localOnly,
+    UnmeasuredQuality unmeasuredQuality) {
+
+  /**
+   * How a task with no measured quality is scored.
+   *
+   * <p>Up to 0.4.3 an unmeasured task scored zero against the quality weight, which made absence
+   * indistinguishable from a measurement of uselessness and pushed every honest catalog's models
+   * to the bottom of the ranking. 0.5.0 corrected it to a neutral prior. That is a change in model
+   * selection, so it is nameable: the corrected scoring is the default, and {@link #ZERO} pins the
+   * old arithmetic for a fleet that has to reproduce a previous release's routes while it measures
+   * its own models.
+   *
+   * <p>The default is the correct behaviour, not the old one. A defect whose fix has to be opted
+   * into is a defect that ships twice.
+   */
+  public enum UnmeasuredQuality {
+    /**
+     * Score an unmeasured task as {@link ModelRouter#UNMEASURED_QUALITY_PRIOR}. The default, and
+     * the correct reading of an absent measurement.
+     *
+     * <p>Neutral: absence neither punishes a catalog that refuses to guess nor rewards one that
+     * declares nothing. {@code ModelJarsCatalog} leaves unmeasured quality absent on purpose --
+     * "missing measurements remain absent so the router can distinguish unknown from measured zero"
+     * -- and scoring that absence as zero broke the distinction the catalog was preserving.
+     */
+    NEUTRAL_PRIOR,
+
+    /**
+     * Score an unmeasured task as zero, which is what releases up to 0.4.3 did.
+     *
+     * <p>An escape hatch for a fleet that depends on the old arithmetic, not a supported reading of
+     * the evidence. It is lossy by construction: a model nobody has measured on this task and a
+     * model measured to be useless at it score identically. On a policy weighting quality at 0.40
+     * that pushes every route toward whichever candidate happens to carry a measurement for some
+     * other task, and it is why one fleet ended up with four invented quality scores that measured
+     * 16 to 35 points optimistic. Prefer measuring the gap, or {@link #withMinimumQuality(double)}
+     * to refuse routing without evidence.
+     */
+    ZERO
+  }
+
+  /**
+   * The arity every release before 0.5.2 had, defaulting to the corrected scoring.
+   *
+   * <p>A fleet constructing a policy directly keeps compiling. It does not keep the old arithmetic,
+   * because the old arithmetic was a defect: it is reachable through {@link
+   * #withUnmeasuredQuality(UnmeasuredQuality)} with {@link UnmeasuredQuality#ZERO} for anyone who
+   * has to pin it while they measure their fleet.
+   *
+   * @param costWeight weight on price
+   * @param qualityWeight weight on measured task quality
+   * @param latencyWeight weight on time to first token
+   * @param availabilityWeight sharpness of the success-rate multiplier
+   * @param localityWeight weight on staying in process
+   * @param minimumQuality quality floor a candidate must clear
+   * @param maximumCostPerMillionTokens price ceiling
+   * @param maximumTimeToFirstTokenMillis latency ceiling
+   * @param localOnly whether hosted candidates are refused outright
+   */
+  public RoutingPolicy(
+      double costWeight,
+      double qualityWeight,
+      double latencyWeight,
+      double availabilityWeight,
+      double localityWeight,
+      OptionalDouble minimumQuality,
+      OptionalDouble maximumCostPerMillionTokens,
+      OptionalDouble maximumTimeToFirstTokenMillis,
+      boolean localOnly) {
+    this(
+        costWeight,
+        qualityWeight,
+        latencyWeight,
+        availabilityWeight,
+        localityWeight,
+        minimumQuality,
+        maximumCostPerMillionTokens,
+        maximumTimeToFirstTokenMillis,
+        localOnly,
+        UnmeasuredQuality.NEUTRAL_PRIOR);
+  }
+
+  /**
+   * Chooses how a task with no measurement is scored.
+   *
+   * @param value ZERO for the behaviour of every release before 0.5.0, NEUTRAL_PRIOR for the
+   *     corrected scoring, which reports the prior under the {@code quality} key the breakdown has
+   *     always had
+   * @return a copy of this policy with that setting
+   */
+  public RoutingPolicy withUnmeasuredQuality(UnmeasuredQuality value) {
+    return new RoutingPolicy(
+        costWeight,
+        qualityWeight,
+        latencyWeight,
+        availabilityWeight,
+        localityWeight,
+        minimumQuality,
+        maximumCostPerMillionTokens,
+        maximumTimeToFirstTokenMillis,
+        localOnly,
+        Objects.requireNonNull(value, "value"));
+  }
 
   /** Sensible default: quality-leaning without ignoring cost or latency. */
   public static final RoutingPolicy BALANCED = weights(0.30, 0.40, 0.15, 0.10, 0.05);
@@ -96,6 +199,7 @@ public record RoutingPolicy(
     if (costWeight + qualityWeight + latencyWeight + availabilityWeight + localityWeight <= 0) {
       throw new IllegalArgumentException("at least one weight must be positive");
     }
+    unmeasuredQuality = Objects.requireNonNull(unmeasuredQuality, "unmeasuredQuality");
     requireLimit(minimumQuality, "minimumQuality");
     requireLimit(maximumCostPerMillionTokens, "maximumCostPerMillionTokens");
     requireLimit(maximumTimeToFirstTokenMillis, "maximumTimeToFirstTokenMillis");
@@ -134,7 +238,8 @@ public record RoutingPolicy(
         OptionalDouble.of(minimum),
         maximumCostPerMillionTokens,
         maximumTimeToFirstTokenMillis,
-        localOnly);
+        localOnly,
+        unmeasuredQuality);
   }
 
   /**
@@ -153,7 +258,8 @@ public record RoutingPolicy(
         minimumQuality,
         OptionalDouble.of(maximum),
         maximumTimeToFirstTokenMillis,
-        localOnly);
+        localOnly,
+        unmeasuredQuality);
   }
 
   /**
@@ -172,7 +278,8 @@ public record RoutingPolicy(
         minimumQuality,
         maximumCostPerMillionTokens,
         OptionalDouble.of(maximum),
-        localOnly);
+        localOnly,
+        unmeasuredQuality);
   }
 
   /**
@@ -190,7 +297,8 @@ public record RoutingPolicy(
         minimumQuality,
         maximumCostPerMillionTokens,
         maximumTimeToFirstTokenMillis,
-        true);
+        true,
+        unmeasuredQuality);
   }
 
   /**

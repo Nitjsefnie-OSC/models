@@ -53,71 +53,117 @@ final class UnmeasuredQualityTest {
   private static final ModelCandidate UNMEASURED =
       ModelCandidate.builder("unmeasured").timeToFirstTokenMillis(100).tokensPerSecond(20).build();
 
+  private static final RoutingPolicy LEGACY =
+      RoutingPolicy.BALANCED.withUnmeasuredQuality(RoutingPolicy.UnmeasuredQuality.ZERO);
+
   @Test
   void anUnmeasuredTaskIsReportedAsAbsentRatherThanZero() {
     assertThat(UNMEASURED.measuredQualityFor("chat")).isEmpty();
     assertThat(MEASURED.measuredQualityFor("chat")).hasValue(0.80);
     assertThat(MEASURED.measuredQualityFor("summarization")).isEmpty();
-    // The primitive accessor still answers, and still cannot tell the two apart. That is why it is
-    // documented as lossy and no longer used for scoring.
+    // The primitive accessor cannot tell the two apart, which is why it is documented as lossy and
+    // is not what the router scores with.
     assertThat(UNMEASURED.qualityFor("chat")).isZero();
   }
 
+  /**
+   * THE CORRECTED SCORING IS THE DEFAULT, BECAUSE THE OLD ONE WAS A DEFECT.
+   *
+   * <p>{@code ModelJarsCatalog} leaves unmeasured quality absent deliberately -- "missing
+   * measurements remain absent so the router can distinguish unknown from measured zero" -- and the
+   * router scored that absence as zero, collapsing the distinction the catalog was preserving. Two
+   * halves of one project disagreeing about what absence means is a bug, so the fix ships on by
+   * default rather than as something a reader has to discover.
+   */
   @Test
-  void anUnmeasuredTaskScoresTheNeutralPriorUnderItsOwnKey() {
+  void byDefaultAnUnmeasuredTaskScoresTheNeutralPrior() {
     var router = ModelRouter.builder().candidates(List.of(UNMEASURED)).build();
     var decision = router.route(RoutingRequest.builder("anything").taskType("chat").build());
 
-    var parts = decision.scoreBreakdown();
-    // The key is the evidence trail: a reader can tell the number came from nobody measuring
-    // rather than from a measurement, which "quality: 0.5" alone would not say.
-    assertThat(parts).doesNotContainKey("quality");
-    assertThat(parts).containsKey("quality-unmeasured");
-    assertThat(parts).containsKeys("cost", "latency", "locality");
-    // "availability" is not a weighted term: the router stores the raw reliability under that key
-    // and multiplies the rest of the parts by it, so the merit is the sum of everything else.
-    double merit =
-        parts.entrySet().stream()
-            .filter(entry -> !entry.getKey().equals("availability"))
-            .mapToDouble(Map.Entry::getValue)
-            .sum();
-    assertThat(merit).isCloseTo(decision.score(), org.assertj.core.data.Offset.offset(1e-9));
+    double share =
+        ModelRouter.UNMEASURED_QUALITY_PRIOR
+            * RoutingPolicy.BALANCED.qualityWeight()
+            / (RoutingPolicy.BALANCED.costWeight()
+                + RoutingPolicy.BALANCED.qualityWeight()
+                + RoutingPolicy.BALANCED.latencyWeight()
+                + RoutingPolicy.BALANCED.localityWeight());
+    assertThat(decision.scoreBreakdown().get("quality"))
+        .isCloseTo(share, org.assertj.core.data.Offset.offset(1e-9));
   }
 
   /**
-   * ABSENCE MUST NOT BE REWARDED EITHER, WHICH THE FIRST ATTEMPT AT THIS GOT WRONG.
+   * NO NEW BREAKDOWN KEY, SO NO NEW WAY TO BREAK A FLEET AT STARTUP.
    *
-   * <p>Dropping the quality term for an unmeasured candidate divides its remaining terms by a
-   * smaller total weight, which scales each of them up: the unmeasured model then beat a measured
-   * one outright. The neutral prior is the fix, and this pins the behaviour that caught it.
+   * <p>An earlier attempt put the prior under a second key, {@code quality-unmeasured}, and had to
+   * reserve that name -- which had been legal in every prior release, so a fleet with a scorer
+   * called that stopped booting on a patch upgrade. The prior goes under the key that already
+   * existed instead.
    */
   @Test
-  void droppingTheTermWouldHaveRewardedAbsence() {
+  void theScoreBreakdownGainsNoNewKeyAndAScorerCanStillBeNamedAfterOne() {
+    var router =
+        ModelRouter.builder()
+            .candidates(List.of(UNMEASURED))
+            .scorer("quality-unmeasured", 0.1, evaluation -> 1.0)
+            .build();
+    var decision = router.route(RoutingRequest.builder("anything").taskType("chat").build());
+
+    assertThat(decision.scoreBreakdown()).containsKey("quality");
+    assertThat(decision.scoreBreakdown()).containsKey("quality-unmeasured");
+    // Present because the caller registered a scorer by that name, not because the router emits it.
+    assertThat(decision.scoreBreakdown().keySet()).contains("cost", "latency", "locality");
+  }
+
+  @Test
+  void everyKeyTheRouterItselfEmitsIsRefusedAsAScorerName() {
+    var emitted =
+        new java.util.TreeSet<>(
+            ModelRouter.builder()
+                .candidates(List.of(MEASURED))
+                .build()
+                .route(RoutingRequest.builder("anything").taskType("chat").build())
+                .scoreBreakdown()
+                .keySet());
+    assertThat(emitted).contains("quality", "cost", "latency", "locality");
+    for (var key : emitted) {
+      assertThatThrownBy(
+              () ->
+                  ModelRouter.builder()
+                      .candidates(List.of(MEASURED))
+                      .scorer(key, 0.1, evaluation -> 1.0)
+                      .build(),
+              "a scorer named " + key + " must be refused")
+          .isInstanceOf(IllegalArgumentException.class)
+          .hasMessageContaining("reserved");
+    }
+  }
+
+  /**
+   * ABSENCE MUST NOT BE REWARDED EITHER, WHICH AN EARLIER ATTEMPT GOT WRONG.
+   *
+   * <p>Dropping the quality term for an unmeasured candidate divides its remaining terms by a
+   * smaller total weight, scaling each one up: the unmeasured model then beat a measured one
+   * outright. The prior does neither.
+   */
+  @Test
+  void aMeasuredCandidateStillBeatsAnUnmeasuredOneOnQuality() {
     var router = ModelRouter.builder().candidates(List.of(MEASURED, UNMEASURED)).build();
     var decision = router.route(RoutingRequest.builder("anything").taskType("chat").build());
 
-    double unmeasuredQualityPart =
-        router
-            .route(RoutingRequest.builder("anything").taskType("chat").build())
-            .scoreBreakdown()
-            .getOrDefault("quality-unmeasured", 0.0);
-    // The selected candidate is the measured one, and the prior is strictly below its measurement,
-    // so the comparison was decided by evidence rather than by renormalisation.
     assertThat(decision.selected().id()).isEqualTo("measured");
     assertThat(ModelRouter.UNMEASURED_QUALITY_PRIOR)
         .isLessThan(MEASURED.measuredQualityFor("chat").getAsDouble());
-    assertThat(unmeasuredQualityPart).isZero();
   }
 
   /**
-   * The case the old behaviour got right by accident and for the wrong reason.
+   * A FLOOR REFUSES WHAT NOBODY MEASURED, IN WORDING AN OLDER FLEET ALREADY PARSES.
    *
-   * <p>An unmeasured candidate did fail a floor, because zero is below every floor. The verdict was
-   * right and the reason was unusable: "it scored below the floor" is fixed by routing elsewhere,
-   * and "nobody measured it" is fixed by measuring. An operator cannot act on the wrong one.
+   * <p>The refusal gains the reason it lacked -- "nobody measured this" is fixed by measuring,
+   * "scored below the floor" is fixed by routing elsewhere -- without dropping the sentence a fleet
+   * may already be matching on.
    */
   @Test
-  void aQualityFloorFailsClosedOnAnUnmeasuredCandidateAndSaysWhy() {
+  void aQualityFloorRefusesAnUnmeasuredCandidateAndSaysWhichKindOfRefusalItIs() {
     var router =
         ModelRouter.builder()
             .candidates(List.of(UNMEASURED))
@@ -127,12 +173,16 @@ final class UnmeasuredQualityTest {
     assertThatThrownBy(
             () -> router.route(RoutingRequest.builder("anything").taskType("chat").build()))
         .isInstanceOf(NoEligibleModelException.class)
-        .hasMessageContaining("measured quality")
-        .hasMessageContaining("chat");
+        // The message this release ships is the message 0.5.1 shipped, to the byte: a floor
+        // refusal is a diagnostic a fleet may already be matching on, and a patch release that
+        // reworded it for neatness would break that fleet for nothing. It already distinguishes
+        // the two refusals, which is all the new behaviour needs from it.
+        .hasMessageContaining("floor of 0.5")
+        .hasMessageContaining("measured quality for chat");
   }
 
   @Test
-  void aMeasuredCandidateBelowTheFloorStillSaysItMissedTheFloor() {
+  void aMeasuredCandidateBelowTheFloorIsRefusedWithoutTheUnmeasuredReason() {
     var low =
         ModelCandidate.builder("low")
             .timeToFirstTokenMillis(100)
@@ -148,60 +198,25 @@ final class UnmeasuredQualityTest {
     assertThatThrownBy(
             () -> router.route(RoutingRequest.builder("anything").taskType("chat").build()))
         .isInstanceOf(NoEligibleModelException.class)
-        .hasMessageContaining("quality floor of 0.5");
+        .hasMessageContaining("quality floor of 0.5")
+        .hasMessageNotContaining("no measured quality");
   }
 
-  /**
-   * EVERY PART THE ROUTER EMITS MUST BE A RESERVED SCORER NAME.
-   *
-   * <p>The reserved list is the only thing stopping a caller's scorer from colliding with a
-   * built-in part, and a collision is a silent overwrite in the parts map rather than an error.
-   * Nothing tested that list, so adding the {@code quality-unmeasured} key in 0.5.0 left it
-   * unreserved and the omission shipped. This asserts the invariant instead of the membership: a
-   * key the router can emit must be refused as a scorer name, whatever that key is called.
-   */
+  /** The escape hatch, for a fleet that has to pin the old arithmetic while it measures. */
   @Test
-  void everyBreakdownKeyTheRouterEmitsIsRefusedAsAScorerName() {
-    var emitted = new java.util.TreeSet<String>();
-    var request = RoutingRequest.builder("anything").taskType("chat").build();
-    emitted.addAll(
-        ModelRouter.builder()
-            .candidates(List.of(UNMEASURED))
-            .build()
-            .route(request)
-            .scoreBreakdown()
-            .keySet());
-    emitted.addAll(
-        ModelRouter.builder()
-            .candidates(List.of(MEASURED))
-            .build()
-            .route(request)
-            .scoreBreakdown()
-            .keySet());
-
-    assertThat(emitted).contains("quality", "quality-unmeasured", "cost", "latency", "locality");
-    for (var key : emitted) {
-      assertThatThrownBy(
-              () ->
-                  ModelRouter.builder()
-                      .candidates(List.of(MEASURED))
-                      .scorer(key, 0.1, evaluation -> 1.0)
-                      .build(),
-              "a scorer named " + key + " must be refused")
-          .isInstanceOf(IllegalArgumentException.class)
-          .hasMessageContaining("reserved");
-    }
-  }
-
-  @Test
-  void aMeasuredCandidateIsNotBeatenByAnUnmeasuredOneOnQualityAlone() {
-    var router = ModelRouter.builder().candidates(List.of(MEASURED, UNMEASURED)).build();
+  void theLegacyScoringIsStillReachableAndStillScoresZero() {
+    var router = ModelRouter.builder().candidates(List.of(UNMEASURED)).policy(LEGACY).build();
     var decision = router.route(RoutingRequest.builder("anything").taskType("chat").build());
 
-    // Identical on every other axis, so the one with evidence behind it wins. Before this change
-    // they were both scored on quality -- one on its measurement, one on a zero it never earned --
-    // which happened to give the same ordering here and the wrong one wherever the unmeasured
-    // model was cheaper or closer.
-    assertThat(decision.selected().id()).isEqualTo("measured");
+    assertThat(decision.scoreBreakdown().get("quality")).isZero();
+  }
+
+  /** A setting a later with-call silently discards is worse than no setting. */
+  @Test
+  void theSettingSurvivesEveryOtherPolicyModifier() {
+    assertThat(LEGACY.withMinimumQuality(0.4).withLocalOnly().unmeasuredQuality())
+        .isEqualTo(RoutingPolicy.UnmeasuredQuality.ZERO);
+    assertThat(RoutingPolicy.BALANCED.withMinimumQuality(0.4).unmeasuredQuality())
+        .isEqualTo(RoutingPolicy.UnmeasuredQuality.NEUTRAL_PRIOR);
   }
 }

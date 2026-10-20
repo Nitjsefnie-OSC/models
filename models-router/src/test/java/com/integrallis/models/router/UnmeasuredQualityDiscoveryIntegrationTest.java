@@ -113,12 +113,18 @@ final class UnmeasuredQualityDiscoveryIntegrationTest {
   }
 
   @Test
-  void aTaskNobodyMeasuredScoresThePriorUnderItsOwnKey() {
+  void aTaskNobodyMeasuredScoresThePriorRatherThanZero() {
     var router = ModelRouter.builder().candidates(discovered()).build();
     var decision = router.route(RoutingRequest.builder("anything").taskType("chat").build());
 
-    assertThat(decision.scoreBreakdown()).containsKey("quality-unmeasured");
-    assertThat(decision.scoreBreakdown()).doesNotContainKey("quality");
+    // One key, the one that always existed. A second key would have meant reserving a name that
+    // was legal in every prior release, and a fleet using it would stop booting on an upgrade.
+    assertThat(decision.scoreBreakdown()).containsKey("quality");
+    assertThat(decision.scoreBreakdown()).doesNotContainKey("quality-unmeasured");
+    // Nothing on this machine measured chat, so the share is the prior -- and positive, where the
+    // scoring up to 0.4.3 made it zero and pushed every chat route toward whichever artifact
+    // happened to carry a tool-use qualification.
+    assertThat(decision.scoreBreakdown().get("quality")).isGreaterThan(0.0);
   }
 
   @Test

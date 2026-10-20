@@ -4,6 +4,35 @@ All notable changes to models are documented here.
 
 ## [Unreleased]
 
+## [0.5.2] - 2026-10-20
+
+### Changed
+
+- **One `quality` key in the score breakdown, not two.** 0.5.0 reported an unmeasured task's
+  neutral prior under a new key, `quality-unmeasured`, and 0.5.1 had to reserve that name to stop a
+  caller's scorer from silently overwriting it. Both were the wrong shape of fix: a patch release
+  reserved a scorer name that had been legal in every prior release, so a fleet that happened to
+  register a scorer called `quality-unmeasured` stopped booting on a patch upgrade, and every fleet
+  reading `scoreBreakdown().get("quality")` had to learn a second key to find a number that was
+  always a quality score.
+
+  The prior is now reported under `quality`, the key the breakdown has always had, and
+  `quality-unmeasured` is a legal scorer name again. Nothing is lost: the distinction between "no
+  measurement" and "measured zero" is available where it belongs, in the typed
+  `ModelCandidate.measuredQualityFor`, which returns an empty `OptionalDouble` rather than a
+  number, and in `withMinimumQuality`'s refusal, which still says which of the two happened.
+
+  `scoreBreakdown()` therefore has the same keys in 0.5.2 as it did in 0.4.3, and the score itself
+  is unchanged from 0.5.1.
+
+### Added
+
+- **`RoutingPolicy.withUnmeasuredQuality(ZERO)`** pins the scoring every release up to 0.4.3 used,
+  for a fleet that has to reproduce a previous release's routes while it measures its own models.
+  The default is `NEUTRAL_PRIOR`, the corrected scoring: a defect whose fix has to be opted into is
+  a defect that ships twice. `RoutingPolicy`'s nine-argument constructor still compiles and selects
+  the default.
+
 ## [0.5.1] - 2026-10-20
 
 ### Fixed

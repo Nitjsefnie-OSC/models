@@ -652,9 +652,19 @@ public final class ModelRouter {
       // scoreBreakdown() can see that the number came from nobody measuring rather than from a
       // measurement. Demanding evidence is a different lever -- RoutingPolicy.withMinimumQuality
       // refuses an unmeasured candidate outright.
+      // One key, the one that already existed. An earlier attempt emitted a second key named
+      // quality-unmeasured, which meant reserving a name that had been legal for every prior
+      // release -- so a fleet with a scorer by that name stopped booting on a patch upgrade. The
+      // distinction is available without inventing a key: ModelCandidate.measuredQualityFor is
+      // typed and says whether a measurement exists.
       parts.put(
-          measuredQuality.isPresent() ? "quality" : "quality-unmeasured",
-          policy.qualityWeight() / totalWeight * measuredQuality.orElse(UNMEASURED_QUALITY_PRIOR));
+          "quality",
+          policy.qualityWeight()
+              / totalWeight
+              * measuredQuality.orElse(
+                  policy.unmeasuredQuality() == RoutingPolicy.UnmeasuredQuality.ZERO
+                      ? 0.0
+                      : UNMEASURED_QUALITY_PRIOR));
       parts.put("latency", policy.latencyWeight() / totalWeight * quickness(status));
       parts.put(
           "locality", policy.localityWeight() / totalWeight * (candidate.local() ? 1.0 : 0.0));
@@ -910,10 +920,6 @@ public final class ModelRouter {
         Set.of(
             "cost",
             "quality",
-            // Added with the key itself in 0.5.0 and missed then: this list is the only thing
-            // stopping a caller's scorer from colliding with a built-in part, and a collision is a
-            // silent overwrite in the parts map rather than an error.
-            "quality-unmeasured",
             "latency",
             "locality",
             "availability",
