@@ -57,8 +57,8 @@ public record RoutingPolicy(
    * How a task with no measured quality is scored.
    *
    * <p>Up to 0.4.3 an unmeasured task scored zero against the quality weight, which made absence
-   * indistinguishable from a measurement of uselessness and pushed every honest catalog's models
-   * to the bottom of the ranking. 0.5.0 corrected it to a neutral prior. That is a change in model
+   * indistinguishable from a measurement of uselessness and pushed every honest catalog's models to
+   * the bottom of the ranking. 0.5.0 corrected it to a neutral prior. That is a change in model
    * selection, so it is nameable: the corrected scoring is the default, and {@link #ZERO} pins the
    * old arithmetic for a fleet that has to reproduce a previous release's routes while it measures
    * its own models.
