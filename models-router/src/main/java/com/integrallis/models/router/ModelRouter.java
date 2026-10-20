@@ -25,6 +25,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.OptionalDouble;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -43,6 +44,16 @@ import java.util.concurrent.ConcurrentHashMap;
  * candidate with any application-supplied client and execute ordered fallback.
  */
 public final class ModelRouter {
+
+  /**
+   * The quality a candidate scores on a task nobody has measured it on.
+   *
+   * <p>Neutral on purpose: half way, so absence neither punishes a catalog that refuses to guess
+   * nor rewards one that declares nothing. It is the same convention this router already applies to
+   * an unknown residency. A caller that wants absence to be disqualifying says so with {@link
+   * RoutingPolicy#withMinimumQuality(double)}, which no unmeasured candidate clears.
+   */
+  public static final double UNMEASURED_QUALITY_PRIOR = 0.5;
 
   private final List<ModelCandidate> candidates;
   private final Map<String, ModelCandidate> candidatesById;
@@ -316,11 +327,25 @@ public final class ModelRouter {
         rejections.add("no model declares the " + taskType + " tag");
         continue;
       }
-      if (override.minimumQuality().isPresent()
-          && candidate.qualityFor(taskType) < override.minimumQuality().getAsDouble()) {
-        rejections.add(
-            "no model reaches the quality floor of " + override.minimumQuality().getAsDouble());
-        continue;
+      if (override.minimumQuality().isPresent()) {
+        // A floor fails closed on an unmeasured candidate, and says which it is. Treating absence
+        // as zero gave the right verdict for the wrong reason, and the reason is what an operator
+        // acts on: "nobody measured this model on this task" is fixed by measuring, and "it scored
+        // below the floor" is fixed by routing elsewhere.
+        OptionalDouble measured = candidate.measuredQualityFor(taskType);
+        if (measured.isEmpty()) {
+          rejections.add(
+              "no model has a measured quality for "
+                  + (taskType == null ? "any task" : taskType)
+                  + " to compare against the floor of "
+                  + override.minimumQuality().getAsDouble());
+          continue;
+        }
+        if (measured.getAsDouble() < override.minimumQuality().getAsDouble()) {
+          rejections.add(
+              "no model reaches the quality floor of " + override.minimumQuality().getAsDouble());
+          continue;
+        }
       }
       if (override.maximumCostPerMillionTokens().isPresent()
           && candidate.blendedCostPerMillionTokens()
@@ -592,6 +617,7 @@ public final class ModelRouter {
 
     private ScoredCandidate score(ModelCandidate candidate) {
       RoutingModelStatus status = status(candidate.id()).orElseThrow();
+      OptionalDouble measuredQuality = candidate.measuredQualityFor(taskType);
       double totalWeight =
           policy.costWeight()
               + policy.qualityWeight()
@@ -615,7 +641,20 @@ public final class ModelRouter {
 
       Map<String, Double> parts = new LinkedHashMap<>();
       parts.put("cost", policy.costWeight() / totalWeight * cheapness(candidate));
-      parts.put("quality", policy.qualityWeight() / totalWeight * candidate.qualityFor(taskType));
+      // An unmeasured task scores the neutral prior, under its own key, and never the zero it used
+      // to score. Three behaviours were tried against the tests beside this: zero punishes an
+      // honest catalog, which is what taught one operator to invent quality numbers that turned
+      // out to be 16 to 35 points optimistic when they were measured on 2026-10-20; dropping the
+      // term renormalises the others upward, which rewards absence instead; a neutral prior does
+      // neither, and is what this router already does for an unknown residency a few lines below.
+      //
+      // The prior is not a claim about the model, and the separate key says so: a reader of
+      // scoreBreakdown() can see that the number came from nobody measuring rather than from a
+      // measurement. Demanding evidence is a different lever -- RoutingPolicy.withMinimumQuality
+      // refuses an unmeasured candidate outright.
+      parts.put(
+          measuredQuality.isPresent() ? "quality" : "quality-unmeasured",
+          policy.qualityWeight() / totalWeight * measuredQuality.orElse(UNMEASURED_QUALITY_PRIOR));
       parts.put("latency", policy.latencyWeight() / totalWeight * quickness(status));
       parts.put(
           "locality", policy.localityWeight() / totalWeight * (candidate.local() ? 1.0 : 0.0));

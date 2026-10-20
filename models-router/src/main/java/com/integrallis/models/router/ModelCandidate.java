@@ -21,6 +21,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.OptionalDouble;
 import java.util.Set;
 
 /**
@@ -285,16 +286,48 @@ public record ModelCandidate(
   }
 
   /**
-   * Returns the quality recorded for one task type.
+   * Returns the quality recorded for one task type, or zero when none is recorded.
+   *
+   * <p>Zero for an unmeasured task is a lossy answer, and {@link #measuredQualityFor(String)} is
+   * the one to prefer: a model nobody has measured on this task and a model measured to be useless
+   * at it are different facts, and this method returns the same number for both. It is kept because
+   * callers depend on a primitive {@code double}, and the router itself no longer uses it for
+   * scoring.
    *
    * @param taskType task classification, may be null
    * @return recorded quality, or zero when the model declares none for that task
    */
   public double qualityFor(String taskType) {
+    return measuredQualityFor(taskType).orElse(0.0);
+  }
+
+  /**
+   * Returns the measured quality for one task type, empty when there is no measurement.
+   *
+   * <p>The distinction matters more than it looks. A catalog that measures what it can and leaves
+   * the rest absent -- which is what {@code ModelJarsCatalog} does, deliberately -- hands the
+   * router a model with no quality score for a task nobody benchmarked it on. Scoring that as zero
+   * punishes the honest catalog: on a policy that weights quality at 0.40, an unmeasured candidate
+   * cannot win against one whose operator typed a number in, so the operator learns to type numbers
+   * in. MEASURED 2026-10-20 on four public datasets, the numbers one demo had typed in were wrong
+   * by 16 to 35 points, in the optimistic direction.
+   *
+   * <p>So absence is reported as absence here, and the router's scoring omits the quality term for
+   * a candidate that has none -- the same way it omits cache affinity, residency and load when
+   * there is no evidence for those -- rather than scoring the candidate zero on it.
+   *
+   * @param taskType task classification, may be null for the average across every measured task
+   * @return the measurement, or empty when this candidate has none for that task
+   */
+  public OptionalDouble measuredQualityFor(String taskType) {
     if (taskType == null) {
-      return quality.values().stream().mapToDouble(Double::doubleValue).average().orElse(0.0);
+      return quality.isEmpty()
+          ? OptionalDouble.empty()
+          : OptionalDouble.of(
+              quality.values().stream().mapToDouble(Double::doubleValue).average().orElse(0.0));
     }
-    return quality.getOrDefault(taskType, 0.0);
+    Double measured = quality.get(taskType);
+    return measured == null ? OptionalDouble.empty() : OptionalDouble.of(measured);
   }
 
   /**
