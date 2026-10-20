@@ -25,6 +25,13 @@ All notable changes to models are documented here.
   `scoreBreakdown()` therefore has the same keys in 0.5.2 as it did in 0.4.3, and the score itself
   is unchanged from 0.5.1.
 
+  Removing a key that 0.5.0 added is a breaking change, and under this project's 0.x convention it
+  would argue for a minor bump. It is a patch on purpose: 0.5.0 and 0.5.1 were three hours old, the
+  change restores the key shape every release before them had, and the alternative -- a third
+  version in a day, or keeping both keys forever to protect an afternoon -- serves nobody who has
+  to consume this library. A fleet that reads `quality-unmeasured` from 0.5.0 or 0.5.1 reads
+  `quality` instead, which is where it read the same number before 0.5.0.
+
 ### Added
 
 - **`RoutingPolicy.withUnmeasuredQuality(ZERO)`** pins the scoring every release up to 0.4.3 used,
