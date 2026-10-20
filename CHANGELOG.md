@@ -4,6 +4,32 @@ All notable changes to models are documented here.
 
 ## [Unreleased]
 
+## [0.5.1] - 2026-10-20
+
+### Fixed
+
+- **`quality-unmeasured` is a reserved scorer name.** 0.5.0 added that score-breakdown key and did
+  not add it to `ReservedNames`, which is the only thing stopping a caller's custom scorer from
+  colliding with a built-in part. A collision is a silent overwrite in the parts map rather than an
+  error, so a fleet registering a scorer by that name would have lost either its own score or the
+  router's, with nothing reported.
+
+  The reserved list had no test, which is why the omission shipped. The new test asserts the
+  invariant rather than the membership: every key the router actually emits must be refused as a
+  scorer name, whatever it is called. A future key added without reserving it now fails in this
+  suite instead of in somebody's fleet.
+
+### Added
+
+- `:modeljars:routerQualityIntegrationTest` in the ModelJars repository proves the
+  catalog-to-router seam against the artifacts cached on the machine running it. models-router
+  carries no ModelJars dependency by design, so its own tests can only reach a catalog they fake,
+  and the behaviour 0.5.0 changed lives exactly at that seam. Four tests cover absence surviving
+  discovery, an unmeasured task scoring the declared prior under its own key, a floor refusing what
+  nobody measured with the reason that distinguishes it from a measured miss, and a floor still
+  admitting a candidate whose measurement clears it.
+
+
 ## [0.5.0] - 2026-10-20
 
 ### Changed
