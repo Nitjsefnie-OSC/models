@@ -834,6 +834,9 @@ tasks.register<Test>("layaDecisionIntegrationTest") {
             "com.integrallis.models.backend.purejava.bert.LayaTraceTest",
         )
         includeTestsMatching(
+            "com.integrallis.models.backend.purejava.bert.LayaJevBenchQualificationIT",
+        )
+        includeTestsMatching(
             "com.integrallis.models.backend.purejava.bert.LayaTokenizerProbeTest",
         )
         includeTestsMatching(
@@ -841,6 +844,13 @@ tasks.register<Test>("layaDecisionIntegrationTest") {
         )
     }
     jvmArgs("--add-modules", "jdk.incubator.vector", "--enable-native-access=ALL-UNNAMED")
+    // The cohort and the evidence directory live at the repository root, not in this module, and a
+    // Gradle test's working directory is the module. Passed explicitly so the test never has to
+    // guess where it is.
+    systemProperty("models.fixtures.jevbench",
+        rootProject.file("benchmark-results/2026-09-24-decision-latency/clm-arm/cohort-jevbench-120.jsonl").absolutePath)
+    systemProperty("laya.report.dir",
+        rootProject.file("experiments/laya-modern-bert/evidence").absolutePath)
     maxHeapSize = "4g"
     outputs.upToDateWhen { false }
 }
