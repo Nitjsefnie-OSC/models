@@ -11,6 +11,13 @@ dependencies {
 
     compileOnly("org.springframework.boot:spring-boot-autoconfigure:$springBootVersion")
     compileOnly("org.springframework.ai:spring-ai-model:$springAiVersion")
+    // ChatClient lives here, and it stays compileOnly: an application that only wants the
+    // ChatModel adapter must not be made to carry the client.
+    compileOnly("org.springframework.ai:spring-ai-client-chat:$springAiVersion")
+    // The engine, for integrallis.models.catalog-model. compileOnly on purpose: an application
+    // that supplies its own model bean needs no decoder from this starter, and one that uses the
+    // property has backend-java on the classpath anyway.
+    compileOnly(project(":backend-java"))
     annotationProcessor(
         "org.springframework.boot:spring-boot-configuration-processor:$springBootVersion"
     )
@@ -20,6 +27,8 @@ dependencies {
     testImplementation("org.springframework.boot:spring-boot-starter-actuator:$springBootVersion")
     testImplementation("org.springframework:spring-test:$springFrameworkVersion")
     testImplementation("org.springframework.ai:spring-ai-model:$springAiVersion")
+    testImplementation("org.springframework.ai:spring-ai-client-chat:$springAiVersion")
+    testImplementation(project(":backend-java"))
     testImplementation("org.springframework.ai:spring-ai-vector-store:$springAiVersion")
     testImplementation("io.micrometer:micrometer-observation:$micrometerObservationVersion")
     testImplementation(
