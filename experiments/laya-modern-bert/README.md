@@ -326,3 +326,49 @@ configured `[CLS]`/`[SEP]` boundary pair is stripped from each run. `ModernBertD
 renders all three option branches. So after gate 3 closes, the path to a verdict is: gate the prompt
 on exact token ids for the eight cases, run the 120 JevBench cases for accuracy and calibration,
 write `decision-calibration-v1`, then two arms on one host.
+
+## Gate 7 pre-registration: `decision-calibration-v1`
+
+**Written before a single JevBench case was run.** Thresholds chosen from the dataset's own
+structure, not from Laya's behaviour, so that a miss is a null and not an invitation to retune.
+
+### The dataset, measured first
+
+`benchmark-results/2026-09-24-decision-latency/clm-arm/cohort-jevbench-120.jsonl` — JevBench v1.1,
+MIT, authored and reviewed outside this project, 120 cases with an `expected` label each.
+
+| | n | option counts | **chance accuracy** |
+| --- | --- | --- | --- |
+| all | 120 | 2x36, 4x33, 5x39, 6x12 | **0.3004** |
+| `choice` | 72 | | 0.2090 |
+| `noul` | 36 | 2 only | **0.5000** |
+| `score` | 12 | | 0.2500 |
+
+Chance is stated first because it is the number that makes an accuracy figure mean anything. A
+`noul` question is a coin flip; 0.60 on the `noul` subset is barely above guessing while 0.60 on
+`choice` is nearly three times chance. A single headline accuracy over a mixed cohort hides that,
+so the policy gates the subsets too.
+
+### Gates
+
+| gate | threshold | why this number |
+| --- | --- | --- |
+| overall accuracy | **>= 0.70** | 2.33x the 0.3004 chance floor. A typed-decision model that cannot clear that is not doing the job its interface claims |
+| `choice` accuracy | **>= 0.60** | 2.87x its 0.2090 chance |
+| `noul` accuracy | **>= 0.70** | only 1.40x chance, because chance is 0.50 here; anything under 0.70 on a binary question is close enough to a coin flip to be useless |
+| `score` accuracy | reported, not gated | n=12 is too few to gate on. Reporting it without gating is the honest treatment of a subset this small |
+| expected calibration error (ECE), 10 equal-width bins | **<= 0.10** | the published probability has to mean something. Laya exists to give calibrated confidence, so this is the gate that distinguishes it from any argmax classifier |
+| uncalibrated buckets carry no probability | every answer whose bucket the artifact declares uncalibrated must report `uncalibrated` | the artifact ships `choice:11+ = 0.1006`, which its own reference clamps and warns about |
+
+### What this dataset cannot test, stated now rather than discovered later
+
+JevBench tops out at **6 options**. The `choice:11+` bucket — the one the artifact mis-declares and
+the reference clamps — is **never exercised**. The uncalibrated-reporting gate will therefore pass
+without being tested, and that is **no data, not evidence**. It is already covered by unit tests
+against the reference's own temperature table, and a cohort with an 11-or-more-option question
+would be needed to close it end to end.
+
+### Decision rule
+
+All gated rows must pass. A miss is published as a null with the measured number, and the
+thresholds above are not revisited in response to a result.
