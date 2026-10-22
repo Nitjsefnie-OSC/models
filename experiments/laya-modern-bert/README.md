@@ -446,3 +446,51 @@ about either implementation, and it is worth more than either model's own number
 - **It does not compare Laya to Harriet.** Both would have to run the same cohort on one host under
   one protocol, and the comparison must be split into accuracy and calibration, because the
   accuracy half and the calibration half plainly answer differently.
+
+## Pre-registration: refitting the temperatures as an adaptation
+
+**Written before any temperature was fitted.** Gate 8 showed Laya accurate (0.7833) and
+underconfident (ECE 0.1638) because its shipped temperatures were fitted elsewhere. Temperature
+scaling is one scalar per bucket, so the obvious question is whether refitting on held-out data
+fixes it. The obvious way to fool ourselves is to fit and evaluate on the same cases, so:
+
+### The split, stated before it is used
+
+Sort the 120 cases by `id`, take even indices to **fit** and odd indices to **evaluate**.
+Deterministic, reproducible, and fixed here so it cannot be reshuffled if a result disappoints. It
+happens to balance every bucket exactly:
+
+| bucket | fit | eval |
+| --- | --- | --- |
+| `choice:3-5` | 30 | 30 |
+| `choice:6-10` | 6 | 6 |
+| `noul:2` | 18 | 18 |
+| `score:3-5` | 6 | 6 |
+
+### What may and may not be refitted
+
+**A bucket is refitted only if it has at least 10 fit cases. Otherwise it keeps the temperature the
+artifact ships.** Fitting a scalar on 6 points is not calibration, it is noise with a decimal point,
+and reporting it as calibration would be the same error as the published temperatures this is
+meant to repair. So `choice:3-5` (30) and `noul:2` (18) are refitted; `choice:6-10` (6) and
+`score:3-5` (6) are not, and the report must say which is which.
+
+Method: standard temperature scaling — per bucket, the single `T > 0` minimising negative
+log-likelihood of the correct option over that bucket's fit cases, by scalar search. Nothing else
+about the model changes; the logits are the ones the Java forward pass already produces.
+
+### The gate
+
+`decision-calibration-v1`, unchanged thresholds, applied to the **evaluation half only** (n=60).
+
+### What 60 cases cannot tell us, said now
+
+An accuracy of 0.78 on 60 cases has a 95% interval of roughly +/- 0.10, so the accuracy gates are
+weakly tested on this half and **accuracy is not the point of this run** — refitting a temperature
+cannot change which option is the argmax, so accuracy on the eval half is fixed before the fit and
+is reported only as a check that nothing else moved. The calibration number is the result.
+`score:3-5` has 6 evaluation cases and stays ungated.
+
+**This produces an adaptation, not Laya.** A refitted temperature is our calibration. Any model
+published from this must be labelled as such and must not carry the name
+`convaiinnovations/laya`.
