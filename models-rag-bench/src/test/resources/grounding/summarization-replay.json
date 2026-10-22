@@ -1,0 +1,245 @@
+{
+ "_source": "fleet shard 708, mradermacher_mixture_summarizer_qwen3_5_2b_gguf_q4_k_m on the summarization corpus, 2026-10-22; model output taken verbatim from grounding.rawText",
+ "_note": "Recorded generations, not synthesised. The replay must reproduce recordedDecision.",
+ "cases": [
+  {
+   "caseId": "summarize-incident-4417",
+   "question": "Summarize Beacon incident 4417: how long were writes rejected, what triggered it, and how was it recovered?",
+   "requiredFacts": [
+    "38 minutes",
+    "migration",
+    "rolling"
+   ],
+   "answerable": true,
+   "recordedDecision": "EXTRACTIVE_FALLBACK",
+   "rawText": "<think>\n\n</think>\n\nBeacon incident 4417 caused writes to be rejected for 38 minutes due to a schema migration that added a non-null column without a default, and it was recovered by rolling the migration back without data loss.\n[sum-incident-4417]",
+   "rawEvaluation": {
+    "factCoverage": 1.0,
+    "citationRecall": 1.0,
+    "citationPrecision": 1.0,
+    "correct": true
+   },
+   "retrieved": [
+    {
+     "id": "sum-incident-4417",
+     "title": "Incident 4417 postmortem",
+     "text": "Beacon incident 4417 began at 02:14 UTC when the ingest queue backed up behind a stalled consumer. Customer writes were rejected for 38 minutes. The trigger was a schema migration that added a non-null column without a default. Recovery came from rolling the migration back; no data was lost.",
+     "score": 5.440516,
+     "rank": 1
+    }
+   ]
+  },
+  {
+   "caseId": "summarize-incident-4502",
+   "question": "Summarize Beacon incident 4502: how long did it last, what fraction of reads was affected, and what was the fix?",
+   "requiredFacts": [
+    "11 minutes",
+    "6 percent",
+    "warm replica"
+   ],
+   "answerable": true,
+   "recordedDecision": "EXTRACTIVE_FALLBACK",
+   "rawText": "<think>\nThe user wants a summary of the Beacon incident 4502 based on the provided context.\nI need to extract three specific pieces of information:\n1. Duration of the incident.\n2. Fraction of reads affected.\n3. The fix implemented.\n\nLet's look at the context provided:\n\"[sum-incident-4502] Incident 4502 postmortem\nBeacon incident 4502 was a partial read outage lasting 11 minutes. A cache node was evicted during a rolling upgrade while its replica was still warming, so 6 percent of reads fell through to the primary and timed out. The fix was to require a warm replica before eviction.\"\n\n1. Duration: \"lasting 11 minutes\n2. Fraction of reads: \"6 percent of reads\n3. Fix: \"require a warm replica before eviction\n\nI need to construct a single short sentence that includes these three points, using the exact citation format `[source ID]` at the end.\nThe source ID is `[sum-incident-4502]`.\n\nDraft sentence: Beacon incident 4502 lasted 11 minutes, affecting 6 percent of reads, and",
+   "rawEvaluation": {
+    "factCoverage": 1.0,
+    "citationRecall": 1.0,
+    "citationPrecision": 1.0,
+    "correct": true
+   },
+   "retrieved": [
+    {
+     "id": "sum-incident-4502",
+     "title": "Incident 4502 postmortem",
+     "text": "Beacon incident 4502 was a partial read outage lasting 11 minutes. A cache node was evicted during a rolling upgrade while its replica was still warming, so 6 percent of reads fell through to the primary and timed out. The fix was to require a warm replica before eviction.",
+     "score": 6.84732,
+     "rank": 1
+    }
+   ]
+  },
+  {
+   "caseId": "summarize-release-2-7",
+   "question": "Summarize what Beacon 2.7 changes and what upgrading requires.",
+   "requiredFacts": [
+    "streaming export",
+    "2000",
+    "index rebuild"
+   ],
+   "answerable": true,
+   "recordedDecision": "EXTRACTIVE_FALLBACK",
+   "rawText": "<think>\n\n</think>\n\nBeacon 2.7 introduces streaming export, increases the per-tenant rate limit to 2000 requests per minute, and removes the deprecated v1 webhook payload, while upgrading requires running the index rebuild task once, which takes about 20 minutes on a million rows.",
+   "rawEvaluation": {
+    "factCoverage": 1.0,
+    "citationRecall": 0.0,
+    "citationPrecision": 0.0,
+    "correct": false
+   },
+   "retrieved": [
+    {
+     "id": "sum-release-2-7",
+     "title": "Beacon 2.7 release notes",
+     "text": "Beacon 2.7 adds streaming export, raises the per-tenant rate limit from 500 to 2000 requests per minute, and removes the deprecated v1 webhook payload. Upgrading requires running the index rebuild task once, which takes about 20 minutes on a million rows.",
+     "score": 3.3851686,
+     "rank": 1
+    }
+   ]
+  },
+  {
+   "caseId": "summarize-release-2-8",
+   "question": "Summarize Beacon 2.8: what replaced the scheduler, what happened to job latency, and what support was dropped?",
+   "requiredFacts": [
+    "event-driven",
+    "120",
+    "Java 17"
+   ],
+   "answerable": true,
+   "recordedDecision": "EXTRACTIVE_FALLBACK",
+   "rawText": "<think>\n\n</think>\n\nBeacon 2.8 replaced the polling scheduler with an event-driven one, reduced median job latency from 900 to 120 milliseconds, and dropped support for Java 17.\n[sum-release-2-8]",
+   "rawEvaluation": {
+    "factCoverage": 1.0,
+    "citationRecall": 1.0,
+    "citationPrecision": 1.0,
+    "correct": true
+   },
+   "retrieved": [
+    {
+     "id": "sum-release-2-8",
+     "title": "Beacon 2.8 release notes",
+     "text": "Beacon 2.8 replaces the polling scheduler with an event-driven one, cuts median job latency from 900 to 120 milliseconds, and drops support for Java 17. It is a minor release and needs no migration step.",
+     "score": 5.605886,
+     "rank": 1
+    }
+   ]
+  },
+  {
+   "caseId": "summarize-retention",
+   "question": "Summarize the Beacon retention policy for operational logs, audit records, and backups.",
+   "requiredFacts": [
+    "30 days",
+    "7 years",
+    "90 days"
+   ],
+   "answerable": true,
+   "recordedDecision": "EXTRACTIVE_FALLBACK",
+   "rawText": "<think>\nThe user wants a summary of the Beacon retention policy based on the provided context.\nI need to extract the specific retention periods for operational logs, audit records, and backups from the context.\nI need to format the answer as a single short sentence.\nI need to include citations in the format `[source_id]` at the end of the sentence.\nI must not use prior knowledge.\n\nContext Analysis:\n- Operational logs: \"Beacon retains operational logs for 30 days and then deletes them.\"\n- Audit records: \"Audit records are retained for 7 years and cannot be deleted by tenant administrators.\"\n- Backups: \"Backups are kept for 90 days in the same region as the primary.\"\n\nDrafting the answer:\nBeacon retains operational logs for 30 days and deletes them, while audit records are kept for 7 years and backups are stored for 90 days in the same region as the primary.\n\nCitations needed:\n- Operational logs: `[sum-retention-policy]`\n- Audit records: `[sum-retention-policy]`\n- Backups: `[sum-retention-policy]`\n\nWait, the instruction says \"Copy each supporting source ID exactly from the square",
+   "rawEvaluation": {
+    "factCoverage": 1.0,
+    "citationRecall": 1.0,
+    "citationPrecision": 1.0,
+    "correct": true
+   },
+   "retrieved": [
+    {
+     "id": "sum-retention-policy",
+     "title": "Data retention policy",
+     "text": "Beacon retains operational logs for 30 days and then deletes them. Audit records are retained for 7 years and cannot be deleted by tenant administrators. Backups are kept for 90 days in the same region as the primary.",
+     "score": 7.8239336,
+     "rank": 1
+    }
+   ]
+  },
+  {
+   "caseId": "summarize-capacity-review",
+   "question": "Summarize the Beacon capacity review: how much did peak traffic grow, what is the write headroom, and what is recommended?",
+   "requiredFacts": [
+    "34 percent",
+    "18 percent",
+    "sharding"
+   ],
+   "answerable": true,
+   "recordedDecision": "MODEL_ANSWER",
+   "rawText": "<think>\n\n</think>\n\nBeacon peak traffic grew 34 percent over the quarter, write headroom fell to 18 percent, and the review recommends sharding the write path before the next quarter.\n[sum-capacity-review]",
+   "rawEvaluation": {
+    "factCoverage": 1.0,
+    "citationRecall": 1.0,
+    "citationPrecision": 1.0,
+    "correct": true
+   },
+   "retrieved": [
+    {
+     "id": "sum-capacity-review",
+     "title": "Quarterly capacity review",
+     "text": "Beacon peak traffic grew 34 percent over the quarter, driven mostly by two large tenants. Headroom on the write path fell to 18 percent, which is below the 25 percent target. The review recommends sharding the write path before the next quarter.",
+     "score": 6.74615,
+     "rank": 1
+    }
+   ]
+  },
+  {
+   "caseId": "summarize-access-review",
+   "question": "Summarize the Beacon access review outcome, including how many accounts were affected and what was done.",
+   "requiredFacts": [
+    "14",
+    "read-only",
+    "owners"
+   ],
+   "answerable": true,
+   "recordedDecision": "EXTRACTIVE_FALLBACK",
+   "rawText": "<think>\n\n</think>\n\nThe Beacon access review identified 17 accounts requiring changes, downgrading 14 to read-only and assigning owners to 3 service accounts.\n[sum-access-review]",
+   "rawEvaluation": {
+    "factCoverage": 1.0,
+    "citationRecall": 1.0,
+    "citationPrecision": 1.0,
+    "correct": true
+   },
+   "retrieved": [
+    {
+     "id": "sum-access-review",
+     "title": "Access review outcome",
+     "text": "The Beacon access review found 14 accounts with production write access that no longer needed it, and 3 service accounts with no owner recorded. All 14 were downgraded to read-only and the 3 were assigned owners.",
+     "score": 6.2850814,
+     "rank": 1
+    }
+   ]
+  },
+  {
+   "caseId": "summarize-deploy-policy",
+   "question": "Summarize the Beacon deployment policy: when are deployments allowed, what must precede one, and how are emergencies handled?",
+   "requiredFacts": [
+    "09:00",
+    "integration run",
+    "director"
+   ],
+   "answerable": true,
+   "recordedDecision": "EXTRACTIVE_FALLBACK",
+   "rawText": "<think>\n\n</think>\n\nBeacon deployments are allowed between 09:00 and 16:00 UTC on weekdays only, and every deployment must be preceded by a green integration run no older than 2 hours, while emergencies can bypass these windows with a director approval recorded in the ticket.",
+   "rawEvaluation": {
+    "factCoverage": 1.0,
+    "citationRecall": 0.0,
+    "citationPrecision": 0.0,
+    "correct": false
+   },
+   "retrieved": [
+    {
+     "id": "sum-deploy-policy",
+     "title": "Deployment policy",
+     "text": "Beacon deployments are allowed between 09:00 and 16:00 UTC on weekdays only. Every deployment must be preceded by a green integration run no older than 2 hours. Emergency fixes may bypass the window with a director approval recorded in the ticket.",
+     "score": 6.1203585,
+     "rank": 1
+    }
+   ]
+  },
+  {
+   "caseId": "summarize-unsupported-vendor-audit",
+   "question": "Summarize the findings of the Beacon third-party vendor security audit.",
+   "requiredFacts": [],
+   "answerable": false,
+   "recordedDecision": "RETRIEVAL_ABSTENTION",
+   "rawText": "<think>\n\n</think>\n\nThe provided context does not contain information regarding a Beacon third-party vendor security audit.\nINSUFFICIENT_CONTEXT",
+   "rawEvaluation": {
+    "factCoverage": 1.0,
+    "citationRecall": 1.0,
+    "citationPrecision": 1.0,
+    "correct": false
+   },
+   "retrieved": [
+    {
+     "id": "sum-retention-policy",
+     "title": "Data retention policy",
+     "text": "Beacon retains operational logs for 30 days and then deletes them. Audit records are retained for 7 years and cannot be deleted by tenant administrators. Backups are kept for 90 days in the same region as the primary.",
+     "score": 1.075538,
+     "rank": 1
+    }
+   ]
+  }
+ ]
+}
