@@ -494,3 +494,60 @@ is reported only as a check that nothing else moved. The calibration number is t
 **This produces an adaptation, not Laya.** A refitted temperature is our calibration. Any model
 published from this must be labelled as such and must not carry the name
 `convaiinnovations/laya`.
+
+## Refit result: closer, still NOT QUALIFIED — and my own 10-case floor was too low
+
+Evidence: `evidence/jevbench-temperature-refit.json`. Fit on the 60 even-indexed cases, scored on
+the 60 odd-indexed cases the fit never saw, under the thresholds registered above.
+
+| | accuracy | mean confidence | ECE | |
+| --- | --- | --- | --- | --- |
+| shipped temperatures | 0.8000 | 0.6290 | 0.1802 | FAIL |
+| refitted | 0.8000 | 0.7267 | **0.1300** | **FAIL** |
+
+A 28% reduction in calibration error and still above the 0.10 gate. Accuracy is identical to four
+decimals, which is the check the pre-registration asked for: a temperature divides every logit by
+one scalar and cannot move an argmax, so any difference there would have been a bug in the script.
+
+### Per bucket, which is where the answer actually is
+
+| bucket | eval n | shipped gap | refitted gap | T shipped -> refit |
+| --- | --- | --- | --- | --- |
+| `choice:3-5` | 30 | -0.2591 | **-0.0258** | 1.7602 -> 0.6108 |
+| `noul:2` | 18 | -0.0810 | **-0.1444** | 1.9834 -> 2.9966 |
+| `choice:6-10` | 6 | +0.0922 | +0.0922 | unfitted by rule |
+| `score:3-5` | 6 | -0.2636 | -0.2636 | unfitted by rule |
+
+Three findings, and the second is about this experiment rather than about Laya:
+
+1. **Temperature scaling works, given enough data.** `choice:3-5` had 30 fit cases and its
+   held-out gap fell from -0.259 to **-0.026**. That bucket is calibrated now. The technique is not
+   the problem.
+2. **It overfits at 18 cases, measurably. `noul:2` got WORSE on held-out data** — gap -0.081 to
+   -0.144 — because the fit chose T=2.9966 where the shipped 1.9834 generalised better. **The
+   `>= 10` floor I registered was too permissive**, and the only reason that is visible is that the
+   floor and the split were fixed before fitting. Had I chosen the floor after seeing results I
+   would have "discovered" that 18 was fine. The floor is NOT being retuned now: that would be
+   fitting the protocol to the outcome, and the honest output is that 18 cases is not enough and a
+   proper study needs more per bucket.
+3. **The residual is now attributable.** Aggregate 0.1300 is `noul`'s regression plus two buckets
+   of six that the rule correctly refused to fit. Nothing mysterious is left.
+
+### What would actually close this
+
+More labelled cases per bucket, not a different technique. `choice:3-5` demonstrates that one
+scalar fitted on 30 examples calibrates a bucket to within 0.03; the blocker is that JevBench
+gives 18, 6 and 6 for the others. A cohort with 30+ per bucket — and some 11-or-more-option
+questions, which JevBench has none of — is the missing ingredient.
+
+### Where that leaves Laya, and the comparison with Harriet
+
+Laya is **accurate and not calibrated**, and refitting on the data available does not change the
+verdict. It stays out of the catalog.
+
+The convergence with our own work is now stronger than when it was only a coincidence of direction.
+Harriet understates accuracy by 14-30 points; Laya understates by 16.4; and on the one bucket with
+enough data to refit, a single scalar fixed almost all of it. That makes the interesting question
+about Harriet not "is it better than Laya" but **"has its temperature ever been fitted on enough
+held-out data per bucket, and what happens to its 14-30 points if it is?"** That is a cheap
+experiment on data we already have, and it is worth more than ranking the two models.
