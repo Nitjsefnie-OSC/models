@@ -226,6 +226,76 @@ class ModelRouterTest {
     }
 
     @Test
+    void honoursADeclaredContextFloorEvenWhenThisPromptFitsTheSmallerModel() {
+      // The defect this closes, measured on 2026-10-22: a 13 MB tool model with a 2,048-token
+      // window won a tool-use prompt against an 8B with 40,960 because the first turn was short.
+      // A tool-call loop appends each result, so the request that fails is not the request that
+      // chose the model, and before `requireContextWindow` nothing in the API could say so.
+      ModelCandidate tiny =
+          ModelCandidate.builder("needle2-cact")
+              .local(true)
+              .tags(Set.of("chat", "tool-use"))
+              .costPerMillionTokens(0.0, 0.0)
+              .timeToFirstTokenMillis(40)
+              .tokensPerSecond(90)
+              .contextWindow(2_048)
+              .quality(Map.of("tool-use", 0.919))
+              .build();
+      ModelCandidate roomy =
+          ModelCandidate.builder("qwen3-8b-q4_k_m")
+              .local(true)
+              .tags(Set.of("chat", "tool-use"))
+              .costPerMillionTokens(0.0, 0.0)
+              .timeToFirstTokenMillis(900)
+              .tokensPerSecond(12)
+              .contextWindow(40_960)
+              .quality(Map.of("tool-use", 1.0))
+              .build();
+      ModelRouter router =
+          ModelRouter.builder()
+              .policy(RoutingPolicy.BALANCED)
+              .classifier(query -> "tool-use")
+              .candidates(List.of(tiny, roomy))
+              .build();
+      RoutingRequest request = RoutingRequest.builder("Call get_order_status for 88412.").build();
+
+      // Without the floor the small window wins on latency and cost: that is the old behaviour,
+      // asserted so this test fails if the floor silently stops being the thing that changes it.
+      assertThat(router.route(request).selected().id()).isEqualTo("needle2-cact");
+
+      RoutingDecision floored =
+          router.route(request, RoutingRequirements.builder().requireContextWindow(8_192).build());
+
+      assertThat(floored.selected().id()).isEqualTo("qwen3-8b-q4_k_m");
+      assertThat(floored.fallbacks()).isEmpty();
+    }
+
+    @Test
+    void refusesWhenEveryCandidateIsBelowTheDeclaredContextFloor() {
+      ModelCandidate tiny =
+          ModelCandidate.builder("needle2-cact")
+              .local(true)
+              .contextWindow(2_048)
+              .timeToFirstTokenMillis(40)
+              .tokensPerSecond(90)
+              .build();
+      ModelRouter router =
+          ModelRouter.builder()
+              .policy(RoutingPolicy.BALANCED)
+              .classifier(query -> null)
+              .candidates(List.of(tiny))
+              .build();
+
+      assertThatThrownBy(
+              () ->
+                  router.route(
+                      RoutingRequest.builder("short").build(),
+                      RoutingRequirements.builder().requireContextWindow(8_192).build()))
+          .isInstanceOf(RuntimeException.class)
+          .hasMessageContaining("at least the required 8192");
+    }
+
+    @Test
     void refusesWhenNoCandidateSatisfiesTheConstraints() {
       // Local-only plus a context larger than any local model can hold.
       assertThatThrownBy(
