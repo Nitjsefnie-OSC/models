@@ -226,6 +226,9 @@ dependencies {
     implementation("com.fasterxml.jackson.core:jackson-core:${rootProject.extra["jacksonVersion"]}")
 
     testImplementation(project(":models-runtime"))
+    // Nano GGUF fixtures. models-test's main sources depend on nothing, so this is a test-only
+    // edge in one direction: its own tests depend on backend-java's main sources, not the reverse.
+    testImplementation(project(":models-test"))
 }
 
 val fixtureDirectory = providers.systemProperty("models.fixtures.directory")

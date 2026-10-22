@@ -37,6 +37,7 @@ public final class NanoGgufModel {
   private static final int GGUF_TYPE_STRING = 8;
   private static final int GGUF_TYPE_ARRAY = 9;
   private static final int GGUF_TENSOR_F32 = 0;
+  private static final int GGUF_TENSOR_F16 = 1;
 
   private static final int DIMENSION = 16;
   private static final int ATTENTION_HEADS = 2;
@@ -137,6 +138,178 @@ public final class NanoGgufModel {
     return builder.build();
   }
 
+  /**
+   * Writes a nano {@code modern-bert} typed-decision fixture, in the shape Laya actually has.
+   *
+   * <p>Deliberately heterogeneous, because the things that make this architecture different are
+   * exactly the things a uniform fixture holds constant and therefore cannot fail on:
+   *
+   * <ul>
+   *   <li>block 0 carries <strong>no</strong> {@code attn_norm}; blocks 1 and up do
+   *   <li>the last {@code DECISION_BLOCKS} blocks carry <strong>biases</strong> on every projection
+   *       and norm, and a plain feed-forward where the encoder blocks gate
+   *   <li>two feed-forward widths: {@code 2 * MODERN_INTERMEDIATE} packed for the encoder's GeGLU,
+   *       and {@code MODERN_DECISION_FFN} flat for the decision blocks
+   *   <li>four encoder blocks against a window pattern of 3, so the global/windowed alternation is
+   *       observable rather than degenerate
+   * </ul>
+   *
+   * @return the supplied target path
+   */
+  public static Path writeModernBertDecision(Path target) throws IOException {
+    Objects.requireNonNull(target, "target");
+    Path parent = target.toAbsolutePath().getParent();
+    if (parent != null) {
+      Files.createDirectories(parent);
+    }
+    Files.write(target, buildModernBertDecision());
+    return target;
+  }
+
+  /** Embedding width of the modern-bert fixture. */
+  public static final int MODERN_DIMENSION = 16;
+
+  /** Attention heads of the modern-bert fixture. */
+  public static final int MODERN_HEADS = 2;
+
+  /** Encoder blocks of the modern-bert fixture. */
+  public static final int MODERN_ENCODER_BLOCKS = 4;
+
+  /** Decision blocks of the modern-bert fixture, matching Laya's two. */
+  public static final int MODERN_DECISION_BLOCKS = 2;
+
+  /** Gated intermediate width of an encoder block; {@code ffn_up} packs twice this. */
+  public static final int MODERN_INTERMEDIATE = 8;
+
+  /** Flat feed-forward width of a decision block. */
+  public static final int MODERN_DECISION_FFN = 32;
+
+  /** Vocabulary of the modern-bert fixture. */
+  public static final int MODERN_VOCABULARY = 32;
+
+  /** Context length of the modern-bert fixture. */
+  public static final int MODERN_CONTEXT = 64;
+
+  /** Sliding window of the modern-bert fixture. */
+  public static final int MODERN_WINDOW = 4;
+
+  /** Global-attention period of the modern-bert fixture. */
+  public static final int MODERN_WINDOW_PATTERN = 3;
+
+  /** Question types the decision head embeds, matching Laya's three. */
+  public static final int MODERN_TOKEN_TYPES = 3;
+
+  private static byte[] buildModernBertDecision() {
+    int blocks = MODERN_ENCODER_BLOCKS + MODERN_DECISION_BLOCKS;
+    List<String> tokens = new ArrayList<>(MODERN_VOCABULARY);
+    for (int index = 0; index < MODERN_VOCABULARY; index++) {
+      tokens.add("t" + index);
+    }
+    List<Integer> widths = new ArrayList<>(blocks);
+    for (int block = 0; block < MODERN_ENCODER_BLOCKS; block++) {
+      widths.add(MODERN_INTERMEDIATE);
+    }
+    for (int block = 0; block < MODERN_DECISION_BLOCKS; block++) {
+      widths.add(MODERN_DECISION_FFN);
+    }
+
+    GgufBuilder builder =
+        new GgufBuilder()
+            .string("general.name", "ModelsNanoModernBert")
+            .string("general.architecture", "modern-bert")
+            .uint32("modern-bert.embedding_length", MODERN_DIMENSION)
+            .uint32("modern-bert.block_count", blocks)
+            .uint32("modern-bert.attention.head_count", MODERN_HEADS)
+            .uint32("modern-bert.context_length", MODERN_CONTEXT)
+            .uint32s("modern-bert.feed_forward_length", widths)
+            .float32("modern-bert.attention.layer_norm_epsilon", 1.0e-5f)
+            .float32("modern-bert.rope.freq_base", 160_000.0f)
+            .float32("modern-bert.rope.freq_base_swa", 10_000.0f)
+            .uint32("modern-bert.attention.sliding_window", MODERN_WINDOW)
+            .uint32("modern-bert.attention.sliding_window_pattern", MODERN_WINDOW_PATTERN)
+            .uint32("modern-bert.classifier.pooling_type", 1)
+            .string("modern-bert.decision.type", "laya")
+            .uint32("modern-bert.decision.block_count", MODERN_DECISION_BLOCKS)
+            .uint32("modern-bert.decision.max_head_tokens", 24)
+            .float32("modern-bert.decision.temperature.choice", 1.6369030f)
+            .float32("modern-bert.decision.temperature.choice.2", 1.9063563f)
+            .float32("modern-bert.decision.temperature.choice.3_5", 1.7601519f)
+            .float32("modern-bert.decision.temperature.choice.6_10", 1.0000159f)
+            .float32("modern-bert.decision.temperature.choice.11", 0.1005828f)
+            .float32("modern-bert.decision.temperature.score", 1.2514300f)
+            .float32("modern-bert.decision.temperature.score.3_5", 1.2514300f)
+            .float32("modern-bert.decision.temperature.noul", 1.9833995f)
+            .float32("modern-bert.decision.temperature.noul.2", 1.9833995f)
+            .strings("tokenizer.ggml.tokens", tokens)
+            .uint32("tokenizer.ggml.mask_token_id", 4)
+            .uint32("tokenizer.ggml.bos_token_id", 1)
+            .uint32("tokenizer.ggml.eos_token_id", 2);
+
+    Random random = new Random(20261021);
+    int dim = MODERN_DIMENSION;
+    builder.halfTensor(
+        "token_embd.weight",
+        new long[] {dim, MODERN_VOCABULARY},
+        randomHalves(random, MODERN_VOCABULARY * dim));
+    // Weight only: this architecture's embedding norm carries no bias, unlike classic BERT's.
+    builder.tensor("token_embd_norm.weight", new long[] {dim}, constantFloats(dim, 1.0f));
+    builder.halfTensor(
+        "token_types.weight",
+        new long[] {dim, MODERN_TOKEN_TYPES},
+        randomHalves(random, MODERN_TOKEN_TYPES * dim));
+    builder.tensor("output_norm.weight", new long[] {dim}, constantFloats(dim, 1.0f));
+    // The scorer: LayerNorm, then a square projection, then a single-logit projection.
+    builder.tensor("cls.norm.weight", new long[] {dim}, constantFloats(dim, 1.0f));
+    builder.tensor("cls.norm.bias", new long[] {dim}, constantFloats(dim, 0.0f));
+    builder.halfTensor("cls.weight", new long[] {dim, dim}, randomHalves(random, dim * dim));
+    builder.tensor("cls.bias", new long[] {dim}, constantFloats(dim, 0.0f));
+    builder.tensor("cls.output.weight", new long[] {dim}, randomFloats(random, dim));
+    builder.tensor("cls.output.bias", new long[] {1}, constantFloats(1, 0.0f));
+
+    for (int block = 0; block < blocks; block++) {
+      String prefix = "blk." + block + ".";
+      boolean decision = block >= MODERN_ENCODER_BLOCKS;
+      int upWidth = decision ? MODERN_DECISION_FFN : 2 * MODERN_INTERMEDIATE;
+      int downWidth = decision ? MODERN_DECISION_FFN : MODERN_INTERMEDIATE;
+
+      if (block > 0) {
+        builder.tensor(prefix + "attn_norm.weight", new long[] {dim}, constantFloats(dim, 1.0f));
+      }
+      builder.halfTensor(
+          prefix + "attn_qkv.weight",
+          new long[] {dim, 3 * dim},
+          randomHalves(random, 3 * dim * dim));
+      builder.halfTensor(
+          prefix + "attn_output.weight", new long[] {dim, dim}, randomHalves(random, dim * dim));
+      builder.tensor(prefix + "ffn_norm.weight", new long[] {dim}, constantFloats(dim, 1.0f));
+      builder.halfTensor(
+          prefix + "ffn_up.weight", new long[] {dim, upWidth}, randomHalves(random, upWidth * dim));
+      builder.halfTensor(
+          prefix + "ffn_down.weight",
+          new long[] {downWidth, dim},
+          randomHalves(random, dim * downWidth));
+
+      if (decision) {
+        builder.tensor(prefix + "attn_norm.bias", new long[] {dim}, constantFloats(dim, 0.0f));
+        builder.tensor(
+            prefix + "attn_qkv.bias", new long[] {3 * dim}, constantFloats(3 * dim, 0.0f));
+        builder.tensor(prefix + "attn_output.bias", new long[] {dim}, constantFloats(dim, 0.0f));
+        builder.tensor(prefix + "ffn_norm.bias", new long[] {dim}, constantFloats(dim, 0.0f));
+        builder.tensor(prefix + "ffn_up.bias", new long[] {upWidth}, constantFloats(upWidth, 0.0f));
+        builder.tensor(prefix + "ffn_down.bias", new long[] {dim}, constantFloats(dim, 0.0f));
+      }
+    }
+    return builder.build();
+  }
+
+  private static byte[] randomHalves(Random random, int count) {
+    ByteBuffer bytes = ByteBuffer.allocate(count * Short.BYTES).order(ByteOrder.LITTLE_ENDIAN);
+    for (int index = 0; index < count; index++) {
+      bytes.putShort(Float.floatToFloat16((random.nextFloat() - 0.5f) * 0.25f));
+    }
+    return bytes.array();
+  }
+
   private static byte[] randomFloats(Random random, int count) {
     ByteBuffer bytes = ByteBuffer.allocate(Math.multiplyExact(count, Float.BYTES));
     bytes.order(ByteOrder.LITTLE_ENDIAN);
@@ -179,8 +352,23 @@ public final class NanoGgufModel {
       return this;
     }
 
+    private GgufBuilder float32(String key, float value) {
+      metadata.add(new Metadata(key, GGUF_TYPE_FLOAT32, value));
+      return this;
+    }
+
+    private GgufBuilder uint32s(String key, List<Integer> values) {
+      metadata.add(new Metadata(key, GGUF_TYPE_ARRAY, new IntValues(List.copyOf(values))));
+      return this;
+    }
+
     private void tensor(String name, long[] shape, byte[] data) {
-      tensors.add(new Tensor(name, shape.clone(), data.clone()));
+      tensors.add(new Tensor(name, shape.clone(), data.clone(), GGUF_TENSOR_F32));
+    }
+
+    /** An F16 matrix, which is what the batched matmul kernels accept. */
+    private void halfTensor(String name, long[] shape, byte[] data) {
+      tensors.add(new Tensor(name, shape.clone(), data.clone(), GGUF_TENSOR_F16));
     }
 
     private byte[] build() {
@@ -199,7 +387,7 @@ public final class NanoGgufModel {
         for (long dimension : tensor.shape()) {
           writeLong(output, dimension);
         }
-        writeInt(output, GGUF_TENSOR_F32);
+        writeInt(output, tensor.type());
         writeLong(output, tensorOffset);
         tensorOffset = align(Math.toIntExact(tensorOffset + tensor.data().length), GGUF_ALIGNMENT);
       }
@@ -223,6 +411,7 @@ public final class NanoGgufModel {
       switch (metadata.type()) {
         case GGUF_TYPE_STRING -> writeString(output, (String) metadata.value());
         case GGUF_TYPE_UINT32 -> writeInt(output, (Integer) metadata.value());
+        case GGUF_TYPE_FLOAT32 -> writeFloat(output, (Float) metadata.value());
         case GGUF_TYPE_ARRAY -> writeArray(output, metadata.value());
         default ->
             throw new IllegalStateException(
@@ -241,6 +430,12 @@ public final class NanoGgufModel {
         writeInt(output, GGUF_TYPE_FLOAT32);
         writeLong(output, floats.values().size());
         floats.values().forEach(item -> writeFloat(output, item));
+        return;
+      }
+      if (value instanceof IntValues ints) {
+        writeInt(output, GGUF_TYPE_UINT32);
+        writeLong(output, ints.values().size());
+        ints.values().forEach(item -> writeInt(output, item));
         return;
       }
       throw new IllegalStateException("Unsupported fixture array: " + value.getClass().getName());
@@ -281,5 +476,7 @@ public final class NanoGgufModel {
 
   private record FloatValues(List<Float> values) {}
 
-  private record Tensor(String name, long[] shape, byte[] data) {}
+  private record IntValues(List<Integer> values) {}
+
+  private record Tensor(String name, long[] shape, byte[] data, int type) {}
 }
