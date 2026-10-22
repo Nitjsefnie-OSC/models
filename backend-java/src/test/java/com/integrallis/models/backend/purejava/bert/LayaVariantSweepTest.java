@@ -25,28 +25,28 @@ import org.junit.jupiter.api.Test;
  * could not be distinguished from a wrong graph, and anyone looking at that residual would start by
  * re-testing these same eleven ideas.
  *
- * <p>Measured 2026-10-22 on {@code Laya-BF16.gguf}, worst absolute logit deviation from the
- * reference over all eight cases, with the number of cases whose argmax disagreed:
+ * <p><b>Read the warning before the table.</b> When this suite first ran, the forward pass was
+ * wrong in three places at once and every alternative below still measured worse than it -- because
+ * two of the three errors partially cancelled. The suite reported "baseline is best" for a baseline
+ * that was broken. A one-variable-at-a-time sweep over an end-to-end number cannot detect
+ * interacting errors, and nothing here should be read as validating the graph. What validated it
+ * was comparing per-stage activations against the reference ({@code oracle/intermediates.py}),
+ * which localised the defect to the decision blocks in a single run.
+ *
+ * <p>What the suite IS good for: each row is a specific structural mistake, and each number is the
+ * damage that mistake does once the rest is correct. Measured 2026-10-22 on {@code Laya-BF16.gguf},
+ * worst absolute logit deviation from the reference over all eight cases, with the number of cases
+ * whose argmax disagreed:
  *
  * <pre>
- *   baseline              0.573   0     <-- what the forward pass does
- *   tanhGelu              0.571   0     indistinguishable; GELU variant is not the cause
- *   noRopeInDecision      0.924   0
- *   halfWindow32          1.025   0
- *   noOutputNorm          1.217   0
- *   normAfterDecision     1.224   0
- *   windowOnTokenIdx      2.010   1
- *   allGlobal             2.708   2
- *   swapEmbedOutputNorm   3.627   2
- *   halfWindow16          3.568   1
- *   swapGeGLU             5.221   2
- *   typeAtEmbedding       5.875   4
+ *   baseline              0.033   0     <-- what the forward pass does
+ *   isolateInDecision     0.809   0     option isolation wrongly kept in the head
+ *   swapEmbedOutputNorm   3.697   2
+ *   ropeInDecision        5.196   7     rotary wrongly applied in the head
  * </pre>
  *
- * <p>Two readings matter. Every alternative is worse, so the baseline graph is the best available
- * — and the closest alternative is 1.6x the baseline's error, so this suite can detect a structural
- * mistake at that scale. It did not find the cause of the 0.573, which is the honest limit of an
- * end-to-end comparison.
+ * <p>The closest mistake is 24x the baseline's error, so this detects a structural change easily --
+ * it just cannot attribute one.
  */
 @Tag("model-fixture")
 class LayaVariantSweepTest {
@@ -62,7 +62,8 @@ class LayaVariantSweepTest {
     }
     Map<String, Runnable> variants = new LinkedHashMap<>();
     variants.put("baseline", () -> set(false, false, false, false));
-    variants.put("noRopeInDecision", () -> { reset(); ModernBertDecisionForwardPass.NO_ROPE_IN_DECISION_BLOCKS = true; });
+    variants.put("isolateInDecision", () -> { reset(); ModernBertDecisionForwardPass.ISOLATE_IN_DECISION_BLOCKS = true; });
+    variants.put("ropeInDecision", () -> { reset(); ModernBertDecisionForwardPass.ROPE_IN_DECISION_BLOCKS = true; });
     variants.put("swapEmbedOutputNorm", () -> { reset(); ModernBertDecisionForwardPass.SWAP_EMBED_AND_OUTPUT_NORM = true; });
 
 
@@ -105,7 +106,8 @@ class LayaVariantSweepTest {
     ModernBertDecisionForwardPass.NORM_AFTER_DECISION = false;
     ModernBertDecisionForwardPass.NO_OUTPUT_NORM = false;
     ModernBertDecisionForwardPass.HALF_WINDOW_OVERRIDE = 0;
-    ModernBertDecisionForwardPass.NO_ROPE_IN_DECISION_BLOCKS = false;
+    ModernBertDecisionForwardPass.ROPE_IN_DECISION_BLOCKS = false;
+    ModernBertDecisionForwardPass.ISOLATE_IN_DECISION_BLOCKS = false;
     ModernBertDecisionForwardPass.SWAP_EMBED_AND_OUTPUT_NORM = false;
     ModernBertDecisionForwardPass.SWAP_GEGLU_HALVES = swap;
     ModernBertDecisionForwardPass.ALL_LAYERS_GLOBAL = global;

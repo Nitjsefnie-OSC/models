@@ -64,7 +64,8 @@ final class ModernBertDecisionForwardPass {
   static boolean NORM_AFTER_DECISION = false;
   static boolean NO_OUTPUT_NORM = false;
   static int HALF_WINDOW_OVERRIDE = 0;
-  static boolean NO_ROPE_IN_DECISION_BLOCKS = false;
+  static boolean ROPE_IN_DECISION_BLOCKS = false;
+  static boolean ISOLATE_IN_DECISION_BLOCKS = false;
   static boolean SWAP_EMBED_AND_OUTPUT_NORM = false;
 
   /**
@@ -223,8 +224,13 @@ final class ModernBertDecisionForwardPass {
                   : gelu(up[source + element]) * up[source + intermediate + element];
         }
       } else {
+        // ReLU, NOT GELU, and read from the reference's source rather than assumed: laya builds
+        // the decision blocks as `nn.TransformerEncoderLayer(d, nhead, 4 * d, dropout,
+        // batch_first=True, norm_first=True)` (laya/common.py:592) and does not pass `activation`,
+        // so it keeps that class's default of `F.relu`. The scorer two lines later DOES ask for
+        // `nn.GELU()`, which is why the two differ inside one model.
         for (int element = 0; element < intermediate; element++) {
-          activated[target + element] = gelu(up[source + element]);
+          activated[target + element] = Math.max(0.0f, up[source + element]);
         }
       }
     }
@@ -252,7 +258,11 @@ final class ModernBertDecisionForwardPass {
     addBias(fused, sequenceLength, 3 * dim, weightsForLayer.queryKeyValueBias());
 
     float theta = ALL_LAYERS_GLOBAL ? config.ropeTheta() : config.ropeThetaFor(layer);
-    boolean applyRope = !(NO_ROPE_IN_DECISION_BLOCKS && config.isDecisionLayer(layer));
+    // The decision blocks get NO rotary embedding. laya replaces their `self_attn` with
+    // `_DynamicMultiheadAttention`, documented in its own source as "Same parameters, same maths"
+    // as `nn.MultiheadAttention` -- which is vanilla attention and knows nothing about rope. Only
+    // the encoder's custom blocks carry it.
+    boolean applyRope = !config.isDecisionLayer(layer) && !ROPE_IN_DECISION_BLOCKS;
     int[] positionIds = layout.positionIds();
     // Rotary on queries and keys, at the layout's position id rather than the token index: that
     // substitution is the whole point of the parallel layout.
@@ -268,6 +278,7 @@ final class ModernBertDecisionForwardPass {
     }
 
     boolean global = ALL_LAYERS_GLOBAL || config.isGlobalAttentionLayer(layer);
+    boolean isolationFree = config.isDecisionLayer(layer) && !ISOLATE_IN_DECISION_BLOCKS;
     int halfWindow = HALF_WINDOW_OVERRIDE > 0 ? HALF_WINDOW_OVERRIDE : config.slidingWindow() / 2;
     float scale = (float) (1.0 / Math.sqrt(headDim));
     float[] output = new float[sequenceLength * dim];
@@ -278,7 +289,13 @@ final class ModernBertDecisionForwardPass {
         int queryBase = query * 3 * dim + head * headDim;
         int attendable = 0;
         for (int key = 0; key < sequenceLength; key++) {
-          if (layout.isolates(query, key)) {
+          // Option isolation applies to the ENCODER only. The reference's head loop passes
+          // `src_key_padding_mask` and no `src_mask` (laya/common.py:625), so the decision blocks
+          // attend across the whole sequence -- which is their job: they are what compares the
+          // options. Its own comment says where the symmetry comes from instead: "The head below
+          // has no positional encoding, so with order-blind marker embeddings the logits permute
+          // with the options."
+          if (!isolationFree && layout.isolates(query, key)) {
             scores[key] = Float.NEGATIVE_INFINITY;
             continue;
           }

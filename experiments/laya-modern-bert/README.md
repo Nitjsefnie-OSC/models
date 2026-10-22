@@ -1,18 +1,23 @@
 # Qualifying Laya: a `modern-bert` encoder and a typed-decision gate
 
-**Status 2026-10-22: the forward pass is implemented and its gate FAILS. Laya is NOT qualified.**
-Read that sentence before quoting anything else here. Argmax agrees with the reference on all eight
-cases, but the worst logit deviation is 0.573 against a tolerance of 0.15 that was declared before
-the first run, and the cause is not located. The tolerance has not been widened.
+**Status 2026-10-22: the forward pass reproduces the reference and gates 1-6 are closed. Laya is
+still NOT qualified** -- gate 7 (`decision-calibration-v1`) is unwritten and gate 8 needs it.
+Read that before quoting anything else here.
+
+The forward pass agrees with the reference on all eight cases to **0.033 worst** against the 0.15
+tolerance declared before the first run, which was never widened, and on the chosen option
+exactly. The parallel layout is exactly permutation-symmetric through the whole model: five
+byte-identical options receive identical logits to the last bit, where sequential layout spreads
+them by 0.50.
 
 | gate | state |
 | --- | --- |
 | 1. `modern-bert` config | **closed.** `ModernBertConfig` + 12 tests, built from the real header |
 | 2. weights | **closed.** `ModernBertWeights` + 7 tests against a nano artifact shaped like the real one; every tensor the file carries is claimed |
-| 3. encoder forward vs llama.cpp | **implemented end to end, gate FAILS.** `ModernBertDecisionForwardPass`; argmax 8/8, 20/25 logits within 0.15, worst 0.573. The specified tensor-by-tensor `llama-eval-callback` comparison was **substituted** for an end-to-end logit comparison, which cannot localise the residual — see below |
+| 3. encoder forward | **closed.** The encoder tracks the reference's own per-block activations to **0.07%** across all 28 blocks (`evidence/INTERMEDIATES-has_invoice.txt`). Checked against the reference's intermediates rather than llama.cpp's graph, which has no decision head and could only have covered this half |
 | 4a. parallel layout arithmetic | **closed.** `ModernBertDecisionLayout` reproduces the reference's position and option ids exactly, on all eight cases |
-| 4b. permutation ablation through the model | **written, not yet run**: `ModernBertParallelLayoutAblationIntegrationTest` feeds five byte-identical options and requires identical logits, with a sequential-layout control that must spread |
-| 5. decision head vs `REFERENCE.json` | **logit-to-answer half closed** (probabilities to 1e-6); the head that produces the logits is now implemented and shares gate 3's failing residual |
+| 4b. permutation ablation through the model | **closed.** Five byte-identical options get spread **0.000000** -- identical logits, exactly -- and the sequential control spreads 0.500650, so the result is not vacuous |
+| 5. decision head vs `REFERENCE.json` | **closed.** Raw logits within 0.033 on all eight cases, worst 0.0606 (`queue_eight`), and the chosen option matches everywhere; probabilities to 1e-6 from those logits |
 | 6. temperature resolution and clamp | **closed**, against the reference's own numbers |
 | 7. policy `decision-calibration-v1` | not written — but the labelled set it needs **exists**: JevBench v1.1, `benchmark-results/2026-09-24-decision-latency/clm-arm/cohort-jevbench-120.jsonl`, 120 MIT-licensed externally authored cases with `expected` ground truth, covering choice 72 / noul 36 / score 12 at 2/4/5/6 options |
 | 8. qualify | blocked on all of the above |
@@ -280,40 +285,37 @@ cannot read the options either. It is 3-7x worse at every option count (4.199 ag
 twelve options). The state does read the options; what the layout forbids is one option reading
 another.
 
-### The residual, and what it is not
+### The residual, how it was found, and what I got wrong on the way
 
-0.573 worst, on `has_invoice[0]`: reference -4.09968, ours -4.67977.
+The forward pass first measured **0.573** worst against a 0.15 tolerance. Eleven structural
+alternatives were swept and every one was worse, and I read that as "the baseline graph is
+validated". **That reading was wrong.** The graph was wrong in three places at once, and two of the
+errors partially cancelled, so a sweep that varied one thing at a time kept reporting the baseline
+as best. One scalar at the end of thirty blocks cannot localise anything; the gate asked for
+intermediates and I substituted an endpoint.
 
-- **Not quantization.** BF16 scores 0.57271 against Q8_0's 0.58008.
-- **Not the reference's precision.** `oracle.py` says "float32 everywhere, CPU, no autocast"; the
-  `amp_dtype: bf16` in the config is the checkpoint's training setting, not the oracle's compute.
-- **Not numerical noise.** Changing weight precision from Q8_0 to BF16 moves the logits by 0.007,
-  so the function is stable at this depth and 0.573 is a functional difference.
-- **Not any of eleven structural alternatives**, each measured and each worse — the table is in
-  `LayaVariantSweepTest`, kept as a permanent control set so the next person does not re-test them.
+What settled it, in one run: the reference's own per-stage activations. The encoder matched to
+**0.07% across all 28 blocks**, and the divergence appeared entirely at `head.layers.0`. With the
+defect localised to the decision blocks, the answer came from reading laya's source rather than
+guessing:
 
-**The honest reading is that an end-to-end logit comparison was the wrong instrument.** Gate 3 asks
-for a tensor-by-tensor comparison; substituting one scalar at the end of thirty blocks is why eleven
-hypotheses could be refuted without finding the cause.
+| defect | source | cost of keeping it |
+| --- | --- | --- |
+| GELU in the decision MLP | `laya/common.py:592` builds them as `nn.TransformerEncoderLayer(d, nhead, 4 * d, dropout, batch_first=True, norm_first=True)` and never passes `activation`, so they keep that class's `F.relu` default. The scorer at `:598` **does** ask for `nn.GELU()`, which is why one model uses both | — |
+| rotary applied in the head | `self_attn` is replaced by a vanilla MHA; the code's own comment says the head "has no positional encoding" | **5.196 worst, 7 of 8 argmax wrong** |
+| option isolation applied in the head | the head loop passes `src_key_padding_mask` and **no** `src_mask` (`:625`), so the decision blocks attend across the whole sequence -- comparing the options is their purpose | **0.809 worst** |
 
-The instrument now exists on both sides and is better than the one gate 3 names, because llama.cpp
-has no decision head and could only ever check the encoder half:
+With all three corrected: **0.033 worst**, 17x better, inside the tolerance as declared.
 
-- `oracle/intermediates.py` hooks every block and dumps the reference's per-stage fingerprint.
-- `ModernBertDecisionForwardPass.TRACE` dumps the same fingerprint from the Java side, and
-  `LayaTraceTest` prints it.
+The permutation symmetry the layout exists for survives this, and is stronger than expected: with
+the head position-blind and unmasked, five byte-identical options receive **bit-identical** logits.
+The reference's comment predicts exactly that -- "with order-blind marker embeddings the logits
+permute with the options" -- so the symmetry comes from the head having no positional encoding, not
+from masking it.
 
-**It is blocked on hardware, measured rather than guessed.** `torch 2.14.1` ships no macOS x86_64
-wheel — only `macosx_14_0_arm64`, Linux and Windows — this box is x86_64 Mac, the newest torch
-installable here is 2.2.2, and the `transformers` that `laya` needs requires >= 2.6. `laya` cannot
-build the model on this laptop at any pin. `REPRODUCE.md` has the exact failure. **Run
-`oracle/intermediates.py` on the VPS**; the Java half already runs here.
-
-What the Java side shows while waiting for its counterpart, for `has_invoice`: the residual stream
-grows from L2 18.96 at the embedding to 45,728 by block 27 (sd 172), with step changes at blocks 5,
-7, 14 and 19, then `output_norm` brings it back to 366 before the type embedding. Whether that
-trajectory matches the reference is the open question, and the first stage where it does not is the
-defect.
+Two earlier conclusions in this file were also wrong and are corrected here rather than deleted:
+the residual was never quantization (BF16 and Q8_0 agreed to 0.007) and never the reference's
+precision, but it was also never "unlocatable" -- it was unlocated because the instrument was wrong.
 
 ### What is now unblocked
 

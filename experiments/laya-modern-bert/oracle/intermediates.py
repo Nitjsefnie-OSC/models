@@ -115,12 +115,21 @@ def main() -> int:
 
     for line in lines:
         print(line)
-    logits = out["logits"] if isinstance(out, dict) else out
-    print("# raw logits:", [round(float(v), 6) for v in torch.as_tensor(logits).reshape(-1)])
 
+    # Written BEFORE the logits are touched. The model returns a tuple whose first element is the
+    # logits and whose others are the act head's outputs, so an unguarded conversion raises -- and
+    # on the first run that exception discarded the whole dump after it had been computed.
     (HERE / f"INTERMEDIATES-{case}.txt").write_text(
         f"# case={case} tokens={len(ids)} markers={markers}\n" + "\n".join(lines) + "\n"
     )
+
+    logits = out[0] if isinstance(out, (tuple, list)) else out
+    if isinstance(logits, dict):
+        logits = logits.get("logits")
+    flat = torch.as_tensor(logits).reshape(-1).tolist()
+    print("# raw logits:", [round(float(v), 6) for v in flat])
+    with (HERE / f"INTERMEDIATES-{case}.txt").open("a") as handle:
+        handle.write("# raw logits: " + repr([round(float(v), 6) for v in flat]) + "\n")
     print(f"# wrote INTERMEDIATES-{case}.txt", file=sys.stderr)
     return 0
 
