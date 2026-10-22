@@ -4,6 +4,69 @@ All notable changes to models are documented here.
 
 ## [Unreleased]
 
+## [0.5.3] - 2026-10-22
+
+### Added
+
+- **A catalog can say where its weights are, and `models` can open one by id.**
+  `ModelCatalogProvider` has always reported *what* is installed, and the router has always consumed
+  it — but opening a catalogued model still meant application code naming a file the catalog already
+  knew. `ModelCatalogProvider.locate(String)` closes that: it returns the artifact path when the
+  model is on disk and `Optional.empty()` otherwise. It is a **default method returning empty**, so
+  a provider written against an earlier release keeps compiling and keeps meaning exactly what it
+  meant — it describes models and locates none.
+
+  `locate` reports only what is already on disk. It must not download, unpack or block on the
+  network, because a lookup that quietly pulled gigabytes would make an acquisition decision on the
+  caller's behalf. A hosted catalog, and on-device platform intelligence whose weights no process
+  may point at, both return empty.
+
+- **`CatalogBackends` in `backend-java`** resolves a catalog id across the installed catalogs and
+  opens it with `PureJavaBackend.loadAutomatic`, so a catalog says where the weights are and the
+  Java decoder runs them, with the native shims picked up underneath through the existing
+  `PureJavaBackendProvider` seam. There is deliberately **no engine-selection parameter**: an engine
+  chosen at the call site is a measurement seam, and the shipped path has to be the one the
+  qualification measured.
+
+  An id held by two installed catalogs is refused naming both rather than resolved. It is not a tie
+  to break — whichever won, a later run with the providers loaded in a different order would open
+  different weights under one name. Anything that cannot be opened gets one refusal listing the ids
+  that can, scoped to the providers the lookup actually consulted.
+
+- **`integrallis.models.catalog-model` names an installed catalog model in configuration**, so a
+  Spring Boot application no longer has to write Java to open one. The value is a catalog id, not a
+  file path and not a Maven coordinate. An application-supplied `TextGenerationModel` or
+  `InferenceBackend` bean always wins: configuration is the convenience, never an override. The
+  opened backend's lifecycle belongs to the context, which closes it.
+
+- **The starter contributes a Spring AI `ChatClient.Builder`.** Spring AI supplies one from its own
+  model starters, so an application assembled from `spring-ai-model` alone got none and had to build
+  it by hand. It is **prototype-scoped** — a builder carries mutable defaults, so a singleton would
+  let one injection point's `defaultSystem` leak into every other — and every
+  `ChatClientBuilderCustomizer` bean is applied in order, which is precisely what gets dropped when
+  each application hand-rolls its own. A builder the application or another auto-configuration
+  supplies is left alone, and nothing is registered when there is no local chat model.
+  `spring-ai-client-chat` stays an optional dependency: absent it, nothing is registered and nothing
+  fails.
+
+- **`RoutingRequirements.minimumContextWindow`** lets a fleet declare a context floor that holds for
+  every request rather than only for the prompt in hand. Measured: without it, a fleet whose
+  requirement was satisfied by the current prompt could select a model too small for the next one in
+  the same conversation.
+
+### Changed
+
+- **Seven `GroundedAnswerPolicy` members are package-private** instead of private, with no
+  behaviour change, so each screening predicate can be evaluated individually by a replay test over
+  recorded fleet generations.
+
+### Fixed
+
+- **Nothing is claimed for `modern-bert`.** The Laya encoder work is on its own branch and
+  deliberately not in this release: its forward pass is unimplemented, five of its eight gates are
+  open, and `PureJavaBackend` does not dispatch the architecture. A published jar does not carry
+  unreachable code for an unimplemented feature.
+
 ## [0.5.2] - 2026-10-20
 
 ### Changed
