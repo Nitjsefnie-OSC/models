@@ -323,6 +323,17 @@ public final class ModelRouter {
         rejections.add("no model has a context window of " + request.estimatedTokens() + " tokens");
         continue;
       }
+      // The floor the caller declared, which is a different question from whether this one prompt
+      // fits. Traffic that grows inside one model -- a tool-call loop appending each result, a
+      // session accumulating a transcript -- passes the check above on its first turn and fails
+      // later, and the request that fails is not the request that chose the model.
+      if (candidate.contextWindow() < requirements.minimumContextWindow()) {
+        rejections.add(
+            "no model has a context window of at least the required "
+                + requirements.minimumContextWindow()
+                + " tokens");
+        continue;
+      }
       if (taskType != null && !candidate.tags().isEmpty() && !candidate.tags().contains(taskType)) {
         rejections.add("no model declares the " + taskType + " tag");
         continue;

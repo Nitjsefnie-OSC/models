@@ -31,9 +31,26 @@ public record RoutingRequirements(
     Set<String> requiredCapabilities,
     RoutingDataBoundary dataBoundary,
     Set<String> requiredFeatures,
-    Set<String> excludedFeatures) {
+    Set<String> excludedFeatures,
+    int minimumContextWindow) {
   private static final RoutingRequirements NONE =
-      new RoutingRequirements(Set.of(), RoutingDataBoundary.REMOTE_ALLOWED, Set.of(), Set.of());
+      new RoutingRequirements(Set.of(), RoutingDataBoundary.REMOTE_ALLOWED, Set.of(), Set.of(), 0);
+
+  /**
+   * The previous arity, which places no floor on the context window.
+   *
+   * @param requiredCapabilities capabilities a candidate must declare
+   * @param dataBoundary whether the request may leave this machine
+   * @param requiredFeatures features a candidate must declare
+   * @param excludedFeatures features that disqualify a candidate
+   */
+  public RoutingRequirements(
+      Set<String> requiredCapabilities,
+      RoutingDataBoundary dataBoundary,
+      Set<String> requiredFeatures,
+      Set<String> excludedFeatures) {
+    this(requiredCapabilities, dataBoundary, requiredFeatures, excludedFeatures, 0);
+  }
 
   /**
    * The previous arity, which constrains nothing on features.
@@ -42,7 +59,7 @@ public record RoutingRequirements(
    * @param dataBoundary whether the request may leave this machine
    */
   public RoutingRequirements(Set<String> requiredCapabilities, RoutingDataBoundary dataBoundary) {
-    this(requiredCapabilities, dataBoundary, Set.of(), Set.of());
+    this(requiredCapabilities, dataBoundary, Set.of(), Set.of(), 0);
   }
 
   /** Validates and defensively copies the requirements. */
@@ -70,6 +87,10 @@ public record RoutingRequirements(
         throw new IllegalArgumentException("feature both required and excluded: " + feature);
       }
     }
+    if (minimumContextWindow < 0) {
+      throw new IllegalArgumentException(
+          "minimumContextWindow must not be negative: " + minimumContextWindow);
+    }
   }
 
   /** Returns the backwards-compatible unconstrained requirement set. */
@@ -88,6 +109,7 @@ public record RoutingRequirements(
     private final Set<String> requiredFeatures = new LinkedHashSet<>();
     private final Set<String> excludedFeatures = new LinkedHashSet<>();
     private RoutingDataBoundary dataBoundary = RoutingDataBoundary.REMOTE_ALLOWED;
+    private int minimumContextWindow;
 
     private Builder() {}
 
@@ -143,10 +165,39 @@ public record RoutingRequirements(
       return this;
     }
 
+    /**
+     * Requires a context window of at least {@code tokens}, whatever this one prompt measures.
+     *
+     * <p>The router already refuses a candidate whose window cannot hold the current request. That
+     * is not the same question an operator usually has. Traffic that grows inside one model --- a
+     * tool-call loop that appends each result, a session that accumulates a transcript --- is
+     * served correctly by the first turn and then fails, and the request that fails is not the
+     * request that chose the model.
+     *
+     * <p>Measured on 2026-10-22: a 13 MB tool model with a 2,048-token window won a tool-use prompt
+     * against an 8B with 40,960, on a short first turn, and nothing in this type could say that the
+     * traffic needed room. That is what this floor is for. It is a hard filter, like the data
+     * boundary and unlike a weight: a window that cannot hold the conversation is not a preference.
+     *
+     * @param tokens the smallest acceptable context window
+     * @return this builder
+     */
+    public Builder requireContextWindow(int tokens) {
+      if (tokens < 0) {
+        throw new IllegalArgumentException("context window floor must not be negative: " + tokens);
+      }
+      this.minimumContextWindow = tokens;
+      return this;
+    }
+
     /** Builds immutable requirements. */
     public RoutingRequirements build() {
       return new RoutingRequirements(
-          requiredCapabilities, dataBoundary, requiredFeatures, excludedFeatures);
+          requiredCapabilities,
+          dataBoundary,
+          requiredFeatures,
+          excludedFeatures,
+          minimumContextWindow);
     }
   }
 }
