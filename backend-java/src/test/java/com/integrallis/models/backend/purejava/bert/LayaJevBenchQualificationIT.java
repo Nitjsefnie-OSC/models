@@ -103,19 +103,33 @@ class LayaJevBenchQualificationIT {
                 correct,
                 answer.confidence(),
                 answer.uncalibrated()));
+        // The RAW logits are recorded, not just the confidence. Temperature scaling is refitted
+        // from logits, and without them a refit would need another full pass over the cohort --
+        // eight minutes to recover a number that was already computed and thrown away.
+        StringBuilder logits = new StringBuilder();
+        for (int option = 0; option < answer.logits().length; option++) {
+          logits.append(option == 0 ? "" : ",")
+              .append(String.format(Locale.ROOT, "%.6f", answer.logits()[option]));
+        }
         perCase.add(
             String.format(
                 Locale.ROOT,
                 "    {\"id\":\"%s\",\"type\":\"%s\",\"options\":%d,\"expected\":\"%s\","
-                    + "\"chosen\":\"%s\",\"correct\":%s,\"confidence\":%.6f,\"uncalibrated\":%s}",
+                    + "\"chosen\":\"%s\",\"expectedIndex\":%d,\"correct\":%s,"
+                    + "\"confidence\":%.6f,\"uncalibrated\":%s,\"temperature\":%.6f,"
+                    + "\"bucket\":\"%s\",\"rawLogits\":[%s]}",
                 one.id,
                 one.type.key(),
                 one.labels.size(),
                 one.expected,
                 chosen,
+                one.labels.indexOf(one.expected),
                 correct,
                 answer.confidence(),
-                answer.uncalibrated()));
+                answer.uncalibrated(),
+                answer.temperature(),
+                answer.temperatureBucket(),
+                logits));
       }
     }
     double seconds = (System.nanoTime() - startedAt) / 1e9;
