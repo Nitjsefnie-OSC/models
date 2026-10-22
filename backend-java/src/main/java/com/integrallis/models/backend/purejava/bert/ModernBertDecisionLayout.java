@@ -116,6 +116,11 @@ public record ModernBertDecisionLayout(int[] positionIds, int[] optionIds, int[]
   public boolean isolates(int query, int key) {
     int queryOption = optionIds[query];
     int keyOption = optionIds[key];
+    // Symmetric, and measured to be so. A one-directional rule that also stopped the shared
+    // tokens from reading the options was tried on 2026-10-22 and is wrong: against the
+    // reference's logits it was three to seven times worse at every option count (4.20 against
+    // 0.58 at twelve options). The state does read the options; what the layout forbids is one
+    // option reading another.
     return queryOption != 0 && keyOption != 0 && queryOption != keyOption;
   }
 

@@ -286,15 +286,31 @@ final class ModernBertWeights {
     return new Matrix(tensor.dataSegment(), tensor.type(), rows, columns);
   }
 
+  /**
+   * A one-dimensional tensor, tolerating the trailing unit dimensions a converter may keep.
+   *
+   * <p>{@code Laya-Q8_0.gguf} declares {@code cls.output.weight} as {@code [1024]} and {@code
+   * Laya-BF16.gguf}, from the same repository and the same conversion run, declares it as {@code
+   * [1024, 1]}. Both hold 1024 elements in the same order, so refusing one of them would reject a
+   * real artifact over a shape the converter chose. What is still checked is the element count:
+   * only unit dimensions are dropped, so a genuinely wrong shape is still refused.
+   */
   private static float[] vector(GgufFile file, String name, int size) {
     GgufTensorData tensor = file.getTensor(name);
-    long[] expected = {size};
-    if (!Arrays.equals(tensor.shape(), expected)) {
+    long elements = 1;
+    for (long dimension : tensor.shape()) {
+      elements *= dimension;
+    }
+    boolean onlyUnitsBeyondFirst = true;
+    for (int axis = 1; axis < tensor.shape().length; axis++) {
+      onlyUnitsBeyondFirst &= tensor.shape()[axis] == 1;
+    }
+    if (elements != size || !onlyUnitsBeyondFirst) {
       throw new IllegalArgumentException(
           name
               + " shape must be "
-              + Arrays.toString(expected)
-              + ": "
+              + Arrays.toString(new long[] {size})
+              + ", optionally with trailing unit dimensions: "
               + Arrays.toString(tensor.shape()));
     }
     return GgufTensorValues.toFloatArray(tensor);
