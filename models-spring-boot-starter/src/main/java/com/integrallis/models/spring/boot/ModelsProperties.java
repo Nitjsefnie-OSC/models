@@ -25,15 +25,28 @@ import org.springframework.boot.context.properties.NestedConfigurationProperty;
 import org.springframework.boot.context.properties.bind.ConstructorBinding;
 import org.springframework.boot.context.properties.bind.DefaultValue;
 
-/** Configuration for the auto-configured Models Spring AI chat model. */
+/**
+ * Configuration for the auto-configured Models Spring AI chat model.
+ *
+ * @param chatTemplate the chat template to render prompts with
+ * @param catalogModel the id of an installed catalog model to open, or null to supply the model in
+ *     Java
+ * @param sampling sampling defaults
+ */
+// Exactly one constructor, deliberately. A second overload -- even a convenience one delegating to
+// the canonical constructor -- makes Spring Boot's constructor binding ambiguous, and it falls back
+// to instantiating by default constructor, which a record has not got. Every binding then fails
+// with "No default constructor found", which names nothing about the real cause.
 @ConfigurationProperties("integrallis.models")
 public record ModelsProperties(
     @DefaultValue("raw") String chatTemplate,
+    String catalogModel,
     @DefaultValue @NestedConfigurationProperty Sampling sampling) {
 
   public ModelsProperties {
     Objects.requireNonNull(chatTemplate, "chatTemplate");
     Objects.requireNonNull(sampling, "sampling");
+    catalogModel = catalogModel == null || catalogModel.isBlank() ? null : catalogModel.strip();
   }
 
   ChatTemplate parsedChatTemplate() {
