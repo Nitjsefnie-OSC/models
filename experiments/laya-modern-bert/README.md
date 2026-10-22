@@ -389,3 +389,60 @@ Both found by the runner failing loudly, which is the outcome to want from a par
    build printed `BUILD SUCCESSFUL in 3s`. A qualification that silently does not run is worse than
    one that fails, and this repo has paid for that before. Both paths are now passed in from
    `rootProject` by the task, so the test never guesses where it is.
+
+## Gate 8 result: NOT QUALIFIED — a calibration null
+
+Measured 2026-10-22, `Laya-Q8_0.gguf` over JevBench 120, 476 s wall clock, policy
+`decision-calibration-v1` with the thresholds registered above and not revisited.
+Report: `evidence/jevbench-120-decision-calibration-v1.json`.
+
+| gate | threshold | measured | |
+| --- | --- | --- | --- |
+| overall accuracy | >= 0.70 | **0.7833** | pass, 2.61x the 0.3004 chance floor |
+| `choice` accuracy | >= 0.60 | **0.7917** | pass, 3.79x its 0.2090 chance |
+| `noul` accuracy | >= 0.70 | **0.7778** | pass |
+| `score` accuracy | reported | 0.7500 | n=12, ungated as registered |
+| expected calibration error | <= 0.10 | **0.1638** | **FAIL** |
+| uncalibrated buckets | must self-report | 0 exercised | **untested, as predicted** — JevBench stops at 6 options |
+
+**Laya is accurate and its confidence is not trustworthy.** Those are separate findings and the
+policy exists to keep them separate: an argmax-only reading of this cohort would have called it a
+success.
+
+### The miscalibration is underconfidence, and it is bucket-shaped
+
+Mean confidence 0.6196 against accuracy 0.7833 — it is **understating** itself by 16.4 points, and
+every one of the eight occupied bins leans the same way. Split by type:
+
+| subset | mean confidence | accuracy | gap | the artifact's temperature |
+| --- | --- | --- | --- | --- |
+| `noul` (binary, 36) | 0.7741 | 0.7778 | **-0.004** | `noul:2 = 1.9834` |
+| `choice` (72) | 0.5588 | 0.7917 | **-0.233** | `choice:3-5 = 1.7602`, `choice:6-10 = 1.0000` |
+| `score` (12) | 0.5203 | 0.7500 | **-0.230** | `score:3-5 = 1.2514` |
+
+The binary bucket is calibrated almost exactly; the multi-way buckets are not. That is a statement
+about the artifact's fitted temperatures, not about our arithmetic — gate 6 closed the temperature
+decode against the reference's own published probabilities to 1e-6, so the numbers being applied are
+the numbers the artifact ships. **Its calibration was fitted on some other distribution and does not
+transfer to a cohort nobody here authored**, which is the ordinary fate of a published number taken
+out of its regime.
+
+### Convergent with our own decision work, which is the interesting part
+
+Harriet's confidence is uncalibrated in the *same direction and a similar magnitude* — it understates
+accuracy by 14-30 points. Laya understates by 16.4 overall and 23 on `choice`. Two independently
+built temperature-scaled decision models, one ours and one external, both publishing
+underconfident probabilities on held-out cohorts. That is a finding about the technique rather than
+about either implementation, and it is worth more than either model's own number.
+
+### What this does and does not license
+
+- **Laya cannot be published.** The verdict is NOT QUALIFIED and the artifact is not going in the
+  catalog.
+- **It is not a dead end.** Temperature scaling is one scalar per bucket. Refitting on a held-out
+  split is the standard remedy and this repo already keeps held-out calibration artifacts for the
+  Jev work. But a refitted temperature is **our** calibration, not the artifact's, and any such
+  model must be labelled an adaptation rather than `convaiinnovations/laya`.
+- **It does not compare Laya to Harriet.** Both would have to run the same cohort on one host under
+  one protocol, and the comparison must be split into accuracy and calibration, because the
+  accuracy half and the calibration half plainly answer differently.
