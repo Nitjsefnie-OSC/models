@@ -80,11 +80,11 @@ public interface ModelCatalogProvider {
    *
    * <p><b>Return empty rather than fetching.</b> This method reports what is already on disk; it
    * must not download, unpack or otherwise acquire anything, and it must not block on the network.
-   * A catalog entry whose weights are not present yet is {@link Optional#empty()}, and so
-   * is every entry of a catalog that has no local files at all — a hosted catalog, or on-device
-   * platform intelligence, which has weights but none this process may point at. Acquisition is the
-   * caller's decision to make explicitly, and a method that quietly pulled gigabytes because
-   * somebody asked where a file was would make that decision for them.
+   * A catalog entry whose weights are not present yet is {@link Optional#empty()}, and so is every
+   * entry of a catalog that has no local files at all — a hosted catalog, or on-device platform
+   * intelligence, which has weights but none this process may point at. Acquisition is the caller's
+   * decision to make explicitly, and a method that quietly pulled gigabytes because somebody asked
+   * where a file was would make that decision for them.
    *
    * <p>The default returns empty, so a catalog written against an earlier version keeps compiling
    * and keeps meaning exactly what it did: it describes models and locates none.

@@ -90,8 +90,10 @@ public final class CatalogBackends {
     return locate(ServiceLoader.load(ModelCatalogProvider.class), id);
   }
 
-  /** The same, over a supplied provider set; the seam the tests drive, as in {@code
-   * CatalogDiscovery}. */
+  /**
+   * The same, over a supplied provider set; the seam the tests drive, as in {@code
+   * CatalogDiscovery}.
+   */
   static Optional<Path> locate(Iterable<ModelCatalogProvider> providers, String id) {
     requireText(id);
     for (ModelCatalogProvider provider : providers) {

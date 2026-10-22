@@ -67,7 +67,8 @@ class CatalogBackendsIntegrationTest {
             .orElseThrow();
     // The provider is the only thing standing in for ModelJars here. Everything after `locate`
     // returns is the shipped path.
-    Iterable<ModelCatalogProvider> catalogs = List.of(catalog("fixture", "qwen3_0_6b_q4_0", artifact));
+    Iterable<ModelCatalogProvider> catalogs =
+        List.of(catalog("fixture", "qwen3_0_6b_q4_0", artifact));
 
     assertThat(CatalogBackends.openable(catalogs)).containsExactly("qwen3_0_6b_q4_0");
 

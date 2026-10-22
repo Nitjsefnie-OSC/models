@@ -147,7 +147,8 @@ class SummarizationGroundingReplayTest {
       if (!replay.answerable() || !replay.rawCorrect()) {
         continue;
       }
-      String candidate = GroundedAnswerPolicy.removeCompleteReasoningTrace(replay.rawText().strip());
+      String candidate =
+          GroundedAnswerPolicy.removeCompleteReasoningTrace(replay.rawText().strip());
       assertThat(GroundedAnswerPolicy.isExplicitAbstention(candidate))
           .as("%s is not an abstention", replay.caseId())
           .isFalse();
@@ -166,7 +167,8 @@ class SummarizationGroundingReplayTest {
     // So the words it cannot find are the whole diagnosis, and recorded here per case they show
     // that "the policy rejects good summaries" is three separate things, not one:
     //
-    //   1. PARAPHRASE. summarize-incident-4417 dies on `caused`, `due`, `loss`; summarize-release-2-8
+    //   1. PARAPHRASE. summarize-incident-4417 dies on `caused`, `due`, `loss`;
+    // summarize-release-2-8
     //      on the single word `reduced`. These are a summary's own vocabulary. A bag-of-words
     //      containment screen cannot admit a paraphrase, which is the real mismatch between an
     //      extractive-QA screen and a summarization workload.
@@ -275,7 +277,8 @@ class SummarizationGroundingReplayTest {
       return "hasOnlyTrustedCitations";
     }
     List<GroundingDocument> cited = GroundedAnswerPolicy.citedDocuments(candidate, retrieved);
-    if (GroundedAnswerPolicy.supportingDocuments(question, validation, retrieved, cited).isEmpty()) {
+    if (GroundedAnswerPolicy.supportingDocuments(question, validation, retrieved, cited)
+        .isEmpty()) {
       return "supportingDocuments(cited) empty";
     }
     return "none; admitted as MODEL_ANSWER";
