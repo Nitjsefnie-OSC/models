@@ -57,24 +57,19 @@ import org.junit.jupiter.api.Test;
  *       available, swapping the two rotary bases, moves them by whole units.
  * </ul>
  *
- * <p><b>STATUS 2026-10-22: this gate FAILS, and the tolerance above is the one declared before the
- * first run. It is left as declared.</b> Measured: argmax agrees with the reference on all eight
- * cases and 20 of 25 logits are inside 0.15, but the worst is 0.573 — {@code has_invoice[0]},
- * reference -4.09968 against ours -4.67977. Widening the tolerance to admit that would be fitting
- * the gate to the result.
+ * <p><b>STATUS 2026-10-22: passes.</b> Worst deviation 0.06296 at Q8_0 and 0.03282 at BF16,
+ * against the 0.15 declared above, and the chosen option matches on all eight cases. The tolerance
+ * was never widened: it failed at 0.573 until three defects in the decision blocks were found and
+ * fixed, and the history is in {@code experiments/laya-modern-bert/README.md} because the way it
+ * was found matters more than the number.
  *
- * <p>What has been ruled out, so nobody repeats it. The residual is not quantization: the BF16
- * artifact scores 0.57271 against Q8_0's 0.58008, and the oracle ran "float32 everywhere, CPU, no
- * autocast". It is not numerical sensitivity either — changing weight precision that far moves the
- * logits by 0.007, so the function is stable and 0.573 is a real functional difference. Eleven
- * structural alternatives were measured and every one is worse, which is what {@code
- * LayaVariantSweepTest} records.
- *
- * <p>What has NOT been done is the thing gate 3 actually specifies: a tensor-by-tensor comparison
- * against llama.cpp's {@code modern-bert} graph with {@code llama-eval-callback}. An end-to-end
- * logit comparison was substituted for it, and an end-to-end number cannot localise a discrepancy
- * — which is precisely why eleven hypotheses could be refuted without finding the cause. That
- * comparison is the next step, not a wider tolerance.
+ * <p>Those three were ReLU rather than GELU in the decision MLP, rotary wrongly applied in the
+ * head, and option isolation wrongly applied in the head -- each read out of laya's own source
+ * once the reference's per-stage activations localised the divergence to {@code head.layers.0}.
+ * Eleven structural hypotheses had already been swept from this end-to-end number alone and every
+ * one looked worse than the baseline, because two of the three errors partially cancelled. One
+ * scalar after thirty blocks cannot localise anything, which is the whole reason
+ * {@code oracle/intermediates.py} exists.
  */
 @Tag("model-fixture")
 class ModernBertDecisionForwardPassIntegrationTest {
