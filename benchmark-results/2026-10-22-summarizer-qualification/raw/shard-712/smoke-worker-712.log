@@ -1,0 +1,260 @@
++ STATUS=STARTED
++ say 'boot shard=712 payload=models-rag-bench-0.5.2-smoke-20261022.tar'
++ tee -a /var/log/smoke-worker.log
+++ date -u +%H:%M:%S
++ printf '[smoke %s] %s\n' 16:54:14 'boot shard=712 payload=models-rag-bench-0.5.2-smoke-20261022.tar'
+[smoke 16:54:14] boot shard=712 payload=models-rag-bench-0.5.2-smoke-20261022.tar
++ trap finish EXIT
++ mkdir -p /work/models /work/out /opt/jdk
+++ curl -s -o /dev/null -w '%{http_code}' --max-time 25 https://s3.amazonaws.com
++ EGRESS_CODE=307
++ '[' 307 = 000 ']'
++ '[' -z 307 ']'
++ say 'egress ok (s3 root http=307)'
++ tee -a /var/log/smoke-worker.log
+++ date -u +%H:%M:%S
++ printf '[smoke %s] %s\n' 16:54:14 'egress ok (s3 root http=307)'
+[smoke 16:54:14] egress ok (s3 root http=307)
++ export DEBIAN_FRONTEND=noninteractive
++ DEBIAN_FRONTEND=noninteractive
++ apt-get update -qq
++ apt-get install -y -qq unzip python3
+
+Running kernel seems to be up-to-date.
+
+No services need to be restarted.
+
+No containers need to be restarted.
+
+No user sessions are running outdated binaries.
+
+No VM guests are running outdated hypervisor (qemu) binaries on this host.
++ command -v aws
++ say 'installing aws cli from the bundled installer'
++ tee -a /var/log/smoke-worker.log
+++ date -u +%H:%M:%S
++ printf '[smoke %s] %s\n' 16:54:27 'installing aws cli from the bundled installer'
+[smoke 16:54:27] installing aws cli from the bundled installer
++ curl -sfL https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip -o /tmp/awscli.zip
++ cd /tmp
++ unzip -qo awscli.zip
++ ./aws/install --update
++ hash -r
++ command -v aws
++ command -v python3
++ curl -sfL https://api.adoptium.net/v3/binary/latest/25/ga/linux/x64/jdk/hotspot/normal/eclipse -o /tmp/jdk.tgz
++ tar xzf /tmp/jdk.tgz -C /opt/jdk --strip-components=1
++ export JAVA_HOME=/opt/jdk
++ JAVA_HOME=/opt/jdk
++ export PATH=/opt/jdk/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/snap/bin
++ PATH=/opt/jdk/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/snap/bin
++ '[' -x /opt/jdk/bin/java ']'
+++ /opt/jdk/bin/java -version
+++ head -1
++ say 'jdk openjdk version "25.0.5" 2026-10-20 LTS'
++ tee -a /var/log/smoke-worker.log
+++ date -u +%H:%M:%S
++ printf '[smoke %s] %s\n' 16:54:32 'jdk openjdk version "25.0.5" 2026-10-20 LTS'
+[smoke 16:54:32] jdk openjdk version "25.0.5" 2026-10-20 LTS
++ cd /work
++ aws s3 cp s3://models-qual-077051030817/payload/models-rag-bench-0.5.2-smoke-20261022.tar . --only-show-errors
++ aws s3 cp s3://models-qual-077051030817/payload/smoke-shard-712.json /work/shard.json --only-show-errors
++ '[' -s models-rag-bench-0.5.2-smoke-20261022.tar ']'
++ '[' -s /work/shard.json ']'
++ printf '%s  %s\n' 82e606e7fa4a5a0a4f5d4b1b8a5ec69383ce011007534e33ac6a2df52db7e757 models-rag-bench-0.5.2-smoke-20261022.tar
++ sha256sum --check --status
++ tar xf models-rag-bench-0.5.2-smoke-20261022.tar
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+++ ls -d /work/models-rag-bench-0.5.2/
+++ head -1
++ DIST=/work/models-rag-bench-0.5.2/
++ '[' -n /work/models-rag-bench-0.5.2/ ']'
++ CP='/work/models-rag-bench-0.5.2//lib/*'
+++ head -1
+++ ls /work/models-rag-bench-0.5.2//lib/backend-native-0.5.2.jar
++ NATIVE_JAR=/work/models-rag-bench-0.5.2//lib/backend-native-0.5.2.jar
++ python3 - models@0.5.2+candidates-9ad3fe5e46a4 models-rag-bench-0.5.2-smoke-20261022.tar /work/models-rag-bench-0.5.2//lib/backend-native-0.5.2.jar
++ '[' 0 -eq 0 ']'
++ unzip -l /work/models-rag-bench-0.5.2//lib/backend-native-0.5.2.jar
++ grep -q linux-x86_64/libjmodels_kernels.so
++ say 'dist carries the linux-x86_64 kernel'
++ tee -a /var/log/smoke-worker.log
+++ date -u +%H:%M:%S
++ printf '[smoke %s] %s\n' 16:54:34 'dist carries the linux-x86_64 kernel'
+[smoke 16:54:34] dist carries the linux-x86_64 kernel
+++ python3 -c 'import json;print(len(json.load(open('\''/work/shard.json'\''))))'
++ JOBS=1
++ for var in JAVA_TOOL_OPTIONS JAVA_OPTS JDK_JAVA_OPTIONS _JAVA_OPTIONS
+++ printenv JAVA_TOOL_OPTIONS
+++ true
++ val=
++ case "$val" in
++ for var in JAVA_TOOL_OPTIONS JAVA_OPTS JDK_JAVA_OPTIONS _JAVA_OPTIONS
+++ printenv JAVA_OPTS
+++ true
++ val=
++ case "$val" in
++ for var in JAVA_TOOL_OPTIONS JAVA_OPTS JDK_JAVA_OPTIONS _JAVA_OPTIONS
+++ printenv JDK_JAVA_OPTIONS
+++ true
++ val=
++ case "$val" in
++ for var in JAVA_TOOL_OPTIONS JAVA_OPTS JDK_JAVA_OPTIONS _JAVA_OPTIONS
+++ printenv _JAVA_OPTIONS
+++ true
++ val=
++ case "$val" in
++ say 'environment clean: no models.* property in any JVM options variable'
++ tee -a /var/log/smoke-worker.log
+++ date -u +%H:%M:%S
++ printf '[smoke %s] %s\n' 16:54:34 'environment clean: no models.* property in any JVM options variable'
+[smoke 16:54:34] environment clean: no models.* property in any JVM options variable
++ say 'payload ok, 1 jobs, backend-version=models@0.5.2+candidates-9ad3fe5e46a4'
++ tee -a /var/log/smoke-worker.log
+++ date -u +%H:%M:%S
++ printf '[smoke %s] %s\n' 16:54:34 'payload ok, 1 jobs, backend-version=models@0.5.2+candidates-9ad3fe5e46a4'
+[smoke 16:54:34] payload ok, 1 jobs, backend-version=models@0.5.2+candidates-9ad3fe5e46a4
++ STATUS=RUNNING
+++ date +%s
++ T_START=1792688074
++ cat
++ python3 /work/fetch-smoke-artifact.py --validate-shard /work/shard.json
++ cat
++ done_n=0
++ '[' 0 -lt 1 ']'
+++ date +%s
++ '[' 0 -ge 18000 ']'
+++ python3 -c 'import json;print(json.dumps(json.load(open('\''/work/shard.json'\''))[0]))'
++ job='{"id": "mradermacher_mixture_summarizer_qwen3_5_2b_gguf_q4_k_m", "format": "gguf", "backend": "rust-ffm", "revision": "a52be4bdaae6bf2ed32fed4af19dfaf330fcb372", "wl": "general", "tpl": "chatml", "context": 2048, "threads": 16, "mt": 256, "topK": 1, "settingsSource": {"modelId": "mradermacher_mixture_summarizer_qwen3_5_2b_gguf_q4_k_m", "report": "benchmark-results/2026-10-22-summarizer-qualification/raw/shard-711/mradermacher_mixture_summarizer_qwen3_5_2b_gguf_q4_k_m.json", "reportSha256": "66568dfd71d7052a8df6166072c3e762f46a87a3a859db702952829f4e4caa20"}, "files": [{"path": "Mixture-Summarizer-Qwen3.5-2B.Q4_K_M.gguf", "role": "model-weights", "sha256": "ab10ae99794cdb461fb468c880fb354ba55d55d0b4bc1762364ac4715deef6a7", "sizeBytes": 1274396864, "uri": "https://huggingface.co/mradermacher/Mixture-Summarizer-Qwen3.5-2B-GGUF/resolve/a52be4bdaae6bf2ed32fed4af19dfaf330fcb372/Mixture-Summarizer-Qwen3.5-2B.Q4_K_M.gguf"}]}'
+++ python3 -c 'import json,sys;print(json.loads(sys.argv[1])['\''id'\''])' '{"id": "mradermacher_mixture_summarizer_qwen3_5_2b_gguf_q4_k_m", "format": "gguf", "backend": "rust-ffm", "revision": "a52be4bdaae6bf2ed32fed4af19dfaf330fcb372", "wl": "general", "tpl": "chatml", "context": 2048, "threads": 16, "mt": 256, "topK": 1, "settingsSource": {"modelId": "mradermacher_mixture_summarizer_qwen3_5_2b_gguf_q4_k_m", "report": "benchmark-results/2026-10-22-summarizer-qualification/raw/shard-711/mradermacher_mixture_summarizer_qwen3_5_2b_gguf_q4_k_m.json", "reportSha256": "66568dfd71d7052a8df6166072c3e762f46a87a3a859db702952829f4e4caa20"}, "files": [{"path": "Mixture-Summarizer-Qwen3.5-2B.Q4_K_M.gguf", "role": "model-weights", "sha256": "ab10ae99794cdb461fb468c880fb354ba55d55d0b4bc1762364ac4715deef6a7", "sizeBytes": 1274396864, "uri": "https://huggingface.co/mradermacher/Mixture-Summarizer-Qwen3.5-2B-GGUF/resolve/a52be4bdaae6bf2ed32fed4af19dfaf330fcb372/Mixture-Summarizer-Qwen3.5-2B.Q4_K_M.gguf"}]}'
++ id=mradermacher_mixture_summarizer_qwen3_5_2b_gguf_q4_k_m
+++ python3 -c 'import json,sys;print(json.loads(sys.argv[1])['\''tpl'\''])' '{"id": "mradermacher_mixture_summarizer_qwen3_5_2b_gguf_q4_k_m", "format": "gguf", "backend": "rust-ffm", "revision": "a52be4bdaae6bf2ed32fed4af19dfaf330fcb372", "wl": "general", "tpl": "chatml", "context": 2048, "threads": 16, "mt": 256, "topK": 1, "settingsSource": {"modelId": "mradermacher_mixture_summarizer_qwen3_5_2b_gguf_q4_k_m", "report": "benchmark-results/2026-10-22-summarizer-qualification/raw/shard-711/mradermacher_mixture_summarizer_qwen3_5_2b_gguf_q4_k_m.json", "reportSha256": "66568dfd71d7052a8df6166072c3e762f46a87a3a859db702952829f4e4caa20"}, "files": [{"path": "Mixture-Summarizer-Qwen3.5-2B.Q4_K_M.gguf", "role": "model-weights", "sha256": "ab10ae99794cdb461fb468c880fb354ba55d55d0b4bc1762364ac4715deef6a7", "sizeBytes": 1274396864, "uri": "https://huggingface.co/mradermacher/Mixture-Summarizer-Qwen3.5-2B-GGUF/resolve/a52be4bdaae6bf2ed32fed4af19dfaf330fcb372/Mixture-Summarizer-Qwen3.5-2B.Q4_K_M.gguf"}]}'
++ tpl=chatml
+++ python3 -c 'import json,sys;print(json.loads(sys.argv[1])['\''wl'\''])' '{"id": "mradermacher_mixture_summarizer_qwen3_5_2b_gguf_q4_k_m", "format": "gguf", "backend": "rust-ffm", "revision": "a52be4bdaae6bf2ed32fed4af19dfaf330fcb372", "wl": "general", "tpl": "chatml", "context": 2048, "threads": 16, "mt": 256, "topK": 1, "settingsSource": {"modelId": "mradermacher_mixture_summarizer_qwen3_5_2b_gguf_q4_k_m", "report": "benchmark-results/2026-10-22-summarizer-qualification/raw/shard-711/mradermacher_mixture_summarizer_qwen3_5_2b_gguf_q4_k_m.json", "reportSha256": "66568dfd71d7052a8df6166072c3e762f46a87a3a859db702952829f4e4caa20"}, "files": [{"path": "Mixture-Summarizer-Qwen3.5-2B.Q4_K_M.gguf", "role": "model-weights", "sha256": "ab10ae99794cdb461fb468c880fb354ba55d55d0b4bc1762364ac4715deef6a7", "sizeBytes": 1274396864, "uri": "https://huggingface.co/mradermacher/Mixture-Summarizer-Qwen3.5-2B-GGUF/resolve/a52be4bdaae6bf2ed32fed4af19dfaf330fcb372/Mixture-Summarizer-Qwen3.5-2B.Q4_K_M.gguf"}]}'
++ wl=general
+++ python3 -c 'import json,sys;print(json.loads(sys.argv[1])['\''backend'\''])' '{"id": "mradermacher_mixture_summarizer_qwen3_5_2b_gguf_q4_k_m", "format": "gguf", "backend": "rust-ffm", "revision": "a52be4bdaae6bf2ed32fed4af19dfaf330fcb372", "wl": "general", "tpl": "chatml", "context": 2048, "threads": 16, "mt": 256, "topK": 1, "settingsSource": {"modelId": "mradermacher_mixture_summarizer_qwen3_5_2b_gguf_q4_k_m", "report": "benchmark-results/2026-10-22-summarizer-qualification/raw/shard-711/mradermacher_mixture_summarizer_qwen3_5_2b_gguf_q4_k_m.json", "reportSha256": "66568dfd71d7052a8df6166072c3e762f46a87a3a859db702952829f4e4caa20"}, "files": [{"path": "Mixture-Summarizer-Qwen3.5-2B.Q4_K_M.gguf", "role": "model-weights", "sha256": "ab10ae99794cdb461fb468c880fb354ba55d55d0b4bc1762364ac4715deef6a7", "sizeBytes": 1274396864, "uri": "https://huggingface.co/mradermacher/Mixture-Summarizer-Qwen3.5-2B-GGUF/resolve/a52be4bdaae6bf2ed32fed4af19dfaf330fcb372/Mixture-Summarizer-Qwen3.5-2B.Q4_K_M.gguf"}]}'
++ bk=rust-ffm
+++ python3 -c 'import json,sys;print(json.loads(sys.argv[1]).get('\''stopSequence'\'', '\'''\''))' '{"id": "mradermacher_mixture_summarizer_qwen3_5_2b_gguf_q4_k_m", "format": "gguf", "backend": "rust-ffm", "revision": "a52be4bdaae6bf2ed32fed4af19dfaf330fcb372", "wl": "general", "tpl": "chatml", "context": 2048, "threads": 16, "mt": 256, "topK": 1, "settingsSource": {"modelId": "mradermacher_mixture_summarizer_qwen3_5_2b_gguf_q4_k_m", "report": "benchmark-results/2026-10-22-summarizer-qualification/raw/shard-711/mradermacher_mixture_summarizer_qwen3_5_2b_gguf_q4_k_m.json", "reportSha256": "66568dfd71d7052a8df6166072c3e762f46a87a3a859db702952829f4e4caa20"}, "files": [{"path": "Mixture-Summarizer-Qwen3.5-2B.Q4_K_M.gguf", "role": "model-weights", "sha256": "ab10ae99794cdb461fb468c880fb354ba55d55d0b4bc1762364ac4715deef6a7", "sizeBytes": 1274396864, "uri": "https://huggingface.co/mradermacher/Mixture-Summarizer-Qwen3.5-2B-GGUF/resolve/a52be4bdaae6bf2ed32fed4af19dfaf330fcb372/Mixture-Summarizer-Qwen3.5-2B.Q4_K_M.gguf"}]}'
++ stop_sequence=
++ stop_args=()
++ [[ -n '' ]]
++ read -r context threads mt topk
+++ python3 -c 'import json,sys;j=json.loads(sys.argv[1]);print(j['\''context'\''],j['\''threads'\''],j['\''mt'\''],j['\''topK'\''])' '{"id": "mradermacher_mixture_summarizer_qwen3_5_2b_gguf_q4_k_m", "format": "gguf", "backend": "rust-ffm", "revision": "a52be4bdaae6bf2ed32fed4af19dfaf330fcb372", "wl": "general", "tpl": "chatml", "context": 2048, "threads": 16, "mt": 256, "topK": 1, "settingsSource": {"modelId": "mradermacher_mixture_summarizer_qwen3_5_2b_gguf_q4_k_m", "report": "benchmark-results/2026-10-22-summarizer-qualification/raw/shard-711/mradermacher_mixture_summarizer_qwen3_5_2b_gguf_q4_k_m.json", "reportSha256": "66568dfd71d7052a8df6166072c3e762f46a87a3a859db702952829f4e4caa20"}, "files": [{"path": "Mixture-Summarizer-Qwen3.5-2B.Q4_K_M.gguf", "role": "model-weights", "sha256": "ab10ae99794cdb461fb468c880fb354ba55d55d0b4bc1762364ac4715deef6a7", "sizeBytes": 1274396864, "uri": "https://huggingface.co/mradermacher/Mixture-Summarizer-Qwen3.5-2B-GGUF/resolve/a52be4bdaae6bf2ed32fed4af19dfaf330fcb372/Mixture-Summarizer-Qwen3.5-2B.Q4_K_M.gguf"}]}'
++ artifact_dir=/work/models/mradermacher_mixture_summarizer_qwen3_5_2b_gguf_q4_k_m
+++ date +%s
++ T0=1792688074
++ say 'start mradermacher_mixture_summarizer_qwen3_5_2b_gguf_q4_k_m (backend=rust-ffm template=chatml workload=general)'
++ tee -a /var/log/smoke-worker.log
+++ date -u +%H:%M:%S
++ printf '[smoke %s] %s\n' 16:54:34 'start mradermacher_mixture_summarizer_qwen3_5_2b_gguf_q4_k_m (backend=rust-ffm template=chatml workload=general)'
+[smoke 16:54:34] start mradermacher_mixture_summarizer_qwen3_5_2b_gguf_q4_k_m (backend=rust-ffm template=chatml workload=general)
+++ date +%s
++ remaining=18000
++ '[' 18000 -le 0 ']'
+++ timeout --kill-after=30 18000 python3 /work/fetch-smoke-artifact.py --job-json '{"id": "mradermacher_mixture_summarizer_qwen3_5_2b_gguf_q4_k_m", "format": "gguf", "backend": "rust-ffm", "revision": "a52be4bdaae6bf2ed32fed4af19dfaf330fcb372", "wl": "general", "tpl": "chatml", "context": 2048, "threads": 16, "mt": 256, "topK": 1, "settingsSource": {"modelId": "mradermacher_mixture_summarizer_qwen3_5_2b_gguf_q4_k_m", "report": "benchmark-results/2026-10-22-summarizer-qualification/raw/shard-711/mradermacher_mixture_summarizer_qwen3_5_2b_gguf_q4_k_m.json", "reportSha256": "66568dfd71d7052a8df6166072c3e762f46a87a3a859db702952829f4e4caa20"}, "files": [{"path": "Mixture-Summarizer-Qwen3.5-2B.Q4_K_M.gguf", "role": "model-weights", "sha256": "ab10ae99794cdb461fb468c880fb354ba55d55d0b4bc1762364ac4715deef6a7", "sizeBytes": 1274396864, "uri": "https://huggingface.co/mradermacher/Mixture-Summarizer-Qwen3.5-2B-GGUF/resolve/a52be4bdaae6bf2ed32fed4af19dfaf330fcb372/Mixture-Summarizer-Qwen3.5-2B.Q4_K_M.gguf"}]}' --root /work/models --receipt /work/out/mradermacher_mixture_summarizer_qwen3_5_2b_gguf_q4_k_m.inputs.json
++ artifact=/work/models/mradermacher_mixture_summarizer_qwen3_5_2b_gguf_q4_k_m/Mixture-Summarizer-Qwen3.5-2B.Q4_K_M.gguf
+++ date +%s
++ remaining=17994
++ '[' 17994 -le 0 ']'
++ timeout --kill-after=30 17994 java --add-modules jdk.incubator.vector --enable-native-access=ALL-UNNAMED -cp '/work/models-rag-bench-0.5.2//lib/*' com.integrallis.models.rag.RagBenchmarkCli --framework plain-java --backend rust-ffm --backend-version models@0.5.2+candidates-9ad3fe5e46a4 --model /work/models/mradermacher_mixture_summarizer_qwen3_5_2b_gguf_q4_k_m/Mixture-Summarizer-Qwen3.5-2B.Q4_K_M.gguf --model-id mradermacher_mixture_summarizer_qwen3_5_2b_gguf_q4_k_m --workload general --prompt-template chatml --context 2048 --threads 16 --max-tokens 256 --top-k 1 --warmups 0 --iterations 1 --output /work/out/mradermacher_mixture_summarizer_qwen3_5_2b_gguf_q4_k_m.json
++ rc=0
++ verdict=RUN_FAILED_rc0
++ '[' 0 -eq 0 ']'
++ '[' -s /work/out/mradermacher_mixture_summarizer_qwen3_5_2b_gguf_q4_k_m.json ']'
+++ python3 /work/gate.py /work/out/mradermacher_mixture_summarizer_qwen3_5_2b_gguf_q4_k_m.json
++ verdict=PASS
+++ date +%s
++ printf '%s\t%s\t%s\n' mradermacher_mixture_summarizer_qwen3_5_2b_gguf_q4_k_m PASS 34
+++ date +%s
++ say 'done mradermacher_mixture_summarizer_qwen3_5_2b_gguf_q4_k_m -> PASS in 34s'
++ tee -a /var/log/smoke-worker.log
+++ date -u +%H:%M:%S
++ printf '[smoke %s] %s\n' 16:55:08 'done mradermacher_mixture_summarizer_qwen3_5_2b_gguf_q4_k_m -> PASS in 34s'
+[smoke 16:55:08] done mradermacher_mixture_summarizer_qwen3_5_2b_gguf_q4_k_m -> PASS in 34s
++ aws s3 cp /work/out/mradermacher_mixture_summarizer_qwen3_5_2b_gguf_q4_k_m.inputs.json s3://models-qual-077051030817/results/shard-712/ --only-show-errors
++ aws s3 cp /work/out/mradermacher_mixture_summarizer_qwen3_5_2b_gguf_q4_k_m.json s3://models-qual-077051030817/results/shard-712/ --only-show-errors
++ aws s3 cp /work/out/mradermacher_mixture_summarizer_qwen3_5_2b_gguf_q4_k_m.log s3://models-qual-077051030817/results/shard-712/ --only-show-errors
++ aws s3 cp /work/out/progress.tsv s3://models-qual-077051030817/results/shard-712/ --only-show-errors
++ rm -rf /work/models/mradermacher_mixture_summarizer_qwen3_5_2b_gguf_q4_k_m
++ done_n=1
++ '[' 1 -lt 1 ']'
++ '[' RUNNING = DEADLINE ']'
++ STATUS=SHARD_COMPLETE
++ say 'shard finished: 1/1'
++ tee -a /var/log/smoke-worker.log
+++ date -u +%H:%M:%S
++ printf '[smoke %s] %s\n' 16:55:12 'shard finished: 1/1'
+[smoke 16:55:12] shard finished: 1/1
++ finish
++ rc=0
++ say 'FINAL_STATUS=SHARD_COMPLETE exit=0'
++ tee -a /var/log/smoke-worker.log
+++ date -u +%H:%M:%S
++ printf '[smoke %s] %s\n' 16:55:12 'FINAL_STATUS=SHARD_COMPLETE exit=0'
+[smoke 16:55:12] FINAL_STATUS=SHARD_COMPLETE exit=0
++ command -v aws
++ echo SHARD_COMPLETE
++ aws s3 cp /work/out/STATUS s3://models-qual-077051030817/results/shard-712/ --only-show-errors
++ aws s3 cp /var/log/smoke-worker.log s3://models-qual-077051030817/results/shard-712/smoke-worker-712.log --only-show-errors

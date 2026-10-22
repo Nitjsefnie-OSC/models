@@ -1,0 +1,42 @@
+{
+  "modelId": "mradermacher_mixture_summarizer_qwen3_5_2b_gguf_q4_k_m",
+  "format": "gguf",
+  "modelPath": "/work/models/mradermacher_mixture_summarizer_qwen3_5_2b_gguf_q4_k_m/Mixture-Summarizer-Qwen3.5-2B.Q4_K_M.gguf",
+  "job": {
+    "id": "mradermacher_mixture_summarizer_qwen3_5_2b_gguf_q4_k_m",
+    "format": "gguf",
+    "backend": "rust-ffm",
+    "revision": "a52be4bdaae6bf2ed32fed4af19dfaf330fcb372",
+    "wl": "general",
+    "tpl": "chatml",
+    "context": 2048,
+    "threads": 16,
+    "mt": 256,
+    "topK": 1,
+    "settingsSource": {
+      "modelId": "mradermacher_mixture_summarizer_qwen3_5_2b_gguf_q4_k_m",
+      "report": "benchmark-results/2026-10-22-summarizer-qualification/raw/shard-711/mradermacher_mixture_summarizer_qwen3_5_2b_gguf_q4_k_m.json",
+      "reportSha256": "66568dfd71d7052a8df6166072c3e762f46a87a3a859db702952829f4e4caa20"
+    },
+    "files": [
+      {
+        "path": "Mixture-Summarizer-Qwen3.5-2B.Q4_K_M.gguf",
+        "role": "model-weights",
+        "sha256": "ab10ae99794cdb461fb468c880fb354ba55d55d0b4bc1762364ac4715deef6a7",
+        "sizeBytes": 1274396864,
+        "uri": "https://huggingface.co/mradermacher/Mixture-Summarizer-Qwen3.5-2B-GGUF/resolve/a52be4bdaae6bf2ed32fed4af19dfaf330fcb372/Mixture-Summarizer-Qwen3.5-2B.Q4_K_M.gguf"
+      }
+    ]
+  },
+  "files": [
+    {
+      "path": "Mixture-Summarizer-Qwen3.5-2B.Q4_K_M.gguf",
+      "role": "model-weights",
+      "sha256": "ab10ae99794cdb461fb468c880fb354ba55d55d0b4bc1762364ac4715deef6a7",
+      "sizeBytes": 1274396864,
+      "uri": "https://huggingface.co/mradermacher/Mixture-Summarizer-Qwen3.5-2B-GGUF/resolve/a52be4bdaae6bf2ed32fed4af19dfaf330fcb372/Mixture-Summarizer-Qwen3.5-2B.Q4_K_M.gguf",
+      "verifiedSha256": "ab10ae99794cdb461fb468c880fb354ba55d55d0b4bc1762364ac4715deef6a7",
+      "verifiedSizeBytes": 1274396864
+    }
+  ]
+}
