@@ -1,0 +1,32 @@
+
+maple: fields=name,n_dims,shape,dtype,offset
+  dtype histogram: {"{\"dtype\":12}":1,"{\"dtype\":0}":121,"{\"dtype\":1}":1,"{\"dtype\":34}":168}
+  maple.* : block_count=24  context_length=131072  embedding_length=2048  feed_forward_length=4096  attention.head_count=16  attention.head_count_kv=4  rope.freq_base=10000  attention.layer_norm_rms_epsilon=9.999999974752427e-7  expert_count=256  expert_used_count=8  attention.key_length=128  attention.value_length=128  vocab_size=151936  rope.dimension_count=64  attention.sliding_window=512  expert_feed_forward_length=512  expert_weights_scale=1  expert_weights_norm=true  expert_gating_func=1
+
+mellum: fields=name,n_dims,shape,dtype,offset
+  dtype histogram: {"{\"dtype\":8}":198,"{\"dtype\":0}":141}
+  mellum.* : block_count=28  context_length=131072  embedding_length=2304  feed_forward_length=7168  attention.head_count=32  attention.head_count_kv=4  rope.scaling.type=yarn  rope.scaling.factor=16  rope.scaling.original_context_length=8192  rope.scaling.yarn_attn_factor=1.2772588729858398  rope.scaling.yarn_beta_fast=32  rope.scaling.yarn_beta_slow=1  rope.freq_base=500000  rope.freq_base_swa=500000  attention.layer_norm_rms_epsilon=9.999999974752427e-7  expert_count=64  expert_used_count=8  attention.key_length=128  attention.value_length=128  expert_feed_forward_length=896  attention.sliding_window=1024
+
+laguna: fields=name,n_dims,shape,dtype,offset
+  dtype histogram: {"{\"dtype\":14}":60,"{\"dtype\":0}":239,"{\"dtype\":12}":379}
+  laguna.* : block_count=40  context_length=262144  embedding_length=2048  feed_forward_length=8192  attention.head_count_kv=8  rope.scaling.type=yarn  rope.scaling.factor=32  rope.scaling.original_context_length=8192  rope.scaling.yarn_attn_factor=1  rope.scaling.yarn_beta_fast=64  rope.scaling.yarn_beta_slow=1  rope.freq_base=500000  rope.freq_base_swa=10000  attention.layer_norm_rms_epsilon=9.999999974752427e-7  expert_count=256  expert_used_count=8  attention.key_length=128  attention.value_length=128  vocab_size=100352  attention.sliding_window=512  expert_feed_forward_length=512  expert_shared_feed_forward_length=512  expert_weights_norm=true  expert_weights_scale=2.5  expert_gating_func=2  leading_dense_block_count=1  rope.dimension_count=64  rope.dimension_count_swa=128
+
+lfm2moe: fields=name,n_dims,shape,dtype,offset
+  dtype histogram: {"{\"dtype\":8}":133,"{\"dtype\":0}":123}
+  lfm2moe.* : block_count=24  context_length=128000  embedding_length=2048  feed_forward_length=7168  attention.head_count=32  rope.freq_base=5000000  attention.layer_norm_rms_epsilon=0.000009999999747378752  expert_count=32  expert_used_count=4  expert_feed_forward_length=1792  leading_dense_block_count=2  expert_gating_func=2  vocab_size=128000  shortconv.l_cache=3
+
+parakeet: fields=name,n_dims,shape,dtype,offset
+  dtype histogram: {"{\"dtype\":0}":482,"{\"dtype\":8}":219}
+  parakeet.* : arch=hybrid_tdt_ctc  encoder.feat_in=128  encoder.d_model=1024  encoder.n_layers=24  encoder.n_heads=8  encoder.ff_dim=4096  encoder.conv_kernel=9  encoder.conv_norm_type=batch_norm  encoder.subsampling_factor=8  encoder.subsampling_conv_channels=256  encoder.xscaling=false  encoder.pos_emb_max_len=5000  preprocessor.sample_rate=16000  preprocessor.n_mels=128  preprocessor.n_fft=512  preprocessor.win_length=400  preprocessor.hop_length=160  preprocessor.preemph=0.9700000286102295  preprocessor.mag_power=2  preprocessor.normalize=per_feature  preprocessor.log_zero_guard=5.960464477539063e-8  vocab_size=8192  blank_id=8192  decoder.pred_hidden=640  decoder.pred_rnn_layers=2  joint.joint_hidden=640  joint.activation=relu  decoding.max_symbols=10
+
+kokoro: fields=name,n_dims,shape,dtype,offset
+  dtype histogram: {"{\"dtype\":0}":206,"{\"dtype\":1}":253}
+  kokoro.* : dim_in=64  hidden_dim=512  style_dim=128  max_conv_dim=512  max_dur=50  n_token=178  n_mels=80  n_layer=3  text_encoder_kernel_size=5  sample_rate=24000  istft.init_channel=512  istft.n_fft=20  istft.hop_size=5  istft.resblock_n_dilations=3  plbert.embedding_size=128  plbert.hidden_size=768  plbert.num_hidden_layers=12  plbert.num_attention_heads=12  plbert.intermediate_size=2048  plbert.max_position_embeddings=512  plbert.vocab_size=178  vocab_size=178
+
+inflect: fields=name,n_dims,shape,dtype,offset
+  dtype histogram: {"{\"dtype\":8}":141,"{\"dtype\":1}":161}
+  inflect-v2.* : 
+
+nemo: fields=name,n_dims,shape,dtype,offset
+  dtype histogram: {"{\"dtype\":8}":164,"{\"dtype\":0}":237}
+  nemotron_h_moe.* : block_count=52  context_length=1048576  embedding_length=2688  attention.head_count=32  rope.freq_base=10000  attention.layer_norm_rms_epsilon=0.000009999999747378752  attention.layer_norm_epsilon=0.000009999999747378752  expert_used_count=6  expert_group_count=1  expert_group_used_count=1  vocab_size=131072  rope.dimension_count=84  ssm.conv_kernel=4  ssm.state_size=128  ssm.group_count=8  ssm.inner_size=4096  ssm.time_step_rank=64  rope.scaling.finetuned=false  attention.key_length=128  attention.value_length=128  expert_feed_forward_length=1856  expert_shared_feed_forward_length=3712  expert_count=128  expert_shared_count=1  expert_weights_norm=true  expert_weights_scale=2.5
