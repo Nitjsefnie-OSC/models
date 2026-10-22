@@ -315,7 +315,7 @@ public final class GroundedAnswerPolicy {
    * channel-closed trace survived it and was scored as the answer. Records written under v20 and
    * v21 mean what they meant; they are not reinterpreted by this change.
    */
-  private static String removeCompleteReasoningTrace(String candidate) {
+  static String removeCompleteReasoningTrace(String candidate) {
     // Order matters: the turn is cut first, or a closer inside an invented continuation would
     // anchor the
     // strip and take the real answer with it.
@@ -332,24 +332,24 @@ public final class GroundedAnswerPolicy {
     return matcher.find() ? candidate.substring(0, matcher.start()).strip() : candidate;
   }
 
-  private static String removeLeadingContextAttribution(String candidate) {
+  static String removeLeadingContextAttribution(String candidate) {
     return LEADING_CONTEXT_ATTRIBUTION.matcher(candidate).replaceFirst("");
   }
 
-  private static String removeValidationOnlyMarkup(String candidate) {
+  static String removeValidationOnlyMarkup(String candidate) {
     String withoutMatrixDelimiters = LATEX_MATRIX_DELIMITER.matcher(candidate).replaceAll(" ");
     String withoutPluralMarkers =
         OPTIONAL_PLURAL_MARKER.matcher(withoutMatrixDelimiters).replaceAll("");
     return NUMBERED_LIST_MARKER.matcher(withoutPluralMarkers).replaceAll("$1");
   }
 
-  private static boolean isExplicitAbstention(String candidate) {
+  static boolean isExplicitAbstention(String candidate) {
     String undecorated = CITATION.matcher(candidate).replaceAll(" ").strip();
     return ABSTENTION_PATTERN.matcher(undecorated).matches()
         || TERMINAL_ABSTENTION_PATTERN.matcher(undecorated).find();
   }
 
-  private static boolean hasOnlySupportedClaims(
+  static boolean hasOnlySupportedClaims(
       String question, String candidate, List<GroundingDocument> retrieved) {
     Set<String> supported = words(question);
     retrieved.forEach(
@@ -366,7 +366,7 @@ public final class GroundedAnswerPolicy {
     return containsEquivalentWord(supported, word);
   }
 
-  private static Set<String> words(String text) {
+  static Set<String> words(String text) {
     Set<String> words = new HashSet<>();
     Matcher matcher = WORD.matcher(text.toLowerCase(Locale.ROOT));
     while (matcher.find()) {
@@ -406,7 +406,7 @@ public final class GroundedAnswerPolicy {
         .noneMatch(entity -> containsEquivalentWord(evidenceWords, entity));
   }
 
-  private static boolean hasEvidenceAnchorsForEveryQuestionClause(
+  static boolean hasEvidenceAnchorsForEveryQuestionClause(
       String question, String candidate, List<GroundingDocument> retrieved) {
     Set<String> questionWords = words(question);
     Set<String> evidenceWords = new HashSet<>();
@@ -524,7 +524,7 @@ public final class GroundedAnswerPolicy {
                 anchor -> anchor.length() >= 8 || anchor.codePoints().allMatch(Character::isDigit));
   }
 
-  private static boolean containsEquivalentWord(Set<String> words, String candidate) {
+  static boolean containsEquivalentWord(Set<String> words, String candidate) {
     if (words.contains(candidate)) {
       return true;
     }
@@ -613,7 +613,7 @@ public final class GroundedAnswerPolicy {
     };
   }
 
-  private static boolean hasOnlyTrustedCitations(
+  static boolean hasOnlyTrustedCitations(
       String candidate, List<GroundingDocument> retrieved) {
     Set<String> trustedIds = new HashSet<>();
     retrieved.forEach(hit -> trustedIds.add(hit.id()));
@@ -630,7 +630,7 @@ public final class GroundedAnswerPolicy {
     return foundTrusted;
   }
 
-  private static List<GroundingDocument> citedDocuments(
+  static List<GroundingDocument> citedDocuments(
       String candidate, List<GroundingDocument> retrieved) {
     Set<String> citedIds = new HashSet<>();
     Matcher matcher = CITATION.matcher(candidate);
@@ -640,7 +640,7 @@ public final class GroundedAnswerPolicy {
     return retrieved.stream().filter(document -> citedIds.contains(document.id())).toList();
   }
 
-  private static List<GroundingDocument> supportingDocuments(
+  static List<GroundingDocument> supportingDocuments(
       String question,
       String candidate,
       List<GroundingDocument> evidenceUniverse,
@@ -692,7 +692,7 @@ public final class GroundedAnswerPolicy {
     return result;
   }
 
-  private static boolean preservesAtomicIdentifiers(
+  static boolean preservesAtomicIdentifiers(
       String candidate, List<GroundingDocument> retrieved) {
     Set<String> candidateIdentifiers = atomicIdentifiers(candidate);
     Set<String> candidateWords = words(candidate);
@@ -721,7 +721,7 @@ public final class GroundedAnswerPolicy {
     return identifiers;
   }
 
-  private static boolean hasCitations(String candidate) {
+  static boolean hasCitations(String candidate) {
     return CITATION.matcher(candidate).find();
   }
 
