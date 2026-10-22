@@ -40,8 +40,8 @@ import java.util.Objects;
  *   <li>{@code choice}: {@code key} then {@code ": " + description} when there is one
  *   <li>{@code score}: {@code "level " + key + ": " + description}
  *   <li>{@code noul}: {@code key + ": " + description}, and with no description the template
- *       supplies the words itself — {@code "yes, the statement holds"} for {@code true} and
- *       {@code "no, the statement does not hold"} for anything else
+ *       supplies the words itself — {@code "yes, the statement holds"} for {@code true} and {@code
+ *       "no, the statement does not hold"} for anything else
  * </ul>
  *
  * <p><b>The special tokens are inserted by id, never by spelling.</b> {@code [CLS]}, {@code [SEP]}
@@ -181,7 +181,10 @@ public final class ModernBertDecisionPrompt {
   private int[] inner(String text) {
     int[] encoded = tokenizer.encode(text);
     int from = encoded.length > 0 && encoded[0] == cls ? 1 : 0;
-    int to = encoded.length > from && encoded[encoded.length - 1] == sep ? encoded.length - 1 : encoded.length;
+    int to =
+        encoded.length > from && encoded[encoded.length - 1] == sep
+            ? encoded.length - 1
+            : encoded.length;
     int[] stripped = new int[to - from];
     System.arraycopy(encoded, from, stripped, 0, stripped.length);
     return stripped;

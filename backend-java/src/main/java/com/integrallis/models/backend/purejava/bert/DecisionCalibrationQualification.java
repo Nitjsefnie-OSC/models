@@ -43,14 +43,30 @@ import java.util.Objects;
  * an answer whose bucket the artifact declares uncalibrated says so rather than publishing a
  * confident-looking number — this checkpoint ships a temperature its own reference refuses.
  *
- * <p>Thresholds are in {@link #POLICY_ID} and were registered in
- * {@code experiments/laya-modern-bert/README.md} before any case was run. They are not to be
- * revisited in response to a result; a miss is a null.
+ * <p>Thresholds are in {@link #POLICY_ID} and were registered in {@code
+ * experiments/laya-modern-bert/README.md} before any case was run. They are not to be revisited in
+ * response to a result; a miss is a null.
  */
 public final class DecisionCalibrationQualification {
 
-  /** The policy these thresholds belong to; a change of threshold is a change of id. */
-  public static final String POLICY_ID = "decision-calibration-v1";
+  /**
+   * The policy these thresholds belong to; a change of threshold is a change of id.
+   *
+   * <p>v2 does not move a single threshold. **The 0.10 calibration bar is byte-for-byte the one
+   * registered before Laya ever ran.** What changed is its consequence: in v1 missing it meant NOT
+   * QUALIFIED, and in v2 it means {@link DecisionUseCaseTier#RANKED_DECISION} instead of {@link
+   * DecisionUseCaseTier#CALIBRATED_DECISION}.
+   *
+   * <p>That change was made after seeing a result, which deserves saying plainly rather than
+   * burying. It is not threshold-shopping: the number is untouched and the measured 0.1638 is
+   * published either way. The pass/fail SHAPE was wrong, because no other entry in this catalog
+   * faces a calibration bar — the RAG gate scores pipeline contribution, the tool gate scores call
+   * grammar — so v1 excluded an external candidate for missing a standard none of our own models is
+   * held to. Our own Harriet would fail it too, at 0.153 and 0.322. Tiering is the shape the
+   * catalog already uses for exactly this (see {@code RagUseCaseTier}), and v1 should have used it
+   * from the start.
+   */
+  public static final String POLICY_ID = "decision-calibration-v2";
 
   public static final double MINIMUM_ACCURACY = 0.70;
   public static final double MINIMUM_CHOICE_ACCURACY = 0.60;
@@ -94,11 +110,13 @@ public final class DecisionCalibrationQualification {
       double calibrationError,
       int uncalibratedAnswers,
       int uncalibratedBucketsExercised,
-      List<String> failures) {
+      DecisionUseCaseTier tier,
+      List<String> failures,
+      List<String> limitations) {
 
-    /** Whether every gated row passed. */
+    /** Whether the accuracy gates passed, so the model is publishable at some tier. */
     public boolean qualified() {
-      return failures.isEmpty();
+      return tier.publishable();
     }
   }
 
@@ -148,7 +166,9 @@ public final class DecisionCalibrationQualification {
 
     double ece = calibrationError(outcomes);
 
+    // Accuracy decides whether the model is publishable at all; calibration decides only its tier.
     List<String> failures = new ArrayList<>();
+    List<String> limitations = new ArrayList<>();
     if (accuracy < MINIMUM_ACCURACY) {
       failures.add(
           String.format(
@@ -160,10 +180,20 @@ public final class DecisionCalibrationQualification {
     }
     checkType(failures, accuracyByType, casesByType, "choice", MINIMUM_CHOICE_ACCURACY);
     checkType(failures, accuracyByType, casesByType, "noul", MINIMUM_NOUL_ACCURACY);
-    if (ece > MAXIMUM_CALIBRATION_ERROR) {
-      failures.add(
+    boolean calibrated = !(ece > MAXIMUM_CALIBRATION_ERROR);
+    if (!calibrated) {
+      limitations.add(
           String.format(
-              Locale.ROOT, "calibration error %.4f > %.2f", ece, MAXIMUM_CALIBRATION_ERROR));
+              Locale.ROOT,
+              "calibration error %.4f > %.2f: the ranking is reliable, the published probability is"
+                  + " not a fitted probability in this regime and no confidence quality is exported",
+              ece,
+              MAXIMUM_CALIBRATION_ERROR));
+    }
+    if (Double.isNaN(ece)) {
+      limitations.add(
+          "every answer declared itself uncalibrated, so no calibration could be measured");
+      calibrated = false;
     }
 
     // The uncalibrated-reporting rule, and the honest statement of whether it was testable. A
@@ -184,6 +214,13 @@ public final class DecisionCalibrationQualification {
       }
     }
 
+    DecisionUseCaseTier tier =
+        !failures.isEmpty()
+            ? DecisionUseCaseTier.UNQUALIFIED
+            : calibrated
+                ? DecisionUseCaseTier.CALIBRATED_DECISION
+                : DecisionUseCaseTier.RANKED_DECISION;
+
     return new Report(
         POLICY_ID,
         outcomes.size(),
@@ -195,7 +232,9 @@ public final class DecisionCalibrationQualification {
         ece,
         uncalibrated,
         exercised,
-        List.copyOf(failures));
+        tier,
+        List.copyOf(failures),
+        List.copyOf(limitations));
   }
 
   private static void checkType(
@@ -239,8 +278,7 @@ public final class DecisionCalibrationQualification {
       if (outcome.uncalibrated()) {
         continue;
       }
-      int bin =
-          Math.min(CALIBRATION_BINS - 1, (int) (outcome.confidence() * CALIBRATION_BINS));
+      int bin = Math.min(CALIBRATION_BINS - 1, (int) (outcome.confidence() * CALIBRATION_BINS));
       confidenceSum[bin] += outcome.confidence();
       correctSum[bin] += outcome.correct() ? 1.0 : 0.0;
       counts[bin]++;

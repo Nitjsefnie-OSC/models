@@ -115,8 +115,7 @@ public final class ModernBertDecisionModel implements AutoCloseable {
       String state) {
     ModernBertDecisionPrompt.Encoded encoded = prompt.encode(type, instructions, options, state);
     ModernBertDecisionLayout layout =
-        ModernBertDecisionLayout.of(
-            encoded.markers(), encoded.headLength(), encoded.ids().length);
+        ModernBertDecisionLayout.of(encoded.markers(), encoded.headLength(), encoded.ids().length);
     float[] logits = forward.logits(encoded.ids(), layout, type);
     return ModernBertDecisionAnswer.of(type, logits, config.decision());
   }
