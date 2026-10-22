@@ -815,6 +815,36 @@ tasks.register<JavaExec>("mxbaiDebertaRerankerPerformanceExperiment") {
     maxHeapSize = "3g"
 }
 
+tasks.register<Test>("layaDecisionIntegrationTest") {
+    description = "Gate the modern-bert decision forward pass against the laya reference logits"
+    group = "verification"
+    testClassesDirs = sourceSets["test"].output.classesDirs
+    classpath = sourceSets["test"].runtimeClasspath
+    useJUnitPlatform {
+        includeTags("model-fixture")
+    }
+    filter {
+        includeTestsMatching(
+            "com.integrallis.models.backend.purejava.bert.ModernBertDecisionForwardPassIntegrationTest",
+        )
+        includeTestsMatching(
+            "com.integrallis.models.backend.purejava.bert.LayaVariantSweepTest",
+        )
+        includeTestsMatching(
+            "com.integrallis.models.backend.purejava.bert.LayaTraceTest",
+        )
+        includeTestsMatching(
+            "com.integrallis.models.backend.purejava.bert.LayaTokenizerProbeTest",
+        )
+        includeTestsMatching(
+            "com.integrallis.models.backend.purejava.bert.ModernBertParallelLayoutAblationIntegrationTest",
+        )
+    }
+    jvmArgs("--add-modules", "jdk.incubator.vector", "--enable-native-access=ALL-UNNAMED")
+    maxHeapSize = "4g"
+    outputs.upToDateWhen { false }
+}
+
 tasks.register<Test>("mxbaiDebertaRerankerIntegrationTest") {
     description = "Run the pinned mxbai DeBERTa reranker equivalence tests"
     group = "verification"
