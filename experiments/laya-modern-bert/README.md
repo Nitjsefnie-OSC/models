@@ -372,3 +372,20 @@ would be needed to close it end to end.
 
 All gated rows must pass. A miss is published as a null with the measured number, and the
 thresholds above are not revisited in response to a result.
+
+### Two things the cohort taught us before a single number came out
+
+Both found by the runner failing loudly, which is the outcome to want from a parser.
+
+1. **JevBench carries two case shapes, and the split is exact.** All 108 `choice` and `noul` cases
+   name their answer as a string label and give `criteria` as an object keyed by label. All 12
+   `score` cases name it as an **integer index** and give `criteria` as a **positional array** —
+   their `labels` are `"0".."n"`, so the index is the label. That mirrors laya's own template, whose
+   `score` branch renders `level {key}: {description}` and therefore wants the description by
+   position. A parser that assumed one shape would have scored twelve cases against the wrong key
+   and reported it as model error.
+2. **A Gradle test's working directory is its module, not the repository root.** The first run
+   resolved neither the cohort nor the report path, so `assumeTrue` skipped the whole gate and the
+   build printed `BUILD SUCCESSFUL in 3s`. A qualification that silently does not run is worse than
+   one that fails, and this repo has paid for that before. Both paths are now passed in from
+   `rootProject` by the task, so the test never guesses where it is.
