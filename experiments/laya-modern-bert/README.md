@@ -435,6 +435,25 @@ built temperature-scaled decision models, one ours and one external, both publis
 underconfident probabilities on held-out cohorts. That is a finding about the technique rather than
 about either implementation, and it is worth more than either model's own number.
 
+**Do not read this null as "Laya is worse than Harriet".** It does not say that, and the available
+numbers point the other way:
+
+- **Harriet has never been scored by this policy.** `decision-calibration-v1` was written for this
+  work and Laya is the only model it has ever judged.
+- **On the one axis where both have numbers, Harriet is worse.** Measured 2026-10-21, Harriet's ECE
+  is **0.153** on SNIPS and **0.322** on TREC against Laya's **0.1638**. *Both of Harriet's numbers
+  would also fail this gate*, one of them by three times the margin. The gate that disqualified Laya
+  disqualifies Harriet on figures already in this tree.
+- **The accuracies are not comparable and must not be placed side by side.** Laya's 0.7833 is 120
+  typed decisions over JevBench; Harriet's 0.800 / 0.760 are SNIPS and TREC routing — different
+  datasets, different task shape, different harness, and Harriet's confidences drift 0.01-0.02
+  between identical runs.
+
+The honest summary is that Laya is accurate and miscalibrated, Harriet is on present evidence also
+miscalibrated and more so, and **neither has been shown better than the other.** Settling it needs
+both arms over one cohort on one host under one policy, reported as accuracy and calibration
+separately.
+
 ### What this does and does not license
 
 - **Laya cannot be published.** The verdict is NOT QUALIFIED and the artifact is not going in the
