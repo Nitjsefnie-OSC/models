@@ -1,0 +1,28 @@
+{
+  "schemaVersion" : 1,
+  "policyId" : "production-rag-model-contribution-v6",
+  "candidate" : {
+    "path" : "/work/out/vibethinker_1_5b_q4_k_m.json",
+    "sha256" : "98096bae6e6d55c0d16e7058a4826629f4daa39c32d1fb37325f52f2ccdd5cb1"
+  },
+  "comparators" : [ {
+    "path" : "/work/out/vibethinker_1_5b_q4_k_m.comparator.json",
+    "sha256" : "ec73bd3e8d5cc2fc834ef3a95088246c63f751b9c6589a3a8c4474ca253148b9"
+  } ],
+  "qualification" : {
+    "modelId" : "vibethinker_1_5b_q4_k_m",
+    "candidateBackend" : "rust-ffm",
+    "artifactSha256" : "59fa32aaaf5c4512452a9bff8bb6d08f1e39a75acee226b5e01372f7509e3458",
+    "absoluteTier" : "PERFORMANCE_REDUCED",
+    "verdict" : "FAILED_MODEL_CONTRIBUTION_GATE",
+    "qualified" : false,
+    "modelAnswerCount" : 0,
+    "modelAnswerRate" : 0.0,
+    "modelAnswerCorrectRate" : 0.0,
+    "minimumModelAnswerRate" : 0.3333333333333333,
+    "minimumModelAnswerCorrectRate" : 0.9,
+    "qualifyingComparators" : [ ],
+    "comparisons" : [ ],
+    "exclusions" : { }
+  }
+}

@@ -1,0 +1,57 @@
+[?2026h[?25l[1Ggathering model components ⠙ [K[?25h[?2026l[?2026h[?25l[1Ggathering model components ⠹ [K[?25h[?2026l[?2026h[?25l[1Ggathering model components ⠸ [K[?25h[?2026l[?2026h[?25l[1Ggathering model components ⠼ [K[?25h[?2026l[?2026h[?25l[1Ggathering model components ⠴ [K[?25h[?2026l[?2026h[?25l[1Ggathering model components ⠦ [K[?25h[?2026l[?2026h[?25l[1Ggathering model components ⠦ [K[?25h[?2026l[?2026h[?25l[1Ggathering model components [K
+copying file sha256:59fa32aaaf5c4512452a9bff8bb6d08f1e39a75acee226b5e01372f7509e3458 5% ⠋ [K[?25h[?2026l[?2026h[?25l[A[1Ggathering model components [K
+copying file sha256:59fa32aaaf5c4512452a9bff8bb6d08f1e39a75acee226b5e01372f7509e3458 11% ⠙ [K[?25h[?2026l[?2026h[?25l[A[1Ggathering model components [K
+copying file sha256:59fa32aaaf5c4512452a9bff8bb6d08f1e39a75acee226b5e01372f7509e3458 22% ⠹ [K[?25h[?2026l[?2026h[?25l[A[1Ggathering model components [K
+copying file sha256:59fa32aaaf5c4512452a9bff8bb6d08f1e39a75acee226b5e01372f7509e3458 34% ⠸ [K[?25h[?2026l[?2026h[?25l[A[1Ggathering model components [K
+copying file sha256:59fa32aaaf5c4512452a9bff8bb6d08f1e39a75acee226b5e01372f7509e3458 40% ⠼ [K[?25h[?2026l[?2026h[?25l[A[1Ggathering model components [K
+copying file sha256:59fa32aaaf5c4512452a9bff8bb6d08f1e39a75acee226b5e01372f7509e3458 51% ⠴ [K[?25h[?2026l[?2026h[?25l[A[1Ggathering model components [K
+copying file sha256:59fa32aaaf5c4512452a9bff8bb6d08f1e39a75acee226b5e01372f7509e3458 62% ⠦ [K[?25h[?2026l[?2026h[?25l[A[1Ggathering model components [K
+copying file sha256:59fa32aaaf5c4512452a9bff8bb6d08f1e39a75acee226b5e01372f7509e3458 68% ⠧ [K[?25h[?2026l[?2026h[?25l[A[1Ggathering model components [K
+copying file sha256:59fa32aaaf5c4512452a9bff8bb6d08f1e39a75acee226b5e01372f7509e3458 79% ⠇ [K[?25h[?2026l[?2026h[?25l[A[1Ggathering model components [K
+copying file sha256:59fa32aaaf5c4512452a9bff8bb6d08f1e39a75acee226b5e01372f7509e3458 91% ⠏ [K[?25h[?2026l[?2026h[?25l[A[1Ggathering model components [K
+copying file sha256:59fa32aaaf5c4512452a9bff8bb6d08f1e39a75acee226b5e01372f7509e3458 100% [K
+parsing GGUF ⠋ [K[?25h[?2026l[?2026h[?25l[A[A[1Ggathering model components [K
+copying file sha256:59fa32aaaf5c4512452a9bff8bb6d08f1e39a75acee226b5e01372f7509e3458 100% [K
+parsing GGUF ⠙ [K[?25h[?2026l[?2026h[?25l[A[A[1Ggathering model components [K
+copying file sha256:59fa32aaaf5c4512452a9bff8bb6d08f1e39a75acee226b5e01372f7509e3458 100% [K
+parsing GGUF [K
+using existing layer sha256:59fa32aaaf5c4512452a9bff8bb6d08f1e39a75acee226b5e01372f7509e3458 [K
+writing manifest ⠋ [K[?25h[?2026l[?2026h[?25l[A[A[A[A[1Ggathering model components [K
+copying file sha256:59fa32aaaf5c4512452a9bff8bb6d08f1e39a75acee226b5e01372f7509e3458 100% [K
+parsing GGUF [K
+using existing layer sha256:59fa32aaaf5c4512452a9bff8bb6d08f1e39a75acee226b5e01372f7509e3458 [K
+writing manifest [K
+success [K[?25h[?2026l
+WARNING: Using incubator modules: jdk.incubator.vector
+Oct 22, 2026 1:54:47 AM org.apache.lucene.internal.vectorization.PanamaVectorizationProvider <init>
+INFO: Java vector incubator API enabled; uses preferredBitSize=256; FMA enabled
+iteration 1/3 case=amber-determinant-trace correct=true retrieval=1.7ms ttft=273.7ms decode=34.65 tok/s e2e=22412.4ms
+iteration 1/3 case=birch-function-derivative correct=true retrieval=6.0ms ttft=307.5ms decode=34.64 tok/s e2e=22456.6ms
+iteration 1/3 case=cobalt-red-probability correct=true retrieval=2.0ms ttft=296.6ms decode=34.65 tok/s e2e=22432.2ms
+iteration 1/3 case=delta-sixth-term correct=true retrieval=2.0ms ttft=283.3ms decode=34.65 tok/s e2e=22420.6ms
+iteration 1/3 case=ember-modulo correct=true retrieval=1.5ms ttft=232.1ms decode=34.70 tok/s e2e=22337.8ms
+iteration 1/3 case=fjord-integral correct=true retrieval=1.7ms ttft=295.8ms decode=34.74 tok/s e2e=22374.2ms
+iteration 1/3 case=grove-hypotenuse correct=true retrieval=5.2ms ttft=262.2ms decode=34.77 tok/s e2e=22330.7ms
+iteration 1/3 case=harbor-mean-median correct=true retrieval=1.8ms ttft=264.6ms decode=34.62 tok/s e2e=22423.1ms
+iteration 1/3 case=unsupported-maple-limit correct=true retrieval=3.9ms ttft=292.4ms decode=34.69 tok/s e2e=22404.6ms
+iteration 2/3 case=amber-determinant-trace correct=true retrieval=1.4ms ttft=247.4ms decode=34.53 tok/s e2e=22461.2ms
+iteration 2/3 case=birch-function-derivative correct=true retrieval=4.7ms ttft=334.9ms decode=34.65 tok/s e2e=22474.5ms
+iteration 2/3 case=cobalt-red-probability correct=true retrieval=9.6ms ttft=290.7ms decode=34.72 tok/s e2e=22392.0ms
+iteration 2/3 case=delta-sixth-term correct=true retrieval=6.1ms ttft=278.1ms decode=34.81 tok/s e2e=22320.7ms
+iteration 2/3 case=ember-modulo correct=true retrieval=2.0ms ttft=218.7ms decode=34.74 tok/s e2e=22296.3ms
+iteration 2/3 case=fjord-integral correct=true retrieval=1.2ms ttft=307.0ms decode=34.81 tok/s e2e=22340.7ms
+iteration 2/3 case=grove-hypotenuse correct=true retrieval=1.2ms ttft=232.6ms decode=34.82 tok/s e2e=22264.7ms
+iteration 2/3 case=harbor-mean-median correct=true retrieval=1.7ms ttft=264.6ms decode=34.74 tok/s e2e=22344.4ms
+iteration 2/3 case=unsupported-maple-limit correct=true retrieval=3.3ms ttft=292.3ms decode=34.75 tok/s e2e=22365.6ms
+iteration 3/3 case=amber-determinant-trace correct=true retrieval=1.1ms ttft=249.1ms decode=34.78 tok/s e2e=22305.9ms
+iteration 3/3 case=birch-function-derivative correct=true retrieval=1.1ms ttft=294.2ms decode=34.73 tok/s e2e=22381.9ms
+iteration 3/3 case=cobalt-red-probability correct=true retrieval=1.5ms ttft=289.5ms decode=34.74 tok/s e2e=22369.6ms
+iteration 3/3 case=delta-sixth-term correct=true retrieval=2.2ms ttft=244.3ms decode=34.71 tok/s e2e=22341.0ms
+iteration 3/3 case=ember-modulo correct=true retrieval=1.0ms ttft=226.1ms decode=34.75 tok/s e2e=22300.0ms
+iteration 3/3 case=fjord-integral correct=true retrieval=1.2ms ttft=293.3ms decode=34.54 tok/s e2e=22498.7ms
+iteration 3/3 case=grove-hypotenuse correct=true retrieval=1.2ms ttft=236.3ms decode=34.82 tok/s e2e=22263.5ms
+iteration 3/3 case=harbor-mean-median correct=true retrieval=1.5ms ttft=275.4ms decode=34.78 tok/s e2e=22332.5ms
+iteration 3/3 case=unsupported-maple-limit correct=true retrieval=1.9ms ttft=287.0ms decode=34.64 tok/s e2e=22428.3ms
+plain-java/ollama/vibethinker_1_5b_q4_k_m: tier=PERFORMANCE_REDUCED success=27/27 p95-retrieval=6.1ms p95-ttft=307.4ms p50-decode=34.73 tok/s p95-e2e=22470.5ms correct=100.0% model-answered=0.0% of-those-correct=0.0% extractive-fallback=88.9% truncated=100.0%
+report: /work/out/vibethinker_1_5b_q4_k_m.comparator.json
+[?2026h[?25l[1G[K[?25h[?2026l[?25l[2K[1G[?25hdeleted 'qual-vibethinker_1_5b_q4_k_m'

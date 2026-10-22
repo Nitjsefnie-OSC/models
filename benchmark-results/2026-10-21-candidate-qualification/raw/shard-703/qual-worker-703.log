@@ -1,0 +1,276 @@
++ STATUS=STARTED
+++ cat /sys/devices/virtual/dmi/id/product_uuid
+++ head -c 8
++ say 'boot shard=703 instance=ec20a349'
++ tee -a /var/log/qual-worker.log
+++ date -u +%H:%M:%S
++ printf '[qual %s] %s\n' 01:34:58 'boot shard=703 instance=ec20a349'
+[qual 01:34:58] boot shard=703 instance=ec20a349
++ trap finish EXIT
++ mkdir -p /work/models /work/out /opt/jdk
+++ curl -s -o /dev/null -w '%{http_code}' --max-time 25 https://s3.amazonaws.com
++ EGRESS_CODE=307
++ '[' 307 = 000 ']'
++ '[' -z 307 ']'
++ say 'egress ok (s3 root http=307)'
++ tee -a /var/log/qual-worker.log
+++ date -u +%H:%M:%S
++ printf '[qual %s] %s\n' 01:35:02 'egress ok (s3 root http=307)'
+[qual 01:35:02] egress ok (s3 root http=307)
++ export DEBIAN_FRONTEND=noninteractive
++ DEBIAN_FRONTEND=noninteractive
++ apt-get update -qq
++ apt-get install -y -qq unzip python3
+
+Running kernel seems to be up-to-date.
+
+No services need to be restarted.
+
+No containers need to be restarted.
+
+No user sessions are running outdated binaries.
+
+No VM guests are running outdated hypervisor (qemu) binaries on this host.
++ command -v aws
++ say 'installing aws cli from the bundled installer'
++ tee -a /var/log/qual-worker.log
+++ date -u +%H:%M:%S
++ printf '[qual %s] %s\n' 01:35:14 'installing aws cli from the bundled installer'
+[qual 01:35:14] installing aws cli from the bundled installer
++ curl -sfL https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip -o /tmp/awscli.zip
++ cd /tmp
++ unzip -qo awscli.zip
++ ./aws/install --update
++ hash -r
++ command -v aws
+++ aws --version
+++ head -c 40
++ say 'aws aws-cli/2.38.4 Python/3.14.6 Linux/7.0.0'
++ tee -a /var/log/qual-worker.log
+++ date -u +%H:%M:%S
++ printf '[qual %s] %s\n' 01:35:21 'aws aws-cli/2.38.4 Python/3.14.6 Linux/7.0.0'
+[qual 01:35:21] aws aws-cli/2.38.4 Python/3.14.6 Linux/7.0.0
++ command -v python3
++ curl -sfL https://api.adoptium.net/v3/binary/latest/25/ga/linux/x64/jdk/hotspot/normal/eclipse -o /tmp/jdk.tgz
++ tar xzf /tmp/jdk.tgz -C /opt/jdk --strip-components=1
++ export JAVA_HOME=/opt/jdk
++ JAVA_HOME=/opt/jdk
++ export PATH=/opt/jdk/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/snap/bin
++ PATH=/opt/jdk/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/snap/bin
++ '[' -x /opt/jdk/bin/java ']'
+++ /opt/jdk/bin/java -version
+++ head -1
++ say 'jdk openjdk version "25.0.4.1" 2026-08-18 LTS'
++ tee -a /var/log/qual-worker.log
+++ date -u +%H:%M:%S
++ printf '[qual %s] %s\n' 01:35:24 'jdk openjdk version "25.0.4.1" 2026-08-18 LTS'
+[qual 01:35:24] jdk openjdk version "25.0.4.1" 2026-08-18 LTS
++ cd /work
++ '[' -z models-rag-bench-0.5.2-candidates-20261021.tar ']'
++ '[' -z models@0.5.2+candidates-9ad3fe5e46a4 ']'
++ '[' -z backend-native-0.5.2.jar ']'
++ PAYLOAD=models-rag-bench-0.5.2-candidates-20261021.tar
++ KERNELS=backend-native-0.5.2.jar
++ BACKEND_VERSION=models@0.5.2+candidates-9ad3fe5e46a4
++ payload_matches_label models-rag-bench-0.5.2-candidates-20261021.tar models@0.5.2+candidates-9ad3fe5e46a4
++ local payload=models-rag-bench-0.5.2-candidates-20261021.tar label=models@0.5.2+candidates-9ad3fe5e46a4 version
+++ payload_label_version models@0.5.2+candidates-9ad3fe5e46a4
+++ printf %s models@0.5.2+candidates-9ad3fe5e46a4
+++ sed -n 's/^models@\([0-9][0-9.]*[^+]*\).*/\1/p'
++ version=0.5.2
++ '[' -n 0.5.2 ']'
++ case "$payload" in
++ return 0
++ payload_matches_label backend-native-0.5.2.jar models@0.5.2+candidates-9ad3fe5e46a4
++ local payload=backend-native-0.5.2.jar label=models@0.5.2+candidates-9ad3fe5e46a4 version
+++ payload_label_version models@0.5.2+candidates-9ad3fe5e46a4
+++ printf %s models@0.5.2+candidates-9ad3fe5e46a4
+++ sed -n 's/^models@\([0-9][0-9.]*[^+]*\).*/\1/p'
++ version=0.5.2
++ '[' -n 0.5.2 ']'
++ case "$payload" in
++ return 0
++ say 'payload models-rag-bench-0.5.2-candidates-20261021.tar kernels backend-native-0.5.2.jar labelled models@0.5.2+candidates-9ad3fe5e46a4'
++ tee -a /var/log/qual-worker.log
+++ date -u +%H:%M:%S
++ printf '[qual %s] %s\n' 01:35:24 'payload models-rag-bench-0.5.2-candidates-20261021.tar kernels backend-native-0.5.2.jar labelled models@0.5.2+candidates-9ad3fe5e46a4'
+[qual 01:35:24] payload models-rag-bench-0.5.2-candidates-20261021.tar kernels backend-native-0.5.2.jar labelled models@0.5.2+candidates-9ad3fe5e46a4
++ aws s3 cp s3://models-qual-077051030817/payload/models-rag-bench-0.5.2-candidates-20261021.tar . --only-show-errors
++ aws s3 cp s3://models-qual-077051030817/payload/backend-native-0.5.2.jar . --only-show-errors
++ aws s3 cp s3://models-qual-077051030817/payload/fleet-shard-703.json /work/shard.json --only-show-errors
++ '[' -s models-rag-bench-0.5.2-candidates-20261021.tar ']'
++ '[' -s /work/backend-native-0.5.2.jar ']'
++ '[' -s /work/shard.json ']'
++ tar xf models-rag-bench-0.5.2-candidates-20261021.tar
+++ ls -d /work/models-rag-bench-0.5.2/
+++ head -1
++ DIST=/work/models-rag-bench-0.5.2/
++ CP='/work/models-rag-bench-0.5.2//lib/*:/work/backend-native-0.5.2.jar'
+++ unzip -p /work/backend-native-0.5.2.jar META-INF/models/native/linux-x86_64/native.properties
+++ sed -n 's/^sha256=//p'
++ KERNEL_SHA=d2052d82348394c5326c52004b7dd4f9a71011ea0c58fdebde941825e25cf06b
++ say 'kernel backend-native-0.5.2.jar sha256=d2052d82348394c5326c52004b7dd4f9a71011ea0c58fdebde941825e25cf06b'
++ tee -a /var/log/qual-worker.log
+++ date -u +%H:%M:%S
++ printf '[qual %s] %s\n' 01:35:26 'kernel backend-native-0.5.2.jar sha256=d2052d82348394c5326c52004b7dd4f9a71011ea0c58fdebde941825e25cf06b'
+[qual 01:35:26] kernel backend-native-0.5.2.jar sha256=d2052d82348394c5326c52004b7dd4f9a71011ea0c58fdebde941825e25cf06b
+++ python3 -c 'import json;print(len(json.load(open('\''/work/shard.json'\''))))'
++ JOBS=1
++ say 'payload ok, 1 jobs'
++ tee -a /var/log/qual-worker.log
+++ date -u +%H:%M:%S
++ printf '[qual %s] %s\n' 01:35:26 'payload ok, 1 jobs'
+[qual 01:35:26] payload ok, 1 jobs
++ THREADS=16
++ DECODE_THREAD_DEFAULT=
++ STATUS=RUNNING
++ export PATH=/usr/local/bin:/usr/bin:/usr/sbin:/bin:/sbin:/opt/jdk/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/snap/bin
++ PATH=/usr/local/bin:/usr/bin:/usr/sbin:/bin:/sbin:/opt/jdk/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/snap/bin
++ export HOME=/root
++ HOME=/root
++ export OLLAMA_MODELS=/work/ollama
++ OLLAMA_MODELS=/work/ollama
++ mkdir -p /work/ollama
++ curl -fsSL https://ollama.com/install.sh
++ sh
+++ command -v ollama
++ say 'ollama install exit=0 path=/usr/local/bin/ollama home=/root'
++ tee -a /var/log/qual-worker.log
+++ date -u +%H:%M:%S
++ printf '[qual %s] %s\n' 01:35:38 'ollama install exit=0 path=/usr/local/bin/ollama home=/root'
+[qual 01:35:38] ollama install exit=0 path=/usr/local/bin/ollama home=/root
++ OLLAMA_HOST=127.0.0.1:11434
++ OLLAMA_MAX_LOADED_MODELS=1
++ nohup ollama serve
+++ seq 1 90
++ for attempt in $(seq 1 90)
++ curl -s -o /dev/null http://127.0.0.1:11434/api/tags
++ sleep 2
++ for attempt in $(seq 1 90)
++ curl -s -o /dev/null http://127.0.0.1:11434/api/tags
++ break
++ aws s3 cp /work/out/ollama-install.log s3://models-qual-077051030817/results/shard-703/ --only-show-errors
++ aws s3 cp /work/out/ollama-serve.log s3://models-qual-077051030817/results/shard-703/ --only-show-errors
++ curl -s -o /dev/null http://127.0.0.1:11434/api/tags
+++ ollama --version
+++ head -1
++ say 'ollama ready (ollama version is 0.40.8)'
++ tee -a /var/log/qual-worker.log
+++ date -u +%H:%M:%S
++ printf '[qual %s] %s\n' 01:35:41 'ollama ready (ollama version is 0.40.8)'
+[qual 01:35:41] ollama ready (ollama version is 0.40.8)
++ OLLAMA_READY=1
++ SUPPORTED_ARCH='llama gemma gemma2 gemma4 phi3 mistral3 hunyuan-dense lfm2 qwen2 qwen3 qwen3moe granite smollm3 gemma3 gemma-embedding qwen35 qwen35moe qwen3next gemma3n deepseek2 gpt-oss mobilemoe needle2'
++ MAX_ARTIFACT_BYTES=22000000000
++ done_n=0
++ python3 -c '
+import json
+for j in json.load(open('\''/work/shard.json'\'')): print(json.dumps(j))
+'
++ sleep 18000
++ IFS=
++ read -r job
++ '[' -f /work/out/STOP ']'
+++ python3 -c 'import json,sys;print(json.loads(sys.argv[1])['\''id'\''])' '{"id": "vibethinker_1_5b_q4_k_m", "uri": "https://huggingface.co/mradermacher/VibeThinker-1.5B-GGUF/resolve/d0d66139a78030a92a582f966b0f7cbbb3b19406/VibeThinker-1.5B.Q4_K_M.gguf", "tpl": "chatml-direct", "gb": 1.12, "arch": "qwen2", "wl": "math", "mt": 768}'
++ id=vibethinker_1_5b_q4_k_m
+++ python3 -c 'import json,sys;print(json.loads(sys.argv[1])['\''uri'\''])' '{"id": "vibethinker_1_5b_q4_k_m", "uri": "https://huggingface.co/mradermacher/VibeThinker-1.5B-GGUF/resolve/d0d66139a78030a92a582f966b0f7cbbb3b19406/VibeThinker-1.5B.Q4_K_M.gguf", "tpl": "chatml-direct", "gb": 1.12, "arch": "qwen2", "wl": "math", "mt": 768}'
++ uri=https://huggingface.co/mradermacher/VibeThinker-1.5B-GGUF/resolve/d0d66139a78030a92a582f966b0f7cbbb3b19406/VibeThinker-1.5B.Q4_K_M.gguf
+++ python3 -c 'import json,sys;print(json.loads(sys.argv[1])['\''tpl'\''])' '{"id": "vibethinker_1_5b_q4_k_m", "uri": "https://huggingface.co/mradermacher/VibeThinker-1.5B-GGUF/resolve/d0d66139a78030a92a582f966b0f7cbbb3b19406/VibeThinker-1.5B.Q4_K_M.gguf", "tpl": "chatml-direct", "gb": 1.12, "arch": "qwen2", "wl": "math", "mt": 768}'
++ tpl=chatml-direct
+++ python3 -c 'import json,sys;print(json.loads(sys.argv[1]).get('\''arch'\'','\'''\''))' '{"id": "vibethinker_1_5b_q4_k_m", "uri": "https://huggingface.co/mradermacher/VibeThinker-1.5B-GGUF/resolve/d0d66139a78030a92a582f966b0f7cbbb3b19406/VibeThinker-1.5B.Q4_K_M.gguf", "tpl": "chatml-direct", "gb": 1.12, "arch": "qwen2", "wl": "math", "mt": 768}'
++ arch=qwen2
+++ python3 -c 'import json,sys;print(json.loads(sys.argv[1]).get('\''dt'\'') or '\'''\'')' '{"id": "vibethinker_1_5b_q4_k_m", "uri": "https://huggingface.co/mradermacher/VibeThinker-1.5B-GGUF/resolve/d0d66139a78030a92a582f966b0f7cbbb3b19406/VibeThinker-1.5B.Q4_K_M.gguf", "tpl": "chatml-direct", "gb": 1.12, "arch": "qwen2", "wl": "math", "mt": 768}'
++ dt=
+++ python3 -c 'import json,sys;print(json.loads(sys.argv[1]).get('\''wl'\'') or '\''general'\'')' '{"id": "vibethinker_1_5b_q4_k_m", "uri": "https://huggingface.co/mradermacher/VibeThinker-1.5B-GGUF/resolve/d0d66139a78030a92a582f966b0f7cbbb3b19406/VibeThinker-1.5B.Q4_K_M.gguf", "tpl": "chatml-direct", "gb": 1.12, "arch": "qwen2", "wl": "math", "mt": 768}'
++ wl=math
+++ python3 -c 'import json,sys;print(json.loads(sys.argv[1]).get('\''mt'\'') or 256)' '{"id": "vibethinker_1_5b_q4_k_m", "uri": "https://huggingface.co/mradermacher/VibeThinker-1.5B-GGUF/resolve/d0d66139a78030a92a582f966b0f7cbbb3b19406/VibeThinker-1.5B.Q4_K_M.gguf", "tpl": "chatml-direct", "gb": 1.12, "arch": "qwen2", "wl": "math", "mt": 768}'
++ mt=768
++ '[' -z '' ']'
++ dt=
++ DECODE_THREAD_OPT=
++ '[' -n '' ']'
++ gguf=/work/models/vibethinker_1_5b_q4_k_m.gguf
+++ date +%s
++ T0=1792632941
++ case " $SUPPORTED_ARCH " in
+++ python3 -c 'import json,sys;print('\'' '\''.join(json.loads(sys.argv[1]).get('\''files'\'') or []))' '{"id": "vibethinker_1_5b_q4_k_m", "uri": "https://huggingface.co/mradermacher/VibeThinker-1.5B-GGUF/resolve/d0d66139a78030a92a582f966b0f7cbbb3b19406/VibeThinker-1.5B.Q4_K_M.gguf", "tpl": "chatml-direct", "gb": 1.12, "arch": "qwen2", "wl": "math", "mt": 768}'
++ files=
+++ python3 -c 'import json,sys;print(json.loads(sys.argv[1]).get('\''bytes'\'',0))' '{"id": "vibethinker_1_5b_q4_k_m", "uri": "https://huggingface.co/mradermacher/VibeThinker-1.5B-GGUF/resolve/d0d66139a78030a92a582f966b0f7cbbb3b19406/VibeThinker-1.5B.Q4_K_M.gguf", "tpl": "chatml-direct", "gb": 1.12, "arch": "qwen2", "wl": "math", "mt": 768}'
++ bytes=0
++ '[' 0 = 0 ']'
++ '[' -z '' ']'
+++ curl -sIL https://huggingface.co/mradermacher/VibeThinker-1.5B-GGUF/resolve/d0d66139a78030a92a582f966b0f7cbbb3b19406/VibeThinker-1.5B.Q4_K_M.gguf
+++ awk 'BEGIN{IGNORECASE=1} /^content-length:/ {v=$2} END{gsub(/\r/,"",v); print v+0}'
++ bytes=1117321472
++ say 'vibethinker_1_5b_q4_k_m: HEAD reports 1117321472 bytes'
++ tee -a /var/log/qual-worker.log
+++ date -u +%H:%M:%S
++ printf '[qual %s] %s\n' 01:35:41 'vibethinker_1_5b_q4_k_m: HEAD reports 1117321472 bytes'
+[qual 01:35:41] vibethinker_1_5b_q4_k_m: HEAD reports 1117321472 bytes
++ '[' 1117321472 -gt 22000000000 ']'
++ '[' -n '' ']'
++ say 'start vibethinker_1_5b_q4_k_m (arch=qwen2 workload=math decodeThreads=pool)'
++ tee -a /var/log/qual-worker.log
+++ date -u +%H:%M:%S
++ printf '[qual %s] %s\n' 01:35:41 'start vibethinker_1_5b_q4_k_m (arch=qwen2 workload=math decodeThreads=pool)'
+[qual 01:35:41] start vibethinker_1_5b_q4_k_m (arch=qwen2 workload=math decodeThreads=pool)
++ curl -sfL https://huggingface.co/mradermacher/VibeThinker-1.5B-GGUF/resolve/d0d66139a78030a92a582f966b0f7cbbb3b19406/VibeThinker-1.5B.Q4_K_M.gguf -o /work/models/vibethinker_1_5b_q4_k_m.gguf
++ ARMS='--workload math --prompt-template chatml-direct --context 2048 --threads 16'
++ ARMS='--workload math --prompt-template chatml-direct --context 2048 --threads 16 --max-tokens 768 --warmups 1 --iterations 3'
++ java --add-modules jdk.incubator.vector --enable-native-access=ALL-UNNAMED -cp '/work/models-rag-bench-0.5.2//lib/*:/work/backend-native-0.5.2.jar' com.integrallis.models.rag.RagBenchmarkCli --framework plain-java --backend rust-ffm --backend-version models@0.5.2+candidates-9ad3fe5e46a4 --model /work/models/vibethinker_1_5b_q4_k_m.gguf --model-id vibethinker_1_5b_q4_k_m --workload math --prompt-template chatml-direct --context 2048 --threads 16 --max-tokens 768 --warmups 1 --iterations 3 --output /work/out/vibethinker_1_5b_q4_k_m.json
++ rc=0
++ '[' 0 = 0 ']'
++ '[' 1 = 1 ']'
++ printf 'FROM %s\n' /work/models/vibethinker_1_5b_q4_k_m.gguf
++ ollama create qual-vibethinker_1_5b_q4_k_m -f /work/Modelfile
+++ ollama --version
+++ head -1
+++ tr -d '\n'
++ java --add-modules jdk.incubator.vector --enable-native-access=ALL-UNNAMED -cp '/work/models-rag-bench-0.5.2//lib/*:/work/backend-native-0.5.2.jar' com.integrallis.models.rag.RagBenchmarkCli --framework plain-java --backend ollama --backend-version 'ollama@ollama version is 0.40.8' --model qual-vibethinker_1_5b_q4_k_m --artifact /work/models/vibethinker_1_5b_q4_k_m.gguf --model-id vibethinker_1_5b_q4_k_m --workload math --prompt-template chatml-direct --context 2048 --threads 16 --max-tokens 768 --warmups 1 --iterations 3 --output /work/out/vibethinker_1_5b_q4_k_m.comparator.json
++ crc=0
++ '[' 0 = 0 ']'
++ java -cp '/work/models-rag-bench-0.5.2//lib/*:/work/backend-native-0.5.2.jar' com.integrallis.models.rag.RagQualificationCli --candidate /work/out/vibethinker_1_5b_q4_k_m.json --comparator /work/out/vibethinker_1_5b_q4_k_m.comparator.json --output /work/out/vibethinker_1_5b_q4_k_m.verdict.json
+++ python3 -c 'import json;print(json.load(open('\''/work/out/vibethinker_1_5b_q4_k_m.verdict.json'\''))['\''qualification'\'']['\''verdict'\''])'
++ verdict=FAILED_MODEL_CONTRIBUTION_GATE
++ say 'verdict vibethinker_1_5b_q4_k_m: FAILED_MODEL_CONTRIBUTION_GATE'
++ tee -a /var/log/qual-worker.log
+++ date -u +%H:%M:%S
++ printf '[qual %s] %s\n' 02:08:18 'verdict vibethinker_1_5b_q4_k_m: FAILED_MODEL_CONTRIBUTION_GATE'
+[qual 02:08:18] verdict vibethinker_1_5b_q4_k_m: FAILED_MODEL_CONTRIBUTION_GATE
++ printf '%s\tverdict\t%s\n' vibethinker_1_5b_q4_k_m FAILED_MODEL_CONTRIBUTION_GATE
++ aws s3 cp /work/out/vibethinker_1_5b_q4_k_m.comparator.json s3://models-qual-077051030817/results/shard-703/ --only-show-errors
++ aws s3 cp /work/out/vibethinker_1_5b_q4_k_m.verdict.json s3://models-qual-077051030817/results/shard-703/ --only-show-errors
++ ollama rm qual-vibethinker_1_5b_q4_k_m
++ aws s3 cp /work/out/vibethinker_1_5b_q4_k_m.ollama.log s3://models-qual-077051030817/results/shard-703/ --only-show-errors
+++ date +%s
++ printf '%s\trc%s\t%s\n' vibethinker_1_5b_q4_k_m 0 1959
+++ date +%s
++ say 'done vibethinker_1_5b_q4_k_m rc=0 in 1959s'
++ tee -a /var/log/qual-worker.log
+++ date -u +%H:%M:%S
++ printf '[qual %s] %s\n' 02:08:20 'done vibethinker_1_5b_q4_k_m rc=0 in 1959s'
+[qual 02:08:20] done vibethinker_1_5b_q4_k_m rc=0 in 1959s
++ aws s3 cp /work/out/vibethinker_1_5b_q4_k_m.json s3://models-qual-077051030817/results/shard-703/ --only-show-errors
++ aws s3 cp /work/out/vibethinker_1_5b_q4_k_m.log s3://models-qual-077051030817/results/shard-703/ --only-show-errors
++ rm -f /work/models/vibethinker_1_5b_q4_k_m.gguf
++ done_n=1
++ IFS=
++ read -r job
++ aws s3 cp /work/out/progress.tsv s3://models-qual-077051030817/results/shard-703/ --only-show-errors
++ STATUS=SHARD_COMPLETE
++ say 'shard complete: 1 jobs'
++ tee -a /var/log/qual-worker.log
+++ date -u +%H:%M:%S
++ printf '[qual %s] %s\n' 02:08:22 'shard complete: 1 jobs'
+[qual 02:08:22] shard complete: 1 jobs
++ finish
++ rc=0
++ say 'FINAL_STATUS=SHARD_COMPLETE exit=0'
++ tee -a /var/log/qual-worker.log
+++ date -u +%H:%M:%S
++ printf '[qual %s] %s\n' 02:08:22 'FINAL_STATUS=SHARD_COMPLETE exit=0'
+[qual 02:08:22] FINAL_STATUS=SHARD_COMPLETE exit=0
++ command -v aws
++ echo SHARD_COMPLETE
++ aws s3 cp /work/out/STATUS s3://models-qual-077051030817/results/shard-703/ --only-show-errors
++ aws s3 cp /var/log/qual-worker.log s3://models-qual-077051030817/results/shard-703/qual-worker-703.log --only-show-errors

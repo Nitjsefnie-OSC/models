@@ -1,0 +1,1588 @@
+{
+  "schemaVersion" : 5,
+  "generatedAt" : "2026-10-22T02:08:16.752201111Z",
+  "framework" : "plain-java",
+  "backend" : "ollama",
+  "backendVersion" : "ollama@ollama version is 0.40.8",
+  "modelId" : "vibethinker_1_5b_q4_k_m",
+  "model" : "qual-vibethinker_1_5b_q4_k_m",
+  "artifactSha256" : "59fa32aaaf5c4512452a9bff8bb6d08f1e39a75acee226b5e01372f7509e3458",
+  "artifactSizeBytes" : 1117321472,
+  "settings" : {
+    "corpusSha256" : "4da610e627e7481d54d1595ef1191dff454455d9bb04fc814b5ea12fd6180315",
+    "workload" : "math",
+    "caseIds" : [ "amber-determinant-trace", "birch-function-derivative", "cobalt-red-probability", "delta-sixth-term", "ember-modulo", "fjord-integral", "grove-hypotenuse", "harbor-mean-median", "unsupported-maple-limit" ],
+    "promptTemplate" : "chatml-direct",
+    "retrievalTopK" : 1,
+    "maxOutputTokens" : 768,
+    "warmups" : 1,
+    "iterations" : 3,
+    "contextLength" : 2048,
+    "threads" : 16,
+    "groundingPolicy" : "bounded-context-injection-screened-citation-safe-statement-grounding-v23",
+    "minimumRetrievalScore" : 2.0,
+    "generationControls" : {
+      "rawPrompt" : "true",
+      "seed" : "42",
+      "topP" : "1.0",
+      "temperature" : "0.0",
+      "repetitionPenalty" : "1.0",
+      "topK" : "1"
+    }
+  },
+  "environment" : {
+    "hostname" : "ip-172-31-11-227",
+    "osName" : "Linux",
+    "osVersion" : "7.0.0-1013-aws",
+    "architecture" : "amd64",
+    "cpuModel" : "AMD EPYC 7R13 Processor",
+    "availableProcessors" : 16,
+    "totalMemoryBytes" : 65971650560,
+    "maxHeapBytes" : 16500391936,
+    "javaVersion" : "25.0.4.1",
+    "javaVendor" : "Eclipse Adoptium",
+    "vmName" : "OpenJDK 64-Bit Server VM"
+  },
+  "backendDiagnostics" : {
+    "backend" : "ollama",
+    "planVersion" : "unavailable",
+    "environment" : { },
+    "optimizations" : [ ]
+  },
+  "hostedApiPricing" : null,
+  "summary" : {
+    "totalAttempts" : 27,
+    "successfulAttempts" : 27,
+    "loadMillis" : 1575.584381,
+    "retrievalMillis" : {
+      "p50" : 1.730071,
+      "p95" : 6.114046500000001
+    },
+    "frameworkOverheadMillis" : {
+      "p50" : 0.2796569999991334,
+      "p95" : 0.7074890999996566
+    },
+    "ttftMillis" : {
+      "p50" : 278.081643,
+      "p95" : 307.3806361
+    },
+    "tpotMillis" : {
+      "p50" : 28.79580064928292,
+      "p95" : 28.930575697653197
+    },
+    "endToEndMillis" : {
+      "p50" : 22369.567355,
+      "p95" : 22470.4909395
+    },
+    "p50PrefillTokensPerSecond" : 619.2508190999471,
+    "p50DecodeTokensPerSecond" : 34.7272858351623,
+    "peakRssBytes" : 0,
+    "totalCpuMillis" : 0.0,
+    "totalInputTokens" : 4515,
+    "totalCacheReadInputTokens" : 0,
+    "totalCacheWriteInputTokens" : 0,
+    "totalOutputTokens" : 20736,
+    "totalEstimatedApiCostUsd" : null,
+    "projectedApiCostPer1kRequestsUsd" : null,
+    "retrievalRecall" : 1.0,
+    "meanReciprocalRank" : 1.0,
+    "factCoverage" : 1.0,
+    "citationRecall" : 1.0,
+    "citationPrecision" : 1.0,
+    "abstentionAccuracy" : 1.0,
+    "correctAnswerRate" : 1.0,
+    "rawCorrectAnswerRate" : 0.8888888888888888,
+    "modelAnswerRate" : 0.0,
+    "modelAnswerCorrectRate" : 0.0,
+    "extractiveFallbackRate" : 0.8888888888888888,
+    "truncatedAnswerRate" : 1.0
+  },
+  "performanceTier" : "PERFORMANCE_REDUCED",
+  "runs" : [ {
+    "framework" : "plain-java",
+    "backend" : "ollama",
+    "model" : "qual-vibethinker_1_5b_q4_k_m",
+    "caseId" : "amber-determinant-trace",
+    "retrieved" : [ {
+      "document" : {
+        "id" : "math-amber-matrix",
+        "title" : "Amber matrix",
+        "text" : "For the Amber matrix [[3, 1], [2, 4]], the determinant is 10. The trace is 7."
+      },
+      "score" : 4.5716124,
+      "rank" : 1
+    } ],
+    "promptSha256" : "94ac11ea22290b00c3ea37a61079df83179bffe61b84ce3ff189611b91ba68c2",
+    "retrievalMillis" : 1.730071,
+    "frameworkOverheadMillis" : 0.34975199999826145,
+    "endToEndMillis" : 22412.368345,
+    "generation" : {
+      "text" : "For the Amber matrix [[3, 1], [2, 4]], the determinant is 10. The trace is 7. [math-amber-matrix]",
+      "inputTokens" : 165,
+      "cacheReadInputTokens" : 0,
+      "cacheWriteInputTokens" : 0,
+      "outputTokens" : 768,
+      "ttftMillis" : 273.71825,
+      "totalMillis" : 22410.288522,
+      "prefillTokensPerSecond" : 683.7394331178518,
+      "loadMillis" : 1575.584381,
+      "peakRssBytes" : 0,
+      "cpuMillis" : 0.0,
+      "estimatedApiCostUsd" : null
+    },
+    "grounding" : {
+      "rawText" : " for the Amber matrix [[3, 1], [2, 4]], the determinant is 10 and the trace is 7. The question is asking for the determinant and trace, which are directly provided in the context. I need to answer based only on this context without adding any external information.\n\nThe rules say to answer in one short sentence and copy the source ID exactly. The source ID here is \"math-amber-matrix\". I should include that citation at the end.\n\nSo, the answer should be: The determinant is 10 and the trace is 7, as stated in the context for the math-amber-matrix.\n\nBut I need to format it as one sentence. Also, I must not use prior knowledge; for example, I know that the determinant of a 2x2 matrix [[a,b],[c,d]] is ad-bc, but the context already gives the values, so I shouldn't recalculate.\n\nThe context is about the Amber matrix specifically, so I should refer to it by that name.\n\nThe instruction says to copy the source ID exactly at the end. So, in my sentence, I should say \"as given in the context for the math-amber-matrix\" or something similar, and then include the citation.\n\nLooking back at the rules: \"Copy each supporting source ID exactly from the square brackets at the start of its CONTEXT entry, and put those citations at the end of the sentence.\"\n\nThe context entry is \"math-amber-matrix\", so I need to use that.\n\nAlso, the question is straightforward since the answer is in the context.\n\nLet me try to construct the answer.\n\nThe question is: \"What are the determinant and trace of the Amber matrix?\"\n\nBased on context: \"For the Amber matrix [[3, 1], [2, 4]], the determinant is 10. The trace is 7.\"\n\nSo, I can combine that into one sentence: \"The determinant is 10 and the trace is 7 for the Amber matrix, as stated in the context for the math-amber-matrix.\"\n\nThen, at the end, I need to put the source ID. But the source ID is \"math-amber-matrix\", and in the context it's already mentioned.\n\nThe rule says to put the citations at the end of the sentence. So perhaps after the statement, I add \"source: math-amber-matrix\".\n\nBut the context entry has the entire description. Maybe I should just reference it by the name.\n\nI think the intended way is to say something like: \"The determinant is 10 and the trace is 7, as per the math-amber-matrix context.\"\n\nBut to be precise, since the context has the matrix, but the question doesn't ask for the matrix, just the determinant and trace, so I don't need to mention the entries.\n\nThe context says \"for the Amber matrix [[3,1],[2,4]]\", but the question is about the Amber matrix in general, so I can refer to it as the Amber matrix.\n\nTo be safe, I can say \"the Amber matrix as described in the context\".\n\nBut the context is about that specific matrix, but it's called the Amber matrix, so it should be fine.\n\nPerhaps the source ID is \"math-amber-matrix\", which might be a label.\n\nLooking at the context: \"[math-amber-matrix] Amber matrix\" – so the context entry has the label \"math-amber-matrix\" and then the description.\n\nSo, in my answer, I can use that.\n\nI think the simplest way is to say: \"The determinant is 10 and the trace is 7, as given in the math-amber-matrix context.\"\n\nThen, at the end,",
+      "text" : "For the Amber matrix [[3, 1], [2, 4]], the determinant is 10. The trace is 7. [math-amber-matrix]",
+      "decision" : "EXTRACTIVE_FALLBACK"
+    },
+    "rawEvaluation" : {
+      "retrievalRecall" : 1.0,
+      "reciprocalRank" : 1.0,
+      "factCoverage" : 1.0,
+      "citationRecall" : 1.0,
+      "citationPrecision" : 1.0,
+      "abstained" : false,
+      "correct" : true
+    },
+    "evaluation" : {
+      "retrievalRecall" : 1.0,
+      "reciprocalRank" : 1.0,
+      "factCoverage" : 1.0,
+      "citationRecall" : 1.0,
+      "citationPrecision" : 1.0,
+      "abstained" : false,
+      "correct" : true
+    }
+  }, {
+    "framework" : "plain-java",
+    "backend" : "ollama",
+    "model" : "qual-vibethinker_1_5b_q4_k_m",
+    "caseId" : "birch-function-derivative",
+    "retrieved" : [ {
+      "document" : {
+        "id" : "math-birch-derivative",
+        "title" : "Birch polynomial",
+        "text" : "The Birch function is f(x) = x^3 - 2x. Its derivative is f'(x) = 3x^2 - 2."
+      },
+      "score" : 4.115302,
+      "rank" : 1
+    } ],
+    "promptSha256" : "665160bf13f58853e7dc859e093866293d5f5afc5db6eff5f0c369e2afd62be4",
+    "retrievalMillis" : 6.048628,
+    "frameworkOverheadMillis" : 0.31114899999738554,
+    "endToEndMillis" : 22456.620021,
+    "generation" : {
+      "text" : "The Birch function is f(x) = x^3 - 2x. Its derivative is f'(x) = 3x^2 - 2. [math-birch-derivative]",
+      "inputTokens" : 172,
+      "cacheReadInputTokens" : 0,
+      "cacheWriteInputTokens" : 0,
+      "outputTokens" : 768,
+      "ttftMillis" : 307.53889,
+      "totalMillis" : 22450.260244,
+      "prefillTokensPerSecond" : 614.5161578449062,
+      "loadMillis" : 1575.584381,
+      "peakRssBytes" : 0,
+      "cpuMillis" : 0.0,
+      "estimatedApiCostUsd" : null
+    },
+    "grounding" : {
+      "rawText" : " the Birch function is f(x) = x^3 - 2x and its derivative is f'(x) = 3x^2 - 2. So, I need to answer the question based solely on this provided context.\n\nThe question is: \"What is the Birch function, and what is its derivative?\" So, I should directly quote or state what's given.\n\nAccording to the rules, if the context doesn't contain the answer, I should reply with \"INSUFFICIENT_CONTEXT\". But here, the context does contain the answer, so I can answer.\n\nI need to answer in one short sentence. Also, I have to copy each supporting source ID exactly from the square brackets at the start of its CONTEXT entry, and put those citations at the end of the sentence. Only IDs present in CONTEXT are valid citations; do not invent or substitute one.\n\nLooking at the context: It's a single entry: [math-birch-derivative] Birch polynomial. The text is: \"The Birch function is f(x) = x^3 - 2x. Its derivative is f'(x) = 3x^2 - 2.\"\n\nThere is no ID in square brackets except \"math-birch-derivative\", but the context entry is already given with that. The supporting source ID is the one in the square brackets for each piece of information.\n\nIn the context, the first piece is \"The Birch function is f(x) = x^3 - 2x.\" and the second is \"Its derivative is f'(x) = 3x^2 - 2.\" But the context entry itself has a title \"math-birch-derivative\", which might be the source.\n\nI think the supporting source ID is the entire context string, but the instruction says \"each supporting source ID exactly from the square brackets at the start of its CONTEXT entry\". In this case, the CONTEXT entry is \"math-birch-derivative\", but that's just a string. The text follows.\n\nPerhaps I need to consider that the context provided is a single entry with that title, and the text is the content.\n\nBut the instruction says \"each supporting source ID\", implying there might be multiple, but here there's only one entry.\n\nThe square brackets contain the source ID for the context entry. For the first fact, it's given as part of the text.\n\nI think the supporting source ID is the entire context string, but the instruction says \"copy each supporting source ID exactly from the square brackets at the start of its CONTEXT entry\".\n\nLet me read carefully: \"Copy each supporting source ID exactly from the square brackets at the start of its CONTEXT entry, and put those citations at the end of the sentence.\"\n\nIn this context, there is one CONTEXT entry: \"math-birch-derivative\". The square brackets start with \"math-birch-derivative\", so that is the source ID.\n\nBut the source ID is just a string, and the text provides the information.\n\nThe question is asking for the Birch function and its derivative, which are given in the context.\n\nSo, for the answer, I need to state both.\n\nThe context says: \"The Birch function is f(x) = x^3 - 2x. Its derivative is f'(x) = 3x^2 - 2.\"\n\nSo, I can say: The Birch function is f(x) = x^3 - 2x and its derivative is f'(x) = 3x^2 - 2.\n\nNow, for citations: since the context is this single entry, and the source ID is \"math-birch-derivative\", I think that is the supporting source ID.\n\nThe instruction says \"each supporting source ID\", but there's",
+      "text" : "The Birch function is f(x) = x^3 - 2x. Its derivative is f'(x) = 3x^2 - 2. [math-birch-derivative]",
+      "decision" : "EXTRACTIVE_FALLBACK"
+    },
+    "rawEvaluation" : {
+      "retrievalRecall" : 1.0,
+      "reciprocalRank" : 1.0,
+      "factCoverage" : 1.0,
+      "citationRecall" : 1.0,
+      "citationPrecision" : 1.0,
+      "abstained" : false,
+      "correct" : true
+    },
+    "evaluation" : {
+      "retrievalRecall" : 1.0,
+      "reciprocalRank" : 1.0,
+      "factCoverage" : 1.0,
+      "citationRecall" : 1.0,
+      "citationPrecision" : 1.0,
+      "abstained" : false,
+      "correct" : true
+    }
+  }, {
+    "framework" : "plain-java",
+    "backend" : "ollama",
+    "model" : "qual-vibethinker_1_5b_q4_k_m",
+    "caseId" : "cobalt-red-probability",
+    "retrieved" : [ {
+      "document" : {
+        "id" : "math-cobalt-probability",
+        "title" : "Cobalt urn",
+        "text" : "The Cobalt urn contains three red and two blue balls. A single uniform draw has red probability 3/5."
+      },
+      "score" : 8.382398,
+      "rank" : 1
+    } ],
+    "promptSha256" : "a2dddc02addfe5a9142ce93970b961a4098ea665ee8d3868a0078922770c098b",
+    "retrievalMillis" : 1.981807,
+    "frameworkOverheadMillis" : 0.3009089999977732,
+    "endToEndMillis" : 22432.186626,
+    "generation" : {
+      "text" : "The Cobalt urn contains three red and two blue balls. A single uniform draw has red probability 3/5. [math-cobalt-probability]",
+      "inputTokens" : 172,
+      "cacheReadInputTokens" : 0,
+      "cacheWriteInputTokens" : 0,
+      "outputTokens" : 768,
+      "ttftMillis" : 296.620529,
+      "totalMillis" : 22429.90391,
+      "prefillTokensPerSecond" : 600.9069502574816,
+      "loadMillis" : 1575.584381,
+      "peakRssBytes" : 0,
+      "cpuMillis" : 0.0,
+      "estimatedApiCostUsd" : null
+    },
+    "grounding" : {
+      "rawText" : "3/5 is the red probability. The urn has red and blue balls, and from the description, it says \"three red and two blue balls.\" But the question asks for the number of red and blue balls, and the red probability.\n\nThe context directly says \"three red and two blue balls,\" so the numbers are given. The probability is given as 3/5. I should confirm that with the formula.\n\nThe probability of drawing a red ball is number of red balls divided by total balls. So, 3 red, 2 blue, total 5 balls. So red probability is 3/5, which matches what's given.\n\nThe question is asking for both the counts and the probability. But the answer should be in one short sentence, and I need to include the source context.\n\nThe context is given as [math-cobalt-probability], and the specific line is \"A single uniform draw has red probability 3/5.\" and earlier \"The Cobalt urn contains three red and two blue balls.\"\n\nI need to combine this information.\n\nThe answer should state: there are 3 red balls, 2 blue balls, and the red probability is 3/5.\n\nBut the question says \"how many red and blue balls are in the Cobalt urn, and what is the red probability?\" So I need to answer both parts.\n\nAlso, I must use the context exactly. The context says \"three red and two blue balls,\" so I should use that.\n\nNow, for the answer format: I need to write a sentence that includes this information, and at the end, I should copy the source ID for the citation. But the citation is for the entries in the context.\n\nLooking back at the rules: \"Copy each supporting source ID exactly from the square brackets at the start of its CONTEXT entry, and put those citations at the end of the sentence.\"\n\nBut in this case, the context has multiple entries. For the numbers, it's directly stated, not from an ID. Let me read the context again.\n\nThe context is: [math-cobalt-probability] Cobalt urn The Cobalt urn contains three red and two blue balls. A single uniform draw has red probability 3/5.\n\nIt seems like there might be multiple pieces of information. But the question is straightforward: it gives the numbers in the context.\n\nPerhaps the context is a single entry or multiple? The way it's written, it might be one entry, but with two sentences.\n\nThe rules say: \"if the context does not contain the answer, reply insufficiency.\" But here the answer is in the context.\n\nSpecifically, for the numbers, it's directly in the text. For the probability, it's also given.\n\nBut I need to answer in one short sentence. So I should combine them.\n\nAlso, the citation part: I need to use the source ID. The context has an ID: [math-cobalt-probability]. But is that for the whole context or for each part?\n\nThe rules say: \"copy each supporting source ID exactly from the square brackets at the start of its CONTEXT entry.\"\n\nBut in this case, the information about the numbers is not from an ID; it's directly in the text. The probability is also in the text.\n\nPerhaps the context is meant to be a single entry with multiple sentences, and the ID applies to the whole context.\n\nBut the rules mention \"each supporting source ID\", so maybe there are multiple entries with different IDs.\n\nLooking at the context provided: it starts with \"[math-cobalt-probability] Cobalt urn\" which might be the title or an entry, then \"The Cobalt urn contains three red and two blue balls.\" which could be another entry, and \"A single uniform",
+      "text" : "The Cobalt urn contains three red and two blue balls. A single uniform draw has red probability 3/5. [math-cobalt-probability]",
+      "decision" : "EXTRACTIVE_FALLBACK"
+    },
+    "rawEvaluation" : {
+      "retrievalRecall" : 1.0,
+      "reciprocalRank" : 1.0,
+      "factCoverage" : 1.0,
+      "citationRecall" : 1.0,
+      "citationPrecision" : 1.0,
+      "abstained" : false,
+      "correct" : true
+    },
+    "evaluation" : {
+      "retrievalRecall" : 1.0,
+      "reciprocalRank" : 1.0,
+      "factCoverage" : 1.0,
+      "citationRecall" : 1.0,
+      "citationPrecision" : 1.0,
+      "abstained" : false,
+      "correct" : true
+    }
+  }, {
+    "framework" : "plain-java",
+    "backend" : "ollama",
+    "model" : "qual-vibethinker_1_5b_q4_k_m",
+    "caseId" : "delta-sixth-term",
+    "retrieved" : [ {
+      "document" : {
+        "id" : "math-delta-sequence",
+        "title" : "Delta sequence",
+        "text" : "The Delta arithmetic sequence starts at 7 and has common difference 4. Its sixth term is 27."
+      },
+      "score" : 6.3672924,
+      "rank" : 1
+    } ],
+    "promptSha256" : "5be300a124718e9fc68e47787b9a5f3a1fff279388aed5e0f16483ba101a8e51",
+    "retrievalMillis" : 1.981976,
+    "frameworkOverheadMillis" : 0.276439000001119,
+    "endToEndMillis" : 22420.58011,
+    "generation" : {
+      "text" : "The Delta arithmetic sequence starts at 7 and has common difference 4. Its sixth term is 27. [math-delta-sequence]",
+      "inputTokens" : 165,
+      "cacheReadInputTokens" : 0,
+      "cacheWriteInputTokens" : 0,
+      "outputTokens" : 768,
+      "ttftMillis" : 283.275616,
+      "totalMillis" : 22418.321695,
+      "prefillTokensPerSecond" : 619.2508190999471,
+      "loadMillis" : 1575.584381,
+      "peakRssBytes" : 0,
+      "cpuMillis" : 0.0,
+      "estimatedApiCostUsd" : null
+    },
+    "grounding" : {
+      "rawText" : " the Delta arithmetic sequence starts at 7 and has a common difference of 4. Also, it says its sixth term is 27. The question is asking for the start and common difference, and the sixth term. So, I need to extract those values.\n\nThe start is 7, common difference is 4, and sixth term is 27. Since the context directly provides all this information, I can answer based on that.\n\nThe instructions say to answer in one short sentence. Also, I need to copy the source ID exactly as it appears in the context. Looking at the context, the entry is \"math-delta-sequence\", so that should be the source ID.\n\nThe context is given with square brackets, but the source ID is probably \"math-delta-sequence\". I need to make sure I use that exactly.\n\nThe question is: \"What are the start and common difference of Delta, and what is its sixth term?\" So, I need to list start, common difference, and sixth term.\n\nFrom context: starts at 7, common difference 4, sixth term 27.\n\nSo, my answer should be something like: The start is 7, the common difference is 4, and the sixth term is 27. But I need to use the source ID.\n\nAlso, the context says \"Its sixth term is 27.\" which is given, so no need for calculation.\n\nNow, for the answer format: I need one short sentence. So, perhaps: \"The Delta sequence starts at 7 with a common difference of 4, and its sixth term is 27. [math-delta-sequence]\"\n\nBut the instruction says: \"Copy each supporting source ID exactly from the square brackets at the start of its CONTEXT entry, and put those citations at the end of the sentence.\"\n\nIn this case, there's only one entry, so one ID.\n\nAlso, the context is: \"The Delta arithmetic sequence starts at 7 and has common difference 4. Its sixth term is 27.\"\n\nBut the source ID is \"math-delta-sequence\". I think I need to include that at the end.\n\nThe answer should be a sentence, and then the ID at the end.\n\nBut the sentence should contain the information. Let me see.\n\nPerhaps: \"The start is 7, common difference is 4, and sixth term is 27. [math-delta-sequence]\"\n\nBut I need to make it a sentence. \"The start, common difference, and sixth term of the Delta sequence are 7, 4, and 27, respectively. [math-delta-sequence]\"\n\nThat might work.\n\nSince the context says \"starts at 7\" and \"has common difference 4\", and \"sixth term is 27\", I can just state those values.\n\nBut the question asks for \"the start and common difference\" and \"its sixth term\", so I need to specify.\n\nI think my first thought is fine.\n\nNow, about the source ID: in the context, the entry is \"math-delta-sequence\", and it's in square brackets. So, the source ID is \"math-delta-sequence\".\n\nI need to use that exactly.\n\nAlso, the instructions say: \"Only IDs present in CONTEXT are valid citations; do not invent or substitute one.\"\n\nSo, I must use the exact string from the square brackets.\n\nIn the context provided, it's \"math-delta-sequence\".\n\nNow, for the answer, I need to put the answer in one short sentence, and then the ID at the end.\n\nThe answer should be: the start is 7, common difference is 4, sixth term is 27, and then the ID",
+      "text" : "The Delta arithmetic sequence starts at 7 and has common difference 4. Its sixth term is 27. [math-delta-sequence]",
+      "decision" : "EXTRACTIVE_FALLBACK"
+    },
+    "rawEvaluation" : {
+      "retrievalRecall" : 1.0,
+      "reciprocalRank" : 1.0,
+      "factCoverage" : 1.0,
+      "citationRecall" : 1.0,
+      "citationPrecision" : 1.0,
+      "abstained" : false,
+      "correct" : true
+    },
+    "evaluation" : {
+      "retrievalRecall" : 1.0,
+      "reciprocalRank" : 1.0,
+      "factCoverage" : 1.0,
+      "citationRecall" : 1.0,
+      "citationPrecision" : 1.0,
+      "abstained" : false,
+      "correct" : true
+    }
+  }, {
+    "framework" : "plain-java",
+    "backend" : "ollama",
+    "model" : "qual-vibethinker_1_5b_q4_k_m",
+    "caseId" : "ember-modulo",
+    "retrieved" : [ {
+      "document" : {
+        "id" : "math-ember-modulus",
+        "title" : "Ember congruence",
+        "text" : "The Ember calculation reduces 38 modulo 7. The remainder is 3."
+      },
+      "score" : 4.442518,
+      "rank" : 1
+    } ],
+    "promptSha256" : "8a17e74f9c44cc1cefe0b9f84092c41d227665f5275128b2ca9675e33cd625c2",
+    "retrievalMillis" : 1.530778,
+    "frameworkOverheadMillis" : 0.28583900000012363,
+    "endToEndMillis" : 22337.750822,
+    "generation" : {
+      "text" : "The Ember calculation reduces 38 modulo 7. The remainder is 3. [math-ember-modulus]",
+      "inputTokens" : 158,
+      "cacheReadInputTokens" : 0,
+      "cacheWriteInputTokens" : 0,
+      "outputTokens" : 768,
+      "ttftMillis" : 232.109159,
+      "totalMillis" : 22335.934205,
+      "prefillTokensPerSecond" : 741.9756275094508,
+      "loadMillis" : 1575.584381,
+      "peakRssBytes" : 0,
+      "cpuMillis" : 0.0,
+      "estimatedApiCostUsd" : null
+    },
+    "grounding" : {
+      "rawText" : "38 is reduced modulo 7 and the remainder is 3. The question asks which Ember value is reduced and what the remainder is. From the context, the value being reduced is 38, and the remainder is 3 when divided by 7. I need to make sure I'm following all the rules.\n\nThe rules say that if the context doesn't contain the answer, I should reply with \"INSUFFICIENT_CONTEXT\". But here, the context does provide the answer. I need to answer in one short sentence and include the source context ID at the end.\n\nThe context is given as: \"[math-ember-modulus] Ember calculation. The Ember calculation reduces 38 modulo 7. The remainder is 3.\" The source ID is probably the one provided in the context, but in the context, it's written with [math-ember-modulus]. I think I need to use the ID that refers to this context. Looking back, the context starts with \"[math-ember-modulus] Ember calculation\", so the ID might be something like \"math-ember-modulus_ember_calculation\" or similar. But in the context provided, it's not explicitly given an ID. The user said \"CONTEXT\" and then the text, but no explicit ID. I need to infer the ID from the context.\n\nThe context says: \"[math-ember-modulus] Ember calculation\". So the ID should be something like \"math-ember-modulus_ember_calculation\". But to be precise, I should use the exact string that identifies the context. Since the context is given as a block of text, I can assume that the source ID is the one that starts with the modulus part. However, in the answer, I need to copy each supporting source ID exactly from the square brackets at the start of its CONTEXT entry. But in this case, there's only one entry, and it's the entire context.\n\nLooking at the context entries: It's a single line, but it has multiple parts. The first part is the title, and then the description. But in the user's message, it's written as:\n\n\"[math-ember-modulus] Ember calculation\nThe Ember calculation reduces 38 modulo 7. The remainder is 3.\"\n\nSo, I think this is considered one context entry. The source ID would be the one that starts with \"[math-ember-modulus]\" or perhaps the whole thing. But the rule says: \"copy each supporting source ID exactly from the square brackets at the start of its CONTEXT entry\". So for this entry, the ID is \"[math-ember-modulus] Ember calculation\". But that might not be standard. Perhaps the ID is just the part after the first bracket.\n\nI recall that in some systems, the context is given with an ID, but here it's not explicitly stated. The user might expect me to use the ID as per the first part. Let me see the context again.\n\nThe context is: [math-ember-modulus] Ember calculation. The Ember calculation reduces 38 modulo 7. The remainder is 3.\n\nSo, the first line is likely the source ID. So the source ID is \"math-ember-modulus_ember_calculation\" or something? But in the text, it's written with brackets. To be safe, I should use the exact string that is the context. The rule says \"copy each supporting source ID exactly from the square brackets at the start of its CONTEXT entry\". So the ID is the one that starts with square brackets. So for this entry, the ID is \"[math-ember-modulus] Ember calculation\".\n\nBut that seems a bit odd. Perhaps the ID is just \"math-ember-modulus\". I think I need to look for the part that is",
+      "text" : "The Ember calculation reduces 38 modulo 7. The remainder is 3. [math-ember-modulus]",
+      "decision" : "EXTRACTIVE_FALLBACK"
+    },
+    "rawEvaluation" : {
+      "retrievalRecall" : 1.0,
+      "reciprocalRank" : 1.0,
+      "factCoverage" : 1.0,
+      "citationRecall" : 1.0,
+      "citationPrecision" : 1.0,
+      "abstained" : false,
+      "correct" : true
+    },
+    "evaluation" : {
+      "retrievalRecall" : 1.0,
+      "reciprocalRank" : 1.0,
+      "factCoverage" : 1.0,
+      "citationRecall" : 1.0,
+      "citationPrecision" : 1.0,
+      "abstained" : false,
+      "correct" : true
+    }
+  }, {
+    "framework" : "plain-java",
+    "backend" : "ollama",
+    "model" : "qual-vibethinker_1_5b_q4_k_m",
+    "caseId" : "fjord-integral",
+    "retrieved" : [ {
+      "document" : {
+        "id" : "math-fjord-integral",
+        "title" : "Fjord integral",
+        "text" : "The definite integral of 2x from 0 to 3 is 9. The antiderivative used is x^2."
+      },
+      "score" : 5.5134096,
+      "rank" : 1
+    } ],
+    "promptSha256" : "259ffb7a84b093a4233454dfbd14afefa196498fc5fbfe8b65f3768a1039e814",
+    "retrievalMillis" : 1.728171,
+    "frameworkOverheadMillis" : 0.2945189999991271,
+    "endToEndMillis" : 22374.152885,
+    "generation" : {
+      "text" : "The definite integral of 2x from 0 to 3 is 9. The antiderivative used is x^2. [math-fjord-integral]",
+      "inputTokens" : 172,
+      "cacheReadInputTokens" : 0,
+      "cacheWriteInputTokens" : 0,
+      "outputTokens" : 768,
+      "ttftMillis" : 295.787416,
+      "totalMillis" : 22372.130195,
+      "prefillTokensPerSecond" : 607.0423976762982,
+      "loadMillis" : 1575.584381,
+      "peakRssBytes" : 0,
+      "cpuMillis" : 0.0,
+      "estimatedApiCostUsd" : null
+    },
+    "grounding" : {
+      "rawText" : "2x from 0 to 3 has an integral of 9, and mentions that the antiderivative used is x squared. I need to answer based only on this context without adding anything else.\n\nThe question is: \"What is the Fjord definite integral, and which antiderivative is used?\" But in the context, it's talking about the integral of 2x, not Fjord. That might be a typo or something. Let me read the context again.\n\nCONTEXT\n[math-fjord-integral] Fjord integral\nThe definite integral of 2x from 0 to 3 is 9. The antiderivative used is x^2.\n\nHmm, the title says \"math-fjord-integral\" and the context is about Fjord integral? Maybe \"Fjord\" here is a placeholder or something. But the question uses \"Fjord\" in the query. Perhaps I should assume that the integral of 2x is what's being referred to as the Fjord integral for this question.\n\nThe question asks for two things: the definite integral and the antiderivative used. From the context, the definite integral is 9, and the antiderivative is x^2.\n\nI need to form a one-sentence answer. Also, I have to copy the source ID exactly, which in this case is [math-fjord-integral], and put the citation at the end.\n\nThe rules say: \"Copy each supporting source ID exactly from the square brackets at the start of its CONTEXT entry, and put those citations at the end of the sentence.\"\n\nSo the context has one entry with [math-fjord-integral], and within it, it mentions the integral and antiderivative.\n\nThe question is about Fjord, but the context says \"Fjord integral\". Probably, \"Fjord\" in the question is a reference to that. I think I should proceed with the information given.\n\nSo, the answer should be: The definite integral of 2x from 0 to 3 is 9, and the antiderivative used is x^2. This is from the context of the math-fjord-integral.\n\nBut the context doesn't specify that it's for Fjord; it just says Fjord integral. Maybe I need to use the exact wording.\n\nThe context says: \"The definite integral of 2x from 0 to 3 is 9. The antiderivative used is x^2.\"\n\nSo for the answer, I can say: The definite integral is 9 and the antiderivative is x^2, as stated in the context.\n\nBut I need to include the source ID. The source ID is [math-fjord-integral], since that's the entry.\n\nThe rules say to put the citations at the end of the sentence. So perhaps I need to write a sentence that includes the answer and then the citation.\n\nFor example: \"The definite integral of 2x from 0 to 3 is 9, and the antiderivative used is x^2. See [math-fjord-integral].\"\n\nBut the citation is at the end, so after the sentence.\n\nAlso, the answer should be in one short sentence. So combining both parts into one sentence.\n\nLet me try: \"The definite integral of 2x from 0 to 3 is 9 and the antiderivative used is x^2, as per the context.\"\n\nBut then I need to add the citation. The rules say to copy the ID exactly. So perhaps: \"The definite integral of 2x from 0 to 3 is 9 and the antiderivative used is x^2. The source is [",
+      "text" : "The definite integral of 2x from 0 to 3 is 9. The antiderivative used is x^2. [math-fjord-integral]",
+      "decision" : "EXTRACTIVE_FALLBACK"
+    },
+    "rawEvaluation" : {
+      "retrievalRecall" : 1.0,
+      "reciprocalRank" : 1.0,
+      "factCoverage" : 1.0,
+      "citationRecall" : 1.0,
+      "citationPrecision" : 1.0,
+      "abstained" : false,
+      "correct" : true
+    },
+    "evaluation" : {
+      "retrievalRecall" : 1.0,
+      "reciprocalRank" : 1.0,
+      "factCoverage" : 1.0,
+      "citationRecall" : 1.0,
+      "citationPrecision" : 1.0,
+      "abstained" : false,
+      "correct" : true
+    }
+  }, {
+    "framework" : "plain-java",
+    "backend" : "ollama",
+    "model" : "qual-vibethinker_1_5b_q4_k_m",
+    "caseId" : "grove-hypotenuse",
+    "retrieved" : [ {
+      "document" : {
+        "id" : "math-grove-geometry",
+        "title" : "Grove triangle",
+        "text" : "The Grove right triangle has legs 5 and 12. Its hypotenuse is 13."
+      },
+      "score" : 5.9253526,
+      "rank" : 1
+    } ],
+    "promptSha256" : "4131518b9dddd949b8aa38e66d3d403ece1a357e4d6767da6f9272e9b0fcea9c",
+    "retrievalMillis" : 5.204903,
+    "frameworkOverheadMillis" : 1.29181299999982,
+    "endToEndMillis" : 22330.673434,
+    "generation" : {
+      "text" : "The Grove right triangle has legs 5 and 12. Its hypotenuse is 13. [math-grove-geometry]",
+      "inputTokens" : 162,
+      "cacheReadInputTokens" : 0,
+      "cacheWriteInputTokens" : 0,
+      "outputTokens" : 768,
+      "ttftMillis" : 262.19701,
+      "totalMillis" : 22324.176718,
+      "prefillTokensPerSecond" : 632.3777403035413,
+      "loadMillis" : 1575.584381,
+      "peakRssBytes" : 0,
+      "cpuMillis" : 0.0,
+      "estimatedApiCostUsd" : null
+    },
+    "grounding" : {
+      "rawText" : " the Grove right triangle has legs 5 and 12. Its hypotenuse is 13. So, the legs are 5 and 12, and the hypotenuse is 13. The question asks for the legs and the hypotenuse, which are all mentioned.\n\nAccording to the rules, if the context doesn't have the answer, I should say INSUFFICIENT_CONTEXT. But here, it's all there. I need to answer in one short sentence. Also, I have to copy the source ID exactly as it appears, which is [math-grove-geometry], and put the citation at the end.\n\nThe question is: \"What are the Grove triangle legs, and what is its hypotenuse?\" So, the answer should include both legs and the hypotenuse.\n\nI can say: The legs are 5 and 12, and the hypotenuse is 13, as given in [math-grove-geometry].\n\nNow, for the citation, since the context entry is [math-grove-geometry] and it's in square brackets, I think I need to use the ID as it is. The instruction says to copy each supporting source ID exactly from the square brackets at the start of its CONTEXT entry. So, the ID is [math-grove-geometry].\n\nIn the answer, I should have the sentence and then the citation at the end. Like: The legs are 5 and 12, and the hypotenuse is 13, from [math-grove-geometry].\n\nBut the citation should be exactly the ID. Let me see the instruction: \"copy each supporting source ID exactly from the square brackets at the start of its CONTEXT entry, and put those citations at the end of the sentence.\"\n\nSo, in the sentence, I should have the text, and then after the sentence, I put the ID. But the sentence is one short sentence, and then the citation.\n\nThe instruction says: \"answer in one short sentence. Copy each supporting source ID exactly from the square brackets... and put those citations at the end of the sentence.\"\n\nIt says \"at the end of the sentence\", so the citation should be part of the answer, but the sentence itself is one short sentence. Perhaps I need to include the citation within the sentence or after?\n\nLet me read carefully: \"answer in one short sentence. Copy each supporting source ID... and put those citations at the end of the sentence.\"\n\nI think the sentence should be the content, and then the citation is additional. But it says \"at the end of the sentence\", so maybe the entire answer is the sentence with the citation at the end.\n\nFor example: \"The legs are 5 and 12, and the hypotenuse is 13, from [math-grove-geometry].\"\n\nBut is that one sentence? \"The legs are 5 and 12, and the hypotenuse is 13, from [math-grove-geometry].\" – that's one sentence with a comma, but the citation is part of it.\n\nPerhaps the citation should be outside, but the instruction says \"at the end of the sentence\".\n\nLooking at the rules again: \"Only IDs present in CONTEXT are valid citations; do not invent or substitute one.\"\n\nAnd the context is given with the ID.\n\nAlso, the question is straightforward, and the answer is directly in the context.\n\nIs there any reason to think that the legs and hypotenuse are not provided? No, it says legs 5 and 12, hypotenuse 13.\n\nThe question says \"what are the Grove triangle legs, and what is its hypotenuse?\" so I need to state both.\n\nIn the context: \"The Grove right triangle has",
+      "text" : "The Grove right triangle has legs 5 and 12. Its hypotenuse is 13. [math-grove-geometry]",
+      "decision" : "EXTRACTIVE_FALLBACK"
+    },
+    "rawEvaluation" : {
+      "retrievalRecall" : 1.0,
+      "reciprocalRank" : 1.0,
+      "factCoverage" : 1.0,
+      "citationRecall" : 1.0,
+      "citationPrecision" : 1.0,
+      "abstained" : false,
+      "correct" : true
+    },
+    "evaluation" : {
+      "retrievalRecall" : 1.0,
+      "reciprocalRank" : 1.0,
+      "factCoverage" : 1.0,
+      "citationRecall" : 1.0,
+      "citationPrecision" : 1.0,
+      "abstained" : false,
+      "correct" : true
+    }
+  }, {
+    "framework" : "plain-java",
+    "backend" : "ollama",
+    "model" : "qual-vibethinker_1_5b_q4_k_m",
+    "caseId" : "harbor-mean-median",
+    "retrieved" : [ {
+      "document" : {
+        "id" : "math-harbor-statistics",
+        "title" : "Harbor sample",
+        "text" : "The Harbor sample is [2, 4, 4, 10]. Its arithmetic mean is 5 and its median is 4."
+      },
+      "score" : 4.7371473,
+      "rank" : 1
+    } ],
+    "promptSha256" : "7ce4ff8bb1bb9e7bd41de64a198a45f6b5e886a4487f7be741e7ca612dfa60eb",
+    "retrievalMillis" : 1.757133,
+    "frameworkOverheadMillis" : 0.2865979999987758,
+    "endToEndMillis" : 22423.077446,
+    "generation" : {
+      "text" : "The Harbor sample is [2, 4, 4, 10]. Its arithmetic mean is 5 and its median is 4. [math-harbor-statistics]",
+      "inputTokens" : 167,
+      "cacheReadInputTokens" : 0,
+      "cacheWriteInputTokens" : 0,
+      "outputTokens" : 768,
+      "ttftMillis" : 264.590726,
+      "totalMillis" : 22421.033715,
+      "prefillTokensPerSecond" : 648.7528043942428,
+      "loadMillis" : 1575.584381,
+      "peakRssBytes" : 0,
+      "cpuMillis" : 0.0,
+      "estimatedApiCostUsd" : null
+    },
+    "grounding" : {
+      "rawText" : " the Harbor sample is [2, 4, 4, 10]. Then it says \"Its arithmetic mean is 5 and its median is 4.\" So, the mean is 5 and the median is 4.\n\nThe question is asking for the mean and median of the Harbor sample, and the context directly provides both values. I need to answer based only on this context without adding anything else.\n\nThe instructions say to answer in one short sentence. Also, I have to copy each supporting source ID exactly from the square brackets. In this case, the context entry is labeled with [math-harbor-statistics], but the specific data is given as [2, 4, 4, 10], and then the properties are stated.\n\nLooking back at the context:\n\n[math-harbor-statistics] Harbor sample\n\nThe Harbor sample is [2, 4, 4, 10]. Its arithmetic mean is 5 and its median is 4.\n\nSo, the data points are given as a list: [2, 4, 4, 10]. The mean is 5 and median is 4. Since the context directly states this, I can use that.\n\nFor the answer, I need to form a sentence that includes the mean and median. The question is straightforward, so I can just state it.\n\nThe instructions say: \"If the context does not contain the answer, reply exactly INSUFFICIENT_CONTEXT.\" But here, it does contain the answer.\n\nNow, about the citation: I need to copy each supporting source ID. The only source ID here is [math-harbor-statistics], but the data points are given in the context. The properties like mean and median are part of the description.\n\nThe context entry is \"The Harbor sample is [2, 4, 4, 10]. Its arithmetic mean is 5 and its median is 4.\" So, the source ID is for the entire context, I think. But the specific numbers are in the square brackets, so perhaps I don't need an ID for them.\n\nThe instruction says: \"Copy each supporting source ID exactly from the square brackets at the start of its CONTEXT entry.\" The start of the context entry is [math-harbor-statistics], but the data is in [2, 4, 4, 10], which is part of the context.\n\nI think the supporting source ID is [math-harbor-statistics], and the data is provided there. But for the mean and median, since they are directly stated, I can use the context without an ID for them, but the instruction says to copy the source ID if used.\n\nPerhaps I should not add any extra IDs. The context has one entry with [math-harbor-statistics], and within it, the data and properties are given.\n\nThe answer should be a sentence that references the context. For example: \"The mean is 5 and the median is 4, as given in the context [math-harbor-statistics].\"\n\nBut the context says \"Its arithmetic mean is 5 and its median is 4.\" where \"Its\" refers to the Harbor sample, which is defined as [2,4,4,10].\n\nTo be precise, I can say: \"The mean of the Harbor sample is 5 and the median is 4, based on the data [2,4,4,10] and the properties stated in the context [math-harbor-statistics].\"\n\nBut that might be redundant. The context already includes the data and the properties.\n\nThe instruction says: \"Only IDs present in CONTEXT are valid citations; do not invent or substitute one.\" So, I should only use the IDs that",
+      "text" : "The Harbor sample is [2, 4, 4, 10]. Its arithmetic mean is 5 and its median is 4. [math-harbor-statistics]",
+      "decision" : "EXTRACTIVE_FALLBACK"
+    },
+    "rawEvaluation" : {
+      "retrievalRecall" : 1.0,
+      "reciprocalRank" : 1.0,
+      "factCoverage" : 1.0,
+      "citationRecall" : 1.0,
+      "citationPrecision" : 1.0,
+      "abstained" : false,
+      "correct" : true
+    },
+    "evaluation" : {
+      "retrievalRecall" : 1.0,
+      "reciprocalRank" : 1.0,
+      "factCoverage" : 1.0,
+      "citationRecall" : 1.0,
+      "citationPrecision" : 1.0,
+      "abstained" : false,
+      "correct" : true
+    }
+  }, {
+    "framework" : "plain-java",
+    "backend" : "ollama",
+    "model" : "qual-vibethinker_1_5b_q4_k_m",
+    "caseId" : "unsupported-maple-limit",
+    "retrieved" : [ {
+      "document" : {
+        "id" : "math-birch-derivative",
+        "title" : "Birch polynomial",
+        "text" : "The Birch function is f(x) = x^3 - 2x. Its derivative is f'(x) = 3x^2 - 2."
+      },
+      "score" : 1.2100124,
+      "rank" : 1
+    } ],
+    "promptSha256" : "ac41e60f8b44ec304bd6e652b21ae5c45731ad7836a85b38667691e1d0dc28d1",
+    "retrievalMillis" : 3.923851,
+    "frameworkOverheadMillis" : 0.2928090000023076,
+    "endToEndMillis" : 22404.633104,
+    "generation" : {
+      "text" : "INSUFFICIENT_CONTEXT",
+      "inputTokens" : 172,
+      "cacheReadInputTokens" : 0,
+      "cacheWriteInputTokens" : 0,
+      "outputTokens" : 768,
+      "ttftMillis" : 292.404697,
+      "totalMillis" : 22400.416444,
+      "prefillTokensPerSecond" : 604.2423433361204,
+      "loadMillis" : 1575.584381,
+      "peakRssBytes" : 0,
+      "cpuMillis" : 0.0,
+      "estimatedApiCostUsd" : null
+    },
+    "grounding" : {
+      "rawText" : "1/(x^3 - 2x) is the Birch function, and its derivative is 3x^2 - 2. But the question is about the limit of the Maple rational function at infinity. The context mentions the Birch polynomial, which is x^3 - 2x, but the question refers to \"the Maple rational function at infinity.\" I need to see if there's a connection.\n\nThe context says \"The Birch function is f(x) = x^3 - 2x. Its derivative is f'(x) = 3x^2 - 2.\" But the question is about a rational function in Maple. Maybe the Birch function is a rational function? Or perhaps there's a mistake in my reading.\n\nLet me read the context again: \"The Birch polynomial is x^3 - 2x. Its derivative is f'(x) = 3x^2 - 2.\" But the question mentions \"Birch function\" and then \"Maple rational function.\" The function given is f(x) = x^3 - 2x, which is a polynomial, not a rational function. A rational function would be a ratio of polynomials.\n\nPerhaps in the context of Birch functions, it's defined differently, but here it's given as a polynomial. The derivative is given, but that might not be directly relevant.\n\nThe question is: \"What is the limit of the Maple rational function at infinity?\" But the context doesn't mention Maple at all. It just talks about the Birch polynomial. There's no mention of Maple, rational functions, or limits.\n\nLooking back at the context: \"The Birch function is f(x) = x^3 - 2x. Its derivative is f'(x) = 3x^2 - 2.\" And then it says \"CONTEXT\" with that text. But the question is about a rational function in Maple. Maybe the rational function is related to the derivative or something, but that seems unlikely.\n\nPerhaps there's a typo or misinterpretation. The context has [math-birch-derivative], which might indicate that it's about the derivative part. But still, the function given is a polynomial.\n\nThe question says \"the Maple rational function.\" I recall that in some contexts, the Birch function might be defined as a rational function, but here it's explicitly given as f(x) = x^3 - 2x, which is a polynomial.\n\nMaybe in the Maple code or something, but the context doesn't provide any Maple code. The user said \"You answer questions using only the supplied context,\" so I have to rely on what's given.\n\nThe context does not contain any information about a rational function, limits, or Maple. It only describes the Birch polynomial and its derivative.\n\nTherefore, since the context does not contain the answer to the question, I should reply with \"INSUFFICIENT_CONTEXT.\"\n\nBut let me double-check. The question is: \"What is the limit of the Maple rational function at infinity?\" And the context is all about the Birch polynomial x^3 - 2x. No mention of rational functions, limits, or Maple.\n\nPerhaps \"Birch function\" is a rational function, but in this context, it's defined as a polynomial. Polynomials are a type of rational function where the denominator is 1, but typically when we say \"rational function,\" we mean a ratio of polynomials with non-constant denominator.\n\nMoreover, the question specifies \"rational function,\" which might imply it's not a polynomial. But even if I consider the polynomial, the limit at infinity of x^3 - 2x as x approaches infinity is infinity, since the highest degree term dominates. But the context doesn't state that, and the question mentions",
+      "text" : "INSUFFICIENT_CONTEXT",
+      "decision" : "RETRIEVAL_ABSTENTION"
+    },
+    "rawEvaluation" : {
+      "retrievalRecall" : 1.0,
+      "reciprocalRank" : 1.0,
+      "factCoverage" : 1.0,
+      "citationRecall" : 0.0,
+      "citationPrecision" : 0.0,
+      "abstained" : false,
+      "correct" : false
+    },
+    "evaluation" : {
+      "retrievalRecall" : 1.0,
+      "reciprocalRank" : 1.0,
+      "factCoverage" : 1.0,
+      "citationRecall" : 1.0,
+      "citationPrecision" : 1.0,
+      "abstained" : true,
+      "correct" : true
+    }
+  }, {
+    "framework" : "plain-java",
+    "backend" : "ollama",
+    "model" : "qual-vibethinker_1_5b_q4_k_m",
+    "caseId" : "amber-determinant-trace",
+    "retrieved" : [ {
+      "document" : {
+        "id" : "math-amber-matrix",
+        "title" : "Amber matrix",
+        "text" : "For the Amber matrix [[3, 1], [2, 4]], the determinant is 10. The trace is 7."
+      },
+      "score" : 4.5716124,
+      "rank" : 1
+    } ],
+    "promptSha256" : "94ac11ea22290b00c3ea37a61079df83179bffe61b84ce3ff189611b91ba68c2",
+    "retrievalMillis" : 1.377318,
+    "frameworkOverheadMillis" : 0.34866300000430783,
+    "endToEndMillis" : 22461.220066,
+    "generation" : {
+      "text" : "For the Amber matrix [[3, 1], [2, 4]], the determinant is 10. The trace is 7. [math-amber-matrix]",
+      "inputTokens" : 165,
+      "cacheReadInputTokens" : 0,
+      "cacheWriteInputTokens" : 0,
+      "outputTokens" : 768,
+      "ttftMillis" : 247.443407,
+      "totalMillis" : 22459.494085,
+      "prefillTokensPerSecond" : 687.0276684779215,
+      "loadMillis" : 1575.584381,
+      "peakRssBytes" : 0,
+      "cpuMillis" : 0.0,
+      "estimatedApiCostUsd" : null
+    },
+    "grounding" : {
+      "rawText" : " for the Amber matrix [[3, 1], [2, 4]], the determinant is 10 and the trace is 7. The question is asking for the determinant and trace, which are directly provided in the context. I need to answer based only on this context without adding any external information.\n\nThe rules say to answer in one short sentence and copy the source ID exactly. The source ID here is \"math-amber-matrix\". I should include that citation at the end.\n\nSo, the answer should be: The determinant is 10 and the trace is 7, as stated in the context for the math-amber-matrix.\n\nBut I need to format it as one sentence. Also, I must not use prior knowledge; for example, I know that the determinant of a 2x2 matrix [[a,b],[c,d]] is ad-bc, but the context already gives the values, so I shouldn't recalculate.\n\nThe context is about the Amber matrix specifically, so I should refer to it by that name.\n\nThe instruction says to copy the source ID exactly at the end. So, in my sentence, I should say \"as given in the context for the math-amber-matrix\" or something similar, and then include the citation.\n\nLooking back at the rules: \"Copy each supporting source ID exactly from the square brackets at the start of its CONTEXT entry, and put those citations at the end of the sentence.\"\n\nThe context entry is \"math-amber-matrix\", so I need to use that.\n\nAlso, the question is straightforward since the answer is in the context.\n\nLet me try to construct the answer.\n\nThe question is: \"What are the determinant and trace of the Amber matrix?\"\n\nBased on context: \"For the Amber matrix [[3, 1], [2, 4]], the determinant is 10. The trace is 7.\"\n\nSo, I can combine that into one sentence: \"The determinant is 10 and the trace is 7 for the Amber matrix, as stated in the context for the math-amber-matrix.\"\n\nThen, at the end, I need to put the source ID. But the source ID is \"math-amber-matrix\", and in the context it's already mentioned.\n\nThe rule says to put the citations at the end of the sentence. So perhaps after the statement, I add \"source: math-amber-matrix\".\n\nBut the context entry has the entire description. Maybe I should just reference it by the name.\n\nI think the intended way is to say something like: \"The determinant is 10 and the trace is 7, as per the math-amber-matrix context.\"\n\nBut to be precise, since the context has the matrix, but the question doesn't ask for the matrix, just the determinant and trace, so I don't need to mention the entries.\n\nThe context says \"for the Amber matrix [[3,1],[2,4]]\", but the question is about the Amber matrix in general, so I can refer to it as the Amber matrix.\n\nTo be safe, I can say \"the Amber matrix as described in the context\".\n\nBut the context is about that specific matrix, but it's called the Amber matrix, so it should be fine.\n\nPerhaps the source ID is \"math-amber-matrix\", which might be a label.\n\nLooking at the context: \"[math-amber-matrix] Amber matrix\" – so the context entry has the label \"math-amber-matrix\" and then the description.\n\nSo, in my answer, I can use that.\n\nI think the simplest way is to say: \"The determinant is 10 and the trace is 7, as given in the math-amber-matrix context.\"\n\nThen, at the end,",
+      "text" : "For the Amber matrix [[3, 1], [2, 4]], the determinant is 10. The trace is 7. [math-amber-matrix]",
+      "decision" : "EXTRACTIVE_FALLBACK"
+    },
+    "rawEvaluation" : {
+      "retrievalRecall" : 1.0,
+      "reciprocalRank" : 1.0,
+      "factCoverage" : 1.0,
+      "citationRecall" : 1.0,
+      "citationPrecision" : 1.0,
+      "abstained" : false,
+      "correct" : true
+    },
+    "evaluation" : {
+      "retrievalRecall" : 1.0,
+      "reciprocalRank" : 1.0,
+      "factCoverage" : 1.0,
+      "citationRecall" : 1.0,
+      "citationPrecision" : 1.0,
+      "abstained" : false,
+      "correct" : true
+    }
+  }, {
+    "framework" : "plain-java",
+    "backend" : "ollama",
+    "model" : "qual-vibethinker_1_5b_q4_k_m",
+    "caseId" : "birch-function-derivative",
+    "retrieved" : [ {
+      "document" : {
+        "id" : "math-birch-derivative",
+        "title" : "Birch polynomial",
+        "text" : "The Birch function is f(x) = x^3 - 2x. Its derivative is f'(x) = 3x^2 - 2."
+      },
+      "score" : 4.115302,
+      "rank" : 1
+    } ],
+    "promptSha256" : "665160bf13f58853e7dc859e093866293d5f5afc5db6eff5f0c369e2afd62be4",
+    "retrievalMillis" : 4.703672,
+    "frameworkOverheadMillis" : 0.860805000000255,
+    "endToEndMillis" : 22474.464171,
+    "generation" : {
+      "text" : "The Birch function is f(x) = x^3 - 2x. Its derivative is f'(x) = 3x^2 - 2. [math-birch-derivative]",
+      "inputTokens" : 172,
+      "cacheReadInputTokens" : 0,
+      "cacheWriteInputTokens" : 0,
+      "outputTokens" : 768,
+      "ttftMillis" : 334.904555,
+      "totalMillis" : 22468.899694,
+      "prefillTokensPerSecond" : 527.3744113029827,
+      "loadMillis" : 1575.584381,
+      "peakRssBytes" : 0,
+      "cpuMillis" : 0.0,
+      "estimatedApiCostUsd" : null
+    },
+    "grounding" : {
+      "rawText" : " the Birch function is f(x) = x^3 - 2x and its derivative is f'(x) = 3x^2 - 2. So, I need to answer the question based solely on this provided context.\n\nThe question is: \"What is the Birch function, and what is its derivative?\" So, I should directly quote or state what's given.\n\nAccording to the rules, if the context doesn't contain the answer, I should reply with \"INSUFFICIENT_CONTEXT\". But here, the context does contain the answer, so I can answer.\n\nI need to answer in one short sentence. Also, I have to copy each supporting source ID exactly from the square brackets at the start of its CONTEXT entry, and put those citations at the end of the sentence. Only IDs present in CONTEXT are valid citations; do not invent or substitute one.\n\nLooking at the context: It's a single entry: [math-birch-derivative] Birch polynomial. The text is: \"The Birch function is f(x) = x^3 - 2x. Its derivative is f'(x) = 3x^2 - 2.\"\n\nThere is no ID in square brackets except \"math-birch-derivative\", but the context entry is already given with that. The supporting source ID is the one in the square brackets for each piece of information.\n\nIn the context, the first piece is \"The Birch function is f(x) = x^3 - 2x.\" and the second is \"Its derivative is f'(x) = 3x^2 - 2.\" But the context entry itself has a title \"math-birch-derivative\", which might be the source.\n\nI think the supporting source ID is the entire context string, but the instruction says \"each supporting source ID exactly from the square brackets at the start of its CONTEXT entry\". In this case, the CONTEXT entry is \"math-birch-derivative\", but that's just a string. The text follows.\n\nPerhaps I need to consider that the context provided is a single entry with that title, and the text is the content.\n\nBut the instruction says \"each supporting source ID\", implying there might be multiple, but here there's only one entry.\n\nThe square brackets contain the source ID for the context entry. For the first fact, it's given as part of the text.\n\nI think the supporting source ID is the entire context string, but the instruction says \"copy each supporting source ID exactly from the square brackets at the start of its CONTEXT entry\".\n\nLet me read carefully: \"Copy each supporting source ID exactly from the square brackets at the start of its CONTEXT entry, and put those citations at the end of the sentence.\"\n\nIn this context, there is one CONTEXT entry: \"math-birch-derivative\". The square brackets start with \"math-birch-derivative\", so that is the source ID.\n\nBut the source ID is just a string, and the text provides the information.\n\nThe question is asking for the Birch function and its derivative, which are given in the context.\n\nSo, for the answer, I need to state both.\n\nThe context says: \"The Birch function is f(x) = x^3 - 2x. Its derivative is f'(x) = 3x^2 - 2.\"\n\nSo, I can say: The Birch function is f(x) = x^3 - 2x and its derivative is f'(x) = 3x^2 - 2.\n\nNow, for citations: since the context is this single entry, and the source ID is \"math-birch-derivative\", I think that is the supporting source ID.\n\nThe instruction says \"each supporting source ID\", but there's",
+      "text" : "The Birch function is f(x) = x^3 - 2x. Its derivative is f'(x) = 3x^2 - 2. [math-birch-derivative]",
+      "decision" : "EXTRACTIVE_FALLBACK"
+    },
+    "rawEvaluation" : {
+      "retrievalRecall" : 1.0,
+      "reciprocalRank" : 1.0,
+      "factCoverage" : 1.0,
+      "citationRecall" : 1.0,
+      "citationPrecision" : 1.0,
+      "abstained" : false,
+      "correct" : true
+    },
+    "evaluation" : {
+      "retrievalRecall" : 1.0,
+      "reciprocalRank" : 1.0,
+      "factCoverage" : 1.0,
+      "citationRecall" : 1.0,
+      "citationPrecision" : 1.0,
+      "abstained" : false,
+      "correct" : true
+    }
+  }, {
+    "framework" : "plain-java",
+    "backend" : "ollama",
+    "model" : "qual-vibethinker_1_5b_q4_k_m",
+    "caseId" : "cobalt-red-probability",
+    "retrieved" : [ {
+      "document" : {
+        "id" : "math-cobalt-probability",
+        "title" : "Cobalt urn",
+        "text" : "The Cobalt urn contains three red and two blue balls. A single uniform draw has red probability 3/5."
+      },
+      "score" : 8.382398,
+      "rank" : 1
+    } ],
+    "promptSha256" : "a2dddc02addfe5a9142ce93970b961a4098ea665ee8d3868a0078922770c098b",
+    "retrievalMillis" : 9.609606,
+    "frameworkOverheadMillis" : 0.29067899999790825,
+    "endToEndMillis" : 22391.971019,
+    "generation" : {
+      "text" : "The Cobalt urn contains three red and two blue balls. A single uniform draw has red probability 3/5. [math-cobalt-probability]",
+      "inputTokens" : 172,
+      "cacheReadInputTokens" : 0,
+      "cacheWriteInputTokens" : 0,
+      "outputTokens" : 768,
+      "ttftMillis" : 290.722026,
+      "totalMillis" : 22382.070734,
+      "prefillTokensPerSecond" : 602.5003765627354,
+      "loadMillis" : 1575.584381,
+      "peakRssBytes" : 0,
+      "cpuMillis" : 0.0,
+      "estimatedApiCostUsd" : null
+    },
+    "grounding" : {
+      "rawText" : "3/5 is the red probability. The urn has red and blue balls, and from the description, it says \"three red and two blue balls.\" But the question asks for the number of red and blue balls, and the red probability.\n\nThe context directly says \"three red and two blue balls,\" so the numbers are given. The probability is given as 3/5. I should confirm that with the formula.\n\nThe probability of drawing a red ball is number of red balls divided by total balls. So, 3 red, 2 blue, total 5 balls. So red probability is 3/5, which matches what's given.\n\nThe question is asking for both the counts and the probability. But the answer should be in one short sentence, and I need to include the source context.\n\nThe context is given as [math-cobalt-probability], and the specific line is \"A single uniform draw has red probability 3/5.\" and earlier \"The Cobalt urn contains three red and two blue balls.\"\n\nI need to combine this information.\n\nThe answer should state: there are 3 red balls, 2 blue balls, and the red probability is 3/5.\n\nBut the question says \"how many red and blue balls are in the Cobalt urn, and what is the red probability?\" So I need to answer both parts.\n\nAlso, I must use the context exactly. The context says \"three red and two blue balls,\" so I should use that.\n\nNow, for the answer format: I need to write a sentence that includes this information, and at the end, I should copy the source ID for the citation. But the citation is for the entries in the context.\n\nLooking back at the rules: \"Copy each supporting source ID exactly from the square brackets at the start of its CONTEXT entry, and put those citations at the end of the sentence.\"\n\nBut in this case, the context has multiple entries. For the numbers, it's directly stated, not from an ID. Let me read the context again.\n\nThe context is: [math-cobalt-probability] Cobalt urn The Cobalt urn contains three red and two blue balls. A single uniform draw has red probability 3/5.\n\nIt seems like there might be multiple pieces of information. But the question is straightforward: it gives the numbers in the context.\n\nPerhaps the context is a single entry or multiple? The way it's written, it might be one entry, but with two sentences.\n\nThe rules say: \"if the context does not contain the answer, reply insufficiency.\" But here the answer is in the context.\n\nSpecifically, for the numbers, it's directly in the text. For the probability, it's also given.\n\nBut I need to answer in one short sentence. So I should combine them.\n\nAlso, the citation part: I need to use the source ID. The context has an ID: [math-cobalt-probability]. But is that for the whole context or for each part?\n\nThe rules say: \"copy each supporting source ID exactly from the square brackets at the start of its CONTEXT entry.\"\n\nBut in this case, the information about the numbers is not from an ID; it's directly in the text. The probability is also in the text.\n\nPerhaps the context is meant to be a single entry with multiple sentences, and the ID applies to the whole context.\n\nBut the rules mention \"each supporting source ID\", so maybe there are multiple entries with different IDs.\n\nLooking at the context provided: it starts with \"[math-cobalt-probability] Cobalt urn\" which might be the title or an entry, then \"The Cobalt urn contains three red and two blue balls.\" which could be another entry, and \"A single uniform",
+      "text" : "The Cobalt urn contains three red and two blue balls. A single uniform draw has red probability 3/5. [math-cobalt-probability]",
+      "decision" : "EXTRACTIVE_FALLBACK"
+    },
+    "rawEvaluation" : {
+      "retrievalRecall" : 1.0,
+      "reciprocalRank" : 1.0,
+      "factCoverage" : 1.0,
+      "citationRecall" : 1.0,
+      "citationPrecision" : 1.0,
+      "abstained" : false,
+      "correct" : true
+    },
+    "evaluation" : {
+      "retrievalRecall" : 1.0,
+      "reciprocalRank" : 1.0,
+      "factCoverage" : 1.0,
+      "citationRecall" : 1.0,
+      "citationPrecision" : 1.0,
+      "abstained" : false,
+      "correct" : true
+    }
+  }, {
+    "framework" : "plain-java",
+    "backend" : "ollama",
+    "model" : "qual-vibethinker_1_5b_q4_k_m",
+    "caseId" : "delta-sixth-term",
+    "retrieved" : [ {
+      "document" : {
+        "id" : "math-delta-sequence",
+        "title" : "Delta sequence",
+        "text" : "The Delta arithmetic sequence starts at 7 and has common difference 4. Its sixth term is 27."
+      },
+      "score" : 6.3672924,
+      "rank" : 1
+    } ],
+    "promptSha256" : "5be300a124718e9fc68e47787b9a5f3a1fff279388aed5e0f16483ba101a8e51",
+    "retrievalMillis" : 6.142083,
+    "frameworkOverheadMillis" : 0.29199900000094203,
+    "endToEndMillis" : 22320.734021,
+    "generation" : {
+      "text" : "The Delta arithmetic sequence starts at 7 and has common difference 4. Its sixth term is 27. [math-delta-sequence]",
+      "inputTokens" : 165,
+      "cacheReadInputTokens" : 0,
+      "cacheWriteInputTokens" : 0,
+      "outputTokens" : 768,
+      "ttftMillis" : 278.081643,
+      "totalMillis" : 22314.299939,
+      "prefillTokensPerSecond" : 613.1891409777579,
+      "loadMillis" : 1575.584381,
+      "peakRssBytes" : 0,
+      "cpuMillis" : 0.0,
+      "estimatedApiCostUsd" : null
+    },
+    "grounding" : {
+      "rawText" : " the Delta arithmetic sequence starts at 7 and has a common difference of 4. Also, it says its sixth term is 27. The question is asking for the start and common difference, and the sixth term. So, I need to extract those values.\n\nThe start is 7, common difference is 4, and sixth term is 27. Since the context directly provides all this information, I can answer based on that.\n\nThe instructions say to answer in one short sentence. Also, I need to copy the source ID exactly as it appears in the context. Looking at the context, the entry is \"math-delta-sequence\", so that should be the source ID.\n\nThe context is given with square brackets, but the source ID is probably \"math-delta-sequence\". I need to make sure I use that exactly.\n\nThe question is: \"What are the start and common difference of Delta, and what is its sixth term?\" So, I need to list start, common difference, and sixth term.\n\nFrom context: starts at 7, common difference 4, sixth term 27.\n\nSo, my answer should be something like: The start is 7, the common difference is 4, and the sixth term is 27. But I need to use the source ID.\n\nAlso, the context says \"Its sixth term is 27.\" which is given, so no need for calculation.\n\nNow, for the answer format: I need one short sentence. So, perhaps: \"The Delta sequence starts at 7 with a common difference of 4, and its sixth term is 27. [math-delta-sequence]\"\n\nBut the instruction says: \"Copy each supporting source ID exactly from the square brackets at the start of its CONTEXT entry, and put those citations at the end of the sentence.\"\n\nIn this case, there's only one entry, so one ID.\n\nAlso, the context is: \"The Delta arithmetic sequence starts at 7 and has common difference 4. Its sixth term is 27.\"\n\nBut the source ID is \"math-delta-sequence\". I think I need to include that at the end.\n\nThe answer should be a sentence, and then the ID at the end.\n\nBut the sentence should contain the information. Let me see.\n\nPerhaps: \"The start is 7, common difference is 4, and sixth term is 27. [math-delta-sequence]\"\n\nBut I need to make it a sentence. \"The start, common difference, and sixth term of the Delta sequence are 7, 4, and 27, respectively. [math-delta-sequence]\"\n\nThat might work.\n\nSince the context says \"starts at 7\" and \"has common difference 4\", and \"sixth term is 27\", I can just state those values.\n\nBut the question asks for \"the start and common difference\" and \"its sixth term\", so I need to specify.\n\nI think my first thought is fine.\n\nNow, about the source ID: in the context, the entry is \"math-delta-sequence\", and it's in square brackets. So, the source ID is \"math-delta-sequence\".\n\nI need to use that exactly.\n\nAlso, the instructions say: \"Only IDs present in CONTEXT are valid citations; do not invent or substitute one.\"\n\nSo, I must use the exact string from the square brackets.\n\nIn the context provided, it's \"math-delta-sequence\".\n\nNow, for the answer, I need to put the answer in one short sentence, and then the ID at the end.\n\nThe answer should be: the start is 7, common difference is 4, sixth term is 27, and then the ID",
+      "text" : "The Delta arithmetic sequence starts at 7 and has common difference 4. Its sixth term is 27. [math-delta-sequence]",
+      "decision" : "EXTRACTIVE_FALLBACK"
+    },
+    "rawEvaluation" : {
+      "retrievalRecall" : 1.0,
+      "reciprocalRank" : 1.0,
+      "factCoverage" : 1.0,
+      "citationRecall" : 1.0,
+      "citationPrecision" : 1.0,
+      "abstained" : false,
+      "correct" : true
+    },
+    "evaluation" : {
+      "retrievalRecall" : 1.0,
+      "reciprocalRank" : 1.0,
+      "factCoverage" : 1.0,
+      "citationRecall" : 1.0,
+      "citationPrecision" : 1.0,
+      "abstained" : false,
+      "correct" : true
+    }
+  }, {
+    "framework" : "plain-java",
+    "backend" : "ollama",
+    "model" : "qual-vibethinker_1_5b_q4_k_m",
+    "caseId" : "ember-modulo",
+    "retrieved" : [ {
+      "document" : {
+        "id" : "math-ember-modulus",
+        "title" : "Ember congruence",
+        "text" : "The Ember calculation reduces 38 modulo 7. The remainder is 3."
+      },
+      "score" : 4.442518,
+      "rank" : 1
+    } ],
+    "promptSha256" : "8a17e74f9c44cc1cefe0b9f84092c41d227665f5275128b2ca9675e33cd625c2",
+    "retrievalMillis" : 2.010549,
+    "frameworkOverheadMillis" : 0.2535959999986517,
+    "endToEndMillis" : 22296.289079,
+    "generation" : {
+      "text" : "The Ember calculation reduces 38 modulo 7. The remainder is 3. [math-ember-modulus]",
+      "inputTokens" : 158,
+      "cacheReadInputTokens" : 0,
+      "cacheWriteInputTokens" : 0,
+      "outputTokens" : 768,
+      "ttftMillis" : 218.678906,
+      "totalMillis" : 22294.024934,
+      "prefillTokensPerSecond" : 751.8474986795084,
+      "loadMillis" : 1575.584381,
+      "peakRssBytes" : 0,
+      "cpuMillis" : 0.0,
+      "estimatedApiCostUsd" : null
+    },
+    "grounding" : {
+      "rawText" : "38 is reduced modulo 7 and the remainder is 3. The question asks which Ember value is reduced and what the remainder is. From the context, the value being reduced is 38, and the remainder is 3 when divided by 7. I need to make sure I'm following all the rules.\n\nThe rules say that if the context doesn't contain the answer, I should reply with \"INSUFFICIENT_CONTEXT\". But here, the context does provide the answer. I need to answer in one short sentence and include the source context ID at the end.\n\nThe context is given as: \"[math-ember-modulus] Ember calculation. The Ember calculation reduces 38 modulo 7. The remainder is 3.\" The source ID is probably the one provided in the context, but in the context, it's written with [math-ember-modulus]. I think I need to use the ID that refers to this context. Looking back, the context starts with \"[math-ember-modulus] Ember calculation\", so the ID might be something like \"math-ember-modulus_ember_calculation\" or similar. But in the context provided, it's not explicitly given an ID. The user said \"CONTEXT\" and then the text, but no explicit ID. I need to infer the ID from the context.\n\nThe context says: \"[math-ember-modulus] Ember calculation\". So the ID should be something like \"math-ember-modulus_ember_calculation\". But to be precise, I should use the exact string that identifies the context. Since the context is given as a block of text, I can assume that the source ID is the one that starts with the modulus part. However, in the answer, I need to copy each supporting source ID exactly from the square brackets at the start of its CONTEXT entry. But in this case, there's only one entry, and it's the entire context.\n\nLooking at the context entries: It's a single line, but it has multiple parts. The first part is the title, and then the description. But in the user's message, it's written as:\n\n\"[math-ember-modulus] Ember calculation\nThe Ember calculation reduces 38 modulo 7. The remainder is 3.\"\n\nSo, I think this is considered one context entry. The source ID would be the one that starts with \"[math-ember-modulus]\" or perhaps the whole thing. But the rule says: \"copy each supporting source ID exactly from the square brackets at the start of its CONTEXT entry\". So for this entry, the ID is \"[math-ember-modulus] Ember calculation\". But that might not be standard. Perhaps the ID is just the part after the first bracket.\n\nI recall that in some systems, the context is given with an ID, but here it's not explicitly stated. The user might expect me to use the ID as per the first part. Let me see the context again.\n\nThe context is: [math-ember-modulus] Ember calculation. The Ember calculation reduces 38 modulo 7. The remainder is 3.\n\nSo, the first line is likely the source ID. So the source ID is \"math-ember-modulus_ember_calculation\" or something? But in the text, it's written with brackets. To be safe, I should use the exact string that is the context. The rule says \"copy each supporting source ID exactly from the square brackets at the start of its CONTEXT entry\". So the ID is the one that starts with square brackets. So for this entry, the ID is \"[math-ember-modulus] Ember calculation\".\n\nBut that seems a bit odd. Perhaps the ID is just \"math-ember-modulus\". I think I need to look for the part that is",
+      "text" : "The Ember calculation reduces 38 modulo 7. The remainder is 3. [math-ember-modulus]",
+      "decision" : "EXTRACTIVE_FALLBACK"
+    },
+    "rawEvaluation" : {
+      "retrievalRecall" : 1.0,
+      "reciprocalRank" : 1.0,
+      "factCoverage" : 1.0,
+      "citationRecall" : 1.0,
+      "citationPrecision" : 1.0,
+      "abstained" : false,
+      "correct" : true
+    },
+    "evaluation" : {
+      "retrievalRecall" : 1.0,
+      "reciprocalRank" : 1.0,
+      "factCoverage" : 1.0,
+      "citationRecall" : 1.0,
+      "citationPrecision" : 1.0,
+      "abstained" : false,
+      "correct" : true
+    }
+  }, {
+    "framework" : "plain-java",
+    "backend" : "ollama",
+    "model" : "qual-vibethinker_1_5b_q4_k_m",
+    "caseId" : "fjord-integral",
+    "retrieved" : [ {
+      "document" : {
+        "id" : "math-fjord-integral",
+        "title" : "Fjord integral",
+        "text" : "The definite integral of 2x from 0 to 3 is 9. The antiderivative used is x^2."
+      },
+      "score" : 5.5134096,
+      "rank" : 1
+    } ],
+    "promptSha256" : "259ffb7a84b093a4233454dfbd14afefa196498fc5fbfe8b65f3768a1039e814",
+    "retrievalMillis" : 1.238419,
+    "frameworkOverheadMillis" : 0.2756870000011986,
+    "endToEndMillis" : 22340.737269,
+    "generation" : {
+      "text" : "The definite integral of 2x from 0 to 3 is 9. The antiderivative used is x^2. [math-fjord-integral]",
+      "inputTokens" : 172,
+      "cacheReadInputTokens" : 0,
+      "cacheWriteInputTokens" : 0,
+      "outputTokens" : 768,
+      "ttftMillis" : 307.011377,
+      "totalMillis" : 22339.223163,
+      "prefillTokensPerSecond" : 586.080586080586,
+      "loadMillis" : 1575.584381,
+      "peakRssBytes" : 0,
+      "cpuMillis" : 0.0,
+      "estimatedApiCostUsd" : null
+    },
+    "grounding" : {
+      "rawText" : "2x from 0 to 3 has an integral of 9, and mentions that the antiderivative used is x squared. I need to answer based only on this context without adding anything else.\n\nThe question is: \"What is the Fjord definite integral, and which antiderivative is used?\" But in the context, it's talking about the integral of 2x, not Fjord. That might be a typo or something. Let me read the context again.\n\nCONTEXT\n[math-fjord-integral] Fjord integral\nThe definite integral of 2x from 0 to 3 is 9. The antiderivative used is x^2.\n\nHmm, the title says \"math-fjord-integral\" and the context is about Fjord integral? Maybe \"Fjord\" here is a placeholder or something. But the question uses \"Fjord\" in the query. Perhaps I should assume that the integral of 2x is what's being referred to as the Fjord integral for this question.\n\nThe question asks for two things: the definite integral and the antiderivative used. From the context, the definite integral is 9, and the antiderivative is x^2.\n\nI need to form a one-sentence answer. Also, I have to copy the source ID exactly, which in this case is [math-fjord-integral], and put the citation at the end.\n\nThe rules say: \"Copy each supporting source ID exactly from the square brackets at the start of its CONTEXT entry, and put those citations at the end of the sentence.\"\n\nSo the context has one entry with [math-fjord-integral], and within it, it mentions the integral and antiderivative.\n\nThe question is about Fjord, but the context says \"Fjord integral\". Probably, \"Fjord\" in the question is a reference to that. I think I should proceed with the information given.\n\nSo, the answer should be: The definite integral of 2x from 0 to 3 is 9, and the antiderivative used is x^2. This is from the context of the math-fjord-integral.\n\nBut the context doesn't specify that it's for Fjord; it just says Fjord integral. Maybe I need to use the exact wording.\n\nThe context says: \"The definite integral of 2x from 0 to 3 is 9. The antiderivative used is x^2.\"\n\nSo for the answer, I can say: The definite integral is 9 and the antiderivative is x^2, as stated in the context.\n\nBut I need to include the source ID. The source ID is [math-fjord-integral], since that's the entry.\n\nThe rules say to put the citations at the end of the sentence. So perhaps I need to write a sentence that includes the answer and then the citation.\n\nFor example: \"The definite integral of 2x from 0 to 3 is 9, and the antiderivative used is x^2. See [math-fjord-integral].\"\n\nBut the citation is at the end, so after the sentence.\n\nAlso, the answer should be in one short sentence. So combining both parts into one sentence.\n\nLet me try: \"The definite integral of 2x from 0 to 3 is 9 and the antiderivative used is x^2, as per the context.\"\n\nBut then I need to add the citation. The rules say to copy the ID exactly. So perhaps: \"The definite integral of 2x from 0 to 3 is 9 and the antiderivative used is x^2. The source is [",
+      "text" : "The definite integral of 2x from 0 to 3 is 9. The antiderivative used is x^2. [math-fjord-integral]",
+      "decision" : "EXTRACTIVE_FALLBACK"
+    },
+    "rawEvaluation" : {
+      "retrievalRecall" : 1.0,
+      "reciprocalRank" : 1.0,
+      "factCoverage" : 1.0,
+      "citationRecall" : 1.0,
+      "citationPrecision" : 1.0,
+      "abstained" : false,
+      "correct" : true
+    },
+    "evaluation" : {
+      "retrievalRecall" : 1.0,
+      "reciprocalRank" : 1.0,
+      "factCoverage" : 1.0,
+      "citationRecall" : 1.0,
+      "citationPrecision" : 1.0,
+      "abstained" : false,
+      "correct" : true
+    }
+  }, {
+    "framework" : "plain-java",
+    "backend" : "ollama",
+    "model" : "qual-vibethinker_1_5b_q4_k_m",
+    "caseId" : "grove-hypotenuse",
+    "retrieved" : [ {
+      "document" : {
+        "id" : "math-grove-geometry",
+        "title" : "Grove triangle",
+        "text" : "The Grove right triangle has legs 5 and 12. Its hypotenuse is 13."
+      },
+      "score" : 5.9253526,
+      "rank" : 1
+    } ],
+    "promptSha256" : "4131518b9dddd949b8aa38e66d3d403ece1a357e4d6767da6f9272e9b0fcea9c",
+    "retrievalMillis" : 1.227459,
+    "frameworkOverheadMillis" : 0.2975880000012694,
+    "endToEndMillis" : 22264.6801,
+    "generation" : {
+      "text" : "The Grove right triangle has legs 5 and 12. Its hypotenuse is 13. [math-grove-geometry]",
+      "inputTokens" : 162,
+      "cacheReadInputTokens" : 0,
+      "cacheWriteInputTokens" : 0,
+      "outputTokens" : 768,
+      "ttftMillis" : 232.559529,
+      "totalMillis" : 22263.155053,
+      "prefillTokensPerSecond" : 717.8687275112112,
+      "loadMillis" : 1575.584381,
+      "peakRssBytes" : 0,
+      "cpuMillis" : 0.0,
+      "estimatedApiCostUsd" : null
+    },
+    "grounding" : {
+      "rawText" : " the Grove right triangle has legs 5 and 12. Its hypotenuse is 13. So, the legs are 5 and 12, and the hypotenuse is 13. The question asks for the legs and the hypotenuse, which are all mentioned.\n\nAccording to the rules, if the context doesn't have the answer, I should say INSUFFICIENT_CONTEXT. But here, it's all there. I need to answer in one short sentence. Also, I have to copy the source ID exactly as it appears, which is [math-grove-geometry], and put the citation at the end.\n\nThe question is: \"What are the Grove triangle legs, and what is its hypotenuse?\" So, the answer should include both legs and the hypotenuse.\n\nI can say: The legs are 5 and 12, and the hypotenuse is 13, as given in [math-grove-geometry].\n\nNow, for the citation, since the context entry is [math-grove-geometry] and it's in square brackets, I think I need to use the ID as it is. The instruction says to copy each supporting source ID exactly from the square brackets at the start of its CONTEXT entry. So, the ID is [math-grove-geometry].\n\nIn the answer, I should have the sentence and then the citation at the end. Like: The legs are 5 and 12, and the hypotenuse is 13, from [math-grove-geometry].\n\nBut the citation should be exactly the ID. Let me see the instruction: \"copy each supporting source ID exactly from the square brackets at the start of its CONTEXT entry, and put those citations at the end of the sentence.\"\n\nSo, in the sentence, I should have the text, and then after the sentence, I put the ID. But the sentence is one short sentence, and then the citation.\n\nThe instruction says: \"answer in one short sentence. Copy each supporting source ID exactly from the square brackets... and put those citations at the end of the sentence.\"\n\nIt says \"at the end of the sentence\", so the citation should be part of the answer, but the sentence itself is one short sentence. Perhaps I need to include the citation within the sentence or after?\n\nLet me read carefully: \"answer in one short sentence. Copy each supporting source ID... and put those citations at the end of the sentence.\"\n\nI think the sentence should be the content, and then the citation is additional. But it says \"at the end of the sentence\", so maybe the entire answer is the sentence with the citation at the end.\n\nFor example: \"The legs are 5 and 12, and the hypotenuse is 13, from [math-grove-geometry].\"\n\nBut is that one sentence? \"The legs are 5 and 12, and the hypotenuse is 13, from [math-grove-geometry].\" – that's one sentence with a comma, but the citation is part of it.\n\nPerhaps the citation should be outside, but the instruction says \"at the end of the sentence\".\n\nLooking at the rules again: \"Only IDs present in CONTEXT are valid citations; do not invent or substitute one.\"\n\nAnd the context is given with the ID.\n\nAlso, the question is straightforward, and the answer is directly in the context.\n\nIs there any reason to think that the legs and hypotenuse are not provided? No, it says legs 5 and 12, hypotenuse 13.\n\nThe question says \"what are the Grove triangle legs, and what is its hypotenuse?\" so I need to state both.\n\nIn the context: \"The Grove right triangle has",
+      "text" : "The Grove right triangle has legs 5 and 12. Its hypotenuse is 13. [math-grove-geometry]",
+      "decision" : "EXTRACTIVE_FALLBACK"
+    },
+    "rawEvaluation" : {
+      "retrievalRecall" : 1.0,
+      "reciprocalRank" : 1.0,
+      "factCoverage" : 1.0,
+      "citationRecall" : 1.0,
+      "citationPrecision" : 1.0,
+      "abstained" : false,
+      "correct" : true
+    },
+    "evaluation" : {
+      "retrievalRecall" : 1.0,
+      "reciprocalRank" : 1.0,
+      "factCoverage" : 1.0,
+      "citationRecall" : 1.0,
+      "citationPrecision" : 1.0,
+      "abstained" : false,
+      "correct" : true
+    }
+  }, {
+    "framework" : "plain-java",
+    "backend" : "ollama",
+    "model" : "qual-vibethinker_1_5b_q4_k_m",
+    "caseId" : "harbor-mean-median",
+    "retrieved" : [ {
+      "document" : {
+        "id" : "math-harbor-statistics",
+        "title" : "Harbor sample",
+        "text" : "The Harbor sample is [2, 4, 4, 10]. Its arithmetic mean is 5 and its median is 4."
+      },
+      "score" : 4.7371473,
+      "rank" : 1
+    } ],
+    "promptSha256" : "7ce4ff8bb1bb9e7bd41de64a198a45f6b5e886a4487f7be741e7ca612dfa60eb",
+    "retrievalMillis" : 1.72075,
+    "frameworkOverheadMillis" : 0.2729979999967327,
+    "endToEndMillis" : 22344.388246,
+    "generation" : {
+      "text" : "The Harbor sample is [2, 4, 4, 10]. Its arithmetic mean is 5 and its median is 4. [math-harbor-statistics]",
+      "inputTokens" : 167,
+      "cacheReadInputTokens" : 0,
+      "cacheWriteInputTokens" : 0,
+      "outputTokens" : 768,
+      "ttftMillis" : 264.618775,
+      "totalMillis" : 22342.394498,
+      "prefillTokensPerSecond" : 646.823014505103,
+      "loadMillis" : 1575.584381,
+      "peakRssBytes" : 0,
+      "cpuMillis" : 0.0,
+      "estimatedApiCostUsd" : null
+    },
+    "grounding" : {
+      "rawText" : " the Harbor sample is [2, 4, 4, 10]. Then it says \"Its arithmetic mean is 5 and its median is 4.\" So, the mean is 5 and the median is 4.\n\nThe question is asking for the mean and median of the Harbor sample, and the context directly provides both values. I need to answer based only on this context without adding anything else.\n\nThe instructions say to answer in one short sentence. Also, I have to copy each supporting source ID exactly from the square brackets. In this case, the context entry is labeled with [math-harbor-statistics], but the specific data is given as [2, 4, 4, 10], and then the properties are stated.\n\nLooking back at the context:\n\n[math-harbor-statistics] Harbor sample\n\nThe Harbor sample is [2, 4, 4, 10]. Its arithmetic mean is 5 and its median is 4.\n\nSo, the data points are given as a list: [2, 4, 4, 10]. The mean is 5 and median is 4. Since the context directly states this, I can use that.\n\nFor the answer, I need to form a sentence that includes the mean and median. The question is straightforward, so I can just state it.\n\nThe instructions say: \"If the context does not contain the answer, reply exactly INSUFFICIENT_CONTEXT.\" But here, it does contain the answer.\n\nNow, about the citation: I need to copy each supporting source ID. The only source ID here is [math-harbor-statistics], but the data points are given in the context. The properties like mean and median are part of the description.\n\nThe context entry is \"The Harbor sample is [2, 4, 4, 10]. Its arithmetic mean is 5 and its median is 4.\" So, the source ID is for the entire context, I think. But the specific numbers are in the square brackets, so perhaps I don't need an ID for them.\n\nThe instruction says: \"Copy each supporting source ID exactly from the square brackets at the start of its CONTEXT entry.\" The start of the context entry is [math-harbor-statistics], but the data is in [2, 4, 4, 10], which is part of the context.\n\nI think the supporting source ID is [math-harbor-statistics], and the data is provided there. But for the mean and median, since they are directly stated, I can use the context without an ID for them, but the instruction says to copy the source ID if used.\n\nPerhaps I should not add any extra IDs. The context has one entry with [math-harbor-statistics], and within it, the data and properties are given.\n\nThe answer should be a sentence that references the context. For example: \"The mean is 5 and the median is 4, as given in the context [math-harbor-statistics].\"\n\nBut the context says \"Its arithmetic mean is 5 and its median is 4.\" where \"Its\" refers to the Harbor sample, which is defined as [2,4,4,10].\n\nTo be precise, I can say: \"The mean of the Harbor sample is 5 and the median is 4, based on the data [2,4,4,10] and the properties stated in the context [math-harbor-statistics].\"\n\nBut that might be redundant. The context already includes the data and the properties.\n\nThe instruction says: \"Only IDs present in CONTEXT are valid citations; do not invent or substitute one.\" So, I should only use the IDs that",
+      "text" : "The Harbor sample is [2, 4, 4, 10]. Its arithmetic mean is 5 and its median is 4. [math-harbor-statistics]",
+      "decision" : "EXTRACTIVE_FALLBACK"
+    },
+    "rawEvaluation" : {
+      "retrievalRecall" : 1.0,
+      "reciprocalRank" : 1.0,
+      "factCoverage" : 1.0,
+      "citationRecall" : 1.0,
+      "citationPrecision" : 1.0,
+      "abstained" : false,
+      "correct" : true
+    },
+    "evaluation" : {
+      "retrievalRecall" : 1.0,
+      "reciprocalRank" : 1.0,
+      "factCoverage" : 1.0,
+      "citationRecall" : 1.0,
+      "citationPrecision" : 1.0,
+      "abstained" : false,
+      "correct" : true
+    }
+  }, {
+    "framework" : "plain-java",
+    "backend" : "ollama",
+    "model" : "qual-vibethinker_1_5b_q4_k_m",
+    "caseId" : "unsupported-maple-limit",
+    "retrieved" : [ {
+      "document" : {
+        "id" : "math-birch-derivative",
+        "title" : "Birch polynomial",
+        "text" : "The Birch function is f(x) = x^3 - 2x. Its derivative is f'(x) = 3x^2 - 2."
+      },
+      "score" : 1.2100124,
+      "rank" : 1
+    } ],
+    "promptSha256" : "ac41e60f8b44ec304bd6e652b21ae5c45731ad7836a85b38667691e1d0dc28d1",
+    "retrievalMillis" : 3.304402,
+    "frameworkOverheadMillis" : 0.2661770000013348,
+    "endToEndMillis" : 22365.585974,
+    "generation" : {
+      "text" : "INSUFFICIENT_CONTEXT",
+      "inputTokens" : 172,
+      "cacheReadInputTokens" : 0,
+      "cacheWriteInputTokens" : 0,
+      "outputTokens" : 768,
+      "ttftMillis" : 292.27946,
+      "totalMillis" : 22362.015395,
+      "prefillTokensPerSecond" : 608.2488445040119,
+      "loadMillis" : 1575.584381,
+      "peakRssBytes" : 0,
+      "cpuMillis" : 0.0,
+      "estimatedApiCostUsd" : null
+    },
+    "grounding" : {
+      "rawText" : "1/(x^3 - 2x) is the Birch function, and its derivative is 3x^2 - 2. But the question is about the limit of the Maple rational function at infinity. The context mentions the Birch polynomial, which is x^3 - 2x, but the question refers to \"the Maple rational function at infinity.\" I need to see if there's a connection.\n\nThe context says \"The Birch function is f(x) = x^3 - 2x. Its derivative is f'(x) = 3x^2 - 2.\" But the question is about a rational function in Maple. Maybe the Birch function is a rational function? Or perhaps there's a mistake in my reading.\n\nLet me read the context again: \"The Birch polynomial is x^3 - 2x. Its derivative is f'(x) = 3x^2 - 2.\" But the question mentions \"Birch function\" and then \"Maple rational function.\" The function given is f(x) = x^3 - 2x, which is a polynomial, not a rational function. A rational function would be a ratio of polynomials.\n\nPerhaps in the context of Birch functions, it's defined differently, but here it's given as a polynomial. The derivative is given, but that might not be directly relevant.\n\nThe question is: \"What is the limit of the Maple rational function at infinity?\" But the context doesn't mention Maple at all. It just talks about the Birch polynomial. There's no mention of Maple, rational functions, or limits.\n\nLooking back at the context: \"The Birch function is f(x) = x^3 - 2x. Its derivative is f'(x) = 3x^2 - 2.\" And then it says \"CONTEXT\" with that text. But the question is about a rational function in Maple. Maybe the rational function is related to the derivative or something, but that seems unlikely.\n\nPerhaps there's a typo or misinterpretation. The context has [math-birch-derivative], which might indicate that it's about the derivative part. But still, the function given is a polynomial.\n\nThe question says \"the Maple rational function.\" I recall that in some contexts, the Birch function might be defined as a rational function, but here it's explicitly given as f(x) = x^3 - 2x, which is a polynomial.\n\nMaybe in the Maple code or something, but the context doesn't provide any Maple code. The user said \"You answer questions using only the supplied context,\" so I have to rely on what's given.\n\nThe context does not contain any information about a rational function, limits, or Maple. It only describes the Birch polynomial and its derivative.\n\nTherefore, since the context does not contain the answer to the question, I should reply with \"INSUFFICIENT_CONTEXT.\"\n\nBut let me double-check. The question is: \"What is the limit of the Maple rational function at infinity?\" And the context is all about the Birch polynomial x^3 - 2x. No mention of rational functions, limits, or Maple.\n\nPerhaps \"Birch function\" is a rational function, but in this context, it's defined as a polynomial. Polynomials are a type of rational function where the denominator is 1, but typically when we say \"rational function,\" we mean a ratio of polynomials with non-constant denominator.\n\nMoreover, the question specifies \"rational function,\" which might imply it's not a polynomial. But even if I consider the polynomial, the limit at infinity of x^3 - 2x as x approaches infinity is infinity, since the highest degree term dominates. But the context doesn't state that, and the question mentions",
+      "text" : "INSUFFICIENT_CONTEXT",
+      "decision" : "RETRIEVAL_ABSTENTION"
+    },
+    "rawEvaluation" : {
+      "retrievalRecall" : 1.0,
+      "reciprocalRank" : 1.0,
+      "factCoverage" : 1.0,
+      "citationRecall" : 0.0,
+      "citationPrecision" : 0.0,
+      "abstained" : false,
+      "correct" : false
+    },
+    "evaluation" : {
+      "retrievalRecall" : 1.0,
+      "reciprocalRank" : 1.0,
+      "factCoverage" : 1.0,
+      "citationRecall" : 1.0,
+      "citationPrecision" : 1.0,
+      "abstained" : true,
+      "correct" : true
+    }
+  }, {
+    "framework" : "plain-java",
+    "backend" : "ollama",
+    "model" : "qual-vibethinker_1_5b_q4_k_m",
+    "caseId" : "amber-determinant-trace",
+    "retrieved" : [ {
+      "document" : {
+        "id" : "math-amber-matrix",
+        "title" : "Amber matrix",
+        "text" : "For the Amber matrix [[3, 1], [2, 4]], the determinant is 10. The trace is 7."
+      },
+      "score" : 4.5716124,
+      "rank" : 1
+    } ],
+    "promptSha256" : "94ac11ea22290b00c3ea37a61079df83179bffe61b84ce3ff189611b91ba68c2",
+    "retrievalMillis" : 1.145036,
+    "frameworkOverheadMillis" : 0.2665769999985059,
+    "endToEndMillis" : 22305.894316,
+    "generation" : {
+      "text" : "For the Amber matrix [[3, 1], [2, 4]], the determinant is 10. The trace is 7. [math-amber-matrix]",
+      "inputTokens" : 165,
+      "cacheReadInputTokens" : 0,
+      "cacheWriteInputTokens" : 0,
+      "outputTokens" : 768,
+      "ttftMillis" : 249.065148,
+      "totalMillis" : 22304.482703,
+      "prefillTokensPerSecond" : 689.660937604494,
+      "loadMillis" : 1575.584381,
+      "peakRssBytes" : 0,
+      "cpuMillis" : 0.0,
+      "estimatedApiCostUsd" : null
+    },
+    "grounding" : {
+      "rawText" : " for the Amber matrix [[3, 1], [2, 4]], the determinant is 10 and the trace is 7. The question is asking for the determinant and trace, which are directly provided in the context. I need to answer based only on this context without adding any external information.\n\nThe rules say to answer in one short sentence and copy the source ID exactly. The source ID here is \"math-amber-matrix\". I should include that citation at the end.\n\nSo, the answer should be: The determinant is 10 and the trace is 7, as stated in the context for the math-amber-matrix.\n\nBut I need to format it as one sentence. Also, I must not use prior knowledge; for example, I know that the determinant of a 2x2 matrix [[a,b],[c,d]] is ad-bc, but the context already gives the values, so I shouldn't recalculate.\n\nThe context is about the Amber matrix specifically, so I should refer to it by that name.\n\nThe instruction says to copy the source ID exactly at the end. So, in my sentence, I should say \"as given in the context for the math-amber-matrix\" or something similar, and then include the citation.\n\nLooking back at the rules: \"Copy each supporting source ID exactly from the square brackets at the start of its CONTEXT entry, and put those citations at the end of the sentence.\"\n\nThe context entry is \"math-amber-matrix\", so I need to use that.\n\nAlso, the question is straightforward since the answer is in the context.\n\nLet me try to construct the answer.\n\nThe question is: \"What are the determinant and trace of the Amber matrix?\"\n\nBased on context: \"For the Amber matrix [[3, 1], [2, 4]], the determinant is 10. The trace is 7.\"\n\nSo, I can combine that into one sentence: \"The determinant is 10 and the trace is 7 for the Amber matrix, as stated in the context for the math-amber-matrix.\"\n\nThen, at the end, I need to put the source ID. But the source ID is \"math-amber-matrix\", and in the context it's already mentioned.\n\nThe rule says to put the citations at the end of the sentence. So perhaps after the statement, I add \"source: math-amber-matrix\".\n\nBut the context entry has the entire description. Maybe I should just reference it by the name.\n\nI think the intended way is to say something like: \"The determinant is 10 and the trace is 7, as per the math-amber-matrix context.\"\n\nBut to be precise, since the context has the matrix, but the question doesn't ask for the matrix, just the determinant and trace, so I don't need to mention the entries.\n\nThe context says \"for the Amber matrix [[3,1],[2,4]]\", but the question is about the Amber matrix in general, so I can refer to it as the Amber matrix.\n\nTo be safe, I can say \"the Amber matrix as described in the context\".\n\nBut the context is about that specific matrix, but it's called the Amber matrix, so it should be fine.\n\nPerhaps the source ID is \"math-amber-matrix\", which might be a label.\n\nLooking at the context: \"[math-amber-matrix] Amber matrix\" – so the context entry has the label \"math-amber-matrix\" and then the description.\n\nSo, in my answer, I can use that.\n\nI think the simplest way is to say: \"The determinant is 10 and the trace is 7, as given in the math-amber-matrix context.\"\n\nThen, at the end,",
+      "text" : "For the Amber matrix [[3, 1], [2, 4]], the determinant is 10. The trace is 7. [math-amber-matrix]",
+      "decision" : "EXTRACTIVE_FALLBACK"
+    },
+    "rawEvaluation" : {
+      "retrievalRecall" : 1.0,
+      "reciprocalRank" : 1.0,
+      "factCoverage" : 1.0,
+      "citationRecall" : 1.0,
+      "citationPrecision" : 1.0,
+      "abstained" : false,
+      "correct" : true
+    },
+    "evaluation" : {
+      "retrievalRecall" : 1.0,
+      "reciprocalRank" : 1.0,
+      "factCoverage" : 1.0,
+      "citationRecall" : 1.0,
+      "citationPrecision" : 1.0,
+      "abstained" : false,
+      "correct" : true
+    }
+  }, {
+    "framework" : "plain-java",
+    "backend" : "ollama",
+    "model" : "qual-vibethinker_1_5b_q4_k_m",
+    "caseId" : "birch-function-derivative",
+    "retrieved" : [ {
+      "document" : {
+        "id" : "math-birch-derivative",
+        "title" : "Birch polynomial",
+        "text" : "The Birch function is f(x) = x^3 - 2x. Its derivative is f'(x) = 3x^2 - 2."
+      },
+      "score" : 4.115302,
+      "rank" : 1
+    } ],
+    "promptSha256" : "665160bf13f58853e7dc859e093866293d5f5afc5db6eff5f0c369e2afd62be4",
+    "retrievalMillis" : 1.08437,
+    "frameworkOverheadMillis" : 0.2552259999974922,
+    "endToEndMillis" : 22381.947876,
+    "generation" : {
+      "text" : "The Birch function is f(x) = x^3 - 2x. Its derivative is f'(x) = 3x^2 - 2. [math-birch-derivative]",
+      "inputTokens" : 172,
+      "cacheReadInputTokens" : 0,
+      "cacheWriteInputTokens" : 0,
+      "outputTokens" : 768,
+      "ttftMillis" : 294.229182,
+      "totalMillis" : 22380.60828,
+      "prefillTokensPerSecond" : 605.7639140801369,
+      "loadMillis" : 1575.584381,
+      "peakRssBytes" : 0,
+      "cpuMillis" : 0.0,
+      "estimatedApiCostUsd" : null
+    },
+    "grounding" : {
+      "rawText" : " the Birch function is f(x) = x^3 - 2x and its derivative is f'(x) = 3x^2 - 2. So, I need to answer the question based solely on this provided context.\n\nThe question is: \"What is the Birch function, and what is its derivative?\" So, I should directly quote or state what's given.\n\nAccording to the rules, if the context doesn't contain the answer, I should reply with \"INSUFFICIENT_CONTEXT\". But here, the context does contain the answer, so I can answer.\n\nI need to answer in one short sentence. Also, I have to copy each supporting source ID exactly from the square brackets at the start of its CONTEXT entry, and put those citations at the end of the sentence. Only IDs present in CONTEXT are valid citations; do not invent or substitute one.\n\nLooking at the context: It's a single entry: [math-birch-derivative] Birch polynomial. The text is: \"The Birch function is f(x) = x^3 - 2x. Its derivative is f'(x) = 3x^2 - 2.\"\n\nThere is no ID in square brackets except \"math-birch-derivative\", but the context entry is already given with that. The supporting source ID is the one in the square brackets for each piece of information.\n\nIn the context, the first piece is \"The Birch function is f(x) = x^3 - 2x.\" and the second is \"Its derivative is f'(x) = 3x^2 - 2.\" But the context entry itself has a title \"math-birch-derivative\", which might be the source.\n\nI think the supporting source ID is the entire context string, but the instruction says \"each supporting source ID exactly from the square brackets at the start of its CONTEXT entry\". In this case, the CONTEXT entry is \"math-birch-derivative\", but that's just a string. The text follows.\n\nPerhaps I need to consider that the context provided is a single entry with that title, and the text is the content.\n\nBut the instruction says \"each supporting source ID\", implying there might be multiple, but here there's only one entry.\n\nThe square brackets contain the source ID for the context entry. For the first fact, it's given as part of the text.\n\nI think the supporting source ID is the entire context string, but the instruction says \"copy each supporting source ID exactly from the square brackets at the start of its CONTEXT entry\".\n\nLet me read carefully: \"Copy each supporting source ID exactly from the square brackets at the start of its CONTEXT entry, and put those citations at the end of the sentence.\"\n\nIn this context, there is one CONTEXT entry: \"math-birch-derivative\". The square brackets start with \"math-birch-derivative\", so that is the source ID.\n\nBut the source ID is just a string, and the text provides the information.\n\nThe question is asking for the Birch function and its derivative, which are given in the context.\n\nSo, for the answer, I need to state both.\n\nThe context says: \"The Birch function is f(x) = x^3 - 2x. Its derivative is f'(x) = 3x^2 - 2.\"\n\nSo, I can say: The Birch function is f(x) = x^3 - 2x and its derivative is f'(x) = 3x^2 - 2.\n\nNow, for citations: since the context is this single entry, and the source ID is \"math-birch-derivative\", I think that is the supporting source ID.\n\nThe instruction says \"each supporting source ID\", but there's",
+      "text" : "The Birch function is f(x) = x^3 - 2x. Its derivative is f'(x) = 3x^2 - 2. [math-birch-derivative]",
+      "decision" : "EXTRACTIVE_FALLBACK"
+    },
+    "rawEvaluation" : {
+      "retrievalRecall" : 1.0,
+      "reciprocalRank" : 1.0,
+      "factCoverage" : 1.0,
+      "citationRecall" : 1.0,
+      "citationPrecision" : 1.0,
+      "abstained" : false,
+      "correct" : true
+    },
+    "evaluation" : {
+      "retrievalRecall" : 1.0,
+      "reciprocalRank" : 1.0,
+      "factCoverage" : 1.0,
+      "citationRecall" : 1.0,
+      "citationPrecision" : 1.0,
+      "abstained" : false,
+      "correct" : true
+    }
+  }, {
+    "framework" : "plain-java",
+    "backend" : "ollama",
+    "model" : "qual-vibethinker_1_5b_q4_k_m",
+    "caseId" : "cobalt-red-probability",
+    "retrieved" : [ {
+      "document" : {
+        "id" : "math-cobalt-probability",
+        "title" : "Cobalt urn",
+        "text" : "The Cobalt urn contains three red and two blue balls. A single uniform draw has red probability 3/5."
+      },
+      "score" : 8.382398,
+      "rank" : 1
+    } ],
+    "promptSha256" : "a2dddc02addfe5a9142ce93970b961a4098ea665ee8d3868a0078922770c098b",
+    "retrievalMillis" : 1.498126,
+    "frameworkOverheadMillis" : 0.2796569999991334,
+    "endToEndMillis" : 22369.567355,
+    "generation" : {
+      "text" : "The Cobalt urn contains three red and two blue balls. A single uniform draw has red probability 3/5. [math-cobalt-probability]",
+      "inputTokens" : 172,
+      "cacheReadInputTokens" : 0,
+      "cacheWriteInputTokens" : 0,
+      "outputTokens" : 768,
+      "ttftMillis" : 289.541778,
+      "totalMillis" : 22367.789572,
+      "prefillTokensPerSecond" : 609.6134625335819,
+      "loadMillis" : 1575.584381,
+      "peakRssBytes" : 0,
+      "cpuMillis" : 0.0,
+      "estimatedApiCostUsd" : null
+    },
+    "grounding" : {
+      "rawText" : "3/5 is the red probability. The urn has red and blue balls, and from the description, it says \"three red and two blue balls.\" But the question asks for the number of red and blue balls, and the red probability.\n\nThe context directly says \"three red and two blue balls,\" so the numbers are given. The probability is given as 3/5. I should confirm that with the formula.\n\nThe probability of drawing a red ball is number of red balls divided by total balls. So, 3 red, 2 blue, total 5 balls. So red probability is 3/5, which matches what's given.\n\nThe question is asking for both the counts and the probability. But the answer should be in one short sentence, and I need to include the source context.\n\nThe context is given as [math-cobalt-probability], and the specific line is \"A single uniform draw has red probability 3/5.\" and earlier \"The Cobalt urn contains three red and two blue balls.\"\n\nI need to combine this information.\n\nThe answer should state: there are 3 red balls, 2 blue balls, and the red probability is 3/5.\n\nBut the question says \"how many red and blue balls are in the Cobalt urn, and what is the red probability?\" So I need to answer both parts.\n\nAlso, I must use the context exactly. The context says \"three red and two blue balls,\" so I should use that.\n\nNow, for the answer format: I need to write a sentence that includes this information, and at the end, I should copy the source ID for the citation. But the citation is for the entries in the context.\n\nLooking back at the rules: \"Copy each supporting source ID exactly from the square brackets at the start of its CONTEXT entry, and put those citations at the end of the sentence.\"\n\nBut in this case, the context has multiple entries. For the numbers, it's directly stated, not from an ID. Let me read the context again.\n\nThe context is: [math-cobalt-probability] Cobalt urn The Cobalt urn contains three red and two blue balls. A single uniform draw has red probability 3/5.\n\nIt seems like there might be multiple pieces of information. But the question is straightforward: it gives the numbers in the context.\n\nPerhaps the context is a single entry or multiple? The way it's written, it might be one entry, but with two sentences.\n\nThe rules say: \"if the context does not contain the answer, reply insufficiency.\" But here the answer is in the context.\n\nSpecifically, for the numbers, it's directly in the text. For the probability, it's also given.\n\nBut I need to answer in one short sentence. So I should combine them.\n\nAlso, the citation part: I need to use the source ID. The context has an ID: [math-cobalt-probability]. But is that for the whole context or for each part?\n\nThe rules say: \"copy each supporting source ID exactly from the square brackets at the start of its CONTEXT entry.\"\n\nBut in this case, the information about the numbers is not from an ID; it's directly in the text. The probability is also in the text.\n\nPerhaps the context is meant to be a single entry with multiple sentences, and the ID applies to the whole context.\n\nBut the rules mention \"each supporting source ID\", so maybe there are multiple entries with different IDs.\n\nLooking at the context provided: it starts with \"[math-cobalt-probability] Cobalt urn\" which might be the title or an entry, then \"The Cobalt urn contains three red and two blue balls.\" which could be another entry, and \"A single uniform",
+      "text" : "The Cobalt urn contains three red and two blue balls. A single uniform draw has red probability 3/5. [math-cobalt-probability]",
+      "decision" : "EXTRACTIVE_FALLBACK"
+    },
+    "rawEvaluation" : {
+      "retrievalRecall" : 1.0,
+      "reciprocalRank" : 1.0,
+      "factCoverage" : 1.0,
+      "citationRecall" : 1.0,
+      "citationPrecision" : 1.0,
+      "abstained" : false,
+      "correct" : true
+    },
+    "evaluation" : {
+      "retrievalRecall" : 1.0,
+      "reciprocalRank" : 1.0,
+      "factCoverage" : 1.0,
+      "citationRecall" : 1.0,
+      "citationPrecision" : 1.0,
+      "abstained" : false,
+      "correct" : true
+    }
+  }, {
+    "framework" : "plain-java",
+    "backend" : "ollama",
+    "model" : "qual-vibethinker_1_5b_q4_k_m",
+    "caseId" : "delta-sixth-term",
+    "retrieved" : [ {
+      "document" : {
+        "id" : "math-delta-sequence",
+        "title" : "Delta sequence",
+        "text" : "The Delta arithmetic sequence starts at 7 and has common difference 4. Its sixth term is 27."
+      },
+      "score" : 6.3672924,
+      "rank" : 1
+    } ],
+    "promptSha256" : "5be300a124718e9fc68e47787b9a5f3a1fff279388aed5e0f16483ba101a8e51",
+    "retrievalMillis" : 2.178553,
+    "frameworkOverheadMillis" : 0.26973699999871315,
+    "endToEndMillis" : 22341.040497,
+    "generation" : {
+      "text" : "The Delta arithmetic sequence starts at 7 and has common difference 4. Its sixth term is 27. [math-delta-sequence]",
+      "inputTokens" : 165,
+      "cacheReadInputTokens" : 0,
+      "cacheWriteInputTokens" : 0,
+      "outputTokens" : 768,
+      "ttftMillis" : 244.337314,
+      "totalMillis" : 22338.592207,
+      "prefillTokensPerSecond" : 690.610625358385,
+      "loadMillis" : 1575.584381,
+      "peakRssBytes" : 0,
+      "cpuMillis" : 0.0,
+      "estimatedApiCostUsd" : null
+    },
+    "grounding" : {
+      "rawText" : " the Delta arithmetic sequence starts at 7 and has a common difference of 4. Also, it says its sixth term is 27. The question is asking for the start and common difference, and the sixth term. So, I need to extract those values.\n\nThe start is 7, common difference is 4, and sixth term is 27. Since the context directly provides all this information, I can answer based on that.\n\nThe instructions say to answer in one short sentence. Also, I need to copy the source ID exactly as it appears in the context. Looking at the context, the entry is \"math-delta-sequence\", so that should be the source ID.\n\nThe context is given with square brackets, but the source ID is probably \"math-delta-sequence\". I need to make sure I use that exactly.\n\nThe question is: \"What are the start and common difference of Delta, and what is its sixth term?\" So, I need to list start, common difference, and sixth term.\n\nFrom context: starts at 7, common difference 4, sixth term 27.\n\nSo, my answer should be something like: The start is 7, the common difference is 4, and the sixth term is 27. But I need to use the source ID.\n\nAlso, the context says \"Its sixth term is 27.\" which is given, so no need for calculation.\n\nNow, for the answer format: I need one short sentence. So, perhaps: \"The Delta sequence starts at 7 with a common difference of 4, and its sixth term is 27. [math-delta-sequence]\"\n\nBut the instruction says: \"Copy each supporting source ID exactly from the square brackets at the start of its CONTEXT entry, and put those citations at the end of the sentence.\"\n\nIn this case, there's only one entry, so one ID.\n\nAlso, the context is: \"The Delta arithmetic sequence starts at 7 and has common difference 4. Its sixth term is 27.\"\n\nBut the source ID is \"math-delta-sequence\". I think I need to include that at the end.\n\nThe answer should be a sentence, and then the ID at the end.\n\nBut the sentence should contain the information. Let me see.\n\nPerhaps: \"The start is 7, common difference is 4, and sixth term is 27. [math-delta-sequence]\"\n\nBut I need to make it a sentence. \"The start, common difference, and sixth term of the Delta sequence are 7, 4, and 27, respectively. [math-delta-sequence]\"\n\nThat might work.\n\nSince the context says \"starts at 7\" and \"has common difference 4\", and \"sixth term is 27\", I can just state those values.\n\nBut the question asks for \"the start and common difference\" and \"its sixth term\", so I need to specify.\n\nI think my first thought is fine.\n\nNow, about the source ID: in the context, the entry is \"math-delta-sequence\", and it's in square brackets. So, the source ID is \"math-delta-sequence\".\n\nI need to use that exactly.\n\nAlso, the instructions say: \"Only IDs present in CONTEXT are valid citations; do not invent or substitute one.\"\n\nSo, I must use the exact string from the square brackets.\n\nIn the context provided, it's \"math-delta-sequence\".\n\nNow, for the answer, I need to put the answer in one short sentence, and then the ID at the end.\n\nThe answer should be: the start is 7, common difference is 4, sixth term is 27, and then the ID",
+      "text" : "The Delta arithmetic sequence starts at 7 and has common difference 4. Its sixth term is 27. [math-delta-sequence]",
+      "decision" : "EXTRACTIVE_FALLBACK"
+    },
+    "rawEvaluation" : {
+      "retrievalRecall" : 1.0,
+      "reciprocalRank" : 1.0,
+      "factCoverage" : 1.0,
+      "citationRecall" : 1.0,
+      "citationPrecision" : 1.0,
+      "abstained" : false,
+      "correct" : true
+    },
+    "evaluation" : {
+      "retrievalRecall" : 1.0,
+      "reciprocalRank" : 1.0,
+      "factCoverage" : 1.0,
+      "citationRecall" : 1.0,
+      "citationPrecision" : 1.0,
+      "abstained" : false,
+      "correct" : true
+    }
+  }, {
+    "framework" : "plain-java",
+    "backend" : "ollama",
+    "model" : "qual-vibethinker_1_5b_q4_k_m",
+    "caseId" : "ember-modulo",
+    "retrieved" : [ {
+      "document" : {
+        "id" : "math-ember-modulus",
+        "title" : "Ember congruence",
+        "text" : "The Ember calculation reduces 38 modulo 7. The remainder is 3."
+      },
+      "score" : 4.442518,
+      "rank" : 1
+    } ],
+    "promptSha256" : "8a17e74f9c44cc1cefe0b9f84092c41d227665f5275128b2ca9675e33cd625c2",
+    "retrievalMillis" : 1.007985,
+    "frameworkOverheadMillis" : 0.27328599999964354,
+    "endToEndMillis" : 22299.997572,
+    "generation" : {
+      "text" : "The Ember calculation reduces 38 modulo 7. The remainder is 3. [math-ember-modulus]",
+      "inputTokens" : 158,
+      "cacheReadInputTokens" : 0,
+      "cacheWriteInputTokens" : 0,
+      "outputTokens" : 768,
+      "ttftMillis" : 226.069035,
+      "totalMillis" : 22298.716301,
+      "prefillTokensPerSecond" : 750.0486582199162,
+      "loadMillis" : 1575.584381,
+      "peakRssBytes" : 0,
+      "cpuMillis" : 0.0,
+      "estimatedApiCostUsd" : null
+    },
+    "grounding" : {
+      "rawText" : "38 is reduced modulo 7 and the remainder is 3. The question asks which Ember value is reduced and what the remainder is. From the context, the value being reduced is 38, and the remainder is 3 when divided by 7. I need to make sure I'm following all the rules.\n\nThe rules say that if the context doesn't contain the answer, I should reply with \"INSUFFICIENT_CONTEXT\". But here, the context does provide the answer. I need to answer in one short sentence and include the source context ID at the end.\n\nThe context is given as: \"[math-ember-modulus] Ember calculation. The Ember calculation reduces 38 modulo 7. The remainder is 3.\" The source ID is probably the one provided in the context, but in the context, it's written with [math-ember-modulus]. I think I need to use the ID that refers to this context. Looking back, the context starts with \"[math-ember-modulus] Ember calculation\", so the ID might be something like \"math-ember-modulus_ember_calculation\" or similar. But in the context provided, it's not explicitly given an ID. The user said \"CONTEXT\" and then the text, but no explicit ID. I need to infer the ID from the context.\n\nThe context says: \"[math-ember-modulus] Ember calculation\". So the ID should be something like \"math-ember-modulus_ember_calculation\". But to be precise, I should use the exact string that identifies the context. Since the context is given as a block of text, I can assume that the source ID is the one that starts with the modulus part. However, in the answer, I need to copy each supporting source ID exactly from the square brackets at the start of its CONTEXT entry. But in this case, there's only one entry, and it's the entire context.\n\nLooking at the context entries: It's a single line, but it has multiple parts. The first part is the title, and then the description. But in the user's message, it's written as:\n\n\"[math-ember-modulus] Ember calculation\nThe Ember calculation reduces 38 modulo 7. The remainder is 3.\"\n\nSo, I think this is considered one context entry. The source ID would be the one that starts with \"[math-ember-modulus]\" or perhaps the whole thing. But the rule says: \"copy each supporting source ID exactly from the square brackets at the start of its CONTEXT entry\". So for this entry, the ID is \"[math-ember-modulus] Ember calculation\". But that might not be standard. Perhaps the ID is just the part after the first bracket.\n\nI recall that in some systems, the context is given with an ID, but here it's not explicitly stated. The user might expect me to use the ID as per the first part. Let me see the context again.\n\nThe context is: [math-ember-modulus] Ember calculation. The Ember calculation reduces 38 modulo 7. The remainder is 3.\n\nSo, the first line is likely the source ID. So the source ID is \"math-ember-modulus_ember_calculation\" or something? But in the text, it's written with brackets. To be safe, I should use the exact string that is the context. The rule says \"copy each supporting source ID exactly from the square brackets at the start of its CONTEXT entry\". So the ID is the one that starts with square brackets. So for this entry, the ID is \"[math-ember-modulus] Ember calculation\".\n\nBut that seems a bit odd. Perhaps the ID is just \"math-ember-modulus\". I think I need to look for the part that is",
+      "text" : "The Ember calculation reduces 38 modulo 7. The remainder is 3. [math-ember-modulus]",
+      "decision" : "EXTRACTIVE_FALLBACK"
+    },
+    "rawEvaluation" : {
+      "retrievalRecall" : 1.0,
+      "reciprocalRank" : 1.0,
+      "factCoverage" : 1.0,
+      "citationRecall" : 1.0,
+      "citationPrecision" : 1.0,
+      "abstained" : false,
+      "correct" : true
+    },
+    "evaluation" : {
+      "retrievalRecall" : 1.0,
+      "reciprocalRank" : 1.0,
+      "factCoverage" : 1.0,
+      "citationRecall" : 1.0,
+      "citationPrecision" : 1.0,
+      "abstained" : false,
+      "correct" : true
+    }
+  }, {
+    "framework" : "plain-java",
+    "backend" : "ollama",
+    "model" : "qual-vibethinker_1_5b_q4_k_m",
+    "caseId" : "fjord-integral",
+    "retrieved" : [ {
+      "document" : {
+        "id" : "math-fjord-integral",
+        "title" : "Fjord integral",
+        "text" : "The definite integral of 2x from 0 to 3 is 9. The antiderivative used is x^2."
+      },
+      "score" : 5.5134096,
+      "rank" : 1
+    } ],
+    "promptSha256" : "259ffb7a84b093a4233454dfbd14afefa196498fc5fbfe8b65f3768a1039e814",
+    "retrievalMillis" : 1.166946,
+    "frameworkOverheadMillis" : 0.2703049999981886,
+    "endToEndMillis" : 22498.730311,
+    "generation" : {
+      "text" : "The definite integral of 2x from 0 to 3 is 9. The antiderivative used is x^2. [math-fjord-integral]",
+      "inputTokens" : 172,
+      "cacheReadInputTokens" : 0,
+      "cacheWriteInputTokens" : 0,
+      "outputTokens" : 768,
+      "ttftMillis" : 293.266398,
+      "totalMillis" : 22497.29306,
+      "prefillTokensPerSecond" : 609.563772065677,
+      "loadMillis" : 1575.584381,
+      "peakRssBytes" : 0,
+      "cpuMillis" : 0.0,
+      "estimatedApiCostUsd" : null
+    },
+    "grounding" : {
+      "rawText" : "2x from 0 to 3 has an integral of 9, and mentions that the antiderivative used is x squared. I need to answer based only on this context without adding anything else.\n\nThe question is: \"What is the Fjord definite integral, and which antiderivative is used?\" But in the context, it's talking about the integral of 2x, not Fjord. That might be a typo or something. Let me read the context again.\n\nCONTEXT\n[math-fjord-integral] Fjord integral\nThe definite integral of 2x from 0 to 3 is 9. The antiderivative used is x^2.\n\nHmm, the title says \"math-fjord-integral\" and the context is about Fjord integral? Maybe \"Fjord\" here is a placeholder or something. But the question uses \"Fjord\" in the query. Perhaps I should assume that the integral of 2x is what's being referred to as the Fjord integral for this question.\n\nThe question asks for two things: the definite integral and the antiderivative used. From the context, the definite integral is 9, and the antiderivative is x^2.\n\nI need to form a one-sentence answer. Also, I have to copy the source ID exactly, which in this case is [math-fjord-integral], and put the citation at the end.\n\nThe rules say: \"Copy each supporting source ID exactly from the square brackets at the start of its CONTEXT entry, and put those citations at the end of the sentence.\"\n\nSo the context has one entry with [math-fjord-integral], and within it, it mentions the integral and antiderivative.\n\nThe question is about Fjord, but the context says \"Fjord integral\". Probably, \"Fjord\" in the question is a reference to that. I think I should proceed with the information given.\n\nSo, the answer should be: The definite integral of 2x from 0 to 3 is 9, and the antiderivative used is x^2. This is from the context of the math-fjord-integral.\n\nBut the context doesn't specify that it's for Fjord; it just says Fjord integral. Maybe I need to use the exact wording.\n\nThe context says: \"The definite integral of 2x from 0 to 3 is 9. The antiderivative used is x^2.\"\n\nSo for the answer, I can say: The definite integral is 9 and the antiderivative is x^2, as stated in the context.\n\nBut I need to include the source ID. The source ID is [math-fjord-integral], since that's the entry.\n\nThe rules say to put the citations at the end of the sentence. So perhaps I need to write a sentence that includes the answer and then the citation.\n\nFor example: \"The definite integral of 2x from 0 to 3 is 9, and the antiderivative used is x^2. See [math-fjord-integral].\"\n\nBut the citation is at the end, so after the sentence.\n\nAlso, the answer should be in one short sentence. So combining both parts into one sentence.\n\nLet me try: \"The definite integral of 2x from 0 to 3 is 9 and the antiderivative used is x^2, as per the context.\"\n\nBut then I need to add the citation. The rules say to copy the ID exactly. So perhaps: \"The definite integral of 2x from 0 to 3 is 9 and the antiderivative used is x^2. The source is [",
+      "text" : "The definite integral of 2x from 0 to 3 is 9. The antiderivative used is x^2. [math-fjord-integral]",
+      "decision" : "EXTRACTIVE_FALLBACK"
+    },
+    "rawEvaluation" : {
+      "retrievalRecall" : 1.0,
+      "reciprocalRank" : 1.0,
+      "factCoverage" : 1.0,
+      "citationRecall" : 1.0,
+      "citationPrecision" : 1.0,
+      "abstained" : false,
+      "correct" : true
+    },
+    "evaluation" : {
+      "retrievalRecall" : 1.0,
+      "reciprocalRank" : 1.0,
+      "factCoverage" : 1.0,
+      "citationRecall" : 1.0,
+      "citationPrecision" : 1.0,
+      "abstained" : false,
+      "correct" : true
+    }
+  }, {
+    "framework" : "plain-java",
+    "backend" : "ollama",
+    "model" : "qual-vibethinker_1_5b_q4_k_m",
+    "caseId" : "grove-hypotenuse",
+    "retrieved" : [ {
+      "document" : {
+        "id" : "math-grove-geometry",
+        "title" : "Grove triangle",
+        "text" : "The Grove right triangle has legs 5 and 12. Its hypotenuse is 13."
+      },
+      "score" : 5.9253526,
+      "rank" : 1
+    } ],
+    "promptSha256" : "4131518b9dddd949b8aa38e66d3d403ece1a357e4d6767da6f9272e9b0fcea9c",
+    "retrievalMillis" : 1.185726,
+    "frameworkOverheadMillis" : 0.2648979999976291,
+    "endToEndMillis" : 22263.48927,
+    "generation" : {
+      "text" : "The Grove right triangle has legs 5 and 12. Its hypotenuse is 13. [math-grove-geometry]",
+      "inputTokens" : 162,
+      "cacheReadInputTokens" : 0,
+      "cacheWriteInputTokens" : 0,
+      "outputTokens" : 768,
+      "ttftMillis" : 236.271511,
+      "totalMillis" : 22262.038646,
+      "prefillTokensPerSecond" : 716.9251875290421,
+      "loadMillis" : 1575.584381,
+      "peakRssBytes" : 0,
+      "cpuMillis" : 0.0,
+      "estimatedApiCostUsd" : null
+    },
+    "grounding" : {
+      "rawText" : " the Grove right triangle has legs 5 and 12. Its hypotenuse is 13. So, the legs are 5 and 12, and the hypotenuse is 13. The question asks for the legs and the hypotenuse, which are all mentioned.\n\nAccording to the rules, if the context doesn't have the answer, I should say INSUFFICIENT_CONTEXT. But here, it's all there. I need to answer in one short sentence. Also, I have to copy the source ID exactly as it appears, which is [math-grove-geometry], and put the citation at the end.\n\nThe question is: \"What are the Grove triangle legs, and what is its hypotenuse?\" So, the answer should include both legs and the hypotenuse.\n\nI can say: The legs are 5 and 12, and the hypotenuse is 13, as given in [math-grove-geometry].\n\nNow, for the citation, since the context entry is [math-grove-geometry] and it's in square brackets, I think I need to use the ID as it is. The instruction says to copy each supporting source ID exactly from the square brackets at the start of its CONTEXT entry. So, the ID is [math-grove-geometry].\n\nIn the answer, I should have the sentence and then the citation at the end. Like: The legs are 5 and 12, and the hypotenuse is 13, from [math-grove-geometry].\n\nBut the citation should be exactly the ID. Let me see the instruction: \"copy each supporting source ID exactly from the square brackets at the start of its CONTEXT entry, and put those citations at the end of the sentence.\"\n\nSo, in the sentence, I should have the text, and then after the sentence, I put the ID. But the sentence is one short sentence, and then the citation.\n\nThe instruction says: \"answer in one short sentence. Copy each supporting source ID exactly from the square brackets... and put those citations at the end of the sentence.\"\n\nIt says \"at the end of the sentence\", so the citation should be part of the answer, but the sentence itself is one short sentence. Perhaps I need to include the citation within the sentence or after?\n\nLet me read carefully: \"answer in one short sentence. Copy each supporting source ID... and put those citations at the end of the sentence.\"\n\nI think the sentence should be the content, and then the citation is additional. But it says \"at the end of the sentence\", so maybe the entire answer is the sentence with the citation at the end.\n\nFor example: \"The legs are 5 and 12, and the hypotenuse is 13, from [math-grove-geometry].\"\n\nBut is that one sentence? \"The legs are 5 and 12, and the hypotenuse is 13, from [math-grove-geometry].\" – that's one sentence with a comma, but the citation is part of it.\n\nPerhaps the citation should be outside, but the instruction says \"at the end of the sentence\".\n\nLooking at the rules again: \"Only IDs present in CONTEXT are valid citations; do not invent or substitute one.\"\n\nAnd the context is given with the ID.\n\nAlso, the question is straightforward, and the answer is directly in the context.\n\nIs there any reason to think that the legs and hypotenuse are not provided? No, it says legs 5 and 12, hypotenuse 13.\n\nThe question says \"what are the Grove triangle legs, and what is its hypotenuse?\" so I need to state both.\n\nIn the context: \"The Grove right triangle has",
+      "text" : "The Grove right triangle has legs 5 and 12. Its hypotenuse is 13. [math-grove-geometry]",
+      "decision" : "EXTRACTIVE_FALLBACK"
+    },
+    "rawEvaluation" : {
+      "retrievalRecall" : 1.0,
+      "reciprocalRank" : 1.0,
+      "factCoverage" : 1.0,
+      "citationRecall" : 1.0,
+      "citationPrecision" : 1.0,
+      "abstained" : false,
+      "correct" : true
+    },
+    "evaluation" : {
+      "retrievalRecall" : 1.0,
+      "reciprocalRank" : 1.0,
+      "factCoverage" : 1.0,
+      "citationRecall" : 1.0,
+      "citationPrecision" : 1.0,
+      "abstained" : false,
+      "correct" : true
+    }
+  }, {
+    "framework" : "plain-java",
+    "backend" : "ollama",
+    "model" : "qual-vibethinker_1_5b_q4_k_m",
+    "caseId" : "harbor-mean-median",
+    "retrieved" : [ {
+      "document" : {
+        "id" : "math-harbor-statistics",
+        "title" : "Harbor sample",
+        "text" : "The Harbor sample is [2, 4, 4, 10]. Its arithmetic mean is 5 and its median is 4."
+      },
+      "score" : 4.7371473,
+      "rank" : 1
+    } ],
+    "promptSha256" : "7ce4ff8bb1bb9e7bd41de64a198a45f6b5e886a4487f7be741e7ca612dfa60eb",
+    "retrievalMillis" : 1.453264,
+    "frameworkOverheadMillis" : 0.2410760000020673,
+    "endToEndMillis" : 22332.546255,
+    "generation" : {
+      "text" : "The Harbor sample is [2, 4, 4, 10]. Its arithmetic mean is 5 and its median is 4. [math-harbor-statistics]",
+      "inputTokens" : 167,
+      "cacheReadInputTokens" : 0,
+      "cacheWriteInputTokens" : 0,
+      "outputTokens" : 768,
+      "ttftMillis" : 275.402227,
+      "totalMillis" : 22330.851915,
+      "prefillTokensPerSecond" : 622.0040448885793,
+      "loadMillis" : 1575.584381,
+      "peakRssBytes" : 0,
+      "cpuMillis" : 0.0,
+      "estimatedApiCostUsd" : null
+    },
+    "grounding" : {
+      "rawText" : " the Harbor sample is [2, 4, 4, 10]. Then it says \"Its arithmetic mean is 5 and its median is 4.\" So, the mean is 5 and the median is 4.\n\nThe question is asking for the mean and median of the Harbor sample, and the context directly provides both values. I need to answer based only on this context without adding anything else.\n\nThe instructions say to answer in one short sentence. Also, I have to copy each supporting source ID exactly from the square brackets. In this case, the context entry is labeled with [math-harbor-statistics], but the specific data is given as [2, 4, 4, 10], and then the properties are stated.\n\nLooking back at the context:\n\n[math-harbor-statistics] Harbor sample\n\nThe Harbor sample is [2, 4, 4, 10]. Its arithmetic mean is 5 and its median is 4.\n\nSo, the data points are given as a list: [2, 4, 4, 10]. The mean is 5 and median is 4. Since the context directly states this, I can use that.\n\nFor the answer, I need to form a sentence that includes the mean and median. The question is straightforward, so I can just state it.\n\nThe instructions say: \"If the context does not contain the answer, reply exactly INSUFFICIENT_CONTEXT.\" But here, it does contain the answer.\n\nNow, about the citation: I need to copy each supporting source ID. The only source ID here is [math-harbor-statistics], but the data points are given in the context. The properties like mean and median are part of the description.\n\nThe context entry is \"The Harbor sample is [2, 4, 4, 10]. Its arithmetic mean is 5 and its median is 4.\" So, the source ID is for the entire context, I think. But the specific numbers are in the square brackets, so perhaps I don't need an ID for them.\n\nThe instruction says: \"Copy each supporting source ID exactly from the square brackets at the start of its CONTEXT entry.\" The start of the context entry is [math-harbor-statistics], but the data is in [2, 4, 4, 10], which is part of the context.\n\nI think the supporting source ID is [math-harbor-statistics], and the data is provided there. But for the mean and median, since they are directly stated, I can use the context without an ID for them, but the instruction says to copy the source ID if used.\n\nPerhaps I should not add any extra IDs. The context has one entry with [math-harbor-statistics], and within it, the data and properties are given.\n\nThe answer should be a sentence that references the context. For example: \"The mean is 5 and the median is 4, as given in the context [math-harbor-statistics].\"\n\nBut the context says \"Its arithmetic mean is 5 and its median is 4.\" where \"Its\" refers to the Harbor sample, which is defined as [2,4,4,10].\n\nTo be precise, I can say: \"The mean of the Harbor sample is 5 and the median is 4, based on the data [2,4,4,10] and the properties stated in the context [math-harbor-statistics].\"\n\nBut that might be redundant. The context already includes the data and the properties.\n\nThe instruction says: \"Only IDs present in CONTEXT are valid citations; do not invent or substitute one.\" So, I should only use the IDs that",
+      "text" : "The Harbor sample is [2, 4, 4, 10]. Its arithmetic mean is 5 and its median is 4. [math-harbor-statistics]",
+      "decision" : "EXTRACTIVE_FALLBACK"
+    },
+    "rawEvaluation" : {
+      "retrievalRecall" : 1.0,
+      "reciprocalRank" : 1.0,
+      "factCoverage" : 1.0,
+      "citationRecall" : 1.0,
+      "citationPrecision" : 1.0,
+      "abstained" : false,
+      "correct" : true
+    },
+    "evaluation" : {
+      "retrievalRecall" : 1.0,
+      "reciprocalRank" : 1.0,
+      "factCoverage" : 1.0,
+      "citationRecall" : 1.0,
+      "citationPrecision" : 1.0,
+      "abstained" : false,
+      "correct" : true
+    }
+  }, {
+    "framework" : "plain-java",
+    "backend" : "ollama",
+    "model" : "qual-vibethinker_1_5b_q4_k_m",
+    "caseId" : "unsupported-maple-limit",
+    "retrieved" : [ {
+      "document" : {
+        "id" : "math-birch-derivative",
+        "title" : "Birch polynomial",
+        "text" : "The Birch function is f(x) = x^3 - 2x. Its derivative is f'(x) = 3x^2 - 2."
+      },
+      "score" : 1.2100124,
+      "rank" : 1
+    } ],
+    "promptSha256" : "ac41e60f8b44ec304bd6e652b21ae5c45731ad7836a85b38667691e1d0dc28d1",
+    "retrievalMillis" : 1.854979,
+    "frameworkOverheadMillis" : 0.26922800000102143,
+    "endToEndMillis" : 22428.324995,
+    "generation" : {
+      "text" : "INSUFFICIENT_CONTEXT",
+      "inputTokens" : 172,
+      "cacheReadInputTokens" : 0,
+      "cacheWriteInputTokens" : 0,
+      "outputTokens" : 768,
+      "ttftMillis" : 287.011068,
+      "totalMillis" : 22426.200788,
+      "prefillTokensPerSecond" : 612.9001222236872,
+      "loadMillis" : 1575.584381,
+      "peakRssBytes" : 0,
+      "cpuMillis" : 0.0,
+      "estimatedApiCostUsd" : null
+    },
+    "grounding" : {
+      "rawText" : "1/(x^3 - 2x) is the Birch function, and its derivative is 3x^2 - 2. But the question is about the limit of the Maple rational function at infinity. The context mentions the Birch polynomial, which is x^3 - 2x, but the question refers to \"the Maple rational function at infinity.\" I need to see if there's a connection.\n\nThe context says \"The Birch function is f(x) = x^3 - 2x. Its derivative is f'(x) = 3x^2 - 2.\" But the question is about a rational function in Maple. Maybe the Birch function is a rational function? Or perhaps there's a mistake in my reading.\n\nLet me read the context again: \"The Birch polynomial is x^3 - 2x. Its derivative is f'(x) = 3x^2 - 2.\" But the question mentions \"Birch function\" and then \"Maple rational function.\" The function given is f(x) = x^3 - 2x, which is a polynomial, not a rational function. A rational function would be a ratio of polynomials.\n\nPerhaps in the context of Birch functions, it's defined differently, but here it's given as a polynomial. The derivative is given, but that might not be directly relevant.\n\nThe question is: \"What is the limit of the Maple rational function at infinity?\" But the context doesn't mention Maple at all. It just talks about the Birch polynomial. There's no mention of Maple, rational functions, or limits.\n\nLooking back at the context: \"The Birch function is f(x) = x^3 - 2x. Its derivative is f'(x) = 3x^2 - 2.\" And then it says \"CONTEXT\" with that text. But the question is about a rational function in Maple. Maybe the rational function is related to the derivative or something, but that seems unlikely.\n\nPerhaps there's a typo or misinterpretation. The context has [math-birch-derivative], which might indicate that it's about the derivative part. But still, the function given is a polynomial.\n\nThe question says \"the Maple rational function.\" I recall that in some contexts, the Birch function might be defined as a rational function, but here it's explicitly given as f(x) = x^3 - 2x, which is a polynomial.\n\nMaybe in the Maple code or something, but the context doesn't provide any Maple code. The user said \"You answer questions using only the supplied context,\" so I have to rely on what's given.\n\nThe context does not contain any information about a rational function, limits, or Maple. It only describes the Birch polynomial and its derivative.\n\nTherefore, since the context does not contain the answer to the question, I should reply with \"INSUFFICIENT_CONTEXT.\"\n\nBut let me double-check. The question is: \"What is the limit of the Maple rational function at infinity?\" And the context is all about the Birch polynomial x^3 - 2x. No mention of rational functions, limits, or Maple.\n\nPerhaps \"Birch function\" is a rational function, but in this context, it's defined as a polynomial. Polynomials are a type of rational function where the denominator is 1, but typically when we say \"rational function,\" we mean a ratio of polynomials with non-constant denominator.\n\nMoreover, the question specifies \"rational function,\" which might imply it's not a polynomial. But even if I consider the polynomial, the limit at infinity of x^3 - 2x as x approaches infinity is infinity, since the highest degree term dominates. But the context doesn't state that, and the question mentions",
+      "text" : "INSUFFICIENT_CONTEXT",
+      "decision" : "RETRIEVAL_ABSTENTION"
+    },
+    "rawEvaluation" : {
+      "retrievalRecall" : 1.0,
+      "reciprocalRank" : 1.0,
+      "factCoverage" : 1.0,
+      "citationRecall" : 0.0,
+      "citationPrecision" : 0.0,
+      "abstained" : false,
+      "correct" : false
+    },
+    "evaluation" : {
+      "retrievalRecall" : 1.0,
+      "reciprocalRank" : 1.0,
+      "factCoverage" : 1.0,
+      "citationRecall" : 1.0,
+      "citationPrecision" : 1.0,
+      "abstained" : true,
+      "correct" : true
+    }
+  } ],
+  "failures" : [ ]
+}
