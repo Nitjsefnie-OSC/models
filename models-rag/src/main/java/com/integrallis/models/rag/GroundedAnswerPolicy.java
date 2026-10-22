@@ -613,8 +613,7 @@ public final class GroundedAnswerPolicy {
     };
   }
 
-  static boolean hasOnlyTrustedCitations(
-      String candidate, List<GroundingDocument> retrieved) {
+  static boolean hasOnlyTrustedCitations(String candidate, List<GroundingDocument> retrieved) {
     Set<String> trustedIds = new HashSet<>();
     retrieved.forEach(hit -> trustedIds.add(hit.id()));
 
@@ -692,8 +691,7 @@ public final class GroundedAnswerPolicy {
     return result;
   }
 
-  static boolean preservesAtomicIdentifiers(
-      String candidate, List<GroundingDocument> retrieved) {
+  static boolean preservesAtomicIdentifiers(String candidate, List<GroundingDocument> retrieved) {
     Set<String> candidateIdentifiers = atomicIdentifiers(candidate);
     Set<String> candidateWords = words(candidate);
     for (GroundingDocument document : retrieved) {

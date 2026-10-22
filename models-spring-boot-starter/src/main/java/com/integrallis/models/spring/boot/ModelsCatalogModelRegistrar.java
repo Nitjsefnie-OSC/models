@@ -55,7 +55,9 @@ final class ModelsCatalogModelRegistrar {
    * Spring can attribute the failure to this property.
    */
   static void register(
-      BeanDefinitionRegistry registry, ConfigurableListableBeanFactory factory, String catalogModel) {
+      BeanDefinitionRegistry registry,
+      ConfigurableListableBeanFactory factory,
+      String catalogModel) {
     RootBeanDefinition definition = new RootBeanDefinition(InferenceBackend.class);
     definition.setRole(BeanDefinition.ROLE_APPLICATION);
     definition.setInstanceSupplier(() -> CatalogBackends.open(catalogModel));

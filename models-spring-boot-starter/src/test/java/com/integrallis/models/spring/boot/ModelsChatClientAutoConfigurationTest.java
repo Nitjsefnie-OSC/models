@@ -28,7 +28,7 @@ import java.util.List;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.springframework.ai.chat.client.ChatClient;
-import org.springframework.ai.chat.client.ChatClientBuilderCustomizer;
+import org.springframework.ai.chat.client.ChatClientCustomizer;
 import org.springframework.ai.chat.model.ChatModel;
 import org.springframework.boot.autoconfigure.AutoConfigurations;
 import org.springframework.boot.test.context.FilteredClassLoader;
@@ -129,7 +129,8 @@ class ModelsChatClientAutoConfigurationTest {
   @Test
   void theBuilderCarriesWhatACustomizerSetOnIt() {
     runner
-        .withUserConfiguration(LocalModelConfiguration.class, SystemPromptCustomizerConfiguration.class)
+        .withUserConfiguration(
+            LocalModelConfiguration.class, SystemPromptCustomizerConfiguration.class)
         .run(
             context -> {
               // Observable rather than assumed: the customizer sets a default system prompt, and
@@ -196,29 +197,41 @@ class ModelsChatClientAutoConfigurationTest {
     }
   }
 
+  /**
+   * Customizer beans, declared against the interface that exists in every supported Spring AI.
+   *
+   * <p>{@code ChatClientCustomizer} is deprecated for removal in 2.0, where {@code
+   * ChatClientBuilderCustomizer} replaces it — but it is the only one of the two present in 1.1,
+   * which this starter's CI matrix covers, so a test that names the 2.0 type could not compile
+   * there. The suppression is deliberate and narrow: exercising the older interface is the point,
+   * and the registrar resolves both by name at runtime.
+   */
+  @SuppressWarnings("removal")
   @Configuration(proxyBeanMethods = false)
   static class CustomizersConfiguration {
     static final List<String> APPLIED = new ArrayList<>();
 
     @Bean
     @Order(1)
-    ChatClientBuilderCustomizer first() {
+    ChatClientCustomizer first() {
       return builder -> APPLIED.add("first");
     }
 
     @Bean
     @Order(2)
-    ChatClientBuilderCustomizer second() {
+    ChatClientCustomizer second() {
       return builder -> APPLIED.add("second");
     }
   }
 
+  /** See {@link CustomizersConfiguration} for why the deprecated interface is used here. */
+  @SuppressWarnings("removal")
   @Configuration(proxyBeanMethods = false)
   static class SystemPromptCustomizerConfiguration {
     static final String SYSTEM_PROMPT = "you-are-a-fixture";
 
     @Bean
-    ChatClientBuilderCustomizer systemPrompt() {
+    ChatClientCustomizer systemPrompt() {
       return builder -> builder.defaultSystem(SYSTEM_PROMPT);
     }
   }

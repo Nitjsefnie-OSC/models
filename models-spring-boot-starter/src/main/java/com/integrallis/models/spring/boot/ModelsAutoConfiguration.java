@@ -142,7 +142,8 @@ public class ModelsAutoConfiguration {
         if (catalogModel != null
             && ClassUtils.isPresent(CATALOG_BACKENDS_CLASS, beanFactory.getBeanClassLoader())) {
           ModelsCatalogModelRegistrar.register(registry, beanFactory, catalogModel);
-          backendNames = new String[] {ModelsCatalogModelRegistrar.MODELS_CATALOG_BACKEND_BEAN_NAME};
+          backendNames =
+              new String[] {ModelsCatalogModelRegistrar.MODELS_CATALOG_BACKEND_BEAN_NAME};
         }
       }
 
@@ -198,14 +199,13 @@ public class ModelsAutoConfiguration {
     /**
      * Reads the catalog id from the environment rather than from the bound properties bean.
      *
-     * <p>The decision has to be made while definitions are being contributed, and asking for
-     * {@link ModelsProperties} here would force that bean to be created before the application's
-     * own configuration classes have finished -- so the value is read through {@link Binder}, which
+     * <p>The decision has to be made while definitions are being contributed, and asking for {@link
+     * ModelsProperties} here would force that bean to be created before the application's own
+     * configuration classes have finished -- so the value is read through {@link Binder}, which
      * applies the same relaxed binding the properties bean would.
      */
     private static String catalogModel(ConfigurableListableBeanFactory beanFactory) {
-      Environment environment =
-          beanFactory.getBeanProvider(Environment.class).getIfAvailable();
+      Environment environment = beanFactory.getBeanProvider(Environment.class).getIfAvailable();
       if (environment == null) {
         return null;
       }
