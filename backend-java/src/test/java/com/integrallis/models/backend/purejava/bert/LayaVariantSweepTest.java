@@ -1,3 +1,18 @@
+/*
+ * Copyright 2025-2026 Integrallis Software, LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.integrallis.models.backend.purejava.bert;
 
 import com.integrallis.models.backend.purejava.bert.ModernBertConfig.QuestionType;
@@ -62,11 +77,24 @@ class LayaVariantSweepTest {
     }
     Map<String, Runnable> variants = new LinkedHashMap<>();
     variants.put("baseline", () -> set(false, false, false, false));
-    variants.put("isolateInDecision", () -> { reset(); ModernBertDecisionForwardPass.ISOLATE_IN_DECISION_BLOCKS = true; });
-    variants.put("ropeInDecision", () -> { reset(); ModernBertDecisionForwardPass.ROPE_IN_DECISION_BLOCKS = true; });
-    variants.put("swapEmbedOutputNorm", () -> { reset(); ModernBertDecisionForwardPass.SWAP_EMBED_AND_OUTPUT_NORM = true; });
-
-
+    variants.put(
+        "isolateInDecision",
+        () -> {
+          reset();
+          ModernBertDecisionForwardPass.ISOLATE_IN_DECISION_BLOCKS = true;
+        });
+    variants.put(
+        "ropeInDecision",
+        () -> {
+          reset();
+          ModernBertDecisionForwardPass.ROPE_IN_DECISION_BLOCKS = true;
+        });
+    variants.put(
+        "swapEmbedOutputNorm",
+        () -> {
+          reset();
+          ModernBertDecisionForwardPass.SWAP_EMBED_AND_OUTPUT_NORM = true;
+        });
 
     List<Case> cases = referenceCases();
     try (Arena arena = Arena.ofConfined()) {
@@ -75,8 +103,7 @@ class LayaVariantSweepTest {
       ModernBertWeights weights = ModernBertWeights.load(file, config);
       for (var entry : variants.entrySet()) {
         entry.getValue().run();
-        ModernBertDecisionForwardPass forward =
-            new ModernBertDecisionForwardPass(config, weights);
+        ModernBertDecisionForwardPass forward = new ModernBertDecisionForwardPass(config, weights);
         double worst = 0.0;
         int argmaxMismatches = 0;
         for (Case c : cases) {
@@ -90,8 +117,11 @@ class LayaVariantSweepTest {
           }
         }
         System.out.printf(
-            Locale.ROOT, "SWEEP %-22s worst=%.5f argmaxMismatches=%d%n",
-            entry.getKey(), worst, argmaxMismatches);
+            Locale.ROOT,
+            "SWEEP %-22s worst=%.5f argmaxMismatches=%d%n",
+            entry.getKey(),
+            worst,
+            argmaxMismatches);
       }
     }
     set(false, false, false, false);
@@ -123,26 +153,40 @@ class LayaVariantSweepTest {
     return b;
   }
 
-  private record Case(String question, QuestionType type, int[] ids, int[] markers,
-      int headLength, int sequenceLength, float[] rawLogits) {}
+  private record Case(
+      String question,
+      QuestionType type,
+      int[] ids,
+      int[] markers,
+      int headLength,
+      int sequenceLength,
+      float[] rawLogits) {}
 
   private static List<Case> referenceCases() throws Exception {
     String json;
-    try (var in = LayaVariantSweepTest.class.getResourceAsStream("/modernbert/laya-reference.json")) {
+    try (var in =
+        LayaVariantSweepTest.class.getResourceAsStream("/modernbert/laya-reference.json")) {
       json = new String(in.readAllBytes(), StandardCharsets.UTF_8);
     }
     List<Case> cases = new ArrayList<>();
-    Pattern block = Pattern.compile(
-        "\\{\\s*\"question\":\\s*\"([^\"]+)\",\\s*\"type\":\\s*\"([^\"]+)\".*?"
-            + "\"ids\":\\s*\\[([^]]*)].*?\"markers\":\\s*\\[([^]]*)].*?"
-            + "\"headLength\":\\s*(\\d+).*?\"sequenceLength\":\\s*(\\d+).*?"
-            + "\"rawLogits\":\\s*\\[([^]]*)]", Pattern.DOTALL);
+    Pattern block =
+        Pattern.compile(
+            "\\{\\s*\"question\":\\s*\"([^\"]+)\",\\s*\"type\":\\s*\"([^\"]+)\".*?"
+                + "\"ids\":\\s*\\[([^]]*)].*?\"markers\":\\s*\\[([^]]*)].*?"
+                + "\"headLength\":\\s*(\\d+).*?\"sequenceLength\":\\s*(\\d+).*?"
+                + "\"rawLogits\":\\s*\\[([^]]*)]",
+            Pattern.DOTALL);
     Matcher m = block.matcher(json);
     while (m.find()) {
-      cases.add(new Case(m.group(1),
-          QuestionType.valueOf(m.group(2).toUpperCase(Locale.ROOT)),
-          ints(m.group(3)), ints(m.group(4)),
-          Integer.parseInt(m.group(5)), Integer.parseInt(m.group(6)), floats(m.group(7))));
+      cases.add(
+          new Case(
+              m.group(1),
+              QuestionType.valueOf(m.group(2).toUpperCase(Locale.ROOT)),
+              ints(m.group(3)),
+              ints(m.group(4)),
+              Integer.parseInt(m.group(5)),
+              Integer.parseInt(m.group(6)),
+              floats(m.group(7))));
     }
     return cases;
   }

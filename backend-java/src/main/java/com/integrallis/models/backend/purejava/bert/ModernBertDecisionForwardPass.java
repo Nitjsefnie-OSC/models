@@ -32,12 +32,12 @@ import java.util.Objects;
  *   logits = cls.output( GELU( cls( cls.norm( h[markers] ) ) ) )
  * </pre>
  *
- * <p><b>Why not llama.cpp for the head.</b> llama.cpp has a {@code modern-bert} encoder graph but no
- * decision head, and its reranker path applies the same {@code cls.*} tensors in a different order
- * — dense, GELU, norm — than the order this checkpoint trained them in. An implementation following
- * that order would load every tensor, satisfy every shape assertion, and compute a different
- * function. The scorer here is {@code LayerNorm -> Linear -> GELU -> Linear}, which is what the
- * reference's {@code nn.Sequential} says.
+ * <p><b>Why not llama.cpp for the head.</b> llama.cpp has a {@code modern-bert} encoder graph but
+ * no decision head, and its reranker path applies the same {@code cls.*} tensors in a different
+ * order — dense, GELU, norm — than the order this checkpoint trained them in. An implementation
+ * following that order would load every tensor, satisfy every shape assertion, and compute a
+ * different function. The scorer here is {@code LayerNorm -> Linear -> GELU -> Linear}, which is
+ * what the reference's {@code nn.Sequential} says.
  *
  * <p><b>Three places a reimplementation goes wrong, each pinned by a test.</b>
  *

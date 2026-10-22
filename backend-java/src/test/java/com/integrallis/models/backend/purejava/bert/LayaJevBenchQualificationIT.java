@@ -87,8 +87,7 @@ class LayaJevBenchQualificationIT {
       for (Case one : cases) {
         List<ModernBertDecisionPrompt.Option> options = new ArrayList<>();
         for (String label : one.labels) {
-          options.add(
-              new ModernBertDecisionPrompt.Option(label, one.criteria.get(label)));
+          options.add(new ModernBertDecisionPrompt.Option(label, one.criteria.get(label)));
         }
         ModernBertDecisionAnswer answer =
             model.decide(one.type, one.instructions, options, one.state);
@@ -108,7 +107,8 @@ class LayaJevBenchQualificationIT {
         // eight minutes to recover a number that was already computed and thrown away.
         StringBuilder logits = new StringBuilder();
         for (int option = 0; option < answer.logits().length; option++) {
-          logits.append(option == 0 ? "" : ",")
+          logits
+              .append(option == 0 ? "" : ",")
               .append(String.format(Locale.ROOT, "%.6f", answer.logits()[option]));
         }
         perCase.add(
@@ -179,7 +179,8 @@ class LayaJevBenchQualificationIT {
     out.append("  \"cohort\": \"JevBench v1.1, MIT, 120 cases\",\n");
     out.append("  \"artifact\": \"").append(ARTIFACT.getFileName()).append("\",\n");
     out.append("  \"cases\": ").append(report.cases()).append(",\n");
-    out.append(String.format(Locale.ROOT, "  \"chanceAccuracy\": %.6f,%n", report.chanceAccuracy()));
+    out.append(
+        String.format(Locale.ROOT, "  \"chanceAccuracy\": %.6f,%n", report.chanceAccuracy()));
     out.append(String.format(Locale.ROOT, "  \"accuracy\": %.6f,%n", report.accuracy()));
     out.append(
         String.format(Locale.ROOT, "  \"calibrationError\": %.6f,%n", report.calibrationError()));
@@ -248,7 +249,8 @@ class LayaJevBenchQualificationIT {
       String instructions = string(line, "instructions");
       String type = string(line, "type");
       List<String> labels = new ArrayList<>();
-      Matcher labelBlock = Pattern.compile("\"labels\":\\s*\\[(.*?)]", Pattern.DOTALL).matcher(line);
+      Matcher labelBlock =
+          Pattern.compile("\"labels\":\\s*\\[(.*?)]", Pattern.DOTALL).matcher(line);
       if (labelBlock.find()) {
         Matcher label = Pattern.compile("\"((?:[^\"\\\\]|\\\\.)*)\"").matcher(labelBlock.group(1));
         while (label.find()) {

@@ -44,9 +44,9 @@ import org.junit.jupiter.api.Test;
  * them, so a wrong rope base, a swapped GeGLU half, a window measured on position ids, or the
  * llama.cpp reranker's norm order all move these numbers.
  *
- * <p><b>Tolerance, fixed before the comparison ran.</b> The reference computes in torch at bf16/fp32
- * and this runs Q8_0 weights, so the two cannot agree to arithmetic precision and the gate is not
- * written as if they could:
+ * <p><b>Tolerance, fixed before the comparison ran.</b> The reference computes in torch at
+ * bf16/fp32 and this runs Q8_0 weights, so the two cannot agree to arithmetic precision and the
+ * gate is not written as if they could:
  *
  * <ul>
  *   <li><b>argmax must match on all eight cases, with no tolerance.</b> A decision model that picks
@@ -57,19 +57,19 @@ import org.junit.jupiter.api.Test;
  *       available, swapping the two rotary bases, moves them by whole units.
  * </ul>
  *
- * <p><b>STATUS 2026-10-22: passes.</b> Worst deviation 0.06296 at Q8_0 and 0.03282 at BF16,
- * against the 0.15 declared above, and the chosen option matches on all eight cases. The tolerance
- * was never widened: it failed at 0.573 until three defects in the decision blocks were found and
+ * <p><b>STATUS 2026-10-22: passes.</b> Worst deviation 0.06296 at Q8_0 and 0.03282 at BF16, against
+ * the 0.15 declared above, and the chosen option matches on all eight cases. The tolerance was
+ * never widened: it failed at 0.573 until three defects in the decision blocks were found and
  * fixed, and the history is in {@code experiments/laya-modern-bert/README.md} because the way it
  * was found matters more than the number.
  *
  * <p>Those three were ReLU rather than GELU in the decision MLP, rotary wrongly applied in the
- * head, and option isolation wrongly applied in the head -- each read out of laya's own source
- * once the reference's per-stage activations localised the divergence to {@code head.layers.0}.
- * Eleven structural hypotheses had already been swept from this end-to-end number alone and every
- * one looked worse than the baseline, because two of the three errors partially cancelled. One
- * scalar after thirty blocks cannot localise anything, which is the whole reason
- * {@code oracle/intermediates.py} exists.
+ * head, and option isolation wrongly applied in the head -- each read out of laya's own source once
+ * the reference's per-stage activations localised the divergence to {@code head.layers.0}. Eleven
+ * structural hypotheses had already been swept from this end-to-end number alone and every one
+ * looked worse than the baseline, because two of the three errors partially cancelled. One scalar
+ * after thirty blocks cannot localise anything, which is the whole reason {@code
+ * oracle/intermediates.py} exists.
  */
 @Tag("model-fixture")
 class ModernBertDecisionForwardPassIntegrationTest {
@@ -84,7 +84,8 @@ class ModernBertDecisionForwardPassIntegrationTest {
 
   /** The quantization that ships, and the one that isolates quantization error from ours. */
   private static final Path ARTIFACT =
-      Path.of(System.getProperty("models.fixtures.laya", MODELS.resolve("Laya-Q8_0.gguf").toString()));
+      Path.of(
+          System.getProperty("models.fixtures.laya", MODELS.resolve("Laya-Q8_0.gguf").toString()));
 
   private static final Path BF16_ARTIFACT =
       Path.of(
@@ -141,10 +142,7 @@ class ModernBertDecisionForwardPassIntegrationTest {
         }
         System.out.printf(
             "%-16s %-6s opts=%2d maxDelta=%.5f%n",
-            expected.question,
-            expected.type,
-            actual.length,
-            maxDelta(actual, expected.rawLogits));
+            expected.question, expected.type, actual.length, maxDelta(actual, expected.rawLogits));
       }
       assertThat(deviations).as("logits outside %s absolute", LOGIT_TOLERANCE).isEmpty();
     }
@@ -185,7 +183,9 @@ class ModernBertDecisionForwardPassIntegrationTest {
             ModernBertDecisionLayout.of(
                 expected.markers, expected.headLength, expected.sequenceLength);
         worst =
-            Math.max(worst, maxDelta(forward.logits(expected.ids, layout, expected.type), expected.rawLogits));
+            Math.max(
+                worst,
+                maxDelta(forward.logits(expected.ids, layout, expected.type), expected.rawLogits));
       }
     }
     return worst;

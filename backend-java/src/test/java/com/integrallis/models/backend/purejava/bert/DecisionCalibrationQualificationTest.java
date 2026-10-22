@@ -49,10 +49,13 @@ class DecisionCalibrationQualificationTest {
     Report report = DecisionCalibrationQualification.assess(cohort);
 
     assertThat(report.qualified()).as("%s", report.failures()).isTrue();
-    assertThat(report.policyId()).isEqualTo("decision-calibration-v1");
+    assertThat(report.policyId()).isEqualTo("decision-calibration-v2");
+    assertThat(report.tier()).isEqualTo(DecisionUseCaseTier.CALIBRATED_DECISION);
+    assertThat(report.tier().exportsConfidenceQuality()).isTrue();
     assertThat(report.accuracy()).isEqualTo(0.8333, org.assertj.core.data.Offset.offset(1e-4));
     // Chance from the option counts actually present: 40 at 1/4 and 20 at 1/2.
-    assertThat(report.chanceAccuracy()).isEqualTo(0.3333, org.assertj.core.data.Offset.offset(1e-4));
+    assertThat(report.chanceAccuracy())
+        .isEqualTo(0.3333, org.assertj.core.data.Offset.offset(1e-4));
     assertThat(report.accuracyByType()).containsEntry("choice", 0.85).containsEntry("noul", 0.80);
   }
 
@@ -69,25 +72,34 @@ class DecisionCalibrationQualificationTest {
     Report report = DecisionCalibrationQualification.assess(cohort);
 
     assertThat(report.accuracy()).isGreaterThan(DecisionCalibrationQualification.MINIMUM_ACCURACY);
+    // An accuracy miss is still exclusion; only calibration demotes.
     assertThat(report.qualified()).isFalse();
+    assertThat(report.tier()).isEqualTo(DecisionUseCaseTier.UNQUALIFIED);
     assertThat(report.failures()).anyMatch(failure -> failure.startsWith("noul accuracy"));
     assertThat(report.chanceByType()).containsEntry("noul", 0.5);
   }
 
   @Test
   void refusesConfidenceThatDoesNotMatchAccuracy() {
-    // Right 60% of the time while claiming 0.95 every time: the exact failure the gate exists for,
-    // and one that accuracy alone cannot see.
+    // Right 75% of the time while claiming 0.99 every time: the exact failure the gate exists for,
+    // and one accuracy alone cannot see. Accuracy deliberately clears 0.70, because otherwise the
+    // model would be excluded for being inaccurate and the calibration demotion would never be
+    // reached -- which is what the first version of this fixture did.
     List<Outcome> cohort = new ArrayList<>();
-    cohort.addAll(choice(60, true, 0.95));
-    cohort.addAll(choice(40, false, 0.95));
+    cohort.addAll(choice(75, true, 0.99));
+    cohort.addAll(choice(25, false, 0.99));
 
     Report report = DecisionCalibrationQualification.assess(cohort);
 
     assertThat(report.calibrationError())
-        .isEqualTo(0.35, org.assertj.core.data.Offset.offset(1e-9));
-    assertThat(report.qualified()).isFalse();
-    assertThat(report.failures()).anyMatch(failure -> failure.startsWith("calibration error"));
+        .isEqualTo(0.24, org.assertj.core.data.Offset.offset(1e-9));
+    // Publishable, but demoted: the ranking is fine and the probability is not. A caller is told
+    // exactly that instead of the model being withheld over a bar no other catalog entry faces.
+    assertThat(report.qualified()).isTrue();
+    assertThat(report.tier()).isEqualTo(DecisionUseCaseTier.RANKED_DECISION);
+    assertThat(report.tier().exportsConfidenceQuality()).isFalse();
+    assertThat(report.failures()).isEmpty();
+    assertThat(report.limitations()).anyMatch(l -> l.startsWith("calibration error"));
   }
 
   @Test
@@ -104,7 +116,7 @@ class DecisionCalibrationQualificationTest {
 
     assertThat(report.uncalibratedAnswers()).isEqualTo(1);
     assertThat(report.uncalibratedBucketsExercised()).isEqualTo(1);
-    assertThat(report.failures()).noneMatch(failure -> failure.startsWith("calibration error"));
+    assertThat(report.failures()).isEmpty();
   }
 
   @Test
@@ -115,10 +127,12 @@ class DecisionCalibrationQualificationTest {
 
     Report report = DecisionCalibrationQualification.assess(cohort);
 
+    // Still a hard failure, not a demotion: this is the model lying about its own calibration
+    // rather than being honestly uncalibrated, and no tier covers that.
     assertThat(report.uncalibratedBucketsExercised()).isEqualTo(1);
     assertThat(report.qualified()).isFalse();
-    assertThat(report.failures())
-        .anyMatch(failure -> failure.contains("declares uncalibrated"));
+    assertThat(report.tier()).isEqualTo(DecisionUseCaseTier.UNQUALIFIED);
+    assertThat(report.failures()).anyMatch(failure -> failure.contains("declares uncalibrated"));
   }
 
   @Test
@@ -135,19 +149,25 @@ class DecisionCalibrationQualificationTest {
 
     assertThat(report.uncalibratedBucketsExercised()).isZero();
     assertThat(report.qualified()).isTrue();
+    assertThat(report.tier()).isEqualTo(DecisionUseCaseTier.CALIBRATED_DECISION);
   }
 
   @Test
   void reportsNotANumberWhenEveryAnswerWasUncalibrated() {
     // Zero would read as perfect calibration, which is the opposite of what no data means.
-    List<Outcome> cohort =
-        List.of(
-            new Outcome("a", QuestionType.CHOICE, 12, true, 0.9, true),
-            new Outcome("b", QuestionType.CHOICE, 12, false, 0.9, true));
+    // Accurate enough to be publishable, so the NaN demotion is observable rather than masked by
+    // an accuracy exclusion.
+    List<Outcome> cohort = new ArrayList<>();
+    for (int index = 0; index < 10; index++) {
+      cohort.add(
+          new Outcome("all-uncalibrated-" + index, QuestionType.CHOICE, 12, index < 8, 0.9, true));
+    }
 
     Report report = DecisionCalibrationQualification.assess(cohort);
 
     assertThat(report.calibrationError()).isNaN();
+    // NaN cannot clear a threshold, so it demotes rather than silently qualifying as calibrated.
+    assertThat(report.tier()).isEqualTo(DecisionUseCaseTier.RANKED_DECISION);
   }
 
   @Test
@@ -166,7 +186,12 @@ class DecisionCalibrationQualificationTest {
   }
 
   private static List<Outcome> repeat(
-      String prefix, QuestionType type, int options, int count, boolean correct, double confidence) {
+      String prefix,
+      QuestionType type,
+      int options,
+      int count,
+      boolean correct,
+      double confidence) {
     List<Outcome> outcomes = new ArrayList<>();
     for (int index = 0; index < count; index++) {
       outcomes.add(
