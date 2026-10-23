@@ -29,8 +29,8 @@ not published.
 | --- | --- | --- |
 | **QUALIFIED** | 101 | a manifest row with `qualified` true |
 | **REJECTED** | 1 | a manifest row with `qualified` false; the verdict is the finding |
-| **EVALUATED_NOT_LANDED** | 19 | committed evidence names it, no manifest row claims it |
-| **NOT_EVALUATED** | 336 | no manifest row or matching committed JSON artifact found |
+| **EVALUATED_NOT_LANDED** | 20 | committed evidence names it, no manifest row claims it |
+| **NOT_EVALUATED** | 335 | no manifest row or matching committed JSON artifact found |
 | | **457** | catalog candidates |
 
 A model that appears in several manifests is counted once, and **qualified anywhere wins**: four
@@ -63,7 +63,7 @@ whether a run passed. The reports distinguish these findings:
   admission; changing the runtime version label cannot repair those results.
 
 ```
-EVALUATED_NOT_LANDED (19):
+EVALUATED_NOT_LANDED (20):
   bartowski_mathstral_7b_v0_1_gguf_q4_k_s                  evidence: 2026-10-09-max-tokens-sweep/raw/mt256-math-shard624/bartowski_mathstral_7b_v0_1_gguf_q4_k_s.comparator.json, 2026-10-09-max-tokens-sweep/raw/mt256-math-shard624/bartowski_mathstral_7b_v0_1_gguf_q4_k_s.json
   bartowski_qwen2_5_math_7b_instruct_gguf_q4_k_m           evidence: 2026-10-09-max-tokens-sweep/raw/mt256-math-shard624/bartowski_qwen2_5_math_7b_instruct_gguf_q4_k_m.comparator.json, 2026-10-09-max-tokens-sweep/raw/mt256-math-shard624/bartowski_qwen2_5_math_7b_instruct_gguf_q4_k_m.json
   fin_r1_7b_q4_0                                           evidence: 2026-10-09-max-tokens-sweep/raw/mt256-finance-shard626/fin_r1_7b_q4_0.comparator.json, 2026-10-09-max-tokens-sweep/raw/mt256-finance-shard626/fin_r1_7b_q4_0.json
@@ -73,6 +73,7 @@ EVALUATED_NOT_LANDED (19):
   liquidai_lfm2_5_embedding_350m_gguf_q4_k_m               evidence: embedding/liquidai-lfm2-5-embedding-350m-gguf-q4-k-m.json
   liquidai_lfm2_5_embedding_350m_gguf_q5_k_m               evidence: embedding/liquidai-lfm2-5-embedding-350m-gguf-q5-k-m.json
   liquidai_lfm2_5_embedding_350m_gguf_q6_k                 evidence: embedding/liquidai-lfm2-5-embedding-350m-gguf-q6-k.json
+  mradermacher_mixture_summarizer_qwen3_5_2b_gguf_q4_k_m   evidence: 2026-10-22-summarizer-qualification/raw/shard-711/mradermacher_mixture_summarizer_qwen3_5_2b_gguf_q4_k_m.comparator.json, 2026-10-22-summarizer-qualification/raw/shard-711/mradermacher_mixture_summarizer_qwen3_5_2b_gguf_q4_k_m.json
   phi_4_mini_instruct_q4_0                                 evidence: 2026-10-09-max-tokens-sweep/raw/mt256-math-shard624/phi_4_mini_instruct_q4_0.comparator.json, 2026-10-09-max-tokens-sweep/raw/mt256-math-shard624/phi_4_mini_instruct_q4_0.json
   phi_4_mini_instruct_q4_k_m                               evidence: 2026-10-09-max-tokens-sweep/raw/mt256-math-shard624/phi_4_mini_instruct_q4_k_m.comparator.json, 2026-10-09-max-tokens-sweep/raw/mt256-math-shard624/phi_4_mini_instruct_q4_k_m.json
   qwen2_5_math_1_5b_instruct_q4_0                          evidence: 2026-10-09-max-tokens-sweep/raw/mt256-math-shard624/qwen2_5_math_1_5b_instruct_q4_0.comparator.json, 2026-10-09-max-tokens-sweep/raw/mt256-math-shard624/qwen2_5_math_1_5b_instruct_q4_0.json
