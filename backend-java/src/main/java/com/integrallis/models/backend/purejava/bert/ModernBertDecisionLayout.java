@@ -37,6 +37,12 @@ import java.util.Arrays;
  */
 public record ModernBertDecisionLayout(int[] positionIds, int[] optionIds, int[] markers) {
 
+  public ModernBertDecisionLayout {
+    positionIds = positionIds.clone();
+    optionIds = optionIds.clone();
+    markers = markers.clone();
+  }
+
   /**
    * Builds the layout for one encoded question.
    *

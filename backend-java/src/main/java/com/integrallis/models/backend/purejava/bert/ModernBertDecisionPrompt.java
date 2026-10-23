@@ -72,7 +72,22 @@ public final class ModernBertDecisionPrompt {
   }
 
   /** The encoded prompt: token ids, and the index of each option's {@code [MASK]}. */
-  public record Encoded(int[] ids, int[] markers, int headLength) {}
+  public record Encoded(int[] ids, int[] markers, int headLength) {
+    public Encoded {
+      ids = ids.clone();
+      markers = markers.clone();
+    }
+
+    @Override
+    public int[] ids() {
+      return ids.clone();
+    }
+
+    @Override
+    public int[] markers() {
+      return markers.clone();
+    }
+  }
 
   private final GgufTokenizer tokenizer;
   private final int cls;

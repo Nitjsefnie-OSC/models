@@ -107,10 +107,13 @@ final class ModernBertDecisionForwardPass {
     Objects.requireNonNull(layout, "layout");
     Objects.requireNonNull(type, "type");
     int sequenceLength = tokenIds.length;
-    if (layout.positionIds().length != sequenceLength) {
+    // Read once: the layout's accessors hand back copies, so fetching them per layer would
+    // allocate a fresh array for every block.
+    int[] positionIds = layout.positionIds();
+    if (positionIds.length != sequenceLength) {
       throw new IllegalArgumentException(
           "layout covers "
-              + layout.positionIds().length
+              + positionIds.length
               + " positions but there are "
               + sequenceLength
               + " tokens");
@@ -140,7 +143,7 @@ final class ModernBertDecisionForwardPass {
     }
 
     for (int layer = 0; layer < config.encoderLayers(); layer++) {
-      block(hidden, sequenceLength, layer, layout);
+      block(hidden, sequenceLength, layer, layout, positionIds);
       trace("enc" + layer, hidden);
     }
     if (!NORM_AFTER_DECISION && !NO_OUTPUT_NORM) {
@@ -159,7 +162,7 @@ final class ModernBertDecisionForwardPass {
 
     trace("plus_type", hidden);
     for (int layer = config.encoderLayers(); layer < config.numLayers(); layer++) {
-      block(hidden, sequenceLength, layer, layout);
+      block(hidden, sequenceLength, layer, layout, positionIds);
       trace("dec" + layer, hidden);
     }
     if (NORM_AFTER_DECISION && !NO_OUTPUT_NORM) {
@@ -171,7 +174,11 @@ final class ModernBertDecisionForwardPass {
 
   /** One pre-norm block, encoder or decision; the config says which, never a null check. */
   private void block(
-      float[] hidden, int sequenceLength, int layer, ModernBertDecisionLayout layout) {
+      float[] hidden,
+      int sequenceLength,
+      int layer,
+      ModernBertDecisionLayout layout,
+      int[] positionIds) {
     int dim = config.embeddingDim();
     ModernBertWeights.Layer weightsForLayer = weights.layer(layer);
 
@@ -188,7 +195,8 @@ final class ModernBertDecisionForwardPass {
           weightsForLayer.attentionNormBias());
     }
 
-    float[] attention = attention(normalized, sequenceLength, layer, layout, weightsForLayer);
+    float[] attention =
+        attention(normalized, sequenceLength, layer, layout, positionIds, weightsForLayer);
     float[] projected = new float[sequenceLength * dim];
     project(projected, attention, sequenceLength, weightsForLayer.attentionOutput());
     addBias(projected, sequenceLength, dim, weightsForLayer.attentionOutputBias());
@@ -248,6 +256,7 @@ final class ModernBertDecisionForwardPass {
       int sequenceLength,
       int layer,
       ModernBertDecisionLayout layout,
+      int[] positionIds,
       ModernBertWeights.Layer weightsForLayer) {
     int dim = config.embeddingDim();
     int heads = config.numHeads();
@@ -263,7 +272,6 @@ final class ModernBertDecisionForwardPass {
     // as `nn.MultiheadAttention` -- which is vanilla attention and knows nothing about rope. Only
     // the encoder's custom blocks carry it.
     boolean applyRope = !config.isDecisionLayer(layer) && !ROPE_IN_DECISION_BLOCKS;
-    int[] positionIds = layout.positionIds();
     // Rotary on queries and keys, at the layout's position id rather than the token index: that
     // substitution is the whole point of the parallel layout.
     if (applyRope) {

@@ -114,6 +114,14 @@ public final class DecisionCalibrationQualification {
       List<String> failures,
       List<String> limitations) {
 
+    public Report {
+      accuracyByType = Map.copyOf(accuracyByType);
+      casesByType = Map.copyOf(casesByType);
+      chanceByType = Map.copyOf(chanceByType);
+      failures = List.copyOf(failures);
+      limitations = List.copyOf(limitations);
+    }
+
     /** Whether the accuracy gates passed, so the model is publishable at some tier. */
     public boolean qualified() {
       return tier.publishable();
