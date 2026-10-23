@@ -42,6 +42,11 @@ public record ModernBertDecisionAnswer(
     float temperature,
     boolean uncalibrated) {
 
+  public ModernBertDecisionAnswer {
+    probabilities = probabilities.clone();
+    logits = logits.clone();
+  }
+
   /**
    * Decodes one question's logits.
    *
