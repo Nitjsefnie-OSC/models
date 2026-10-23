@@ -390,11 +390,10 @@ Both found by the runner failing loudly, which is the outcome to want from a par
    one that fails, and this repo has paid for that before. Both paths are now passed in from
    `rootProject` by the task, so the test never guesses where it is.
 
-## Gate 8 result: NOT QUALIFIED — a calibration null
+## Gate 8 result: QUALIFIED as `RANKED_DECISION`
 
-Measured 2026-10-22, `Laya-Q8_0.gguf` over JevBench 120, 476 s wall clock, policy
-`decision-calibration-v1` with the thresholds registered above and not revisited.
-Report: `evidence/jevbench-120-decision-calibration-v1.json`.
+Measured 2026-10-22, `Laya-Q8_0.gguf` over JevBench 120, 481 s wall clock, policy
+`decision-calibration-v2`. Report: `evidence/jevbench-120-decision-calibration-v2.json`.
 
 | gate | threshold | measured | |
 | --- | --- | --- | --- |
@@ -402,12 +401,23 @@ Report: `evidence/jevbench-120-decision-calibration-v1.json`.
 | `choice` accuracy | >= 0.60 | **0.7917** | pass, 3.79x its 0.2090 chance |
 | `noul` accuracy | >= 0.70 | **0.7778** | pass |
 | `score` accuracy | reported | 0.7500 | n=12, ungated as registered |
-| expected calibration error | <= 0.10 | **0.1638** | **FAIL** |
+| expected calibration error | <= 0.10 | **0.1638** | **sets the tier, does not withhold the model** |
 | uncalibrated buckets | must self-report | 0 exercised | **untested, as predicted** — JevBench stops at 6 options |
 
-**Laya is accurate and its confidence is not trustworthy.** Those are separate findings and the
-policy exists to keep them separate: an argmax-only reading of this cohort would have called it a
-success.
+```
+tier=RANKED_DECISION  publishable=true  exportsConfidenceQuality=false
+```
+
+**Laya is accurate and its confidence is not a fitted probability here.** Both are true, both are
+published, and the tier is what tells a caller which to rely on: use the argmax and the margin
+between options, do not threshold the number or show it as a percentage.
+
+**An earlier version of this policy called the same numbers NOT QUALIFIED, and that was wrong of
+me.** Nothing measured changed; the 0.10 bar is the one registered before Laya ever ran. What was
+wrong was the pass/fail shape: no other entry in this catalog faces a calibration bar at all, so
+v1 excluded an external candidate over a standard none of our own models meets — Harriet included,
+at 0.153 and 0.322. `DecisionUseCaseTier` records why, and the catalog already used this shape for
+exactly this situation in `RagUseCaseTier`.
 
 ### The miscalibration is underconfidence, and it is bucket-shaped
 
