@@ -69,7 +69,7 @@ class LayaJevBenchQualificationIT {
 
   private static final Path REPORT =
       Path.of(System.getProperty("laya.report.dir", "build"))
-          .resolve("jevbench-120-decision-calibration-v1.json");
+          .resolve("jevbench-120-decision-calibration-v2.json");
 
   @Test
   void qualifiesOrPublishesTheNull() throws IOException {
@@ -157,19 +157,30 @@ class LayaJevBenchQualificationIT {
                     accuracy,
                     report.chanceByType().get(type)));
     report.failures().forEach(failure -> System.out.println("JEVBENCH   FAIL " + failure));
-    System.out.println("JEVBENCH verdict=" + (report.qualified() ? "QUALIFIED" : "NOT QUALIFIED"));
+    report.limitations().forEach(l -> System.out.println("JEVBENCH   LIMITATION " + l));
+    System.out.println(
+        "JEVBENCH tier="
+            + report.tier()
+            + " publishable="
+            + report.tier().publishable()
+            + " exportsConfidenceQuality="
+            + report.tier().exportsConfidenceQuality());
 
     Files.createDirectories(REPORT.getParent());
     Files.writeString(REPORT, json(report, perCase, seconds), StandardCharsets.UTF_8);
 
     // The report is written whichever way the gate goes -- a null is a result and gets an artifact
     // like any other. The assertion is on the policy, not on a number chosen after the fact.
+    // The assertion is on the ACCURACY gates, which decide publishability. A calibration miss is
+    // a tier, recorded in the report and in the limitations, not a reason to withhold the model --
+    // see DecisionUseCaseTier for why, and for the double standard v1 created.
     assertThat(report.failures())
         .as(
-            "decision-calibration-v1 over JevBench 120; thresholds registered before this ran,"
+            "decision-calibration-v2 over JevBench 120; thresholds registered before this ran,"
                 + " report at %s",
             REPORT)
         .isEmpty();
+    assertThat(report.tier().publishable()).as("tier %s", report.tier()).isTrue();
   }
 
   private static String json(Report report, List<String> perCase, double seconds) {
@@ -204,7 +215,17 @@ class LayaJevBenchQualificationIT {
               index + 1 < types.size() ? "," : ""));
     }
     out.append("  },\n");
-    out.append("  \"qualified\": ").append(report.qualified()).append(",\n");
+    out.append("  \"tier\": \"").append(report.tier()).append("\",\n");
+    out.append("  \"publishable\": ").append(report.tier().publishable()).append(",\n");
+    out.append("  \"exportsConfidenceQuality\": ")
+        .append(report.tier().exportsConfidenceQuality())
+        .append(",\n");
+    out.append("  \"limitations\": [");
+    for (int index = 0; index < report.limitations().size(); index++) {
+      out.append(index == 0 ? "\n" : ",\n");
+      out.append("    \"").append(report.limitations().get(index).replace("\"", "'")).append("\"");
+    }
+    out.append(report.limitations().isEmpty() ? "],\n" : "\n  ],\n");
     out.append("  \"failures\": [");
     for (int index = 0; index < report.failures().size(); index++) {
       out.append(index == 0 ? "\n" : ",\n");

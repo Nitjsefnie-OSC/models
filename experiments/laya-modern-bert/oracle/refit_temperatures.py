@@ -25,7 +25,7 @@ import sys
 from collections import defaultdict
 
 HERE = pathlib.Path(__file__).resolve().parent
-DEFAULT_REPORT = HERE.parent / "evidence" / "jevbench-120-decision-calibration-v1.json"
+DEFAULT_REPORT = HERE.parent / "evidence" / "jevbench-120-decision-calibration-v2.json"
 
 # Registered before fitting: a bucket with fewer than this many fit cases keeps the artifact's own
 # temperature. Fitting a scalar on six points is noise with a decimal point.

@@ -1,5 +1,5 @@
 {
-  "policy": "decision-calibration-v1",
+  "policy": "decision-calibration-v2",
   "cohort": "JevBench v1.1, MIT, 120 cases",
   "artifact": "Laya-Q8_0.gguf",
   "cases": 120,
@@ -8,16 +8,19 @@
   "calibrationError": 0.163770,
   "uncalibratedAnswers": 0,
   "uncalibratedBucketsExercised": 0,
-  "wallClockSeconds": 466.96,
+  "wallClockSeconds": 481.01,
   "byType": {
     "choice": {"cases": 72, "accuracy": 0.791667, "chance": 0.209028},
     "noul": {"cases": 36, "accuracy": 0.777778, "chance": 0.500000},
     "score": {"cases": 12, "accuracy": 0.750000, "chance": 0.250000}
   },
-  "qualified": false,
-  "failures": [
-    "calibration error 0.1638 > 0.10"
+  "tier": "RANKED_DECISION",
+  "publishable": true,
+  "exportsConfidenceQuality": false,
+  "limitations": [
+    "calibration error 0.1638 > 0.10: the ranking is reliable, the published probability is not a fitted probability in this regime and no confidence quality is exported"
   ],
+  "failures": [],
   "cases_detail": [
     {"id":"easy-intent-00","type":"choice","options":5,"expected":"track_order","chosen":"track_order","expectedIndex":0,"correct":true,"confidence":0.584428,"uncalibrated":false,"temperature":1.760152,"bucket":"choice:3-5","rawLogits":[4.583276,-1.015528,-1.457814,3.284827,1.346514]},
     {"id":"easy-intent-01","type":"choice","options":5,"expected":"cancel_order","chosen":"cancel_order","expectedIndex":1,"correct":true,"confidence":0.706525,"uncalibrated":false,"temperature":1.760152,"bucket":"choice:3-5","rawLogits":[-1.023870,6.200851,1.393416,3.971925,0.992843]},
