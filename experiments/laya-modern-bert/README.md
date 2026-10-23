@@ -22,7 +22,7 @@ them by 0.50.
 | 7. policy `decision-calibration-v1` | not written — but the labelled set it needs **exists**: JevBench v1.1, `benchmark-results/2026-09-24-decision-latency/clm-arm/cohort-jevbench-120.jsonl`, 120 MIT-licensed externally authored cases with `expected` ground truth, covering choice 72 / noul 36 / score 12 at 2/4/5/6 options |
 | 8. qualify | blocked on all of the above |
 
-Laya is `ggml-org/Laya-GGUF` (Apache-2.0, 449 MB at Q8_0, 369M parameters by its own tensors). It
+Laya is `ggml-org/Laya-GGUF` (Apache-2.0, 449 MB at Q8_0, **421,029,889 parameters** summed from its own tensor shapes, of which 51,576,832 are the token embedding and 369,453,057 are not). It
 is a non-autoregressive typed-decision model: give it a state and typed questions, get back a
 label and a calibrated probability per question in one forward pass. That is the same shape as our
 own decision work, which is why it is worth the runtime it costs.
