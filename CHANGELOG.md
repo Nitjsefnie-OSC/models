@@ -4,6 +4,12 @@ All notable changes to models are documented here.
 
 ## [Unreleased]
 
+### Fixed
+
+- **Reproducible decision qualification evidence.** JevBench reports sort per-type keys and keep
+  wall-clock timing in a sibling `.json.timing.json` report outside the evidence digest, so identical
+  measurements retain the same `reportSha256` across elapsed times and map iteration orders.
+
 ## [0.5.4] - 2026-10-23
 
 ### Added
