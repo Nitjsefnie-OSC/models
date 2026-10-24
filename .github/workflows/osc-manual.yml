@@ -1,0 +1,193 @@
+name: OSC manual CI
+
+on:
+  workflow_dispatch:
+    inputs:
+      target_ref:
+        description: The ref to check out and build
+        required: true
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: models
+    steps:
+      - name: Checkout models
+        uses: actions/checkout@v5
+        with:
+          path: models
+          ref: ${{ inputs.target_ref }}
+          # Full history. The evidence scripts resolve commit ranges -- derive.py checks that a
+          # paired measurement's two arms came from builds whose delta misses the measured path
+          # -- and on a shallow clone they cannot, so they fail closed and the build goes red.
+          fetch-depth: 0
+
+      - name: Candidate provenance
+        run: |
+          {
+            echo "target_ref: ${{ inputs.target_ref }}"
+            git -C models log -1 --format='HEAD: %H'
+            git -C models log -1 --format='%H %s'
+          } | tee "$GITHUB_STEP_SUMMARY"
+
+      - name: Check Windows checkout path lengths
+        run: python3 scripts/integrity/check-portable-paths.py
+
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: 25
+
+      - name: Install pinned Rust toolchain
+        run: |
+          rustup toolchain install 1.96.0 --profile minimal --no-self-update
+          rustup component add --toolchain 1.96.0 clippy rustfmt
+
+      - name: Install the PTX toolchain
+        uses: ./models/.github/actions/ptx-toolchain
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v6
+      - name: Warm the Gradle distribution
+        uses: ./models/.github/actions/warm-gradle
+        with:
+          working-directory: models
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: models/docs/package-lock.json
+
+      - name: Build + Test
+        run: ./gradlew spotlessCheck build -x :docs:build
+
+      - name: Build documentation
+        run: ./gradlew :docs:build
+
+      - name: Setup uv
+        uses: astral-sh/setup-uv@08807647e7069bb48b6ef5acd8ec9567f424441b # v8.1.0
+
+      - name: Test Python RAG baseline
+        run: |
+          uv sync --project models-rag-bench/python --frozen --extra test
+          uv run --project models-rag-bench/python --frozen pytest -q \
+            models-rag-bench/python/tests
+
+      - name: Test fleet tooling
+        run: |
+          python3 -m unittest discover -s scripts/fleet -p '*_test.py' -v
+          bash scripts/fleet/qual-worker-guards-test.sh
+
+      - name: Check cited evidence exists
+        run: |
+          python3 -m unittest discover -s scripts/integrity -p 'test_*.py'
+          python3 scripts/integrity/check-evidence-references.py
+
+      - name: Check no workflow duplicates a shared setup step
+        run: python3 scripts/integrity/check-workflow-duplication.py
+
+      - name: Check the candidate inventory matches the catalog
+        run: >-
+          python3 scripts/fleet/candidate-inventory.py
+          --catalog scripts/fleet/fixtures/candidate-catalog
+          --check-doc docs/CANDIDATE-INVENTORY.md
+
+      - name: Prove every integrity guard can fail
+        run: python3 scripts/integrity/mutation-check.py
+
+      - name: Generate SBOM
+        run: ./gradlew cyclonedxDirectBom
+
+      - name: Compliance Check
+        run: ./gradlew complianceCheck
+
+      - name: Test dependency policy rejection cases
+        run: |
+          python3 scripts/test-dependency-policy.py
+          python3 scripts/test-published-consumers.py
+
+      - name: Retain dependency and consumer evidence
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: release-dependency-consumers
+          path: |
+            models/build/reports/release-dependencies/
+            models/build/published-consumers/
+          retention-days: 30
+
+      - name: Upload SBOM
+        uses: actions/upload-artifact@v7
+        with:
+          name: sbom
+          path: 'models/*/build/reports/cyclonedx-direct/bom.json'
+          retention-days: 90
+
+      - name: Upload Test Reports
+        if: failure()
+        uses: actions/upload-artifact@v7
+        with:
+          name: test-reports
+          path: 'models/*/build/reports/tests/'
+          retention-days: 30
+
+  notebooks:
+    name: Execute Java notebooks
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    defaults:
+      run:
+        working-directory: models
+    steps:
+      - name: Checkout models
+        uses: actions/checkout@v5
+        with:
+          path: models
+          ref: ${{ inputs.target_ref }}
+
+      - name: Set up JDK 25
+        uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: 25
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v6
+      - name: Warm the Gradle distribution
+        uses: ./models/.github/actions/warm-gradle
+        with:
+          working-directory: models
+
+      - name: Prepare source classpath
+        run: ./gradlew prepareNotebookClasspath -PnotebookMode=source
+
+      - name: Prepare writable notebook output
+        run: install -d -m 0777 build/notebooks/executed
+
+      - name: Build JJava notebook image
+        working-directory: models/notebooks
+        run: ./docker-compose.sh build
+
+      - name: Execute and validate all notebooks
+        working-directory: models/notebooks
+        env:
+          MODELS_NOTEBOOK_PREPARE: "false"
+          MODELS_NOTEBOOK_MODE: source
+        run: >-
+          ./docker-compose.sh run --rm --no-deps jupyter
+          bash /home/jovyan/work/models/notebooks/scripts/test-notebooks.sh
+
+      - name: Upload executed notebooks
+        if: failure()
+        uses: actions/upload-artifact@v7
+        with:
+          name: executed-notebooks
+          path: models/build/notebooks/executed/
+          retention-days: 14
