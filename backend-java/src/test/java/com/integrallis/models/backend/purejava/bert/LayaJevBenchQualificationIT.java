@@ -170,7 +170,7 @@ class LayaJevBenchQualificationIT {
             + report.tier().exportsConfidenceQuality());
 
     Files.createDirectories(REPORT.getParent());
-    Files.writeString(REPORT, json(report, perCase, seconds), StandardCharsets.UTF_8);
+    writeReport(REPORT, report, perCase, seconds, ARTIFACT, COHORT);
 
     // The report is written whichever way the gate goes -- a null is a result and gets an artifact
     // like any other. The assertion is on the policy, not on a number chosen after the fact.
@@ -186,7 +186,7 @@ class LayaJevBenchQualificationIT {
     assertThat(report.tier().publishable()).as("tier %s", report.tier()).isTrue();
   }
 
-  private static String sha256(Path path) throws IOException {
+  static String sha256(Path path) throws IOException {
     try {
       MessageDigest digest = MessageDigest.getInstance("SHA-256");
       try (InputStream in = Files.newInputStream(path)) {
@@ -227,19 +227,35 @@ class LayaJevBenchQualificationIT {
         + "  },\n";
   }
 
-  private static String json(Report report, List<String> perCase, double seconds)
+  static void writeReport(
+      Path destination,
+      Report report,
+      List<String> perCase,
+      double seconds,
+      Path artifact,
+      Path cohort)
+      throws IOException {
+    Files.writeString(destination, json(report, perCase, artifact, cohort), StandardCharsets.UTF_8);
+    // Host timing stays visible without changing the evidence file's digest on every run.
+    Files.writeString(
+        destination.resolveSibling(destination.getFileName() + ".timing.json"),
+        String.format(Locale.ROOT, "{\n  \"wallClockSeconds\": %.2f%n}\n", seconds),
+        StandardCharsets.UTF_8);
+  }
+
+  private static String json(Report report, List<String> perCase, Path artifact, Path cohort)
       throws IOException {
     StringBuilder out = new StringBuilder();
     out.append("{\n");
     out.append("  \"policy\": \"").append(report.policyId()).append("\",\n");
     out.append("  \"cohort\": \"JevBench v1.1, MIT, 120 cases\",\n");
-    out.append("  \"artifact\": \"").append(ARTIFACT.getFileName()).append("\",\n");
+    out.append("  \"artifact\": \"").append(artifact.getFileName()).append("\",\n");
     // The digest and size, not just the file name. A report that names its artifact by file name
     // binds to nothing: the catalog entry downstream would have to copy the digest from itself
     // rather than check it against what was actually measured.
-    out.append("  \"artifactSha256\": \"").append(sha256(ARTIFACT)).append("\",\n");
-    out.append("  \"artifactSizeBytes\": ").append(sizeOf(ARTIFACT)).append(",\n");
-    out.append("  \"cohortSha256\": \"").append(sha256(COHORT)).append("\",\n");
+    out.append("  \"artifactSha256\": \"").append(sha256(artifact)).append("\",\n");
+    out.append("  \"artifactSizeBytes\": ").append(sizeOf(artifact)).append(",\n");
+    out.append("  \"cohortSha256\": \"").append(sha256(cohort)).append("\",\n");
     out.append("  \"cases\": ").append(report.cases()).append(",\n");
     out.append(
         String.format(Locale.ROOT, "  \"chanceAccuracy\": %.6f,%n", report.chanceAccuracy()));
@@ -250,10 +266,10 @@ class LayaJevBenchQualificationIT {
     out.append("  \"uncalibratedBucketsExercised\": ")
         .append(report.uncalibratedBucketsExercised())
         .append(",\n");
-    out.append(String.format(Locale.ROOT, "  \"wallClockSeconds\": %.2f,%n", seconds));
     out.append(environment());
     out.append("  \"byType\": {\n");
     List<String> types = new ArrayList<>(report.accuracyByType().keySet());
+    types.sort(String::compareTo);
     for (int index = 0; index < types.size(); index++) {
       String type = types.get(index);
       out.append(
