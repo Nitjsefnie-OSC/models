@@ -8031,9 +8031,10 @@ mod tests {
 
     /// A pseudo-random Q8_0 weight block set, varied on every axis the kernel reads.
     ///
-    /// Scales stay near 1.0 so the comparison is about the arithmetic and not about flushing a
-    /// subnormal, and the quants use the full byte range, which is what makes the products
-    /// mixed-sign.
+    /// Scale bits are `0x3000 |` ten mantissa bits, so every scale is a normal number in
+    /// [0.125, 0.25) and never subnormal, which keeps the comparison about the arithmetic and
+    /// not about flushing a subnormal; the quants use the full byte range, which is what makes
+    /// the products mixed-sign.
     fn q8_0_rows(rows: usize, blocks_per_row: usize, seed: u32) -> Vec<u8> {
         let mut state = seed | 1;
         let mut next = move || {
@@ -8121,6 +8122,87 @@ mod tests {
                 }
             }
         }
+    }
+
+    #[test]
+    fn q8f32_reuse_matches_scalar_through_real_worker_dispatch() {
+        // Through the real entry point, not the row kernels: batch>1 jobs are what the reuse
+        // module serves and batch=1 jobs its row arm, and the row parity test cannot see either
+        // the reuse fold or the selection decision that puts this kernel on the dispatched path.
+        let context = jmodels_kernels_context_create(4);
+        assert!(!context.is_null());
+        // SAFETY: this test owns the context until the single final destroy.
+        let c = unsafe { &*context };
+        let before = job_generation(c.workers.shared.generation.0.load(Ordering::Acquire));
+        #[cfg(target_arch = "x86_64")]
+        if std::arch::is_x86_feature_detected!("avx2") && std::arch::is_x86_feature_detected!("fma")
+        {
+            // Output equality alone cannot see which variant ran, so the selection decision is
+            // pinned directly: on an avx2+fma host the dispatched jobs below must be the AVX2
+            // kernel's work.
+            assert!(matches!(
+                WeightFormat::Q8_0F32Activation.selected_kernel(),
+                DotKernel::Q8F32ActivationAvx2
+            ));
+        }
+        for cols in [32_usize, 96, 896, 4864] {
+            let rows = 17;
+            let weights = q8_0_rows(rows, cols / 32, 0x81c6_1437 ^ cols as u32);
+            for batch in [1_usize, 2, 3, 8, 32, 1] {
+                let input = q8_0_f32_activations(batch * cols, 0x9876_5431 ^ batch as u32);
+                let mut expected = Vec::new();
+                for b in 0..batch {
+                    for row in 0..rows {
+                        expected.push(
+                            dot_q8_0_f32_activation_row_scalar(&weights, &input, b, row, cols)
+                                .to_bits(),
+                        );
+                    }
+                }
+                let mut output = vec![f32::NAN; batch * rows + 2];
+                output[0] = 19.0;
+                output[batch * rows + 1] = 23.0;
+                // SAFETY: all buffers are live, disjoint, and correctly sized; output has sentinels.
+                let status = unsafe {
+                    jmodels_quantized_f32_batched_matmul_with_context(
+                        context,
+                        8,
+                        weights.as_ptr(),
+                        weights.len() as u64,
+                        input.as_ptr(),
+                        input.len() as u64,
+                        output.as_mut_ptr().add(1),
+                        (batch * rows) as u64,
+                        batch as u32,
+                        rows as u32,
+                        cols as u32,
+                    )
+                };
+                assert_eq!(status, STATUS_OK);
+                assert_eq!(output[0], 19.0);
+                assert_eq!(output[batch * rows + 1], 23.0);
+                assert_eq!(
+                    output[1..batch * rows + 1]
+                        .iter()
+                        .map(|v| v.to_bits())
+                        .collect::<Vec<_>>(),
+                    expected,
+                    "cols {cols} batch {batch}"
+                );
+                assert_eq!(
+                    c.workers.shared.partitions.0.load(Ordering::Acquire),
+                    4,
+                    "immutable activation gate"
+                );
+            }
+        }
+        let after = job_generation(c.workers.shared.generation.0.load(Ordering::Acquire));
+        assert!(after > before, "test must actually publish worker jobs");
+        // SAFETY: this test owns the context until the single final destroy.
+        assert_eq!(
+            unsafe { jmodels_kernels_context_destroy(context) },
+            STATUS_OK
+        );
     }
 
     #[cfg(target_arch = "x86_64")]
